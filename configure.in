@@ -176,8 +176,6 @@ AM_GNU_GETTEXT
 AC_OUTPUT(	
 	Makefile 
 	etc/installer
-        intl/Makefile
-        po/Makefile.in
 	scripts/Makefile
 	compiled/Setup.tmp:compiled/Setup.in
 	bibtex/Makefile 
@@ -187,8 +185,11 @@ AC_OUTPUT(
 	Pyblio/Output/Makefile
 	Pyblio/ConfDir/Makefile
 	Pyblio/Style/Makefile
+        intl/Makefile
+        po/Makefile.in
 	doc/Makefile
 	doc/C/Makefile
+	doc/it/Makefile
 )
 
 echo
