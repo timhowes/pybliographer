@@ -30,8 +30,7 @@ from Pyblio import Base, Autoload, Config
 Mapping = Config.get ("docbook/mapping").data
 
 if Mapping is None:
-    Mapping = {'abstract' : 'Abstract',
-               'title'    : 'Title',
+    Mapping = {'title'    : 'Title',
                'pages'    : 'PageNums',
                'volume'   : 'VolumeNum',
                'year'     : 'PubDate',
@@ -46,6 +45,7 @@ def printer (entry, output):
     """Compose the next entry"""
     
     output.write ("<BiblioEntry id=\"%s\">\n" % entry.key.key)
+    output.write (" <Abbrev>%s</Abbrev>\n" % entry.key.key)
     
     # First, the authors
     if entry.has_key ('author'):
