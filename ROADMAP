@@ -1,0 +1,22 @@
+-*- outline -*-
+
+* version 1.2
+
+** port to Gnome 2
+** separate extension modules compilation
+** code documentation
+
+
+* version 1.4
+
+** unicode from the ground up
+** factorization of the import/export modules
+** pyblio xml format
+** integration with office suites
+
+* (...) 
+
+* version 2.0
+
+** rich data model
+** groupware features
