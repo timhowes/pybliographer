@@ -152,7 +152,6 @@ bibtex_reverse_field (BibtexField * field) {
 	if (* tmp >= 'a' && * tmp <= 'z') {
 	    /* Put the beginning in lower cases */
 	    g_string_append_c (st, '{');
-	    tmp ++;
 	    while (* tmp >= 'a' && * tmp <= 'z') {
 		g_string_append_c (st, * tmp);
 		tmp ++;
