@@ -84,7 +84,7 @@ void bibtex_parser_finish (BibtexSource * source) {
 %}
 
 DIGIT    [0-9]+
-NAME     [^ \\\t{}\"@(),=%#\n\r~]+
+NAME     [^ \\\t{}\"@,=%#\n\r~]+
 BODY 	 [^{}\\\" \n\t\r~]+
 
 %option noyywrap
