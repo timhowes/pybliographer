@@ -554,16 +554,16 @@ class RealEditor (Connector.Publisher):
             modified = TRUE
         else:
             if not key_re.match (key):
-                Utils.error_dialog (_("Error"), _("Invalid key format"),
-                                    self.w.get_toplevel ())
+                GnomeErrorDialog (_("Invalid key format"),
+                                  self.w.get_toplevel ())
                 return None
 
             key = Key.Key (database, key)
 
             if key != self.entry.key:
                 if database.has_key (key):
-                    Utils.error_dialog (_("Error"), _("Key already exists"),
-                                        self.w.get_toplevel ())
+                    GnomeErrorDialog (_("Key `%s' already exists") % str (key.key),
+                                      self.w.get_toplevel ())
                     return None
                 
                 self.entry.key = key

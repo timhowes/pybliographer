@@ -356,7 +356,13 @@ class Document (Connector.Publisher):
 
         Utils.set_cursor (self.w, 'clock')
         try:
-            self.data.update ()
+            try:
+                self.data.update ()
+            except (OSError, IOError), error:
+                Utils.set_cursor (self.w, 'normal')
+                self.w.error (_("Unable to save `%s':\n%s") % (str (self.data.key),
+                                                               str (error)))
+                return
         except:
             Utils.set_cursor (self.w, 'normal')
             self.w.error (_("An internal error occured during saving\nTry to Save As..."))
