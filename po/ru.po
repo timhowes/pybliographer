@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2000-07-25 22:48+0000\n"
-"PO-Revision-Date: 2000-07-25 22:50+00:00\n"
+"POT-Creation-Date: 2000-08-12 20:10+0000\n"
+"PO-Revision-Date: 2000-08-19 16:45+00:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -294,7 +294,7 @@ msgstr "Как опубликовано"
 
 #: Pyblio/ConfDir/Base.py:87
 msgid "To Appear"
-msgstr ""
+msgstr "Появилось"
 
 #: Pyblio/ConfDir/Base.py:88
 msgid "From"
@@ -366,7 +366,7 @@ msgstr "Инструкция"
 
 #: Pyblio/ConfDir/Base.py:129
 msgid "Masters Thesis"
-msgstr ""
+msgstr "Кандидатские тезисы"
 
 #: Pyblio/ConfDir/Base.py:133
 msgid "Miscellanous"
@@ -406,7 +406,7 @@ msgstr "Отображение между названием поля Ovid и"
 
 #: Pyblio/ConfDir/Refer.py:8
 msgid "Field names correspondances"
-msgstr ""
+msgstr "Соответствия названия полей"
 
 #: Pyblio/ConfDir/Gnome.py:7
 msgid "Gnome"
@@ -446,11 +446,11 @@ msgstr "Использовать естественную правку по умолчанию?"
 
 #: Pyblio/ConfDir/Gnome.py:26
 msgid "Searchable"
-msgstr ""
+msgstr "Используемое при поиске"
 
 #: Pyblio/ConfDir/Gnome.py:27
 msgid "Searchable fields"
-msgstr ""
+msgstr "Поля используемые при поиске"
 
 #: Pyblio/ConfDir/Gnome.py:31
 msgid "History Size"
@@ -466,11 +466,11 @@ msgstr "Число элементов"
 
 #: Pyblio/ConfDir/Medline.py:7
 msgid "Medline Mapping"
-msgstr ""
+msgstr "Отображение Medline"
 
 #: Pyblio/ConfDir/Medline.py:8
 msgid "Medline field names correspondances"
-msgstr ""
+msgstr "Соответствия названий полей Medline"
 
 #: Pyblio/Autoload.py:57
 #, c-format
@@ -517,7 +517,7 @@ msgstr "Элемент в \"%s\""
 #: Pyblio/Config.py:270
 #, c-format
 msgid "Tuple (%s)"
-msgstr ""
+msgstr "Кортеж (%s)"
 
 #: Pyblio/Config.py:292
 #, c-format
@@ -988,10 +988,12 @@ msgid ""
 "During opening:\n"
 "%s"
 msgstr ""
+"При открытии:\n"
+"%s"
 
 #: Pyblio/GnomeUI/Document.py:455
 msgid "Reopen error"
-msgstr ""
+msgstr "Ошибка повторного открытия"
 
 #: Pyblio/GnomeUI/Document.py:496
 #, c-format
