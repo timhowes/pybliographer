@@ -26,6 +26,7 @@ from gtk import *
 from gnome import config
 
 from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor, Search
+from Pyblio.GnomeUI.Sort import SortDialog
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
 
 import gettext, os, string, copy, types
@@ -145,6 +146,7 @@ class Document (Connector.Publisher):
         self.version   = version
         self.selection = Selection.Selection ()
         self.search_dg = None
+        self.sort_dg   = None
         self.lyx       = None
         self.changed   = 0
 
@@ -513,7 +515,16 @@ class Document (Connector.Publisher):
 
     
     def sort_entries (self, * arg):
-        self.w.warning ("Not yet implemented")
+        if self.sort_dg is None:
+            self.sort_dg = SortDialog (self.selection.sort, self.w)
+            self.sort_dg.Subscribe ('sort-data', self.sort_view)
+        self.sort_dg.show ()
+        return
+
+
+    def sort_view (self, sort):
+        self.selection.sort = Sort.Sort (sort)
+        self.redisplay_index ()
         return
     
 

@@ -23,8 +23,8 @@ pybdir = $(datadir)/$(PACKAGE)/Pyblio/Style
 
 EXTRA_DIST = 	__init__.py	\
 		Utils.py	\
-		custom.py	\
-		alpha.py
+		Generic.py	\
+		Parser.py
 
 
 pyb_DATA = $(EXTRA_DIST)

@@ -193,7 +193,7 @@ class Author:
 class AuthorGroup:
     ''' A group of Authors '''
 
-    def __init__ (self):
+    def __init__ (self, text = ''):
         self.authors = []
         return
 

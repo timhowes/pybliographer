@@ -21,6 +21,10 @@
 
 from Pyblio import Types
 
+import string, gettext
+_ = gettext.gettext
+
+
 class Sort:
     ''' This class defines the methods used to sort a database '''
     
@@ -59,6 +63,10 @@ class Sort:
         
         return keys, ent
 
+
+    def __repr__ (self):
+        return 'Sort (%s)' % str (self.fields)
+
     
 class TypeSort:
 
@@ -66,11 +74,29 @@ class TypeSort:
         return entry.type
 
 
+    def __repr__ (self):
+        return 'TypeSort ()'
+
+
+    def __cmp__ (self, other):
+        if isinstance (other, TypeSort): return 0
+        return -1
+    
+
 class KeySort:
 
     def get_field (self, entry):
         return entry.key
 
+
+    def __repr__ (self):
+        return 'KeySort ()'
+
+
+    def __cmp__ (self, other):
+        if isinstance (other, KeySort): return 0
+        return -1
+    
 
 class FieldSort:
     
@@ -84,3 +110,13 @@ class FieldSort:
         except KeyError:
             return Types.get_field (self.field).type ('')
         
+
+    def __repr__ (self):
+        return 'FieldSort (%s)' % `self.field`
+
+
+    def __cmp__ (self, other):
+        if not hasattr (other, 'field'): return -1
+        
+        return cmp (string.lower (self.field),
+                    string.lower (other.field))

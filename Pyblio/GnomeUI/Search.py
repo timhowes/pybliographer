@@ -101,37 +101,26 @@ class ItemStorage (GtkTreeItem):
         return None
 
     
-class SearchDialog (GtkDialog, Connector.Publisher):
+class SearchDialog (GnomeDialog, Connector.Publisher):
     ''' Search Dialog '''
     
     def __init__ (self, parent = None):
 
-        GtkDialog.__init__ (self)
-
-        if parent: self.set_transient_for (parent)
+        GnomeDialog.__init__ (self, _("Search"))
         
-        self.set_title (_("Search"))
-        self.set_usize (400, 500)        
-        self.connect ('delete_event', self.close)
+        self.append_button (STOCK_PIXMAP_SEARCH)
+        self.append_button (STOCK_BUTTON_CLOSE)
 
+        if parent: self.set_parent (parent)
+
+        self.set_usize (400, 500)
+        self.button_connect (0, self.apply)
+        self.button_connect (1, self.close)
+        self.set_default (0)
+        self.close_hides (1)
+        
         self.pairs   = []
         
-        # Buttons
-        apply_b = GnomeStockButton (STOCK_PIXMAP_SEARCH)
-        apply_b.connect ('clicked', self.apply)
-
-        close_b = GnomeStockButton (STOCK_BUTTON_CLOSE)
-        close_b.connect ('clicked', self.close)
-
-        acc = GtkAccelGroup ()
-        self.add_accel_group (acc)
-
-        close_b.add_accelerator ('clicked', acc, GDK.Escape, 0, 0)
-        apply_b.add_accelerator ('clicked', acc, GDK.Return, 0, 0);
-
-        self.action_area.add (apply_b)
-        self.action_area.add (close_b)
-
         # user levels
         self.notebook = GtkNotebook ()
         self.vbox.pack_start (self.notebook, expand = FALSE, fill = FALSE)
@@ -193,7 +182,9 @@ class SearchDialog (GtkDialog, Connector.Publisher):
         self.show_all ()
         return
 
-
+    def destroyed (self, * arg):
+        print "nooo !"
+        
     def create_root_item (self, data):
         if self.root_item:
             self.root_item.remove_subtree ()
