@@ -1,6 +1,13 @@
 -*- text -*-
 
-New in 1.0.5  - 2000-09-
+New in 1.0.6  - 2000-10-17
+
+        * Works with Python 2.0
+	* Capability to create alternate key generators
+	* Fixed the Refer -> BibTeX converter for special characters (angström)
+
+
+New in 1.0.5  - 2000-10-01
 
         * saving of searched words
 	* formatting now respects the order in the index window

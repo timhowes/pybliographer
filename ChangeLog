@@ -1,3 +1,8 @@
+2000-10-17  Gobry Frederic  <gobry@lithpc18.epfl.ch>
+
+	* configure.in, Makefile.am, macros/python.m4: improved the
+	testing of the python interpreter version.
+
 2000-10-09  Fred  <fred@lepriv1.epfl.ch>
 
 	* pybliographer.py, pybrc.py, Pyblio/Base.py, Pyblio/Utils.py:
