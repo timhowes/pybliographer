@@ -31,6 +31,9 @@ Autoload.preregister ('output', 'LaTeX', 'Pyblio.Output.LaTeX')
 
 Autoload.preregister ('key', 'Default', 'Pyblio.Utils')
 
+# define query engines
+Autoload.preregister ('query', 'Medline', 'Pyblio.Query.Medline')
+
 # Parse the configuration directory
 
 rootconfig = os.path.join ('Pyblio', 'ConfDir')
