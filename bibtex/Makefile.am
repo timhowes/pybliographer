@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-1999 Frederic GOBRY
+# Copyright (C) 1998-2003 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -30,7 +30,7 @@ YACC           = @YACC@ -d -t -p $(PARSER_PREFIX)
 
 lib_LTLIBRARIES = libbibtex.la 
 
-CFLAGS = @CFLAGS@ -DG_LOG_DOMAIN=\"BibTeX\"
+AM_CFLAGS = -DG_LOG_DOMAIN=\"BibTeX\"
 
 INCLUDES = $(GLIB_CFLAGS) $(RECODEINC)
 

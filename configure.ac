@@ -1,7 +1,7 @@
 dnl -*- m4 -*-
 dnl This file is part of pybliographer
 dnl
-dnl Copyright (C) 1998-1999 Frederic GOBRY
+dnl Copyright (C) 1998-2003 Frederic GOBRY
 dnl Email : gobry@idiap.ch
 dnl          
 dnl This program is free software; you can redistribute it and/or
@@ -22,10 +22,14 @@ dnl $Id$
 dnl
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(pybliographer.py)
+AC_PREREQ(2.57)
 
-AM_INIT_AUTOMAKE(pybliographer, 1.1.90)
-AM_CONFIG_HEADER(config.h)
+AC_INIT(pybliographer, 1.1.90)
+AM_INIT_AUTOMAKE
+
+AC_CONFIG_SRCDIR(pybliographer.py)
+AC_CONFIG_HEADERS(config.h)
+
 AM_ACLOCAL_INCLUDE(macros)
 
 AC_PROG_CC
@@ -34,10 +38,7 @@ AC_ISC_POSIX
 
 dnl Checking for python
 
-dnl extra files for the current version of Python
-PY_EXTRAS=''
-
-AM_CHECK_PYTHON(1.5.2)
+AM_CHECK_PYTHON(2.2)
 
 AC_MSG_CHECKING([python devel])
 
@@ -66,7 +67,7 @@ fi
 dnl Checks for libraries.
 AM_PATH_GLIB(1.2.0, , AC_MSG_ERROR([require glib]))
 
-AM_PROG_LIBTOOL
+AC_PROG_LIBTOOL
 
 dnl Checks for programs.
 AM_PROG_LEX
@@ -226,7 +227,7 @@ fi
 CPPFLAGS=${old_CPPFLAGS}
 LIBS=${old_LIBS}
 
-
+AH_TEMPLATE([USE_RECODE], [Compile the python extensions with recode])
 AC_DEFINE(USE_RECODE)
 
 AC_SUBST(RECODELIB)
@@ -257,16 +258,12 @@ if ${Python} -c 'import gnome' >&5 2>&1 ; then
 else
   AC_MSG_RESULT([not found])
   AC_MSG_WARN([install gnome-python if you want the graphical interface])
-  PY_EXTRAS="${PY_EXTRAS} gettext.py"
 fi
 
-AC_SUBST(PY_EXTRAS)
-
-AC_OUTPUT(	
+AC_CONFIG_FILES(	
 	Makefile 
 	macros/Makefile
 	etc/installer
-	extras/Makefile
 	scripts/Makefile
 	tests/Makefile
 	glade/Makefile
@@ -286,9 +283,8 @@ AC_OUTPUT(
 	Styles/Makefile
 )
 
-echo
-echo "Bootstrapping Python Makefile"
-echo
+AC_CONFIG_COMMANDS([bootstrap],
+[
 
 /bin/sh ./etc/installer < compiled/Setup.tmp > compiled/Setup
 
@@ -306,5 +302,9 @@ cd compiled && \
 	make -f ${source}/compiled/Makefile.pre.in boot \
 	VPATH=${source}/compiled srcdir=${source}/compiled
 ) >> config.log 2>&1
+
+])
+
+AC_OUTPUT
 
 echo "pybliographer is now configured. Type make to build it"

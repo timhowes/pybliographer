@@ -1,4 +1,9 @@
-2003-08-05  Frederic Gobry  <gobry@puck.ch>
+2003-08-06  Frederic Gobry  <gobry@users.sourceforge.net>
+
+	* configure.ac: now, the build system uses autoconf 2.50 and
+	automake 1.7.
+
+2003-08-05  Frederic Gobry  <gobry@users.sourceforge.net>
 
 	* Pyblio/GnomeUI/Editor.py: allow window shrinking
 

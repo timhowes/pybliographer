@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2000 Frederic GOBRY
+# Copyright (C) 1998-2003 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -25,7 +25,6 @@ appdir  = $(datadir)/gnome/apps/Applications
 SUBDIRS = 	Pyblio 		\
 		glade		\
 		intl		\
-		extras		\
 		bibtex 		\
 		compiled 	\
 		po		\
@@ -65,10 +64,6 @@ EXTRA_DIST = 	config.h.in			\
 		pybliographic.png		\
 		pybliographic-logo.png
 
-etc/installer: $(top_srcdir)/etc/installer.in $(top_builddir)/config.status
-	cd $(top_builddir) \
-		&& CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
-
 pybliographer: $(top_srcdir)/pybliographer.py etc/installer
 	$(SHELL) etc/installer < $(top_srcdir)/pybliographer.py > pybliographer
 	chmod 755 pybliographer
@@ -83,7 +78,4 @@ pybliographic.keys: pybliographic.keys.in Makefile
 	< $(srcdir)/pybliographic.keys.in > pybliographic.keys.tmp \
 	&& mv pybliographic.keys.tmp pybliographic.keys 
 
-# Simple target for bzipped distribution
-bzdist: dist
-	gunzip -c $(distdir).tar.gz | bzip2 > $(distdir).tar.bz2
 
