@@ -3,7 +3,8 @@
 # Christian Rose <menthos@menthos.com>, 2000.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000.
 #
-# $Id:
+# $Id$
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
