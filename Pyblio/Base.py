@@ -235,8 +235,8 @@ class DataBase:
 	raise RuntimeError, "method is deferred"
 
 
-    def set_native (self, value):
-	''' sets entries written in native form '''
+    def create_native (self, value):
+	''' returns an entry, described in input in native form '''
 
 	raise RuntimeError, "method is deferred"
 
