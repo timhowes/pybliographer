@@ -1,6 +1,8 @@
 M4    = m4 -P
 M4INC = template.m4 defines.m4 news.m4 
-WEB   = /home/groups/pybliographer/htdocs
+WEB   = /usr/local/www/www.gnome.org/pybliographer
+
+#WEB   = /home/groups/pybliographer/htdocs
 
 HTML =	index.html 		\
 	download.html 		\
@@ -25,8 +27,8 @@ clean:
 	test -z "$(HTML)" || rm -f $(HTML)
 
 remote:
-	scp -r *.m4 $(EXTRA) Makefile gobry@pybliographer.sourceforge.net:/home/users/gobry/html
-	ssh gobry@pybliographer.sourceforge.net 'cd html && make install'
+	rsync *.m4 $(EXTRA) Makefile frederic@www.gnome.org:/home/frederic/html
+	ssh frederic@www.gnome.org 'cd html && make install'
 
 .SUFFIXES: .html .m4
 

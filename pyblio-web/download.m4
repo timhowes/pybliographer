@@ -35,19 +35,39 @@ href="http://www.daa.com.au/~james/pygtk">Gnome-Python</a></b> version
 
 <h2>Download pybliographer, version pyblio_last</h2>
 
-<p>The latest release (<b>pyblio_last</b>) is available at <a
-href="http://sourceforge.net/project/filelist.php?group_id=4825">SourceForge</a>
-in several formats.
+<p>The latest release (<b>pyblio_last</b>) are available
+ simultaneously (well, almost ;-)) in two locations:
+<ul>
+<li> On <a href="http://sourceforge.net/project/filelist.php?group_id=4825">SourceForge</a>
+<li> On Gnome FTP in the following formats (files noted N/A are not yet available):
+<ul>
+<li><a href="pyblio_stable/pybliographer-pyblio_last.tar.gz">tar/gz</a> 
+m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last.tar.gz), 0,
+(html_filesize(local_stable/pybliographer-pyblio_last.tar.gz)), (N/A))
 
-<p>The official site for latest RPM files is <a
-href="ftp://dirac.cnrs-orleans.fr/pub/pybliographer/">here</a>.  These
-RPM files are kindly provided by <a
-href="mailto:hinsen@cnrs-orleans.fr">Konrad Hinsen</a>.</p>
+<li><a href="pyblio_stable/pybliographer-pyblio_last.tar.bz2">tar/bz2</a> 
+m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last.tar.bz2), 0,
+(html_filesize(local_stable/pybliographer-pyblio_last.tar.bz2)), (N/A))
 
-<p>You can also find pybliographer on <a
-href="ftp://ftp.gnome.org/pub/GNOME/stable/sources/pyblio">Gnome
-FTP</a>.</p>
+m4_define(rpm_bin, 1)
+m4_define(rpm_src, 1)
 
+<li><a href="pyblio_stable/pybliographer-pyblio_last-rpm_bin.i386.rpm">RPM</a>
+m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last-rpm_bin.i386.rpm), 0,
+(html_filesize(local_stable/pybliographer-pyblio_last-rpm_bin.i386.rpm)), (N/A))
+
+<li>or <a href="pyblio_stable/pybliographer-pyblio_last-rpm_src.src.rpm">source RPM</a>
+m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last-rpm_src.src.rpm), 0,
+(html_filesize(local_stable/pybliographer-pyblio_last-rpm_src.src.rpm)), (N/A))
+</ul>
+</ul>
+
+For the Gnome site, please use the <a href="ftp://ftp.gnome.org/pub/GNOME/MIRRORS.html">nearest mirror</a>.
+
+<p>The official site for latest RPM files is 
+<a href="ftp://dirac.cnrs-orleans.fr/pub/pybliographer/">here</a>.  
+
+These RPM files are kindly provided by <a href="mailto:hinsen@cnrs-orleans.fr">Konrad Hinsen</a>.
 
 <p>Historical  versions   of  pybliographer  are   available  from  <a
 href="pyblio_unstable">here</a>. Don't use them, really.</p>

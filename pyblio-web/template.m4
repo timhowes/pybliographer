@@ -26,10 +26,12 @@ m4_define(html_footer,m4_dnl
 [[<hr><p align="center">
 <a href="http://www.anybrowser.org/campaign/"> 
 <img src="anybrowser.png" width="88"
- height="31" alt="Best Seen with ANY Browser" border="0"></a>
-m4_dnl<p align="center">Thanks to the GNOME Project for hosting these pages</p>
-<p align="center">Thanks to <a href="http://sourceforge.net">SourceForge</a> 
-for hosting these pages</p>
+ height="31" alt="[Best Seen with ANY Browser]" border="0"></a>
+<A HREF="http://petition.eurolinux.org">   
+<img src="http://aful.org/images/patent_button.png" alt="[No Patents]" 
+width="88" heigth="36" border="0"></A>
+<p align="center">Thanks to the GNOME Project for hosting these pages</p>
+m4_dnl<p align="center">Thanks to <a href="http://sourceforge.net">SourceForge</a> for hosting these pages</p>
 <p align="right">Send your comments to 
 <a href="mailto:frederic.gobry@epfl.ch">Frédéric Gobry</a>
 <br><small>Last update: html_date</small>

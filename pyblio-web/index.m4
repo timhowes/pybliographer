@@ -12,8 +12,8 @@ currently supports the following formats (reading and writing):
 <ul>
 <li><b>BibTeX</b></li>
 <li><b>Medline</b></li>
-<li><b>Ovid</b> files  (from  <tt>ovid.com</tt>) </li>
-<li> <b>Refer</b> </li>
+<li><b>Ovid</b></li>
+<li><b>Refer</b> </li>
 </ul>
 
 <p>   Pybliographer   can   be   used  for   <em>searching,   editing,
@@ -28,18 +28,15 @@ provides  powerful editing  capabilities, a  nice  hierarchical search
 mechanism,  direct insertion  of references  into  <b>LyX</b> (version
 1.0.x), and more.
 
-<p>The project is currently hosted on <a
-href="http://sourceforge.net">SourceForge</a>, at the following <a
-href="http://sourceforge.net/project/?group_id=4825">location</a>.
+<p>The project is also partially hosted on 
+<a href="http://sourceforge.net/projects/pybliographer">SourceForge</a>.
 
 <hr>
 
 <a name="new"> 
 <h1> What's new ? </h1>
 
-<ul>
 latest_news(pyblio_news)
-</ul>
 
 <p>You can find older news <a href="history.html">here.</a>
 
