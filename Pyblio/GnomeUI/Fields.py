@@ -19,16 +19,19 @@
 # 
 # $Id$
 
-''' This module provides Dialogs to configure the structure of the bibliography '''
+'''This module provides a dialog to configure the structure of the
+bibliography '''
 
-from gtk import *
-from gnome.ui import *
+# TO DO:
+# 
 
-import string, gettext, re, copy
+import gobject, gtk
+
+import copy, gettext, os, re, string
 
 _ = gettext.gettext
 
-from Pyblio import Config, Fields, Types
+from Pyblio import Config, Fields, Types, version
 from Pyblio.GnomeUI import Utils
 
 _typename = {
@@ -42,77 +45,108 @@ _typename = {
 class FieldsDialog:
 
     def __init__ (self, parent = None):
-        self.w = GnomeDialog (_("Fields configuration"),
-                              STOCK_BUTTON_APPLY,
-                              STOCK_BUTTON_CANCEL)
-        if parent: self.w.set_parent (parent)
+
+        gp = os.path.join (version.prefix, 'glade', 'config1.glade')
+        
+        self.xml = gtk.glade.XML (gp, 'fields1')
+        self.xml.signal_autoconnect (self)
+
+        self.dialog = self.xml.get_widget ('fields1')
+        self.w = self.xml.get_widget ('dialog-vbox')
+
+        tooltips = gtk.Tooltips ()
+        tooltips.enable ()
+        
+        #self.dialog.set_parent (parent) ####
+        self.dialog.set_title (_("Entry types and field names configuration"))
+        self.warning = 0
         self.parent = parent
-        
-        self.w.button_connect (0, self.apply)
-        self.w.set_close (1)
-        self.w.set_policy (TRUE, TRUE, FALSE)
 
-        # content of the dialog
-        scroll = GtkScrolledWindow ()
-        scroll.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
-        
-        self.list = GtkCList (2, (_("Name"), _("Type")))
-        self.list.set_column_auto_resize (0, TRUE)
-        self.list.connect ('select_row', self.select_row)
-        (width, height) = self.list.size_request ()
-        self.list.set_usize (width, 4 * height)
-        scroll.add (self.list)
-        self.w.vbox.pack_start (scroll)
-        
-        table = GtkTable (2, 2)
-        table.set_col_spacings (5)
-        table.set_row_spacings (5)
-        table.attach (GtkLabel (_("Name:")),
-                      0, 1, 0, 1, xoptions = 0, yoptions = 0)
-        table.attach (GtkLabel (_("Type:")),
-                      0, 1, 1, 2, xoptions = 0, yoptions = 0)
+        # content of the dialog  Page 1
 
-        self.name = GtkEntry ()
-        table.attach (self.name, 1, 2, 0, 1)
+        self.fields1 = self.xml.get_widget('f_list_1')
+        rend = gtk.CellRendererText()
+        col = gtk.TreeViewColumn(_('Name'), rend, text = 0)
+        self.fields1.append_column(col)
+        rend = gtk.CellRendererText()
+        col = gtk.TreeViewColumn(_('Type'), rend, text = 1)
+        self.fields1.append_column(col)
+        
+        self.fm = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                gobject.TYPE_PYOBJECT)
+        self.fields1.set_model(self.fm)
+        self.s1 = self.fields1.get_selection()
+        self.s1.connect ('changed', self.list_1_select)
+        data = copy.copy (Config.get ('base/fields').data)
+        keys = data.keys ()
+        keys.sort ()
+        for item in [data[key] for key in keys]:
+            self.fm.append((item.name, _(_typename [item.type]), item.type))
 
-        self.menu = GtkOptionMenu ()
-        menu = GtkMenu ()
+##         self.list.connect ('select_row', self.select_row)
+##         (width, height) = self.list.size_request ()
+##         self.list.set_usize (width, 4 * height)
+        
+        self.name1 = self.xml.get_widget('name1')
+        self.menu = self.xml.get_widget('type1')
+        menu = gtk.Menu ()
         self.menu.set_menu (menu)
-        
         self.menu_items = _typename.keys ()
         for item in self.menu_items:
             Utils.popup_add (menu, _typename [item], self.select_menu, item)
-            
         self.menu.set_history (0)
         self.current_menu = self.menu_items [0]
-        
-        table.attach (self.menu, 1, 2, 1, 2)
-        self.w.vbox.pack_start (table, FALSE, FALSE)
 
-        bbox = GtkHButtonBox ()
-        button = GtkButton (_("Set"))
-        button.connect ('clicked', self.add_cb)
-        bbox.add (button)
-        button = GtkButton (_("Remove"))
-        button.connect ('clicked', self.remove_cb)
-        bbox.add (button)
-        self.w.vbox.pack_start (bbox, FALSE, FALSE)
-
-
-        # fill in list
-        self.data = copy.copy (Config.get ('base/fields').data)
-        keys = self.data.keys ()
-        keys.sort ()
-        for key in keys:
-            item = self.data [key]
-            self.list.append ((item.name, _typename [item.type]))
-            self.list.set_row_data (self.list.rows - 1, item)
-        
-        self.w.show_all ()
+        self.show()
 
         self.changed = 0
         return
 
+    def show(self):
+        self.dialog.show_all ()
+
+    def on_close (self, w):
+        self.dialog.hide_all()
+
+    def on_add(self, *args):
+        t = self.menu_items[0]
+        iter = self.fm.append(('new field', _(_typename[t]), t))
+        if iter:
+            path = self.fm.get_path (iter)
+            self.fields1.scroll_to_cell(path)
+            sel = self.fields1.get_selection()
+            sel.select_iter(iter)
+        
+    def on_remove (self, *args):
+        sel = self.fields1.get_selection()
+        m, iter = sel.get_selected()
+        if iter:
+            m.remove(iter)
+
+    def on_help (self, *args):
+        print 'ON HELP:', args
+
+    def list_1_select (self, sel):
+        m, iter = sel.get_selected()
+        print 'SELECT:', m, iter
+        if iter:
+            data = m[iter]
+            self.name1.set_text(data[0])
+            self.menu.set_history (self.menu_items.index(data[2]))
+
+    def on_name1_changed (self, *args):
+        sel = self.fields1.get_selection()
+        m, iter = sel.get_selected()
+        m[iter] [0] = self.name1.get_text()
+
+    def on_type1_changed (self, *args):
+        print 'TYP!', args
+        x = self.menu_items[self.menu.get_history()]
+        sel = self.fields1.get_selection()
+        m, iter = sel.get_selected()
+        if iter:
+            m[iter] [1] = _(_typename[x])
+            m[iter] [2] = x
 
     def select_menu (self, w, data):
         self.current_menu = data
@@ -196,50 +230,50 @@ class EntriesDialog:
 
     def __init__ (self, parent = None):
         self.w = GnomeDialog (_("Entries configuration"),
-                              STOCK_BUTTON_APPLY,
-                              STOCK_BUTTON_CANCEL)
+                              gtk.STOCK_BUTTON_APPLY,
+                              gtk.STOCK_BUTTON_CANCEL)
         if parent: self.w.set_parent (parent)
         self.parent = parent
         
         self.w.button_connect (0, self.apply)
         self.w.set_close (1)
-        self.w.set_policy (TRUE, TRUE, FALSE)
+        self.w.set_policy (True, True, False)
 
-        scroll = GtkScrolledWindow ()
-        self.main = GtkCList (1, (_("Entry"),))
+        scroll = gtk.ScrolledWindow ()
+        self.main = gtk.CList (1, (_("Entry"),))
         self.main.connect ('select_row', self.select_main)
         (width, height) = self.main.size_request ()
         self.main.set_usize (width, 4 * height)
         scroll.add (self.main)
         self.w.vbox.pack_start (scroll)
 
-        self.w.vbox.pack_start (GtkHSeparator ())
+        self.w.vbox.pack_start (gtk.HSeparator ())
 
-        self.name = GtkEntry ()
-        h = GtkHBox (spacing = 5)
-        h.pack_start (GtkLabel (_("Entry Name:")), FALSE, FALSE)
+        self.name = gtk.Entry ()
+        h = gtk.HBox (spacing = 5)
+        h.pack_start (gtk.Label (_("Entry Name:")), False, False)
         h.pack_start (self.name)
-        self.w.vbox.pack_start (h, FALSE, FALSE)
+        self.w.vbox.pack_start (h, False, False)
         
-        scroll = GtkScrolledWindow ()
-        self.choice = GtkCList (2, (_("Status"), _("Field")))
+        scroll = gtk.ScrolledWindow ()
+        self.choice = gtk.CList (2, (_("Status"), _("Field")))
         (width, height) = self.choice.size_request ()
         self.choice.set_usize (width, 4 * height)
-        self.choice.set_reorderable (TRUE)
-        self.choice.set_selection_mode (SELECTION_BROWSE)
-        self.choice.set_column_auto_resize (0, TRUE)
+        self.choice.set_reorderable (True)
+        self.choice.set_selection_mode (gtk.SELECTION_BROWSE)
+        self.choice.set_column_auto_resize (0, True)
         self.choice.connect ('select_row', self.select_choice)
         scroll.add (self.choice)
         self.w.vbox.pack_start (scroll)
 
-        bbox = GtkHButtonBox ()
-        button = GtkButton (_("Set"))
+        bbox = gtk.HButtonBox ()
+        button = gtk.Button (_("Set"))
         button.connect ('clicked', self.add_cb)
         bbox.add (button)
-        button = GtkButton (_("Remove"))
+        button = gtk.Button (_("Remove"))
         button.connect ('clicked', self.remove_cb)
         bbox.add (button)
-        self.w.vbox.pack_start (bbox, FALSE, FALSE)
+        self.w.vbox.pack_start (bbox, False, False)
 
         self.entries = copy.copy (Config.get ('base/entries').data)
         self.update_main ()
@@ -371,3 +405,19 @@ class EntriesDialog:
         self.changed = 1
         return
     
+__fields_object = None
+__entries_object = None
+
+def run (w):
+    global __fields_object
+    if __fields_object:
+        __fields_object.show()
+    else:
+        __fields_object = FieldsDialog(w)
+
+def run_entries (w):
+    global __entries_object
+    if __entries_object:
+        __entries_object.show()
+    else:
+        __entries_object = EntriesDialog(w)
