@@ -70,7 +70,7 @@ def iterator (url, check):
 
     file = open (Open.url_to_local (url))
     
-    type = Types.get_entry (Config.get ('ovid/deftype').data)
+    type = Config.get ('ovid/deftype').data
     
     return  OvidLike.OvidLike (file, Config.get ('ovid/mapping').data,
                                type)
