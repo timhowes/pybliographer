@@ -1,12 +1,29 @@
 from Pyblio import Config
 
-Config.define ("refer/table",
+Config.define ('refer/mapping',
                """ A hash table containing field names correspondances """)
 
-Config.define ("endnote/table",
-               """ Similar to refer/table, but for EndNote format """)
+Config.set ('refer/mapping', {
+    'U' : ('url', 1),
+    'A' : ('author', 1),
+    'Q' : ('author', 0),
+    'T' : ('title', 1),
+    'S' : ('series', 1),
+    'J' : ('journal', 1),
+    'B' : ('booktitle', 1),
+    'R' : ('type', 1),
+    'V' : ('volume', 1),
+    'N' : ('number', 1),
+    'E' : ('editor', 1),
+    'D' : ('pubdate', 1),
+    'P' : ('pages', 1),
+    'I' : ('publisher', 1),
+    'C' : ('address', 1),
+    'K' : ('keywords', 1),
+    'X' : ('abstract', 1),
+    'W' : ('location', 1),
+    })
 
-Config.define ("endnote/types",
-               """ A hash table indicating correspondance between entry types """)
+
 
 

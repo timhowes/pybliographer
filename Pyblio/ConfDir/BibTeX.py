@@ -5,6 +5,7 @@ Config.define ('bibtex/strict',
 
 Config.set ('bibtex/strict', 0)
 
+
 Config.define ('bibtex/macros', """ A dictionnary defining the BibTeX
 macros (@String{} macros). Each entry of the dictionnary is a 2-uple :
 the first field is the expansion of the macro, the second is a boolean
@@ -25,9 +26,37 @@ Config.set ('bibtex/macros',
              'dec' : ("December", 0),
              })
 
+
 Config.define ('bibtex/override', """ A boolean indicating if the
 macro definitions provided here should override the ones given in a
 file """)
 
 Config.set ('bibtex/override', 0)
 
+
+Config.define ('bibtex/datefield', """ A hash table linking a `real'
+date field to the two bibtex fields that compose it """)
+
+Config.set ('bibtex/datefield', {
+    'pubdate'  : ('year', 'month'),
+    'confdate' : ('year', 'month'),
+    })
+
+Config.define ('bibtex/months', """ A hash table linking month names to their
+values """)
+
+Config.set ('bibtex/months', {
+    'jan' : 1,
+    'feb' : 2,
+    'mar' : 3,
+    'apr' : 4,
+    'may' : 5,
+    'jun' : 6,
+    'jul' : 7,
+    'aug' : 8,
+    'sep' : 9,
+    'oct' : 10,
+    'nov' : 11,
+    'dec' : 12,
+    })
+    
