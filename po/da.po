@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
 "POT-Creation-Date: 2000-11-20 18:19+ZONE\n"
-"PO-Revision-Date: 2000-12-08 12:33+0100\n"
+"PO-Revision-Date: 2000-12-09 12:33+0100\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgstr "Ekstra"
 
 #: Pyblio/GnomeUI/Editor.py:601
 msgid "Invalid key format"
-msgstr "Ugyldigt nøgleformat"
+msgstr "Ugyldigt format for nøgle"
 
 #: Pyblio/GnomeUI/Editor.py:609
 #, c-format
