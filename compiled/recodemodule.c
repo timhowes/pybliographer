@@ -62,9 +62,8 @@ typedef struct {
 
 /* Destructor of BibtexFile */
 static void py_delete_recoder (PyRecodeRequest_Object * self) {
-
     recode_delete_request (self->obj);
-    PyMem_DEL (self);
+    PyObject_DEL (self);
 }
 
 static char PyRecodeRequest_Type__doc__[]  = "This is the type of a recoder";
