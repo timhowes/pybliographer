@@ -595,8 +595,11 @@ class NativeEditor (Connector.Publisher):
 
         self.entry    = entry
         self.database = database
-        self.original = database.get_native (entry.key)
-
+        if database.has_key (entry.key):
+            self.original = database.get_native (entry.key)
+        else:
+            self.original = ''
+        
         self.w = GtkText ()
         self.w.set_editable (TRUE)
         self.w.connect ('key_press_event', self.key_handler)
