@@ -1,6 +1,199 @@
+2000-04-04  fredgo  <fredgo@pium.home.org>
+
+	* Styles/Abbrev.xml, Styles/Alpha.xml:
+	Editors are now in First, Last order
+
+	* Pyblio/Format/BibTeX.py:
+	fixed a bug in the replication code
+
+	* Pyblio/Style/Generic.py:
+	Added First Name, Last Name author generation
+
+	* Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/Fields.py, Pyblio/GnomeUI/Format.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Sort.py, Pyblio/GnomeUI/Utils.py:
+	- make use of TmpGnomeDialog
+	- added directional sorting
+
+	* Pyblio/Sort.py:
+	Sorting can now work ascending or descending
+
+	* scripts/pybformat.py:
+	Made the style name suffix insensitive
+
+	* po/POTFILES.in, po/cat-id-tbl.c, po/fr.po, po/it.po, po/pybliographer.pot:
+	updated translations
+
+	* pybliographic-logo.png:
+	Smaller version of the splash screen
+
+2000-03-30  fredgo  <fredgo@pium.home.org>
+
+	* pybliographic.desktop:
+	translated desktop file in french
+
+	* po/cat-id-tbl.c, po/fr.po, po/it.po, po/pybliographer.pot:
+	added the new files's translations
+
+	* Pyblio/ConfDir/GnomeUI.py:
+	Now provide the widget not to the Field instance, but to the class
+
+	* Pyblio/Types.py:
+	made Descriptions comparable
+
+	* Pyblio/GnomeUI/Config.py, Pyblio/GnomeUI/Document.py, Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/Fields.py, Pyblio/GnomeUI/FieldsInfo.py, Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Makefile.am, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Sort.py, Pyblio/GnomeUI/Utils.py:
+	added dialogs to customize the bibliography structure
+
+2000-03-29  fredgo  <fredgo@pium.home.org>
+
+	* Pyblio/ConfDir/Makefile.am: Added Gnome.py
+
+	* AUTHORS, INSTALL, README, TODO:
+	updates
+
+	* pybliographer.py, tests/pybformat:
+	Fixed problem with additional options
+
+	* Pyblio/Format/Ovid.py:
+	Now, Ovid default type is given as an Object, not a name
+
+	* Pyblio/GnomeUI/Config.py, Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Sort.py, Pyblio/GnomeUI/Utils.py:
+	Cosmetics + Fixups for Config
+
+	* Pyblio/Config.py, Pyblio/Types.py:
+	Nicer string generation for Config objects
+
+	* Pyblio/ConfDir/Base.py, Pyblio/ConfDir/BibTeX.py, Pyblio/ConfDir/Medline.py, Pyblio/ConfDir/Ovid.py:
+	Typing of user-accessible options
+
+	* Pyblio/ConfDir/Gnome.py, Pyblio/ConfDir/GnomeUI.py:
+	Splitted gnome config in 2, so that the user defined part does not force
+	importation of gtk/gnome at each launch
+
+	* po/POTFILES.in, po/cat-id-tbl.c, po/fr.po, po/it.po, po/pybliographer.pot:
+	smoothing before 0.9.8
+
+2000-03-28  fredgo  <fredgo@pium.home.org>
+
+	* Pyblio/GnomeUI/Config.py, Pyblio/GnomeUI/Format.py, Pyblio/ConfDir/Base.py, Pyblio/ConfDir/BibTeX.py, Pyblio/ConfDir/DocBook.py, Pyblio/ConfDir/GnomeUI.py, Pyblio/ConfDir/Makefile.am, Pyblio/Config.py, Pyblio/Types.py:
+	Operational configuration mechanism
+
+	* pybrc.py: added loading of saved config
+
+2000-03-24  fredgo  <fredgo@pium.home.org>
+
+	* Pyblio/GnomeUI/Makefile.am: added Config.py
+
+	* Pyblio/GnomeUI/Config.py:
+	embryo of edition window
+
+	* configure.in: fix for distcheck build
+
+	* doc/C/config.sgml, doc/C/pyblio.sgml, doc/C/script.sgml, doc/C/styles.sgml:
+	updated doc
+
+	* po/cat-id-tbl.c, po/fr.po, po/it.po, po/pybliographer.pot:
+	updated fr.po
+
+	* scripts/pybtex.py:
+	save bbl file in the current directory
+
+	* tests/Makefile.am, tests/compact, tests/pybformat, tests/pybtex, tests/testing.sh:
+	corrected problems during make distcheck
+
+	* Pyblio/GnomeUI/Utils.py, Pyblio/ConfDir/Base.py, Pyblio/Config.py, Pyblio/GnomeUI/Document.py:
+	Embryo of Configuration system...
+
+	* doc/C/format.png, doc/C/search.png, doc/C/sort.png:
+	updated screenshots
+
+	* po/cat-id-tbl.c, po/fr.po, po/it.po, po/pybliographer.pot:
+	updated catalog
+
+	* scripts/pybcompact.py, scripts/pybconvert.py, scripts/pybformat.py, scripts/pybtex.py:
+	fixed all the scripts (error messages,...)
+
+	* Pyblio/Output/latexutils.py:
+	updated to work with the new scripts
+
+	* Pyblio/GnomeUI/Document.py, Pyblio/GnomeUI/Editor.py:
+	better error messages
+
+	* tests/Makefile.am, tests/bibtex.bib, tests/bibtex.text, tests/compact, tests/compact.aux, tests/compact.bib, tests/document.aux, tests/document.bbl.ref, tests/document.tex, tests/format, tests/pybformat, tests/pybtex:
+	added tests for the different scripts
+
+2000-03-23  fredgo  <fredgo@pium.home.org>
+
+	* pybliographer.spec:
+	added spec file for RPM packages
+
+	* Pyblio/GnomeUI/Editor.py:
+	possibility to native edit a brand new entry
+
+	* doc/C/Makefile.am, doc/C/config.sgml, doc/C/database.sgml, doc/C/edit.png, doc/C/gui.sgml, doc/C/main.png, doc/C/pyblio.sgml, doc/C/selection.sgml, doc/it/Makefile.am:
+	Updated with the new features
+
+	* scripts/pybliographic.py:
+	version is now imported from a module
+
+	* po/POTFILES.in, po/cat-id-tbl.c, po/fr.po, po/it.po, po/pybliographer.pot:
+	added messages for formatting
+
+	* Styles/Abbrev.xml, Styles/Alpha.xml:
+	cleaned the XML files
+
+	* tests/Makefile.am, tests/format.html, tests/format.latex, tests/format.py, tests/format.raw, tests/format.text, tests/import-export, tests/test-pybcheck:
+	added tests for formatting capabilities
+
+	* Pyblio/Style/Utils.py, Pyblio/GnomeUI/Document.py, Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/FileSelector.py, Pyblio/GnomeUI/Format.py, Pyblio/GnomeUI/Makefile.am, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Sort.py, Pyblio/Makefile.am, Pyblio/version.py.in:
+	added version.py.in
+
+	* ChangeLog, Makefile.am, configure.in, pybliographer.py, pybrc.py:
+	Moved version, prefix,... into Pyblio.version
+
+2000-03-22  fredgo  <fredgo@pium.home.org>
+
+	* Pyblio/Style/Makefile.am, Pyblio/GnomeUI/Document.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Sort.py, Pyblio/ConfDir/Makefile.am, Pyblio/Format/docbook.py, Pyblio/Fields.py, Pyblio/Sort.py:
+	* Use of GnomeDialog
+	* Sorting is now implemented
+
+2000-03-21  fredgo  <fredgo@pium.home.org>
+
+	* Styles/Abbrev.xml, Styles/Alpha.xml, Styles/Makefile.am, Styles/bibstyle.dtd:
+	First version of the XML style files
+
+	* Pyblio/Base.py:
+	removed get_native/set_native on the default base class
+
+	* Pyblio/ConfDir/Style.py: unuseful file
+
+	* Pyblio/Format/BibTeX.py:
+	improved robustness on dates
+
+	* Pyblio/ConfDir/Ovid.py: pudate -> date
+
+	* Pyblio/GnomeUI/Editor.py:
+	deal with missing set_native method
+
+	* Pyblio/GnomeUI/Search.py:
+	restored advanced search
+
+	* Pyblio/Output/text.py: Fixed formatting
+
+	* Pyblio/Style/Generic.py, Pyblio/Style/Parser.py, Pyblio/Style/Utils.py, Pyblio/Style/alpha.py, Pyblio/Style/custom.py:
+	New style mechanism based on XML description files
+
 2000-03-15  fredgo  <fredgo@pium.home.org>
 
-	* /cvs/gnome/pybliographer/po/fr.po, po/it.po:
+	* po/fr.po, po/it.po:
+	fixes for 0.9.7.1
+
+	* po/POTFILES.in: removed docbook
+
+	* po/fr.po, po/it.po, po/pybliographer.pot, Pyblio/Format/BibTeX.py, Pyblio/GnomeUI/Document.py, Pyblio/Base.py, configure.in:
+	date bug fix + po pb fix
+
+2000-03-15  fredgo  <fredgo@pium.home.org>
+
+	* po/fr.po, po/it.po:
 	fixes for 0.9.7.1
 
 	* po/POTFILES.in: removed docbook
