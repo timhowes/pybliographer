@@ -27,10 +27,10 @@ import sys, re, string
 
 from Pyblio import Iterator, Base, Fields, Exceptions, Utils
 
-SimpleField = 0
-AuthorField = 1
-SourceField = 2
-
+SimpleField  = 0
+AuthorField  = 1
+SourceField  = 2
+KeywordField = 3
 
 separator_re = re.compile ('<\d+>$')
 source_re    = re.compile ('(\w+)?\(([^\)]+)\):(\d+-\d+)')
@@ -128,6 +128,14 @@ class OvidLike (Iterator.Iterator):
             # parse a simple text field
             if type == SimpleField:
                 entry [name] = Fields.Text (string.strip (dict [key]))
+                continue
+
+            if type == KeywordField:
+                text = string.strip (dict [key])
+                if entry.has_key (name):
+                    text = str (entry [name]) + ', ' + text
+                    
+                entry [name] = Fields.Text (text)
                 continue
 
             # parse an author field

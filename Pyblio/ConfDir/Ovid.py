@@ -1,5 +1,5 @@
 from Pyblio import Config, Types
-from Pyblio.Format.OvidLike import SimpleField, AuthorField, SourceField
+from Pyblio.Format.OvidLike import SimpleField, AuthorField, SourceField, KeywordField
 
 
 Config.define ('ovid/deftype', """ Default type for an Ovid entry """,
@@ -22,4 +22,6 @@ Config.set ('ovid/mapping', {
     'abstract' : ('abstract', SimpleField),
     'source'   : (('journal', 'volume', 'number', 'pages', 'date'),
                   SourceField),
+    'author keywords' : ('keywords', KeywordField),
+    'keywords+'       : ('keywords', KeywordField),
     })
