@@ -41,7 +41,7 @@ import GTK, GDK
 
 from string import *
 
-import gettext, cPickle
+import gettext, cPickle, string
 
 pickle = cPickle
 del cPickle
@@ -212,7 +212,8 @@ class Index (C_Index):
         self.fields = fields or Config.get ('gnome/columns').data
         if self.fields[0] != '-mark-':
             self.fields.insert(-1,'-mark-')
-        self.fieldnames = ['X'] + map (lambda x: ' %s ' %(lower(x)), self.fields[1:])
+
+        self.fieldnames = ['X'] + map (lambda x: ' %s ' % x, self.fields[1:])
 
         C_Index.__init__(self)
 
@@ -234,7 +235,10 @@ class Index (C_Index):
             row = ['X']
         else:
             row =['']
+
         for f in self.fields[1:]:
+            f = string.lower (f)
+            
             if f == '-key-':
                 row.append (str (entry.key.key))
                     
