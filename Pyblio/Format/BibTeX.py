@@ -219,8 +219,11 @@ class BibtexIterator (Iterator.Iterator):
 	return self.next ()
 
     def next (self):
-	retval = _bibtex.next (self.parser)
-
+        try:
+            retval = _bibtex.next (self.parser)
+        except IOError, error:
+            raise Exceptions.ParserError ((str (error),))
+        
 	if retval == None: return None
 
 	name, fieldtype, offset, line, object = retval
@@ -274,7 +277,7 @@ class DataBase (Base.DataBase):
             # stay in the loop as long as we are on error
             try:
                 entry = iter.first ()
-            except IOError, err:
+            except Exceptions.ParserError, err:
                 errors.append (str (err))
                 continue
 
@@ -331,7 +334,7 @@ class DataBase (Base.DataBase):
 	return stream.text
 
 
-    def set_native (self, value):
+    def create_native (self, value):
 	''' Parse text in native format '''
 
 	parser = _bibtex.open_string ("<set_native string>", value,
@@ -340,17 +343,12 @@ class DataBase (Base.DataBase):
 	iter  = BibtexIterator (self, parser)
 
 	entry = iter.first ()
-	while entry:
+	if entry:
 	    # set the entry parser to the current one, so
 	    # that we keep the current string definitions
 	    entry.parser = self.parser
 
-	    # store this new entry.
-	    self.dict [entry.key] = entry
-
-	    entry = iter.next ()
-
-	return
+	return entry
 
 
 
