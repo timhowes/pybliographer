@@ -56,13 +56,16 @@ class Pybliographic:
 
     
     def close_document (self, document):
+
         if not document.close_document_request ():
             return
-        
-        self.documents.remove (document)
 
-        if not self.documents:
+        if len (self.documents) == 1:
             self.exit_application (document)
+            return
+        
+        document.w.destroy ()
+        self.documents.remove (document)
         return
 
     def exit_application (self, document):
@@ -72,6 +75,7 @@ class Pybliographic:
             if not doc.close_document_request ():
                 return
             
+            doc.w.destroy ()
             self.documents.remove (doc)
 
         mainquit ()

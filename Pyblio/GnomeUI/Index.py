@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-from Pyblio import Types, Config, Connector
+from Pyblio import Fields, Config, Connector
 
 from Pyblio.GnomeUI import FieldsInfo, Utils
 from gtk import *
@@ -120,7 +120,7 @@ class Index (Connector.Publisher):
             for f in self.fields:
                 if entry.has_key (f):
                     
-                    if entry.type (f) == Types.TypeAuthor:
+                    if entry.type (f) == Fields.AuthorGroup.id:
                         text = join (map (lambda a: str (a.last), entry [f]), ', ')
                     else:
                         text = str (entry [f])

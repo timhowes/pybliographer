@@ -90,13 +90,13 @@ class Document (Connector.Publisher):
             ]
 
         # Put information in Paned windows
-        paned = GtkVPaned ()
-
-        Utils.init_colors (paned.get_colormap ())
+        self.paned = GtkVPaned ()
+        
+        Utils.init_colors (self.paned.get_colormap ())
 
         # The Index list
         self.index = Index.Index ()
-        paned.add1 (self.index.w)
+        self.paned.add1 (self.index.w)
 
         self.index.Subscribe ('new-entry',      self.add_entry)
         self.index.Subscribe ('edit-entry',     self.edit_entry)
@@ -106,7 +106,7 @@ class Document (Connector.Publisher):
 
         # The text area
         self.display = Entry.Entry ()
-        paned.add2 (self.display.w)
+        self.paned.add2 (self.display.w)
 
         # Status bar
         self.statusbar = GnomeAppBar (FALSE, TRUE)
@@ -114,7 +114,8 @@ class Document (Connector.Publisher):
         # fill the main app
         self.w.create_menus   (menus)
         self.w.create_toolbar (toolbar)
-        self.w.set_contents   (paned)
+        
+        self.w.set_contents   (self.paned)
         self.w.set_statusbar  (self.statusbar)
 
         # set window size
@@ -126,7 +127,7 @@ class Document (Connector.Publisher):
 
         # set paned size
         paned_height = config.get_int ('Pybliographer/UI/Paned=-1')
-        paned.set_position (paned_height)
+        self.paned.set_position (paned_height)
         
         self.w.show_all ()
         
@@ -249,10 +250,7 @@ class Document (Connector.Publisher):
         return
 
     def close_document_request (self):
-        if not self.confirm (): return 0
-        
-        self.w.destroy ()
-        return 1
+        return self.confirm ()
     
     def exit_application (self, * arg):
         self.issue ('exit-application', self)
@@ -299,7 +297,7 @@ class Document (Connector.Publisher):
         
         # Save the graphical aspect of the interface
         # 1.- Window size
-        alloc = self.get_allocation ()
+        alloc = self.w.get_allocation ()
         config.set_int ('Pybliographer/UI/Width',  alloc [2])
         config.set_int ('Pybliographer/UI/Height', alloc [3])
 
