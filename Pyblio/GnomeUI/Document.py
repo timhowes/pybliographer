@@ -19,6 +19,11 @@
 # 
 # $Id$
 
+# TO FIX
+#
+#  - handle the list of previous documents
+
+
 ''' This module defines a Document class '''
 
 from gnome import ui
@@ -51,7 +56,9 @@ class Document (Connector.Publisher):
     
     def __init__ (self, database):
 
-        self.xml = gtk.glade.XML ('glade/pyblio.glade', 'main')
+        gp = os.path.join (version.prefix, 'glade', 'pyblio.glade')
+        
+        self.xml = gtk.glade.XML (gp, 'main')
         self.xml.signal_autoconnect (self)
 
         self.w = self.xml.get_widget ('main')

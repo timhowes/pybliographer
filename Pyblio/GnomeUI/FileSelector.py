@@ -19,6 +19,10 @@
 # 
 # $Id$
 
+# TO FIX
+#
+#  - spacing in the window
+
 import string, os, urlparse, gettext
 
 _ = gettext.gettext
