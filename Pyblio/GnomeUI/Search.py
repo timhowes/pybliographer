@@ -19,18 +19,17 @@
 # 
 # $Id$
 
-from gnome import ui
+import os
 
+from gnome import ui
 import gtk
 
 import string, re, sys, traceback, copy
 
-from Pyblio import Types, Search, Config, Connector, TextUI
+from Pyblio import Types, Search, Config, \
+     Connector, TextUI, version
 
 from Pyblio.GnomeUI import Utils
-
-import gettext
-_ = gettext.gettext
 
 
 class ItemStorage (gtk.TreeModel):
@@ -102,87 +101,42 @@ class ItemStorage (gtk.TreeModel):
         return None
 
     
-class SearchDialog (ui.Dialog, Connector.Publisher):
+class SearchDialog (Connector.Publisher):
     ''' Search Dialog '''
     
     def __init__ (self, parent = None):
 
-        ui.Dialog.__init__ (self, _("Search"),
-                            ui.STOCK_PIXMAP_SEARCH,
-                            ui.STOCK_BUTTON_CLOSE)
-        self.set_policy (TRUE, TRUE, FALSE)
+        gp = os.path.join (version.prefix, 'glade', 'search.glade')
         
-        if parent: self.set_parent (parent)
+        self.xml = gtk.glade.XML (gp)
+        self.xml.signal_autoconnect (self)
 
-        self.button_connect (0, self.apply_button_cb)
-        self.button_connect (1, self.close_cb)
-        self.set_default (0)
-        self.close_hides (1)
-        self.set_close (0)
-        
+        self.w = self.xml.get_widget ('search')
+        if parent: self.w.set_transient_for (parent)
+
         self.pairs   = []
         
-        # user levels
-        self.notebook = gtk.Notebook ()
-        self.vbox.pack_start (self.notebook, expand = FALSE, fill = FALSE)
-
-        # Simple search
-        table = GtkTable (2,2)
-        table.set_border_width (5)
-        table.set_col_spacings (5)
-        
-        table.attach (GtkLabel (_("Field")), 0, 1, 0, 1)
-        table.attach (GtkLabel (_("Pattern")), 1, 2, 0, 1)
-        
-        self.field = GtkCombo ()
-        table.attach (self.field, 0, 1, 1, 2)
-
-        self.text = GnomeEntry ('match')
-        self.text.load_history ()
-        
-        table.attach (self.text, 1, 2, 1, 2)
-        self.text.gtk_entry ().connect ('activate', self.apply_cb)
-
         # fill the combo
-        self.field.set_popdown_strings ([' - any field - '] +
-                                        list (Config.get
-                                              ('gnome/searched').data) +
-                                        [' - type - ', ' - key - '])
-
-        self.notebook.append_page (table, GtkLabel (_("Simple Search")))
-        
-        # extended search
-        hbox = GtkHBox (spacing=5)
-        hbox.pack_start (GtkLabel (_("Search command:")),
-                         expand=FALSE, fill=FALSE)
-        self.expert = GnomeEntry ('expert-search')
-        self.expert.gtk_entry ().connect ('activate', self.apply_cb)
-        hbox.pack_start (self.expert)
-        
-        self.notebook.append_page (hbox, GtkLabel (_("Expert Search")))
+#        self.field.set_popdown_strings ([' - any field - '] +
+#                                        list (Config.get
+#                                              ('gnome/searched').data) +
+#                                        [' - type - ', ' - key - '])
 
 
         # database
-        self.root_tree = GtkTree ()
-        self.root_tree.connect ('selection_changed', self.selection)
-        
-        holder = GtkScrolledWindow ()
-        holder.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
-        holder.add_with_viewport (self.root_tree)
+#        self.root_tree.connect ('selection_changed', self.selection)
 
-        self.vbox.pack_start (holder)
 
         # connect a menu to the right button
-        self.root_tree.connect ('button_press_event', self.popup_menu)
-
-        self.menu = GtkMenu ()
-        self.delete_button = Utils.popup_add (self.menu, _("Delete"),  self.search_delete)
-        self.menu.show ()
+#        self.root_tree.connect ('button_press_event', self.popup_menu)
+#        self.menu = GtkMenu ()
+#        self.delete_button = Utils.popup_add (self.menu, _("Delete"),  self.search_delete)
+#        self.menu.show ()
 
         self.root_item = None
         self.create_root_item (None)
 
-        self.show_all ()
+        self.w.show_all ()
         return
 
 
