@@ -65,11 +65,7 @@ def generate_key (entry, table):
     elif entry.has_key ('editor'): aut = entry ['editor']
     else:                          aut = ()
 
-    if len (aut) == 0:
-        global __entry
-        key = 'entry-%d' % __entry
-        __entry = __entry + 1
-    else:
+    try:
         if len (aut) > 1:
             key = ''
             for a in aut:
@@ -88,13 +84,20 @@ def generate_key (entry, table):
                 key = parts [0][0:3]
             else:
                 key = join (map (lambda x: x [0], parts), '')
-	
-                
+
         if entry.has_key ('date'):
             year = entry ['date'].year
             
             if year: key = key + str (year) [2:]
 
+    except:
+        aut = ()
+    
+    if len (aut) == 0:
+        global __entry
+        key = 'entry-%d' % __entry
+        __entry = __entry + 1
+                
 
     base = _flat (key)
     key  = Key.Key (table, base)
