@@ -237,6 +237,7 @@ AC_OUTPUT(
 	Pyblio/Output/Makefile
 	Pyblio/ConfDir/Makefile
 	Pyblio/Style/Makefile
+	Pyblio/Query/Makefile
         intl/Makefile
         po/Makefile.in
 	doc/Makefile

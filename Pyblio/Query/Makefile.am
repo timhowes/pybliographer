@@ -19,40 +19,12 @@
 # 
 # $Id$
 
-pybdir = $(datadir)/$(PACKAGE)/Pyblio
+pybdir = $(datadir)/$(PACKAGE)/Pyblio/Query
 
-EXTRA_DIST = \
-	version.py.in	\
-	$(PYTHON)
+EXTRA_DIST = 					\
+	__init__.py 				\
+	Medline.py 				\
+	Query.py
 
-PYTHON = \
-	Autoload.py 	\
-	Base.py 	\
-	Config.py 	\
-	Connector.py 	\
-	Exceptions.py 	\
-	Fields.py 	\
-	Formatter.py 	\
-	Help.py 	\
-	Iterator.py 	\
-	Key.py 		\
-	LyX.py 		\
-	Open.py 	\
-	Search.py 	\
-	Selection.py 	\
-	Sort.py 	\
-	TextUI.py 	\
-	Types.py 	\
-	Utils.py 	\
-	__init__.py 	\
-	recode.py	\
-	asn1.py		\
-	z3950.py
+pyb_DATA = $(EXTRA_DIST)
 
-SUBDIRS = GnomeUI Output Format ConfDir Style Query
-
-pyb_DATA = $(PYTHON) version.py
-
-version.py: $(srcdir)/version.py.in ../etc/installer
-	$(SHELL) ../etc/installer < $(srcdir)/version.py.in > version.py
-	@if test $(srcdir) != '.' ; then cp -f version.py $(srcdir) ; fi
