@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.6\n"
-"POT-Creation-Date: 2000-03-14 18:10+0100\n"
+"POT-Creation-Date: 2000-03-15 09:38+0100\n"
 "PO-Revision-Date: 2000-01-08 21:40+0100\n"
 "Last-Translator: Yuri Bongiorno <yurix@tiscalinet.it>\n"
 "Language-Team: Italian <it@li.org>\n"
