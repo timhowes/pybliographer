@@ -33,14 +33,13 @@ from Pyblio import Open, Types, Base, Fields, Config, Autoload
 
 from Pyblio.GnomeUI import Utils
 
-
 class URLFileSelection (GtkFileSelection):
     ''' Extended file selection dialog, with an URL field and a type
     selector. '''
     
     def __init__(self, title = _("File"),
-                 url=TRUE, modal=TRUE, has_auto=TRUE,
-                 directory = None):
+                 url=TRUE, modal=TRUE, has_auto=TRUE, path=None,
+                 bibpath=None,  directory = None):
         
         GtkFileSelection.__init__(self)
         self.set_title (title)
@@ -51,14 +50,48 @@ class URLFileSelection (GtkFileSelection):
         self.cancel_button.connect('clicked', self.quit)
         self.ok_button.connect('clicked', self.ok_cb)
 
+        
         if directory: self.set_filename (directory)
+        elif path: self.set_filename(path[0])
+        
         if modal:     grab_add (self)
 
         self.ret = None
         self.url = None
-        
+        self.path = path
+        self.bibpath = bibpath
+
         vbox = self.main_vbox
         
+        # path handler
+        if path or bibpath:
+            hbox = GtkHBox ()
+            hbox.set_spacing (5)
+            hbox.pack_start (GtkLabel ('Path:'), expand = FALSE, fill = FALSE)
+            self.path_m = GtkOptionMenu()
+            hbox.pack_start (self.path_m)
+            vbox.pack_start (hbox, expand = FALSE, fill = FALSE)
+            menu =  GtkMenu ()
+            self.path_m.set_menu (menu)
+            start_at = None
+            if bibpath:
+                for i in bibpath:
+                    sel = os.path.isdir(os.path.expanduser(i))
+                    Utils.popup_add(menu, i, self.path_select, i,
+                                    sensitive=sel)
+                    start_at = start_at or (sel and i)
+            if path:
+                for i in path:
+                    sel = os.path.isdir(os.path.expanduser(i))
+                    print i , sel
+                    Utils.popup_add(menu, i, self.path_select, i,
+                                    sensitive=sel)
+                    start_at = start_at or (sel and i)
+
+            self.set_filename(start_at+'/')
+            menu.show()
+            self.path_m.set_history (0)
+
         # url handler
         if url:
             hbox = GtkHBox ()
@@ -98,6 +131,10 @@ class URLFileSelection (GtkFileSelection):
 
     def menu_select (self, widget, selection):
         self.type = selection
+        return
+        
+    def path_select (self, widget, selection):
+        self.set_filename(selection+'/')
         return
         
     def quit (self, *args):

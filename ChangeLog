@@ -1,3 +1,17 @@
+2002-06-02  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/ConfDir/Base.py (_get_keytypes): added base/bibpath 
+
+	* Pyblio/GnomeUI/Document.py: added path and bibpath variables and
+	modified calls to FileSelector accordingly.
+
+	* Pyblio/GnomeUI/FileSelector.py (URLFileSelection.__init__):
+	added path argument; path handler; path_select method;
+	and test for valid directory names.
+
+	* Pyblio/GnomeUI/Utils.py (popup_add): added 'sensitive' parameter
+	to allow graying out of menu item.
+
 2002-01-29  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
 
 	* configure.in: Added "sk" to ALL_LINGUAS.

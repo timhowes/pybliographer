@@ -31,6 +31,9 @@ Config.define ('base/lyxpipe', """ Path to the LyX server """,
 Config.define ('base/keyformat', """ Style of generated keys """,
                vtype = Config.Element (_get_keytypes))
 
+Config.define ('base/bibpath', """ Path to the bibliographic files """,
+               vtype = Config.String ())
+
 # --------------------------------------------------
 
 Config.set ('base/keyformat', 'Default')
@@ -141,6 +144,4 @@ Config.set ('base/defaulttype',
             Config.get ('base/entries').data ['article'])
 
 Config.set ('base/advertise', 1)
-
-
 

@@ -60,13 +60,15 @@ else:
     _tooltips.disable ()
 
 
-def popup_add (menu, item, action = None, argument = None):
+def popup_add (menu, item, action = None, argument = None, sensitive= None):
     ''' Helper to add a new menu entry '''
     
     tmp = GtkMenuItem (item)
     if action:
         tmp.connect ('activate', action, argument)
-    
+    if sensitive != None:
+        tmp.set_sensitive(sensitive)
+        print tmp, tmp['sensitive']
     tmp.show ()
     menu.append (tmp)
     
