@@ -188,8 +188,9 @@ bibtex_reverse_field (BibtexField * field,
 	else {
 	    /* The first character is done */
 	    g_string_append_c (st, * tmp);
-	    tmp ++;
 	}
+	
+	tmp ++;
 
 	/* check for upper cases afterward */
 	is_upper   = false;
