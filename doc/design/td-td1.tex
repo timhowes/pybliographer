@@ -1,29 +1,6 @@
-\documentclass[a4paper,DIV8]{scrartcl}
-\usepackage{pyblio}
-% \usepackage[T1]{fontenc}
-% \usepackage[latin1]{inputenc}
-% \usepackage{hyperref,url}
-% \usepackage{natbib}
-% %\usepackage{rcsinfo,ragged2e,hyperref,url}
-% % \usepackage[pdftex]{color}
-% % \definecolor{brown}{rgb}{.5,.5, 0}
-% % \definecolor{blue}{rgb}{0,1,0}
-% % \definecolor{green}{rgb}{0,0,1}
-% \newcommand{\wdalt}[1]{}%\textsf{\itshape #1}}
-% \newcommand{\wdneu}[1]{\textbf{#1}}
-% \newcommand{\wdpro}[1]{\textsf{\textbf{#1}}}
-% %\renewcommand{\secshape}{}
-% % \newcommand{\wdalt}[1]{\textcolor{red}{#1}}
-% % \newcommand{\wdneu}[1]{\textcolor{green}{#1}}
-% % \newcommand{\wdpro}[1]{\textcolor{blue}{#1}}
-% \newcommand{\todoprio}[1]{\centerline{\textit{#1}}\bigskip}
-% \newcommand{\assign}[1]{\quad{}[\textsc{#1}]}
-% \newcommand{\filenm}[1]{\texttt{#1}}
-% \newcommand{\Done}{$\Re$ }
-% \newcommand{\Active}{$\ast$ }
-% \newcommand{\Think}{$\wp$ }
-% \newcommand{\task}[1]{\label{task:#1}}
-% \newcommand{\seet}[1]{ $\mapsto$~\ref{task:#1}}
+\documentclass[12pt,a4paper,DIV8]{scrartcl}
+\usepackage{pyblio,galliard,gillsans}
+\hyphenation{data-base}
 %\rcsInfo $Id$
 \begin{document}
 \title{Pybliographer --- The Future}
@@ -38,15 +15,15 @@
 
 \tableofcontents
 \reversemarginpar
-\include{td-lst}%{todolist}
-\include{td-c01}%intro}
+\include{td-lst}
+\include{td-c01}
 \include{td-gui}
-\include{td-use}%manager}
-\include{td-prc}%processing}
-\include{td-cnx}%external}
-\include{td-dbm}%bibdata}
-\include{td-cnf}%scripting}
-\include{td-tec}%hne}
+\include{td-use}
+\include{td-prc}
+\include{td-cnx}
+\include{td-dbm}
+\include{td-cnf}
+\include{td-tec}
 
 
 \appendix
@@ -54,7 +31,7 @@
 \include{td-atd}
 
 
-\include{td-afe}%atures}
+\include{td-afe}
 \nocite{*}
 \bibliography{pyblio}
 

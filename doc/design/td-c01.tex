@@ -5,13 +5,15 @@
 \section{Introduction and Generalities}
 \label{sec:intro}
 
-\subsection{Highlights of Pybliographer Release 2}
-\label{sec:highr2}
+\subsection{The Way of Pybliographer}
+\label{sec:way-pybliographer}
 
+\paragraph{Highlights of Pybliographer Release 2}
+\label{sec:highr2}
 \begin{itemize}
-\item The Index(-view) has been reworked, it now consumes less ressources,
-  starts and redraws much faster.
-\item The Import facilities have been completely reweritten with a
+\item The Index(-view) has been reworked, it now consumes less
+  resources, starts and redraws much faster.
+\item The Import facilities have been completely rewritten with a
   view to providing a \textit{import framework}, thus much reducing
   the expense involved in writing additional input filters, but also
   vastly (?) improving, at the same time, the level of support and
@@ -27,7 +29,7 @@
 
 As a bibliographic database manager, \textit{Pybliographer} places
 itself at the intersection of various expectations, traditions, and
-requirements, each of which developped originally independent, and
+requirements, each of which developed originally independent, and
 often in ignorance of the other, and which are still shaping the field
 according to their own peculiarities, although they are getting into
 closer contact recently.
@@ -35,61 +37,8 @@ closer contact recently.
 It should prove useful to start with a view of these ancestral
 developments:
 
-\begin{itemize}
-\item The oldest stems from the librarian's duty to keep inventories
-  of his collection in form of \textit{catalogues} -- and the
-  associated application software.
-\item Very early the scholarly (and technical) document preparation
-  has been supported with programs to augment document sources with
-  correctly formatted references (\textit{Refer} and \textit{BibTeX}
-  are two similar programs for the major document processing
-  environments).
-\item These programs concerning themselves, however, only with this
-  last step, other tools developed over time to help with orgenising
-  and searching the databases these programs require. Such
-  \textit{reference managers} also aided in the odious task of
-  actually creating (i.e., typing) the needed entries.
-\item With the growth of Internet usage, it became possible and more
-  or less usual to access databases of bibliographical interest
-  directly. Both the nature of the data (format, extent, correctness,
-  completeness) and of the means of access (protocols, navigation,
-  access restrictions, formatting)  vary enormously. Nevertheless, it
-  has become desirable to easily integrate the results of these
-  searches into one database -- adding a new complexity to the tasks.
-\item In addition, more and more the exchange of documents needs to be
-  integrated, too. 
-\item The World Wide Web may also serve as an imperfect but easily usable
-  and ubiquitous way of providing \textit{access} to a database.
-\item Finally, the traditional library catalogues have also added
-  support for additional administrative functions (both on the
-  acqusitions as on the lending side), many of which are quite
-  natural extensions of their primary function.
-\end{itemize}
-
-In the following some of these strands are more fully discussed.
-
-
-\subsubsection{Library Catalogues}
-
-Originally inventories for the use of the librarians only, since about
-one century, the library catalogues have become accessible to the
-public and set the standard of bibliographical description. 
-
-At about the same time began the development of rules for the
-bibliographical description,\footnote{The \textit{Preuﬂische
-    Instruktionen} and the \textit{ALA Rules} were among the first.
-  Their successors are the \textit{RAK} and the AACR2, both are in
-  turn influenced (the RAK more so) by the international
-  standardisation efforts of the \textit{ISBD}.} to enable the sharing
-of catalogue entries between libraries\footnote{Either by one library
-  providing the catalugue cards f or the majority of the libraries (in
-  the US), or by building union catalogues for the purpose of sharing
-  the holdings, too (the inter-library lending service in Germany).}
-and to enable a catalogue to be build and used \textit{compatibly}
-without annoyance by many people.
-
 In 1876 Charles A.~\textsc{Cutter} thus explained the aim of the
-catalogue:\footnote{as quoted in \cite[p.196]{hal98}}
+catalogue:\footnote{as quoted in \cite[p.196]{Hal98}}
 \begin{itemize}
 \item To enable a person to find a book of which either
   \begin{itemize}
@@ -106,7 +55,7 @@ catalogue:\footnote{as quoted in \cite[p.196]{hal98}}
 \item To assist in a choice of a book 
   \begin{itemize}
   \item as to its edition (bibliographically).
-  \item as to its character (litarary or topical).
+  \item as to its character (literary or topical).
   \end{itemize}
 \end{itemize}
 
@@ -114,22 +63,184 @@ These are still important principles, today perhaps even more than
 most of the time. 
 
 
-\subsubsection{BibTeX}
+
+
+%In the following some of these strands are more fully discussed.
+
+
+\subsection[The legacy of the card catalogue -- MARC]
+{The legacy of the card catalogue --
+  \textsf{MARC}\protect\footnote{Although \textsf{MARC} stands for Machine
+  Readable Cataloguing, it is used here loosely but legitimately and
+  stands for the whole of classical librarian's cataloguing, of which
+  the actual MARC standard has been, in a way the epitome and
+  culmination of centuries of work. Of course, it has begun to change \dots }}
+\label{sec:the-legacy-card}
+
+Originally inventories for the use of the librarians only, since about
+one century, the library catalogues have become accessible to the
+public and henceforth set the standard of bibliographical description.
+
+At about the same time began the development of rules for the
+bibliographical description,\footnote{The \textit{Preuﬂische
+    Instruktionen} and the \textit{ALA Rules} were among the first.
+  Their successors are the \textit{RAK} and the AACR2, both are in
+  turn influenced (the RAK more so) by the international
+  standardisation efforts of the \textit{ISBD}.} to enable the sharing
+of catalogue entries between libraries\footnote{Either by one library
+  providing the catalogue cards f or the majority of the libraries (in
+  the US), or by building union catalogues for the purpose of sharing
+  the holdings, too (the inter-library lending service in Germany).}
+and to enable a catalogue to be build and used \textit{compatibly}
+without annoyance by many people (which is a form of sharing, too).
+
+The actual rules used have always been a compromise between precision
+and cost, oscillating between the ideal of capturing the whole title
+page (of course, only the title page\footnote{see Robert Musil's
+  \textit{Mann ohne Eigenschaften} and the talk between General Stumm
+  von Borgwehr and the director of the Royal Library \dots}) and the
+need of coping (manually) with all this. Over time, the descriptions
+tended to grow in size. There are two reasons for this: 
+\begin{enumerate}
+\item the more titles exist, the more it becomes difficult to
+  distinguish between similar ones,
+\item more information is made centrally available, mostly to share the
+  cost of providing it. Such was the case in Germany, where subject
+  headings appeared in the national bibliographical database, thus
+  moving something which has traditionally been the responsibility of
+  the individual institution onwards to the \textit{Deutsche
+    Bibliothek}. To do so, additional categories needed to be defined,
+  rules set up, an authority file maintained, as it was done earlier
+  for the nucleus of the bibliographical description.
+\end{enumerate}
+
+It should be noted, that traditionally only books have been
+catalogued, together with other physical objects, that might land in a
+library (\textsf{MARC} being quite comprehensive in its scope of
+materials allowed). That reflects the point of view of the librarian,
+who is the custodian of these said objects, buys, lends, ranges them.
+The contents are not his business.  In that his view differs from the
+usual patron's view, as exemplified by the Bib\TeX\ and reference
+manager software (see \ref{sec:taking-fast-track} and
+\ref{sec:keep-your-powder}).  This orientation is slowly changing
+under the influence of Internet resources and integration with
+patron's software (section
+\ref{sec:standards-evolve}).\footnote{\textsf{MARC} intended, indeed,
+  to support so called \textit{analytical} cataloguing as well, if
+  only as a secondary task. Even the description of archival
+  resources is not, or so one thought, out of its scope. This
+  reflects the facts that American libraries hold archival collections
+  to a far greater degree than European ones, and that these are far
+  simpler than the classical European archival fonds; but remarkably
+  this proved to be a failure -- a separate standard (EAD) evolved,
+  this time based on XML. Perhaps the reason was the absence of any
+  form of hierarchy in \textsf{MARC} databases.}
+
+Perhaps the most important heritage from this development is the idea
+of \textit{entry points}: try to establish for everything that you
+catalogue attributes that are well-defined and precise enough and make
+the database search-able for them. For a card catalogue this implies
+defining not only under which \textit{form} an author is filed, but in
+addition under which author a book is filed (if there is a
+choice). The first class of normalisations is done via
+\textit{authority files} the importance of which, under the conditions
+of on-line catalogues, has only increased, because it is more
+difficult to find entries which differ slightly \cite{Hal98}
+while the so called question of the main entry has no longer the
+importance it used to have. 
  
 
 
-\subsubsection{Reference Managers}
+\subsection{Taking the fast track  -- BibTeX}
+\label{sec:taking-fast-track}
+ 
+
+Very early the scholarly (and technical) document preparation has been
+supported with programs to augment document sources with correctly
+formatted references (\textit{Refer} and \textit{BibTeX} are two
+similar programs for the major document processing environments).
+
+These are, in a way, the opposite of the \textsf{MARC} applications: 
+the categories are more often than not only loosely defined, they are
+slanted towards the production of reference lists, almost at the
+exclusion of other uses, the formats are implicitly defined and
+easy to extend, and the defining program is restricted to the
+production of reference lists -- the building and maintaining of its own
+data base, e.g., is left to other means.
+
+In spite of (or perhaps because of) these deficiencies these have been
+very successful programs. Their restrictions, that follow a well
+proved tradition after all, were intended and adequate at the time of
+their creation. They have been addressed by the next class of
+applications which developed, characteristically, in the highly
+competitive marketplace of the \textit{personal computer}, as opposed
+to the more traditional scientific Unix\slash workstation environment,
+that \TeX\ and Bib\TeX\ (and earlier troff and Refer) thrived in.
 
 
-\subsubsection{Database Access}
+
+\subsection{Enters the Personal Computer -- Reference Managers}
+\label{sec:enters-pers-comp}
+
+With the advent of the Personal Computer a new class of users came to
+the fore. While the majority of the scientific\slash technical writers
+(who had little choice, anyway) stayed with their \TeX\ applications,
+the new users were mostly attracted to the perceived simplicity of the
+word processors, and eschewed the command line and simple editors of
+Unix. Almost by necessity, the new applications stressed those aspects
+of the job, that the older tradition neglected; word processor users
+didn't care for the typographical refinements of \TeX, nor the
+frugality and intellectual self restriction of the command line. They
+wanted simplicity and ease of use, \dots\ and over the time, they
+succeeded. The graphical user interface comes no longer as an
+afterthought, it is at the centre of the development effort (often to
+the detriment of the application proper).
+
+The features of a commercial product are given in appendix
+\ref{sec:commfeat}. 
+
+For us it is important to pay attention to the \textit{organising} of
+the references, by providing suitable instruments, e.g., the
+\textit{virtual folders} of Biblioscape.
+
+
+\subsection{The spell of the Internet -- Database \& Document Access}
+\label{sec:internet-access}
+
+Although the Internet precedes the personal Computer by some
+years,\footnote{Of course, it all depends.  Arguably the first personal
+  computer was the \textsf{Alto} at \textit{Xerox Parc} from
+  the early 1970,  while the switch to the \textit{IP/TCP} protocol
+  family did not occur but a couple of years later.} 
+the impact of the Internet was but slowly felt. We can distinguish
+the following uses:
+\begin{description}
+\item[Database access] 
+\item[Document access] 
+\item[Electronic documents] posed new challenges to the librarian's
+  profession. Ephemeral, they were often felt not to warrant the
+  expense of traditional cataloguing (out of which considerations the
+  \textit{Dublin Core} standard evolved), hierarchical, they
+  stretched the card-bound structure of \textsf{MARC} to the limits,
+  ever changing, they challenged the concepts of bibliographical unit,
+  of work, and edition (see \ref{sec:bibdata} and
+  \ref{sec:standards-evolve}). 
+\end{description}
+
+\subsection{The view from the fringes -- exotic becomes normal}
+
+
+
+\subsection{The standards evolve}
+\label{sec:standards-evolve}
+\textit{The major development has been not the Dublin Core but the
+  development of an object model that underlies the cataloguing process.}
 
 
 
 
 
-
-
-\subsubsection{Other lists of requirements}
+\subsection{Other lists of requirements}
 \label{sec:otherreq}
 
 
@@ -139,7 +250,7 @@ technical university of Chemnitz\footnote{\url{%
     http://archiv.tu-chemnitz.de/pub/2001/0013/data/anforderungen.htm}} 
 \begin{itemize}
 
-\item Flexible acces via various categories, viz. author, title,
+\item Flexible access via various categories, viz. author, title,
   publication year, journal, and combinations thereof.
 
 \item Import and export in various formats, viz. BibTeX, Medline,
@@ -148,23 +259,23 @@ technical university of Chemnitz\footnote{\url{%
 \item Supports working groups, allows combinations of databases.
 
 \item Allows to merge data from various sources, and to normalise it
-  (e.g., with respect to doffering ways to abbeviate a journal title ...)
+  (e.g., with respect to differing ways to abbreviate a journal title ...)
 
-\item Adapts to the various formatting requiremants of different
+\item Adapts to the various formatting requirements of different
   journals, easy development of new styles.
 
 \item Extensible by local fields, to hold notes, order information,
   annotations, excerpts, summaries, etc.
 
 \item Simple use during document preparation: allows to search the
-  references from the editor/wordprocessor (by author, title, e.g.),
+  references from the editor/word processor (by author, title, e.g.),
   thus eschews the use of labels -- the latter are to be used and
   provided only internally. \seet{wpintegration}
 
 \item Allow confidential data in shared databases (e.g., annotations
   of theses).
 
-\item N.B.: These requiremants transcend BibTeX's abililties; thus it
+\item N.B.: These requirements transcend BibTeX's abilities; thus it
   should be used only as an export format.
 \end{itemize}
 
@@ -172,8 +283,8 @@ Other points that were mentioned on the mailing list:
 \begin{itemize}
 \item Pybliographer starts too slow; with larger databases one has no
   indication of progress, and must wait for a long time. 
-\item Pybliographer holds the whole databse in memory, and uses a lot
-  of it! (For comparision: Allegro claims about 600 B (of secondary
+\item Pybliographer holds the whole database in memory, and uses a lot
+  of it! (For comparison: Allegro claims about 600 B (of secondary
   storage) per entry.)
 
 \end{itemize}
@@ -207,23 +318,59 @@ add more work to further refine the record.  This is approximated by
 optional fields, but the format and meaning of a fields content is
 usually inflexible.  Thus there is an undesirable proliferation of
 formats, a new one created whenever someone wants a new tradeoff in
-ease vs precision.  The new format is generally as inflexible as those
+ease versus precision.  The new format is generally as inflexible as those
 which preceded it, and the problem thus continues. [\dots]
 
 
 
 \paragraph{The opportunity:}
 Create a bibliographic format which can gracefully handle a wide range
-of cataloging intensity.  One which could handle the complete spectrum
+of cataloguing intensity.  One which could handle the complete spectrum
 from Bib/Refer to MARC.  And do it in a way which permits work to be
 spent only and exactly where one wishes.  Such a format would be a
 `lingua franca', as any other bibliographic format could be converted
 into it without losing, or requiring additional, information.[\dots]
 
 
+\newpage
+\subsection{Summary of Requirements}
+\label{sec:summrequ}
+
+
+\begin{itemize}
+\item The oldest stems from the librarian's duty to keep inventories
+  of his collection in form of \textit{catalogues} -- and the
+  associated application software.
+\item Very early the scholarly (and technical) document preparation
+  has been supported with programs to augment document sources with
+  correctly formatted references (\textit{Refer} and \textit{BibTeX}
+  are two similar programs for the major document processing
+  environments).
+\item These programs concerning themselves, however, only with this
+  last step, other tools developed over time to help with organising
+  and searching the databases these programs require. Such
+  \textit{reference managers} also aided in the odious task of
+  actually creating (i.e., typing) the needed entries.
+\item With the growth of Internet usage, it became possible and more
+  or less usual to access databases of bibliographical interest
+  directly. Both the nature of the data (format, extent, correctness,
+  completeness) and of the means of access (protocols, navigation,
+  access restrictions, formatting)  vary enormously. Nevertheless, it
+  has become desirable to easily integrate the results of these
+  searches into one database -- adding a new complexity to the tasks.
+\item In addition, more and more the exchange of documents needs to be
+  integrated, too. 
+\item The World Wide Web may also serve as an imperfect but easily usable
+  and ubiquitous way of providing \textit{access} to a database.
+\item Finally, the traditional library catalogues have also added
+  support for additional administrative functions (both on the
+  acquisitions as on the lending side), many of which are quite
+  natural extensions of their primary function.
+\end{itemize}
+
 
 
 %%% Local Variables: 
 %%% mode: latex
-%%% TeX-master: "todo"
+%%% TeX-master: "td-td1"
 %%% End: 

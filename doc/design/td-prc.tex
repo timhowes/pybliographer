@@ -50,7 +50,7 @@ in order to be presented or exported.
 
 
 
-\subsection{A general query service}
+\subsection{A generic query service}
 \label{sec:genquery}
 
 The exact possibilities that a database provides for searching are as
@@ -71,9 +71,78 @@ program. (Example: cataloguing rules -- RAK, AACR, \dots)
 
 
 
-\subsection{Integration with editors and wordprocessors}
+\subsection{Integration with editors, wordprocessors, and browsers}
 \label{sec:wpintegr}
 \task{wpintegration}
+
+Integration with editors like Emacs, word processors like Abiword, and
+bowsers like Mozilla enhances ease of use, broadens its field of
+application and reduces user's keystrokes and thus the opportunity for
+errors on his side.
+
+We distinguish the following use cases:
+\begin{description}
+\item[Adding a citation] When writing, the user wants to add a
+  reference to certain document, of which he might remember no more
+  than some words from the title, or the author, or even less, but
+  as a rule, not the exact citation key that Bib\TeX\,e.g., would use
+  to identify it.
+
+  The user should refer to the document by selecting from a result set
+  or shortlist. 
+\item[Inserting citations] Quite often the case arises that a document
+  must be cited in, say, an email without wanting the whole (Bib\TeX)
+  machinery  to be put in action. 
+  
+  A simply formatted citation could be offered via \textit{Drag and
+  Drop}.
+\item[Annotating] When reading, the user wants to add a note. 
+  
+  He is helped with creating and maintaining annotations to documents
+  (registering them with Pybliographer); annotations can be large and
+  are not suitable for storage \textit{in} the bibliographical record,
+  but a link could. On the other hand it is conceivable to point back
+  from the annotation to the document, so it could stand on its own.
+\item[Viewing documents] An electronic document could be requested.
+
+  Define appropiate viewers and requestors (mainly for eprints -- the
+  rest is more simple).
+\item[Extracting metadata]  An electronic document is perused and the
+  wish is that it be catalogued.
+  
+  A limited bibliographical description can be build from the metadata
+  that is stored and communicated with the document.
+  \textit{Importantly:} If downloaded, the local file address should
+  be stored as well.
+\end{description}
+\subsubsection{Emacsen}
+
+
+\subsubsection{Other editors}
+
+
+\subsubsection{Mozilla}
+
+
+\subsubsection{Other browsers}
+
+
+
+\subsubsection{Kword}
+
+
+\subsubsection{Abiword}
+
+
+\subsubsection{Open Office}
+
+
+\subsubsection{Other word processors}
+
+
+
+\subsubsection{Other applications}
+
 
 
 \subsection{Formatting references  and bibliographies}
@@ -87,5 +156,5 @@ program. (Example: cataloguing rules -- RAK, AACR, \dots)
 
 %%% Local Variables: 
 %%% mode: latex
-%%% TeX-master: "todo"
+%%% TeX-master: "td-td1"
 %%% End: 
