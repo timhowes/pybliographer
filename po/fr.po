@@ -2,14 +2,13 @@
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-11-29 13:57+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: pybliographer-0.9.6\n"
+"POT-Creation-Date: 1999-11-30 13:50+0100\n"
+"PO-Revision-Date: 1999-11-30\n"
+"Last-Translator: Frédéric Gobry <frederic.gobry@epfl.ch>\n"
+"Language-Team: fr <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-latin-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -68,7 +67,6 @@ msgid "database `%s' is unknown in this Reference"
 msgstr "la base de données `%s' est inconnue dans cette Reference"
 
 #: Pyblio/Base.py:662
-#, fuzzy
 msgid "can't update a database of type Reference ()"
 msgstr "impossible de mettre à jour une base de données de type Reference"
 
@@ -78,7 +76,7 @@ msgid "key `%s' is malformed"
 msgstr "la clé `%s' est mal formée"
 
 #: Pyblio/Format/BibTeX.py:399
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d: key `%s' already defined"
 msgstr "La clé `%s' existe déjà"
 
@@ -88,7 +86,7 @@ msgid "in entry %s: nested crossrefs"
 msgstr "dans l'entrée `%s' : références croisées imbriquées"
 
 #: Pyblio/GnomeUI/Entry.py:55
-#, fuzzy, c-format
+#, c-format
 msgid "Native editing of field `%s'"
 msgstr "Édition du champ `%s' en format natif"
 
@@ -110,7 +108,7 @@ msgstr "Ajouter un champ supplémentaire"
 
 #: Pyblio/GnomeUI/Entry.py:662 Pyblio/GnomeUI/Entry.py:704
 #: Pyblio/GnomeUI/Entry.py:994
-#, fuzzy, c-format
+#, c-format
 msgid "Cross-Reference `%s' is unexistent in the database"
 msgstr "La référence croisée `%s' n'existe pas dans cette base"
 
@@ -146,7 +144,8 @@ msgstr "L'identificateur `%s' est incorrect"
 msgid "Identifier `%s' already exists"
 msgstr "L'identificateur `%s' existe déjà"
 
-#: Pyblio/GnomeUI/Pybliographic.py:45
+#: Pyblio/GnomeUI/Pybliographic.py:45 Pyblio/GnomeUI/Pybliographic.py:313
+#: Pyblio/GnomeUI/Pybliographic.py:422
 msgid "File"
 msgstr "Fichier"
 
@@ -154,7 +153,7 @@ msgstr "Fichier"
 msgid "Bibliography type:"
 msgstr "Type de bibliographie :"
 
-#: Pyblio/GnomeUI/Pybliographic.py:146
+#: Pyblio/GnomeUI/Pybliographic.py:146 Pyblio/GnomeUI/Pybliographic.py:301
 msgid "Format"
 msgstr "Format"
 
@@ -166,67 +165,157 @@ msgstr "Style de format:"
 msgid "Output type:"
 msgstr "Type de sortie:"
 
-#: Pyblio/GnomeUI/Pybliographic.py:274
+#: Pyblio/GnomeUI/Pybliographic.py:260
+msgid "New"
+msgstr "Nouveau..."
+
+#: Pyblio/GnomeUI/Pybliographic.py:261 Pyblio/GnomeUI/Pybliographic.py:321
+#: Pyblio/GnomeUI/Pybliographic.py:557
+msgid "Open"
+msgstr "Ouvrir"
+
+#: Pyblio/GnomeUI/Pybliographic.py:262 Pyblio/GnomeUI/Pybliographic.py:323
+msgid "Save"
+msgstr "Sauver"
+
+#: Pyblio/GnomeUI/Pybliographic.py:263
+msgid "Save As..."
+msgstr "Sauver comme"
+
+#: Pyblio/GnomeUI/Pybliographic.py:266 Pyblio/GnomeUI/Pybliographic.py:423
+msgid "Previous Documents"
+msgstr "Documents précédents"
+
+#: Pyblio/GnomeUI/Pybliographic.py:268
+msgid "Quit"
+msgstr "Quitter"
+
+#: Pyblio/GnomeUI/Pybliographic.py:272
+msgid "About..."
+msgstr "À propos..."
+
+#: Pyblio/GnomeUI/Pybliographic.py:275
 msgid "Submit a Bug Report"
 msgstr "Envoyer un rapport de Bug"
 
-#: Pyblio/GnomeUI/Pybliographic.py:376
-msgid "Welcome to Pybliographic"
-msgstr "Bienvenue dans Pybliographic"
+#: Pyblio/GnomeUI/Pybliographic.py:280
+msgid "Copy"
+msgstr "Copier"
 
-#: Pyblio/GnomeUI/Pybliographic.py:382
+#: Pyblio/GnomeUI/Pybliographic.py:281
+msgid "Cut"
+msgstr "Couper"
+
+#: Pyblio/GnomeUI/Pybliographic.py:282
+msgid "Paste"
+msgstr "Valeur"
+
+#: Pyblio/GnomeUI/Pybliographic.py:285 Pyblio/GnomeUI/Pybliographic.py:383
 msgid "New..."
 msgstr "Nouveau..."
 
-#: Pyblio/GnomeUI/Pybliographic.py:384
+#: Pyblio/GnomeUI/Pybliographic.py:286 Pyblio/GnomeUI/Pybliographic.py:385
 msgid "Edit..."
 msgstr "Éditer..."
 
-#: Pyblio/GnomeUI/Pybliographic.py:386 Pyblio/GnomeUI/Search.py:201
+#: Pyblio/GnomeUI/Pybliographic.py:287 Pyblio/GnomeUI/Pybliographic.py:387
+#: Pyblio/GnomeUI/Search.py:201
 msgid "Delete"
-msgstr "Éffacer"
+msgstr "Effacer"
 
-#: Pyblio/GnomeUI/Pybliographic.py:451
+#: Pyblio/GnomeUI/Pybliographic.py:290
+msgid "Search..."
+msgstr "Chercher"
+
+#: Pyblio/GnomeUI/Pybliographic.py:293
+msgid "Sort by Key"
+msgstr "Trier par Clé"
+
+#: Pyblio/GnomeUI/Pybliographic.py:294
+msgid "Sort by Type"
+msgstr "Trier par Type"
+
+#: Pyblio/GnomeUI/Pybliographic.py:298
+msgid "Cite in LyX"
+msgstr "Citer dans LyX"
+
+#: Pyblio/GnomeUI/Pybliographic.py:303
+msgid "Format As..."
+msgstr "Formatter comme..."
+
+#: Pyblio/GnomeUI/Pybliographic.py:308
+msgid "Preferences..."
+msgstr "Préférences..."
+
+#: Pyblio/GnomeUI/Pybliographic.py:314
+msgid "Edit"
+msgstr "Éditer..."
+
+#: Pyblio/GnomeUI/Pybliographic.py:315
+msgid "Configure"
+msgstr "Configurer"
+
+#: Pyblio/GnomeUI/Pybliographic.py:316
+msgid "Formatting"
+msgstr "Formatter"
+
+#: Pyblio/GnomeUI/Pybliographic.py:317
+msgid "Help"
+msgstr "Aide"
+
+#: Pyblio/GnomeUI/Pybliographic.py:326 Pyblio/GnomeUI/Search.py:121
+msgid "Search"
+msgstr "Chercher"
+
+#: Pyblio/GnomeUI/Pybliographic.py:328
+msgid "Cite"
+msgstr "Citer"
+
+#: Pyblio/GnomeUI/Pybliographic.py:331
+msgid "Exit"
+msgstr "Quitter"
+
+#: Pyblio/GnomeUI/Pybliographic.py:377
+msgid "Welcome to Pybliographic"
+msgstr "Bienvenue dans Pybliographic"
+
+#: Pyblio/GnomeUI/Pybliographic.py:449
 #, c-format
 msgid "Modified database `%s' [%s, %d]"
 msgstr "Base de données modifiée `%s' [%s, %d]"
 
-#: Pyblio/GnomeUI/Pybliographic.py:455
+#: Pyblio/GnomeUI/Pybliographic.py:453
 #, c-format
 msgid "Database `%s' [%s, %d]"
 msgstr "Base de données `%s' [%s, %d]"
 
-#: Pyblio/GnomeUI/Pybliographic.py:464
+#: Pyblio/GnomeUI/Pybliographic.py:462
 msgid "New file"
 msgstr "Nouveau fichier"
 
-#: Pyblio/GnomeUI/Pybliographic.py:482 Pyblio/GnomeUI/Pybliographic.py:522
-#: Pyblio/GnomeUI/Pybliographic.py:577
+#: Pyblio/GnomeUI/Pybliographic.py:480 Pyblio/GnomeUI/Pybliographic.py:520
+#: Pyblio/GnomeUI/Pybliographic.py:575
 msgid "Database is modified.\n"
 msgstr "Base de données modifiée\n"
 
-#: Pyblio/GnomeUI/Pybliographic.py:483 Pyblio/GnomeUI/Pybliographic.py:523
+#: Pyblio/GnomeUI/Pybliographic.py:481 Pyblio/GnomeUI/Pybliographic.py:521
 msgid "Discard changes ?"
 msgstr "Oublier les modifications ?"
 
-#: Pyblio/GnomeUI/Pybliographic.py:559
-msgid "Open"
-msgstr "Ouvrir"
-
-#: Pyblio/GnomeUI/Pybliographic.py:578
+#: Pyblio/GnomeUI/Pybliographic.py:576
 msgid "Quit without saving ?"
 msgstr "Quitter sans sauver ?"
 
-#: Pyblio/GnomeUI/Pybliographic.py:618
+#: Pyblio/GnomeUI/Pybliographic.py:616
 #, c-format
 msgid "can't save file: %s"
 msgstr "Impossible de sauver le fichier: %s"
 
-#: Pyblio/GnomeUI/Pybliographic.py:627
+#: Pyblio/GnomeUI/Pybliographic.py:625
 msgid "Save As"
 msgstr "Sauver comme"
 
-#: Pyblio/GnomeUI/Pybliographic.py:640 Pyblio/GnomeUI/Pybliographic.py:973
+#: Pyblio/GnomeUI/Pybliographic.py:638 Pyblio/GnomeUI/Pybliographic.py:971
 #, c-format
 msgid ""
 "File `%s' exists.\n"
@@ -235,7 +324,7 @@ msgstr ""
 "Le fichier `%s' existe.\n"
 "Faut-il l'écraser ?"
 
-#: Pyblio/GnomeUI/Pybliographic.py:653 Pyblio/GnomeUI/Pybliographic.py:940
+#: Pyblio/GnomeUI/Pybliographic.py:651 Pyblio/GnomeUI/Pybliographic.py:938
 #, c-format
 msgid ""
 "Can't save file:\n"
@@ -244,12 +333,12 @@ msgstr ""
 "Impossible de sauver le fichier:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Pybliographic.py:664 Pyblio/GnomeUI/Pybliographic.py:671
-#: Pyblio/GnomeUI/Pybliographic.py:678 Pyblio/GnomeUI/Pybliographic.py:809
+#: Pyblio/GnomeUI/Pybliographic.py:662 Pyblio/GnomeUI/Pybliographic.py:669
+#: Pyblio/GnomeUI/Pybliographic.py:676 Pyblio/GnomeUI/Pybliographic.py:807
 msgid "Not yet implemented..."
 msgstr "Pas encore implémenté..."
 
-#: Pyblio/GnomeUI/Pybliographic.py:695
+#: Pyblio/GnomeUI/Pybliographic.py:693
 msgid ""
 "Please, create a new database first.\n"
 "Use File/New for example"
@@ -257,16 +346,15 @@ msgstr ""
 "Veuillez créer une nouvelle base avant tout.\n"
 "Utilisez le menu Fichier/Nouveau pour cela"
 
-#: Pyblio/GnomeUI/Pybliographic.py:702
-#, fuzzy
+#: Pyblio/GnomeUI/Pybliographic.py:700
 msgid "editing is disabled in this database"
 msgstr "L'édition n'est pas autorisée dans cette base"
 
-#: Pyblio/GnomeUI/Pybliographic.py:734 Pyblio/GnomeUI/Pybliographic.py:783
+#: Pyblio/GnomeUI/Pybliographic.py:732 Pyblio/GnomeUI/Pybliographic.py:781
 msgid "edition is disabled in this database"
 msgstr "L'édition n'est pas autorisée dans cette base"
 
-#: Pyblio/GnomeUI/Pybliographic.py:766 Pyblio/GnomeUI/Pybliographic.py:772
+#: Pyblio/GnomeUI/Pybliographic.py:764 Pyblio/GnomeUI/Pybliographic.py:770
 #, c-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -275,12 +363,12 @@ msgstr ""
 "Impossible de se connecter à LyX :\n"
 "%s"
 
-#: Pyblio/GnomeUI/Pybliographic.py:793
+#: Pyblio/GnomeUI/Pybliographic.py:791
 #, c-format
 msgid "Really remove entry %s ?"
 msgstr "Voulez-vous supprimer l'entrée `%s' ?"
 
-#: Pyblio/GnomeUI/Pybliographic.py:898
+#: Pyblio/GnomeUI/Pybliographic.py:896
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -288,15 +376,15 @@ msgstr ""
 "Veuillez installer `bug-buddy'\n"
 "pour utiliser cette fonction"
 
-#: Pyblio/GnomeUI/Pybliographic.py:904
+#: Pyblio/GnomeUI/Pybliographic.py:902
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Ce programme est placé sous la licence GNU GPL"
 
-#: Pyblio/GnomeUI/Pybliographic.py:906
+#: Pyblio/GnomeUI/Pybliographic.py:904
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Une interface graphique pour Pybliographer"
 
-#: Pyblio/GnomeUI/Pybliographic.py:910
+#: Pyblio/GnomeUI/Pybliographic.py:908
 msgid ""
 "Submit a bug report\n"
 " using bug-buddy"
@@ -304,21 +392,17 @@ msgstr ""
 "Envoyer un rapport de Bug\n"
 "en utilisant `bug-buddy'"
 
-#: Pyblio/GnomeUI/Pybliographic.py:913
+#: Pyblio/GnomeUI/Pybliographic.py:911
 msgid "Pybliographer Home Page"
 msgstr "Page principale de Pybliographer"
 
-#: Pyblio/GnomeUI/Pybliographic.py:929
+#: Pyblio/GnomeUI/Pybliographic.py:927
 msgid "Please open a database first"
 msgstr "Veuillez ouvrir une base de données"
 
-#: Pyblio/GnomeUI/Pybliographic.py:953
+#: Pyblio/GnomeUI/Pybliographic.py:951
 msgid "Bibliography"
 msgstr "Bibliographie"
-
-#: Pyblio/GnomeUI/Search.py:121
-msgid "Search"
-msgstr "Chercher"
 
 #: Pyblio/GnomeUI/Search.py:158
 msgid "Field"
