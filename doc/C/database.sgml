@@ -12,6 +12,7 @@ class <classname>Base.DataBase</classname>:
 
     def <link linkend="meth-database-init">__init__</link>     (self, url):
     def <link linkend="meth-database-has-property">has_property</link> (self, prop):
+    def <link linkend="meth-database-new-entry">new_entry</link>    (self, type):
     def <link linkend="meth-database-add">add</link>          (self, entry):
     def <link linkend="meth-database-keys">keys</link>         (self):
     	    return <returnvalue>list (Keys)</returnvalue>
@@ -78,6 +79,16 @@ class <classname>Base.DataBase</classname>:
     <refsect2 id="meth-database-has-property">
       <title></title>
       <para></para>
+    </refsect2>
+
+    <refsect2 id="meth-database-new-entry">
+      <title>new_entry (self, type)</title>
+
+      <para>This method returns a new empty entry which is native for
+      the current database. (it is always possible to use a generic
+      Base.Entry instead, but the one returned here can avoid internal
+      conversions)</para>
+
     </refsect2>
 
     <refsect2 id="meth-database-add">

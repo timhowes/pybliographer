@@ -37,7 +37,7 @@
   
     &script;
   
-  &config;
+    &config;
   
   <chapter>
     <title>Adding new formats</title>

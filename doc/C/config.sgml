@@ -5,41 +5,36 @@
     system. The configuration files are standard &pyb; scripts (that is,
     python code making use of  &pyb; extra classes and functions), whose
     single   special  feature   is   to  be   automatically  parsed   at
-    startup. </para>
+    startup or when needed.</para>
   
   <sect1>
     <title>Files involved</title>
     
-    <para>The first file to be parsed is
+    <para>The      first      file      to      be      parsed      is
       <filename>${prefix}/share/pybliographer/pybrc.py</filename>.  It
-      defines the most basic characteristics of the system:</para>
+      serves as  a bootstrap  for the general  configration mechanism,
+      and defines:</para>
     
     <itemizedlist>
       <listitem>
-	<para>structure of the bibliographies being parsed (an article
-	  can contain an author, a title, ...)</para>
+	<para>the available input and output formats</para>
       </listitem>
       
       <listitem>
-	<para>site wide specific features (use of some non standard
-	  fields)</para>
-      </listitem>	  
-      
-      <listitem>
-	<para>available input and output formats</para>
-      </listitem>
-      
-      <listitem>
-	<para>several format and front-end specific features</para>
+	<para>where to find the configuration directories.</para>
       </listitem>
     </itemizedlist>
     
-    <para>This  file   in  turn  usually   indicates  a  configuration
-      directory.   All  the  files  in  this directory  are  parsed  (in
-      alphabetical order). This mechanism allows more flexibility to add
-      new  formats: the  new  format  can be  installed  with a  default
-      configuration  without  messing   with  the  global  configuration
-      file.</para>
+    <para>A configuration directory holds a list of  files which  are
+    parsed  when needed. For example, if a method requires some
+    configuration data for the bibtex module, it will import the
+    corresponding file in this directory.</para>
+
+    <para> This mechanism allows  more flexibility to add new formats:
+      the  new format can  be installed  with a  default configuration
+      without messing with the global configuration file. In addition,
+      the program imports only what is needed, increasing its startup
+      time.</para>
     
     <para>Finally,    if   the   user    provides   a    file   called
       <filename>.pybrc.py</filename> in its home directory, this file is
@@ -51,13 +46,10 @@
     <title>The <classname>Config</classname> module</title>
     
     <para>All the data that can be configured should be handled by the
-      so-called  <classname>Config</classname>  module.  It  provides  a
-      standard   interface  to   set/get   and  document   configuration
-      topics.</para>
+      so-called  <classname>Config</classname> module.  It  provides a
+      standard  interface   to  set/get  and   document  configuration
+      items.</para>
     
-    <para>The module provides the following functions:</para>
-    
-
   </sect1>
   
 </chapter>

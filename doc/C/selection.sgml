@@ -31,7 +31,7 @@ class <classname>Selection.Selection</classname>:
       object.</para>
       <warning>
 	<para>Changing this attribute won't change the behaviour of
-	iterators returned by <link
+	iterators that were previously returned by <link
 	linkend="meth-selection-iterator">iterator</link>.</para>
       </warning>
     </refsect2>
@@ -41,7 +41,7 @@ class <classname>Selection.Selection</classname>:
       <para>The current <link linkend="class-sort">Sort</link> object.</para>
       <warning>
 	<para>Changing this attribute won't change the behaviour of
-	iterators returned by <link
+	iterators that were previously returned by <link
 	linkend="meth-selection-iterator">iterator</link>.</para>
       </warning>
     </refsect2>

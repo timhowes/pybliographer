@@ -29,30 +29,26 @@ EXTRA_DIST = \
 
 pybliographic_helpdir = $(datadir)/gnome/help/pybliographic/C
 
-all: book1.html
+all: pyblio/book1.html
 
-book1.html: $(SGML)
+pyblio/book1.html: $(SGML)
 	db2html pyblio.sgml || echo "** can't regenerate documentation"
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pybliographic_helpdir)
 	$(INSTALL_DATA)  $(srcdir)/topic.dat $(DESTDIR)$(pybliographic_helpdir)
 	@echo "installing HTML files"
-	@for file in $(srcdir)/*.html ; do \
-		$(INSTALL_DATA) $$file $(DESTDIR)$(pybliographic_helpdir) ; \
-	done
+	@cp -rf $(srcdir)/pyblio/* $(DESTDIR)$(pybliographic_helpdir)
 	@echo "installing PNG files"
 	@for file in $(srcdir)/*.png ; do \
 		$(INSTALL_DATA) $$file $(DESTDIR)$(pybliographic_helpdir) ; \
 	done
 
 dist-hook:
-	for file in $(srcdir)/*.html ; do \
-		cp -p $$file $(distdir) ; \
-	done
+	cp -rf $(srcdir)/pyblio $(distdir)
 
 doc-pack:
 	mkdir documentation
-	cp *.html *.png documentation
+	cp -r pyblio/* *.png documentation
 	tar zcvf doc-pack.tar.gz documentation
 	rm -rf documentation
