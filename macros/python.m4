@@ -38,7 +38,7 @@ ${Python} conftest.py  2>&5 1>&2
 result=$?
 rm -f conftest.py
 if test -f conftest.out ; then
-	. conftest.out
+	. ./conftest.out
 	rm -f conftest.out
 else
 	AC_MSG_RESULT(|no|)
