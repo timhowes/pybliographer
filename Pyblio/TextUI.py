@@ -19,23 +19,23 @@
 # 
 # $Id$
 
-# --------------------------------------------------
-# Basical `high level' functions
-# --------------------------------------------------
+''' This module provides basical high level functions '''
 
 from types import *
 
 import os, sys, traceback, tempfile, string
 
 from Pyblio import Base, Help, Search, Types, Autoload, Fields
+from Pyblio.Selection import Selection
 from Pyblio.Open import bibopen, bibwrite
 
 # ----- Create elementary Test -----
 
 Help.register ('searching', """
-The general syntax of a search is :
+Searching involves the creation of a Selection () object, that will
+hold the properties you request from the database.
 
- dbase.where ( constraints )
+	selection = Selection ( constraints )
 
 ...where `constraints' is an arbitrary construction of :
 
@@ -51,15 +51,17 @@ Negation of a constraint is noted `- constraint'.
 
 Examples :
 
-dbase.where (has ('author', 'me'))
-dbase.where (has ('author', 'me') & - has ('title', 'failed'))
+	s = Selection (has ('author', 'me'))
+	s = Selection (has ('author', 'me') & - has ('title', 'failed'))
 
-A search returns references on the entries that were found. It is then
-possible to search these references to restrain the result.
+This selection can then create an iterator from a database :
 
+	it = s.iterator (database.iterator ())
+
+	
 For simple searches, you can use the function `search'
 
-See also: search, references
+See also: search
 """)
 
 def has (field, value):
@@ -72,7 +74,7 @@ def any_has (value):
 	return Search.AnyTester (value)
 
 def has_type (value):
-	the_type = Types.getentry (value, 0)
+	the_type = Types.get_entry (value, 0)
 	if the_type is None:
 		raise TypeError, "no such entry type"
 	
@@ -86,7 +88,7 @@ def after (field, year, month = None, day = None):
 
 
 Help.register ('search',"""
-Usage: search (database, request)
+Usage: iterator = search (database, request)
 
 request is a string like:
 
@@ -144,33 +146,8 @@ def _split_req (req):
 
 
 def search (base, req):
-	t = _split_req (req)
-	return base.where (t)
-
-
-
-# ----- Generic reference holder -----
-
-Help.register ('ref',"""
-Syntax : reference = ref (base, [entries])
-
-This function returns a reference object (like .where () method) on
-the specified database (eventually restricted to a list of entry
-names).
-""")
-
-def ref (base, list = None):
-	ref = Base.Reference ()
-
-	if list == None:
-		ref.add (base)
-	else:
-		if type (list) is ListType:
-			ref.add (base, list)
-		else:
-			ref.add (base, [ list ])
-	return ref
-
+	t = Selection (search = _split_req (req))
+	return t.iterator (base.iterator ())
 
 # ----- Display -----
 
@@ -189,52 +166,59 @@ def pager_handle (inpager):
 
 
 Help.register ('more', """
-Syntax: more (references, [pager])
+Syntax: more (<iterator or database>, [pager])
 
 Display references in BibTeX format. If nopager is 0, the entries are
 sent to stdout instead of a pager.
 """)
 
 def more (refs, inpager = 1):
-	"Output entries"
+	''' Output entries in standard form '''
 
-	try:
-		bibwrite (refs, pager_handle (inpager))
-		
+	iter = refs.iterator ()
+	
+	try: bibwrite (iter, pager_handle (inpager))
 	except IOError:
 		print "warning: broken pipe"
 		
+	return
+
 
 Help.register ('ls', """
-Syntax: ls (references, [pager])
+Syntax: ls (<database or iterator>, [pager])
 
 Display only title/author and identifier for each entry.
 
 See also : more, less
 """)
 
-def ls (refs, inpager = 1):
-	"Output entries"
+def ls (db, inpager = 1):
+	''' output entries in a compact form '''
 
-	def printer (entry, arg):
-		title  = 'no title'
-		author = 'no author'
-
-		if entry.has_key ('title'):  title  = str (entry ['title'])
-		if entry.has_key ('author'): author = str (entry ['author'])
-
-		title  = title [0:34]
-		author = author [0:24]
-		name   = str (entry.key.key) [0:15]
-		
-		arg.write ('%-35s %-25s [%-16s]\n' % (title, author, name))
-
-
+	out  = pager_handle (inpager)
+	iter = db.iterator ()
+	
 	try:
-		refs.foreach (printer, pager_handle (inpager))
+		entry = iter.first ()
+		while entry:
+			title  = 'no title'
+			author = 'no author'
+
+			if entry.has_key ('title'):  title  = str (entry ['title'])
+			if entry.has_key ('author'): author = str (entry ['author'])
+			
+			title  = title [0:34]
+			author = author [0:24]
+			name   = str (entry.key.key) [0:15]
+			
+			out.write ('%-35s %-25s [%-16s]\n' % (title, author, name))
+
+			entry = iter.next ()
+
 	except IOError:
 		print "warning: broken pipe"
 
+	return
 
 # ---------- Format ----------
 
