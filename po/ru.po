@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2000-09-25 13:14+ZONE\n"
+"POT-Creation-Date: 2000-10-17 14:30+ZONE\n"
 "PO-Revision-Date: 2000-08-19 16:45+00:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -684,29 +684,29 @@ msgstr "Название записи:"
 msgid "Status"
 msgstr "Состояние"
 
-#: .././pybliographer.py:41
+#: .././pybliographer.py:48
 msgid "This is %s, version %s"
 msgstr "Это %s, версия %s"
 
 # .././pybliographer.py:42 :49
-#: .././pybliographer.py:45
+#: .././pybliographer.py:52
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
 msgstr "Это свободное программное обеспечение БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ."
 
-#: .././pybliographer.py:46
+#: .././pybliographer.py:53
 msgid "For details, type `warranty'."
 msgstr "Для подробностей, наберите \"warranty\"."
 
 # .././pybliographer.py:110 :158
-#: .././pybliographer.py:113
+#: .././pybliographer.py:116
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: ошибка: невозможно открыть файл \"%s\""
 
-#: .././pybliographer.py:126
+#: .././pybliographer.py:129
 msgid "For help, run %s and type `help' at the prompt"
 msgstr "Для справки, запустите %s и наберите \"help\" в строке ввода"
 
-#: .././pybliographer.py:135
+#: .././pybliographer.py:138
 msgid ""
 "Useful commands:\n"
 "\thelp     to get some help\n"
@@ -752,7 +752,7 @@ msgstr "pybformat: ошибка %s\n"
 msgid "pybformat: warning: %s\n"
 msgstr "pybformat: внимание: %s\n"
 
-#: .././scripts/pybformat.py:141 .././scripts/pybtex.py:84
+#: .././scripts/pybformat.py:141 .././scripts/pybtex.py:86
 msgid "can't find style `%s'"
 msgstr "не удалось найти стиль \"%s\""
 

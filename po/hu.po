@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.3\n"
-"POT-Creation-Date: 2000-09-25 13:14+ZONE\n"
+"POT-Creation-Date: 2000-10-17 14:30+ZONE\n"
 "PO-Revision-Date: 2000-06-26 15:26+02:00\n"
 "Last-Translator: Zoltán Kóta <kota@szbk.u-szeged.hu>\n"
 "Language-Team: hu <hu@li.org>\n"
@@ -671,27 +671,27 @@ msgstr "Bejegyzés neve:"
 msgid "Status"
 msgstr "Státusz"
 
-#: .././pybliographer.py:41
+#: .././pybliographer.py:48
 msgid "This is %s, version %s"
 msgstr "Ez a %s, %s verzió"
 
-#: .././pybliographer.py:45
+#: .././pybliographer.py:52
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
 msgstr "Ez egy szabad szoftver, melyre SEMMIFÉLE GARANCIA nem érvényes."
 
-#: .././pybliographer.py:46
+#: .././pybliographer.py:53
 msgid "For details, type `warranty'."
 msgstr "A részletek megtekintéséhez írja be: `warranty'."
 
-#: .././pybliographer.py:113
+#: .././pybliographer.py:116
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: hiba: `%s'-t nem tudom megnyitni"
 
-#: .././pybliographer.py:126
+#: .././pybliographer.py:129
 msgid "For help, run %s and type `help' at the prompt"
 msgstr "A súgóhoz futtassa %s-t és a parancssorban írja be: `help'"
 
-#: .././pybliographer.py:135
+#: .././pybliographer.py:138
 msgid ""
 "Useful commands:\n"
 "\thelp     to get some help\n"
@@ -737,7 +737,7 @@ msgstr "pybformat: hiba: %s\n"
 msgid "pybformat: warning: %s\n"
 msgstr "pybformat: figyelmeztetés: %s\n"
 
-#: .././scripts/pybformat.py:141 .././scripts/pybtex.py:84
+#: .././scripts/pybformat.py:141 .././scripts/pybtex.py:86
 msgid "can't find style `%s'"
 msgstr "nem találom a `%s' stílust"
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.4\n"
-"POT-Creation-Date: 2000-09-25 13:14+ZONE\n"
+"POT-Creation-Date: 2000-10-17 14:30+ZONE\n"
 "PO-Revision-Date: 1999-11-30\n"
 "Last-Translator: Frédéric Gobry <frederic.gobry@epfl.ch>\n"
 "Language-Team: fr <fr@li.org>\n"
@@ -671,27 +671,27 @@ msgstr "Nom de l'entrée :"
 msgid "Status"
 msgstr "État"
 
-#: .././pybliographer.py:41
+#: .././pybliographer.py:48
 msgid "This is %s, version %s"
 msgstr "Bienvenue dans %s, version %s"
 
-#: .././pybliographer.py:45
+#: .././pybliographer.py:52
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
 msgstr "Ceci est un logiciel libre, sans AUCUNE GARANTIE"
 
-#: .././pybliographer.py:46
+#: .././pybliographer.py:53
 msgid "For details, type `warranty'."
 msgstr "Pour plus de détails, tapez `warranty'."
 
-#: .././pybliographer.py:113
+#: .././pybliographer.py:116
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: erreur : impossible d'ouvrir le fichier `%s'"
 
-#: .././pybliographer.py:126
+#: .././pybliographer.py:129
 msgid "For help, run %s and type `help' at the prompt"
 msgstr "Pour de l'aide, tapez %s puis le mot `help' à l'invite"
 
-#: .././pybliographer.py:135
+#: .././pybliographer.py:138
 msgid ""
 "Useful commands:\n"
 "\thelp     to get some help\n"
@@ -737,7 +737,7 @@ msgstr "pybformat : erreur: %s\n"
 msgid "pybformat: warning: %s\n"
 msgstr "pybformat : attention: %s\n"
 
-#: .././scripts/pybformat.py:141 .././scripts/pybtex.py:84
+#: .././scripts/pybformat.py:141 .././scripts/pybtex.py:86
 msgid "can't find style `%s'"
 msgstr "Impossible de trouver le style `%s'"
 
