@@ -9,7 +9,11 @@ html_summary(faq, summary.m4, [[
 
 <h1>Frequently Asked Questions</h1>
 
-<ul> 
+<ul> faq_item([[My distribution (for instance RedHat 8.x) provides Gtk
+2.0 and pybliographer does not work.]], [[Pybliographer has not yet
+been ported to Gtk / Gnome 2.0. Please have a look at this <a
+href="http://www.hardings.cl/hacking/pybliographer/">help</a> on how
+to work around this problem.]])
 
 faq_item([[When adding a new entry, pybliographic outputs a lot of
 messages ending with something like:

@@ -8,6 +8,10 @@ m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
 
+news_item([[27/05/2003]], [[Thomas Sonne Olesen has contributed a tool
+to help integrating Pybliographer with Open Office for instance. It is
+available <a href="http://www.sonnet.dk/pyblink/">here</a>]]),
+
 news_item([[11/12/2002]], [[Moritz Moeller-Herrmann has built RPMs
 especially for SuSE 8.1 users. The packages are available on <a
 href="http://sourceforge.net/projects/pybliographer/">Sourceforge</a>.]]),
