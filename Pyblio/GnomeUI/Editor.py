@@ -22,8 +22,8 @@
 
 # TO FIX
 #
-#  - keyboard shortcuts (Ctrl-Enter, Ctrl-Tab)
-#  - window size
+#  - allow window srinking
+
 
 import string, re
 from gnome import ui
@@ -65,14 +65,15 @@ class BaseField (Connector.Publisher):
         self.edit = None
         expand = self.create_widget (h)
         
-        #if self.edit:
-        #    self.edit.connect ('key_press_event', self.key_handler)
+        img = gtk.Image ()
         
-        if self.loss: h.pack_start (gtk.Button (stock = gtk.STOCK_NO),
-                                    False, False)
-        else:         h.pack_start (gtk.Button (stock = gtk.STOCK_YES),
-                                    False, False)
-
+        if self.loss: img.set_from_stock (gtk.STOCK_CANCEL,
+                                          gtk.ICON_SIZE_BUTTON)
+        else:         img.set_from_stock (gtk.STOCK_APPLY,
+                                          gtk.ICON_SIZE_BUTTON)
+        
+        h.pack_start (img, False, False)
+        
         self.w.pack_start (h, expand, expand)
         self.w.show_all ()
 
@@ -165,7 +166,9 @@ class Entry (TextBase):
             return 0
 
         w = gtk.ScrolledWindow ()
-        w.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
+        w.set_policy (gtk.POLICY_NEVER,
+                      gtk.POLICY_AUTOMATIC)
+        
         self.edit = gtk.Text ()
         self.edit.set_editable (True)
         self.edit.insert_defaults (self.string)
@@ -183,7 +186,8 @@ class Text (TextBase):
     
     def create_widget (self, h):
         w = gtk.ScrolledWindow ()
-        w.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
+        w.set_policy (gtk.POLICY_NEVER,
+                      gtk.POLICY_AUTOMATIC)
         self.edit = gtk.TextView ()
         self.edit.set_editable (True)
         self.edit.set_wrap_mode (gtk.WRAP_WORD)
@@ -291,7 +295,7 @@ class Date (BaseField):
         (width, height) = self.day.size_request ()
         self.day.set_size_request (width / 4, height)
         self.day.set_max_length (2)
-        #self.day.connect ('key_press_event', self.key_handler)
+
         if self.initial [0]:
             self.day.set_text (str (self.initial [0]))
         hbox.pack_start (self.day)
@@ -300,7 +304,7 @@ class Date (BaseField):
         self.month = gtk.Entry ()
         self.month.set_size_request (width / 4, height)
         self.month.set_max_length (2)
-        #self.month.connect ('key_press_event', self.key_handler)
+
         if self.initial [1]:
             self.month.set_text (str (self.initial [1]))
         hbox.pack_start (self.month)
@@ -309,7 +313,7 @@ class Date (BaseField):
         self.year = gtk.Entry ()
         self.year.set_max_length (4)
         self.year.set_size_request (width / 3, height)
-        #self.year.connect ('key_press_event', self.key_handler)
+
         if self.initial [2]:
             self.year.set_text (str (self.initial [2]))
         hbox.pack_start (self.year)
@@ -470,7 +474,6 @@ class RealEditor (Connector.Publisher):
 
         self.key = gtk.Entry ()
         self.key.set_editable (True)
-        #self.key.connect ('key_press_event', self.key_handler)
         
         if self.entry.key:
             self.key.set_text (self.entry.key.key)
@@ -544,20 +547,6 @@ class RealEditor (Connector.Publisher):
         self.entry = new
         self.update_notebook ()
         return
-
-
-    def key_handler (self, widget, ev):
-        if ev.keyval == GDK.Return and \
-           ev.state  == GDK.CONTROL_MASK:
-            widget.emit_stop_by_name ('key_press_event')
-            self.issue ('apply')
-        
-        elif ev.keyval == GDK.Tab and \
-           ev.state  == GDK.CONTROL_MASK:
-            widget.emit_stop_by_name ('key_press_event')
-            self.issue ('next')
-
-        return 1
 
 
     def apply_cb (self, * arg):
@@ -686,39 +675,33 @@ class NativeEditor (Connector.Publisher):
 
         self.entry    = entry
         self.database = database
+
         if database.has_key (entry.key):
             self.original = database.get_native (entry.key)
         else:
             self.original = ''
         
-        self.w = gtk.Text ()
+        self.w = gtk.TextView ()
         self.w.set_editable (True)
-        #self.w.connect ('key_press_event', self.key_handler)
-        
-        self.w.insert (Config.get ('gnomeui/monospaced').data,
-                       None, None, self.original)
+
+        self.buff = self.w.get_buffer ()
+
+        iter = self.buff.get_start_iter ()
+        mono = self.buff.create_tag ('body', family = 'Monospace')
+
+        self.buff.insert_with_tags (iter, self.original, mono)
         return
-
-
-    def key_handler (self, widget, ev):
-        if ev.keyval == GDK.Return and \
-           ev.state  == GDK.CONTROL_MASK:
-            widget.emit_stop_by_name ('key_press_event')
-            self.issue ('apply')
-        
-        elif ev.keyval == GDK.Tab and \
-           ev.state  == GDK.CONTROL_MASK:
-            widget.emit_stop_by_name ('key_press_event')
-            self.issue ('next')
-
-        return 1
 
 
     def update (self, database, entry):
         ''' updates and returns the new entry '''
+
         new  = None
+        text = self.buff.get_text (self.buff.get_start_iter (),
+                                   self.buff.get_end_iter ())
         try:
-            new = self.database.create_native (self.w.get_chars (0, -1))
+            new = self.database.create_native (text)
+            
         except Exceptions.ParserError, error:
             Utils.error_dialog (_("Error in native string parsing"),
                                 str (error))
@@ -759,8 +742,10 @@ class Editor (Connector.Publisher):
         accelerator = gtk.AccelGroup ()
         self.w.add_accel_group (accelerator)
 
-        #self.close_b.add_accelerator ('clicked', accelerator, GDK.Escape, 0, 0)
-        #self.apply_b.add_accelerator ('clicked', accelerator, GDK.Return, GDK.CONTROL_MASK, 0)
+        self.close_b.add_accelerator ('clicked', accelerator,
+                                      gtk.keysyms.Escape, 0, 0)
+        self.apply_b.add_accelerator ('clicked', accelerator,
+                                      gtk.keysyms.Return, gtk.gdk.CONTROL_MASK, 0)
 
         self.w.action_area.add (self.apply_b)
         if self.has_native: self.w.action_area.add (self.native_b)
@@ -793,19 +778,19 @@ class Editor (Connector.Publisher):
             self.editor = RealEditor (self.database,
                                       copy.deepcopy (self.entry))
             
-            ui_width  = Utils.config.get_int ('/apps/pybliographic/editor/width') or -1
+            ui_width  = Utils.config.get_int ('/apps/pybliographic/editor/width')  or -1
             ui_height = Utils.config.get_int ('/apps/pybliographic/editor/height') or -1
         else:
             # native edition
             self.native_mode = True
             if self.has_native:
-                self.native_b.children () [0].set_text (_("Standard Editing"))
+                self.native_b.get_children () [0].set_text (_("Standard Editing"))
             
             if self.editor: self.editor.w.destroy ()
             self.editor = NativeEditor (self.database,
                                         copy.deepcopy (self.entry))
 
-            ui_width  = Utils.config.get_int ('/apps/pybliographic/native/width') or -1
+            ui_width  = Utils.config.get_int ('/apps/pybliographic/native/width')  or -1
             ui_height = Utils.config.get_int ('/apps/pybliographic/native/height') or -1
 
 
@@ -816,7 +801,7 @@ class Editor (Connector.Publisher):
 
         # set window size
         if ui_width != -1 and ui_height != -1:
-            self.editor.w.set_usize(ui_width, ui_height)
+            self.editor.w.set_size_request (ui_width, ui_height)
             
         self.editor.w.show ()
         return
@@ -836,9 +821,9 @@ class Editor (Connector.Publisher):
         if not self.editor: return
         
         alloc = self.editor.w.get_allocation ()
-        if self.native_mode: field = 'Native'
-        else:                field = 'Editor'
-        
+        if self.native_mode: field = 'native'
+        else:                field = 'editor'
+
         Utils.config.set_int ('/apps/pybliographic/%s/width' % field,  alloc [2])
         Utils.config.set_int ('/apps/pybliographic/%s/height' % field, alloc [3])
         return
