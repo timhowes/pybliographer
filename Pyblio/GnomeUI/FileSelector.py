@@ -44,7 +44,8 @@ class URLFileSelection (GtkFileSelection):
         
         GtkFileSelection.__init__(self)
         self.set_title (title)
-
+        self.hide_fileop_buttons ()
+        
         self.connect('destroy', self.quit)
         self.connect('delete_event', self.quit)
         self.cancel_button.connect('clicked', self.quit)

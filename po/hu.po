@@ -455,27 +455,27 @@ msgstr "Opcionális"
 msgid "Extra"
 msgstr "Extra"
 
-#: .././Pyblio/GnomeUI/Editor.py:593
+#: .././Pyblio/GnomeUI/Editor.py:596
 msgid "Invalid key format"
 msgstr "Érvénytelen kulcs formátum"
 
-#: .././Pyblio/GnomeUI/Editor.py:601
+#: .././Pyblio/GnomeUI/Editor.py:604
 msgid "Key `%s' already exists"
 msgstr "Kulcs `%s' már létezik"
 
-#: .././Pyblio/GnomeUI/Editor.py:668
+#: .././Pyblio/GnomeUI/Editor.py:671
 msgid "Error in native string parsing"
 msgstr "Hiba a sztringelemzésben"
 
-#: .././Pyblio/GnomeUI/Editor.py:681
+#: .././Pyblio/GnomeUI/Editor.py:684
 msgid "Edit entry"
 msgstr "Bejegyzés módosítása"
 
-#: .././Pyblio/GnomeUI/Editor.py:695
+#: .././Pyblio/GnomeUI/Editor.py:698
 msgid "Native Editing"
 msgstr "Natív szerkesztés"
 
-#: .././Pyblio/GnomeUI/Editor.py:748
+#: .././Pyblio/GnomeUI/Editor.py:751
 msgid "Standard Editing"
 msgstr "Standard szerkesztés"
 
@@ -483,7 +483,7 @@ msgstr "Standard szerkesztés"
 msgid "File"
 msgstr "Fájl"
 
-#: .././Pyblio/GnomeUI/FileSelector.py:73
+#: .././Pyblio/GnomeUI/FileSelector.py:74
 msgid "Bibliography type:"
 msgstr "Bibliográfia típusa:"
 
@@ -687,35 +687,41 @@ msgstr ""
 "nem tudom írásra megnyitni a `%s' állományt:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:258
+#: .././Pyblio/GnomeUI/Document.py:243
+msgid ""
+"Error while parsing `%s':\n"
+"%s"
+msgstr ""
+
+#: .././Pyblio/GnomeUI/Document.py:262
 msgid "New database"
 msgstr "Új adatbázis"
 
-#: .././Pyblio/GnomeUI/Document.py:266
+#: .././Pyblio/GnomeUI/Document.py:270
 msgid "[no entry]"
 msgstr "[nincs bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:267
+#: .././Pyblio/GnomeUI/Document.py:271
 msgid "[1 entry]"
 msgstr "[1 bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:268
+#: .././Pyblio/GnomeUI/Document.py:272
 msgid "[%d entries]"
 msgstr "[%d bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:271
+#: .././Pyblio/GnomeUI/Document.py:275
 msgid "[%d/1 entry]"
 msgstr "[%d/1 bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:272
+#: .././Pyblio/GnomeUI/Document.py:276
 msgid "[%d/%d entries]"
 msgstr "[%d/%d bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:277
+#: .././Pyblio/GnomeUI/Document.py:281
 msgid "[modified]"
 msgstr "[módosítva]"
 
-#: .././Pyblio/GnomeUI/Document.py:287
+#: .././Pyblio/GnomeUI/Document.py:291
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -723,23 +729,23 @@ msgstr ""
 "Az adatbázis módosítva lett.\n"
 "Változások eldobása ?"
 
-#: .././Pyblio/GnomeUI/Document.py:303
+#: .././Pyblio/GnomeUI/Document.py:307
 msgid "Merge file"
 msgstr "Állomány hozzáfûzése"
 
-#: .././Pyblio/GnomeUI/Document.py:315
+#: .././Pyblio/GnomeUI/Document.py:319
 msgid "Open error"
 msgstr "Megnyitási hiba"
 
-#: .././Pyblio/GnomeUI/Document.py:339
+#: .././Pyblio/GnomeUI/Document.py:343
 msgid "Merge status"
 msgstr "Hozzáfûzés státusza"
 
-#: .././Pyblio/GnomeUI/Document.py:350
+#: .././Pyblio/GnomeUI/Document.py:354
 msgid "Open file"
 msgstr "Állomány megnyitása"
 
-#: .././Pyblio/GnomeUI/Document.py:399
+#: .././Pyblio/GnomeUI/Document.py:403
 msgid ""
 "Unable to save `%s':\n"
 "%s"
@@ -747,7 +753,7 @@ msgstr ""
 "Nem tudom `%s'-t menteni:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:407
+#: .././Pyblio/GnomeUI/Document.py:411
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -755,11 +761,11 @@ msgstr ""
 "Belsõ hiba történt a mentés során\n"
 "Próbálja másként: Mentés másként..."
 
-#: .././Pyblio/GnomeUI/Document.py:418
+#: .././Pyblio/GnomeUI/Document.py:422
 msgid "Save As..."
 msgstr "Ment mint..."
 
-#: .././Pyblio/GnomeUI/Document.py:424
+#: .././Pyblio/GnomeUI/Document.py:428
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
@@ -767,7 +773,7 @@ msgstr ""
 "A `%s' állomány már létezik.\n"
 "Felülírja ?"
 
-#: .././Pyblio/GnomeUI/Document.py:431
+#: .././Pyblio/GnomeUI/Document.py:435
 msgid ""
 "During opening:\n"
 "%s"
@@ -775,11 +781,11 @@ msgstr ""
 "A megnyitás során:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:451
+#: .././Pyblio/GnomeUI/Document.py:455
 msgid "Reopen error"
 msgstr "Megnyitási hiba"
 
-#: .././Pyblio/GnomeUI/Document.py:492
+#: .././Pyblio/GnomeUI/Document.py:496
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
@@ -787,27 +793,27 @@ msgstr ""
 "`%s' néven már létezik egy bejegyzés.\n"
 "Akarja, hogy átnevezzük és hozzáadjuk ?"
 
-#: .././Pyblio/GnomeUI/Document.py:528
+#: .././Pyblio/GnomeUI/Document.py:532
 msgid "Really remove all the entries ?"
 msgstr "Valóban törölni akarja az összes bejegyzést ?"
 
-#: .././Pyblio/GnomeUI/Document.py:548
+#: .././Pyblio/GnomeUI/Document.py:552
 msgid "Create new entry"
 msgstr "Új bejegyzés"
 
-#: .././Pyblio/GnomeUI/Document.py:562
+#: .././Pyblio/GnomeUI/Document.py:566
 msgid "Really edit %d entries ?"
 msgstr "Valóban szerkeszteni akarja a %d bejegyzéseket ?"
 
-#: .././Pyblio/GnomeUI/Document.py:597
+#: .././Pyblio/GnomeUI/Document.py:601
 msgid "Remove all the %d entries ?"
 msgstr "%d bejegyzések törlése ?"
 
-#: .././Pyblio/GnomeUI/Document.py:599
+#: .././Pyblio/GnomeUI/Document.py:603
 msgid "Remove entry `%s' ?"
 msgstr "`%s' bejegyzés törlése ?"
 
-#: .././Pyblio/GnomeUI/Document.py:657
+#: .././Pyblio/GnomeUI/Document.py:661
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
@@ -815,7 +821,7 @@ msgstr ""
 "Nem tudok kapcsolódni LyX-hez:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:705
+#: .././Pyblio/GnomeUI/Document.py:709
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -823,15 +829,15 @@ msgstr ""
 "Kérem telepítse bug-buddy-t\n"
 "a funkció használatához"
 
-#: .././Pyblio/GnomeUI/Document.py:716
+#: .././Pyblio/GnomeUI/Document.py:720
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Ez a program a GNU GPL-nek megfelelõ szerzõi joggal védett"
 
-#: .././Pyblio/GnomeUI/Document.py:718
+#: .././Pyblio/GnomeUI/Document.py:722
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Gnome felület a Pybliographer-hez."
 
-#: .././Pyblio/GnomeUI/Document.py:723
+#: .././Pyblio/GnomeUI/Document.py:727
 msgid "Pybliographer Home Page"
 msgstr "Pybliographer Home Page"
 

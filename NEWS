@@ -1,4 +1,20 @@
-New in 1.0.1 - 
+-*- text -*-
+
+New in 1.0.3  - 2000-06-13
+
+        * Fixed bug when cancelling a close action initiated from the
+	window manager
+
+
+New in 1.0.2  - 2000-06-13
+
+	* Reading of Windows BibTeX files (with CRLF)
+	* Fixed bugs in the Style files and in the style mechanism
+	* Adding a new field during edition doesn't discard previous
+	 changes anymore.
+
+
+New in 1.0.1  - 2000-05-30
 
 	* fixed pybconvert and opening of empty bibtex file
 	* translation updates (de, it)

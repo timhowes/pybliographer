@@ -66,7 +66,11 @@ def author_desc (group, coding, initials = 0, reverse = 0):
                 text = text + " and "
 
         fulltext = fulltext + text
-        
+
+    # avoid a dot at the end of the author list
+    if fulltext [-1] == '.':
+        fulltext = fulltext [0:-1]
+    
     return fulltext
 
 
