@@ -29,6 +29,7 @@ SUBDIRS = 	Pyblio 		\
 		po		\
 		.		\
 		scripts		\
+		tests		\
 		doc
 
 
