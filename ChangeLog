@@ -1,3 +1,62 @@
+2000-04-07  fredgo  <fredgo@pium.home.org>
+
+	* NEWS: update for 0.9.9
+
+	* configure.in, pybliographer.py, tests/format.html, tests/format.latex, tests/format.py, tests/format.raw, tests/format.text:
+	updates for 0.9.9
+
+	* Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/Fields.py, Pyblio/GnomeUI/Format.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Sort.py, Pyblio/GnomeUI/Utils.py:
+	Use of the real GnomeDialog
+
+	* po/de.po, po/fr.po, po/it.po, po/pybliographer.pot:
+	update for 0.9.9
+
+2000-04-06  fredgo  <fredgo@pium.home.org>
+
+	* bibtex/reverse.c:
+	better upper/lower case handling in reverse
+
+	* po/de.po: added german translation
+
+	* Pyblio/GnomeUI/Document.py, Pyblio/Base.py:
+	setting an entry in a database now ensure that the key is bound to that
+	database
+
+	* Pyblio/GnomeUI/Index.py: adjusted fields
+
+	* Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/Search.py:
+	cosmetic fixes
+
+2000-04-04  fredgo  <fredgo@pium.home.org>
+
+	* ChangeLog, NEWS:
+	updated
+
+	* Styles/Abbrev.xml, Styles/Alpha.xml:
+	Editors are now in First, Last order
+
+	* Pyblio/Format/BibTeX.py:
+	fixed a bug in the replication code
+
+	* Pyblio/Style/Generic.py:
+	Added First Name, Last Name author generation
+
+	* Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/Fields.py, Pyblio/GnomeUI/Format.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Sort.py, Pyblio/GnomeUI/Utils.py:
+	- make use of TmpGnomeDialog
+	- added directional sorting
+
+	* Pyblio/Sort.py:
+	Sorting can now work ascending or descending
+
+	* scripts/pybformat.py:
+	Made the style name suffix insensitive
+
+	* po/POTFILES.in, po/cat-id-tbl.c, po/fr.po, po/it.po, po/pybliographer.pot:
+	updated translations
+
+	* pybliographic-logo.png:
+	Smaller version of the splash screen
+
 2000-04-04  fredgo  <fredgo@pium.home.org>
 
 	* Styles/Abbrev.xml, Styles/Alpha.xml:
