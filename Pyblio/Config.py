@@ -315,10 +315,10 @@ def load_user ():
     try:
         file = open (os.path.expanduser ('~/.pybrc.conf'), 'r')
     except IOError: return
-    
+
     changed = pickle.load (file)
     file.close ()
-    
+
     for item in changed.keys ():
         ConfigItems.eventually_resolve (item)
         set (item, changed [item])
