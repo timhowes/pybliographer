@@ -72,9 +72,11 @@ formatter = Autoload.get_by_name ('output', 'LaTeX').data
 
 # Search style in local path and standard installation
 url = None
+
 if os.path.exists (style + '.xml'):
     url = Fields.URL (style + '.xml')
 else:
+
     from Pyblio import version
     full = os.path.join (version.prefix, 'Styles', style)
     full = full + '.xml'
