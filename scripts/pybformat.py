@@ -53,7 +53,7 @@ optlist, args = getopt.getopt (sys.argv [2:],
                                 'output=',
                                 'list=',
                                 'style=',
-                                'format='
+                                'format=',
 				'version',
 				'help'])
 
