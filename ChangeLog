@@ -1,3 +1,8 @@
+2000-11-29  Pauli Virtanen  <pauli.virtanen@saunalahti.fi>
+
+	* pybliographic.desktop: Added Finnish description.
+	* configure.in: Added fi to ALL_LINGUAS
+	
 2000-10-20  Martin Norbäck  <d95mback@dtek.chalmers.se>
 
 	* pybliographic.desktop: added Swedish description
