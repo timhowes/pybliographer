@@ -58,7 +58,7 @@ __entry = 0
 
 
 def generate_key (entry, table):
-    
+
     if   entry.has_key ('author'): aut = entry ['author']
     elif entry.has_key ('editor'): aut = entry ['editor']
     else:                          aut = ()
@@ -91,8 +91,8 @@ def generate_key (entry, table):
         if entry.has_key ('date'):
             year = entry ['date'].year
             
-            if year:
-                key = key + str (year) [2:]
+            if year: key = key + str (year) [2:]
+
 
     base = key
     key  = Key.Key (table, base)
@@ -106,9 +106,9 @@ def generate_key (entry, table):
             if suff > ord ('z'):
                 suff = ord ('a')
                 base = base + 'a'
-                
+
             key  = Key.Key (table, base + chr (suff))
-	            
+            
     return Key.Key (table, key)
 
 Autoload.register ('key', 'Default', generate_key)

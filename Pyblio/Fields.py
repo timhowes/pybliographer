@@ -121,7 +121,7 @@ class Author:
         ''' Returns the fields in a given format '''
         
         ft = get_formatter (fmt)
-            
+        
         return (ft (self.honorific), ft (self.first),
                 ft (self.last), ft (self.lineage))
 
