@@ -112,7 +112,7 @@ class Author:
         return
 
 
-    def format (self, fmt):
+    def format (self, fmt = 'latin1'):
         ''' Returns the fields in a given format '''
         
         ft = get_formatter (fmt)
@@ -127,9 +127,9 @@ class Author:
         if not self.text:
             text = ''
             if self.honorific: text = text + ' ' + self.honorific
-            if self.first:     text = text + ' ' + self.first
             if self.last:      text = text + ' ' + self.last
             if self.lineage:   text = text + ', ' + self.lineage
+            if self.first:     text = text + ', ' + self.first
             self.text = text [1:]
             
         return self.text
@@ -207,7 +207,7 @@ class AuthorGroup:
         self.authors.append (value)
         
     def __str__ (self):
-        return string.join (map (str, self.authors), ', ')
+        return string.join (map (str, self.authors), '; ')
 
     def __repr__ (self):
         return `self.authors`
@@ -305,7 +305,7 @@ class Date:
             
         return self.text
 
-    def format (self, fmt):
+    def format (self, fmt = 'latin1'):
         ''' Returns the fields in a given format '''
         ft = get_formatter (fmt)
 
@@ -358,7 +358,7 @@ class Text:
         return cmp (self.text, str (other))
 
 
-    def format (self, fmt):
+    def format (self, fmt = 'latin1'):
         ''' Returns the fields in a given format '''
         ft = get_formatter (fmt)
 
@@ -425,7 +425,7 @@ class Reference:
         return cmp (self.list, other.list)
 
 
-    def format (self, fmt):
+    def format (self, fmt = 'latin1'):
         ''' Returns the fields in a given format '''
         ft = get_formatter (fmt)
 

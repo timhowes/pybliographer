@@ -19,35 +19,24 @@
 # 
 # $Id$
 
-class Iterator:
+''' This module defines some common exceptions '''
 
-    def iterator (self):
-        ''' loop method, so that we can for example call a method by
-        passing indifferently a database or a database iterator...
-        '''
-        
-        return self
+import string
 
+def format (prefix, lines):
+    return prefix + string.join (lines, '\n' + prefix)
     
-class DBIterator (Iterator):
-    ''' This class defines a database iterator '''
-    
-    def __init__ (self, database):
-        self.keys     = database.keys ()
-        self.database = database
+class ParserError:
+
+    def __init__ (self, errors, file = None):
+        if file:
+            self.file = file + ':'
+        else:
+            self.file = ''
+            
+        self.errors = errors or []
         return
 
-    def first (self):
-        self.count = 0
-        return self.next ()
+    def __repr__ (self):
+        return format (self.file, self.errors)
 
-    def next (self):
-        try:
-            entry = self.database [self.keys [self.count]]
-        except IndexError:
-            entry = None
-        
-        self.count = self.count + 1
-        return entry
-
-    

@@ -115,27 +115,26 @@ def bibopen (entity, how = None):
 
 
 Help.register ('bibwrite', """
-Syntax: bibwrite (entity, output, how)
+Syntax: bibwrite (iterator, output, how)
 
 This function sends an entry description to the specified output
 (stdout by default), formatted as specified by the third argument. By
-default, this formatting is the same as the one used by `more'
+default, this formatting is the same as the one used by `more'.
 """)
 
 
-def bibwrite (entity, out = None, how = None):
-	''' '''
+def bibwrite (iter, out = None, how = None):
+	''' writes a descriptions of a list of entries '''
 
 	# default output
 	out = out or sys.stdout
 	
-	def simplewrite (entry, output = sys.stdout):
-		''' Print an entry as simple text '''
-		output.write (str (entry) + "\n")
-
-	
 	if how == None:
-		entity.foreach (simplewrite, out)
+		entry = iter.first ()
+		while entry:
+			out.write (str (entry) + "\n")
+			entry = iter.next ()
+			
 		return
 
 	writer = get_by_name (how, 'write')
@@ -143,7 +142,7 @@ def bibwrite (entity, out = None, how = None):
 	if writer is None:
 		raise IOError, "type `%s' does not specify write method" % how
 
-	writer (entity, out)
+	writer (iter, out)
 	return
 
 Help.register ('bibnew', """

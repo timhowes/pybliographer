@@ -24,44 +24,44 @@ from types import *
 
 class Key:
 
-	''' A special key that embeds both database id and database
-	key Such a key is expected to be completely unique among the
-	whole program and should be the reliable information checked
-	to see if two entries are the same.
+    ''' A special key that embeds both database id and database
+    key Such a key is expected to be completely unique among the
+    whole program and should be the reliable information checked
+    to see if two entries are the same.
 
-	The .base field is the database id from which the actual entry
-	can be recovered, whereas the .key field is the name in the
-	database itself.  '''
-	
-	def __init__ (self, base, key):
-		if type (key) is InstanceType:
-			self.base = key.base
-			self.key  = key.key
-		else:
-			self.key  = key
-			self.base = base.key
-		return
+    The .base field is the database id from which the actual entry
+    can be recovered, whereas the .key field is the name in the
+    database itself.  '''
 
-	def __repr__ (self):
-		return 'Key (%s, %s)' % (`self.base`, `self.key`)
-	
-	def __str__ (self):
-		if self.base:
-			return str (self.base) + ' - ' + str (self.key)
-		else:
-			return str (self.key)
-		
-	def __cmp__ (self, other):
-		try:
-			r = cmp (self.base, other.base)
-		except AttributeError:
-			return 1
-		
-		if r: return r
-		
-		return cmp (self.key, other.key)
+    def __init__ (self, base, key):
+	if type (key) is InstanceType:
+	    self.base = key.base
+	    self.key  = key.key
+	else:
+	    self.key  = key
+	    self.base = base.key
+	return
+
+    def __repr__ (self):
+	return 'Key (%s, %s)' % (`self.base`, `self.key`)
+
+    def __str__ (self):
+	if self.base:
+	    return str (self.base) + ' - ' + str (self.key)
+	else:
+	    return str (self.key)
+
+    def __cmp__ (self, other):
+	try:
+	    r = cmp (self.base, other.base)
+	except AttributeError:
+	    return 1
+
+	if r: return r
+
+	return cmp (self.key, other.key)
 
 
-	def __hash__ (self):
-		return hash (`self.key` + `self.base`)
+    def __hash__ (self):
+	return hash (`self.key` + `self.base`)
 
