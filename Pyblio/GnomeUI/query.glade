@@ -343,9 +343,14 @@
   <class>GnomeDialog</class>
   <name>progress</name>
   <visible>False</visible>
+  <signal>
+    <name>close</name>
+    <handler>cancel</handler>
+    <last_modification_time>Fri, 26 Jul 2002 16:10:37 GMT</last_modification_time>
+  </signal>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
-  <modal>False</modal>
+  <modal>True</modal>
   <allow_shrink>False</allow_shrink>
   <allow_grow>False</allow_grow>
   <auto_shrink>False</auto_shrink>
