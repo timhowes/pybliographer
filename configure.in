@@ -41,7 +41,7 @@ AM_CHECK_PYTHON(1.5.2)
 
 AC_MSG_CHECKING([python devel])
 
-Py_Makefile="${Python_Prefix}/lib/python${Python_Version}/config/Makefile"
+Py_Makefile="${Python_Prefix}/lib/python${Python_Major_Version}.${Python_Minor_Version}/config/Makefile"
 
 if test -f ${Py_Makefile} ; then
   AC_MSG_RESULT([found])
@@ -151,12 +151,12 @@ AC_CHECK_HEADERS(stdbool.h)
 dnl Check if Gtk/GNOME is available
 AC_MSG_CHECKING([for Gnome-Python])
 
-if ${python} -c 'import gnome' > /dev/null 2>&1 ; then
+if ${Python} -c 'import gnome' > /dev/null 2>&1 ; then
   AC_MSG_RESULT([found])
   dnl Check if Gtk/GNOME is new enough
   AC_MSG_CHECKING([for Gnome-Python threads])
 
-  if ${python} -c 'import gtk ; print gtk.threads_leave' > /dev/null 2>&1 ; then
+  if ${Python} -c 'import gtk ; print gtk.threads_leave' > /dev/null 2>&1 ; then
     AC_MSG_RESULT([found])
   else
     AC_MSG_RESULT([not found])
@@ -164,7 +164,7 @@ if ${python} -c 'import gnome' > /dev/null 2>&1 ; then
   fi
 
   AC_MSG_CHECKING([for a working GdkImlib])
-  if ${python} -c 'import _gdkimlib' > /dev/null 2>&1 ; then
+  if ${Python} -c 'import _gdkimlib' > /dev/null 2>&1 ; then
     AC_MSG_RESULT([yes])
   else
     AC_MSG_RESULT([no])
