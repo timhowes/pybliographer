@@ -102,6 +102,10 @@ class MedlineIterator (Iterator.Iterator):
                 author = Fields.Author (au)
                 if author.first is not None:
                     author.first, author.last = author.last, author.first
+
+                    # use the letters of the first name as a sequence of
+                    # initials
+                    author.first = string.join (author.first, '. ') + '.'
                     
                 group.append (author)
                 
