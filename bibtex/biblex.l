@@ -35,51 +35,6 @@ extern void bibtex_next_line (void);
 
 #define YY_USER_ACTION  current_source->offset += bibtex_parser_leng;
 
-/* Start the parser on the specified source */
-void bibtex_parser_initialize (BibtexSource * source) {
-    g_return_if_fail (source != NULL);
-    
-    /* Destroy old buffer */
-    if (source->buffer) {
-	bibtex_parser__delete_buffer ((YY_BUFFER_STATE) source->buffer);
-    }
-
-    switch (source->type) {
-    case BIBTEX_SOURCE_FILE:
-	source->buffer = (gpointer) 
-	    bibtex_parser__create_buffer (source->source.file, 1024);
-	break;
-	
-    case BIBTEX_SOURCE_STRING:
-	source->buffer = (gpointer) 
-	    bibtex_parser__scan_string (source->source.string);
-	break;
-
-    default:
-	g_warning ("scanning nothing !");
-	source->buffer = NULL;
-    }
-}
-
-/* Continue parsing on the next entry */
-void bibtex_parser_continue (BibtexSource * source) { 
-    g_return_if_fail (source != NULL);
-    
-    current_source = source;
-    
-    bibtex_parser__switch_to_buffer ((YY_BUFFER_STATE) source->buffer);
-    BEGIN (INITIAL); 
-}
-
-/* Parsing is over */
-void bibtex_parser_finish (BibtexSource * source) {
-    g_return_if_fail (source != NULL);
-    
-    if (source->buffer) {
-	bibtex_parser__delete_buffer ((YY_BUFFER_STATE) source->buffer);
-	source->buffer = NULL;
-    }
-}
  
 %}
 
@@ -172,3 +127,48 @@ BODY 	 [^{}\\\" \n\t\r~]+
 }
 %%
 
+/* Start the parser on the specified source */
+void bibtex_parser_initialize (BibtexSource * source) {
+    g_return_if_fail (source != NULL);
+    
+    /* Destroy old buffer */
+    if (source->buffer) {
+	bibtex_parser__delete_buffer ((YY_BUFFER_STATE) source->buffer);
+    }
+
+    switch (source->type) {
+    case BIBTEX_SOURCE_FILE:
+	source->buffer = (gpointer) 
+	    bibtex_parser__create_buffer (source->source.file, 1024);
+	break;
+	
+    case BIBTEX_SOURCE_STRING:
+	source->buffer = (gpointer) 
+	    bibtex_parser__scan_string (source->source.string);
+	break;
+
+    default:
+	g_warning ("scanning nothing !");
+	source->buffer = NULL;
+    }
+}
+
+/* Continue parsing on the next entry */
+void bibtex_parser_continue (BibtexSource * source) { 
+    g_return_if_fail (source != NULL);
+    
+    current_source = source;
+    
+    bibtex_parser__switch_to_buffer ((YY_BUFFER_STATE) source->buffer);
+    BEGIN (INITIAL); 
+}
+
+/* Parsing is over */
+void bibtex_parser_finish (BibtexSource * source) {
+    g_return_if_fail (source != NULL);
+    
+    if (source->buffer) {
+	bibtex_parser__delete_buffer ((YY_BUFFER_STATE) source->buffer);
+	source->buffer = NULL;
+    }
+}
