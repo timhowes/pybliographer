@@ -527,6 +527,9 @@ def entry_write (entry, output):
 
                 dico [field] = _nativify (value, fieldtype)
 
+
+    first = True
+    
     # write according to the type order
     for f in tp.mandatory + tp.optional:
 
@@ -534,17 +537,23 @@ def entry_write (entry, output):
 	field = string.lower (f.name)
 	if not dico.has_key (field): continue
 
+        if not first: output.write (',\n')
+        else:         first = False
+            
 	output.write ('  %-14s = ' % f.name)
         output.write (Utils.format (dico [field],
-                                    75, 19, 19) [19:] + ',\n')
+                                    75, 19, 19) [19:])
 	del dico [field]
 
     for f in dico.keys ():
+        if not first: output.write (',\n')
+        else:         first = False
+            
 	output.write ('  %-14s = ' % f)
 	output.write (Utils.format (dico [f],
-				   75, 19, 19) [19:] + ',\n')
+				   75, 19, 19) [19:])
 
-    output.write ('}\n\n')
+    output.write ('\n}\n\n')
     return
 
 
