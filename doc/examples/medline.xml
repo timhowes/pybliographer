@@ -12,7 +12,7 @@
     <Default>
       <!-- Dynamic number of fields, connected by boolean connectors -->
       <Fields max="4">
-        <Title></Title>
+        <Title>Avail. Fields</Title>
 	
 	<!-- Common operators -->
         <Operator name="equal">Matches</Operator>
@@ -31,21 +31,17 @@
       </Fields>
 
       <Group>
-        <Title></Title>
-        <Selection name="language">
+        <Title>This is a group</Title>
+        <Selection name="language" default="english">
 	  <Title>Select Language</Title>
 	  <Item name="french">French</Item>
+	  <Item name="english">English</Item>
 	</Selection>
 
-	<Toggle name="abstracts" default="true">
-	  <Title>Only with abstracts</Title>
-	</Toggle>
+	<Toggle name="abstracts" default="true">Only with abstracts</Toggle>
       </Group>
 
     </Default>
 
-    <Extra>
-    
-    </Extra>
   </Query>
 </Connection>
