@@ -36,6 +36,13 @@ _ = gettext.gettext
 # this database is shared between all the unpickled entries
 _unpickle_db = _bibtex.open_string ("<unpickled>", '', 0);
 
+_fieldtype = {
+    Text        : 0,
+    Date        : 3,
+    AuthorGroup : 1,
+    URL         : 0,
+    Reference   : 0,
+    }
 
 class BibTextField (Text):
     ''' This class overrides the basic Text class and provides
@@ -60,8 +67,8 @@ class Entry (Base.Entry):
 
     id = 'BibTeX'
 
-    def __init__ (self, key, type, content, parser, line):
-	Base.Entry.__init__ (self, key, type, content)
+    def __init__ (self, key, fieldtype, content, parser, line):
+	Base.Entry.__init__ (self, key, fieldtype, content)
 
 	self.__text = {}
 	self.parser = parser
@@ -105,8 +112,8 @@ class Entry (Base.Entry):
 	# First, set the cache for free
 	self.__text [key] = (value, 0)
 
-	type = self.type (key)
-	self.dict [key] = _bibtex.reverse (type, value)
+	self.dict [key] = _bibtex.reverse (_fieldtype [self.type (key)],
+                                           value)
 	return
 
 
@@ -139,7 +146,7 @@ class Entry (Base.Entry):
         self.key    = state.key
         self.__text = state.dict
         self.parser = _unpickle_db
-        
+
         for field in state.dict.keys ():
             self [field] = state [field]
         return
@@ -147,10 +154,10 @@ class Entry (Base.Entry):
     
     def get_latex (self, key):
 	''' Returns latex part '''
-	type = self.type (key)
 
-	obj = self.dict [key]
-	return _bibtex.get_latex (self.parser, obj, type)
+	return _bibtex.get_latex (self.parser,
+                                  self.dict [key],
+                                  _fieldtype[self.type (key)])
 
 
     def field_and_loss (self, key):
@@ -163,23 +170,32 @@ class Entry (Base.Entry):
 
 	# search its declared type
 
-	type = self.type (key)
-	ret = _bibtex.expand (self.parser, obj, type)
-
-	if ret [0] == AuthorGroup.id:
+	fieldtype = self.type (key)
+	ret  = _bibtex.expand (self.parser, obj,
+                               _fieldtype [fieldtype])
+        
+	if fieldtype == AuthorGroup:
 	    # Author
 	    val = AuthorGroup ()
 	    for aut in ret [3]:
 		val.append (Author (aut))
 
-	elif ret [0] == Date.id:
+	elif fieldtype == Date:
 	    # Date
 	    val = Date ((ret [3], None, None))
 
-	else:
+	elif fieldtype == Text:
 	    # Any other text
 	    val = BibTextField (ret [2], self.get_latex (key))
 
+        elif fieldtype == Reference:
+            # a reference on the same database
+            val = fieldtype (ret [2], self.key.base)
+            
+        else:
+            # specific fields, like URL
+            val = fieldtype (ret [2])
+            
 	self.__text [key] = (val, ret [1])
 
 	return (val, ret [1])
@@ -202,11 +218,11 @@ class BibtexIterator (Iterator.Iterator):
 
 	if retval == None: return None
 
-	name, type, offset, line, object = retval
+	name, fieldtype, offset, line, object = retval
 
 	key   = Key.Key (self.db, name)
-	type  = Types.get_entry (type)
-	entry = Entry (key, type, object, self.parser, line)
+	fieldtype  = Types.get_entry (fieldtype)
+	entry = Entry (key, fieldtype, object, self.parser, line)
 
 	return entry
 	
@@ -240,7 +256,7 @@ class DataBase (Base.DataBase):
 		    raise TypeError, _("key `%s' is malformed") % k
 
 		_bibtex.set_string (self.parser, k,
-				    _bibtex.reverse (Text.id,
+				    _bibtex.reverse (_fieldtype [Text],
 						     user [k] [0]))
 
 	finished = 0
@@ -289,7 +305,7 @@ class DataBase (Base.DataBase):
 		    raise TypeError, _("key `%s' is malformed") % k
 
 		_bibtex.set_string (self.parser, k,
-				    _bibtex.reverse (Text.id,
+				    _bibtex.reverse (_fieldtype [Text],
 						     user [k] [0]))
 	return
 
@@ -335,17 +351,17 @@ class DataBase (Base.DataBase):
 
 # ==================================================
 
-def _nativify (field, type):
+def _nativify (field, fieldtype):
     ''' private method to convert from field to native format '''
 
-    obj = _bibtex.reverse (type, field)
+    obj = _bibtex.reverse (fieldtype, field)
     return _bibtex.get_native (obj)
 
 
 def entry_write (entry, output):
     ''' Print a single entry as BiBTeX code '''
 
-    native = (entry.id == 'BibTeX')
+    native = isinstance (entry, Entry)
 
     tp = entry.type
 
@@ -383,8 +399,8 @@ def entry_write (entry, output):
     else:
 	for field in entry.keys ():
 	    # convert the field in a bibtex form
-	    type = tp (field)
-	    dico [field] = _nativify (entry [field], type)
+	    fieldtype = tp (field).id
+	    dico [field] = _nativify (entry [field], fieldtype)
 
 
     # write according to the type order
@@ -419,7 +435,7 @@ def writer (it, output):
     header = {}
     entry  = it.first ()
     while entry:
-	if entry.id == 'BibTeX':
+        if isinstance (entry, Entry):
 	    header [entry.key.base] = entry
 	entry = it.next ()
 
