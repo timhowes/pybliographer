@@ -58,6 +58,11 @@ class FieldDescription:
 
     def __deepcopy__ (self, memo):
         return FieldDescription (self.name, self.type)
+
+
+    def __cmp__ (self, other):
+        return cmp (self.name, other.name)
+
     
     def __str__ (self):
 	return "`%s' field" % self.name
