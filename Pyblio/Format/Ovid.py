@@ -2,7 +2,7 @@
 #  
 # Original author of Ovid reader: Travis Oliphant <Oliphant.Travis@mayo.edu>
 #
-# Copyright (C) 1998,1999,2000 Frederic GOBRY
+# Copyright (C) 1998-2003 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or

@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998,1999,2000 Frederic GOBRY
+# Copyright (C) 1998-2003 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -19,13 +19,14 @@
 # 
 # $Id$
 
+# TO FIX
+#   entry editor for more than 50 chars
 
 import string, re
 from gnome import ui
 import gtk
 
-import gettext, copy, re
-_ = gettext.gettext
+import copy, re
 
 from Pyblio import Fields, Config, Base, Types, Connector, Exceptions, Key
 

@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998,1999,2000 Frederic GOBRY
+# Copyright (C) 1998-2003 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -28,10 +28,6 @@ from types import *
 from Pyblio.Fields import *
 from Pyblio import Base, Config, Autoload, Types
 from Pyblio import Open, Key, Utils, Iterator, Exceptions
-
-import gettext
-_ = gettext.gettext
-
 
 # this database is shared between all the unpickled entries
 _unpickle_db = _bibtex.open_string ("<unpickled>", '', 0);

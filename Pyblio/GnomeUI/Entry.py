@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998,1999,2000 Frederic GOBRY
+# Copyright (C) 1998-2003 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -114,7 +114,9 @@ class Entry:
 
 
         self.buff.insert (iter, '\n')
-            
+
+        dico.sort ()
+        
         for f in dico:
             n = f + ': '
             t = str (entry [f]) + '\n'
