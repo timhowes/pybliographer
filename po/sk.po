@@ -5,25 +5,111 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2002-05-16 23:00+0200\n"
-"PO-Revision-Date: 2002-05-18 09:53+0100\n"
+"POT-Creation-Date: 2002-12-07 05:42+0100\n"
+"PO-Revision-Date: 2002-12-19 18:59+0100\n"
 "Last-Translator: Zdenko Podobný <zdpo@mailbox.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
+"X-Generator: KBabel 0.9.6\n"
 
+#. ==================================================
+#. ==================================================
+#. --------------------------------------------------
+#. Available fields
+#. --------------------------------------------------
+#. create the hash table
+#. Special fields
+#. Entry types
+#. --------------------------------------------------
+#. h ['-combined-'].width = 600
+#. --------------------------------------------------
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. ok, load the module
 #: Pyblio/Autoload.py:57
-#, c-format
+#, python-format
 msgid "warning: can't import %s: %s"
 msgstr "varovanie: nemô¾em importova» %s: %s"
 
+#. get info from the given group
+#. are we preregistering an existing key ?
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. Prendre ses propres entrees
+#. et ajouter celles qu'on n'a pas
+#. call a key generator
+#. create a temporary file for the new version
+#. if we succeeded, backup file
+#. ...and bring new version online
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. type definition
+#. callback definition
 #: Pyblio/Config.py:53
-#, c-format
+#, python-format
 msgid "value of `%s' should be of type %s"
 msgstr "hodnota `%s' by mala ma» typ %s"
 
+#. eventually call the hook
+#. get all domains from the keys
+#. simplify the list
+#. simplify the list
 #: Pyblio/Config.py:196
 msgid "String"
 msgstr "Re»azec"
@@ -37,40 +123,127 @@ msgid "Integer"
 msgstr "Celé èíslo"
 
 #: Pyblio/Config.py:226
-#, c-format
+#, python-format
 msgid "Integer under %d"
 msgstr "Celé èíslo pod %d"
 
 #: Pyblio/Config.py:228
-#, c-format
+#, python-format
 msgid "Integer over %d"
 msgstr "Celé èíslo nad %d"
 
 #: Pyblio/Config.py:230
-#, c-format
+#, python-format
 msgid "Integer between %d and %d"
 msgstr "Celé èíslo od %d po %d"
 
 #: Pyblio/Config.py:242
-#, c-format
+#, python-format
 msgid "Element in `%s'"
 msgstr "Element v `%s'"
 
 #: Pyblio/Config.py:262
-#, c-format
+#, python-format
 msgid "Tuple (%s)"
 msgstr "Doprovod (%s)"
 
 #: Pyblio/Config.py:283
-#, c-format
+#, python-format
 msgid "List (%s)"
 msgstr "Zoznam (%s)"
 
 #: Pyblio/Config.py:308
-#, c-format
+#, python-format
 msgid "Dictionary (%s, %s)"
 msgstr "Slovník  (%s, %s)"
 
+#. load the saved items
+#. read what has to be saved again
+#. This file has been borrowed from :
+#.
+#. Sketch - A Python-based interactive drawing program
+#. Copyright (C) 1997, 1998 by Bernhard Herzog
+#.
+#. This library is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU Library General Public
+#. License as published by the Free Software Foundation; either
+#. version 2 of the License, or (at your option) any later version.
+#.
+#. This library is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the GNU
+#. Library General Public License for more details.
+#.
+#. You should have received a copy of the GNU Library General Public
+#. License along with this library; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307	USA
+#.
+#. The Connector
+#.
+#. the list of receivers is empty now, remove the channel
+#. the object has no more channels
+#. print object, channel, args
+#. don't use try: del ... ; except KeyError here. That would create a
+#. new reference of object in a traceback object and this method should
+#. be callable from a __del__ method (at least for versions prior
+#. Python 1.5)
+#. for debugging
+#. the new finalization code in 1.5.1 might bind RemovePublisher
+#. to None before all objects derived from Publisher are deleted...
+#. Put message in the queue. If it is already queued put it at
+#. the end. This is done to make certain that no channel gets
+#. called twice between two calls to flush_message_queue. If the
+#. order of channel invocation is important two or more queues
+#. should be used.
+#. Issue all queued messages and make the queue empty
+#.
+#. Issueing messages might result in new messages being queued.
+#. This does not happen in sketch yet (Jul 1997) but let's hope
+#. that we don't get infinite loops here...
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. manually split the author into subfields.
+#. strict parsing, the whole block is the last name
+#. lazy parsing, last name is after lowercase or is last word
+#. cleanup
 #: Pyblio/Fields.py:265
 msgid "Illegal year value"
 msgstr "Neplatný hodnota pre rok"
@@ -83,51 +256,597 @@ msgstr "Neplatný hodnota pre mesiac"
 msgid "Illegal day value"
 msgstr "Neplatný hodnota pre deò"
 
+#. Consider we handle a local file
+#. get the list of databases
 #: Pyblio/Fields.py:443
-#, c-format
+#, python-format
 msgid "in %s"
 msgstr "v %s"
 
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. completer le texte
+#. completer les champs
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. --------------------------------------------------
+#. --------------------------------------------------
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: Pyblio/LyX.py:39
-#, c-format
+#, python-format
 msgid "no input pipe `%s'"
 msgstr "¾iadna rúra na vstupe `%s'"
 
 #: Pyblio/LyX.py:45
-#, c-format
+#, python-format
 msgid "no output pipe `%s'"
 msgstr "¾iadna rúra na výstupe `%s'"
 
+#. Say hello !
+#. print self.pout.read ()
+#. ans = string.strip (ans)
+#. if ans [0:4] != 'INFO':
+#. raise IOError, ("LyX server error: " + ans,)
+#. print self.pout.read ()
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: Pyblio/Open.py:97
-#, c-format
+#, python-format
 msgid "method `%s' provides no opener"
 msgstr "metóda `%s' neposkytuje niè na otváranie"
 
+#. Consider the reference as an URL
 #: Pyblio/Open.py:105 Pyblio/Open.py:151
-#, c-format
+#, python-format
 msgid "File `%s' does not exist"
 msgstr "Súbor `%s' neexistuje"
 
+#. eventually load a new module
 #: Pyblio/Open.py:116 Pyblio/Open.py:162
-#, c-format
+#, python-format
 msgid "don't know how to open `%s'"
 msgstr "neviem ako otvori» `%s'"
 
 #: Pyblio/Open.py:143
-#, c-format
+#, python-format
 msgid "method `%s' provides no iterator"
 msgstr "metóda `%s' neposkytuje iterátor"
 
+#. default output
+#. Consider the reference as an URL
+#. Consider we handle a local file
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. ----- Boolean tests -----
+#. Negative test
+#. Negative test
+#. Negative test
+#. Negative test
+#. if any of the fields matches, the whole matches
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. compute asap
+#. no filtering ? then pass through
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. get the data for each field
+#. sort them
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. ----- Create elementary Test -----
+#. ----- Display -----
+#. ---------- Format ----------
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. if the entry does not fit the current width
+#. search a previous space
+#. if there is no space before...
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. Extension module for BibTeX files
+#. this database is shared between all the unpickled entries
+#. Check for date fields
+#. check if this entry provides a date field
+#. First, eventually remove from cache
+#. First, set the cache for free
+#. then, convert as bibtex.
+#. copy the native fields
+#. add the cached fields
+#. transform the entry in a non-bibtex entry (as we don't keep
+#. the specific information anyway, like @String,...)
+#. look in the cache first
+#. search its declared type
+#. Author
+#. Date
+#. Any other text
+#. a reference on the same database
+#. specific fields, like URL
+#. Ouvrir le fichier associe
+#. Incorporer les definitions de l'utilisateur
 #: Pyblio/Format/BibTeX.py:350 Pyblio/Format/BibTeX.py:408
-#, c-format
+#, python-format
 msgid "key `%s' is malformed"
 msgstr "kµúè `%s' je znetvorený"
 
+#. Creer la base de cles
 #: Pyblio/Format/BibTeX.py:371 Pyblio/Format/BibTeX.py:392
-#, c-format
+#, python-format
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: kµúè `%s' je u¾ definovaný"
 
+#. set the entry parser to the current one, so
+#. that we keep the current string definitions
+#. ==================================================
+#. write the type and key
+#. create a hash containing all the keys, to keep track
+#. of those who have been already written
+#. we have to handle the special case of the dates
+#. create the list of months
+#. loop over all the fields
+#. we are processing a date...
+#. we are processing a normal entry
+#. convert the field in a bibtex form
+#. we are processing a date...
+#. we are processing a normal entry
+#. eventually convert the crossref
+#. write according to the type order
+#. dico contains all the available fields
+#. write header
+#. locate the entries that belong to a BibTeX database
+#. and those who contain crossreferences
+#. write the string definitions corresponding to these entries
+#. write the list of strings
+#. write the crossreferenced ones
+#. write the entries with no cross references
+#. Ouvrir le fichier associe
+#. create a database to generate correct keys
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. Extension module for Medline files
+#. rewind the file
+#. Skip whitespace
+#. don't forget the last item
+#. create the entry with the actual fields
+#. analyze the author by ourself.
+#. in upper-case, this is a first name
+#. if there is no last name, there can't be a first name
+#. there was a first name, this must be a lineage
+#. The simple fields...
+#. UI identifiant unique
+#. AU auteurs *
+#. TI titre
+#. LA langue *
+#. MH mots clÃ©s *
+#. PT *  type : JOURNAL ARTICLE, REVIEW, REVIEW, TUTORIAL,CLINICAL TRIAL,
+#. RANDOMIZED CONTROLLED TRIAL, LETTER, EDITORIAL, MULTICENTER STUDY,
+#. NEWS, HISTORICAL ARTICLE
+#. DA date de ?? en yyyymmdd
+#. DP date de ?? en yyyy mois +/-j
+#. IS
+#. TA titre de la revue
+#. PG
+#. SB
+#. CY pays d'Ã©dition ?
+#. IP
+#. VI
+#. JC
+#. AA semble Ãªtre toujours Author ou AUTHOR
+#. EM date de?? en yyyymm
+#. AB
+#. AD
+#. PMID
+#. SO  rÃ©fÃ©rence complÃ¨te
+#. RN semble indexer des substances chimiques
+#. TT titre dans la langue d'origine
+#. 4099 URL vers l'article
+#. 4100 URL vers abstract de l'article ??
+#. write the remaining know fields
+#. write the unknown fields
+#. This file is part of pybliographer
+#.
+#. Original author of Ovid reader: Travis Oliphant <Oliphant.Travis@mayo.edu>
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This file is part of pybliographer
+#.
+#. Original author of Ovid reader: Travis Oliphant <Oliphant.Travis@mayo.edu>
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. create list from month dict
+#. rewind the file
+#. skip blank and <\d+> line
+#. read entry till next blank line
+#. starting with a blank ?
+#. ...then we continue the current text
+#. new entry ?
+#. else, this is a new field
+#. save the previous one if needed
+#. store the name of this new field
+#. don't waste the last field content
+#. did we parse a field ?
+#. create the entry content
+#. parse a simple text field
+#. parse an author field
+#. authors may be separated by just a single space if more
+#. than one line of authors appears in ovid file
+#. parse a source field
+#. separate fields by ,
+#. extract volume, number, pages, ...
+#. the date field precedes pages
+#. we have to work from the end since there may be
+#. characters unrelated to the date at the start of the
+#. field
+#. additional information we do not want to loose
+#. the journal name and additional information
+#. do we have one of those fields ?
+#. put the title
+#. final dot.
+#. correct the number of dots...
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. Extension module for Refer files
+#. Martin Wilck <martin@tropos.de> added support for citation label field.
+#. rewind the file
+#. store the current field
+#. determine the real type
+#. we matched a new field start
+#. store the current field
+#. in the general case, append the new text
+#. some fields are not to be used in output, as we
+#. lost their content
+#. one field per author
+#. general case
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: Pyblio/GnomeUI/Editor.py:38
 msgid "Last Name, First Name"
 msgstr "Priezvisko, Meno"
@@ -168,7 +887,8 @@ msgstr "Neplatné pole rok v dátume"
 msgid "Entry type"
 msgstr "Typ polo¾ky"
 
-#: Pyblio/GnomeUI/Config.py:482 Pyblio/GnomeUI/Editor.py:428
+#. Bottom
+#: Pyblio/GnomeUI/Editor.py:428 Pyblio/GnomeUI/Config.py:482
 msgid "Key"
 msgstr "Klávesa"
 
@@ -176,6 +896,8 @@ msgstr "Klávesa"
 msgid "Create Field"
 msgstr "Vytvori» pole"
 
+#. Notebook
+#. update the current entry
 #: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:191
 msgid "Mandatory"
 msgstr "Povinné"
@@ -188,12 +910,13 @@ msgstr "Nepovinné"
 msgid "Extra"
 msgstr "Extra"
 
+#. update the current entry
 #: Pyblio/GnomeUI/Editor.py:601
 msgid "Invalid key format"
 msgstr "Neplatné formát kµúèa"
 
 #: Pyblio/GnomeUI/Editor.py:609
-#, c-format
+#, python-format
 msgid "Key `%s' already exists"
 msgstr "Kµúè `%s' u¾ existuje"
 
@@ -205,40 +928,217 @@ msgstr "Chyba pri analýze pôvodného re»azca"
 msgid "Edit entry"
 msgstr "Upravi» polo¾ku"
 
+#. check if the database supports native editing
 #: Pyblio/GnomeUI/Editor.py:703 Pyblio/GnomeUI/Editor.py:744
 msgid "Native Editing"
 msgstr "Pôvodné úpravy"
 
+#. native edition
 #: Pyblio/GnomeUI/Editor.py:756
 msgid "Standard Editing"
 msgstr "©tandardné úpravy"
 
-#: Pyblio/GnomeUI/Document.py:216 Pyblio/GnomeUI/Document.py:230
-#: Pyblio/GnomeUI/FileSelector.py:41
+#. set window size
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This is the new HTML-based entry
+#. currently, nothing to display
+#. Display this entry
+#. This is the old GtkText-based entry
+#. currently, nothing to display
+#. Display this entry
+#. Search the longest field
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#: Pyblio/GnomeUI/FileSelector.py:40 Pyblio/GnomeUI/Document.py:220
+#: Pyblio/GnomeUI/Document.py:234
 msgid "File"
 msgstr "Súbor"
 
-#: Pyblio/GnomeUI/FileSelector.py:74
+#. path handler
+#. url handler
+#. type selector
+#: Pyblio/GnomeUI/FileSelector.py:106
 msgid "Bibliography type:"
 msgstr "Typ bibliografie:"
 
-#: Pyblio/GnomeUI/Index.py:68
+#. menu content
+#. construct a nice URL
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. ## TODO:
+#. 1. combined fields
+#. 2. new base class C_Index
+#. 3. separate routines to set columns and rows
+#. 4. GTK 2.0 ?
+#: Pyblio/GnomeUI/Index.py:77
 msgid "Add..."
 msgstr "Prida»..."
 
-#: Pyblio/GnomeUI/Index.py:69
+#: Pyblio/GnomeUI/Index.py:78
 msgid "Edit..."
 msgstr "Upravi»..."
 
-#: Pyblio/GnomeUI/Index.py:70 Pyblio/GnomeUI/Search.py:178
+#. database
+#. connect a menu to the right button
+#: Pyblio/GnomeUI/Index.py:79 Pyblio/GnomeUI/Search.py:178
 msgid "Delete"
 msgstr "Zmaza»"
 
+#: Pyblio/GnomeUI/Index.py:80
+msgid "Toggle..."
+msgstr "Prepnú»..."
+
+#. resize the columns
+#. some events we want to react to...
+#. ---------- DnD configuration
+#. ---------- Copy/Paste configuration
+#. clear the access table
+#. if we want the keys, return the keys !
+#. else, return the full entries
+#. must return a set of keys
+#. --------------------------------------------------
+#. matching !
+#. we must be after the entry...
+#. well, show the user its entry must be after the bounds
+#. multiple selections are not handled like single selections
+#. select the item below the cursor
+#. select the item below the cursor
+#. what menu items are accessible ?
+#. self.issue ('toggle-entry', map (lambda x, self=self: self.access [x],
+#. self.clist.selection))
+#. #####################################################################
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. get the old format of history
+#. register several callbacks
+#. warn all the documents
+#. get the modification date...
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. eventually create the new tree
+#. eventually remove the item
+#. recursively proceed
+#. clear an empty group
+#. remove the children also
+#. recursively proceed
 #: Pyblio/GnomeUI/Search.py:109
 msgid "Search"
 msgstr "Hµada»"
 
-#: Pyblio/GnomeUI/Fields.py:225 Pyblio/GnomeUI/Search.py:133
+#. user levels
+#. Simple search
+#: Pyblio/GnomeUI/Search.py:133 Pyblio/GnomeUI/Fields.py:225
 msgid "Field"
 msgstr "Pole"
 
@@ -246,10 +1146,12 @@ msgstr "Pole"
 msgid "Pattern"
 msgstr "Vzorka"
 
+#. fill the combo
 #: Pyblio/GnomeUI/Search.py:151
 msgid "Simple Search"
 msgstr "Jednoduché hµadanie"
 
+#. extended search
 #: Pyblio/GnomeUI/Search.py:155
 msgid "Search command:"
 msgstr "Príkaz pre hµadanie:"
@@ -258,16 +1160,20 @@ msgstr "Príkaz pre hµadanie:"
 msgid "Expert Search"
 msgstr "Expertné hµadanie"
 
+#. initialize the tree with the full database
 #: Pyblio/GnomeUI/Search.py:199
 msgid "Full database"
 msgstr "Úplná databáza"
 
+#. Expert search
 #: Pyblio/GnomeUI/Search.py:241
 msgid "internal error during evaluation"
 msgstr "interná chyba poèas vyhodnocovania"
 
+#. Simple Search
+#. get the type description
 #: Pyblio/GnomeUI/Search.py:290
-#, c-format
+#, python-format
 msgid ""
 "while compiling %s\n"
 "error: %s"
@@ -275,6 +1181,29 @@ msgstr ""
 "poèas prekladu %s\n"
 "chyba: %s"
 
+#. No search
+#. get selection
+#. if we created a new subtree
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: Pyblio/GnomeUI/Sort.py:49
 msgid "Select sort criterions"
 msgstr "Zvoµte kritériá pre triedenie"
@@ -287,6 +1216,7 @@ msgstr "Smer triedenia"
 msgid "Sort criterions"
 msgstr "Kritériá triedenia"
 
+#. fill in the lists
 #: Pyblio/GnomeUI/Sort.py:73
 msgid "[Entry Type]"
 msgstr "[Typ polo¾ky]"
@@ -295,6 +1225,7 @@ msgstr "[Typ polo¾ky]"
 msgid "[Key Value]"
 msgstr "[Kµúèová hodnota]"
 
+#. operation buttons
 #: Pyblio/GnomeUI/Sort.py:99
 msgid "Reorder"
 msgstr "Preusporiadanie"
@@ -319,7 +1250,27 @@ msgstr "Nastavi» ako ¹tandardné"
 msgid "Use this sort criterion as the default for new files"
 msgstr "Pou¾i» ¹tandard poèas"
 
-#: Pyblio/GnomeUI/Utils.py:163
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#: Pyblio/GnomeUI/Utils.py:164
 msgid ""
 "The following errors occured:\n"
 "\n"
@@ -327,89 +1278,163 @@ msgstr ""
 "Vyskytla sa nasledujúca chyba:\n"
 "\n"
 
-#: Pyblio/GnomeUI/Document.py:63
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. Perform the first initialisation of Gnome, so that the options passed to the script
+#. are not passed to Gnome
+#. correctly identify the program
+#. import the GUI
+#. clean up our garbage
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. Id: Document.py,v 1.25 2002/07/03 10:52:52 PeterS Exp
+#. $Id$
+#: Pyblio/GnomeUI/Document.py:57
 msgid "_New"
 msgstr "_Nový"
 
-#: Pyblio/GnomeUI/Document.py:65
+#: Pyblio/GnomeUI/Document.py:59
 msgid "_Merge with..."
 msgstr "_Zlúèi» s..."
 
-#: Pyblio/GnomeUI/Document.py:66
-msgid "Medline Query..."
-msgstr "Medline otázka..."
+#: Pyblio/GnomeUI/Document.py:60
+msgid "Online Query"
+msgstr "Online otázka"
 
-#: Pyblio/GnomeUI/Document.py:70
+#: Pyblio/GnomeUI/Document.py:61
+msgid "PubMed/Medline..."
+msgstr "PubMed/Medline..."
+
+#: Pyblio/GnomeUI/Document.py:63
+msgid "SPIRES Server..."
+msgstr "SPIRES Server..."
+
+#: Pyblio/GnomeUI/Document.py:65
+msgid "Z39.50 Server..."
+msgstr "Z39.50 Server..."
+
+#: Pyblio/GnomeUI/Document.py:67
+msgid "Generic Server..."
+msgstr "V¹eobecný server..."
+
+#: Pyblio/GnomeUI/Document.py:74
 msgid "_Previous Documents"
 msgstr "_Predchádzajúce dokumenty"
 
-#: Pyblio/GnomeUI/Document.py:77
+#: Pyblio/GnomeUI/Document.py:81
 msgid "About..."
 msgstr "O programe..."
 
-#: Pyblio/GnomeUI/Document.py:78
-msgid "Submit a Bug Report"
-msgstr "Vystavi» správu o chybe"
-
-#: Pyblio/GnomeUI/Document.py:90
+#: Pyblio/GnomeUI/Document.py:92
 msgid "_Add..."
 msgstr "_Prida»..."
 
-#: Pyblio/GnomeUI/Document.py:91
+#: Pyblio/GnomeUI/Document.py:93
 msgid "_Edit..."
 msgstr "_Upravi»..."
 
-#: Pyblio/GnomeUI/Document.py:92
+#: Pyblio/GnomeUI/Document.py:94
 msgid "_Delete"
 msgstr "O_dstráni»"
 
-#: Pyblio/GnomeUI/Document.py:95
+#: Pyblio/GnomeUI/Document.py:97
 msgid "S_ort..."
 msgstr "_Triedenie..."
 
-#: Pyblio/GnomeUI/Document.py:99 Pyblio/GnomeUI/Document.py:113
+#: Pyblio/GnomeUI/Document.py:101 Pyblio/GnomeUI/Document.py:115
 msgid "_Cite"
 msgstr "_Citova»"
 
-#: Pyblio/GnomeUI/Document.py:100
+#: Pyblio/GnomeUI/Document.py:102
 msgid "_Format..."
 msgstr "_Formát..."
 
-#: Pyblio/GnomeUI/Document.py:104
+#: Pyblio/GnomeUI/Document.py:106
 msgid "_Fields..."
 msgstr "_Polia..."
 
-#: Pyblio/GnomeUI/Document.py:105
+#: Pyblio/GnomeUI/Document.py:107
 msgid "_Entries..."
 msgstr "_Polo¾ky..."
 
-#: Pyblio/GnomeUI/Document.py:111
+#: Pyblio/GnomeUI/Document.py:113
 msgid "_File"
 msgstr "_Súbor"
 
-#: Pyblio/GnomeUI/Document.py:112
+#: Pyblio/GnomeUI/Document.py:114
 msgid "_Edit"
 msgstr "_Upravi»"
 
-#: Pyblio/GnomeUI/Document.py:114
+#: Pyblio/GnomeUI/Document.py:116
 msgid "_Settings"
 msgstr "Nas_tavenie"
 
-#: Pyblio/GnomeUI/Document.py:115
+#: Pyblio/GnomeUI/Document.py:117
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: Pyblio/GnomeUI/Document.py:119
+#: Pyblio/GnomeUI/Document.py:121
 msgid "Open"
 msgstr "Otvori»"
 
-#: Pyblio/GnomeUI/Document.py:120
+#: Pyblio/GnomeUI/Document.py:122
 msgid "Save"
 msgstr "Ulo¾i»"
-
-#: Pyblio/GnomeUI/Config.py:390 Pyblio/GnomeUI/Document.py:122
-msgid "Add"
-msgstr "Prida»"
 
 #: Pyblio/GnomeUI/Document.py:124
 msgid "Find"
@@ -423,12 +1448,12 @@ msgstr "Citova»"
 msgid "Close"
 msgstr "Zavrie»"
 
-#: Pyblio/GnomeUI/Document.py:216 Pyblio/GnomeUI/Document.py:230
+#: Pyblio/GnomeUI/Document.py:220 Pyblio/GnomeUI/Document.py:234
 msgid "Previous Documents"
 msgstr "Predchádzajúce dokumenty"
 
-#: Pyblio/GnomeUI/Document.py:252
-#, c-format
+#: Pyblio/GnomeUI/Document.py:258
+#, python-format
 msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
@@ -436,8 +1461,8 @@ msgstr ""
 "nie je mo¾né otvori» súbor `%s' pre zápis:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:273
-#, c-format
+#: Pyblio/GnomeUI/Document.py:279
+#, python-format
 msgid ""
 "Error while parsing `%s':\n"
 "%s"
@@ -445,38 +1470,38 @@ msgstr ""
 "Chyba poèas analyzovania `%s':\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:292
+#: Pyblio/GnomeUI/Document.py:298
 msgid "New database"
 msgstr "Nová databáza"
 
-#: Pyblio/GnomeUI/Document.py:300 Pyblio/GnomeUI/Document.py:304
+#: Pyblio/GnomeUI/Document.py:306 Pyblio/GnomeUI/Document.py:310
 msgid "[no entry]"
 msgstr "[bez polo¾ky]"
 
-#: Pyblio/GnomeUI/Document.py:301
+#: Pyblio/GnomeUI/Document.py:307
 msgid "[1 entry]"
 msgstr "[1 polo¾ka]"
 
-#: Pyblio/GnomeUI/Document.py:302
-#, c-format
+#: Pyblio/GnomeUI/Document.py:308
+#, python-format
 msgid "[%d entries]"
 msgstr "[%d polo¾iek]"
 
-#: Pyblio/GnomeUI/Document.py:305
-#, c-format
+#: Pyblio/GnomeUI/Document.py:311
+#, python-format
 msgid "[%d/1 entry]"
 msgstr "[%d/1 polo¾ky]"
 
-#: Pyblio/GnomeUI/Document.py:306
-#, c-format
+#: Pyblio/GnomeUI/Document.py:312
+#, python-format
 msgid "[%d/%d entries]"
 msgstr "[ %d/%d polo¾iek]"
 
-#: Pyblio/GnomeUI/Document.py:311
+#: Pyblio/GnomeUI/Document.py:317
 msgid "[modified]"
 msgstr "[zmenený]"
 
-#: Pyblio/GnomeUI/Document.py:321
+#: Pyblio/GnomeUI/Document.py:327
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -484,35 +1509,199 @@ msgstr ""
 "Databáza bola zmenená.\n"
 "Odmietnu» zmeny?"
 
-#: Pyblio/GnomeUI/Document.py:341
-msgid "Enter your Medline query"
-msgstr "Vlo¾te svoju Medline otázku"
+#. Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
+#. save keyword to medline search history if it's a valid keyword
+#. I only want a maximum of the 10 most recent keywords
+#. I don't want to append to the list, I want to add the most recent search term at the top of the list
+#. essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
+#. save the search history
+#. Call the actual function to do the search and then return the results into url: 16 parameters passed altogether
+#. actual call to open doc
+#. Print partial instructions on use of the limits
+#: Pyblio/GnomeUI/Document.py:411 Pyblio/GnomeUI/Document.py:762
+msgid "Medline/PubMed Online Search Help"
+msgstr "Pomocník pre Medline/PubMed online hµadanie"
 
-#: Pyblio/GnomeUI/Document.py:347
-msgid "Search string"
-msgstr "Hµada» re»azec"
+#. LEFT justify the instructions
+#. Functions are defined above (callbacks for each button). The search interface is designed below and drawn.
+#. Load up the past search queries by reading the file .pybsearchhis in the user's home directory; otherwise, the list will be empty via the searchhistory = [''] command
+#. get rid of newline character so that search history is displayed correctly in the combobox
+#: Pyblio/GnomeUI/Document.py:434
+msgid "Online PubMed/Medline Query"
+msgstr "Online PubMed/Medline otázka"
 
-#: Pyblio/GnomeUI/Document.py:351
-msgid "Maximum number of results"
-msgstr "Maximálny poèet výsledkov"
+#. make it a combo box so that past search entries can be viewed
+#. the query string will be loaded onto key_w assigned here
+#. the entry should be empty; if this option is not set, the first list item will show instead
+#. max_w is the max number of returns the user wants
+#. disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
+#: Pyblio/GnomeUI/Document.py:451
+msgid "Search PubMed for: "
+msgstr "Hµada» PubMed: "
 
-#: Pyblio/GnomeUI/Document.py:371
+#. This is so the user can choose which server to query, future releases will read either a file or directory of files which contain server info so that the user can add new servers
+#: Pyblio/GnomeUI/Document.py:453 Pyblio/GnomeUI/Document.py:666
+msgid ""
+"Maximum number\n"
+"of results: "
+msgstr ""
+"Maximumálny poèet\n"
+"výsledkov: "
+
+#: Pyblio/GnomeUI/Document.py:455 Pyblio/GnomeUI/Document.py:668
+msgid ""
+"Start listing at\n"
+"result number: "
+msgstr ""
+"Zaèa» zoznam\n"
+"pri výsledku èíslo:"
+
+#: Pyblio/GnomeUI/Document.py:462
+msgid "Limited to:"
+msgstr "Obmedzi» do:"
+
+#. Below are all the limits allowable. All entries are not editable, except for the date entries.
+#. command to prevent the user from editing the limit
+#. again, entry not editable, only selectable
+#: Pyblio/GnomeUI/Document.py:536
+msgid "From:"
+msgstr "Od:"
+
+#: Pyblio/GnomeUI/Document.py:539
+msgid "To:"
+msgstr "Komu:"
+
+#: Pyblio/GnomeUI/Document.py:545
+msgid "Use the format YYYY/MM/DD; month and day are optional."
+msgstr "Pou¾i» formát RRRR/MM/DD; mesiac a deò nie sú povinné."
+
+#: Pyblio/GnomeUI/Document.py:589
+msgid "No Results Found"
+msgstr "Bez výsledku"
+
+#. debugging
+#: Pyblio/GnomeUI/Document.py:595
+msgid "Search Error"
+msgstr "Chyba hµadania"
+
+#: Pyblio/GnomeUI/Document.py:606
+msgid "Z39.50 Server Query Help"
+msgstr "Popmocník s otázkou pre Z39.50 Server"
+
+#. LEFT justify the instructions
+#. this isn't really the correct use of os.path.exists? since I'm actually seeing if the _file_ zserver exists
+#. this is the file that lists all the available servers; the file can be edited and placed there by the user
+#. default server list of working servers that I know
+#. this is an error handling function; sometimes the user may add a whitespace or extra lines at the end of the file
+#. list of just the names of the servers, to be used in the pulldown menu
+#. append the name of the server to the servername list
+#. dictionary key is the name of the server, the value is it's index number i. The index number i, will be used to pull the address, port and database name for the particular server later for the actual query.
+#: Pyblio/GnomeUI/Document.py:647
+msgid "Enter Your Query"
+msgstr "Vlo¾te svoju otázku"
+
+#. max_w is the max number of returns the user wants
+#. disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
+#: Pyblio/GnomeUI/Document.py:659 Pyblio/GnomeUI/Document.py:781
+msgid "Query server: "
+msgstr "Otázka pre server: "
+
+#. LEFT justify the instructions
+#: Pyblio/GnomeUI/Document.py:773
+msgid "SPIRES Query"
+msgstr "SPIRES otázka"
+
+#: Pyblio/GnomeUI/Document.py:791
+msgid "Author: "
+msgstr "Autor: "
+
+#: Pyblio/GnomeUI/Document.py:798
+msgid "Title: "
+msgstr "Titul: "
+
+#: Pyblio/GnomeUI/Document.py:805
+msgid "Citation: "
+msgstr "Citácia: "
+
+#: Pyblio/GnomeUI/Document.py:812
+msgid "Report Number: "
+msgstr "Èíslo správy:"
+
+#: Pyblio/GnomeUI/Document.py:819
+msgid "Affiliation: "
+msgstr "Prièlenenie: "
+
+#: Pyblio/GnomeUI/Document.py:826
+msgid "Collaboration: "
+msgstr "Spolupráca: "
+
+#: Pyblio/GnomeUI/Document.py:833
+msgid "Keywords: "
+msgstr "Kµúèové slová: "
+
+#: Pyblio/GnomeUI/Document.py:840
+msgid "Country: "
+msgstr "Krajina:  "
+
+#: Pyblio/GnomeUI/Document.py:847
+msgid "Eprint: "
+msgstr "Eprint: "
+
+#: Pyblio/GnomeUI/Document.py:854
+msgid "Number: "
+msgstr "Èíslo: "
+
+#: Pyblio/GnomeUI/Document.py:861
+msgid "Topcite: "
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:868
+msgid "In RPP?: "
+msgstr "V RPP?: "
+
+#: Pyblio/GnomeUI/Document.py:878
+msgid "Journal: "
+msgstr "Èasopis: "
+
+#: Pyblio/GnomeUI/Document.py:885
+msgid "vol,pg"
+msgstr "zv,str"
+
+#: Pyblio/GnomeUI/Document.py:892
+msgid "Published: "
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:902
+msgid "Date: "
+msgstr "Dátum:"
+
+#: Pyblio/GnomeUI/Document.py:918
+#, fuzzy
+msgid "Sort by: "
+msgstr "Triedi» podµa "
+
+#. get a new file name
+#: Pyblio/GnomeUI/Document.py:934
 msgid "Merge file"
 msgstr "Zlúèi» súbor"
 
-#: Pyblio/GnomeUI/Document.py:383 Pyblio/GnomeUI/Document.py:443
+#. memorize the current path in the case of a file
+#: Pyblio/GnomeUI/Document.py:946 Pyblio/GnomeUI/Document.py:1007
 msgid "Open error"
 msgstr "Chyba pri otváraní"
 
-#: Pyblio/GnomeUI/Document.py:407
+#. loop over the entries
+#: Pyblio/GnomeUI/Document.py:970
 msgid "Merge status"
 msgstr "Stav zluèovania"
 
-#: Pyblio/GnomeUI/Document.py:418
+#. get a new file name
+#: Pyblio/GnomeUI/Document.py:982
 msgid "Open file"
 msgstr "Otvori» súbor"
 
-#: Pyblio/GnomeUI/Document.py:470
+#. eventually warn interested objects
+#: Pyblio/GnomeUI/Document.py:1034
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
@@ -520,8 +1709,8 @@ msgstr ""
 "Databáza bola externe zmenená.\n"
 "Prepísa» zmeny?"
 
-#: Pyblio/GnomeUI/Document.py:480
-#, c-format
+#: Pyblio/GnomeUI/Document.py:1044
+#, python-format
 msgid ""
 "Unable to save `%s':\n"
 "%s"
@@ -529,7 +1718,7 @@ msgstr ""
 "Nie je mo¾né ulo¾i» `%s':\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:488
+#: Pyblio/GnomeUI/Document.py:1052
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -537,12 +1726,14 @@ msgstr ""
 "Vyskytla sa interná chyba poèas ukladania\n"
 "Skúste Ulo¾i» ako..."
 
-#: Pyblio/GnomeUI/Document.py:502
+#. get the current modification date
+#. get a new file name
+#: Pyblio/GnomeUI/Document.py:1067
 msgid "Save As..."
 msgstr "Ulo¾i» ako..."
 
-#: Pyblio/GnomeUI/Document.py:508
-#, c-format
+#: Pyblio/GnomeUI/Document.py:1073
+#, python-format
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
@@ -550,8 +1741,8 @@ msgstr ""
 "Súbor `%s' u¾ existuje.\n"
 "Prepísa» ho?"
 
-#: Pyblio/GnomeUI/Document.py:515
-#, c-format
+#: Pyblio/GnomeUI/Document.py:1080
+#, python-format
 msgid ""
 "During opening:\n"
 "%s"
@@ -559,12 +1750,12 @@ msgstr ""
 "Poèas otvárania:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:533
+#: Pyblio/GnomeUI/Document.py:1098
 msgid "Reopen error"
 msgstr "Chyba pri opätovnom otváraní"
 
-#: Pyblio/GnomeUI/Document.py:574
-#, c-format
+#: Pyblio/GnomeUI/Document.py:1139
+#, python-format
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
@@ -572,31 +1763,32 @@ msgstr ""
 "Polo¾ka, nazvaná ako `%s', u¾ existuje\n"
 "Premenova» ju, alebo aj napriek tomu ju prida»?"
 
-#: Pyblio/GnomeUI/Document.py:611
+#: Pyblio/GnomeUI/Document.py:1176
 msgid "Really remove all the entries ?"
 msgstr "Skutoène odstráni» v¹etky polo¾ky ?"
 
-#: Pyblio/GnomeUI/Document.py:631
+#: Pyblio/GnomeUI/Document.py:1196
 msgid "Create new entry"
 msgstr "Vytvori» novú polo¾ku"
 
-#: Pyblio/GnomeUI/Document.py:645
-#, c-format
+#: Pyblio/GnomeUI/Document.py:1210
+#, python-format
 msgid "Really edit %d entries ?"
 msgstr "Skutoène upravi» %d polo¾iek?"
 
-#: Pyblio/GnomeUI/Document.py:683
-#, c-format
+#. print 'index select item', new
+#: Pyblio/GnomeUI/Document.py:1252
+#, python-format
 msgid "Remove all the %d entries ?"
 msgstr "Odstráni» v¹etky %d polo¾ky?"
 
-#: Pyblio/GnomeUI/Document.py:685
-#, c-format
+#: Pyblio/GnomeUI/Document.py:1254
+#, python-format
 msgid "Remove entry `%s' ?"
 msgstr "Odstráni» polo¾ku `%s'?"
 
-#: Pyblio/GnomeUI/Document.py:755 Pyblio/GnomeUI/Document.py:762
-#, c-format
+#: Pyblio/GnomeUI/Document.py:1320 Pyblio/GnomeUI/Document.py:1327
+#, python-format
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
@@ -604,26 +1796,43 @@ msgstr ""
 "Nie je mo¾né sa pripoji» k LyXu: \n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:840
-msgid ""
-"Please install bug-buddy\n"
-"to use this feature"
-msgstr ""
-"Nain¹talujte si prosím bug-buddy,\n"
-"ak chcete pou¾íva» túto vlastnos»"
-
-#: Pyblio/GnomeUI/Document.py:851
+#. Save the graphical aspect of the interface
+#. 1.- Window size
+#. 2.- Proportion between list and text
+#. updates the index's config
+#. ...and the search window
+#: Pyblio/GnomeUI/Document.py:1365
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Tento program je autorsky chránený cez GNU GPL"
 
-#: Pyblio/GnomeUI/Document.py:853
+#: Pyblio/GnomeUI/Document.py:1367
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Gnome rozhranie pre systém Pybliographer."
 
-#: Pyblio/GnomeUI/Document.py:858
+#: Pyblio/GnomeUI/Document.py:1372
 msgid "Pybliographer Home Page"
 msgstr "Domovská stránka Pybliographera"
 
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: Pyblio/GnomeUI/Format.py:37
 msgid "Format entries"
 msgstr "Formát polo¾iek"
@@ -640,6 +1849,7 @@ msgstr "Zvoµte ¹týl"
 msgid "Output format:"
 msgstr "Výstupný formát:"
 
+#. menu content
 #: Pyblio/GnomeUI/Format.py:75
 msgid "Output File:"
 msgstr "Výstup do súboru:"
@@ -648,12 +1858,34 @@ msgstr "Výstup do súboru:"
 msgid "Select output file"
 msgstr "Vyberte výstupný súbor"
 
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: Pyblio/GnomeUI/Config.py:45
 msgid "Choose your preferences"
 msgstr "Zvoµte si svoje nastavenia"
 
+#. Create the edition widget...
+#. helper button
 #: Pyblio/GnomeUI/Config.py:93
-#, c-format
+#, python-format
 msgid ""
 "Item `%s':\n"
 "\n"
@@ -663,6 +1895,7 @@ msgstr ""
 "\n"
 "%s"
 
+#. fill in list
 #: Pyblio/GnomeUI/Config.py:128 Pyblio/GnomeUI/Fields.py:157
 #: Pyblio/GnomeUI/Fields.py:339
 msgid ""
@@ -679,6 +1912,10 @@ msgstr "Pravda"
 #: Pyblio/GnomeUI/Config.py:250
 msgid "False"
 msgstr "Nepravda"
+
+#: Pyblio/GnomeUI/Config.py:390
+msgid "Add"
+msgstr "Prida»"
 
 #: Pyblio/GnomeUI/Config.py:393
 msgid "Update"
@@ -698,6 +1935,7 @@ msgstr "Hodnota"
 msgid "Set"
 msgstr "Nastavi»"
 
+#. Bottom
 #: Pyblio/GnomeUI/Config.py:507
 msgid "Key:"
 msgstr "Klávesa:"
@@ -706,10 +1944,31 @@ msgstr "Klávesa:"
 msgid "Value:"
 msgstr "Hodnota:"
 
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998,1999,2000 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"
 msgstr "Konfigurácia polí"
 
+#. content of the dialog
 #: Pyblio/GnomeUI/Fields.py:59
 msgid "Name"
 msgstr "Meno"
@@ -742,8 +2001,29 @@ msgstr "Názov polo¾ky:"
 msgid "Status"
 msgstr "Stav"
 
+#. ! @python_path@
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: pybliographer.py:45
-#, c-format
+#, python-format
 msgid "This is %s, version %s"
 msgstr "Toto je %s, verzia %s"
 
@@ -755,16 +2035,20 @@ msgstr "Toto je slobodný softvér bez AKEJKO¥VEK GARANCIE."
 msgid "For details, type `warranty'."
 msgstr "Detaily sa zobrazia po napísaní `warranty'."
 
+#. ---------- Lire les fichiers de conf
+#. Fichiers standards
+#. Fichiers passes en argument au programme
 #: pybliographer.py:113 pybliographer.py:165
-#, c-format
+#, python-format
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: chyba: nie je mo¾né otvori» súbor `%s'"
 
 #: pybliographer.py:126
-#, c-format
+#, python-format
 msgid "For help, run %s and type `help' at the prompt"
 msgstr "Ak potrebujete pomoc, spustite %s a napí¹te `help'  do príkazového riadku"
 
+#. ---------- Initialisation
 #: pybliographer.py:135
 msgid ""
 "Useful commands:\n"
@@ -775,24 +2059,129 @@ msgstr ""
 "\thelp     poskytne nejakú pomoc\n"
 "\tquit     ukonèenie programu\n"
 
+#. Quand on a tout lu, le programme est fini !
+#. ---------- Initialisations du parser
+#. save history
+#. Site configuration
+#. ==================================================
+#. define autoloaded formats
+#. define styles and outputs
+#. define key formats
+#. define query engines
+#. Parse the configuration directory
+#. -*- python -*-
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. check the arguments
+#. list containing the broken entries
+#. set the strictness for bibtex files
+#. we go over all the specified files
+#. eventually expand directories to their content
+#. in the case of a directory, use only .bib extension...
+#. loop over the files
+#. try to open the database
+#. write the error messages (expected to be well formated)
+#. -*- python -*-
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: scripts/pybcompact.py:29
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
 msgstr "pou¾itie: pybcompact <latexsúbor> <bibtexsúbory...>"
 
 #: scripts/pybcompact.py:33
-#, c-format
+#, python-format
 msgid "pybcompact: error: %s\n"
 msgstr "pybcompact: chyba: %s\n"
 
+#. test input arguments
+#. regular expression to match in the .aux file
+#. this function extracts the citation keys from the .aux files
+#. parse the whole file
+#. we match a new citation
+#. we have to enter an additional .aux file
+#. ensure citation keys unicity
+#. is there something to do ?
 #: scripts/pybcompact.py:96
 msgid "no entry"
 msgstr "bez polo¾ky"
 
+#. use the bibliographic databases in order of declaration
+#. to solve the references
+#. open the database
+#. as we are modifying the list of entries in this loop, we make a copy
+#. of it in order to avoir strange behaviors
+#. we have to create a new database to hold the entries contained in the
+#. current database.
+#. loop over the expected entries
+#. create a key in the current database
+#. does the database provide the key ?
+#. yes, add it to the reference
+#. and remove it from the list
+#. if we found some entries in the current database...
+#. is it finished ?
+#. check if we were able to solve all the citations
 #: scripts/pybcompact.py:141
-#, c-format
+#, python-format
 msgid "can't find the following entries: %s"
 msgstr "nasledujú polo¾ky nie je mo¾né nájs»: %s"
 
+#. -*- python -*-
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: scripts/pybconvert.py:28
 msgid "usage: pybconvert <source>..<target> <input> [output]"
 msgstr "pou¾itie: pybconvert <zdroj>..<cieµ> <vstup> [výstup]"
@@ -801,39 +2190,128 @@ msgstr "pou¾itie: pybconvert <zdroj>..<cieµ> <vstup> [výstup]"
 msgid "pybconvert: bad conversion format"
 msgstr "pybconvert: zlý konverzný formát"
 
+#. -*- python -*-
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: scripts/pybformat.py:33
 msgid "usage: pybformat [bibtexfiles...]\n"
 msgstr "pou¾itie: pybformat [bibtexsúbory...]\n"
 
 #: scripts/pybformat.py:37
-#, c-format
+#, python-format
 msgid "pybformat: error: %s\n"
 msgstr "pybformat: chyba: %s\n"
 
 #: scripts/pybformat.py:43
-#, c-format
+#, python-format
 msgid "pybformat: warning: %s\n"
 msgstr "pybformat: varovanie: %s\n"
 
+#. test input arguments
+#. user gave wrong arguments...
+#. get the specified style and the output
 #: scripts/pybformat.py:140 scripts/pybtex.py:85
-#, c-format
+#, python-format
 msgid "can't find style `%s'"
 msgstr "¹týl `%s' sa nedá nájs»"
 
+#. first, write the header
+#. write the data
+#. last, write the footer
+#. -*- python -*-
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
+#. -*- python -*-
+#. This file is part of pybliographer
+#.
+#. Copyright (C) 1998 Frederic GOBRY
+#. Email : gobry@idiap.ch
+#.
+#. This program is free software; you can redistribute it and/or
+#. modify it under the terms of the GNU General Public License
+#. as published by the Free Software Foundation; either version 2
+#. of the License, or (at your option) any later version.
+#.
+#. This program is distributed in the hope that it will be useful,
+#. but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. GNU General Public License for more details.
+#.
+#. You should have received a copy of the GNU General Public License
+#. along with this program; if not, write to the Free Software
+#. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#.
+#. $Id$
 #: scripts/pybtex.py:33
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
 msgstr "pou¾itie: pybtex <latexsúbor> [bibtexsúbory...]"
 
 #: scripts/pybtex.py:37
-#, c-format
+#, python-format
 msgid "pybtex: error: %s\n"
 msgstr "pybtex: chyba: %s\n"
 
+#. test input arguments
+#. user gave wrong arguments...
+#. --------------------------------------------------
+#. Search the entries found in the LaTeX document
+#. --------------------------------------------------
+#. warn the user that some entries were not found
 #: scripts/pybtex.py:58
 msgid "pybtex: warning: the following keys were not resolved"
 msgstr "pybtex: varovanie: nasledujúce kµúèe neboli vyrie¹ené"
 
+#. If the LaTeX document declares no style...
 #: scripts/pybtex.py:63
 msgid "no style defined"
 msgstr "¾iadny ¹týl nie je definovaný"
+
+#~ msgid "Submit a Bug Report"
+#~ msgstr "Vystavi» správu o chybe"
+
+#~ msgid "Search string"
+#~ msgstr "Hµada» re»azec"
+
+#~ msgid ""
+#~ "Please install bug-buddy\n"
+#~ "to use this feature"
+#~ msgstr ""
+#~ "Nain¹talujte si prosím bug-buddy,\n"
+#~ "ak chcete pou¾íva» túto vlastnos»"
 
