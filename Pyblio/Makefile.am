@@ -45,6 +45,7 @@ PYTHON = \
 	Types.py 	\
 	Utils.py 	\
 	__init__.py 	\
+	Query.py	\
 	recode.py
 
 SUBDIRS = GnomeUI Output Format ConfDir Style
