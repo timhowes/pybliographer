@@ -84,7 +84,7 @@ if not url:
     error (_("can't find style `%s'") % style)
 
 # open the .bbl file
-bblfile = os.path.splitext (latex) [0] + '.bbl'
+bblfile = os.path.splitext (os.path.split (latex) [1]) [0] + '.bbl'
 bbl = open (bblfile, 'w')
 
 Utils.generate (url, formatter, db, keys, bbl)
