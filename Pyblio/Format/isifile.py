@@ -71,6 +71,7 @@ def output_write(key, text):
             str (text), 70, 0, 3)))
 pagenum  = re.compile('(\d) p\.')
 keywds   = re.compile('(.*)\[ISI:\] *(.*);;(.*)')
+
 class IsifileIterator(Iterator.Iterator):
     ''' This class exports two functions: first and next,
     each of which returns an bibliographic entry from the input file.
@@ -248,6 +249,8 @@ def writer (iter, output_stream, preamble=None, postamble = None):
     while entry:
         
         remaining = {}
+        remaining_extra = {}
+        
         for fld in entry.keys():
             if field_map.has_key(fld):
                 remaining[fld] = field_map[fld]
@@ -256,8 +259,8 @@ def writer (iter, output_stream, preamble=None, postamble = None):
                 if m:
                     remaining[fld] = string.upper(m.group(1))
                 else:
-                    remaining[fld] = '%% * ' + fld + ' * '
-                    
+                    remaining [fld] = '%% * ' + fld + ' * '
+                    remaining_extra [fld] = '%% * ' + fld + ' * '
         
         if not entry.has_key('isifile-pt'):
             output_write('PT','J')
@@ -316,7 +319,10 @@ def writer (iter, output_stream, preamble=None, postamble = None):
             output_write ('DE', val)     
             del remaining[fld]
         for field in remaining.keys():
+            if remaining_extra.has_key (field): continue
             output_write (remaining[field], entry [field])
+        for field in remaining_extra.keys():
+            output_write (remaining_extra [field], entry [field])
         output.write('ER\n')     
         entry = iter.next()
         if entry: output.write('\n')
