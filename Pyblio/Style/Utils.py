@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -26,11 +26,12 @@ import string
 
 from Pyblio import recode
 
-def author_desc (group, coding, initials = 0):
+def author_desc (group, coding, initials = 0, reverse = 0):
     """ Create a nice string describing a group of authors.
 
     	coding   : name of the output coding (as requested for recode)
         initials : if = 1, uses initials instead of complete first names
+        reverse  : use Last, First for all the authors, not only the first
     """
     
     l = len (group)
@@ -44,10 +45,15 @@ def author_desc (group, coding, initials = 0):
             first = group [i].initials (coding)
 
         text = ""
-        
-        if first:   text = first + " "
-        if last:    text = text + last
-        if lineage: text = text + ", " + lineage
+
+        if i == 0 or reverse:
+            if last:    text = text + last
+            if lineage: text = text + ", " + lineage
+            if first:   text = text + ", " + first
+        else:
+            if first:   text = first + " "
+            if last:    text = text + last
+            if lineage: text = text + ", " + lineage
 
         if text:
             if i < l - 2:
