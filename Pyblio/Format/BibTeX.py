@@ -208,7 +208,8 @@ class Entry (Base.Entry):
         self.key    = state.key
         self.__text = state.dict
         self.parser = _unpickle_db
-
+        self.line   = 0
+        
         for field in state.keys ():
             self [field] = state [field]
         return
