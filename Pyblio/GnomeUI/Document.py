@@ -318,17 +318,17 @@ class Document (Connector.Publisher):
 
         def dlg_cb_2 (dummy): return
         
-        dlg = GnomeOkCancelDialog ("Enter Medline Query", dlg_cb_2, self.w)
+        dlg = GnomeOkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
         
         key_w = GtkEntry()
         adj   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
         max_w = GtkSpinButton (adj=adj, digits=0)
 
-        dlg.vbox.pack_start (GtkLabel ("Search String:"))
+        dlg.vbox.pack_start (GtkLabel (_("Search string")))
         dlg.vbox.pack_start (key_w)
         key_w.set_editable (TRUE)
         
-        dlg.vbox.pack_start (GtkLabel("Max Display Number:"))
+        dlg.vbox.pack_start (GtkLabel (_("Maximum number of results")))
         dlg.vbox.pack_start (max_w)
         
         dlg.show_all ()
