@@ -9,7 +9,16 @@ html_summary(faq, summary.m4, [[
 
 <h1>Frequently Asked Questions</h1>
 
-<ul>
+<ul> 
+
+faq_item([[I don't see the new display system which allows clicking on
+URLs...]], [[Your version of gnome-python is not compiled with support
+for GtkHTML. You may need to compile it from the sources.]])
+
+faq_item([[I've  upgraded  Gnome  to  version  1.4  and  Pybliographic
+doesn't work anymore !]], [[If you are using Ximian Gnome, you need to
+(temporarily) remove the monkeytalk package]])
+
 faq_item([[Will    pybliographer   work   on    my   machine&nbsp;?]],
 [[Pybliographer relies  on python (which  is available for  almost any
 existing platform) and on some  compiled code. This code is written in

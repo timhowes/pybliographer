@@ -11,6 +11,7 @@ currently supports the following formats (reading and writing):
 
 <ul>
 <li><b>BibTeX</b></li>
+<li><b>ISI</b></li>
 <li><b>Medline</b></li>
 <li><b>Ovid</b></li>
 <li><b>Refer</b> </li>

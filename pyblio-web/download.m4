@@ -56,14 +56,10 @@ m4_define(rpm_src, 1)
       <li>from any <a href="ftp://ftp.gnome.org/pub/GNOME/MIRRORS.html">Gnome mirror</a>, as a
 
 <a href="pyblio_stable/pybliographer-pyblio_last-rpm_bin.i386.rpm">RPM</a>
-m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last-rpm_bin.i386.rpm), 0,
-(html_filesize(local_stable/pybliographer-pyblio_last-rpm_bin.i386.rpm)), (N/A))
 
 or a
 
 <a href="pyblio_stable/pybliographer-pyblio_last-rpm_src.src.rpm">source RPM</a>
-m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last-rpm_src.src.rpm), 0,
-(html_filesize(local_stable/pybliographer-pyblio_last-rpm_src.src.rpm)), (N/A))
    </ul>
   </dd>
 
@@ -76,14 +72,9 @@ m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last-rpm_src.src.rpm),
     <li>from any <a href="ftp://ftp.gnome.org/pub/GNOME/MIRRORS.html">Gnome mirror</a>, as a
 
 <a href="pyblio_stable/pybliographer-pyblio_last.tar.gz">tar/gz</a> 
-m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last.tar.gz), 0,
-(html_filesize(local_stable/pybliographer-pyblio_last.tar.gz)), (N/A))
-
 or a
 
 <a href="pyblio_stable/pybliographer-pyblio_last.tar.bz2">tar/bz2</a> 
-m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last.tar.bz2), 0,
-(html_filesize(local_stable/pybliographer-pyblio_last.tar.bz2)), (N/A))
 
 archive
   </ul>

@@ -31,6 +31,15 @@ store large bibliographies on a SQL server would improve
 pybliographer's performances a lot.  The use of <a
 href="http://www.gnome.org/gnome-db">gnome-db</a> as an intermediate
 software layer could provide database-vendor independancy.
+
+<li> Use of the <b>GtkHTML</b> widget, so that entries can be
+displayed in a more elegant fashion, and can provide clickable fields
+for referenced documents for example (nice idea from Sarah Mount)
+
+<li> Difference between fields to be formatted in a document (title,
+authors,...) and fields of interest for the users (comments,...) : the
+latter ones should be formatted more freely in pybliographer.
+
 </ul>
 
 <p>Of course, people interested in  any of these topics are invited to

@@ -1,12 +1,33 @@
 m4_dnl -*- html -*-
 m4_dnl
 m4_dnl --------------------------------------------------
-m4_define(pyblio_last,  [[1.0.8]])m4_dnl
+m4_define(pyblio_last,  [[1.0.9]])m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
 m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
+
+news_item([[13/09/2001]], [[RPMs for pybliographer 1.0.9 are available
+in the usual places.  They were built on a Redhat 7.1 with python
+2.1]]),
+
+news_item([[25/06/2001]], [[Version 1.0.9 is out. It provides a new
+displayer for the entries, based on GtkHTML (if it is compiled in your
+gnome-python), fixes problems with author initials formatting and
+saving of referenced entries, and improves robustness on some points
+(file saving,...). Peter Schulte-Stracke added ISI format support.
+Oh, by the way, <b>use recode 3.5 exclusively</b>.  Later versions are
+a bit broken for use with pybliographer.]]),
+
+news_item([[25/04/2001]], [[There are new RPMs for 1.0.8. Konrad has added
+an automatic backup of the site configuration files, so that they are not
+overwritten after an upgrade (this will be true only for the <b>next</b>
+upgrade)]]),
+
+news_item([[20/03/2001]], [[There are finally RPM files available for
+version 1.0.8. I've been unable to put them on Gnome FTP, which seems
+to have been reorganized, but you can get them from sourceforge.]]),
 
 news_item([[24/01/2001]], [[Johann Visagie has ported pybliographer to the
 FreeBSD ports tree. Thanks a lot for making installation seamless for
