@@ -277,7 +277,7 @@ class DataBase:
 	''' Updates the Entries stored in the database '''
 	
 	if self.key.url [0] != 'file':
-	    raise IOError, "can't update the remote database `%s'" % self.url
+	    raise IOError, "can't update the remote database `%s'" % self.key
 
 	name = self.key.url [2]
 
