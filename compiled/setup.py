@@ -128,6 +128,12 @@ This module contains two extensions needed for pybliographer:
 
    - a bibtex parser
    - a simple binding to GNU Recode
+
+It requires the following libraries to be installed:
+
+   - Glib-2.0 (and its development headers)
+   - GNU Recode 3.5 (and its development headers)
+
 ''',
 
        ext_modules = [

@@ -3,6 +3,12 @@
 This python extension contains a BibTeX parser and a simple binding to
 the GNU Recode library. They are intended to be used with pybliographer.
 
+This module requires the following libraries to be installed:
+
+   - Glib-2.0 (and its development headers)
+   - GNU Recode 3.5 (and its development headers)
+
+
 * Compilation
 
     python setup.py build
