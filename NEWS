@@ -1,5 +1,12 @@
 -*- text -*-
 
+New in 1.0.8 -  2001-01-09
+
+	* New Finnish translation
+	* Fixed Search button
+	* improved bibtex parser (empty authors, latin1 set)
+	
+
 New in 1.0.7 -  2000-11-21
 
         * pybliographer now checks that files aren't modified during edition

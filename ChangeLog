@@ -1,7 +1,16 @@
+2001-01-09  Gobry Frederic  <frederic.gobry@epfl.ch>
+
+	* Pyblio/GnomeUI/Search.py: fixed broken "Search" button
+	
 2000-11-31  Pauli Virtanen  <pauli.virtanen@saunalahti.fi>
 
 	* configure.in: Added fi to ALL_LINGUAS.
 	* pybliographer.desktop: Added Finnish translation
+
+2000-11-30  Gobry Frederic  <frederic.gobry@epfl.ch>
+
+	* bibtex/accents.c: completed latin1 set
+	* bibtex/author.c: parsing of "template" authors, like {, and ,}
 
 2000-11-30  Martin Norbäck  <d95mback@dtek.chalmers.se>
 
