@@ -26,9 +26,9 @@ from gtk import *
 from gnome import config
 
 from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor
-from Pyblio import Connector, Open, Exceptions, Selection, Sort
+from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
 
-import gettext, os, string, copy
+import gettext, os, string, copy, types
 
 _ = gettext.gettext
 
@@ -269,12 +269,12 @@ class Document (Connector.Publisher):
             return
 
         Utils.set_cursor (self.w, 'clock')
-        try:
-            self.data.update ()
-        except:
-            Utils.set_cursor (self.w, 'normal')
-            self.w.error (_("An internal error occured during saving\nTry to Save As..."))
-            return
+        #try:
+        self.data.update ()
+        #except:
+        #    Utils.set_cursor (self.w, 'normal')
+        #    self.w.error (_("An internal error occured during saving\nTry to Save As..."))
+        #    return
 
         Utils.set_cursor (self.w, 'normal')
 
@@ -381,13 +381,19 @@ class Document (Connector.Publisher):
     
     
     def add_entry (self, * arg):
-        pass
+        entry = Base.Entry (None, Config.get ('base/defaulttype').data)
+        
+        edit = Editor.Editor (self.data, entry, self.w)
+        edit.Subscribe ('commit-edition', self.commit_edition)
+        return
 
     
-    def edit_entry (self, * arg):
-        entries = self.index.selection ()
-        l       = len (entries)
+    def edit_entry (self, entries):
+        if not (type (entries) is types.ListType):
+            entries = self.index.selection ()
         
+        l = len (entries)
+
         if l == 0: return
         
         if l > 5:
@@ -403,12 +409,16 @@ class Document (Connector.Publisher):
     def commit_edition (self, old, new):
         ''' updates the database and the display '''
 
-        new = self.data.add (new)
-        
         if old.key != new.key:
             del self.data [old.key]
-        
+
+        if new.key:
+            self.data [new.key] = new
+        else:
+            self.data.add (new)
+
         self.redisplay_index (1)
+        self.freeze_display (None)
         return
     
     

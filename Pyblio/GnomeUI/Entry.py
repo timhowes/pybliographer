@@ -23,6 +23,7 @@ from gtk import *
 import string
 
 from Pyblio.GnomeUI import Utils
+from Pyblio import Config
 
 class Entry:
     ''' Displays a bibliographic entry as simple text '''
@@ -54,7 +55,8 @@ class Entry:
         self.text.freeze ()
         self.text.delete_text (0, -1)
         
-        self.text.insert (None, Utils.color['blue'], None,
+        self.text.insert (Config.get ('gnomeui/monospaced').data,
+                          Utils.color['blue'], None,
                           entry.type.name)
         self.text.insert_defaults (' ['+ str (entry.key.key) + ']\n\n')
         
@@ -71,8 +73,9 @@ class Entry:
             
             if entry.has_key (field):
                 sp = ' ' * (mlen - len (f.name))
-                self.text.insert (None, Utils.color ['red'], None,
-                                     f.name + ': ' + sp)
+                self.text.insert (Config.get ('gnomeui/monospaced').data,
+                                  Utils.color ['red'], None,
+                                  f.name + ': ' + sp)
                 self.text.insert_defaults (str (entry [field]) + '\n')
                 dico.remove (field)
 
@@ -81,8 +84,9 @@ class Entry:
             
         for f in dico:
             sp = ' ' * (mlen - len (f))
-            self.text.insert (None, Utils.color['red'], None,
-                                 f + ': ' + sp)
+            self.text.insert (Config.get ('gnomeui/monospaced').data,
+                              Utils.color['red'], None,
+                              f + ': ' + sp)
             self.text.insert_defaults (str (entry [f]) + '\n')
 
         self.text.thaw ()

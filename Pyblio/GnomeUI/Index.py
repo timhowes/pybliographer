@@ -19,10 +19,10 @@
 # 
 # $Id$
 
-from Pyblio import Fields, Config, Connector
+from Pyblio import Fields, Config, Connector, Types
 
 from gnome.ui import *
-from Pyblio.GnomeUI import FieldsInfo, Utils
+from Pyblio.GnomeUI import FieldsInfo, Utils, Mime
 from gtk import *
 import GTK, GDK
 
@@ -35,15 +35,6 @@ del cPickle
 
 _ = gettext.gettext
 
-PYBLIOSTRING = 0
-PYBLIOKEY    = 1
-PYBLIOENTRY  = 2
-
-PYBLIOKEY_MIME   = 'application/x-pybliokey'
-PYBLIOENTRY_MIME = 'application/x-pybliography'
-
-_atom = {}
-
 
 class Index (Connector.Publisher):
     ''' Graphical index of an iterator '''
@@ -51,10 +42,6 @@ class Index (Connector.Publisher):
     def __init__ (self, fields = None):
         ''' Creates a new list of entries '''
 
-        if not _atom:
-            _atom ['STRING'] = atom_intern ("STRING")
-            _atom [PYBLIOENTRY_MIME] = atom_intern (PYBLIOENTRY_MIME)
-            
         fields = fields or Config.get ('gnomeui/columns').data
         self.fields = map (lower, fields)
 
@@ -83,8 +70,7 @@ class Index (Connector.Publisher):
 
         # resize the columns
         for c in range (len (self.fields)):
-            self.clist.set_column_width (c, FieldsInfo.fieldinfo (
-                self.fields [c]).width)
+            self.clist.set_column_width (c, FieldsInfo.width (self.fields [c]))
 
         # some events we want to react to...
         self.clist.connect ('click_column',       self.click_column)
@@ -94,12 +80,12 @@ class Index (Connector.Publisher):
         # ---------- DnD configuration
 
         targets = (
-            (PYBLIOKEY_MIME,   0, PYBLIOKEY),
-            (PYBLIOENTRY_MIME, 0, PYBLIOENTRY),
+            (Mime.KEY_TYPE,   0, Mime.KEY),
+            (Mime.ENTRY_TYPE, 0, Mime.ENTRY),
             )
 
         accept = (
-            (PYBLIOENTRY_MIME, 0, PYBLIOENTRY),
+            (Mime.ENTRY_TYPE, 0, Mime.ENTRY),
             )
 
         self.clist.drag_dest_set (DEST_DEFAULT_MOTION |
@@ -111,7 +97,7 @@ class Index (Connector.Publisher):
 
 
         self.clist.drag_source_set (GDK.BUTTON1_MASK | GDK.BUTTON3_MASK,
-                                targets, GDK.ACTION_COPY)
+                                    targets, GDK.ACTION_COPY)
         self.clist.connect ('drag_data_get', self.dnd_drag_data_get)
 
         # ---------- Copy/Paste configuration
@@ -122,9 +108,9 @@ class Index (Connector.Publisher):
         self.clist.connect ('selection_get',   self.selection_get)
         self.clist.connect ('selection_clear_event', self.selection_clear)
 
-        self.clist.selection_add_target (1, _atom ['STRING'], 0)
-        self.clist.selection_add_target (1, _atom [PYBLIOENTRY_MIME],
-                                         PYBLIOENTRY)
+        self.clist.selection_add_target (1, Mime.atom ['STRING'], 0)
+        self.clist.selection_add_target (1, Mime.atom [Mime.ENTRY_TYPE],
+                                         Mime.ENTRY)
         return
 
 
@@ -143,7 +129,7 @@ class Index (Connector.Publisher):
     def selection_get (self, widget, selection, info, time):
         if not self.selection_buffer: return
         
-        if info == PYBLIOENTRY:
+        if info == Mime.ENTRY:
             text = pickle.dumps (self.selection_buffer)
         else:
             text = join (map (str, self.selection_buffer), '\n\n')
@@ -157,7 +143,7 @@ class Index (Connector.Publisher):
         return
 
     def selection_paste (self):
-        self.clist.selection_convert (1, _atom [PYBLIOENTRY_MIME],
+        self.clist.selection_convert (1, Mime.atom [Mime.ENTRY_TYPE],
                                       0)
         return
         
@@ -172,7 +158,7 @@ class Index (Connector.Publisher):
         selection = arg [4]
         info      = arg [5]
 
-        if info == PYBLIOENTRY:
+        if info == Mime.ENTRY:
             entries = pickle.loads (selection.data)
             self.issue ('drag-received', entries)
 
@@ -184,12 +170,12 @@ class Index (Connector.Publisher):
         entries = self.selection ()
         if not entries: return
         
-        if info == PYBLIOKEY:
+        if info == Mime.KEY:
             # must return a set of keys
-            data = join (map (lambda e: str (e.key.base) + '\0' + str (e.key.key), entries), '\0')
+            data = join (map (lambda e: str (e.key.base) + '\0' + str (e.key.key), entries), '\n')
             selection.set (selection.target, 8, data)
             
-        elif info == PYBLIOENTRY:
+        elif info == Mime.ENTRY:
             data = pickle.dumps (entries)
             selection.set (selection.target, 8, data)
             
@@ -220,7 +206,7 @@ class Index (Connector.Publisher):
             for f in self.fields:
                 if entry.has_key (f):
                     
-                    if entry.type (f) == Fields.AuthorGroup:
+                    if Types.get_field (f).type == Fields.AuthorGroup:
                         text = join (map (lambda a: str (a.last), entry [f]), ', ')
                     else:
                         text = str (entry [f])
@@ -278,7 +264,11 @@ class Index (Connector.Publisher):
         ''' handler for double-click and right mouse button '''
         
         if (event.type == GDK._2BUTTON_PRESS and event.button == 1):
-            self.issue ('edit-entry', self.access [self.clist.focus_row])
+            # select the item below the cursor
+            couple = self.clist.get_selection_info (event.x, event.y)
+            if couple:
+                self.clist.select_row (couple [0], couple [1])
+                self.issue ('edit-entry', [self.access [couple [0]]])
             return
         
         if (event.type == GDK.BUTTON_PRESS and event.button == 3):

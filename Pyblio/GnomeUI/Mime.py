@@ -19,32 +19,16 @@
 # 
 # $Id$
 
-from Pyblio import Config
-import string
+from gtk import *
 
+STRING = 0
+KEY    = 1
+ENTRY  = 2
 
-def width (field):
-    ''' return the graphical width of a field given its name '''
-    
-    ht = Config.get ('base/fields').data
+KEY_TYPE   = 'application/x-pybliokey'
+ENTRY_TYPE = 'application/x-pybliography'
 
-    field = string.lower (field)
-    
-    if ht.has_key (field) and hasattr (ht [field], 'width'):
-        return ht [field].width
-    else:
-        return Config.get ('gnomeui/default').data [0]
+atom = {}
 
-
-def widget (field):
-    ''' returns the representative widget of a field '''
-    
-    ht = Config.get ('base/fields').data
-
-    field = string.lower (field)
-    
-    if ht.has_key (field) and hasattr (ht [field], 'widget'):
-        return ht [field].widget
-    else:
-        return Config.get ('gnomeui/default').data [1]
-        
+atom ['STRING'] = atom_intern ("STRING")
+atom [ENTRY_TYPE] = atom_intern (ENTRY_TYPE)

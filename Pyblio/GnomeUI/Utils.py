@@ -28,19 +28,11 @@ import gettext
 _ = gettext.gettext
 
 
-tooltips = GtkTooltips ()
-
-if Config.get ('gnomeui/tooltips').data:
-    tooltips.enable ()
-else:
-    tooltips.disable ()
-
 cursor = {}
 cursor ['clock']  = cursor_new (150)
 cursor ['normal'] = cursor_new (68)
 
 def set_cursor (self, name):
-    if not Config.get ('gnomeui/threads').data: return
 
     window = self.get_window ()
     if not window: return
