@@ -4,11 +4,9 @@
 
 tst_start
 
-echo "- this one should succeed"
-run ../pybliographer -q ${srcdir}/../scripts/pybcheck.py ${srcdir}/bibtex.bib
+run ../pybliographer -q ${srcdir}/../scripts/pybcheck.py ${srcdir}/bibtex.bib > /dev/null 2>&1
 
-echo "- this run must fail..."
-../pybliographer -q ${srcdir}/../scripts/pybcheck.py ${srcdir}/broken.bib
+../pybliographer -q ${srcdir}/../scripts/pybcheck.py ${srcdir}/broken.bib  > /dev/null 2>&1
 if test $? = 0 ; then
 	echo "should have failed !"
 	exit 1
