@@ -1,7 +1,12 @@
 from Pyblio import Config
 
 Config.define ('refer/mapping',
-               """ A hash table containing field names correspondances """)
+               """ A hash table containing field names
+               correspondances. The boolean flag specifies if the
+               mapping should be reversible. """,
+               vtype = Config.Dict (Config.String (),
+                                    Config.Tuple ((Config.String (),
+                                                   Config.Boolean ()))))
 
 Config.set ('refer/mapping', {
     'U' : ('url', 1),
