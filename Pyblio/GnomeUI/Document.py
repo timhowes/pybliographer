@@ -17,6 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 # 
+# Id: Document.py,v 1.25 2002/07/03 10:52:52 PeterS Exp
 # $Id$
 
 ''' This module defines a Document class '''
@@ -173,7 +174,7 @@ class Document (Connector.Publisher):
         self.directory = None
         configpath = Config.get('base/bibpath').data
         if configpath: 
-            self.path =  string.split(configpath), ':')
+            self.path =  string.split(configpath, ':')
         else:
             self.path = None
         if os.environ.has_key('BIBPATH'):
