@@ -143,23 +143,36 @@ class Document (Connector.Publisher):
         factory = gtk.ItemFactory (gtk.Menu, '<main>', None)
         
         menuinfo = []
+        
         for item in history:
-            def callback (* args):
-                if not self.confirm (): return
-
-                file, how = item
-                self.open_document (file, how)
-                return
-
+            # Display name in the menu
             filename = string.replace (item [0], '/', '\/')
             
-            menuinfo.append (('/' + filename, None, callback, 0, None))
+            menuinfo.append (('/' + filename, None, self._history_open_cb,
+                              0, None))
 
         factory.create_items (menuinfo)
-        
+
+        # Bind the actual file info to each menu entry
+        i = 0
+        for item in menuinfo:
+            w = factory.get_widget (item [0])
+            w.set_data ('file', history [i])
+            i = i + 1
+            
         sub.set_submenu (factory.get_widget ('<main>'))
         return
 
+
+    def _history_open_cb (self, id, w):
+
+        file, type = w.get_data ('file')
+        
+        if not self.confirm (): return
+
+        self.open_document (file, type)
+        return
+    
     
     def redisplay_index (self, changed = -1):
         ''' redisplays the index. If changed is specified, set the
@@ -332,7 +345,7 @@ class Document (Connector.Publisher):
 
     
     def open_document (self, url, how = None, no_name = False):
-        
+
         Utils.set_cursor (self.w, 'clock')
         
         try:
