@@ -37,13 +37,14 @@ _ = gettext.gettext
 _unpickle_db = _bibtex.open_string ("<unpickled>", '', 0);
 
 _fieldtype = {
-    Text        : 0,
+    Text        : 2,
     Date        : 3,
     AuthorGroup : 1,
     URL         : 0,
     Reference   : 0,
     }
 
+    
 class BibTextField (Text):
     ''' This class overrides the basic Text class and provides
     a specific method to write the entries as latex code '''
@@ -82,7 +83,6 @@ class Entry (Base.Entry):
 	    (yearfield, monthfield) = datefields [field]
 	    
 	    # check if this entry provides a date field
-	    if not self.type.has_key (field): continue
 	    if not self.has_key (yearfield): continue
 
 	    month = None
@@ -112,27 +112,52 @@ class Entry (Base.Entry):
 	# First, set the cache for free
 	self.__text [key] = (value, 0)
 
+        if isinstance (value, Date): return
+        
         # then, convert as bibtex.
         if isinstance (value, Reference):
-            value = string.join (map (lambda item: item.key, value.list),
-                                 ', ')
+            value = string.join (map (lambda item: item.key, value.list), ', ')
         
-	self.dict [key] = _bibtex.reverse (_fieldtype [self.type (key)],
+	self.dict [key] = _bibtex.reverse (_fieldtype [Types.get_field (key).type],
                                            value)
 	return
 
 
+    def has_key (self, key):
+        return self.__text.has_key (key) or self.dict.has_key (key)
+
+
+    def keys (self):
+        keys = {}
+
+        def set_key (x, keys = keys):
+            keys [x] = 1
+            return
+        
+        map (set_key, self.__text.keys ())
+        map (set_key, self.dict.keys ())
+
+        return keys.keys ()
+
+    
     def __deepcopy__ (self, memo):
-        # create a copy of each native field
+        # copy the native fields
         content = {}
         for field in self.dict.keys ():
             value = _bibtex.copy_field (self.dict [field])
             content [field] = value
-            
-        return Entry (copy.deepcopy (self.key, memo),
-                      copy.deepcopy (self.type, memo),
-                      content,
-                      self.parser, self.line)
+
+        entry = Entry (copy.deepcopy (self.key, memo),
+                       copy.deepcopy (self.type, memo),
+                       content,
+                       self.parser, self.line)
+
+        # add the cached fields
+        for field in self.__text.keys ():
+            if entry.has_key (field): continue
+            entry [field] = self [field]
+
+        return entry
 
 
     def __getstate__ (self):
@@ -152,7 +177,7 @@ class Entry (Base.Entry):
         self.__text = state.dict
         self.parser = _unpickle_db
 
-        for field in state.dict.keys ():
+        for field in state.keys ():
             self [field] = state [field]
         return
 
@@ -162,7 +187,7 @@ class Entry (Base.Entry):
 
 	return _bibtex.get_latex (self.parser,
                                   self.dict [key],
-                                  _fieldtype [self.type (key)])
+                                  _fieldtype [Types.get_field (key).type])
 
 
     def field_and_loss (self, key):
@@ -175,7 +200,7 @@ class Entry (Base.Entry):
 
 	# search its declared type
 
-	fieldtype = self.type (key)
+	fieldtype = Types.get_field (key).type
 	ret  = _bibtex.expand (self.parser, obj,
                                _fieldtype [fieldtype])
         
@@ -402,7 +427,7 @@ def entry_write (entry, output):
     else:
 	for field in entry.keys ():
 	    # convert the field in a bibtex form
-	    fieldtype = _fieldtype [tp (field)]
+	    fieldtype = _fieldtype [Types.get_field (field).type]
 	    dico [field] = _nativify (entry [field], fieldtype)
 
 
