@@ -20,6 +20,7 @@ Autoload.preregister ('format', 'ISIFile', 'Pyblio.Format.isifile', '.*\.isi')
 # define styles and outputs
 
 Autoload.preregister ('style', 'Generic', 'Pyblio.Style.Generic')
+Autoload.preregister ('style', 'apa4e',   'Pyblio.Style.apa4e')
 
 Autoload.preregister ('output', 'Text',  'Pyblio.Output.text')
 Autoload.preregister ('output', 'Raw',   'Pyblio.Output.raw')
