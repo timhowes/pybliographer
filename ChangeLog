@@ -1,3 +1,8 @@
+2000-11-31  Pauli Virtanen  <pauli.virtanen@saunalahti.fi>
+
+	* configure.in: Added fi to ALL_LINGUAS.
+	* pybliographer.desktop: Added Finnish translation
+
 2000-11-30  Martin Norbäck  <d95mback@dtek.chalmers.se>
 
 	* pybliographer.desktop: Added Swedish translation

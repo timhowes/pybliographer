@@ -1,0 +1,815 @@
+# pybliographer Finnish translation.
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Pauli Virtanen <pauli.virtanen@saunalahti.fi>, 2000.
+#
+# GNOME Finnish Translation Team: http://gnome-fi.sourceforge.net/
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pybliographer\n"
+"POT-Creation-Date: 2000-12-30 23:52+0200\n"
+"PO-Revision-Date: 2000-12-13 19:16+02:00\n"
+"Last-Translator: Pauli Virtanen <pauli.virtanen@saunalahti.fi>\n"
+"Language-Team: Finnish <fi@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Pyblio/Autoload.py:57
+#, c-format
+msgid "warning: can't import %s: %s"
+msgstr "varoitus: tiedoston %s tuominen ep‰onnistui: %s"
+
+#: Pyblio/Config.py:53
+#, c-format
+msgid "value of `%s' should be of type %s"
+msgstr "kohdan '%s' arvon pit‰isi olla tyyppi‰ %s"
+
+#: Pyblio/Config.py:196
+msgid "String"
+msgstr "Merkkijono"
+
+#: Pyblio/Config.py:205
+msgid "Boolean"
+msgstr "Totuusarvo"
+
+#: Pyblio/Config.py:224
+msgid "Integer"
+msgstr "Kokonaisluku"
+
+#: Pyblio/Config.py:226
+#, c-format
+msgid "Integer under %d"
+msgstr "Pienempi kokonaisluku kuin %d"
+
+#: Pyblio/Config.py:228
+#, c-format
+msgid "Integer over %d"
+msgstr "Suurempi kokonaisluku kuin %d"
+
+#: Pyblio/Config.py:230
+#, c-format
+msgid "Integer between %d and %d"
+msgstr "Kokonaisluku v‰lilt‰ %d - %d"
+
+#: Pyblio/Config.py:242
+#, c-format
+msgid "Element in `%s'"
+msgstr "Osa kohdassa '%s'"
+
+#: Pyblio/Config.py:262
+#, c-format
+msgid "Tuple (%s)"
+msgstr "Tuple (%s)"
+
+#: Pyblio/Config.py:283
+#, c-format
+msgid "List (%s)"
+msgstr "Luettelo (%s)"
+
+#: Pyblio/Config.py:308
+#, c-format
+msgid "Dictionary (%s, %s)"
+msgstr "Sanasto (%s, %s)"
+
+#: Pyblio/Fields.py:265
+msgid "Illegal year value"
+msgstr "Virheellinen vuoden arvo"
+
+#: Pyblio/Fields.py:269
+msgid "Illegal month value"
+msgstr "Virheellinen kuukauden arvo"
+
+#: Pyblio/Fields.py:273
+msgid "Illegal day value"
+msgstr "Virheellinen p‰iv‰n arvo"
+
+#: Pyblio/Fields.py:438
+#, c-format
+msgid "in %s"
+msgstr "kohdassa %s"
+
+#: Pyblio/LyX.py:39
+#, c-format
+msgid "no input pipe `%s'"
+msgstr "lukuputkea '%s' ei ole"
+
+#: Pyblio/LyX.py:45
+#, c-format
+msgid "no output pipe `%s'"
+msgstr "kirjoitusputkea '%s' ei ole"
+
+#: Pyblio/Open.py:97
+#, c-format
+msgid "method `%s' provides no opener"
+msgstr "tapa '%s' ei tarjoa avaajaa"
+
+#: Pyblio/Open.py:105 Pyblio/Open.py:151
+#, c-format
+msgid "File `%s' does not exist"
+msgstr "Tiedostoa '%s' ei ole olemassa"
+
+#: Pyblio/Open.py:116 Pyblio/Open.py:162
+#, c-format
+msgid "don't know how to open `%s'"
+msgstr "en tied‰ kuinka tiedoston '%s' voisi avata"
+
+#: Pyblio/Open.py:143
+#, c-format
+msgid "method `%s' provides no iterator"
+msgstr "tapa '%s' ei tarjoa iteraattoria"
+
+#: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
+#, c-format
+msgid "key `%s' is malformed"
+msgstr "avain '%s' on viallinen"
+
+#: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
+#, c-format
+msgid "%s:%d: key `%s' already defined"
+msgstr "%s:%d: avain '%s' on jo m‰‰ritelty"
+
+#: Pyblio/GnomeUI/Editor.py:38
+msgid "Last Name, First Name"
+msgstr "Sukunimi, etunimi"
+
+#: Pyblio/GnomeUI/Editor.py:39
+msgid "Text"
+msgstr "Teksti"
+
+#: Pyblio/GnomeUI/Editor.py:42
+msgid "Reference"
+msgstr "Viittaus"
+
+#: Pyblio/GnomeUI/Editor.py:258
+msgid "Day"
+msgstr "P‰iv‰"
+
+#: Pyblio/GnomeUI/Editor.py:267
+msgid "Month"
+msgstr "Kuukausi"
+
+#: Pyblio/GnomeUI/Editor.py:276
+msgid "Year"
+msgstr "Vuosi"
+
+#: Pyblio/GnomeUI/Editor.py:301
+msgid "Invalid day field in date"
+msgstr "Virheellinen p‰iv‰ p‰iv‰m‰‰r‰ss‰"
+
+#: Pyblio/GnomeUI/Editor.py:309
+msgid "Invalid month field in date"
+msgstr "Virheellinen kuukausi p‰iv‰m‰‰r‰ss‰"
+
+#: Pyblio/GnomeUI/Editor.py:317
+msgid "Invalid year field in date"
+msgstr "Virheellinen vuosi p‰iv‰m‰‰r‰ss‰"
+
+#: Pyblio/GnomeUI/Editor.py:426
+msgid "Entry type"
+msgstr "Merkint‰tyyppi"
+
+#: Pyblio/GnomeUI/Config.py:482 Pyblio/GnomeUI/Editor.py:428
+msgid "Key"
+msgstr "Avain"
+
+#: Pyblio/GnomeUI/Editor.py:471
+msgid "Create Field"
+msgstr "Luo kentt‰"
+
+#: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:191
+msgid "Mandatory"
+msgstr "Pakollinen"
+
+#: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:192
+msgid "Optional"
+msgstr "Valinnainen"
+
+#: Pyblio/GnomeUI/Editor.py:539
+msgid "Extra"
+msgstr "Lis‰"
+
+#: Pyblio/GnomeUI/Editor.py:601
+msgid "Invalid key format"
+msgstr "Virheellinen avainmuoto"
+
+#: Pyblio/GnomeUI/Editor.py:609
+#, c-format
+msgid "Key `%s' already exists"
+msgstr "Avain '%s' on jo olemassa"
+
+#: Pyblio/GnomeUI/Editor.py:676
+msgid "Error in native string parsing"
+msgstr "Virhe perusmerkkijonotulkissa"
+
+#: Pyblio/GnomeUI/Editor.py:689
+msgid "Edit entry"
+msgstr "Muokkaa merkint‰‰"
+
+#: Pyblio/GnomeUI/Editor.py:703 Pyblio/GnomeUI/Editor.py:744
+msgid "Native Editing"
+msgstr "Perusmuokkaus"
+
+#: Pyblio/GnomeUI/Editor.py:756
+msgid "Standard Editing"
+msgstr "Tavallinen muokkaus"
+
+#: Pyblio/GnomeUI/Document.py:195 Pyblio/GnomeUI/Document.py:209
+#: Pyblio/GnomeUI/FileSelector.py:41
+msgid "File"
+msgstr "Tiedosto"
+
+#: Pyblio/GnomeUI/FileSelector.py:74
+msgid "Bibliography type:"
+msgstr "Bibliografian tyyppi:"
+
+#: Pyblio/GnomeUI/Index.py:68
+msgid "Add..."
+msgstr "Lis‰‰..."
+
+#: Pyblio/GnomeUI/Index.py:69
+msgid "Edit..."
+msgstr "Muokkaa..."
+
+#: Pyblio/GnomeUI/Index.py:70 Pyblio/GnomeUI/Search.py:178
+msgid "Delete"
+msgstr "Poista"
+
+#: Pyblio/GnomeUI/Search.py:109
+msgid "Search"
+msgstr "Etsi"
+
+#: Pyblio/GnomeUI/Fields.py:225 Pyblio/GnomeUI/Search.py:133
+msgid "Field"
+msgstr "Kentt‰"
+
+#: Pyblio/GnomeUI/Search.py:134
+msgid "Pattern"
+msgstr "Etsitt‰v‰"
+
+#: Pyblio/GnomeUI/Search.py:151
+msgid "Simple Search"
+msgstr "Yksinkertainen etsint‰"
+
+#: Pyblio/GnomeUI/Search.py:155
+msgid "Search command:"
+msgstr "Etsint‰komento:"
+
+#: Pyblio/GnomeUI/Search.py:161
+msgid "Expert Search"
+msgstr "Kehittynyt haku"
+
+#: Pyblio/GnomeUI/Search.py:199
+msgid "Full database"
+msgstr "Koko tietokanta"
+
+#: Pyblio/GnomeUI/Search.py:243
+msgid "internal error during evaluation"
+msgstr "sis‰inen virhe tapahtui selvitett‰ess‰ lauseketta"
+
+#: Pyblio/GnomeUI/Search.py:292
+#, c-format
+msgid ""
+"while compiling %s\n"
+"error: %s"
+msgstr ""
+"virhe k‰‰nt‰ess‰ %s\n"
+"virhe: %s"
+
+#: Pyblio/GnomeUI/Sort.py:42
+msgid "Select sort criterions"
+msgstr "Valitse j‰rjestysperiaatteet"
+
+#: Pyblio/GnomeUI/Sort.py:53
+msgid "Sort direction"
+msgstr "J‰rjestyssuunta"
+
+#: Pyblio/GnomeUI/Sort.py:53
+msgid "Sort criterions"
+msgstr "J‰rjestysperiaate"
+
+#: Pyblio/GnomeUI/Sort.py:66
+msgid "[Entry Type]"
+msgstr "[Merkinn‰n tyyppi]"
+
+#: Pyblio/GnomeUI/Sort.py:67
+msgid "[Key Value]"
+msgstr "[Avaimen arvo]"
+
+#: Pyblio/GnomeUI/Sort.py:92
+msgid "Reorder"
+msgstr "J‰rjest‰ uudelleen"
+
+#: Pyblio/GnomeUI/Sort.py:93
+msgid "Groups the active fields on the top of the list"
+msgstr "Ryhmittele aktiiviset kent‰t luettelon alkuun"
+
+#: Pyblio/GnomeUI/Sort.py:97
+msgid "Unselect all"
+msgstr "Poista valinta"
+
+#: Pyblio/GnomeUI/Sort.py:98
+msgid "Removes all the sort criterions"
+msgstr "Poistaa kaikki j‰rjestysperiaatteet"
+
+#: Pyblio/GnomeUI/Utils.py:163
+msgid ""
+"The following errors occured:\n"
+"\n"
+msgstr ""
+"Seuraavat virheet ovat tapahtuneet:\n"
+"\n"
+
+#: Pyblio/GnomeUI/Document.py:52
+msgid "_New"
+msgstr "_Uusi"
+
+#: Pyblio/GnomeUI/Document.py:54
+msgid "_Merge with..."
+msgstr "_Lis‰‰ muualta..."
+
+#: Pyblio/GnomeUI/Document.py:58
+msgid "_Previous Documents"
+msgstr "_Edelliset asiakirjat"
+
+#: Pyblio/GnomeUI/Document.py:65
+msgid "About..."
+msgstr "Tietoja..."
+
+#: Pyblio/GnomeUI/Document.py:66
+msgid "Submit a Bug Report"
+msgstr "L‰het‰ virheraportti"
+
+#: Pyblio/GnomeUI/Document.py:78
+msgid "_Add..."
+msgstr "_Lis‰‰..."
+
+#: Pyblio/GnomeUI/Document.py:79
+msgid "_Edit..."
+msgstr "_Muokkaa..."
+
+#: Pyblio/GnomeUI/Document.py:80
+msgid "_Delete"
+msgstr "_Poista"
+
+#: Pyblio/GnomeUI/Document.py:83
+msgid "S_ort..."
+msgstr "_J‰rjest‰..."
+
+#: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
+msgid "_Cite"
+msgstr "_Lainaa"
+
+#: Pyblio/GnomeUI/Document.py:88
+msgid "_Format..."
+msgstr "_Muoto..."
+
+#: Pyblio/GnomeUI/Document.py:92
+msgid "_Fields..."
+msgstr "_Kent‰t..."
+
+#: Pyblio/GnomeUI/Document.py:93
+msgid "_Entries..."
+msgstr "_Merkinn‰t..."
+
+#: Pyblio/GnomeUI/Document.py:99
+msgid "_File"
+msgstr "_Tiedosto"
+
+#: Pyblio/GnomeUI/Document.py:100
+msgid "_Edit"
+msgstr "_Muokkaa"
+
+#: Pyblio/GnomeUI/Document.py:102
+msgid "_Settings"
+msgstr "_Asetukset"
+
+#: Pyblio/GnomeUI/Document.py:103
+msgid "_Help"
+msgstr "_Ohje"
+
+#: Pyblio/GnomeUI/Document.py:107
+msgid "Open"
+msgstr "Avaa"
+
+#: Pyblio/GnomeUI/Document.py:108
+msgid "Save"
+msgstr "Tallenna"
+
+#: Pyblio/GnomeUI/Document.py:110
+msgid "Find"
+msgstr "Etsi"
+
+#: Pyblio/GnomeUI/Document.py:111
+msgid "Cite"
+msgstr "Lainaa"
+
+#: Pyblio/GnomeUI/Document.py:113
+msgid "Close"
+msgstr "Sulje"
+
+#: Pyblio/GnomeUI/Document.py:195 Pyblio/GnomeUI/Document.py:209
+msgid "Previous Documents"
+msgstr "Edelliset asiakirjat"
+
+#: Pyblio/GnomeUI/Document.py:231
+#, c-format
+msgid ""
+"can't open file `%s' for writing:\n"
+"%s"
+msgstr ""
+"tiedostoa '%s' ei voi avata kirjoitettavaksi:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:252
+#, c-format
+msgid ""
+"Error while parsing `%s':\n"
+"%s"
+msgstr ""
+"Virhe j‰sent‰ess‰ tiedostoa '%s':\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:271
+msgid "New database"
+msgstr "Uusi tietokanta"
+
+#: Pyblio/GnomeUI/Document.py:279 Pyblio/GnomeUI/Document.py:283
+msgid "[no entry]"
+msgstr "[ei merkintˆj‰]"
+
+#: Pyblio/GnomeUI/Document.py:280
+msgid "[1 entry]"
+msgstr "[1 merkint‰]"
+
+#: Pyblio/GnomeUI/Document.py:281
+#, c-format
+msgid "[%d entries]"
+msgstr "[%d merkint‰‰]"
+
+#: Pyblio/GnomeUI/Document.py:284
+#, c-format
+msgid "[%d/1 entry]"
+msgstr "[%d/1 merkint‰‰]"
+
+#: Pyblio/GnomeUI/Document.py:285
+#, c-format
+msgid "[%d/%d entries]"
+msgstr "[%d/%d merkint‰‰]"
+
+#: Pyblio/GnomeUI/Document.py:290
+msgid "[modified]"
+msgstr "[muokattu]"
+
+#: Pyblio/GnomeUI/Document.py:300
+msgid ""
+"The database has been modified.\n"
+"Discard changes ?"
+msgstr ""
+"Tietokantaa on muutettu.\n"
+"Haluatko, ett‰ muutokset korvautuvat?"
+
+#: Pyblio/GnomeUI/Document.py:316
+msgid "Merge file"
+msgstr "Lis‰‰ tiedosto"
+
+#: Pyblio/GnomeUI/Document.py:328 Pyblio/GnomeUI/Document.py:388
+msgid "Open error"
+msgstr "Avausvirhe"
+
+#: Pyblio/GnomeUI/Document.py:352
+msgid "Merge status"
+msgstr "Lis‰yksen tila"
+
+#: Pyblio/GnomeUI/Document.py:363
+msgid "Open file"
+msgstr "Avaa tiedosto"
+
+#: Pyblio/GnomeUI/Document.py:413
+msgid ""
+"The database has been externally modified.\n"
+"Overwrite changes ?"
+msgstr ""
+"Tietokantaa on muutettu muualta.\n"
+"Haluatko ett‰ muutokset korvautuvat?"
+
+#: Pyblio/GnomeUI/Document.py:423
+#, c-format
+msgid ""
+"Unable to save `%s':\n"
+"%s"
+msgstr ""
+"Ei voi tallentaa tiedostoa '%s':\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:431
+msgid ""
+"An internal error occured during saving\n"
+"Try to Save As..."
+msgstr ""
+"Sis‰inen virhe tapahtui tallennettaessa.\n"
+"Yrit‰ tallentaa tiedosto toisella nimell‰."
+
+#: Pyblio/GnomeUI/Document.py:445
+msgid "Save As..."
+msgstr "Tallenna nimell‰..."
+
+#: Pyblio/GnomeUI/Document.py:451
+#, c-format
+msgid ""
+"The file `%s' already exists.\n"
+"Overwrite it ?"
+msgstr ""
+"Tiedosto '%s' on jo olemassa.\n"
+"Haluatko korvata sen?"
+
+#: Pyblio/GnomeUI/Document.py:458
+#, c-format
+msgid ""
+"During opening:\n"
+"%s"
+msgstr ""
+"Avatessa:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:478
+msgid "Reopen error"
+msgstr "Uudelleenavausvirhe"
+
+#: Pyblio/GnomeUI/Document.py:519
+#, c-format
+msgid ""
+"An entry called `%s' already exists.\n"
+"Rename and add it anyway ?"
+msgstr ""
+"Merkint‰, jonka nimi on '%s', on jo olemassa.\n"
+"Nime‰ uudelleen ja lis‰‰ siit‰ huolimatta?"
+
+#: Pyblio/GnomeUI/Document.py:556
+msgid "Really remove all the entries ?"
+msgstr "Haluatko todella poistaa kaikki merkinn‰t?"
+
+#: Pyblio/GnomeUI/Document.py:576
+msgid "Create new entry"
+msgstr "Luo uusi merkint‰"
+
+#: Pyblio/GnomeUI/Document.py:590
+#, c-format
+msgid "Really edit %d entries ?"
+msgstr "Haluatko todella muokata %d merkint‰‰?"
+
+#: Pyblio/GnomeUI/Document.py:628
+#, c-format
+msgid "Remove all the %d entries ?"
+msgstr "Haluatko poistaa kaikki %d merkint‰‰?"
+
+#: Pyblio/GnomeUI/Document.py:630
+#, c-format
+msgid "Remove entry `%s' ?"
+msgstr "Haluatko poistaa merkinn‰n '%s'?"
+
+#: Pyblio/GnomeUI/Document.py:696 Pyblio/GnomeUI/Document.py:703
+#, c-format
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr ""
+"LyXiin ei saada yhteytt‰:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:750
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+"Asenna bug-buddy, jos haluat\n"
+"k‰ytt‰‰ t‰t‰ ominaisuutta."
+
+#: Pyblio/GnomeUI/Document.py:761
+msgid "This program is copyrighted under the GNU GPL"
+msgstr "T‰m‰ ohjelma on GNU GPL -lisenssin alaisuudessa."
+
+#: Pyblio/GnomeUI/Document.py:763
+msgid "Gnome interface to the Pybliographer system."
+msgstr "Gnome-k‰yttˆliittym‰ Pybliographer-j‰rjestelm‰‰n."
+
+#: Pyblio/GnomeUI/Document.py:768
+msgid "Pybliographer Home Page"
+msgstr "Pybliographerin kotisivut"
+
+#: Pyblio/GnomeUI/Format.py:37
+msgid "Format entries"
+msgstr "Muotoilumerkinn‰t"
+
+#: Pyblio/GnomeUI/Format.py:51
+msgid "Bibliography style:"
+msgstr "Bibliografian tyyli:"
+
+#: Pyblio/GnomeUI/Format.py:52
+msgid "Select style"
+msgstr "Valitse tyyli"
+
+#: Pyblio/GnomeUI/Format.py:58
+msgid "Output format:"
+msgstr "Tulostemuoto:"
+
+#: Pyblio/GnomeUI/Format.py:75
+msgid "Output File:"
+msgstr "Tulostetiedosto:"
+
+#: Pyblio/GnomeUI/Format.py:76
+msgid "Select output file"
+msgstr "Valitse tulostetiedosto"
+
+#: Pyblio/GnomeUI/Config.py:45
+msgid "Choose your preferences"
+msgstr "Muuta asetuksiasi"
+
+#: Pyblio/GnomeUI/Config.py:93
+#, c-format
+msgid ""
+"Item `%s':\n"
+"\n"
+"%s"
+msgstr ""
+"Kohta '%s':\n"
+"\n"
+"%s"
+
+#: Pyblio/GnomeUI/Config.py:128 Pyblio/GnomeUI/Fields.py:157
+#: Pyblio/GnomeUI/Fields.py:339
+msgid ""
+"Some changes require to restart Pybliographic\n"
+"to be correctly taken into account"
+msgstr ""
+"Pybliographer pit‰‰ k‰ynnist‰‰ uudelleen, jotta\n"
+"er‰‰t muutokset tulevat voimaan."
+
+#: Pyblio/GnomeUI/Config.py:249
+msgid "True"
+msgstr "Tosi"
+
+#: Pyblio/GnomeUI/Config.py:250
+msgid "False"
+msgstr "Ep‰tosi"
+
+#: Pyblio/GnomeUI/Config.py:390
+msgid "Add"
+msgstr "Lis‰‰"
+
+#: Pyblio/GnomeUI/Config.py:393
+msgid "Update"
+msgstr "P‰ivit‰"
+
+#: Pyblio/GnomeUI/Config.py:396 Pyblio/GnomeUI/Config.py:494
+#: Pyblio/GnomeUI/Fields.py:96 Pyblio/GnomeUI/Fields.py:239
+msgid "Remove"
+msgstr "Poista"
+
+#: Pyblio/GnomeUI/Config.py:482
+msgid "Value"
+msgstr "Arvo"
+
+#: Pyblio/GnomeUI/Config.py:491 Pyblio/GnomeUI/Fields.py:93
+#: Pyblio/GnomeUI/Fields.py:236
+msgid "Set"
+msgstr "Aseta"
+
+#: Pyblio/GnomeUI/Config.py:507
+msgid "Key:"
+msgstr "Avain:"
+
+#: Pyblio/GnomeUI/Config.py:509
+msgid "Value:"
+msgstr "Arvo:"
+
+#: Pyblio/GnomeUI/Fields.py:45
+msgid "Fields configuration"
+msgstr "Kentt‰asetukset"
+
+#: Pyblio/GnomeUI/Fields.py:59
+msgid "Name"
+msgstr "Nimi"
+
+#: Pyblio/GnomeUI/Fields.py:59
+msgid "Type"
+msgstr "Tyyppi"
+
+#: Pyblio/GnomeUI/Fields.py:70
+msgid "Name:"
+msgstr "Nimi:"
+
+#: Pyblio/GnomeUI/Fields.py:72
+msgid "Type:"
+msgstr "Tyyppi:"
+
+#: Pyblio/GnomeUI/Fields.py:198
+msgid "Entries configuration"
+msgstr "Merkintˆjen asetukset"
+
+#: Pyblio/GnomeUI/Fields.py:209
+msgid "Entry"
+msgstr "Merkint‰"
+
+#: Pyblio/GnomeUI/Fields.py:220
+msgid "Entry Name:"
+msgstr "Merkinn‰n nimi:"
+
+#: Pyblio/GnomeUI/Fields.py:225
+msgid "Status"
+msgstr "Tila"
+
+#: pybliographer.py:45
+#, c-format
+msgid "This is %s, version %s"
+msgstr "T‰m‰ on %s, versio %s"
+
+#: pybliographer.py:49 pybliographer.py:56
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr "T‰m‰ on vapaata ohjelmistoa, jolla EI OLE MINKƒƒNLAISTA TAKUUTA."
+
+#: pybliographer.py:50
+msgid "For details, type `warranty'."
+msgstr "Jos haluat lis‰tietoja, niin kirjoita 'warranty'."
+
+#: pybliographer.py:113 pybliographer.py:165
+#, c-format
+msgid "%s: error: can't open file `%s'"
+msgstr "%s: virhe: tiedostoa '%s' ei voi avata"
+
+#: pybliographer.py:126
+#, c-format
+msgid "For help, run %s and type `help' at the prompt"
+msgstr "Ohjeita saadaksesi k‰ynnist‰ %s ja kirjoita 'help' kehotteeseen."
+
+#: pybliographer.py:135
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+"Hyˆdyllisi‰ komentoja:\n"
+"\thelp     n‰ytt‰‰ ohjeita\n"
+"\tquit     lopettaa\n"
+
+#: scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr "usage: pybcompact <latex-tiedosto> <bibtex-tiedostot...>"
+
+#: scripts/pybcompact.py:34
+#, c-format
+msgid "pybcompact: error: %s\n"
+msgstr "pybcompact: virhe: %s\n"
+
+#: scripts/pybcompact.py:97
+msgid "no entry"
+msgstr "ei merkintˆj‰"
+
+#: scripts/pybcompact.py:142
+#, c-format
+msgid "can't find the following entries: %s"
+msgstr "seuraavia merkintˆj‰ ei lˆydy: %s"
+
+#: scripts/pybconvert.py:29
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr "k‰yttˆ: pybconvert <l‰hde>..<kohde> <syˆte> [tuloste]"
+
+#: scripts/pybconvert.py:38
+msgid "pybconvert: bad conversion format"
+msgstr "pybconvert: v‰‰r‰ muunnosmuoto"
+
+#: scripts/pybformat.py:34
+msgid "usage: pybformat [bibtexfiles...]\n"
+msgstr "k‰yttˆ: pybformat [bibtex-tiedostot...]\n"
+
+#: scripts/pybformat.py:38
+#, c-format
+msgid "pybformat: error: %s\n"
+msgstr "pybformat: virhe: %s\n"
+
+#: scripts/pybformat.py:44
+#, c-format
+msgid "pybformat: warning: %s\n"
+msgstr "pybformat: varoitus: %s\n"
+
+#: scripts/pybformat.py:141 scripts/pybtex.py:86
+#, c-format
+msgid "can't find style `%s'"
+msgstr "tyyli‰ '%s' ei lˆydy"
+
+#: scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr "k‰yttˆ: pybtex <latex-tiedosto> [bibtex-tiedostot...]"
+
+#: scripts/pybtex.py:38
+#, c-format
+msgid "pybtex: error: %s\n"
+msgstr "pybtex: virhe: %s\n"
+
+#: scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr "pybtex: varoitus: ei voitu selvitt‰‰ seuraavia avaimia"
+
+#: scripts/pybtex.py:64
+msgid "no style defined"
+msgstr "tyyli‰ ei ole m‰‰ritelty"
