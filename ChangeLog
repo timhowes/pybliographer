@@ -1,3 +1,8 @@
+2000-09-25  Gobry Frederic  <gobry@lithpc18.epfl.ch>
+
+	* Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Document.py: use of the
+	virtual fields -key- and -type- in the index list.
+
 2000-08-28  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.in: Added no to ALL_LINGUAS.
