@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 #  
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -21,68 +21,82 @@
 
 # Extension module for Refer files
 
-from Pyblio import Base, Types, Fields, Config, Autoload
+from Pyblio import Base, Types, Fields, Config, Autoload, Open, Iterator, Utils
 
 import re, string, sys
 
 tag_re = re.compile ('%(.) (.*)')
 
 
-class ReferBase (Base.DataBase):
+class ReferDB (Base.DataBase):
 
     id = 'Refer'
     
-    properties = {
-        #'edit'        : 1,
-        #'add'         : 1,
-        #'remove'      : 1,
-        }
-	
+    def __init__ (self, url):
+        Base.DataBase.__init__ (self, url)
 
-    def __init__ (self, name, type = 'refer'):
-        Base.DataBase.__init__ (self, name)
+        iter = iterator (url)
 
-        type_table    = Config.get ("%s/table" % type).data
-        endnote_types = Config.get ("endnote/types").data
-        
-        # parse entries
-        fid  = open (self.name, 'r')
+        entry = iter.first ()
+        while entry:
+            self.add (entry)
 
-        data = ''
+            entry = iter.next ()
+
+        return
+
+
+class ReferIterator (Iterator.Iterator):
+
+    def __init__ (self, file):
+        self.file    = file
+        self.mapping = Config.get ("refer/mapping").data
+        return
+    
+    
+    def first (self):
+        # rewind the file
+        self.file.seek (0)
+
+        return self.next ()
+
+    def next (self):
+        data   = ''
         fields = {}
         type   = None
-        key    = 0
 
-        finished = 0
-        ln = 0
-        while not finished:
-	    line = fid.readline ()
-            ln = ln + 1
-            
-	    if line == '': finished = 1
+        while 1:
+	    line = self.file.readline ()
+	    if line == '' and not fields:
+                return None
 
             line = string.strip (line)
             
-            if line == '' and len (fields.keys ()) > 0:
-                # ----- create the whole entry -----
-                # determine the real type
-                type = None
-                if fields.has_key (' type '):
-                    if endnote_types.has_key (fields [' type ']):
-                        type = endnote_types [fields [' type ']]
-                        
-                    del fields [' type ']
+            if line == '' and fields:
 
+                # store the current field
+                if type:
+                    
+                    if fields.has_key (type):
+                        fields [type].append (string.strip (data))
+                    else:
+                        fields [type] = [string.strip (data)]
+                    
+
+                # determine the real type
                 while 1:
                     if fields.has_key ('journal'):
                         type = 'article'
                         break
+
                     if fields.has_key ('booktitle'):
                         type = 'inbook'
                         break
+
                     if fields.has_key ('volume') or fields.has_key ('number'):
                         type = 'inproceedings'
                         break
+
                     if fields.has_key ('author') and fields.has_key ('title'):
                         type = 'unpublished'
                         break
@@ -90,13 +104,10 @@ class ReferBase (Base.DataBase):
                     type = 'misc'
                     break
                 
-                # get the real instances of every component
-                name  = "key-%d" % key ; key = key + 1
-                real  = Base.Key (self, name)
-                entry = Types.getentry (type)
+                entry = Types.get_entry (type)
 
                 for f in fields.keys ():
-                    type = Types.gettype (entry, f)
+                    type = entry (f)
 
                     if type == Types.TypeAuthor:
                         group = Fields.AuthorGroup ()
@@ -105,73 +116,101 @@ class ReferBase (Base.DataBase):
                             group.append (Fields.Author (auth))
                             
                         fields [f] = group
+                        
                     elif type == Types.TypeDate:
                         if len (fields [f]) > 1:
-                            sys.stderr.write ("%s:%d: warning: field `%s' is defined" +
-                                              " more than once\n" % (self.name, ln, f))
+                            sys.stderr.write ("warning: field `%s' is defined more than once\n" % f)
                             continue
+                        
                         fields [f] = Fields.Date (fields [f] [0])
+                        
                     else:
                         if len (fields [f]) > 1:
-                            sys.stderr.write ("%s:%d: warning: field `%s' is defined" +
-                                              " more than once" % (self.name, ln, f))
+                            sys.stderr.write ("warning: field `%s' is defined more than once" % f)
                             continue
+                        
                         fields [f] = Fields.Text (fields [f] [0])
                         
-                self [real] = Base.Entry (real, entry, fields)
-                
-                # start a new entry
-                fields = {}
-                type = None
-                data = ''
-                continue
+                return Base.Entry (None, entry, fields)
+
             
             t = tag_re.match (line)
             # we matched a new field start
             if t:
-                if not type is None:
+                if type:
                     
                     if fields.has_key (type):
-                        fields [type].append (string.strip (data))
+                        fields [type].append (string.join (string.split (data), ' '))
                     else:
-                        fields [type] = [string.strip (data)]
+                        fields [type] = [string.join (string.split (data), ' ')]
                     
                 type = t.group (1)
-                if not type_table.has_key (type):
-                    print "%s:%d: warning: key `%s' has been skipped" % (self.name, ln, type)
+                if not self.mapping.has_key (type):
+                    print "warning: key `%s' has been skipped" % (type)
                     type = None
                     data = ''
                 else:
                     # store the current field
-                    type = type_table [type]
+                    type = self.mapping [type] [0]
                     data = t.group (2)
                     
                 continue
 
             # in the general case, append the new text
             data = data + ' ' + line
+
+
+def writer (iter, output):
+    entry   = iter.first ()
+    mapping = Config.get ("refer/mapping").data
+    
+    while entry:
+        for key in mapping.keys ():
+
+            # some fields are not to be used in output, as we
+            # lost their content
+            if not mapping [key] [1]: continue
+            field = mapping [key] [0]
             
+            if entry.has_key (field):
+                type = entry.type (field)
+                
+                if type == Types.TypeAuthor:
+                    # one field per author
+                    
+                    for auth in entry [field]:
+                        output.write ('%' + key + ' ')
+                        output.write (Utils.format (str (auth), 75, 0, 0))
+                        output.write ('\n')
 
-def refer_open (entity, check):
+                    continue
+
+                # general case
+                output.write ('%' + key + ' ')
+                output.write (Utils.format (str (entry [field]), 75, 0, 0))
+                output.write ('\n')
+
+        entry = iter.next ()
+        if entry: output.write ('\n')
+    return
+
+
+def iterator (url):
+    file = open (Open.url_to_local (url))
+
+    return  ReferIterator (file)
+
+
+def opener (url, check):
 	
-    method, address, file, p, q, f = entity
     base = None
 	
-    if (not check) or (method == 'file' and file [-6:] == '.refer'):
-        base = ReferBase (file, 'refer')
-		
-    return base
-
-def en_open (entity, check):
-	
-    method, address, file, p, q, f = entity
-    base = None
-	
-    if (not check) or (method == 'file' and file [-4:] == '.end'):
-        base = ReferBase (file, 'endnote')
+    if (not check) or (url [2] [-6:] == '.refer'):
+        base = ReferDB (url)
 		
     return base
     
-Autoload.register ('format', 'Refer',   {'open'  : refer_open})
-Autoload.register ('format', 'EndNote', {'open'  : en_open})
+Autoload.register ('format', 'Refer',   {'open'  : opener,
+                                         'write' : writer,
+                                         'iter'  : iterator})
 
