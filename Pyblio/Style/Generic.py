@@ -75,7 +75,7 @@ def string_key (entry, fmt, table):
     """ Generates an alphabetical key for an entry. fmt is the
     output coding """
 
-    rc = recode.recode ("latin1.." + fmt)
+    rc = recode.recode (fmt)
 
     if   entry.has_key ('author'): aut = entry ['author']
     elif entry.has_key ('editor'): aut = entry ['editor']

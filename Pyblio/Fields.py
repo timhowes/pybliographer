@@ -39,7 +39,7 @@ def get_formatter (format):
     if formatter_cache.has_key (format):
         ft = formatter_cache [format]
     else:
-        ft = recode.recode ('latin1..' + format)
+        ft = recode.recode (format)
         formatter_cache [format] = ft
 
     return ft
