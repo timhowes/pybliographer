@@ -90,6 +90,7 @@ if test "x${with_recode_prefix}" = "xno" ; then
   AC_MSG_CHECKING([for GNU Recode])
   RECODELIB="-lrecode"
   RECODEINC=''
+  RECODEPATH="${PATH}"
 else
   dnl Check in the specified path
   if test "x${with_recode_exec_prefix}" = "xno" ; then
@@ -101,6 +102,7 @@ else
   fi
 
   RECODEINC="-I${with_recode_prefix}/include"
+  RECODEPATH="${with_recode_prefix}/bin"
 fi
 
 dnl Checks for library functions.
@@ -157,7 +159,7 @@ CPPFLAGS="${CPPFLAGS} ${RECODEINC}"
 
 AC_CHECK_HEADER(recode.h,, [
     echo
-    echo "Please check that your version of GNU Recode is >= 3.5"
+    echo "Please check that your version of GNU Recode is 3.5"
     echo "If you installed it as a package, check that"
     echo
     echo "            recode-devel"
@@ -170,6 +172,19 @@ AC_CHECK_HEADER(recode.h,, [
 
 CPPFLAGS=${old_CPPFLAGS}
 LIBS=${old_LIBS}
+
+dnl Check for recode version first
+AC_PATH_PROG(RECODE, recode, no, $RECODEPATH)
+
+if test ${RECODE} = "no" ; then
+  AC_MSG_ERROR([can't find recode in the PATH])
+fi
+
+version=`${RECODE} --version | head -n 1 | cut -f 3 -d' '`
+
+if test ${version} != "3.5" ; then
+  AC_MSG_ERROR([Please check that your version of GNU Recode is 3.5])
+fi
 
 AC_DEFINE(USE_RECODE)
 
