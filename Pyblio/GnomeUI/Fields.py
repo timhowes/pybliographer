@@ -35,11 +35,11 @@ from Pyblio import Config, Fields, Types, version
 from Pyblio.GnomeUI import Utils
 
 _typename = {
-    Fields.AuthorGroup : 'Authors',
-    Fields.Text        : 'Text',
-    Fields.URL         : 'URL',
-    Fields.Reference   : 'Reference',
-    Fields.Date        : 'Date'
+    Fields.AuthorGroup : _('Authors'),
+    Fields.Text        : _('Text'),
+    Fields.URL         : _('URL'),
+    Fields.Reference   : _('Reference'),
+    Fields.Date        : _('Date')
     }
 
 class FieldsDialog:
@@ -81,7 +81,7 @@ class FieldsDialog:
         keys = data.keys ()
         keys.sort ()
         for item in [data[key] for key in keys]:
-            self.fm.append((item.name, _(_typename [item.type]), item.type))
+            self.fm.append((item.name, _typename [item.type], item.type))
         
         self.name1 = self.xml.get_widget('name1')
         self.menu1 = self.xml.get_widget('type1')
@@ -159,7 +159,7 @@ class FieldsDialog:
         print 'ADD PAGE:', page
         if page == 0:
             t = self.menu_items[0]
-            iter = self.fm.append(('new field', _(_typename[t]), t))
+            iter = self.fm.append(('new field', _typename[t], t))
             if iter:
                 path = self.fm.get_path (iter)
                 self.fields1.scroll_to_cell(path)
@@ -247,7 +247,7 @@ class FieldsDialog:
         sel = self.fields1.get_selection()
         m, iter = sel.get_selected()
         if iter:
-            m[iter] [1] = _(_typename[x])
+            m[iter] [1] = _typename[x]
             m[iter] [2] = x
 
     def select_menu (self, w, data):

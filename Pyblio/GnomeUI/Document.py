@@ -558,7 +558,7 @@ class Document (Connector.Publisher):
         if l == 0: return
         
         if l > 5:
-            if not Utils.Callback (_("Really edit %d entries ?" % l)):
+            if not Utils.Callback (_("Really edit %d entries ?") % l):
                 return
 
         for entry in entries:

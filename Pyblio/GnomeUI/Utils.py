@@ -180,6 +180,8 @@ def error_dialog (title, err, parent = None):
                               gtk.MESSAGE_ERROR,
                               gtk.BUTTONS_CLOSE,
                               title)
+
+    dialog.set_default_size (500, 250)
     
     buff = gtk.TextBuffer ()
     title = buff.create_tag ('title', weight = pango.WEIGHT_BOLD)
@@ -208,20 +210,4 @@ def error_dialog (title, err, parent = None):
     dialog.destroy ()
     
     return
-
-
-color = {}
-
-def init_colors (colormap):
-    if color: return
-    
-    color [' colormap '] = colormap
-    
-    color ['red']  = colormap.alloc ('red')
-    color ['blue'] = colormap.alloc ('blue')
-    return
-
-
-
-
 
