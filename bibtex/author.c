@@ -290,7 +290,7 @@ extract_author (BibtexAuthorGroup * authors,
     gchar * text, * tmp_text;
     BibtexAuthor * author;
     gint length, i;
-    guint sections, comas;
+    gint sections, comas;
     GPtrArray * section [SECTION_LENGTH], * array;
     BTGroup * group;
 
@@ -324,6 +324,8 @@ extract_author (BibtexAuthorGroup * authors,
 	  comas ++;
 	}
     }
+
+/*      g_message ("%d comas", comas); */
 
     /* Parse the list into several groups */
 
@@ -392,6 +394,19 @@ extract_author (BibtexAuthorGroup * authors,
 
     if (sections < comas) {
 	comas = sections;
+    }
+
+    if (sections < 0) {
+	/* no definition here, skip this author */
+
+	bibtex_warning ("empty author definition");
+
+	for (i = 0; i < SECTION_LENGTH; i ++) {
+	    g_ptr_array_free (section [i], TRUE);
+	}
+
+	g_array_set_size (authors, authors->len - 1);
+	return;
     }
 
     switch (comas) {
@@ -515,14 +530,6 @@ bibtex_author_parse (BibtexStruct * s,
 	while (list) {
 	    group = (BTGroup *) list->data;
 	    text = group->text;
-	    
-	    /* Capitalize only during first pass, as we can compact entries
-	       from different levels afterward... */
-/*  	    if (first_pass) { */
-/*  		if (group->level == 1 && isupper (text [0])) { */
-/*  		    bibtex_capitalize (text, TRUE, skip); */
-/*  		} */
-/*  	    } */
 	    
 	    /* Skip and remove spaces */
 	    if (strcmp (" ", text) == 0) {
