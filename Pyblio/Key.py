@@ -39,7 +39,12 @@ class Key:
 	    self.key  = key.key
 	else:
 	    self.key  = key
-	    self.base = base.key
+            
+            try:
+                self.base = base.key
+            except AttributeError:
+                self.base = base
+            
 	return
 
     def __repr__ (self):
@@ -47,7 +52,7 @@ class Key:
 
     def __str__ (self):
 	if self.base:
-	    return str (self.base) + ' - ' + str (self.key)
+	    return str (self.key) + ' - ' + str (self.base)
 	else:
 	    return str (self.key)
 

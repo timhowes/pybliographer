@@ -182,8 +182,23 @@ class DataBase:
     def add (self, entry):
 	''' Adds an (eventually) anonymous entry '''
 
-	entry.key = Utils.generate_key (entry, self)
+        if entry.key is None:
+            entry.key = Utils.generate_key (entry, self)
+        else:
+            entry.key.base = self.key
+            
+            if self.has_key (entry.key):
+                prefix = entry.key.key
+                suffix = ord ('a')
 
+                while 1:
+                    key = Key.Key (self, prefix + '-' + chr (suffix))
+                    if not self.has_key (key): break
+                    
+                    suffix = suffix + 1
+
+                entry.key = key
+            
 	self [entry.key] = entry
 	return entry
 
