@@ -69,7 +69,6 @@ def output_write(key, text):
             str (text), 70, 0, 3)))
 pagenum  = re.compile('(\d) p\.')
 keywds   = re.compile('(.*)\[ISI:\] *(.*);;(.*)')
-
 class IsifileIterator(Iterator.Iterator):
     ''' This class exports two functions: first and next,
     each of which returns an bibliographic entry from the input file.
@@ -86,13 +85,14 @@ class IsifileIterator(Iterator.Iterator):
         return self.next()
 
     def next (self):
+        
         lines = {}
         in_table = {}
         file_notes, file_time, file_version, file_format = ('','','','')
 
         while 1:
             line = self.file.readline()
-            if line == '': return None # what does that mean ??
+            if line == '': return lines # what does that mean ??
             head = xheader.match(line)
             if not head :
                 pass
@@ -137,17 +137,16 @@ class IsifileIterator(Iterator.Iterator):
             if line == '': break # error situation
             head = header.match (line)
 
-        type = None
         
         key = 'PT'
         if lines.has_key(key):
-            if string.strip(lines[key][0]) == 'J':
-                type = Types.get_entry ('article')
+            if string.strip(lines[key][0])[0] == 'J':
                 del lines [key]
-
-        if type is None:
-            print 'Warning: Unknown type of entry (%s) treated as Misc.' % lines.get (key, '?')
-            type = Types.get_entry('misc')
+            else:
+                print 'Warning: Unknown type of entry (%s) -- may need editing.' %(
+                    lines[key])
+            type = Types.get_entry ('article')
+            
 
         key = 'AU'
         if lines.has_key(key):
@@ -156,16 +155,11 @@ class IsifileIterator(Iterator.Iterator):
             for item in lines[key]:
                 if string.strip(item) =='[Anon]' :
                     auth = item
-                else:
-                    try:
-                        name, firstn = string.split (item, ',')
-                        auth = name + ', '
-                        for i in string.strip(firstn):
-                            auth = auth + i +'. '
-                            
-                    except ValueError:
-                        auth = item
-                        
+                else:        
+                    name, firstn = string.split (item, ',')
+                    auth = name + ', '
+                    for i in string.strip(firstn):
+                        auth = auth + i +'. '
                 group.append (Fields.Author(auth))
             in_table['author'] = group
             del lines[key]                  
@@ -209,8 +203,7 @@ class IsifileIterator(Iterator.Iterator):
             else:
                 in_table ['isifile-' + string.lower(key)] = Fields.Text (
                     string.join (lines[key], " ; "))
-
-        return Base.Entry (None, type, in_table)
+        return Base.Entry ( None, type, in_table)
 
 class Isifile (Base.DataBase):
     '''Read a Isifile format database from an URL.'''
@@ -232,10 +225,6 @@ class Isifile (Base.DataBase):
             entry = iter.next ()
         self.postamble = iter.extraneous    
         return
-
-
-split_one = re.compile (r'\s*[;,]\s*')
-split_two = re.compile (r'\s*-{1,2}\s*')
 
 def writer (iter, output_stream, preamble=None, postamble = None):
     '''Write data given by an iterator, as well as an
@@ -271,12 +260,8 @@ def writer (iter, output_stream, preamble=None, postamble = None):
             authors = []
             for author in entry['author']:
                 initials = author.initials()
-                if initials:
-                    initials = re.sub('\. *','',initials)
-                    authors.append ('%s, %s' % (author.last, initials))
-                else:
-                    authors.append ('%s' % author.last)
-                    
+                initials = re.sub('\. *','',initials)
+                authors.append( '%s, %s' % (author.last, initials))
             del remaining ['author']    
             output_write('AU', authors)    
 
@@ -291,13 +276,8 @@ def writer (iter, output_stream, preamble=None, postamble = None):
             del remaining[fld]
         fld = 'pages'
         if entry.has_key (fld):
-            for pair in split_one.split (str(entry[fld])):
-                pair = split_two.split (pair)
-                if len (pair) == 1:
-                    beginpg, endpg = pair, pair
-                else:
-                    beginpg, endpg = pair [0:2]
-                
+            for pair in string.split (str(entry[fld]), ' ; '):
+                beginpg, endpg = string.split(pair, ' -- ')
                 output_write('BP', beginpg)
                 output_write('EP', endpg)
             del remaining[fld]
