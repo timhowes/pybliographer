@@ -24,7 +24,6 @@ Pyblio/Format/Ovid.py
 Pyblio/Format/OvidLike.py
 Pyblio/Format/Refer.py
 Pyblio/Format/__init__.py
-Pyblio/Format/docbook.py
 Pyblio/GnomeUI/Document.py
 Pyblio/GnomeUI/Editor.py
 Pyblio/GnomeUI/Entry.py
