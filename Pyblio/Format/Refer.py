@@ -114,7 +114,7 @@ class ReferIterator (Iterator.Iterator):
                 for f in fields.keys ():
                     type = entry (f)
 
-                    if type == Types.TypeAuthor:
+                    if type == Fields.AuthorGroup.id:
                         group = Fields.AuthorGroup ()
                         
                         for auth in fields [f]:
@@ -122,7 +122,7 @@ class ReferIterator (Iterator.Iterator):
                             
                         fields [f] = group
                         
-                    elif type == Types.TypeDate:
+                    elif type == Fields.Date.id:
                         if len (fields [f]) > 1:
                             sys.stderr.write ("warning: field `%s' is defined more than once\n" % f)
                             continue
@@ -180,7 +180,7 @@ def writer (iter, output):
             if entry.has_key (field):
                 type = entry.type (field)
                 
-                if type == Types.TypeAuthor:
+                if type == Fields.AuthorGroup.id:
                     # one field per author
                     
                     for auth in entry [field]:

@@ -21,12 +21,12 @@
 
 # Extension module for BibTeX files
 
-import Pyblio.Base, _bibtex
+import _bibtex
 import os, sys, tempfile, pwd, time, traceback, re, string, copy
 
 from types import *
 from Pyblio.Fields import *
-from Pyblio import Types, Base, Config, Autoload
+from Pyblio import Base, Config, Autoload, Types
 from Pyblio import Open, Key, Utils, Iterator, Exceptions
 
 import gettext
@@ -166,13 +166,13 @@ class Entry (Base.Entry):
 	type = self.type (key)
 	ret = _bibtex.expand (self.parser, obj, type)
 
-	if ret [0] == Types.TypeAuthor:
+	if ret [0] == AuthorGroup.id:
 	    # Author
 	    val = AuthorGroup ()
 	    for aut in ret [3]:
 		val.append (Author (aut))
 
-	elif ret [0] == Types.TypeDate:
+	elif ret [0] == Date.id:
 	    # Date
 	    val = Date ((ret [3], None, None))
 
@@ -240,7 +240,7 @@ class DataBase (Base.DataBase):
 		    raise TypeError, _("key `%s' is malformed") % k
 
 		_bibtex.set_string (self.parser, k,
-				    _bibtex.reverse (Types.TypeText,
+				    _bibtex.reverse (Text.id,
 						     user [k] [0]))
 
 	finished = 0
@@ -289,7 +289,7 @@ class DataBase (Base.DataBase):
 		    raise TypeError, _("key `%s' is malformed") % k
 
 		_bibtex.set_string (self.parser, k,
-				    _bibtex.reverse (Types.TypeText,
+				    _bibtex.reverse (Text.id,
 						     user [k] [0]))
 	return
 
