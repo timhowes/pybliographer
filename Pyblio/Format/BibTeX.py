@@ -134,6 +134,8 @@ def my_write (database, output):
 
 	# write the string definitions
 	if len (need_header) > 0:
+		user = Config.get ('bibtex/macros').data
+			
 		for db in need_header:
 			parser = db.get_parser ()
 		
@@ -142,11 +144,13 @@ def my_write (database, output):
 			
 			if len (dict.keys ()) > 0:
 				for k in dict.keys ():
-					output.write ('@string{ ')
-					value = _bibtex.get_native (dict [k])
-					output.write ("%s \t= %s" % \
-						      (k, value))
-					output.write ('}\n')
+					if not (user.has_key (k) and user [k][1] == 0):
+						output.write ('@String{ ')
+						value = _bibtex.get_native (dict [k])
+						output.write ("%s \t= %s" % \
+							      (k, value))
+						output.write ('}\n')
+						
 				output.write ('\n')
 
 	cr = {}
@@ -350,8 +354,21 @@ class DataBase (Base.DataBase):
 		
 		# Ouvrir le fichier associe
 		self.__parser = _bibtex.open (self.name,
-					      Config.get ("bibtex/strict").data)
-		
+					      Config.get ('bibtex/strict').data)
+
+		# Incorporer les definitions de l'utilisateur
+		if not Config.get ('bibtex/override').data:
+			user = Config.get ('bibtex/macros').data
+			valid = re.compile ("^\w+$")
+			
+			for k in user.keys ():
+				if not valid.match (k):
+					raise TypeError, "key `%s' is malformed" % k
+				
+				_bibtex.set_string (self.__parser, k,
+						    _bibtex.reverse (Types.TypeText,
+								     user [k] [0]))
+				
 		finished = 0
 		errors = []
 		
@@ -382,6 +399,20 @@ class DataBase (Base.DataBase):
 		if len (errors) > 0:
 			raise IOError, string.join (errors, "\n")
 
+		# Incorporer les definitions de l'utilisateur
+		if Config.get ('bibtex/override').data:
+			print "warning: overriding"
+			user = Config.get ('bibtex/macros').data
+			valid = re.compile ("^\w+$")
+			
+			for k in user.keys ():
+				if not valid.match (k):
+					raise TypeError, "key `%s' is malformed" % k
+				
+				_bibtex.set_string (self.__parser, k,
+						    _bibtex.reverse (Types.TypeText,
+								     user [k] [0]))
+				
 		# solve the crossreferences
 		for e in self.__dict.values ():
 			if e.has_key ('crossref'):
