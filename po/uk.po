@@ -1,0 +1,1273 @@
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Yuri Syrota <rasta@renome.rovno.ua>, 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pybliographer\n"
+"POT-Creation-Date: 2000-08-12 20:10+0000\n"
+"PO-Revision-Date: 2000-08-23 16:45+0200\n"
+"Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=koi8-u\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Pyblio/ConfDir/BibTeX.py:9
+msgid "BibTeX"
+msgstr "BibTeX"
+
+#: Pyblio/ConfDir/BibTeX.py:10
+msgid "BibTeX parser configuration"
+msgstr "Налаштування анал╕затора BibTeX"
+
+#: Pyblio/ConfDir/BibTeX.py:13
+msgid "Strict Parsing"
+msgstr "Строгий анал╕з"
+
+#: Pyblio/ConfDir/BibTeX.py:14
+msgid "Turn warnings into errors"
+msgstr "Перетворювати попередження в помилки"
+
+#: Pyblio/ConfDir/BibTeX.py:18
+msgid "Macros"
+msgstr "Макрос"
+
+#: Pyblio/ConfDir/BibTeX.py:19
+msgid "BibTeX @String{} macros"
+msgstr "BibTeX @String{} макрос"
+
+#: Pyblio/ConfDir/BibTeX.py:24
+msgid "Date Fields"
+msgstr "Поля дати"
+
+#: Pyblio/ConfDir/BibTeX.py:25
+msgid "Links from `real' date field to the two bibtex"
+msgstr "Посилання з \"реального\" поля дати на два поля bibtex"
+
+#: Pyblio/ConfDir/BibTeX.py:29
+msgid "Month values"
+msgstr "Значення м╕сяц╕в"
+
+#: Pyblio/ConfDir/BibTeX.py:30
+msgid " A hash table linking month names to their"
+msgstr " Таблиця ключ╕в, що зв'язу╓ назви м╕сяц╕в з ╖хн╕ми"
+
+#: Pyblio/ConfDir/Base.py:15
+msgid "Base"
+msgstr "Основне"
+
+#: Pyblio/ConfDir/Base.py:16
+msgid "Elementary configuration"
+msgstr "Елементарне налаштування"
+
+#: Pyblio/ConfDir/Base.py:19
+msgid "Advertise"
+msgstr "Представити"
+
+#: Pyblio/ConfDir/Base.py:20
+msgid "Specify wether or not the program should add a message"
+msgstr "Вказати, чи буде програма додавати пов╕домлення"
+
+#: Pyblio/ConfDir/Base.py:25
+msgid "Fields"
+msgstr "Поля"
+
+#: Pyblio/ConfDir/Base.py:26
+msgid "Existing fields"
+msgstr "╤снуюч╕ поля"
+
+#: Pyblio/ConfDir/Base.py:30
+msgid "Entries"
+msgstr "Записи"
+
+#: Pyblio/ConfDir/Base.py:31
+msgid "Existing entries"
+msgstr "╤снуюч╕ записи"
+
+#: Pyblio/ConfDir/Base.py:34
+msgid "Default Type"
+msgstr "Типовий тип"
+
+#: Pyblio/ConfDir/Base.py:35
+msgid "Default type for a newly created entry"
+msgstr "Типовий тип для новостворених запис╕в"
+
+#: Pyblio/ConfDir/Base.py:39
+msgid "LyX Path"
+msgstr "Шлях до LyX"
+
+#: Pyblio/ConfDir/Base.py:40
+msgid "Path to the LyX server"
+msgstr "Шлях до сервера LyX"
+
+#: Pyblio/ConfDir/Base.py:41
+msgid "Path"
+msgstr "Шлях"
+
+#: Pyblio/ConfDir/Base.py:48
+msgid "Cross Reference"
+msgstr "Перехресн╕ посилання"
+
+# .././Pyblio/ConfDir/Base.py:48 :49 :50 :51 :52 :53 :54 :55 :56 :57 :58 :59
+# :60 :61 :62 :63 :64 :65 :66 :67 :68 :69 :70 :71 :72 :73 :74 :75 :76 :77 :78
+# :79 :80 :81 :82 :83 :84 :85 :86 :87 :88 :89 :90 :91 :92 :93 :94
+#: Pyblio/ConfDir/Base.py:48 Pyblio/ConfDir/Base.py:49
+#: Pyblio/ConfDir/Base.py:50 Pyblio/ConfDir/Base.py:51
+#: Pyblio/ConfDir/Base.py:52 Pyblio/ConfDir/Base.py:53
+#: Pyblio/ConfDir/Base.py:54 Pyblio/ConfDir/Base.py:55
+#: Pyblio/ConfDir/Base.py:56 Pyblio/ConfDir/Base.py:57
+#: Pyblio/ConfDir/Base.py:58 Pyblio/ConfDir/Base.py:59
+#: Pyblio/ConfDir/Base.py:60 Pyblio/ConfDir/Base.py:61
+#: Pyblio/ConfDir/Base.py:62 Pyblio/ConfDir/Base.py:63
+#: Pyblio/ConfDir/Base.py:64 Pyblio/ConfDir/Base.py:65
+#: Pyblio/ConfDir/Base.py:66 Pyblio/ConfDir/Base.py:67
+#: Pyblio/ConfDir/Base.py:68 Pyblio/ConfDir/Base.py:69
+#: Pyblio/ConfDir/Base.py:70 Pyblio/ConfDir/Base.py:71
+#: Pyblio/ConfDir/Base.py:72 Pyblio/ConfDir/Base.py:73
+#: Pyblio/ConfDir/Base.py:74 Pyblio/ConfDir/Base.py:75
+#: Pyblio/ConfDir/Base.py:76 Pyblio/ConfDir/Base.py:77
+#: Pyblio/ConfDir/Base.py:78 Pyblio/ConfDir/Base.py:79
+#: Pyblio/ConfDir/Base.py:80 Pyblio/ConfDir/Base.py:81
+#: Pyblio/ConfDir/Base.py:82 Pyblio/ConfDir/Base.py:83
+#: Pyblio/ConfDir/Base.py:84 Pyblio/ConfDir/Base.py:85
+#: Pyblio/ConfDir/Base.py:86 Pyblio/ConfDir/Base.py:87
+#: Pyblio/ConfDir/Base.py:88 Pyblio/ConfDir/Base.py:89
+#: Pyblio/ConfDir/Base.py:90 Pyblio/ConfDir/Base.py:91
+#: Pyblio/ConfDir/Base.py:92 Pyblio/ConfDir/Base.py:93
+#: Pyblio/ConfDir/Base.py:94
+msgid "Description"
+msgstr "Опис"
+
+#: Pyblio/ConfDir/Base.py:49 Pyblio/GnomeUI/Config.py:524
+#: Pyblio/GnomeUI/Editor.py:428
+msgid "Key"
+msgstr "Ключ"
+
+#: Pyblio/ConfDir/Base.py:50
+msgid "Author"
+msgstr "Автор"
+
+#: Pyblio/ConfDir/Base.py:51
+msgid "Address 1"
+msgstr "Адреса 1"
+
+#: Pyblio/ConfDir/Base.py:52
+msgid "Address 2"
+msgstr "Адреса 2"
+
+#: Pyblio/ConfDir/Base.py:53
+msgid "Title"
+msgstr "Заголовок"
+
+#: Pyblio/ConfDir/Base.py:54
+msgid "Specific Title"
+msgstr "Особливий заголовок"
+
+#: Pyblio/ConfDir/Base.py:55
+msgid "Journal"
+msgstr "Журнал"
+
+#: Pyblio/ConfDir/Base.py:56
+msgid "Special"
+msgstr "Особливе"
+
+#: Pyblio/ConfDir/Base.py:57 Pyblio/GnomeUI/Fields.py:58
+msgid "Type"
+msgstr "Тип"
+
+#: Pyblio/ConfDir/Base.py:58
+msgid "Book Title"
+msgstr "Назва книги"
+
+#: Pyblio/ConfDir/Base.py:59
+msgid "Subject"
+msgstr "Тема"
+
+#: Pyblio/ConfDir/Base.py:60
+msgid "Ownership"
+msgstr "Власн╕сть"
+
+#: Pyblio/ConfDir/Base.py:61
+msgid "Series"
+msgstr "Сер╕╖"
+
+#: Pyblio/ConfDir/Base.py:62
+msgid "Editor"
+msgstr "Редактор"
+
+#: Pyblio/ConfDir/Base.py:63
+msgid "Edition"
+msgstr "Видання"
+
+#: Pyblio/ConfDir/Base.py:64
+msgid "Volume"
+msgstr "Том"
+
+#: Pyblio/ConfDir/Base.py:65
+msgid "Number"
+msgstr "Номер"
+
+#: Pyblio/ConfDir/Base.py:66
+msgid "Chapter"
+msgstr "Розд╕л"
+
+#: Pyblio/ConfDir/Base.py:67
+msgid "Pages"
+msgstr "Стор╕нки"
+
+#: Pyblio/ConfDir/Base.py:68
+msgid "School"
+msgstr "Школа"
+
+#: Pyblio/ConfDir/Base.py:69
+msgid "Organization"
+msgstr "Орган╕зац╕я"
+
+#: Pyblio/ConfDir/Base.py:70
+msgid "Location"
+msgstr "Розташування"
+
+#: Pyblio/ConfDir/Base.py:71
+msgid "Dates"
+msgstr "Дати"
+
+#: Pyblio/ConfDir/Base.py:72
+msgid "Institution"
+msgstr "╤нститут"
+
+#: Pyblio/ConfDir/Base.py:73
+msgid "Publisher"
+msgstr "Видавництво"
+
+#: Pyblio/ConfDir/Base.py:74
+msgid "Address"
+msgstr "Адреса"
+
+#: Pyblio/ConfDir/Base.py:75
+msgid "Format"
+msgstr "Формат"
+
+#: Pyblio/ConfDir/Base.py:76
+msgid "Date"
+msgstr "Дата"
+
+#: Pyblio/ConfDir/Base.py:77
+msgid "# Series"
+msgstr "Номер сер╕╖"
+
+#: Pyblio/ConfDir/Base.py:78
+msgid "Conference Place"
+msgstr "М╕сце проведення конференц╕╖"
+
+#: Pyblio/ConfDir/Base.py:79
+msgid "Cote"
+msgstr "Cote"
+
+#: Pyblio/ConfDir/Base.py:80
+msgid "IEEECN"
+msgstr "IEEECN"
+
+#: Pyblio/ConfDir/Base.py:81
+msgid "LoCN"
+msgstr "LoCN"
+
+#: Pyblio/ConfDir/Base.py:82
+msgid "ISBN"
+msgstr "ISBN"
+
+#: Pyblio/ConfDir/Base.py:83
+msgid "ISSN"
+msgstr "ISSN"
+
+#: Pyblio/ConfDir/Base.py:84
+msgid "Note"
+msgstr "Нотатка"
+
+#: Pyblio/ConfDir/Base.py:85
+msgid "Language"
+msgstr "Мова"
+
+#: Pyblio/ConfDir/Base.py:86
+msgid "How Published"
+msgstr "Як опубл╕ковано"
+
+#: Pyblio/ConfDir/Base.py:87
+msgid "To Appear"
+msgstr "З'явилось"
+
+#: Pyblio/ConfDir/Base.py:88
+msgid "From"
+msgstr "З"
+
+#: Pyblio/ConfDir/Base.py:89
+msgid "Received"
+msgstr "Отримано"
+
+#: Pyblio/ConfDir/Base.py:90
+msgid "Owner"
+msgstr "Власник"
+
+#: Pyblio/ConfDir/Base.py:91
+msgid "Keywords"
+msgstr "Ключев╕ слова"
+
+#: Pyblio/ConfDir/Base.py:92
+msgid "Abstract"
+msgstr "Конспект"
+
+#: Pyblio/ConfDir/Base.py:93
+msgid "Remarks"
+msgstr "Зноски"
+
+#: Pyblio/ConfDir/Base.py:94
+msgid "URL"
+msgstr "URL"
+
+#: Pyblio/ConfDir/Base.py:98
+msgid "Article"
+msgstr "Стаття"
+
+# .././Pyblio/ConfDir/Base.py:98 :102 :106 :110 :114 :119 :125 :129 :133 :137
+# :141 :147 :151
+#: Pyblio/ConfDir/Base.py:98 Pyblio/ConfDir/Base.py:102
+#: Pyblio/ConfDir/Base.py:106 Pyblio/ConfDir/Base.py:110
+#: Pyblio/ConfDir/Base.py:114 Pyblio/ConfDir/Base.py:119
+#: Pyblio/ConfDir/Base.py:125 Pyblio/ConfDir/Base.py:129
+#: Pyblio/ConfDir/Base.py:133 Pyblio/ConfDir/Base.py:137
+#: Pyblio/ConfDir/Base.py:141 Pyblio/ConfDir/Base.py:147
+#: Pyblio/ConfDir/Base.py:151
+msgid " "
+msgstr " "
+
+#: Pyblio/ConfDir/Base.py:102
+msgid "Book"
+msgstr "Книга"
+
+#: Pyblio/ConfDir/Base.py:106
+msgid "Booklet"
+msgstr "Буклет"
+
+#: Pyblio/ConfDir/Base.py:110
+msgid "In Book"
+msgstr "В книз╕"
+
+#: Pyblio/ConfDir/Base.py:114
+msgid "In Collection"
+msgstr "В з╕бранн╕"
+
+#: Pyblio/ConfDir/Base.py:119
+msgid "In Proceedings"
+msgstr ""
+
+#: Pyblio/ConfDir/Base.py:125
+msgid "Manual"
+msgstr "╤нструкц╕я"
+
+#: Pyblio/ConfDir/Base.py:129
+msgid "Masters Thesis"
+msgstr "Кандидатськ╕ тези"
+
+#: Pyblio/ConfDir/Base.py:133
+msgid "Miscellanous"
+msgstr "Р╕зне"
+
+#: Pyblio/ConfDir/Base.py:137
+msgid "PhD Thesis"
+msgstr "Тези кандидатсько╖ дисертац╕╖"
+
+#: Pyblio/ConfDir/Base.py:141
+msgid "Proceedings"
+msgstr ""
+
+#: Pyblio/ConfDir/Base.py:147
+msgid "Technical Report"
+msgstr "Техн╕чний зв╕т"
+
+#: Pyblio/ConfDir/Base.py:151
+msgid "Unpublished"
+msgstr "Неопубл╕ковано"
+
+#: Pyblio/ConfDir/Ovid.py:9
+msgid "Default type"
+msgstr "Типовий тип"
+
+#: Pyblio/ConfDir/Ovid.py:10
+msgid "Default type for an Ovid entry"
+msgstr "Типовий тип для запису Ovid"
+
+#: Pyblio/ConfDir/Ovid.py:15 Pyblio/ConfDir/Refer.py:7
+msgid "Mapping"
+msgstr "Мапування"
+
+#: Pyblio/ConfDir/Ovid.py:16
+msgid "A mapping between the Ovid field name and the"
+msgstr "Мапування м╕ж назвою поля Ovid ╕"
+
+#: Pyblio/ConfDir/Refer.py:8
+msgid "Field names correspondances"
+msgstr "В╕дпов╕дност╕ назв пол╕в"
+
+#: Pyblio/ConfDir/Gnome.py:7
+msgid "Gnome"
+msgstr "GNOME"
+
+#: Pyblio/ConfDir/Gnome.py:8
+msgid "Gnome interface configuration"
+msgstr "Налаштування ╕нтерфейсу GNOME"
+
+#: Pyblio/ConfDir/Gnome.py:11
+msgid "Columns"
+msgstr "Стовпчики"
+
+#: Pyblio/ConfDir/Gnome.py:12
+msgid "Fields displayed on the main screen of the interface"
+msgstr "Поля, що в╕дображен╕ на головному екран╕ ╕нтерфейсу"
+
+#: Pyblio/ConfDir/Gnome.py:16
+msgid "Tooltips"
+msgstr "П╕дказки"
+
+#: Pyblio/ConfDir/Gnome.py:17
+msgid "Enable tooltips ?"
+msgstr "Увимкнути п╕дказки?"
+
+#: Pyblio/ConfDir/Gnome.py:21
+msgid "Native Edit"
+msgstr "Природн╓ редагування"
+
+#: Pyblio/ConfDir/Gnome.py:22
+msgid "Edit the entries in their native format by default ?"
+msgstr "Випрапвляти записи в ╖х природньому формат╕ типово?"
+
+#: Pyblio/ConfDir/Gnome.py:23
+msgid "Use native edit by default ?"
+msgstr "Використовувати природн╓ редагування типово?"
+
+#: Pyblio/ConfDir/Gnome.py:26
+msgid "Searchable"
+msgstr "Використову╓ться при пошуку"
+
+#: Pyblio/ConfDir/Gnome.py:27
+msgid "Searchable fields"
+msgstr "Поля, що використовуються при пошуку"
+
+#: Pyblio/ConfDir/Gnome.py:31
+msgid "History Size"
+msgstr "Розм╕р ╕стор╕╖"
+
+#: Pyblio/ConfDir/Gnome.py:32
+msgid "Size of the history file"
+msgstr "Розм╕р файлу ╕стор╕╖"
+
+#: Pyblio/ConfDir/Gnome.py:33
+msgid "Number of items"
+msgstr "К╕льк╕сть елемент╕в"
+
+#: Pyblio/ConfDir/Medline.py:7
+msgid "Medline Mapping"
+msgstr "В╕дображення Medline"
+
+#: Pyblio/ConfDir/Medline.py:8
+msgid "Medline field names correspondances"
+msgstr "В╕дпов╕дност╕ назв пол╕в Medline"
+
+#: Pyblio/Autoload.py:57
+#, c-format
+msgid "warning: can't import %s: %s"
+msgstr "увага: неможливо ╕мпортувати %s: %s"
+
+#: Pyblio/Config.py:53
+#, c-format
+msgid "value of `%s' should be of type %s"
+msgstr "значення \"%s\" мусить бути типу %s"
+
+#: Pyblio/Config.py:200
+msgid "String"
+msgstr "Рядок"
+
+#: Pyblio/Config.py:210
+msgid "Boolean"
+msgstr "Лог╕чне"
+
+#: Pyblio/Config.py:230
+msgid "Integer"
+msgstr "Ц╕ле"
+
+#: Pyblio/Config.py:232
+#, c-format
+msgid "Integer under %d"
+msgstr "Ц╕ле менше %d"
+
+#: Pyblio/Config.py:234
+#, c-format
+msgid "Integer over %d"
+msgstr "Ц╕ле б╕льше %d"
+
+#: Pyblio/Config.py:236
+#, c-format
+msgid "Integer between %d and %d"
+msgstr "Ц╕ле м╕ж %d ╕ %d"
+
+#: Pyblio/Config.py:249
+#, c-format
+msgid "Element in `%s'"
+msgstr "Елемент у \"%s\""
+
+#: Pyblio/Config.py:270
+#, c-format
+msgid "Tuple (%s)"
+msgstr "Кортеж (%s)"
+
+#: Pyblio/Config.py:292
+#, c-format
+msgid "List (%s)"
+msgstr "Список (%s)"
+
+#: Pyblio/Config.py:318
+#, c-format
+msgid "Dictionary (%s, %s)"
+msgstr "Словник (%s, %s)"
+
+#: Pyblio/Fields.py:265
+msgid "Illegal year value"
+msgstr "Недопустиме значення року"
+
+#: Pyblio/Fields.py:269
+msgid "Illegal month value"
+msgstr "Недопустиме значення м╕сяця"
+
+#: Pyblio/Fields.py:273
+msgid "Illegal day value"
+msgstr "Недопустиме значення дня"
+
+#: Pyblio/Fields.py:438
+#, c-format
+msgid "in %s"
+msgstr "в %s"
+
+#: Pyblio/LyX.py:39
+#, c-format
+msgid "no input pipe `%s'"
+msgstr "нема╓ каналу вводу \"%s\""
+
+#: Pyblio/LyX.py:45
+#, c-format
+msgid "no output pipe `%s'"
+msgstr "нема╓ каналу виводу \"%s\""
+
+#: Pyblio/Open.py:97
+#, c-format
+msgid "method `%s' provides no opener"
+msgstr ""
+
+# .././Pyblio/Open.py:105 :151
+#: Pyblio/Open.py:105 Pyblio/Open.py:151
+#, c-format
+msgid "File `%s' does not exist"
+msgstr "Файл \"%s\" не существует"
+
+# .././Pyblio/Open.py:116 :162
+#: Pyblio/Open.py:116 Pyblio/Open.py:162
+#, c-format
+msgid "don't know how to open `%s'"
+msgstr "нев╕домо як в╕дкрити \"%s\""
+
+#: Pyblio/Open.py:143
+#, c-format
+msgid "method `%s' provides no iterator"
+msgstr ""
+
+# .././Pyblio/Format/BibTeX.py:345 :403
+#: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
+#, c-format
+msgid "key `%s' is malformed"
+msgstr "ключ \"%s\" нев╕рно сфрмовано"
+
+# .././Pyblio/Format/BibTeX.py:366 :387
+#: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
+#, c-format
+msgid "%s:%d: key `%s' already defined"
+msgstr "%s:%d: ключ \"%s\" вже визначено"
+
+#: Pyblio/GnomeUI/Editor.py:38
+msgid "Last Name, First Name"
+msgstr "Пр╕звище, ╤м'я"
+
+#: Pyblio/GnomeUI/Editor.py:39
+msgid "Text"
+msgstr "Текст"
+
+#: Pyblio/GnomeUI/Editor.py:42
+msgid "Reference"
+msgstr "Посилання"
+
+#: Pyblio/GnomeUI/Editor.py:258
+msgid "Day"
+msgstr "День"
+
+#: Pyblio/GnomeUI/Editor.py:267
+msgid "Month"
+msgstr "М╕сяць"
+
+#: Pyblio/GnomeUI/Editor.py:276
+msgid "Year"
+msgstr "Р╕к"
+
+#: Pyblio/GnomeUI/Editor.py:301
+msgid "Invalid day field in date"
+msgstr "Нев╕рне поле дня в дат╕"
+
+#: Pyblio/GnomeUI/Editor.py:309
+msgid "Invalid month field in date"
+msgstr "Нев╕рне поле м╕сяця в дат╕"
+
+#: Pyblio/GnomeUI/Editor.py:317
+msgid "Invalid year field in date"
+msgstr "Нев╕рне поле року в дат╕"
+
+#: Pyblio/GnomeUI/Editor.py:426
+msgid "Entry type"
+msgstr "Тип запису"
+
+#: Pyblio/GnomeUI/Editor.py:469
+msgid "Create Field"
+msgstr "Створити поле"
+
+#: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:178
+msgid "Mandatory"
+msgstr "Обов'язкове"
+
+#: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:179
+msgid "Optional"
+msgstr "Необов'язкове"
+
+#: Pyblio/GnomeUI/Editor.py:534
+msgid "Extra"
+msgstr "Додаткове"
+
+#: Pyblio/GnomeUI/Editor.py:596
+msgid "Invalid key format"
+msgstr "Нев╕рний формат ключа"
+
+#: Pyblio/GnomeUI/Editor.py:604
+#, c-format
+msgid "Key `%s' already exists"
+msgstr "Ключ \"%s\" вже ╕сну╓"
+
+#: Pyblio/GnomeUI/Editor.py:671
+msgid "Error in native string parsing"
+msgstr "Помилка в анал╕з╕ природнього рядка"
+
+#: Pyblio/GnomeUI/Editor.py:684
+msgid "Edit entry"
+msgstr "Редагування запису"
+
+# .././Pyblio/GnomeUI/Editor.py:698 :739
+#: Pyblio/GnomeUI/Editor.py:698 Pyblio/GnomeUI/Editor.py:739
+msgid "Native Editing"
+msgstr "Природн╓ редагування"
+
+#: Pyblio/GnomeUI/Editor.py:751
+msgid "Standard Editing"
+msgstr "Стандартне редагування"
+
+# :207
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+#: Pyblio/GnomeUI/FileSelector.py:41
+msgid "File"
+msgstr "Файл"
+
+#: Pyblio/GnomeUI/FileSelector.py:74
+msgid "Bibliography type:"
+msgstr "Тип библ╕ограф╕╖:"
+
+#: Pyblio/GnomeUI/Index.py:66
+msgid "Add..."
+msgstr "Додати..."
+
+#: Pyblio/GnomeUI/Index.py:67
+msgid "Edit..."
+msgstr "Виправити.."
+
+#: Pyblio/GnomeUI/Index.py:68 Pyblio/GnomeUI/Search.py:176
+msgid "Delete"
+msgstr "Стерти"
+
+#: Pyblio/GnomeUI/Search.py:109
+msgid "Search"
+msgstr "Пошук"
+
+#: Pyblio/GnomeUI/Fields.py:211 Pyblio/GnomeUI/Search.py:133
+msgid "Field"
+msgstr "Поле"
+
+#: Pyblio/GnomeUI/Search.py:134
+msgid "Pattern"
+msgstr "Шаблон"
+
+#: Pyblio/GnomeUI/Search.py:149
+msgid "Simple Search"
+msgstr "Простий пошук"
+
+#: Pyblio/GnomeUI/Search.py:153
+msgid "Search command:"
+msgstr "Команда пошуку:"
+
+#: Pyblio/GnomeUI/Search.py:159
+msgid "Expert Search"
+msgstr "Експертний пошук"
+
+#: Pyblio/GnomeUI/Search.py:194
+msgid "Full database"
+msgstr "Повна база даних"
+
+#: Pyblio/GnomeUI/Search.py:229
+msgid "internal error during evaluation"
+msgstr "внутр╕шня помилка п╕д час викоання"
+
+#: Pyblio/GnomeUI/Search.py:278
+#, c-format
+msgid ""
+"while compiling %s\n"
+"error: %s"
+msgstr ""
+"на комп╕люванн╕ %s\n"
+"помилка: %s"
+
+#: Pyblio/GnomeUI/Sort.py:42
+msgid "Select sort criterions"
+msgstr "Вибер╕ть напрямок сортування"
+
+#: Pyblio/GnomeUI/Sort.py:53
+msgid "Sort direction"
+msgstr "Напрямок сортування"
+
+#: Pyblio/GnomeUI/Sort.py:53
+msgid "Sort criterions"
+msgstr "Критер╕╖ сортування"
+
+#: Pyblio/GnomeUI/Sort.py:66
+msgid "[Entry Type]"
+msgstr "[Тип запису]"
+
+#: Pyblio/GnomeUI/Sort.py:67
+msgid "[Key Value]"
+msgstr "[Значення ключа]"
+
+#: Pyblio/GnomeUI/Sort.py:92
+msgid "Reorder"
+msgstr "Перевпорядкувати"
+
+#: Pyblio/GnomeUI/Sort.py:93
+msgid "Groups the active fields on the top of the list"
+msgstr "Групи активних пол╕в вгор╕ спису"
+
+#: Pyblio/GnomeUI/Sort.py:97
+msgid "Unselect all"
+msgstr "Зняти виб╕р"
+
+#: Pyblio/GnomeUI/Sort.py:98
+msgid "Removes all the sort criterions"
+msgstr "Видалити вс╕ критер╕╖ сортування"
+
+#: Pyblio/GnomeUI/Utils.py:163
+msgid ""
+"The following errors occured:\n"
+"\n"
+msgstr ""
+"Воникли так╕ помилки:\n"
+"\n"
+
+#: Pyblio/GnomeUI/__init__.py:36
+msgid "Internal Error"
+msgstr "Внутр╕шня помилка"
+
+#: Pyblio/GnomeUI/Document.py:52
+msgid "_New"
+msgstr "Нова"
+
+#: Pyblio/GnomeUI/Document.py:54
+msgid "_Merge with..."
+msgstr "Об'╓днати з..."
+
+#: Pyblio/GnomeUI/Document.py:58
+msgid "_Previous Documents"
+msgstr "Попередн╕ документи"
+
+#: Pyblio/GnomeUI/Document.py:65
+msgid "About..."
+msgstr "Про..."
+
+#: Pyblio/GnomeUI/Document.py:66
+msgid "Submit a Bug Report"
+msgstr "П╕дготувати пов╕домлення про помилку"
+
+#: Pyblio/GnomeUI/Document.py:78
+msgid "_Add..."
+msgstr "Додати..."
+
+#: Pyblio/GnomeUI/Document.py:79
+msgid "_Edit..."
+msgstr "Виправити..."
+
+#: Pyblio/GnomeUI/Document.py:80
+msgid "_Delete"
+msgstr "Стерти"
+
+#: Pyblio/GnomeUI/Document.py:83
+msgid "S_ort..."
+msgstr "Посортувати..."
+
+# .././Pyblio/GnomeUI/Document.py:87 :101
+#: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
+msgid "_Cite"
+msgstr "Цитата"
+
+#: Pyblio/GnomeUI/Document.py:88
+msgid "_Format..."
+msgstr "Формат..."
+
+#: Pyblio/GnomeUI/Document.py:92
+msgid "_Fields..."
+msgstr "Поля..."
+
+#: Pyblio/GnomeUI/Document.py:93
+msgid "_Entries..."
+msgstr "Записи..."
+
+#: Pyblio/GnomeUI/Document.py:99
+msgid "_File"
+msgstr "Файл"
+
+#: Pyblio/GnomeUI/Document.py:100
+msgid "_Edit"
+msgstr "Редагування"
+
+#: Pyblio/GnomeUI/Document.py:102
+msgid "_Settings"
+msgstr "Установки"
+
+#: Pyblio/GnomeUI/Document.py:103
+msgid "_Help"
+msgstr "Дов╕дка"
+
+#: Pyblio/GnomeUI/Document.py:107
+msgid "Open"
+msgstr "В╕дкрити"
+
+#: Pyblio/GnomeUI/Document.py:108
+msgid "Save"
+msgstr "Зберегти"
+
+#: Pyblio/GnomeUI/Document.py:110
+msgid "Find"
+msgstr "Знайти"
+
+#: Pyblio/GnomeUI/Document.py:111
+msgid "Cite"
+msgstr "Цитата"
+
+#: Pyblio/GnomeUI/Document.py:113
+msgid "Close"
+msgstr "Закрити"
+
+# .././Pyblio/GnomeUI/Document.py:193 :207
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+msgid "Previous Documents"
+msgstr "Попередн╕ документи"
+
+#: Pyblio/GnomeUI/Document.py:228
+#, c-format
+msgid ""
+"can't open file `%s' for writing:\n"
+"%s"
+msgstr ""
+"неможливо в╕дкрити файл \"%s\" на запис:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:243
+#, c-format
+msgid ""
+"Error while parsing `%s':\n"
+"%s"
+msgstr ""
+"Помилка на анал╕з╕ \"%s\":\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:262
+msgid "New database"
+msgstr "Нова база даних"
+
+# .././Pyblio/GnomeUI/Document.py:270 :274
+#: Pyblio/GnomeUI/Document.py:270 Pyblio/GnomeUI/Document.py:274
+msgid "[no entry]"
+msgstr "[нема╓ запис╕в]"
+
+#: Pyblio/GnomeUI/Document.py:271
+msgid "[1 entry]"
+msgstr "[1 запис]"
+
+#: Pyblio/GnomeUI/Document.py:272
+#, c-format
+msgid "[%d entries]"
+msgstr "[%d запис╕в]"
+
+#: Pyblio/GnomeUI/Document.py:275
+#, c-format
+msgid "[%d/1 entry]"
+msgstr "[%d/1 запис╕в]"
+
+#: Pyblio/GnomeUI/Document.py:276
+#, c-format
+msgid "[%d/%d entries]"
+msgstr "[%d/%d запис╕в]"
+
+#: Pyblio/GnomeUI/Document.py:281
+msgid "[modified]"
+msgstr "[зм╕нено]"
+
+#: Pyblio/GnomeUI/Document.py:291
+msgid ""
+"The database has been modified.\n"
+"Discard changes ?"
+msgstr ""
+"Базу даних було зм╕нено.\n"
+"В╕дм╕нити зм╕ни?"
+
+#: Pyblio/GnomeUI/Document.py:307
+msgid "Merge file"
+msgstr "Об'╓днати файл"
+
+# .././Pyblio/GnomeUI/Document.py:319 :379
+#: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:379
+msgid "Open error"
+msgstr "Помилка в╕дкривання"
+
+#: Pyblio/GnomeUI/Document.py:343
+msgid "Merge status"
+msgstr "Стан об'╓днання"
+
+#: Pyblio/GnomeUI/Document.py:354
+msgid "Open file"
+msgstr "В╕дкрити файл"
+
+#: Pyblio/GnomeUI/Document.py:403
+#, c-format
+msgid ""
+"Unable to save `%s':\n"
+"%s"
+msgstr ""
+"Неможливо зберегти \"%s\":\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:411
+msgid ""
+"An internal error occured during saving\n"
+"Try to Save As..."
+msgstr ""
+"На збереженн╕ виникла внутр╕шня помилка\n"
+"Спробуйте \"Зберегти як...\""
+
+#: Pyblio/GnomeUI/Document.py:422
+msgid "Save As..."
+msgstr "Зберегти як..."
+
+#: Pyblio/GnomeUI/Document.py:428
+#, c-format
+msgid ""
+"The file `%s' already exists.\n"
+"Overwrite it ?"
+msgstr ""
+"Файл \"%s\" вже ╕сну╓.\n"
+"Переписати його?"
+
+#: Pyblio/GnomeUI/Document.py:435
+#, c-format
+msgid ""
+"During opening:\n"
+"%s"
+msgstr ""
+"П╕д час в╕дкривання:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:455
+msgid "Reopen error"
+msgstr "Помилка повторного в╕дкривання"
+
+#: Pyblio/GnomeUI/Document.py:496
+#, c-format
+msgid ""
+"An entry called `%s' already exists.\n"
+"Rename and add it anyway ?"
+msgstr ""
+"Запис з назвою \"%s\" вже ╕сну╓.\n"
+"Перейменовати ╕ додати всеодно?"
+
+#: Pyblio/GnomeUI/Document.py:532
+msgid "Really remove all the entries ?"
+msgstr "Д╕йсно видалити вс╕ записи?"
+
+#: Pyblio/GnomeUI/Document.py:552
+msgid "Create new entry"
+msgstr "Сотворити новий запис"
+
+#: Pyblio/GnomeUI/Document.py:566
+#, c-format
+msgid "Really edit %d entries ?"
+msgstr "Д╕йсно виправити %d запис╕в?"
+
+#: Pyblio/GnomeUI/Document.py:601
+#, c-format
+msgid "Remove all the %d entries ?"
+msgstr "Видалити вс╕ %d запис╕в?"
+
+#: Pyblio/GnomeUI/Document.py:603
+#, c-format
+msgid "Remove entry `%s' ?"
+msgstr "Видалити запис \"%s\"?"
+
+# .././Pyblio/GnomeUI/Document.py:661 :668
+#: Pyblio/GnomeUI/Document.py:661 Pyblio/GnomeUI/Document.py:668
+#, c-format
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr ""
+"Неможливо з'╓днатися з LyX:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:709
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+"Для того щоб використовувати цю\n"
+"можлив╕сть встанов╕ть bug-buddy"
+
+#: Pyblio/GnomeUI/Document.py:720
+msgid "This program is copyrighted under the GNU GPL"
+msgstr "Цю програму захищено лиценз╕╓ю GNU GPL"
+
+#: Pyblio/GnomeUI/Document.py:722
+msgid "Gnome interface to the Pybliographer system."
+msgstr "╤нтерфейс GNOME до системи Pybliographer."
+
+#: Pyblio/GnomeUI/Document.py:727
+msgid "Pybliographer Home Page"
+msgstr "Домашня стор╕нка Pybliographer"
+
+#: Pyblio/GnomeUI/Format.py:37
+msgid "Format entries"
+msgstr "Формат запис╕в"
+
+#: Pyblio/GnomeUI/Format.py:51
+msgid "Bibliography style:"
+msgstr "Стиль б╕бл╕ограф╕╖:"
+
+#: Pyblio/GnomeUI/Format.py:52
+msgid "Select style"
+msgstr "Вибрати стиль"
+
+#: Pyblio/GnomeUI/Format.py:58
+msgid "Output format:"
+msgstr "Формат виводу:"
+
+#: Pyblio/GnomeUI/Format.py:75
+msgid "Output File:"
+msgstr "Файл виводу:"
+
+#: Pyblio/GnomeUI/Format.py:76
+msgid "Select output file"
+msgstr "Вибрати файл виводу"
+
+#: Pyblio/GnomeUI/Config.py:46
+msgid "Choose your preferences"
+msgstr "Вибрати ваш╕ налаштування"
+
+#: Pyblio/GnomeUI/Config.py:111
+#, c-format
+msgid ""
+"Item `%s':\n"
+"\n"
+"%s"
+msgstr ""
+"Елемент \"%s\":\n"
+"\n"
+"%s"
+
+#: Pyblio/GnomeUI/Config.py:146
+msgid ""
+"Some changes require to restart Pybliographic\n"
+"to be correctly taken into account"
+msgstr ""
+"Деяк╕ зм╕ни потребують перезапуску Pybliographer\n"
+"для того, щою вони були коректно врахован╕"
+
+#: Pyblio/GnomeUI/Config.py:291
+msgid "True"
+msgstr "╤стина"
+
+#: Pyblio/GnomeUI/Config.py:292
+msgid "False"
+msgstr "Хибн╕сть"
+
+#: Pyblio/GnomeUI/Config.py:432
+msgid "Add"
+msgstr "Додати"
+
+#: Pyblio/GnomeUI/Config.py:435
+msgid "Update"
+msgstr "Оновити"
+
+# .././Pyblio/GnomeUI/Config.py:438 :536 .././Pyblio/GnomeUI/Fields.py:95 :225
+#: Pyblio/GnomeUI/Config.py:438 Pyblio/GnomeUI/Config.py:536
+#: Pyblio/GnomeUI/Fields.py:95 Pyblio/GnomeUI/Fields.py:225
+msgid "Remove"
+msgstr "Видалити"
+
+#: Pyblio/GnomeUI/Config.py:524
+msgid "Value"
+msgstr "Значення"
+
+# .././Pyblio/GnomeUI/Config.py:533 .././Pyblio/GnomeUI/Fields.py:92 :222
+#: Pyblio/GnomeUI/Config.py:533 Pyblio/GnomeUI/Fields.py:92
+#: Pyblio/GnomeUI/Fields.py:222
+msgid "Set"
+msgstr "Встановити"
+
+#: Pyblio/GnomeUI/Config.py:549
+msgid "Key:"
+msgstr "Ключ:"
+
+#: Pyblio/GnomeUI/Config.py:551
+msgid "Value:"
+msgstr "Значення:"
+
+#: Pyblio/GnomeUI/Fields.py:45
+msgid "Fields configuration"
+msgstr "Конф╕╜урац╕я пол╕в"
+
+#: Pyblio/GnomeUI/Fields.py:58
+msgid "Name"
+msgstr "Назва"
+
+#: Pyblio/GnomeUI/Fields.py:69
+msgid "Name:"
+msgstr "Назва:"
+
+#: Pyblio/GnomeUI/Fields.py:71
+msgid "Type:"
+msgstr "Тип:"
+
+#: Pyblio/GnomeUI/Fields.py:185
+msgid "Entries configuration"
+msgstr "Конф╕╜урац╕я запис╕в"
+
+#: Pyblio/GnomeUI/Fields.py:195
+msgid "Entry"
+msgstr "Запис"
+
+#: Pyblio/GnomeUI/Fields.py:206
+msgid "Entry Name:"
+msgstr "Назва запису:"
+
+#: Pyblio/GnomeUI/Fields.py:211
+msgid "Status"
+msgstr "Стан"
+
+#: pybliographer.py:38
+#, c-format
+msgid "This is %s, version %s"
+msgstr "Це %s, верс╕я %s"
+
+# .././pybliographer.py:42 :49
+#: pybliographer.py:42 pybliographer.py:49
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr "Це в╕льне програмне забезпечення БЕЗ БУДЬ-ЯКИХ ╫АРАНТ╤Й."
+
+#: pybliographer.py:43
+msgid "For details, type `warranty'."
+msgstr "Для подробиц╕, набер╕ть \"warranty\"."
+
+# .././pybliographer.py:110 :158
+#: pybliographer.py:110 pybliographer.py:158
+#, c-format
+msgid "%s: error: can't open file `%s'"
+msgstr "%s: помилка: неможливо в╕дкрити файл \"%s\""
+
+#: pybliographer.py:123
+#, c-format
+msgid "For help, run %s and type `help' at the prompt"
+msgstr "Для дов╕дки, запуст╕ть %s ╕ набер╕ть \"help\" в рядку вводу"
+
+#: pybliographer.py:132
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+"Корисн╕ команди:\n"
+"\thelp     для отримання дов╕дки\n"
+"\tquit     для виходу\n"
+
+#: scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr "використання: pybcompact <файл latex> <файли bibtex...>"
+
+#: scripts/pybcompact.py:34
+#, c-format
+msgid "pybcompact: error: %s\n"
+msgstr "pybcompact: помилка: %s\n"
+
+#: scripts/pybcompact.py:97
+msgid "no entry"
+msgstr "нема╓ запис╕в"
+
+#: scripts/pybcompact.py:142
+#, c-format
+msgid "can't find the following entries: %s"
+msgstr "неможливо знайти так╕ записи: %s"
+
+#: scripts/pybconvert.py:29
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr "використання: pybconvert <джерело>..<призначення> <вв╕д> [вив╕д]"
+
+#: scripts/pybconvert.py:38
+msgid "pybconvert: bad conversion format"
+msgstr "pybconvert: поганий формат перетворення"
+
+#: scripts/pybformat.py:34
+msgid "usage: pybformat [bibtexfiles...]\n"
+msgstr "використання: pybformat [файли bibtex...]\n"
+
+#: scripts/pybformat.py:38
+#, c-format
+msgid "pybformat: error: %s\n"
+msgstr "pybformat: помилка: %s\n"
+
+#: scripts/pybformat.py:44
+#, c-format
+msgid "pybformat: warning: %s\n"
+msgstr "pybformat: увага: %s\n"
+
+#: scripts/pybformat.py:141 scripts/pybtex.py:84
+#, c-format
+msgid "can't find style `%s'"
+msgstr "не вдалось знайти стиль \"%s\""
+
+#: scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr "використання: pybtex <файл latex> [файли bibtex...]"
+
+#: scripts/pybtex.py:38
+#, c-format
+msgid "pybtex: error: %s\n"
+msgstr "pybtex: помилка: %s\n"
+
+#: scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr "pybtex: увага: так╕ ключ╕ було розп╕знано"
+
+#: scripts/pybtex.py:64
+msgid "no style defined"
+msgstr "стиль не визначено"
