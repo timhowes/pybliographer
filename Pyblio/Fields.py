@@ -382,6 +382,7 @@ class URL:
     def __init__ (self, url):
 
         if type (url) is types.StringType:
+            url = string.strip (url)
             url = list (urlparse.urlparse (url))
 
         if url [0] == '':
