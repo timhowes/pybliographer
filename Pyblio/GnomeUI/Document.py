@@ -36,7 +36,7 @@ from Pyblio import version, Fields, Types, Query
 
 import Pyblio.Style.Utils
 
-import gettext, os, string, copy, types, sys, traceback, stat, re
+import gettext, os, string, copy, types, sys, traceback, stat, tempfile, re
 
 _ = gettext.gettext
 
@@ -320,16 +320,12 @@ class Document (Connector.Publisher):
 
 
     def query_database (self, * arg):
-        ''' callback corresponding to the "Query..." button '''
+        ''' callback corresponding to the "Medline Query..." button '''
 
         if not self.confirm (): return
 
         def dlg_cb_2 (dummy): return
 
-        #################################################
-        # Changes to Document.py by John Vu starts here #
-        #################################################
-        
         # Load up the past search queries by reading the file .pybsearchhis in the user's home directory; otherwise, the list will be empty via the searchhistory = [''] command
         try:
             pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches', 'r')
@@ -481,17 +477,19 @@ class Document (Connector.Publisher):
         todate = to_date_entry.get_text ()
 
         # Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
-        for x in range(0,len(searchhistory)):
-            searchhistory[x] = searchhistory[x] + '\n'
-
+        while searchhistory.count(keyword) > 0: searchhistory.remove(keyword)
+        for x in range(len(searchhistory)): searchhistory[x] = searchhistory[x] + '\n'
+        
         if keyword == "": return
         else: # save keyword to medline search history if it's a valid keyword
             if len(searchhistory) < 10: # I only want a maximum of the 10 most recent keywords
                 searchhistory.insert(0,keyword+'\n') # I don't want to append to the list, I want to add the most recent search term at the top of the list
             else:
-                searchhistory[9] = '' # essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
+                del searchhistory[9] # essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
                 searchhistory.insert(0,keyword+'\n')
             try:
+                if not os.path.exists(os.path.expanduser('~')+'/.pybliographer'):
+                    os.mkdir(os.path.expanduser('~')+'/.pybliographer')
                 pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches','w') # save the search history
                 pybsearchhis.writelines(searchhistory)
                 pybsearchhis.close()
@@ -505,20 +503,29 @@ class Document (Connector.Publisher):
         return
 
     def query_z3950server (self, * arg):
-        ''' Query a Z39.50 Server and convert the returned MARC formatted result to something pyblio can read '''
+        ''' callback corresponding to the "Query a Z39.50 Server..." button '''
 
         if not self.confirm (): return
 
         def dlg_cb_2 (dummy): return
 
         try:
-            fd = open(os.path.expanduser('~')+'/.pybliographer/zservers', 'r') #this is the file that lists all the available servers; the file is edited and placed there by the user
+            if not os.path.exists(os.path.expanduser('~')+'/.pybliographer'):
+                os.mkdir(os.path.expanduser('~')+'/.pybliographer')
+                fd = open(os.path.expanduser('~')+'/.pybliographer/zservers','w')
+                fd.writelines(['Library of Congress|z3950.loc.gov|7090|Voyager\n', 'Aberdeen University|library.abdn.ac.uk|210|dynix\n', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS\n'])
+                fd.close()
+            if not os.path.exists(os.path.expanduser('~')+'/.pybliographer/zservers'): # this isn't really the correct use of os.path.exists, since I'm actually seeing if the file zserver exists 
+                fd = open(os.path.expanduser('~')+'/.pybliographer/zservers','w')
+                fd.writelines(['Library of Congress|z3950.loc.gov|7090|Voyager\n', 'Aberdeen University|library.abdn.ac.uk|210|dynix\n', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS\n'])
+                fd.close()
+            fd = open(os.path.expanduser('~')+'/.pybliographer/zservers', 'r') #this is the file that lists all the available servers; the file can be edited and placed there by the user
             serverlist = fd.readlines()
             fd.close()
         except IOError:
             serverlist = ['Library of Congress|z3950.loc.gov|7090|Voyager', 'Aberdeen University|library.abdn.ac.uk|210|dynix', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS'] #default server list of working servers that I know
 
-        if serverlist[len(serverlist)-1] == '' or serverlist[len(serverlist)-1] == ' ' or serverlist[len(serverlist)-1] == ' ': del serverlist[len(serverlist)-1]  # this is an error handling function; sometimes the user may add a whitespace or extra lines at the end of the file
+        while string.strip (serverlist[len(serverlist)-1]) == '': del serverlist[len(serverlist)-1]  # this is an error handling function; sometimes the user may add a whitespace or extra lines at the end of the file
         server = {}
         servernames = [] #list of just the names of the servers, to be used in the pulldown menu
         serverdictionary = {}
@@ -621,25 +628,36 @@ class Document (Connector.Publisher):
         elif radiobutton2.get_active (): operator = 'or'
         elif radiobutton3.get_active (): operator = 'and-not'
 
-        connectcount = 1
-        accesscomplete = FALSE
-        while connectcount < 5 and not accesscomplete:
-            try:
-                query_result = Query.z3950_query (serveraddress,port,database,displaystart,maxresults,term1,term1attribute,term2,term2attribute,operator)
-                if query_result <> '':
-                    pybzsearch = open(os.path.expanduser('/tmp')+'/pybzsearch_'+serveraddress,'w')
-                    pybzsearch.writelines(query_result)
-                    pybzsearch.close()
-                else:
-                    pybzsearch = open(os.path.expanduser('/tmp')+'/pybzsearch_'+serveraddress,'w')
-                    pybzsearch.writelines('No results\n') #eventually this should optimally be replaced with a popup window informing the user that there were no results
-                    pybzsearch.close()
-                self.open_document ('/tmp/pybzsearch_'+serveraddress,'bibtex',no_name = TRUE)
-                accesscomplete = TRUE
-            except (EOFError, NameError):
-                print "Can't connect to server " +serveraddress +". Attempt " + `connectcount+1` + "."  #debugging
-                connectcount = connectcount + 1
-        return
+        if term1 == "": return
+        else:
+            connectcount = 1
+            accesscomplete = FALSE
+            while connectcount < 5 and not accesscomplete:
+                try:
+                    query_result = Query.z3950_query (serveraddress,port,database,displaystart,maxresults,term1,term1attribute,term2,term2attribute,operator)
+                    if query_result <> '':
+                        pybzsearchfile = tempfile.mktemp('.bib')
+                        pybzsearch = open(pybzsearchfile,'w')
+                        pybzsearch.writelines(query_result)
+                        pybzsearch.close()
+                        self.open_document (pybzsearchfile,'bibtex',no_name = TRUE)
+                        accesscomplete = TRUE
+                    else:
+                        ####################################################################################################
+                        #eventually this will be replaced with a popup window informing the user that there were no results#
+                        ####################################################################################################
+                        #pybzsearchfile = tempfile.mktemp('.bib')
+                        #pybzsearch = open(pybzsearchfile,'w')
+                        #pybzsearch.writelines('No results\n') 
+                        #pybzsearch.close()
+                        accesscomplete = TRUE
+                except (EOFError, NameError):
+                    print "Can't connect to server " +serveraddress +". Attempt " + `connectcount+1` + "."  #debugging
+                    connectcount = connectcount + 1
+                except AssertionError, errmessage:
+                    print errmessage
+                    accesscomplete = TRUE
+            return
 
     def merge_database (self, * arg):
         ''' add all the entries of another database to the current one '''
