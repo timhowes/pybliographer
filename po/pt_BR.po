@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2000-08-12 20:10+0000\n"
+"POT-Creation-Date: 2000-10-26 18:47-0200\n"
 "PO-Revision-Date: 2000-08-19 16:45+00:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
