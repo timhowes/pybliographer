@@ -33,7 +33,7 @@ width="88" heigth="36" border="0"></A>
 <p align="center">Thanks to the GNOME Project for hosting these pages</p>
 m4_dnl<p align="center">Thanks to <a href="http://sourceforge.net">SourceForge</a> for hosting these pages</p>
 <p align="right">Send your comments to 
-<a href="mailto:frederic.gobry@epfl.ch">Frédéric Gobry</a>
+<a href="mailto:gobry@puck.ch">Frédéric Gobry</a>
 <br><small>Last update: html_date</small>
 </body></html>]]) m4_dnl
 m4_dnl
