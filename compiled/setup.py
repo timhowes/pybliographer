@@ -95,13 +95,23 @@ if rebuild ('biblex.l', ['biblex.c']):
 
 # Actual compilation
 
-setup (name = "bibtex",
+setup (name = "python-bibtex",
        version = "1.1.90",
 
        description = "A Python extension to parse BibTeX files",
        author = "Frederic Gobry",
        author_email = 'gobry@pybliographer.org',
        url = 'http://pybliographer.org/',
+
+       license = 'GPL',
+
+       long_description = \
+'''
+This module contains two extensions needed for pybliographer:
+
+   - a bibtex parser
+   - a simple binding to GNU Recode
+''',
 
        ext_modules = [
 
