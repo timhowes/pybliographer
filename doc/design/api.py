@@ -16,20 +16,12 @@ class Database (object):
         pass
 
     def query (self, query = None, order = None):
-        ''' Perform a query on the database and return a ResultSet '''
+        ''' Perform a query on the database and returns an iterator on
+        the results '''
         pass
     
     def roles (self):
         pass
-
-
-class ResultSet (object):
-
-    def __iter__ (self):
-        return self
-
-    def next (self):
-        raise StopIteration ()
 
 
 class Searchable (object):
@@ -91,6 +83,8 @@ class Record (object):
 
     
 class Work (Record):
+
+    tag = 'w'
     
     def __init__ (self):
         Record.__init__ (self)
@@ -102,6 +96,8 @@ class Work (Record):
 
 class Expression (Record):
     
+    tag = 'e'
+
     def __init__ (self):
         Record.__init__ (self)
         return
@@ -111,6 +107,8 @@ class Expression (Record):
 
 class Manifestation (Record):
     
+    tag = 'm'
+
     def __init__ (self):
         Record.__init__ (self)
         return
@@ -119,6 +117,8 @@ class Manifestation (Record):
         return 'Manifestation (id = %d)' % self.id
 
 class Item (Record):
+
+    tag = 'i'
 
     def __init__ (self):
         Record.__init__ (self)
@@ -180,13 +180,10 @@ class Type (object):
     search = staticmethod (search)
 
 
-class Actor (Type):
-    ''' A Person or Corporate Entity '''
-    pass
+class Person (Type):
 
-
-class Person (Actor):
-
+    tag = 'p'
+    
     __slots__ = ('first', 'middle', 'last')
     
     def __init__ (self, first = None, middle = None, last = None):
@@ -204,16 +201,10 @@ class Person (Actor):
 
 
 
-class Corporate (Actor):
-    def __init__ (self):
-        Actor.__init__ (self)
-
-        self.name = None
-        return
-
-
 class Text (Type):
 
+    tag = 't'
+    
     ''' A non-constrained text attribute, with formatting and language
     properties. '''
 
@@ -233,6 +224,8 @@ class Text (Type):
 
 class Date (Type):
 
+    tag = 'd'
+
     YEAR  = 0
     MONTH = 1
     DAY   = 2
@@ -246,6 +239,8 @@ class Date (Type):
 
 class Concept (Type):
 
+    tag = 'c'
+
     def __init__ (self):
         Type.__init__ (self)
 
@@ -258,6 +253,8 @@ class Concept (Type):
 
 
 class URI (Type):
+
+    tag = 'u'
 
     def __init__ (self):
         Type.__init__ (self)

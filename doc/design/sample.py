@@ -2,12 +2,12 @@ from db import *
 
 db = Database ('test', 1)
 
-c_r = Role ('base:cites', 'Cites', None).register (db)
+c_r = Role ('base:cites', 'Cites', 'wt').register (db)
 
-a_r = Role ('base:author', 'Author', None).register (db)
-t_r = Role ('base:title',  'Title',  None).register (db)
+a_r = Role ('base:author', 'Author', 'wt').register (db)
+t_r = Role ('base:title',  'Title',  'wt').register (db)
 
-l_r = Role ('base:literal-author', 'Author', None).register (db)
+l_r = Role ('base:literal-author', 'Author', 'mt').register (db)
 l_r.parent = a_r
 
 db.commit ()

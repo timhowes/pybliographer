@@ -10,7 +10,9 @@ def utf (txt):
 def uni (txt):
     if txt is None: return None
     return txt.decode ('utf-8')
-    
+
+
+
 class Database (api.Database):
 
     tables = (
@@ -29,7 +31,8 @@ class Database (api.Database):
         '''CREATE TABLE role (
              id     TEXT PRIMARY KEY,
              parent TEXT REFERENCES role (id),
-             info   TEXT
+             type   TEXT NOT NULL,
+             info   TEXT NOT NULL
            )''',
 
         # This table holds links between Records.
@@ -64,6 +67,7 @@ class Database (api.Database):
                DELETE FROM info WHERE id = OLD.id;
                RETURN OLD;
           ELSIF TG_OP = ''INSERT'' THEN
+               -- check that the role can bind the two sides
                INSERT INTO info (id) VALUES (NEW.id);
                RETURN NEW;
           END IF;
@@ -137,6 +141,9 @@ class Database (api.Database):
             for t in self.tables:
                 self._op.execute (t)
             self._db.commit ()
+
+            Role ('record:above', 'Above', 'ew|me|im').register (self)
+            Role ('record:below', 'Below', 'we|em|mi').register (self)
         return
 
     def save (self):
@@ -148,14 +155,14 @@ class Database (api.Database):
 
     def roles (self):
         # get all the roles in a single pass
-        self._op.execute ("SELECT id, parent, info FROM role")
+        self._op.execute ("SELECT id, parent, info, type FROM role")
 
         assoc = {}
 
         result = self._op.fetchall ()
         
         for role in result:
-            r = Role (role [0], role [2], None)
+            r = Role (role [0], role [2], role [3])
             r.db = self
 
             assoc [role [0]] = r
@@ -210,9 +217,9 @@ class Role (api.Role):
 
         self._parent = None
         
-        db._op.execute ("INSERT INTO role (id, info) "
-                        "VALUES (%s, %s)",
-                        self.id, self.desc)
+        db._op.execute ("INSERT INTO role (id, info, type) "
+                        "VALUES (%s, %s, %s)",
+                        self.id, self.desc, self.type)
         return self
     
     def _set_parent (self, super):
@@ -238,7 +245,7 @@ class Record (object):
         self.id = db._op.fetchone () [0]
         self.db = db
         db._op.execute ("INSERT INTO record (id, type) VALUES (%s, %s)",
-                        self.id, self._type)
+                        self.id, self.tag)
         return self
 
     def attr_ins (self, attr, role, index):
@@ -323,30 +330,30 @@ class Record (object):
 
 
 class Work (Record, api.Work):
-    _type = 'w'
+    pass
 
 
 class Expression (Record, api.Expression):
-    _type = 'e'
+    pass
 
 
 class Manifestation (Record, api.Manifestation):
-    _type = 'm'
+    pass
 
     
 class Item (Record, api.Item):
-    _type = 'i'
+    pass
 
 
-class ResultSet (api.ResultSet):
+class ResultSet (object):
 
     ''' This result set can handle queries that return records '''
     
     _assoc = {
-        'w': Work,
-        'e': Expression,
-        'm': Manifestation,
-        'i': Item,
+        Work.tag:          Work,
+        Expression.tag:    Expression,
+        Manifestation.tag: Manifestation,
+        Item.tag:          Item,
         }
     
     def __init__ (self, db, q, args):
@@ -355,6 +362,9 @@ class ResultSet (api.ResultSet):
 
         self._op.execute (q, args)
         return
+
+    def __iter__ (self):
+        return self
 
     def next (self):
         row = self._op.fetchone ()
@@ -366,15 +376,15 @@ class ResultSet (api.ResultSet):
         return r
     
         
-class RelatedResultSet (api.ResultSet):
+class RelatedResultSet (object):
 
     ''' This result set can handle queries that return records '''
     
     _assoc = {
-        'w': Work,
-        'e': Expression,
-        'm': Manifestation,
-        'i': Item,
+        Work.tag:          Work,
+        Expression.tag:    Expression,
+        Manifestation.tag: Manifestation,
+        Item.tag:          Item,
         }
     
     def __init__ (self, db, q, args):
@@ -383,6 +393,9 @@ class RelatedResultSet (api.ResultSet):
 
         self._op.execute (q, args)
         return
+
+    def __iter__ (self):
+        return self
 
     def next (self):
         row = self._op.fetchone ()
