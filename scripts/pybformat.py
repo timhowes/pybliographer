@@ -128,6 +128,7 @@ if output is None:
     error ("unknown output format `%s'" % format)
 
 url = None
+style = os.path.splitext (style) [0]
 if os.path.exists (style + '.xml'):
     url = Fields.URL (style + '.xml')
 else:
