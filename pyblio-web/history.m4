@@ -1,4 +1,4 @@
-dnl -*- html -*-
+m4_dnl -*- html -*-
 html_header(Pybliographer - History)
 
 html_summary(history, summary.m4, [[
@@ -7,9 +7,7 @@ html_summary(history, summary.m4, [[
 
 <p>Here is the full list of old announcements made for pybliographer.
 
-<ul>
 all_the_news(pyblio_news)
-</ul>
 
 ]])
 

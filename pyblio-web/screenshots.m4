@@ -1,4 +1,4 @@
-dnl -*- html -*-
+m4_dnl -*- html -*-
 
 html_header(Pybliographer - Screenshots)
 
@@ -19,6 +19,8 @@ Here are some screenshots of the main window and some common dialogs.
 
 This is what you can get with the Alpha style for an HTML output.
 
-include(sample.html)
+m4_include(sample.html)
 
 ]])
+
+html_footer

@@ -1,4 +1,4 @@
-dnl -*- html -*-
+m4_dnl -*- html -*-
 html_header(Pybliographer - Documentation)
 
 html_summary(documentation, summary.m4, [[

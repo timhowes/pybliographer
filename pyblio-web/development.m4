@@ -1,4 +1,4 @@
-dnl -*- html -*-
+m4_dnl -*- html -*-
 
 html_header(Pybliographer - Development)
 
@@ -11,7 +11,7 @@ ideas will probably find a place in it (depending if enough people are
 interested to contribute):
 
 <ul>
-<li> <b>XSL</b> support.  This should enable the creation of real
+<li> <b>XSL support</b>.  This should enable the creation of real
 bibliographic styles, comparable to the bibtex bst mechanism. It will
 also ease the conversion to some other formats, like <a
 href="http://www.docbook.org">DocBook</a>.
@@ -31,6 +31,15 @@ store large bibliographies on a SQL server would improve
 pybliographer's performances a lot.  The use of <a
 href="http://www.gnome.org/gnome-db">gnome-db</a> as an intermediate
 software layer could provide database-vendor independancy.
+
+<li> Use of the <b>GtkHTML</b> widget, so that entries can be
+displayed in a more elegant fashion, and can provide clickable fields
+for referenced documents for example (nice idea from Sarah Mount)
+
+<li> Difference between fields to be formatted in a document (title,
+authors,...) and fields of interest for the users (comments,...) : the
+latter ones should be formatted more freely in pybliographer.
+
 </ul>
 
 <p>Of course, people interested in  any of these topics are invited to
@@ -38,3 +47,5 @@ join the <a href="mailing.html">mailing-list</a>  and see how they can
 contribute&nbsp;!  
 
 ]])
+
+html_footer
