@@ -63,24 +63,25 @@ class Connection:
 
         try:
             dom  = minidom.parse (open (description, 'r'))
-        except xml.sax.SAXParseException:
-            raise Exceptions.SyntaxError ('Cannot parse the XML file')
+        except xml.sax.SAXParseException, msg:
+            raise Exceptions.SyntaxError ('Cannot parse the XML file\n%s' %
+                                          msg)
         
         root = dom.documentElement
         
-        if string.lower (root.nodeName) != 'pyblioquery':
-            raise Exceptions.SyntaxError ('invalid XML file')
+        if string.lower (root.nodeName) != 'connection':
+            raise Exceptions.SyntaxError ('Not a Connection XML file')
 
-        cnx = root.getElementsByTagName ('Connection') [0]
+        self.name = getString (root.getElementsByTagName ('Name') [0])
+        
+        cnx = root.getElementsByTagName ('Server') [0]
         
         try:
             self.type = cnx.attributes ['type'].value
         except KeyError:
-            raise Exceptions.SyntaxError ('missing type in connection')
+            raise Exceptions.SyntaxError ('Unspecified Connection type')
 
-        self.name = getString (cnx.getElementsByTagName ('Name') [0])
         self.host = getString (cnx.getElementsByTagName ('Host') [0])
-
         self.args = {}
 
         for param in cnx.getElementsByTagName ('Parameter'):

@@ -209,7 +209,8 @@ class QueryUI:
             GnomeErrorDialog ("In the XML Connection '%s':\n%s" %
                               (os.path.basename (file), msg),
                               parent = self.w_cnx).show ()
-
+            return
+        
         self.cnx.insert (0, cnx)
         self.cnx_update ()
         return
