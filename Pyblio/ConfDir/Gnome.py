@@ -27,7 +27,7 @@ Config.set ('gnome/tooltips', 1)
 
 Config.set ('gnome/native-as-default', 0)
 
-Config.set ('gnome/columns', ('Author', 'Date', 'Title'))
+Config.set ('gnome/columns', ('-mark-', '-combined-', 'Date'))
 
 Config.set ('gnome/history', 10)
 
