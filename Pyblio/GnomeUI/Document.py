@@ -281,7 +281,7 @@ class Document (Connector.Publisher):
                                                     url = True, has_auto = True).run ()
 
         if url is None: return
-        
+
         try:
             iterator = Open.bibiter (url, how = how)
             
@@ -324,16 +324,10 @@ class Document (Connector.Publisher):
         if not self.confirm (): return
 
         # get a new file name
-        (url, how) = FileSelector.URLFileSelection (_("Open file"),
-                                                    directory = self.directory).run ()
+        (url, how) = FileSelector.URLFileSelection (_("Open file")).run ()
 
         if url is None: return
         self.open_document (url, how)
-
-        # memorize the current path in the case of a file
-        url = Fields.URL (url)
-        if url.url [0] == 'file':
-            self.directory = os.path.split (url.url [2]) [0] + '/'
         return
 
     
@@ -410,9 +404,9 @@ class Document (Connector.Publisher):
         # get a new file name
         (url, how) = FileSelector.URLFileSelection (_("Save As..."),
                                                     url = False, has_auto = False).run ()
-
+        
         if url is None: return
-            
+
         if os.path.exists (url):
             if not Utils.Callback (_("The file `%s' already exists.\nOverwrite it ?")
                                    % url, parent = self.w).answer ():

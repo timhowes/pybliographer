@@ -21,36 +21,38 @@
 
 import string, os, urlparse, gettext
 
-_ = gettext.gettext
+from gnome import ui
 
-from gnome.ui import *
-
-from gtk import *
+import gtk
 
 from Pyblio import Open, Types, Base, Fields, Config, Autoload
 
 from Pyblio.GnomeUI import Utils
 
 
-class URLFileSelection (FileSelection):
+
+class URLFileSelection (gtk.FileSelection):
     ''' Extended file selection dialog, with an URL field and a type
     selector. '''
+
+    defaultdir = None
     
     def __init__(self, title = _("File"),
-                 url=TRUE, modal=TRUE, has_auto=TRUE,
+                 url = True, modal = True, has_auto = True,
                  directory = None):
         
-        FileSelection.__init__(self)
+        gtk.FileSelection.__init__ (self)
+
         self.set_title (title)
         self.hide_fileop_buttons ()
         
-        self.connect('destroy', self.quit)
-        self.connect('delete_event', self.quit)
-        self.cancel_button.connect('clicked', self.quit)
-        self.ok_button.connect('clicked', self.ok_cb)
-
-        if directory: self.set_filename (directory)
-
+        if directory:
+            self.set_filename (directory)
+            
+        elif self.defaultdir:
+            self.set_filename (self.defaultdir)
+        
+            
         self.ret = None
         self.url = None
         
@@ -58,26 +60,27 @@ class URLFileSelection (FileSelection):
         
         # url handler
         if url:
-            hbox = HBox ()
+            hbox = gtk.HBox ()
             hbox.set_spacing (5)
             hbox.set_border_width (5)
-            hbox.pack_start (Label ('URL:'), expand = FALSE, fill = FALSE)
-            self.url = Entry ()
+            hbox.pack_start (gtk.Label ('URL:'), expand = False, fill = False)
+            self.url = gtk.Entry ()
             hbox.pack_start (self.url)
-            vbox.pack_start (hbox, expand = FALSE, fill = FALSE)
+            vbox.pack_start (hbox, expand = False, fill = False)
 
         # type selector
-        hbox = HBox ()
+        hbox = gtk.HBox ()
         hbox.set_spacing (5)
         hbox.set_border_width (5)
-        hbox.pack_start (Label (_("Bibliography type:")),
-                         expand = FALSE, fill = FALSE)
-        self.menu = OptionMenu ()
+        hbox.pack_start (gtk.Label (_("Bibliography type:")),
+                         expand = False, fill = False)
+
+        self.menu = gtk.OptionMenu ()
         hbox.pack_start (self.menu)
-        vbox.pack_start (hbox, expand = FALSE, fill = FALSE)
+        vbox.pack_start (hbox, expand = False, fill = False)
 
         # menu content
-        menu = Menu ()
+        menu = gtk.Menu ()
         self.menu.set_menu (menu)
         
         liste = Autoload.available ('format')
@@ -93,48 +96,55 @@ class URLFileSelection (FileSelection):
             Utils.popup_add (menu, avail, self.menu_select, avail)
 
         self.menu.set_history (0)
+
+        vbox.show_all ()
         return
+
 
     def menu_select (self, widget, selection):
         self.ftype = selection
         return
         
-    def quit (self, *args):
-        self.hide()
-        self.destroy()
-        mainquit()
-        return
-    
-    def ok_cb (self, b):
-        self.ret = self.get_filename()
-        
-        if self.ret [-1] == '/':
-            if self.url:
-                ret = self.url.get_text ()
-                
-                if ret == '':
-                    self.ret = None
-                    return
-                
-                # construct a nice URL
-                if string.lower (ret [0:5]) != 'http:' and \
-                   string.lower (ret [0:4]) != 'ftp:':
-                    
-                    if ret [0:2] != '//':
-                        ret = '//' + ret
-                        
-                    ret = 'http:' + ret
 
-                self.ret = ret
-            else:
-                self.ret = None
-        
-        self.quit()
-        return
-    
     def run (self):
-        self.show_all ()
-        mainloop ()
+        ret = gtk.FileSelection.run (self)
 
-        return (self.ret, self.ftype)
+        file = self.get_filename ()
+        self.destroy ()
+
+        if ret != gtk.RESPONSE_OK: return (None, None)
+        
+
+        # If we select a directory, this means the user did not select
+        # a file, so we consider the URL. Otherwise, consider the user
+        # input as a plain file.
+        
+        if not os.path.isdir (file):
+            URLFileSelection.defaultdir = os.path.dirname (file) + '/'
+
+            return (file, self.ftype)
+
+        # If it is an URL, we still need to track the last directory selected.
+        URLFileSelection.defaultdir = file + '/'
+        
+        if not self.url: return (None, None)
+        
+        ret = self.url.get_text ()
+        if ret == '': return (None, None)
+        
+        # construct a nice URL
+        if string.lower (ret [0:5]) != 'http:' and \
+               string.lower (ret [0:4]) != 'ftp:':
+            
+            if ret [0:2] != '//':
+                ret = '//' + ret
+                
+            file = 'http:' + ret
+
+        else:
+            file = ret
+                
+        return (file, self.ftype)
+
+            
 
