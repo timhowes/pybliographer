@@ -8,6 +8,10 @@ m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
 
+news_item([[12/07/2002]], [[Despite the lack of news, things continue
+to evolve slowly in the backstage. Fresh developments have finally
+started, stay tuned for more information!]]),
+
 news_item([[23/01/2002]], [[Starting from this release, the happy
 pybliographer rpm-izers will provide specific releases for RedHat-6.x
 and RedHat-7.x. Let's hope this will limit installation problems. For

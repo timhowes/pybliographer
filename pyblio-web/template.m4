@@ -24,12 +24,23 @@ m4_dnl --------------------------------------------------
 m4_dnl
 m4_define(html_footer,m4_dnl
 [[<hr><p align="center">
-<a href="http://www.anybrowser.org/campaign/"> 
+
+<table align=center><tbody valign="center">
+<tr>
+<td><a href="http://www.opensource.org/docs/definition.php"> <img
+src="http://www.opensource.org/trademarks/opensource/web/opensource-75x65.png"
+border="0" width="75" height="65" alt="[Open Source]"></a></td>
+
+<td><a href="http://www.anybrowser.org/campaign/"> 
 <img src="anybrowser.png" width="88"
- height="31" alt="[Best Seen with ANY Browser]" border="0"></a>
-<A HREF="http://petition.eurolinux.org">   
+ height="31" alt="[Best Seen with ANY Browser]" border="0"></a></td>
+
+<td><A HREF="http://petition.eurolinux.org">   
 <img src="http://www.aful.org/images/patent_button.png" alt="[No Patents]" 
-width="88" heigth="36" border="0"></A>
+width="88" heigth="36" border="0"></A></td>
+
+</tr></tbody></table>
+
 <p align="center">Thanks to the GNOME Project for hosting these pages</p>
 m4_dnl<p align="center">Thanks to <a href="http://sourceforge.net">SourceForge</a> for hosting these pages</p>
 <p align="right">Send your comments to 

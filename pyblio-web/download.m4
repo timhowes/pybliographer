@@ -18,7 +18,9 @@ Please, check that your system meets the following requirements.
 <li><b><a href="http://www.gtk.org">Glib</a></b> version <b>1.2.x</b>
 <li><b><a href="http://www.iro.umontreal.ca/contrib/recode">GNU
 Recode</a></b> version <b>3.5 exactly</b> (not 3.6, not any of the
-development versions called 3.5d,...)
+development versions called 3.5d,...) For your convenience, an
+untested RPM version is available <a href="recode-3.5-1.i386.rpm">here</a>, thanks to The
+Matt.
 
 </ul>
 
