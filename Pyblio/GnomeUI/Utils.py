@@ -138,7 +138,7 @@ class TmpGnomeDialog (GtkDialog):
 
 
 def error_dialog (title, err, parent = None):
-    dialog = TmpGnomeDialog (title, STOCK_BUTTON_CLOSE)
+    dialog = GnomeDialog (title, STOCK_BUTTON_CLOSE)
     dialog.set_close (TRUE)
     dialog.set_usize (500, 300)
     

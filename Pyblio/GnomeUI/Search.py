@@ -28,7 +28,6 @@ import string, re, sys, traceback, copy
 from Pyblio import Types, Search, Config, Connector, TextUI
 
 from Pyblio.GnomeUI import Utils
-from Pyblio.GnomeUI.Utils import TmpGnomeDialog
 
 import gettext
 _ = gettext.gettext
@@ -102,12 +101,12 @@ class ItemStorage (GtkTreeItem):
         return None
 
     
-class SearchDialog (TmpGnomeDialog, Connector.Publisher):
+class SearchDialog (GnomeDialog, Connector.Publisher):
     ''' Search Dialog '''
     
     def __init__ (self, parent = None):
 
-        TmpGnomeDialog.__init__ (self, _("Search"),
+        GnomeDialog.__init__ (self, _("Search"),
                               STOCK_PIXMAP_SEARCH,
                               STOCK_BUTTON_CLOSE)
         self.set_policy (TRUE, TRUE, FALSE)

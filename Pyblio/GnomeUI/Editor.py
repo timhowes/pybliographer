@@ -652,13 +652,6 @@ class Editor (Connector.Publisher):
         self.w.set_title (_("Edit entry"))
         self.w.connect ('delete_event', self.close_dialog)
 
-        # set window size
-        ui_width  = config.get_int ('Pybliographic/Editor/Width=-1')
-        ui_height = config.get_int ('Pybliographic/Editor/Height=-1')
-
-        if ui_width != -1 and ui_height != -1:
-            self.w.set_default_size (ui_width, ui_height)
-
         if parent: self.w.set_transient_for (parent)
 
         self.apply_b = GnomeStockButton (STOCK_BUTTON_APPLY)
@@ -704,6 +697,8 @@ class Editor (Connector.Publisher):
 
 
     def toggle_native (self, * arg):
+        self.save_size ()
+        
         if self.native_mode:
             # real edition
             self.native_mode = FALSE
@@ -713,11 +708,9 @@ class Editor (Connector.Publisher):
             if self.editor: self.editor.w.destroy ()
             self.editor = RealEditor (self.database,
                                       copy.deepcopy (self.entry))
-            self.editor.Subscribe ('apply', self.apply_changes)
-            self.editor.Subscribe ('next',  self.next_item)
-        
-            self.w.vbox.pack_start (self.editor.w)
-            self.editor.w.show ()
+            
+            ui_width  = config.get_int ('Pybliographic/Editor/Width=-1')
+            ui_height = config.get_int ('Pybliographic/Editor/Height=-1')
         else:
             # native edition
             self.native_mode = TRUE
@@ -727,12 +720,21 @@ class Editor (Connector.Publisher):
             if self.editor: self.editor.w.destroy ()
             self.editor = NativeEditor (self.database,
                                         copy.deepcopy (self.entry))
-            self.editor.Subscribe ('apply', self.apply_changes)
-            self.editor.Subscribe ('next',  self.next_item)
-        
-            self.w.vbox.pack_start (self.editor.w)
-            self.editor.w.show ()
 
+            ui_width  = config.get_int ('Pybliographic/Native/Width=-1')
+            ui_height = config.get_int ('Pybliographic/Native/Height=-1')
+
+
+        self.editor.Subscribe ('apply', self.apply_changes)
+        self.editor.Subscribe ('next',  self.next_item)
+        
+        self.w.vbox.pack_start (self.editor.w)
+
+        # set window size
+        if ui_width != -1 and ui_height != -1:
+            self.editor.w.set_usize(ui_width, ui_height)
+            
+        self.editor.w.show ()
         return
 
     
@@ -746,12 +748,21 @@ class Editor (Connector.Publisher):
         pass
 
 
-    def close_dialog (self, *arg):
-        alloc = self.w.get_allocation ()
-        config.set_int ('Pybliographic/Editor/Width',  alloc [2])
-        config.set_int ('Pybliographic/Editor/Height', alloc [3])
-        config.sync ()
+    def save_size (self):
+        if not self.editor: return
         
+        alloc = self.editor.w.get_allocation ()
+        if self.native_mode: field = 'Native'
+        else:                field = 'Editor'
+        
+        config.set_int ('Pybliographic/%s/Width' % field,  alloc [2])
+        config.set_int ('Pybliographic/%s/Height' % field, alloc [3])
+        config.sync ()
+        return
+
+    
+    def close_dialog (self, *arg):
+        self.save_size ()
         self.w.destroy ()
         return
 

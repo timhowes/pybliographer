@@ -29,8 +29,6 @@ _ = gettext.gettext
 
 from Pyblio import Connector, Sort, Config
 
-from Pyblio.GnomeUI.Utils import TmpGnomeDialog
-
 class SortDialog (Connector.Publisher):
     
     def __init__ (self, current_sort, parent = None):
@@ -40,9 +38,9 @@ class SortDialog (Connector.Publisher):
         else:
             current_sort = []
         
-        self.window = TmpGnomeDialog (_("Select sort criterions"),
-                                      STOCK_BUTTON_OK,
-                                      STOCK_BUTTON_CANCEL)
+        self.window = GnomeDialog (_("Select sort criterions"),
+                                   STOCK_BUTTON_OK,
+                                   STOCK_BUTTON_CANCEL)
         
         if parent: self.window.set_parent (parent)
 

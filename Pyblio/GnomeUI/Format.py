@@ -29,15 +29,14 @@ _ = gettext.gettext
 
 from Pyblio import Connector, version, Autoload
 from Pyblio.GnomeUI import Utils
-from Pyblio.GnomeUI.Utils import TmpGnomeDialog
 
 class FormatDialog (Connector.Publisher):
 
     def __init__ (self, parent = None):
 
-        self.w = TmpGnomeDialog (_("Format entries"),
-                                 STOCK_BUTTON_OK,
-                                 STOCK_BUTTON_CANCEL)
+        self.w = GnomeDialog (_("Format entries"),
+                              STOCK_BUTTON_OK,
+                              STOCK_BUTTON_CANCEL)
         
         if parent: self.w.set_parent (parent)
         
