@@ -1,3 +1,9 @@
+2000-11-21  Gobry Frederic  <frederic.gobry@epfl.ch>
+
+	* Pyblio/Format/OvidLike.py: fixed keyword separators
+
+	* tests: fixed medline to bibtex conversion test
+
 2000-11-13  Gobry Frederic  <frederic.gobry@epfl.ch>
 
 	* Pyblio/GnomeUI/Document.py, Pyblio/GnomeUI/Pybliographer.py:

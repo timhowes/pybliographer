@@ -1,5 +1,13 @@
 -*- text -*-
 
+New in 1.0.7 -  2000-11-21
+
+        * pybliographer now checks that files aren't modified during edition
+        * some fixes for the bibtex parser
+	* improved source parsing and added keywords handling for Ovid
+          (thanks to Dominique <D.Burget@univ-mulhouse.fr>)
+
+
 New in 1.0.6  - 2000-10-17
 
         * Works with Python 2.0

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2000-10-17 14:30+ZONE\n"
+"POT-Creation-Date: 2000-11-20 18:19+ZONE\n"
 "PO-Revision-Date: 2000-08-19 16:45+00:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -199,7 +199,7 @@ msgid "Standard Editing"
 msgstr "Стандартная правка"
 
 # :207
-#: .././Pyblio/GnomeUI/Document.py:193 .././Pyblio/GnomeUI/FileSelector.py:41
+#: .././Pyblio/GnomeUI/Document.py:195 .././Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
 msgstr "Файл"
 
@@ -393,11 +393,11 @@ msgid "Close"
 msgstr "Закрыть"
 
 # .././Pyblio/GnomeUI/Document.py:193 :207
-#: .././Pyblio/GnomeUI/Document.py:193
+#: .././Pyblio/GnomeUI/Document.py:195
 msgid "Previous Documents"
 msgstr "Предыдущие документы"
 
-#: .././Pyblio/GnomeUI/Document.py:229
+#: .././Pyblio/GnomeUI/Document.py:231
 msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
@@ -405,7 +405,7 @@ msgstr ""
 "невозможно открыть файл \"%s\" для записи:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:250
+#: .././Pyblio/GnomeUI/Document.py:252
 msgid ""
 "Error while parsing `%s':\n"
 "%s"
@@ -413,36 +413,36 @@ msgstr ""
 "Ошибка при анализе \"%s\":\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:269
+#: .././Pyblio/GnomeUI/Document.py:271
 msgid "New database"
 msgstr "Новая база данных"
 
 # .././Pyblio/GnomeUI/Document.py:270 :274
-#: .././Pyblio/GnomeUI/Document.py:277
+#: .././Pyblio/GnomeUI/Document.py:279
 msgid "[no entry]"
 msgstr "[нет записей]"
 
-#: .././Pyblio/GnomeUI/Document.py:278
+#: .././Pyblio/GnomeUI/Document.py:280
 msgid "[1 entry]"
 msgstr "[1 запись]"
 
-#: .././Pyblio/GnomeUI/Document.py:279
+#: .././Pyblio/GnomeUI/Document.py:281
 msgid "[%d entries]"
 msgstr "[%d записей]"
 
-#: .././Pyblio/GnomeUI/Document.py:282
+#: .././Pyblio/GnomeUI/Document.py:284
 msgid "[%d/1 entry]"
 msgstr "[%d/1 записей]"
 
-#: .././Pyblio/GnomeUI/Document.py:283
+#: .././Pyblio/GnomeUI/Document.py:285
 msgid "[%d/%d entries]"
 msgstr "[%d/%d записей]"
 
-#: .././Pyblio/GnomeUI/Document.py:288
+#: .././Pyblio/GnomeUI/Document.py:290
 msgid "[modified]"
 msgstr "[изменено]"
 
-#: .././Pyblio/GnomeUI/Document.py:298
+#: .././Pyblio/GnomeUI/Document.py:300
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -450,24 +450,33 @@ msgstr ""
 "База данных была изменена.\n"
 "Отменить изменения?"
 
-#: .././Pyblio/GnomeUI/Document.py:314
+#: .././Pyblio/GnomeUI/Document.py:316
 msgid "Merge file"
 msgstr "Объединить файл"
 
 # .././Pyblio/GnomeUI/Document.py:319 :379
-#: .././Pyblio/GnomeUI/Document.py:326
+#: .././Pyblio/GnomeUI/Document.py:328
 msgid "Open error"
 msgstr "Ошибка открытия"
 
-#: .././Pyblio/GnomeUI/Document.py:350
+#: .././Pyblio/GnomeUI/Document.py:352
 msgid "Merge status"
 msgstr "Состояние объединения"
 
-#: .././Pyblio/GnomeUI/Document.py:361
+#: .././Pyblio/GnomeUI/Document.py:363
 msgid "Open file"
 msgstr "Открыть файл"
 
-#: .././Pyblio/GnomeUI/Document.py:410
+#: .././Pyblio/GnomeUI/Document.py:413
+#, fuzzy
+msgid ""
+"The database has been externally modified.\n"
+"Overwrite changes ?"
+msgstr ""
+"База данных была изменена.\n"
+"Отменить изменения?"
+
+#: .././Pyblio/GnomeUI/Document.py:423
 msgid ""
 "Unable to save `%s':\n"
 "%s"
@@ -475,7 +484,7 @@ msgstr ""
 "Невозможно сохранить \"%s\":\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:418
+#: .././Pyblio/GnomeUI/Document.py:431
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -483,11 +492,11 @@ msgstr ""
 "При сохранении возникла внутренняя ошибка\n"
 "Попробуйте \"Сохранить как...\""
 
-#: .././Pyblio/GnomeUI/Document.py:429
+#: .././Pyblio/GnomeUI/Document.py:445
 msgid "Save As..."
 msgstr "Сохранить как..."
 
-#: .././Pyblio/GnomeUI/Document.py:435
+#: .././Pyblio/GnomeUI/Document.py:451
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
@@ -495,7 +504,7 @@ msgstr ""
 "Файл \"%s\" уже существует.\n"
 "Переписать его?"
 
-#: .././Pyblio/GnomeUI/Document.py:442
+#: .././Pyblio/GnomeUI/Document.py:458
 msgid ""
 "During opening:\n"
 "%s"
@@ -503,11 +512,11 @@ msgstr ""
 "При открытии:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:462
+#: .././Pyblio/GnomeUI/Document.py:478
 msgid "Reopen error"
 msgstr "Ошибка повторного открытия"
 
-#: .././Pyblio/GnomeUI/Document.py:503
+#: .././Pyblio/GnomeUI/Document.py:519
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
@@ -515,28 +524,28 @@ msgstr ""
 "Запись с названием \"%s\" уже существует.\n"
 "Переименовать и добавить в любом случае?"
 
-#: .././Pyblio/GnomeUI/Document.py:540
+#: .././Pyblio/GnomeUI/Document.py:556
 msgid "Really remove all the entries ?"
 msgstr "Действительно удалить все записи?"
 
-#: .././Pyblio/GnomeUI/Document.py:560
+#: .././Pyblio/GnomeUI/Document.py:576
 msgid "Create new entry"
 msgstr "Создать новую запись"
 
-#: .././Pyblio/GnomeUI/Document.py:574
+#: .././Pyblio/GnomeUI/Document.py:590
 msgid "Really edit %d entries ?"
 msgstr "Действительно исправить %d записей?"
 
-#: .././Pyblio/GnomeUI/Document.py:612
+#: .././Pyblio/GnomeUI/Document.py:628
 msgid "Remove all the %d entries ?"
 msgstr "Удалить все %d записей?"
 
-#: .././Pyblio/GnomeUI/Document.py:614
+#: .././Pyblio/GnomeUI/Document.py:630
 msgid "Remove entry `%s' ?"
 msgstr "Удалить запись \"%s\"?"
 
 # .././Pyblio/GnomeUI/Document.py:661 :668
-#: .././Pyblio/GnomeUI/Document.py:680
+#: .././Pyblio/GnomeUI/Document.py:696
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
@@ -544,7 +553,7 @@ msgstr ""
 "Невозможно подключиться к LyX:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:734
+#: .././Pyblio/GnomeUI/Document.py:750
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -552,15 +561,15 @@ msgstr ""
 "Для того чтобы использовать эту\n"
 "возможность установите bug-buddy"
 
-#: .././Pyblio/GnomeUI/Document.py:745
+#: .././Pyblio/GnomeUI/Document.py:761
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Эта программа защищена лицензией GNU GPL"
 
-#: .././Pyblio/GnomeUI/Document.py:747
+#: .././Pyblio/GnomeUI/Document.py:763
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Интерфейс Gnome к системе Pybliographer."
 
-#: .././Pyblio/GnomeUI/Document.py:752
+#: .././Pyblio/GnomeUI/Document.py:768
 msgid "Pybliographer Home Page"
 msgstr "Домашняя страница Pybliographer"
 

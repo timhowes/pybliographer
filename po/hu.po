@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.3\n"
-"POT-Creation-Date: 2000-10-17 14:30+ZONE\n"
+"POT-Creation-Date: 2000-11-20 18:19+ZONE\n"
 "PO-Revision-Date: 2000-06-26 15:26+02:00\n"
 "Last-Translator: Zoltán Kóta <kota@szbk.u-szeged.hu>\n"
 "Language-Team: hu <hu@li.org>\n"
@@ -193,7 +193,7 @@ msgstr "Natív szerkesztés"
 msgid "Standard Editing"
 msgstr "Standard szerkesztés"
 
-#: .././Pyblio/GnomeUI/Document.py:193 .././Pyblio/GnomeUI/FileSelector.py:41
+#: .././Pyblio/GnomeUI/Document.py:195 .././Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
 msgstr "Fájl"
 
@@ -385,11 +385,11 @@ msgstr "Idéz"
 msgid "Close"
 msgstr "Bezár"
 
-#: .././Pyblio/GnomeUI/Document.py:193
+#: .././Pyblio/GnomeUI/Document.py:195
 msgid "Previous Documents"
 msgstr "Elõzõ dokumentumok"
 
-#: .././Pyblio/GnomeUI/Document.py:229
+#: .././Pyblio/GnomeUI/Document.py:231
 msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
@@ -397,7 +397,7 @@ msgstr ""
 "nem tudom írásra megnyitni a `%s' állományt:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:250
+#: .././Pyblio/GnomeUI/Document.py:252
 msgid ""
 "Error while parsing `%s':\n"
 "%s"
@@ -405,35 +405,35 @@ msgstr ""
 "Hiba `%s' elemzése során:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:269
+#: .././Pyblio/GnomeUI/Document.py:271
 msgid "New database"
 msgstr "Új adatbázis"
 
-#: .././Pyblio/GnomeUI/Document.py:277
+#: .././Pyblio/GnomeUI/Document.py:279
 msgid "[no entry]"
 msgstr "[nincs bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:278
+#: .././Pyblio/GnomeUI/Document.py:280
 msgid "[1 entry]"
 msgstr "[1 bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:279
+#: .././Pyblio/GnomeUI/Document.py:281
 msgid "[%d entries]"
 msgstr "[%d bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:282
+#: .././Pyblio/GnomeUI/Document.py:284
 msgid "[%d/1 entry]"
 msgstr "[%d/1 bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:283
+#: .././Pyblio/GnomeUI/Document.py:285
 msgid "[%d/%d entries]"
 msgstr "[%d/%d bejegyzés]"
 
-#: .././Pyblio/GnomeUI/Document.py:288
+#: .././Pyblio/GnomeUI/Document.py:290
 msgid "[modified]"
 msgstr "[módosítva]"
 
-#: .././Pyblio/GnomeUI/Document.py:298
+#: .././Pyblio/GnomeUI/Document.py:300
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -441,23 +441,32 @@ msgstr ""
 "Az adatbázis módosítva lett.\n"
 "Változások eldobása ?"
 
-#: .././Pyblio/GnomeUI/Document.py:314
+#: .././Pyblio/GnomeUI/Document.py:316
 msgid "Merge file"
 msgstr "Állomány hozzáfûzése"
 
-#: .././Pyblio/GnomeUI/Document.py:326
+#: .././Pyblio/GnomeUI/Document.py:328
 msgid "Open error"
 msgstr "Megnyitási hiba"
 
-#: .././Pyblio/GnomeUI/Document.py:350
+#: .././Pyblio/GnomeUI/Document.py:352
 msgid "Merge status"
 msgstr "Hozzáfûzés státusza"
 
-#: .././Pyblio/GnomeUI/Document.py:361
+#: .././Pyblio/GnomeUI/Document.py:363
 msgid "Open file"
 msgstr "Állomány megnyitása"
 
-#: .././Pyblio/GnomeUI/Document.py:410
+#: .././Pyblio/GnomeUI/Document.py:413
+#, fuzzy
+msgid ""
+"The database has been externally modified.\n"
+"Overwrite changes ?"
+msgstr ""
+"Az adatbázis módosítva lett.\n"
+"Változások eldobása ?"
+
+#: .././Pyblio/GnomeUI/Document.py:423
 msgid ""
 "Unable to save `%s':\n"
 "%s"
@@ -465,7 +474,7 @@ msgstr ""
 "Nem tudom `%s'-t menteni:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:418
+#: .././Pyblio/GnomeUI/Document.py:431
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -473,11 +482,11 @@ msgstr ""
 "Belsõ hiba történt a mentés során\n"
 "Próbálja más néven: Mentés másként..."
 
-#: .././Pyblio/GnomeUI/Document.py:429
+#: .././Pyblio/GnomeUI/Document.py:445
 msgid "Save As..."
 msgstr "Ment mint..."
 
-#: .././Pyblio/GnomeUI/Document.py:435
+#: .././Pyblio/GnomeUI/Document.py:451
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
@@ -485,7 +494,7 @@ msgstr ""
 "A `%s' állomány már létezik.\n"
 "Felülírja ?"
 
-#: .././Pyblio/GnomeUI/Document.py:442
+#: .././Pyblio/GnomeUI/Document.py:458
 msgid ""
 "During opening:\n"
 "%s"
@@ -493,11 +502,11 @@ msgstr ""
 "A megnyitás során:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:462
+#: .././Pyblio/GnomeUI/Document.py:478
 msgid "Reopen error"
 msgstr "Megnyitási hiba"
 
-#: .././Pyblio/GnomeUI/Document.py:503
+#: .././Pyblio/GnomeUI/Document.py:519
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
@@ -505,27 +514,27 @@ msgstr ""
 "`%s' néven már létezik egy bejegyzés.\n"
 "Akarja, hogy átnevezzük és hozzáadjuk ?"
 
-#: .././Pyblio/GnomeUI/Document.py:540
+#: .././Pyblio/GnomeUI/Document.py:556
 msgid "Really remove all the entries ?"
 msgstr "Valóban törölni akarja az összes bejegyzést ?"
 
-#: .././Pyblio/GnomeUI/Document.py:560
+#: .././Pyblio/GnomeUI/Document.py:576
 msgid "Create new entry"
 msgstr "Új bejegyzés"
 
-#: .././Pyblio/GnomeUI/Document.py:574
+#: .././Pyblio/GnomeUI/Document.py:590
 msgid "Really edit %d entries ?"
 msgstr "Valóban szerkeszteni akarja a %d bejegyzéseket ?"
 
-#: .././Pyblio/GnomeUI/Document.py:612
+#: .././Pyblio/GnomeUI/Document.py:628
 msgid "Remove all the %d entries ?"
 msgstr "%d bejegyzések törlése ?"
 
-#: .././Pyblio/GnomeUI/Document.py:614
+#: .././Pyblio/GnomeUI/Document.py:630
 msgid "Remove entry `%s' ?"
 msgstr "`%s' bejegyzés törlése ?"
 
-#: .././Pyblio/GnomeUI/Document.py:680
+#: .././Pyblio/GnomeUI/Document.py:696
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
@@ -533,7 +542,7 @@ msgstr ""
 "Nem tudok kapcsolódni LyX-hez:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:734
+#: .././Pyblio/GnomeUI/Document.py:750
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -541,15 +550,15 @@ msgstr ""
 "Kérem telepítse bug-buddy-t\n"
 "a funkció használatához"
 
-#: .././Pyblio/GnomeUI/Document.py:745
+#: .././Pyblio/GnomeUI/Document.py:761
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Ez a program a GNU GPL-nek megfelelõ szerzõi joggal védett"
 
-#: .././Pyblio/GnomeUI/Document.py:747
+#: .././Pyblio/GnomeUI/Document.py:763
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Gnome felület a Pybliographer-hez."
 
-#: .././Pyblio/GnomeUI/Document.py:752
+#: .././Pyblio/GnomeUI/Document.py:768
 msgid "Pybliographer Home Page"
 msgstr "Pybliographer Home Page"
 
