@@ -215,13 +215,13 @@ class SearchDialog (GtkDialog, Connector.Publisher):
         if page == 1:
             
             user_global = {
-                's'   : Pyblio.TextUI._split_req,
-                'has' : Pyblio.TextUI.has,
-                'any_has'  : Pyblio.TextUI.any_has,
-                'has_key'  : Pyblio.TextUI.has_key,
-                'has_type' : Pyblio.TextUI.has_type,
-                'before' : Pyblio.TextUI.before,
-                'after' : Pyblio.TextUI.after,
+                's'   :      TextUI._split_req,
+                'has' :      TextUI.has,
+                'any_has'  : TextUI.any_has,
+                'has_key'  : TextUI.has_key,
+                'has_type' : TextUI.has_type,
+                'before' :   TextUI.before,
+                'after' :    TextUI.after,
                 }
             
             search = self.expert.gtk_entry ().get_text ()
