@@ -1,18 +1,20 @@
+# Slovak translation of @PACKAGE 
 # pybliographer sk.po
-# Copyright (C) 2002 Free Software Foundation, Inc.
-# Zdenko Podobn˝ <zdpo@mailbox.sk>, 2002.
+# Copyright (C) 2002,2003 Free Software Foundation, Inc.
+# Zdenko Podobn√Ω <zdpo@mailbox.sk>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2002-12-07 05:42+0100\n"
-"PO-Revision-Date: 2002-12-19 18:59+0100\n"
-"Last-Translator: Zdenko Podobn˝ <zdpo@mailbox.sk>\n"
+"Project-Id-Version: pybliographer.HEAD.sk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-09-05 02:54+0200\n"
+"PO-Revision-Date: 2003-09-06 13:32+0100\n"
+"Last-Translator: Zdenko Podobn√Ω <zdpo@mailbox.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.2\n"
 
 #. ==================================================
 #. ==================================================
@@ -49,7 +51,7 @@ msgstr ""
 #: Pyblio/Autoload.py:57
 #, python-format
 msgid "warning: can't import %s: %s"
-msgstr "varovanie: nemÙæem importovaª %s: %s"
+msgstr "varovanie: nem√¥≈æem importova≈• %s: %s"
 
 #. get info from the given group
 #. are we preregistering an existing key ?
@@ -75,10 +77,23 @@ msgstr "varovanie: nemÙæem importovaª %s: %s"
 #. $Id$
 #. Prendre ses propres entrees
 #. et ajouter celles qu'on n'a pas
-#. call a key generator
+#. deprecated:
+#. # ad interim
+#. # ad interim
+#. Old style interface
+#. --------------------------------------------------
+#. create BibTeX key:
+#. we have only one index
+#. print 'UPDATE DATABASE', `self`
 #. create a temporary file for the new version
 #. if we succeeded, backup file
 #. ...and bring new version online
+#. Utilities
+#. --------------------------------------------------
+#. for unit testing, the master file is tBase.py:
+#. Local Variables:
+#. py-master-file: "tBase.py"
+#. End:
 #. This file is part of pybliographer
 #.
 #. Copyright (C) 1998,1999,2000 Frederic GOBRY
@@ -104,7 +119,7 @@ msgstr "varovanie: nemÙæem importovaª %s: %s"
 #: Pyblio/Config.py:53
 #, python-format
 msgid "value of `%s' should be of type %s"
-msgstr "hodnota `%s' by mala maª typ %s"
+msgstr "hodnota `%s' by mala ma≈• typ %s"
 
 #. eventually call the hook
 #. get all domains from the keys
@@ -112,30 +127,30 @@ msgstr "hodnota `%s' by mala maª typ %s"
 #. simplify the list
 #: Pyblio/Config.py:196
 msgid "String"
-msgstr "Reªazec"
+msgstr "Re≈•azec"
 
 #: Pyblio/Config.py:205
 msgid "Boolean"
-msgstr "Logick· hodnota"
+msgstr "Logick√° hodnota"
 
 #: Pyblio/Config.py:224
 msgid "Integer"
-msgstr "CelÈ ËÌslo"
+msgstr "Cel√© ƒç√≠slo"
 
 #: Pyblio/Config.py:226
 #, python-format
 msgid "Integer under %d"
-msgstr "CelÈ ËÌslo pod %d"
+msgstr "Cel√© ƒç√≠slo pod %d"
 
 #: Pyblio/Config.py:228
 #, python-format
 msgid "Integer over %d"
-msgstr "CelÈ ËÌslo nad %d"
+msgstr "Cel√© ƒç√≠slo nad %d"
 
 #: Pyblio/Config.py:230
 #, python-format
 msgid "Integer between %d and %d"
-msgstr "CelÈ ËÌslo od %d po %d"
+msgstr "Cel√© ƒç√≠slo od %d po %d"
 
 #: Pyblio/Config.py:242
 #, python-format
@@ -155,7 +170,7 @@ msgstr "Zoznam (%s)"
 #: Pyblio/Config.py:308
 #, python-format
 msgid "Dictionary (%s, %s)"
-msgstr "SlovnÌk  (%s, %s)"
+msgstr "Slovn√≠k  (%s, %s)"
 
 #. load the saved items
 #. read what has to be saved again
@@ -244,21 +259,21 @@ msgstr "SlovnÌk  (%s, %s)"
 #. strict parsing, the whole block is the last name
 #. lazy parsing, last name is after lowercase or is last word
 #. cleanup
-#: Pyblio/Fields.py:265
-msgid "Illegal year value"
-msgstr "Neplatn˝ hodnota pre rok"
-
 #: Pyblio/Fields.py:269
-msgid "Illegal month value"
-msgstr "Neplatn˝ hodnota pre mesiac"
+msgid "Illegal year value"
+msgstr "Neplatn√Ω hodnota pre rok"
 
 #: Pyblio/Fields.py:273
+msgid "Illegal month value"
+msgstr "Neplatn√Ω hodnota pre mesiac"
+
+#: Pyblio/Fields.py:277
 msgid "Illegal day value"
-msgstr "Neplatn˝ hodnota pre deÚ"
+msgstr "Neplatn√Ω hodnota pre de≈à"
 
 #. Consider we handle a local file
 #. get the list of databases
-#: Pyblio/Fields.py:443
+#: Pyblio/Fields.py:460
 #, python-format
 msgid "in %s"
 msgstr "v %s"
@@ -327,6 +342,34 @@ msgstr "v %s"
 #. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #.
 #. $Id$
+#. iterator interface
+#. set filter and sorting:
+#. deprecated:
+#. if self.maxprogress > 0 and amount > 0:pass
+#. self.Issue('set-progress', amount, self.maxprogress)
+#. #################################################
+#. #
+#. E X P E R I M E N T A L              #
+#. #
+#. #################################################
+#. # deprecated
+#. # ?
+#. ??
+#. --------------------------------------------------
+#. Input interface
+#. ### the following is in need of some distinctions
+#. ## old stuff
+#. ## the question of IDs is not clear yet
+#. some_id?
+#. # DEPRECATED
+#. --------------------------------------------------
+#. Iterator interface
+#. DOES THIS WORK ?
+#. --------------------------------------------------
+#. Defaults
+#. --------------------------------------------------
+#. Utilities
+#. call a key generator
 #. This file is part of pybliographer
 #.
 #. Copyright (C) 1998,1999,2000 Frederic GOBRY
@@ -370,12 +413,12 @@ msgstr "v %s"
 #: Pyblio/LyX.py:39
 #, python-format
 msgid "no input pipe `%s'"
-msgstr "æiadna r˙ra na vstupe `%s'"
+msgstr "≈æiadna r√∫ra na vstupe `%s'"
 
 #: Pyblio/LyX.py:45
 #, python-format
 msgid "no output pipe `%s'"
-msgstr "æiadna r˙ra na v˝stupe `%s'"
+msgstr "≈æiadna r√∫ra na v√Ωstupe `%s'"
 
 #. Say hello !
 #. print self.pout.read ()
@@ -406,24 +449,24 @@ msgstr "æiadna r˙ra na v˝stupe `%s'"
 #: Pyblio/Open.py:97
 #, python-format
 msgid "method `%s' provides no opener"
-msgstr "metÛda `%s' neposkytuje niË na otv·ranie"
+msgstr "met√≥da `%s' neposkytuje niƒç na otv√°ranie"
 
 #. Consider the reference as an URL
 #: Pyblio/Open.py:105 Pyblio/Open.py:151
 #, python-format
 msgid "File `%s' does not exist"
-msgstr "S˙bor `%s' neexistuje"
+msgstr "S√∫bor `%s' neexistuje"
 
 #. eventually load a new module
 #: Pyblio/Open.py:116 Pyblio/Open.py:162
 #, python-format
 msgid "don't know how to open `%s'"
-msgstr "neviem ako otvoriª `%s'"
+msgstr "neviem ako otvori≈• `%s'"
 
 #: Pyblio/Open.py:143
 #, python-format
 msgid "method `%s' provides no iterator"
-msgstr "metÛda `%s' neposkytuje iter·tor"
+msgstr "met√≥da `%s' neposkytuje iter√°tor"
 
 #. default output
 #. Consider the reference as an URL
@@ -564,6 +607,14 @@ msgstr "metÛda `%s' neposkytuje iter·tor"
 #. if the entry does not fit the current width
 #. search a previous space
 #. if there is no space before...
+#. ## !!!!
+#. #################################################
+#. # taken from Python Cookbook Title: Hex dumper
+#. #  Submitter: S√©bastien Keim
+#. #  Last Updated: 2002/08/05
+#. #  Version no: 1.0
+#. #  Category: Text
+#. s = s.translate(_DUMP_FILTER)
 #. This file is part of pybliographer
 #.
 #. Copyright (C) 1998,1999,2000 Frederic GOBRY
@@ -624,16 +675,16 @@ msgstr "metÛda `%s' neposkytuje iter·tor"
 #. specific fields, like URL
 #. Ouvrir le fichier associe
 #. Incorporer les definitions de l'utilisateur
-#: Pyblio/Format/BibTeX.py:350 Pyblio/Format/BibTeX.py:408
+#: Pyblio/Format/BibTeX.py:351 Pyblio/Format/BibTeX.py:412
 #, python-format
 msgid "key `%s' is malformed"
-msgstr "kµ˙Ë `%s' je znetvoren˝"
+msgstr "kƒæ√∫ƒç `%s' je znetvoren√Ω"
 
 #. Creer la base de cles
-#: Pyblio/Format/BibTeX.py:371 Pyblio/Format/BibTeX.py:392
+#: Pyblio/Format/BibTeX.py:372 Pyblio/Format/BibTeX.py:395
 #, python-format
 msgid "%s:%d: key `%s' already defined"
-msgstr "%s:%d: kµ˙Ë `%s' je uæ definovan˝"
+msgstr "%s:%d: kƒæ√∫ƒç `%s' je u≈æ definovan√Ω"
 
 #. set the entry parser to the current one, so
 #. that we keep the current string definitions
@@ -643,6 +694,8 @@ msgstr "%s:%d: kµ˙Ë `%s' je uæ definovan˝"
 #. of those who have been already written
 #. we have to handle the special case of the dates
 #. create the list of months
+#. #################################################
+#. #################################################
 #. loop over all the fields
 #. we are processing a date...
 #. we are processing a normal entry
@@ -659,6 +712,7 @@ msgstr "%s:%d: kµ˙Ë `%s' je uæ definovan˝"
 #. write the list of strings
 #. write the crossreferenced ones
 #. write the entries with no cross references
+#. print "BIBTEX OPENER: url=%s, check=%s" %(url, check)
 #. Ouvrir le fichier associe
 #. create a database to generate correct keys
 #. This file is part of pybliographer
@@ -861,7 +915,7 @@ msgstr "Referencia"
 
 #: Pyblio/GnomeUI/Editor.py:258
 msgid "Day"
-msgstr "DeÚ"
+msgstr "De≈à"
 
 #: Pyblio/GnomeUI/Editor.py:267
 msgid "Month"
@@ -873,38 +927,38 @@ msgstr "Rok"
 
 #: Pyblio/GnomeUI/Editor.py:301
 msgid "Invalid day field in date"
-msgstr "NeplatnÈ pole deÚ v d·tume"
+msgstr "Neplatn√© pole de≈à v d√°tume"
 
 #: Pyblio/GnomeUI/Editor.py:309
 msgid "Invalid month field in date"
-msgstr "NeplatnÈ pole mesiac v d·tume"
+msgstr "Neplatn√© pole mesiac v d√°tume"
 
 #: Pyblio/GnomeUI/Editor.py:317
 msgid "Invalid year field in date"
-msgstr "NeplatnÈ pole rok v d·tume"
+msgstr "Neplatn√© pole rok v d√°tume"
 
 #: Pyblio/GnomeUI/Editor.py:426
 msgid "Entry type"
-msgstr "Typ poloæky"
+msgstr "Typ polo≈æky"
 
 #. Bottom
 #: Pyblio/GnomeUI/Editor.py:428 Pyblio/GnomeUI/Config.py:482
 msgid "Key"
-msgstr "Kl·vesa"
+msgstr "Kl√°vesa"
 
 #: Pyblio/GnomeUI/Editor.py:471
 msgid "Create Field"
-msgstr "Vytvoriª pole"
+msgstr "Vytvori≈• pole"
 
 #. Notebook
 #. update the current entry
 #: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:191
 msgid "Mandatory"
-msgstr "PovinnÈ"
+msgstr "Povinn√©"
 
 #: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:192
 msgid "Optional"
-msgstr "NepovinnÈ"
+msgstr "Nepovinn√©"
 
 #: Pyblio/GnomeUI/Editor.py:539
 msgid "Extra"
@@ -913,30 +967,30 @@ msgstr "Extra"
 #. update the current entry
 #: Pyblio/GnomeUI/Editor.py:601
 msgid "Invalid key format"
-msgstr "NeplatnÈ form·t kµ˙Ëa"
+msgstr "Neplatn√© form√°t kƒæ√∫ƒça"
 
 #: Pyblio/GnomeUI/Editor.py:609
 #, python-format
 msgid "Key `%s' already exists"
-msgstr "Kµ˙Ë `%s' uæ existuje"
+msgstr "Kƒæ√∫ƒç `%s' u≈æ existuje"
 
 #: Pyblio/GnomeUI/Editor.py:676
 msgid "Error in native string parsing"
-msgstr "Chyba pri anal˝ze pÙvodnÈho reªazca"
+msgstr "Chyba pri anal√Ωze p√¥vodn√©ho re≈•azca"
 
 #: Pyblio/GnomeUI/Editor.py:689
 msgid "Edit entry"
-msgstr "Upraviª poloæku"
+msgstr "Upravi≈• polo≈æku"
 
 #. check if the database supports native editing
 #: Pyblio/GnomeUI/Editor.py:703 Pyblio/GnomeUI/Editor.py:744
 msgid "Native Editing"
-msgstr "PÙvodnÈ ˙pravy"
+msgstr "P√¥vodn√© √∫pravy"
 
 #. native edition
 #: Pyblio/GnomeUI/Editor.py:756
 msgid "Standard Editing"
-msgstr "©tandardnÈ ˙pravy"
+msgstr "≈†tandardn√© √∫pravy"
 
 #. set window size
 #. This file is part of pybliographer
@@ -1006,10 +1060,10 @@ msgstr "©tandardnÈ ˙pravy"
 #. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #.
 #. $Id$
-#: Pyblio/GnomeUI/FileSelector.py:40 Pyblio/GnomeUI/Document.py:220
-#: Pyblio/GnomeUI/Document.py:234
+#: Pyblio/GnomeUI/FileSelector.py:40 Pyblio/GnomeUI/Document.py:291
+#: Pyblio/GnomeUI/Document.py:308
 msgid "File"
-msgstr "S˙bor"
+msgstr "S√∫bor"
 
 #. path handler
 #. url handler
@@ -1047,21 +1101,21 @@ msgstr "Typ bibliografie:"
 #. 4. GTK 2.0 ?
 #: Pyblio/GnomeUI/Index.py:77
 msgid "Add..."
-msgstr "Pridaª..."
+msgstr "Prida≈•..."
 
 #: Pyblio/GnomeUI/Index.py:78
 msgid "Edit..."
-msgstr "Upraviª..."
+msgstr "Upravi≈•..."
 
 #. database
 #. connect a menu to the right button
 #: Pyblio/GnomeUI/Index.py:79 Pyblio/GnomeUI/Search.py:178
 msgid "Delete"
-msgstr "Zmazaª"
+msgstr "Zmaza≈•"
 
 #: Pyblio/GnomeUI/Index.py:80
 msgid "Toggle..."
-msgstr "Prepn˙ª..."
+msgstr "Prepn√∫≈•..."
 
 #. resize the columns
 #. some events we want to react to...
@@ -1134,7 +1188,7 @@ msgstr "Prepn˙ª..."
 #. recursively proceed
 #: Pyblio/GnomeUI/Search.py:109
 msgid "Search"
-msgstr "Hµadaª"
+msgstr "Hƒæada≈•"
 
 #. user levels
 #. Simple search
@@ -1149,26 +1203,26 @@ msgstr "Vzorka"
 #. fill the combo
 #: Pyblio/GnomeUI/Search.py:151
 msgid "Simple Search"
-msgstr "JednoduchÈ hµadanie"
+msgstr "Jednoduch√© hƒæadanie"
 
 #. extended search
 #: Pyblio/GnomeUI/Search.py:155
 msgid "Search command:"
-msgstr "PrÌkaz pre hµadanie:"
+msgstr "Pr√≠kaz pre hƒæadanie:"
 
 #: Pyblio/GnomeUI/Search.py:161
 msgid "Expert Search"
-msgstr "ExpertnÈ hµadanie"
+msgstr "Expertn√© hƒæadanie"
 
 #. initialize the tree with the full database
 #: Pyblio/GnomeUI/Search.py:199
 msgid "Full database"
-msgstr "⁄pln· datab·za"
+msgstr "√öpln√° datab√°za"
 
 #. Expert search
 #: Pyblio/GnomeUI/Search.py:241
 msgid "internal error during evaluation"
-msgstr "intern· chyba poËas vyhodnocovania"
+msgstr "intern√° chyba poƒças vyhodnocovania"
 
 #. Simple Search
 #. get the type description
@@ -1178,7 +1232,7 @@ msgid ""
 "while compiling %s\n"
 "error: %s"
 msgstr ""
-"poËas prekladu %s\n"
+"poƒças prekladu %s\n"
 "chyba: %s"
 
 #. No search
@@ -1206,7 +1260,7 @@ msgstr ""
 #. $Id$
 #: Pyblio/GnomeUI/Sort.py:49
 msgid "Select sort criterions"
-msgstr "Zvoµte kritÈri· pre triedenie"
+msgstr "Zvoƒæte krit√©ri√° pre triedenie"
 
 #: Pyblio/GnomeUI/Sort.py:60
 msgid "Sort direction"
@@ -1214,16 +1268,16 @@ msgstr "Smer triedenia"
 
 #: Pyblio/GnomeUI/Sort.py:60
 msgid "Sort criterions"
-msgstr "KritÈri· triedenia"
+msgstr "Krit√©ri√° triedenia"
 
 #. fill in the lists
 #: Pyblio/GnomeUI/Sort.py:73
 msgid "[Entry Type]"
-msgstr "[Typ poloæky]"
+msgstr "[Typ polo≈æky]"
 
 #: Pyblio/GnomeUI/Sort.py:74
 msgid "[Key Value]"
-msgstr "[Kµ˙Ëov· hodnota]"
+msgstr "[Kƒæ√∫ƒçov√° hodnota]"
 
 #. operation buttons
 #: Pyblio/GnomeUI/Sort.py:99
@@ -1232,23 +1286,23 @@ msgstr "Preusporiadanie"
 
 #: Pyblio/GnomeUI/Sort.py:100
 msgid "Groups the active fields on the top of the list"
-msgstr "Skupiny aktÌvnych polÌ na vrchole zoznamu"
+msgstr "Skupiny akt√≠vnych pol√≠ na vrchole zoznamu"
 
 #: Pyblio/GnomeUI/Sort.py:104
 msgid "Unselect all"
-msgstr "Vπetko odznaËiª"
+msgstr "V≈°etko odznaƒçi≈•"
 
 #: Pyblio/GnomeUI/Sort.py:105
 msgid "Removes all the sort criterions"
-msgstr "Odstr·ni vπetky kritÈri· triedenia"
+msgstr "Odstr√°ni v≈°etky krit√©ri√° triedenia"
 
 #: Pyblio/GnomeUI/Sort.py:109
 msgid "Set as default"
-msgstr "Nastaviª ako πtandardnÈ"
+msgstr "Nastavi≈• ako ≈°tandardn√©"
 
 #: Pyblio/GnomeUI/Sort.py:110
 msgid "Use this sort criterion as the default for new files"
-msgstr "Pouæiª πtandard poËas"
+msgstr "Pou≈æi≈• ≈°tandard poƒças"
 
 #. This file is part of pybliographer
 #.
@@ -1275,7 +1329,7 @@ msgid ""
 "The following errors occured:\n"
 "\n"
 msgstr ""
-"Vyskytla sa nasleduj˙ca chyba:\n"
+"Vyskytla sa nasleduj√∫ca chyba:\n"
 "\n"
 
 #. This file is part of pybliographer
@@ -1342,458 +1396,520 @@ msgstr ""
 #. along with this program; if not, write to the Free Software
 #. Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #.
-#. Id: Document.py,v 1.25 2002/07/03 10:52:52 PeterS Exp
 #. $Id$
-#: Pyblio/GnomeUI/Document.py:57
+#: Pyblio/GnomeUI/Document.py:58
 msgid "_New"
-msgstr "_Nov˝"
-
-#: Pyblio/GnomeUI/Document.py:59
-msgid "_Merge with..."
-msgstr "_Zl˙Ëiª s..."
+msgstr "_Nov√Ω"
 
 #: Pyblio/GnomeUI/Document.py:60
-msgid "Online Query"
-msgstr "Online ot·zka"
+msgid "Open _Database..."
+msgstr "Otvori≈• _Datab√°zu..."
 
-#: Pyblio/GnomeUI/Document.py:61
+#: Pyblio/GnomeUI/Document.py:62
+msgid "_Merge with..."
+msgstr "_Zl√∫ƒçi≈• s..."
+
+#: Pyblio/GnomeUI/Document.py:63
+msgid "_Import ..."
+msgstr "_Import ..."
+
+#: Pyblio/GnomeUI/Document.py:64
+msgid "Online Query"
+msgstr "Online ot√°zka"
+
+#: Pyblio/GnomeUI/Document.py:65
 msgid "PubMed/Medline..."
 msgstr "PubMed/Medline..."
 
-#: Pyblio/GnomeUI/Document.py:63
+#: Pyblio/GnomeUI/Document.py:67
 msgid "SPIRES Server..."
 msgstr "SPIRES Server..."
 
-#: Pyblio/GnomeUI/Document.py:65
+#: Pyblio/GnomeUI/Document.py:69
 msgid "Z39.50 Server..."
 msgstr "Z39.50 Server..."
 
-#: Pyblio/GnomeUI/Document.py:67
+#: Pyblio/GnomeUI/Document.py:71
 msgid "Generic Server..."
-msgstr "Vπeobecn˝ server..."
+msgstr "V≈°eobecn√Ω server..."
 
-#: Pyblio/GnomeUI/Document.py:74
+#: Pyblio/GnomeUI/Document.py:78
 msgid "_Previous Documents"
-msgstr "_Predch·dzaj˙ce dokumenty"
+msgstr "_Predch√°dzaj√∫ce dokumenty"
 
-#: Pyblio/GnomeUI/Document.py:81
+#: Pyblio/GnomeUI/Document.py:85
 msgid "About..."
 msgstr "O programe..."
 
-#: Pyblio/GnomeUI/Document.py:92
+#: Pyblio/GnomeUI/Document.py:96
 msgid "_Add..."
-msgstr "_Pridaª..."
-
-#: Pyblio/GnomeUI/Document.py:93
-msgid "_Edit..."
-msgstr "_Upraviª..."
-
-#: Pyblio/GnomeUI/Document.py:94
-msgid "_Delete"
-msgstr "O_dstr·niª"
+msgstr "_Prida≈•..."
 
 #: Pyblio/GnomeUI/Document.py:97
+msgid "_Edit..."
+msgstr "_Upravi≈•..."
+
+#: Pyblio/GnomeUI/Document.py:98
+msgid "_Delete"
+msgstr "O_dstr√°ni≈•"
+
+#: Pyblio/GnomeUI/Document.py:101
 msgid "S_ort..."
 msgstr "_Triedenie..."
 
-#: Pyblio/GnomeUI/Document.py:101 Pyblio/GnomeUI/Document.py:115
+#: Pyblio/GnomeUI/Document.py:105 Pyblio/GnomeUI/Document.py:126
 msgid "_Cite"
-msgstr "_Citovaª"
-
-#: Pyblio/GnomeUI/Document.py:102
-msgid "_Format..."
-msgstr "_Form·t..."
+msgstr "_Citova≈•"
 
 #: Pyblio/GnomeUI/Document.py:106
+msgid "_Format..."
+msgstr "_Form√°t..."
+
+#: Pyblio/GnomeUI/Document.py:110
 msgid "_Fields..."
 msgstr "_Polia..."
 
-#: Pyblio/GnomeUI/Document.py:107
+#: Pyblio/GnomeUI/Document.py:111
 msgid "_Entries..."
-msgstr "_Poloæky..."
+msgstr "_Polo≈æky..."
 
-#: Pyblio/GnomeUI/Document.py:113
+#: Pyblio/GnomeUI/Document.py:117
+msgid "_Old Style"
+msgstr "_star√Ω ≈°t√Ωl"
+
+#: Pyblio/GnomeUI/Document.py:123
 msgid "_File"
-msgstr "_S˙bor"
+msgstr "_S√∫bor"
 
-#: Pyblio/GnomeUI/Document.py:114
+#: Pyblio/GnomeUI/Document.py:124
 msgid "_Edit"
-msgstr "_Upraviª"
+msgstr "_Upravi≈•"
 
-#: Pyblio/GnomeUI/Document.py:116
+#: Pyblio/GnomeUI/Document.py:125
+msgid "_View"
+msgstr "_Zobrazi≈•"
+
+#: Pyblio/GnomeUI/Document.py:127
 msgid "_Settings"
 msgstr "Nas_tavenie"
 
-#: Pyblio/GnomeUI/Document.py:117
+#: Pyblio/GnomeUI/Document.py:128
 msgid "_Help"
-msgstr "_PomocnÌk"
+msgstr "_Pomocn√≠k"
 
-#: Pyblio/GnomeUI/Document.py:121
+#: Pyblio/GnomeUI/Document.py:132
 msgid "Open"
-msgstr "Otvoriª"
+msgstr "Otvori≈•"
 
-#: Pyblio/GnomeUI/Document.py:122
+#: Pyblio/GnomeUI/Document.py:133
 msgid "Save"
-msgstr "Uloæiª"
+msgstr "Ulo≈æi≈•"
 
-#: Pyblio/GnomeUI/Document.py:124
+#: Pyblio/GnomeUI/Document.py:135
 msgid "Find"
-msgstr "N·jsª"
+msgstr "N√°js≈•"
 
-#: Pyblio/GnomeUI/Document.py:125
+#: Pyblio/GnomeUI/Document.py:136
 msgid "Cite"
-msgstr "Citovaª"
+msgstr "Citova≈•"
 
-#: Pyblio/GnomeUI/Document.py:127
+#: Pyblio/GnomeUI/Document.py:138
 msgid "Close"
-msgstr "Zavrieª"
+msgstr "Zavrie≈•"
 
-#: Pyblio/GnomeUI/Document.py:220 Pyblio/GnomeUI/Document.py:234
+#: Pyblio/GnomeUI/Document.py:292 Pyblio/GnomeUI/Document.py:309
 msgid "Previous Documents"
-msgstr "Predch·dzaj˙ce dokumenty"
+msgstr "Predch√°dzaj√∫ce dokumenty"
 
-#: Pyblio/GnomeUI/Document.py:258
+#. #             self.index.display (
+#. #                 self.selection.iterator (self.data.iterator ()))
+#: Pyblio/GnomeUI/Document.py:334
 #, python-format
 msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
 msgstr ""
-"nie je moænÈ otvoriª s˙bor `%s' pre z·pis:\n"
+"nie je mo≈æn√© otvori≈• s√∫bor `%s' pre z√°pis:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:279
+#: Pyblio/GnomeUI/Document.py:356
 #, python-format
 msgid ""
 "Error while parsing `%s':\n"
 "%s"
 msgstr ""
-"Chyba poËas analyzovania `%s':\n"
+"Chyba poƒças analyzovania `%s':\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:298
+#: Pyblio/GnomeUI/Document.py:375
 msgid "New database"
-msgstr "Nov· datab·za"
+msgstr "Nov√° datab√°za"
 
-#: Pyblio/GnomeUI/Document.py:306 Pyblio/GnomeUI/Document.py:310
+#: Pyblio/GnomeUI/Document.py:383 Pyblio/GnomeUI/Document.py:387
 msgid "[no entry]"
-msgstr "[bez poloæky]"
+msgstr "[bez polo≈æky]"
 
-#: Pyblio/GnomeUI/Document.py:307
+#: Pyblio/GnomeUI/Document.py:384
 msgid "[1 entry]"
-msgstr "[1 poloæka]"
+msgstr "[1 polo≈æka]"
 
-#: Pyblio/GnomeUI/Document.py:308
+#: Pyblio/GnomeUI/Document.py:385
 #, python-format
 msgid "[%d entries]"
-msgstr "[%d poloæiek]"
+msgstr "[%d polo≈æiek]"
 
-#: Pyblio/GnomeUI/Document.py:311
+#: Pyblio/GnomeUI/Document.py:388
 #, python-format
 msgid "[%d/1 entry]"
-msgstr "[%d/1 poloæky]"
+msgstr "[%d/1 polo≈æky]"
 
-#: Pyblio/GnomeUI/Document.py:312
+#: Pyblio/GnomeUI/Document.py:389
 #, python-format
 msgid "[%d/%d entries]"
-msgstr "[ %d/%d poloæiek]"
+msgstr "[ %d/%d polo≈æiek]"
 
-#: Pyblio/GnomeUI/Document.py:317
+#: Pyblio/GnomeUI/Document.py:394
 msgid "[modified]"
-msgstr "[zmenen˝]"
+msgstr "[zmenen√Ω]"
 
-#: Pyblio/GnomeUI/Document.py:327
+#: Pyblio/GnomeUI/Document.py:404
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
 msgstr ""
-"Datab·za bola zmenen·.\n"
-"Odmietnuª zmeny?"
+"Datab√°za bola zmenen√°.\n"
+"Odmietnu≈• zmeny?"
 
-#. Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
-#. save keyword to medline search history if it's a valid keyword
+#. Add an ending newline character to each query listed in
+#. the search history. This makes sure that when each item
+#. is written to the file, a separator is also written so
+#. that when read again later in another query (by
+#. readlines()), it is properly separated into the
+#. searchhistory list
+#. save keyword to medline search history if it's a
+#. valid keyword
 #. I only want a maximum of the 10 most recent keywords
-#. I don't want to append to the list, I want to add the most recent search term at the top of the list
-#. essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
+#. I don't want to append to the list, I want to
+#. add the most recent search term at the top of
+#. the list
+#. essentially remove the 10th item before adding
+#. the most recent search query, I just want the 10
+#. past search histories saved
 #. save the search history
-#. Call the actual function to do the search and then return the results into url: 16 parameters passed altogether
+#. Call the actual function to do the search and then
+#. return the results into url: 16 parameters passed
+#. altogether
 #. actual call to open doc
 #. Print partial instructions on use of the limits
-#: Pyblio/GnomeUI/Document.py:411 Pyblio/GnomeUI/Document.py:762
+#: Pyblio/GnomeUI/Document.py:528 Pyblio/GnomeUI/Document.py:1043
 msgid "Medline/PubMed Online Search Help"
-msgstr "PomocnÌk pre Medline/PubMed online hµadanie"
+msgstr "Pomocn√≠k pre Medline/PubMed online hƒæadanie"
 
 #. LEFT justify the instructions
-#. Functions are defined above (callbacks for each button). The search interface is designed below and drawn.
-#. Load up the past search queries by reading the file .pybsearchhis in the user's home directory; otherwise, the list will be empty via the searchhistory = [''] command
-#. get rid of newline character so that search history is displayed correctly in the combobox
-#: Pyblio/GnomeUI/Document.py:434
+#. Functions are defined above (callbacks for each button). The
+#. search interface is designed below and drawn.  Load up the
+#. past search queries by reading the file .pybsearchhis in the
+#. user's home directory; otherwise, the list will be empty via
+#. the searchhistory = [''] command
+#. get rid of newline character so that search history is
+#. displayed correctly in the combobox
+#: Pyblio/GnomeUI/Document.py:561
 msgid "Online PubMed/Medline Query"
-msgstr "Online PubMed/Medline ot·zka"
+msgstr "Online PubMed/Medline ot√°zka"
 
 #. make it a combo box so that past search entries can be viewed
 #. the query string will be loaded onto key_w assigned here
-#. the entry should be empty; if this option is not set, the first list item will show instead
+#. the entry should be empty; if this option is not set, the
+#. first list item will show instead
 #. max_w is the max number of returns the user wants
-#. disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
-#: Pyblio/GnomeUI/Document.py:451
+#. disp_s is the starting number of the entry to begin
+#. displaying; e.g. if for a certain query there is a total of
+#. 550 results, if the max_w is set to 100 and the disp_s is
+#. set to 400, there will be 100 results shown starting from
+#. result number 400 and ending at 499
+#: Pyblio/GnomeUI/Document.py:591
 msgid "Search PubMed for: "
-msgstr "Hµadaª PubMed: "
+msgstr "Hƒæada≈• PubMed: "
 
-#. This is so the user can choose which server to query, future releases will read either a file or directory of files which contain server info so that the user can add new servers
-#: Pyblio/GnomeUI/Document.py:453 Pyblio/GnomeUI/Document.py:666
+#. This is so the user can choose which server to query, future
+#. releases will read either a file or directory of files which
+#. contain server info so that the user can add new servers
+#: Pyblio/GnomeUI/Document.py:593 Pyblio/GnomeUI/Document.py:932
 msgid ""
 "Maximum number\n"
 "of results: "
 msgstr ""
-"Maximum·lny poËet\n"
-"v˝sledkov: "
+"Maximum√°lny poƒçet\n"
+"v√Ωsledkov: "
 
-#: Pyblio/GnomeUI/Document.py:455 Pyblio/GnomeUI/Document.py:668
+#: Pyblio/GnomeUI/Document.py:595 Pyblio/GnomeUI/Document.py:934
 msgid ""
 "Start listing at\n"
 "result number: "
 msgstr ""
-"ZaËaª zoznam\n"
-"pri v˝sledku ËÌslo:"
+"Zaƒça≈• zoznam\n"
+"pri v√Ωsledku ƒç√≠slo:"
 
-#: Pyblio/GnomeUI/Document.py:462
+#: Pyblio/GnomeUI/Document.py:602
 msgid "Limited to:"
-msgstr "Obmedziª do:"
+msgstr "Obmedzi≈• do:"
 
-#. Below are all the limits allowable. All entries are not editable, except for the date entries.
+#. Below are all the limits allowable. All entries are not
+#. editable, except for the date entries.
 #. command to prevent the user from editing the limit
 #. again, entry not editable, only selectable
-#: Pyblio/GnomeUI/Document.py:536
+#: Pyblio/GnomeUI/Document.py:736
 msgid "From:"
 msgstr "Od:"
 
-#: Pyblio/GnomeUI/Document.py:539
+#: Pyblio/GnomeUI/Document.py:739
 msgid "To:"
 msgstr "Komu:"
 
-#: Pyblio/GnomeUI/Document.py:545
+#: Pyblio/GnomeUI/Document.py:746
 msgid "Use the format YYYY/MM/DD; month and day are optional."
-msgstr "Pouæiª form·t RRRR/MM/DD; mesiac a deÚ nie s˙ povinnÈ."
+msgstr "Pou≈æi≈• form√°t RRRR/MM/DD; mesiac a de≈à nie s√∫ povinn√©."
 
-#: Pyblio/GnomeUI/Document.py:589
+#: Pyblio/GnomeUI/Document.py:796
 msgid "No Results Found"
-msgstr "Bez v˝sledku"
+msgstr "Bez v√Ωsledku"
 
 #. debugging
-#: Pyblio/GnomeUI/Document.py:595
+#: Pyblio/GnomeUI/Document.py:805
 msgid "Search Error"
-msgstr "Chyba hµadania"
+msgstr "Chyba hƒæadania"
 
-#: Pyblio/GnomeUI/Document.py:606
+#: Pyblio/GnomeUI/Document.py:816
 msgid "Z39.50 Server Query Help"
-msgstr "PopmocnÌk s ot·zkou pre Z39.50 Server"
+msgstr "Popmocn√≠k s ot√°zkou pre Z39.50 Server"
 
 #. LEFT justify the instructions
-#. this isn't really the correct use of os.path.exists? since I'm actually seeing if the _file_ zserver exists
-#. this is the file that lists all the available servers; the file can be edited and placed there by the user
+#. this isn't really the correct use of os.path.exists?
+#. since I'm actually seeing if the _file_ zserver
+#. exists
+#. this is the file that lists all the available
+#. servers; the file can be edited and placed there by
+#. the user
 #. default server list of working servers that I know
-#. this is an error handling function; sometimes the user may add a whitespace or extra lines at the end of the file
-#. list of just the names of the servers, to be used in the pulldown menu
+#. this is an error handling function; sometimes the user
+#. may add a whitespace or extra lines at the end of the
+#. file
+#. list of just the names of the servers, to be used in the
+#. pulldown menu
 #. append the name of the server to the servername list
-#. dictionary key is the name of the server, the value is it's index number i. The index number i, will be used to pull the address, port and database name for the particular server later for the actual query.
-#: Pyblio/GnomeUI/Document.py:647
+#. dictionary key is the name of the server, the value is
+#. it's index number i. The index number i, will be used to
+#. pull the address, port and database name for the
+#. particular server later for the actual query.
+#: Pyblio/GnomeUI/Document.py:900
 msgid "Enter Your Query"
-msgstr "Vloæte svoju ot·zku"
+msgstr "Vlo≈æte svoju ot√°zku"
 
 #. max_w is the max number of returns the user wants
-#. disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
-#: Pyblio/GnomeUI/Document.py:659 Pyblio/GnomeUI/Document.py:781
+#. disp_s is the starting number of the entry to begin
+#. displaying; e.g. if for a certain query there is a total of
+#. 550 results, if the max_w is set to 100 and the disp_s is
+#. set to 400, there will be 100 results shown starting from
+#. result number 400 and ending at 499
+#: Pyblio/GnomeUI/Document.py:920 Pyblio/GnomeUI/Document.py:1063
 msgid "Query server: "
-msgstr "Ot·zka pre server: "
+msgstr "Ot√°zka pre server: "
 
 #. LEFT justify the instructions
-#: Pyblio/GnomeUI/Document.py:773
+#: Pyblio/GnomeUI/Document.py:1055
 msgid "SPIRES Query"
-msgstr "SPIRES ot·zka"
+msgstr "SPIRES ot√°zka"
 
-#: Pyblio/GnomeUI/Document.py:791
+#: Pyblio/GnomeUI/Document.py:1074
 msgid "Author: "
 msgstr "Autor: "
 
-#: Pyblio/GnomeUI/Document.py:798
+#: Pyblio/GnomeUI/Document.py:1081
 msgid "Title: "
 msgstr "Titul: "
 
-#: Pyblio/GnomeUI/Document.py:805
+#: Pyblio/GnomeUI/Document.py:1088
 msgid "Citation: "
-msgstr "Cit·cia: "
+msgstr "Cit√°cia: "
 
-#: Pyblio/GnomeUI/Document.py:812
+#: Pyblio/GnomeUI/Document.py:1095
 msgid "Report Number: "
-msgstr "»Ìslo spr·vy:"
+msgstr "ƒå√≠slo spr√°vy:"
 
-#: Pyblio/GnomeUI/Document.py:819
+#: Pyblio/GnomeUI/Document.py:1102
 msgid "Affiliation: "
-msgstr "PriËlenenie: "
+msgstr "Priƒçlenenie: "
 
-#: Pyblio/GnomeUI/Document.py:826
+#: Pyblio/GnomeUI/Document.py:1109
 msgid "Collaboration: "
-msgstr "Spolupr·ca: "
+msgstr "Spolupr√°ca: "
 
-#: Pyblio/GnomeUI/Document.py:833
+#: Pyblio/GnomeUI/Document.py:1116
 msgid "Keywords: "
-msgstr "Kµ˙ËovÈ slov·: "
+msgstr "Kƒæ√∫ƒçov√© slov√°: "
 
-#: Pyblio/GnomeUI/Document.py:840
+#: Pyblio/GnomeUI/Document.py:1123
 msgid "Country: "
 msgstr "Krajina:  "
 
-#: Pyblio/GnomeUI/Document.py:847
+#: Pyblio/GnomeUI/Document.py:1130
 msgid "Eprint: "
 msgstr "Eprint: "
 
-#: Pyblio/GnomeUI/Document.py:854
+#: Pyblio/GnomeUI/Document.py:1140
 msgid "Number: "
-msgstr "»Ìslo: "
+msgstr "ƒå√≠slo: "
 
-#: Pyblio/GnomeUI/Document.py:861
+#: Pyblio/GnomeUI/Document.py:1147
 msgid "Topcite: "
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:868
+#: Pyblio/GnomeUI/Document.py:1155
 msgid "In RPP?: "
 msgstr "V RPP?: "
 
-#: Pyblio/GnomeUI/Document.py:878
+#: Pyblio/GnomeUI/Document.py:1165
 msgid "Journal: "
-msgstr "»asopis: "
+msgstr "ƒåasopis: "
 
-#: Pyblio/GnomeUI/Document.py:885
+#: Pyblio/GnomeUI/Document.py:1197
 msgid "vol,pg"
 msgstr "zv,str"
 
-#: Pyblio/GnomeUI/Document.py:892
+#: Pyblio/GnomeUI/Document.py:1204
 msgid "Published: "
-msgstr ""
+msgstr "Publikovan√©: "
 
-#: Pyblio/GnomeUI/Document.py:902
+#: Pyblio/GnomeUI/Document.py:1214
 msgid "Date: "
-msgstr "D·tum:"
+msgstr "D√°tum:"
 
-#: Pyblio/GnomeUI/Document.py:918
-#, fuzzy
+#: Pyblio/GnomeUI/Document.py:1234
 msgid "Sort by: "
-msgstr "Triediª podµa "
+msgstr "Triedi≈• podƒæa: "
 
 #. get a new file name
-#: Pyblio/GnomeUI/Document.py:934
+#: Pyblio/GnomeUI/Document.py:1253
 msgid "Merge file"
-msgstr "Zl˙Ëiª s˙bor"
+msgstr "Zl√∫ƒçi≈• s√∫bor"
 
 #. memorize the current path in the case of a file
-#: Pyblio/GnomeUI/Document.py:946 Pyblio/GnomeUI/Document.py:1007
+#: Pyblio/GnomeUI/Document.py:1265 Pyblio/GnomeUI/Document.py:1328
+#: Pyblio/GnomeUI/Document.py:1379
 msgid "Open error"
-msgstr "Chyba pri otv·ranÌ"
+msgstr "Chyba pri otv√°ran√≠"
 
 #. loop over the entries
-#: Pyblio/GnomeUI/Document.py:970
+#: Pyblio/GnomeUI/Document.py:1289
 msgid "Merge status"
-msgstr "Stav zluËovania"
+msgstr "Stav zluƒçovania"
 
-#. get a new file name
-#: Pyblio/GnomeUI/Document.py:982
-msgid "Open file"
-msgstr "Otvoriª s˙bor"
+#. get a new file name XXXX
+#: Pyblio/GnomeUI/Document.py:1301
+msgid "Open database"
+msgstr "Otvori≈• datab√°zu"
 
 #. eventually warn interested objects
-#: Pyblio/GnomeUI/Document.py:1034
+#. Numerus.reset_counters(db)
+#. Coco.reset_configuration(db)
+#. get a new file name
+#: Pyblio/GnomeUI/Document.py:1354
+msgid "Open file"
+msgstr "Otvori≈• s√∫bor"
+
+#. eventually warn interested objects
+#: Pyblio/GnomeUI/Document.py:1420
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
 msgstr ""
-"Datab·za bola externe zmenen·.\n"
-"PrepÌsaª zmeny?"
+"Datab√°za bola externe zmenen√°.\n"
+"Prep√≠sa≈• zmeny?"
 
-#: Pyblio/GnomeUI/Document.py:1044
+#: Pyblio/GnomeUI/Document.py:1431
 #, python-format
 msgid ""
 "Unable to save `%s':\n"
 "%s"
 msgstr ""
-"Nie je moænÈ uloæiª `%s':\n"
+"Nie je mo≈æn√© ulo≈æi≈• `%s':\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:1052
+#: Pyblio/GnomeUI/Document.py:1440
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
 msgstr ""
-"Vyskytla sa intern· chyba poËas ukladania\n"
-"Sk˙ste Uloæiª ako..."
+"Vyskytla sa intern√° chyba poƒças ukladania\n"
+"Sk√∫ste Ulo≈æi≈• ako..."
 
 #. get the current modification date
 #. get a new file name
-#: Pyblio/GnomeUI/Document.py:1067
+#: Pyblio/GnomeUI/Document.py:1455
 msgid "Save As..."
-msgstr "Uloæiª ako..."
+msgstr "Ulo≈æi≈• ako..."
 
-#: Pyblio/GnomeUI/Document.py:1073
+#: Pyblio/GnomeUI/Document.py:1462
 #, python-format
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
 msgstr ""
-"S˙bor `%s' uæ existuje.\n"
-"PrepÌsaª ho?"
+"S√∫bor `%s' u≈æ existuje.\n"
+"Prep√≠sa≈• ho?"
 
-#: Pyblio/GnomeUI/Document.py:1080
+#: Pyblio/GnomeUI/Document.py:1469
 #, python-format
 msgid ""
 "During opening:\n"
 "%s"
 msgstr ""
-"PoËas otv·rania:\n"
+"Poƒças otv√°rania:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:1098
+#: Pyblio/GnomeUI/Document.py:1487
 msgid "Reopen error"
-msgstr "Chyba pri op‰tovnom otv·ranÌ"
+msgstr "Chyba pri op√§tovnom otv√°ran√≠"
 
-#: Pyblio/GnomeUI/Document.py:1139
+#: Pyblio/GnomeUI/Document.py:1529
 #, python-format
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
 msgstr ""
-"Poloæka, nazvan· ako `%s', uæ existuje\n"
-"Premenovaª ju, alebo aj napriek tomu ju pridaª?"
+"Polo≈æka, nazvan√° ako `%s', u≈æ existuje\n"
+"Premenova≈• ju, alebo aj napriek tomu ju prida≈•?"
 
-#: Pyblio/GnomeUI/Document.py:1176
+#: Pyblio/GnomeUI/Document.py:1566
 msgid "Really remove all the entries ?"
-msgstr "SkutoËne odstr·niª vπetky poloæky ?"
+msgstr "Skutoƒçne odstr√°ni≈• v≈°etky polo≈æky ?"
 
-#: Pyblio/GnomeUI/Document.py:1196
+#: Pyblio/GnomeUI/Document.py:1586
 msgid "Create new entry"
-msgstr "Vytvoriª nov˙ poloæku"
+msgstr "Vytvori≈• nov√∫ polo≈æku"
 
-#: Pyblio/GnomeUI/Document.py:1210
+#: Pyblio/GnomeUI/Document.py:1600
 #, python-format
 msgid "Really edit %d entries ?"
-msgstr "SkutoËne upraviª %d poloæiek?"
+msgstr "Skutoƒçne upravi≈• %d polo≈æiek?"
 
-#. print 'index select item', new
-#: Pyblio/GnomeUI/Document.py:1252
+#: Pyblio/GnomeUI/Document.py:1641
 #, python-format
 msgid "Remove all the %d entries ?"
-msgstr "Odstr·niª vπetky %d poloæky?"
+msgstr "Odstr√°ni≈• v≈°etky %d polo≈æky?"
 
-#: Pyblio/GnomeUI/Document.py:1254
+#: Pyblio/GnomeUI/Document.py:1643
 #, python-format
 msgid "Remove entry `%s' ?"
-msgstr "Odstr·niª poloæku `%s'?"
+msgstr "Odstr√°ni≈• polo≈æku `%s'?"
 
-#: Pyblio/GnomeUI/Document.py:1320 Pyblio/GnomeUI/Document.py:1327
+#: Pyblio/GnomeUI/Document.py:1709 Pyblio/GnomeUI/Document.py:1716
 #, python-format
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
 msgstr ""
-"Nie je moænÈ sa pripojiª k LyXu: \n"
+"Nie je mo≈æn√© sa pripoji≈• k LyXu: \n"
 "%s"
 
 #. Save the graphical aspect of the interface
@@ -1801,17 +1917,26 @@ msgstr ""
 #. 2.- Proportion between list and text
 #. updates the index's config
 #. ...and the search window
-#: Pyblio/GnomeUI/Document.py:1365
+#. search the program in the current path
+#: Pyblio/GnomeUI/Document.py:1764
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+"Nain≈°talujte si pros√≠m bug-buddy,\n"
+"ak chcete pou≈æ√≠va≈• t√∫to vlastnos≈•"
+
+#: Pyblio/GnomeUI/Document.py:1775
 msgid "This program is copyrighted under the GNU GPL"
-msgstr "Tento program je autorsky chr·nen˝ cez GNU GPL"
+msgstr "Tento program je autorsky chr√°nen√Ω cez GNU GPL"
 
-#: Pyblio/GnomeUI/Document.py:1367
+#: Pyblio/GnomeUI/Document.py:1777
 msgid "Gnome interface to the Pybliographer system."
-msgstr "Gnome rozhranie pre systÈm Pybliographer."
+msgstr "Gnome rozhranie pre syst√©m Pybliographer."
 
-#: Pyblio/GnomeUI/Document.py:1372
+#: Pyblio/GnomeUI/Document.py:1782
 msgid "Pybliographer Home Page"
-msgstr "Domovsk· str·nka Pybliographera"
+msgstr "Domovsk√° str√°nka Pybliographera"
 
 #. This file is part of pybliographer
 #.
@@ -1835,28 +1960,28 @@ msgstr "Domovsk· str·nka Pybliographera"
 #. $Id$
 #: Pyblio/GnomeUI/Format.py:37
 msgid "Format entries"
-msgstr "Form·t poloæiek"
+msgstr "Form√°t polo≈æiek"
 
 #: Pyblio/GnomeUI/Format.py:51
 msgid "Bibliography style:"
-msgstr "©t˝l bibliografie:"
+msgstr "≈†t√Ωl bibliografie:"
 
 #: Pyblio/GnomeUI/Format.py:52
 msgid "Select style"
-msgstr "Zvoµte πt˝l"
+msgstr "Zvoƒæte ≈°t√Ωl"
 
 #: Pyblio/GnomeUI/Format.py:58
 msgid "Output format:"
-msgstr "V˝stupn˝ form·t:"
+msgstr "V√Ωstupn√Ω form√°t:"
 
 #. menu content
 #: Pyblio/GnomeUI/Format.py:75
 msgid "Output File:"
-msgstr "V˝stup do s˙boru:"
+msgstr "V√Ωstup do s√∫boru:"
 
 #: Pyblio/GnomeUI/Format.py:76
 msgid "Select output file"
-msgstr "Vyberte v˝stupn˝ s˙bor"
+msgstr "Vyberte v√Ωstupn√Ω s√∫bor"
 
 #. This file is part of pybliographer
 #.
@@ -1880,7 +2005,7 @@ msgstr "Vyberte v˝stupn˝ s˙bor"
 #. $Id$
 #: Pyblio/GnomeUI/Config.py:45
 msgid "Choose your preferences"
-msgstr "Zvoµte si svoje nastavenia"
+msgstr "Zvoƒæte si svoje nastavenia"
 
 #. Create the edition widget...
 #. helper button
@@ -1891,7 +2016,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Poloæka `%s':\n"
+"Polo≈æka `%s':\n"
 "\n"
 "%s"
 
@@ -1902,8 +2027,8 @@ msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
-"NiektorÈ zmeny si vyæaduj˙ znovuspustenie Pybliographicu,\n"
-"aby mohli byª spr·vne pouæitÈ"
+"Niektor√© zmeny si vy≈æaduj√∫ znovuspustenie Pybliographicu,\n"
+"aby mohli by≈• spr√°vne pou≈æit√©"
 
 #: Pyblio/GnomeUI/Config.py:249
 msgid "True"
@@ -1915,16 +2040,16 @@ msgstr "Nepravda"
 
 #: Pyblio/GnomeUI/Config.py:390
 msgid "Add"
-msgstr "Pridaª"
+msgstr "Prida≈•"
 
 #: Pyblio/GnomeUI/Config.py:393
 msgid "Update"
-msgstr "Aktualiz·cia"
+msgstr "Aktualiz√°cia"
 
 #: Pyblio/GnomeUI/Config.py:396 Pyblio/GnomeUI/Config.py:494
 #: Pyblio/GnomeUI/Fields.py:96 Pyblio/GnomeUI/Fields.py:239
 msgid "Remove"
-msgstr "Odstr·niª"
+msgstr "Odstr√°ni≈•"
 
 #: Pyblio/GnomeUI/Config.py:482
 msgid "Value"
@@ -1933,12 +2058,12 @@ msgstr "Hodnota"
 #: Pyblio/GnomeUI/Config.py:491 Pyblio/GnomeUI/Fields.py:93
 #: Pyblio/GnomeUI/Fields.py:236
 msgid "Set"
-msgstr "Nastaviª"
+msgstr "Nastavi≈•"
 
 #. Bottom
 #: Pyblio/GnomeUI/Config.py:507
 msgid "Key:"
-msgstr "Kl·vesa:"
+msgstr "Kl√°vesa:"
 
 #: Pyblio/GnomeUI/Config.py:509
 msgid "Value:"
@@ -1966,7 +2091,7 @@ msgstr "Hodnota:"
 #. $Id$
 #: Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"
-msgstr "Konfigur·cia polÌ"
+msgstr "Konfigur√°cia pol√≠"
 
 #. content of the dialog
 #: Pyblio/GnomeUI/Fields.py:59
@@ -1979,7 +2104,7 @@ msgstr "Typ"
 
 #: Pyblio/GnomeUI/Fields.py:70
 msgid "Name:"
-msgstr "N·zov:"
+msgstr "N√°zov:"
 
 #: Pyblio/GnomeUI/Fields.py:72
 msgid "Type:"
@@ -1987,15 +2112,15 @@ msgstr "Typ:"
 
 #: Pyblio/GnomeUI/Fields.py:198
 msgid "Entries configuration"
-msgstr "Konfigur·cia poloæiek"
+msgstr "Konfigur√°cia polo≈æiek"
 
 #: Pyblio/GnomeUI/Fields.py:209
 msgid "Entry"
-msgstr "Poloæka"
+msgstr "Polo≈æka"
 
 #: Pyblio/GnomeUI/Fields.py:220
 msgid "Entry Name:"
-msgstr "N·zov poloæky:"
+msgstr "N√°zov polo≈æky:"
 
 #: Pyblio/GnomeUI/Fields.py:225
 msgid "Status"
@@ -2029,11 +2154,11 @@ msgstr "Toto je %s, verzia %s"
 
 #: pybliographer.py:49 pybliographer.py:56
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
-msgstr "Toto je slobodn˝ softvÈr bez AKEJKO•VEK GARANCIE."
+msgstr "Toto je slobodn√Ω softv√©r bez AKEJKOƒΩVEK GARANCIE."
 
 #: pybliographer.py:50
 msgid "For details, type `warranty'."
-msgstr "Detaily sa zobrazia po napÌsanÌ `warranty'."
+msgstr "Detaily sa zobrazia po nap√≠san√≠ `warranty'."
 
 #. ---------- Lire les fichiers de conf
 #. Fichiers standards
@@ -2041,12 +2166,12 @@ msgstr "Detaily sa zobrazia po napÌsanÌ `warranty'."
 #: pybliographer.py:113 pybliographer.py:165
 #, python-format
 msgid "%s: error: can't open file `%s'"
-msgstr "%s: chyba: nie je moænÈ otvoriª s˙bor `%s'"
+msgstr "%s: chyba: nie je mo≈æn√© otvori≈• s√∫bor `%s'"
 
 #: pybliographer.py:126
 #, python-format
 msgid "For help, run %s and type `help' at the prompt"
-msgstr "Ak potrebujete pomoc, spustite %s a napÌπte `help'  do prÌkazovÈho riadku"
+msgstr "Ak potrebujete pomoc, spustite %s a nap√≠≈°te `help'  do pr√≠kazov√©ho riadku"
 
 #. ---------- Initialisation
 #: pybliographer.py:135
@@ -2055,9 +2180,9 @@ msgid ""
 "\thelp     to get some help\n"
 "\tquit     to quit\n"
 msgstr ""
-"UæitoËnÈ prÌkazy:\n"
-"\thelp     poskytne nejak˙ pomoc\n"
-"\tquit     ukonËenie programu\n"
+"U≈æitoƒçn√© pr√≠kazy:\n"
+"\thelp     poskytne nejak√∫ pomoc\n"
+"\tquit     ukonƒçenie programu\n"
 
 #. Quand on a tout lu, le programme est fini !
 #. ---------- Initialisations du parser
@@ -2122,7 +2247,7 @@ msgstr ""
 #. $Id$
 #: scripts/pybcompact.py:29
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
-msgstr "pouæitie: pybcompact <latexs˙bor> <bibtexs˙bory...>"
+msgstr "pou≈æitie: pybcompact <latexs√∫bor> <bibtexs√∫bory...>"
 
 #: scripts/pybcompact.py:33
 #, python-format
@@ -2139,7 +2264,7 @@ msgstr "pybcompact: chyba: %s\n"
 #. is there something to do ?
 #: scripts/pybcompact.py:96
 msgid "no entry"
-msgstr "bez poloæky"
+msgstr "bez polo≈æky"
 
 #. use the bibliographic databases in order of declaration
 #. to solve the references
@@ -2159,7 +2284,7 @@ msgstr "bez poloæky"
 #: scripts/pybcompact.py:141
 #, python-format
 msgid "can't find the following entries: %s"
-msgstr "nasleduj˙ poloæky nie je moænÈ n·jsª: %s"
+msgstr "nasleduj√∫ polo≈æky nie je mo≈æn√© n√°js≈•: %s"
 
 #. -*- python -*-
 #. This file is part of pybliographer
@@ -2184,11 +2309,11 @@ msgstr "nasleduj˙ poloæky nie je moænÈ n·jsª: %s"
 #. $Id$
 #: scripts/pybconvert.py:28
 msgid "usage: pybconvert <source>..<target> <input> [output]"
-msgstr "pouæitie: pybconvert <zdroj>..<cieµ> <vstup> [v˝stup]"
+msgstr "pou≈æitie: pybconvert <zdroj>..<cieƒæ> <vstup> [v√Ωstup]"
 
 #: scripts/pybconvert.py:37
 msgid "pybconvert: bad conversion format"
-msgstr "pybconvert: zl˝ konverzn˝ form·t"
+msgstr "pybconvert: zl√Ω konverzn√Ω form√°t"
 
 #. -*- python -*-
 #. This file is part of pybliographer
@@ -2213,7 +2338,7 @@ msgstr "pybconvert: zl˝ konverzn˝ form·t"
 #. $Id$
 #: scripts/pybformat.py:33
 msgid "usage: pybformat [bibtexfiles...]\n"
-msgstr "pouæitie: pybformat [bibtexs˙bory...]\n"
+msgstr "pou≈æitie: pybformat [bibtexs√∫bory...]\n"
 
 #: scripts/pybformat.py:37
 #, python-format
@@ -2231,7 +2356,7 @@ msgstr "pybformat: varovanie: %s\n"
 #: scripts/pybformat.py:140 scripts/pybtex.py:85
 #, python-format
 msgid "can't find style `%s'"
-msgstr "πt˝l `%s' sa ned· n·jsª"
+msgstr "≈°t√Ωl `%s' sa ned√° n√°js≈•"
 
 #. first, write the header
 #. write the data
@@ -2280,7 +2405,7 @@ msgstr "πt˝l `%s' sa ned· n·jsª"
 #. $Id$
 #: scripts/pybtex.py:33
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
-msgstr "pouæitie: pybtex <latexs˙bor> [bibtexs˙bory...]"
+msgstr "pou≈æitie: pybtex <latexs√∫bor> [bibtexs√∫bory...]"
 
 #: scripts/pybtex.py:37
 #, python-format
@@ -2295,23 +2420,16 @@ msgstr "pybtex: chyba: %s\n"
 #. warn the user that some entries were not found
 #: scripts/pybtex.py:58
 msgid "pybtex: warning: the following keys were not resolved"
-msgstr "pybtex: varovanie: nasleduj˙ce kµ˙Ëe neboli vyrieπenÈ"
+msgstr "pybtex: varovanie: nasleduj√∫ce kƒæ√∫ƒçe neboli vyrie≈°en√©"
 
 #. If the LaTeX document declares no style...
 #: scripts/pybtex.py:63
 msgid "no style defined"
-msgstr "æiadny πt˝l nie je definovan˝"
+msgstr "≈æiadny ≈°t√Ωl nie je definovan√Ω"
 
 #~ msgid "Submit a Bug Report"
-#~ msgstr "Vystaviª spr·vu o chybe"
+#~ msgstr "Vystavi≈• spr√°vu o chybe"
 
 #~ msgid "Search string"
-#~ msgstr "Hµadaª reªazec"
-
-#~ msgid ""
-#~ "Please install bug-buddy\n"
-#~ "to use this feature"
-#~ msgstr ""
-#~ "Nainπtalujte si prosÌm bug-buddy,\n"
-#~ "ak chcete pouæÌvaª t˙to vlastnosª"
+#~ msgstr "Hƒæada≈• re≈•azec"
 
