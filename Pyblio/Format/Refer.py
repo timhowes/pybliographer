@@ -78,9 +78,9 @@ class ReferIterator (Iterator.Iterator):
                 if type:
                     
                     if fields.has_key (type):
-                        fields [type].append (string.strip (data))
+                        fields [type].append (string.join (string.split (data), ' '))
                     else:
-                        fields [type] = [string.strip (data)]
+                        fields [type] = [string.join (string.split (data), ' ')]
                     
 
                 # determine the real type
