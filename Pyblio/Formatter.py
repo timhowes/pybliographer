@@ -18,16 +18,17 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 # 
 # $Id$
-
-''' This class defines certain graphical properties of output, in
-order to insulate a bibliographic style definition from its
-realization in a given language '''
-
+"""Contains the class Formatter.
+"""
 import sys
 
 from Pyblio import Autoload, Base
 
 class Formatter:
+
+''' This class defines certain graphical properties of output, in
+order to insulate a bibliographic style definition from its
+realization in a given language '''
 
     coding = 'Latin1'
     

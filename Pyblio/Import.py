@@ -60,16 +60,22 @@ class ImportReader (Iterator.Iterator):
     """
 
     def __init__ (self, control=None, options=None,
+                  interactive=0, 
                   file=None, data=None, iter=None,
                   *argv, **argh):
         
         """Input sources:
         -- file   a file name (url) or an open file *or*
         -- data   a sequence of lines *or*
-        -- iter   an iterator 
+        -- iter   an iterator
+
+        Interactive means:  
+        
         """
 
+        self.interactive = interactive
         self.entry = None
+        self.jentry = None
         self.control = control or Coco.Importer(
             title='Unspecified Import', options=options)
         self.options = options or _default_options
@@ -92,11 +98,16 @@ class ImportReader (Iterator.Iterator):
         else:
             self.source = None
             self.control.set_progress(0, -1)
+
         if iter:
             self.read_first = iter.first
             self.read_next = iter.next
         
         self.control.start()
+
+        # file_position
+        self.start_pos, self.end_pos = 0, 0
+        
         return
 
 ### The following need no change as a rule:
@@ -109,11 +120,17 @@ class ImportReader (Iterator.Iterator):
 
     def next (self, entry=None, data=None):
         """Process the next entry from the input source. Both
-        entry and data argument are provided for easy testing."""
+        entry and data argument are provided for easy testing.
+        For interactive use, self.parse is the right interface
+        to use.
 
+
+        """
+        
         entry = entry or self.next_entry()
-        data = data or self.read_next()
-
+        self.jentry = self.jentry or self.next_entry()
+        data = data or self.read_next(self.source)
+        
         if data :
             if self.options.has_key('preserve_input'):
                 entry.lines = data
@@ -133,8 +150,9 @@ class ImportReader (Iterator.Iterator):
 
     def next_entry (self):
         """Create a new empty entry for use by import routine."""
-        entry = Base.Entry()
-        print  'NEXT ENTRY: ', dir(entry), entry.__class__
+        entry = Base.Entry2(key=None)
+        #print  'NEXT ENTRY: ', dir(entry), entry.__class__, entry.key
+        
         return entry
     
 ### The following must be provided (if needed) by the derived class:
@@ -175,30 +193,47 @@ class ImportReader (Iterator.Iterator):
         characters. If a reader uses both, broken and unbroken
         input, it is to implement prepare_data to join the lines.
         
+        For interactive use, we need an indication of the text
+        reletive to the input as a whole, if the limits are in any way
+        subject to manual intervention.  For that purpose, we have
+        start_pos, end_pos with both set to zero in the trivial case.
+
+        So the interactive applicaton has to check end_pos to determine
+        if it is posssible to change the boundries of the input data.
+
+        The parsing routines are shielded from the input, they must
+        never access the input directly.
+        
+
         """
 
+        
+
+
         raise NotImplementedError
+
+    def read_next_indent(self, source):
+
+        """Read data with indented continuation lines."""
+
+        if not line :
+            line = source.readline()
+            self.line_counter += 1
+        lines = [line]
+        self.line_number = self.line_counter        
+        line = source.readline()
+        self.line_counter += 1
+        while line and line[0] in string.whitespace:
+            lines.append(line)
+            line = source.readline()
+            self.line_counter += 1
+            
+        
+        return lines
 
     def prepare_data(self, data):
         """Subclass overridable. Joins lines that were input broken."""
         return data
-
-def add_simple_field (entry, name, value, join=' '):
-    if entry.dict.has_key(name):
-        entry.dict[name] = Fields.Text(`entry.dict[name]` +
-                                       string.join(value,join))
-    else:
-        entry.dict[name] = Fields.Text(string.join(value,join))
-    return
-    
-def add_simple_field_nr (entry, name, value, join=' '):
-    if entry.dict.has_key(name):
-        print 'WARNING: attempt to add %s to field %s = %s' % (
-            value, name, entry.dict[name])
-    else:
-        entry.dict[name] = Fields.Text(string.join(value,join))
-    return
-
 
 def importer (name=None, control=None):
     """ Import from a file or an internal result set. Both

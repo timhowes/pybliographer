@@ -21,7 +21,7 @@
 
 from string import *
 
-from Pyblio import Key, Autoload, recode
+from Pyblio import Autoload, Key, recode
 
 _flat = recode.recode ('latin1..flat')
 
@@ -100,19 +100,22 @@ def generate_key (entry, table):
                 
 
     base = _flat (key)
-    key  = Key.Key (table, base)
-    
-    if table.has_key (key):
-	suff = ord ('a')
-	
-        while table.has_key (key):
-            suff = suff + 1
-            
-            if suff > ord ('z'):
-                suff = ord ('a')
-                base = base + 'a'
+    key  = Key.Key (table, base)  ### !!!!
 
-            key  = Key.Key (table, base + chr (suff))
+    try:
+        if table.has_key (key.key):
+            suff = ord ('a')
+    except TypeError:
+        if table.has_key (base):
+            suff = ord ('a')
+    while table.has_key (key.key):
+        suff = suff + 1
+            
+        if suff > ord ('z'):
+            suff = ord ('a')
+            base = base + 'a'
+
+        key  = Key.Key (table, base + chr (suff))
             
     return Key.Key (table, key)
 
@@ -132,3 +135,28 @@ class StringStream:
         return
 
     
+_BTX_DOWNCASE = {}
+
+    
+
+##################################################
+## taken from Python Cookbook Title: Hex dumper 
+##  Submitter: Sébastien Keim 
+##  Last Updated: 2002/08/05 
+##  Version no: 1.0 
+##  Category: Text 
+                                                               
+_DUMP_FILTER='................................ !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[.]^_`abcdefghijklmnopqrstuvwxyz{|}~.................................................................................................................................'
+
+def hex_dump(src, length=16):
+    N=0; result=''
+    while src:
+       s,src = src[:length],src[length:]
+       hexa = ' '.join(["%02X"%ord(x) for x in s])
+       #s = s.translate(_DUMP_FILTER)
+       result += "%04X   %-*s   %s\n" % (N, length*3, hexa, s)
+       N+=length
+    return result
+
+
+ 

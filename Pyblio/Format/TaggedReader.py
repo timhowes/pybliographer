@@ -36,6 +36,7 @@ XXXX Update description in Todo
 """
 from Pyblio import Import
 import re, string
+import traceback
 
 _discard_tag = []
 _discard_rx = ''
@@ -74,7 +75,10 @@ class TaggedReader(Import.ImportReader):
 
     def start_file (self, *args, **argh):
         if self.test_iso2709 (self.source):
-            pass
+            self.read_next = self.read_iso2709
+        else:
+            self.read_next = self.read_unpacked
+            
         
         
     def parse (self, e, x):
@@ -123,39 +127,63 @@ class TaggedReader(Import.ImportReader):
         
         raise NotImplementedError
 
-    def do_tag (self, tag, data):
-        #### ???? generically put the stuff into extra data 
-        raise NotImplementedError
+    def do_tag(self, tag, data):
+        """Process remaining tagged fields."""
+##         if self.option_keep == 0:
+##             pass
+##         elif self.option_keep == 1 and tag in standard_fields:
+##             self.add_extra (tag, data)
+##         elif self.option_keep == 2 and tag in extra-fields:
+##             self.add_extra (tag, data)
+##         else : # self.option_keep == 3:
+##              self.add_extra (tag, data)
+        # could go as well into base class ?
+        
+        # perhaps place here the old code
+        print 'DO TAG %s: %s' %(tag, `data`)
+        return
+    
 
-    def unpack_iso2709 (self, data):
+    def read_iso2709 (self, data):
     
         """Standard ISO 2709  unpack routine"""
-
+        starting_position = data.tell()
         leader = data.read(24)
-        length = int (leader[0:5])
-        basead = int (leader[12:17])
-        direct = data.read(basead - 24)
-        assert direct[-1] == ''
-        content= data.read(length - basead)
-        assert content [-1] == ''
+        if leader == '':
+            return None
+        try:
+            length = int (leader[0:5])
+            basead = int (leader[12:17])
+            direct = data.read(basead - 24)
+            content= data.read(length - basead)
+            assert direct[-1] == ''
+            assert content [-1] == ''
 
-        lines = [['', leader]]
+            lines = [['', leader]]
 
-        l1, l2, l3 = int(leader[20]), int(leader[21]), int(leader[22])
-        pos = 0
-        while pos < len(direct)-1:
-            p1 = pos + 3
-            p2 = p1 + l1
-            p3 = p2 + l2
-            p4 = p3 + l3
-            tag     = direct[pos:p1]
-            flength = int(direct[p1:p2]) - 1 # last character is 0x1d
-            fbegin  = int(direct[p2:p3])
-            pos = p4
-            lines.append((tag, content[fbegin: fbegin+flength]))
+            l1, l2, l3 = int(leader[20]), int(leader[21]), int(leader[22])
+            
+            pos = 0
+            while pos < len(direct)-1:
+                p1 = pos + 3
+                p2 = p1 + l1
+                p3 = p2 + l2
+                p4 = p3 + l3
+                tag  = direct[pos:p1]
+                flen = int(direct[p1:p2]) - 1 # last character is 0x1d
+                fbeg = int(direct[p2:p3])
+                pos = p4
+                subfields = string.split(content[fbeg:fbeg+flen],'\x1f')
+                #print subfields
+                addition = [tag,] + subfields
+                #print addition
+                lines.append(list(addition))
+                
+        except:
+            print traceback.print_exc()
         self.control.set_progress(add=length)
         return lines
-
+    
     def test_iso2709 (self, data):
 
         try:
@@ -169,5 +197,13 @@ class TaggedReader(Import.ImportReader):
         except : pass # traceback.print_exc()
         return None
 
- 
+    def read_unpacked (self, data):
+        """Read unpacked MARC and similar data as typically printed."""
+        
+        lines = []
+        line = data.readline()
+
+        while line:
+            print line[:-1]
             
+        return lines

@@ -28,7 +28,7 @@
 
 """
 import array, cStringIO, cPickle, os.path, string, struct, sys, types
-
+import warnings
 from  bsddb3 import db, dbobj, dbshelve
 
 from Pyblio import Storage
@@ -61,6 +61,7 @@ class DBase (Storage.DBaseI):
     """
     def __init__ (self, path=None, new_item=None):
         self.path = path
+        self._idx = {}
         Storage.DBaseI.__init__(self, path, "DB3")
 
         if path:
@@ -71,8 +72,13 @@ class DBase (Storage.DBaseI):
             from Pyblio import Base
             self.new_item = Base.Entry2
             
-    def open (self, path):
+            
+    def open (self, path, purge=0):
         self.path = path
+        if purge:
+            self.purge_database()
+        print 'DB3OPEN: path=%s contains %s' %(path, os.listdir(path))
+        
         self._pdb = self.db3open('PDB01', db.DB_BTREE)
         self._adb = self.db3open('AUT01', db.DB_BTREE)
         self._kdb = self.db3open('KEY01', db.DB_BTREE)
@@ -86,12 +92,15 @@ class DBase (Storage.DBaseI):
         self.tmpcnt = Counter(self._cnf, 'SZT', 0)
         return
     
-    def mk_index (self, name):
-        c = self.connectx (name)
-       
-        idx = Index (self, c[0], name, **c[1])
-        return idx 
+    def iterator (self):
+        return CursorSet(parent=self, file=self._pdb)
 
+    def get_index (self, name):
+        if self._idx.has_key(name):
+            return self._idx[name]
+        else:
+            return self.mk_index(name)
+        
     def close (self):
         self._pdb.close()
         self._adb.close()
@@ -100,7 +109,23 @@ class DBase (Storage.DBaseI):
         self._rdb.close()
         self._tdb.close()
         self._cnf.close()
-       
+        print 'ALL CLOSED'
+        
+    def purge_data_base(self):
+
+        if os.path.isdir(self.path):
+            for i in os.listdir(self.path):
+                print i, '*del*', os.path.join(self.path,i)
+                os.remove(os.path.join(self.path,i))
+        else:
+            os.mkdir(self.filepath)
+
+    def check_database(self):
+        if os.path.isdir(self.path):
+            if 'CNF01' in os.listdir(self.path):
+                return 1
+
+
     def connectx (self, index):
 
         """Return an object that can be used to store index data.
@@ -112,19 +137,25 @@ class DBase (Storage.DBaseI):
         """
 
         assoc = {
-            'author': [self._adb, {} ],
-            'title': [self._tdb, {}  ],
-            'issn': [self._ndb, {
+            'author': [None, self._adb, {} ],
+            'title': [None, self._tdb, {}  ],
+            'issn': [None, self._ndb, {
                 'title': 'International Standard Serial Number',
                 'subid': 22}],
-            'isbn': [self._ndb, {
+            'isbn': [None, self._ndb, {
                 'title': 'International Standard Book Number',
                 'subid': 20}],
-            'btxkey': [self._ndb, {'subid': '#'}],
-            'citedref': [self._kdb, {'subid': '@'} ],
+            'btxkey': [None, self._ndb, {'subid': '#'}],
+            'citedref': [None, self._kdb, {'subid': '@'} ],
             }
 
         return assoc[index]
+
+    def mk_index (self, name):
+        c = self.connectx (name)
+        Klasse = c[0] or Index
+        idx = Klasse (self, c[1], name, **c[2])
+        return idx 
 
     def newid (self, temp=0):
         
@@ -141,9 +172,14 @@ class DBase (Storage.DBaseI):
         This  implementation uses cPickle to do so.
         
         """
+        dico = {}
+        for i in item.dict.keys():
+            dico[i] = str(item.dict[i])
+            #assert  i != 'date' or type(dico[i]) != type('')
+                
         key = self.mkkey(rid)
         data = ['B\0\0\0\0\0\0\0\0\0', str(item.key.key),
-                str(item.type.name), item.dict]
+                str(item.type.name), dico]#item.dict]
         self._pdb[key] = cPickle.dumps(data)
 
         return
@@ -152,15 +188,19 @@ class DBase (Storage.DBaseI):
         return struct.pack ('L', rid)
 
     def get (self, rid, new_item=None):
-        print self.read(rid)
+
         return self.load(rid, self.read(rid)) 
     
     def read (self, rid):
         key = self.mkkey(rid)
-        return self._pdb[key]
+        data = self._pdb[key]
+        #print data [0:30]
+        return data
     
-    def load (self, item, rid, data, new_item=None):  
+    def load (self, rid, data, new_item=None):  
 
+        if type(data) != type(''):
+            return data
         if new_item:
             item = new_item()
         else:
@@ -220,29 +260,28 @@ class Index (Storage.DBIndexI) :
         subclass ids (if this is not already done)."""
         return value
 
-    def put (self, rid, *keys):
+    def put (self, db_id, *keys):
         
-        print 'PUT %s INDEX %d %s' %(self.title, rid, keys)
-        #assert type (rid) == type(1L)
+        #assert type (db_id) == type(1L)
 
         if type (keys) == types.StringType:
             keys = [keys]
         ret = None
 
         for k in map (self.modify, keys):
-            print 'try add key:', k,
+
             numbers = self.get(k)
-            if rid in numbers:
+            if db_id in numbers:
                 pass
             else:
                 #recheck!!!!
                 for i in numbers:
-                    if i == rid:
+                    if i == db_id:
                         print "ERROR: %d in $s => %d, but $d found" %(
-                            rid, numbers, (rid in numbers), i) 
+                            db_id, numbers, (db_id in numbers), i) 
                         break
                 else: #### not found
-                    numbers.append(rid)
+                    numbers.append(db_id)
                     numbers.sort()
                     ret = self.db.put(k, self.pack(numbers))
                     if ret:
@@ -260,10 +299,37 @@ class Index (Storage.DBIndexI) :
 
         data_bin = apply(self.db.get,[key] +  list(args), kw)
         return self.unpack(data_bin)
+
+    def remove (self, db_id, keys): 
+        print 'Remove %s Index %d %s' %(self.title, db_id, keys)
+        #assert type (db_id) == type(1L)
+
+        if type (keys) == types.StringType:
+            keys = [keys]
+        ret = None
+
+        for k in map (self.modify, keys):
+            numbers = self.get(k)
+            try:
+                numbers.remove(db_id)
+            except ValueError:
+                warnings.warn("Attempt to remove inexisting id")
+                print numbers
+            
+            ret = self.db.put(k, self.pack(numbers))
+            if ret:
+                print "WARNING: return code from self.db.put is %s"%(
+                    `ret`)
+            print numbers
+
+    def has_key (self, key):
+        return self.db.has_key (key)
         
     def pack (self, list):
-        data = array.array('L', list)
-        return data
+        if list:
+            data = array.array('L', list)
+            return data
+        
     
     def unpack(self, rec):
         """Unpack index lists. Return empty list if given None."""
@@ -292,7 +358,6 @@ class Counter (Storage.CounterI):
     def _set (self, value):
         self._value = value
         self.db[self.key] = struct.pack('L', value)
-        print '*Counter set:*', value, self.db[self.key]
         return value
     
     def _get (self, initial):
@@ -304,7 +369,38 @@ class Counter (Storage.CounterI):
 
     
 
-        
+#             Cursor Set
+#--------------------------------------------------
 
-            
+
+class CursorSet (Storage.DBCursorSet):
+
+    def __init__ (self, parent=None, file=None):
+        assert parent and file, 'Missing parameter'
+        self._db = parent
+        self.dbfile = file
+        self.cursor = self.dbfile.cursor()
+        
+    def load_from_cursor(self, pair):
+        if pair:
+            db_id = struct.unpack('L', pair[0])[0]
+            item = self._db.new_item()
+            item._id = db_id
+            item = self._db.load (item, db_id, pair[1])
+            return item
+        else:
+           self.close()
+           return None
+
+    def first (self):
+        p = self.cursor.first()
+        return self.load_from_cursor(p)
+
+    def next (self):
+        p = self.cursor.next()
+        return self.load_from_cursor(p)
+
+    
+
+    
 
