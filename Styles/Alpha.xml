@@ -222,7 +222,7 @@ In <content/>, <singular>editor</singular><plural>editors</plural>
 </inentry>
 
 <inentry name="manual">
-<infield name="oganization">
+<infield name="organization">
 <content/>
 <infield name="address">, <content/></infield>
 <infield name="edition">, <content/></infield>
