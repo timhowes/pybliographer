@@ -9,9 +9,6 @@ def utf (txt):
 
 class Database (api.Database):
 
-    update_info = string.replace ('''
-    ''', "'", "''")
-
     tables = (
         # This sequence is used to provide unique primary keys
         '''CREATE SEQUENCE id''',
@@ -169,7 +166,7 @@ class Database (api.Database):
     def query (self, query = None, order = None):
 
         q = "SELECT id, type FROM record"
-        return ResultSet (self._db, q)
+        return ResultSet (self._db, q, [])
 
 
 
@@ -249,6 +246,16 @@ class Record (object):
         return
 
 
+    def related (self):
+        ''' Return a ResultSet of all the related records '''
+        
+        q = ("SELECT l.role, l.id, r.type FROM record_link l, record r "
+             "WHERE r.id = l.rec_b AND l._rec_a = %s")
+        args = [ self.id ]
+        
+        return RelatedResultSet (self.db._db, q, args)
+
+
     def attributes (self):
         ret = []
         
@@ -298,6 +305,8 @@ class Item (Record, api.Item):
 
 class ResultSet (api.ResultSet):
 
+    ''' This result set can handle queries that return records '''
+    
     _assoc = {
         'w': Work,
         'e': Expression,
@@ -305,11 +314,11 @@ class ResultSet (api.ResultSet):
         'i': Item,
         }
     
-    def __init__ (self, db, q):
+    def __init__ (self, db, q, args):
         self._db = db
         self._op = db.cursor ()
 
-        self._op.execute (q)
+        self._op.execute (q, args)
         return
 
     def next (self):
@@ -320,6 +329,34 @@ class ResultSet (api.ResultSet):
         r = self._assoc [row [1]] ()
         r._fill (self._db, row [0])
         return r
+    
+        
+class RelatedResultSet (api.ResultSet):
+
+    ''' This result set can handle queries that return records '''
+    
+    _assoc = {
+        'w': Work,
+        'e': Expression,
+        'm': Manifestation,
+        'i': Item,
+        }
+    
+    def __init__ (self, db, q, args):
+        self._db = db
+        self._op = db.cursor ()
+
+        self._op.execute (q, args)
+        return
+
+    def next (self):
+        row = self._op.fetchone ()
+        if row is None:
+            raise StopIteration ()
+
+        r = self._assoc [row [2]] ()
+        r._fill (self._db, row [1])
+        return (row [0], r)
     
         
 class Type (object):

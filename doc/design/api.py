@@ -82,15 +82,22 @@ class Record (object):
         pass
 
     def attributes (self):
-        ''' Return all the attributes of a Record '''
+        ''' Return a list of all the attributes of a Record '''
         return []
     
+    def related (self):
+        ''' Return a ResultSet of all the related records '''
+        pass
 
+    
 class Work (Record):
     
     def __init__ (self):
         Record.__init__ (self)
         return
+
+    def __repr__ (self):
+        return 'Work (id = %d)' % self.id
 
 
 class Expression (Record):
@@ -99,6 +106,8 @@ class Expression (Record):
         Record.__init__ (self)
         return
 
+    def __repr__ (self):
+        return 'Expression (id = %d)' % self.id
 
 class Manifestation (Record):
     
@@ -106,6 +115,8 @@ class Manifestation (Record):
         Record.__init__ (self)
         return
 
+    def __repr__ (self):
+        return 'Manifestation (id = %d)' % self.id
 
 class Item (Record):
 
@@ -113,6 +124,9 @@ class Item (Record):
         Record.__init__ (self)
         return
     
+    def __repr__ (self):
+        return 'Item (id = %d)' % self.id
+
 
 class Role (object):
 
@@ -183,6 +197,12 @@ class Person (Actor):
         if last:   self.last   = last
         return
 
+    def __repr__ (self):
+        return 'Person (%s, %s, %s)' % (`self.first`,
+                                        `self.middle`,
+                                        `self.last`)
+
+
 
 class Corporate (Actor):
     def __init__ (self):
@@ -205,6 +225,10 @@ class Text (Type):
         if text: self.text = text
         if lang: self.lang = lang
         return
+
+    def __repr__ (self):
+        return 'Text (%s, lang = %s)' % (`self.text`,
+                                         `self.lang`)
 
 
 class Date (Type):
