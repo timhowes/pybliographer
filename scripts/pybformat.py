@@ -1,4 +1,3 @@
-#! /usr/local/bin/pybliographer -q
 # -*- python -*-
 # This file is part of pybliographer
 # 

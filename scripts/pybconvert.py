@@ -1,4 +1,3 @@
-#! @bin_dir@/pybliographer -q
 # -*- python -*-
 # This file is part of pybliographer
 # 

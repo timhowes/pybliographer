@@ -1,5 +1,4 @@
-#! @bin_dir@/pybliographer -q
-
+# -*- python -*-
 # This file is part of pybliographer
 # 
 # Copyright (C) 1998 Frederic GOBRY
