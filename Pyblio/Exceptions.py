@@ -40,6 +40,9 @@ class ParserError (Exception):
     def __repr__ (self):
         return format (self.file, self.errors)
 
+    def __str__ (self):
+        return format (self.file, self.errors)
+
 
 class SimpleError (Exception):
     pass

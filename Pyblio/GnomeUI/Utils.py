@@ -23,7 +23,7 @@
 
 import os
 
-import gtk
+import gtk, pango
 import gtk.glade
 
 from gnome import ui
@@ -172,26 +172,43 @@ def popup_add (menu, item, action = None, argument = None):
 
 
 def error_dialog (title, err, parent = None):
-    dialog = GnomeDialog (title, STOCK_BUTTON_CLOSE)
-    dialog.set_close (TRUE)
-    dialog.set_usize (500, 300)
+
+    dialog = \
+           gtk.MessageDialog (parent,
+                              gtk.DIALOG_MODAL |
+                              gtk.DIALOG_DESTROY_WITH_PARENT,
+                              gtk.MESSAGE_ERROR,
+                              gtk.BUTTONS_CLOSE,
+                              title)
     
-    if parent:
-        dialog.set_parent (parent)
-        
-    text = Text ()
-    text.insert_defaults (_("The following errors occured:\n\n"))
-    text.insert (None, color ['red'], None, str (err))
+    buff = gtk.TextBuffer ()
+    title = buff.create_tag ('title', weight = pango.WEIGHT_BOLD)
+
+    text = gtk.TextView ()
+    text.set_editable (False)
+    text.set_cursor_visible (False)
+    text.set_buffer (buff)
+
+    iter = buff.get_start_iter ()
     
-    holder = ScrolledWindow ()
+    buff.insert_with_tags (iter, _("The following errors occured:\n"),
+                           title)
+    
+    buff.insert (iter, str (err))
+    
+    holder = gtk.ScrolledWindow ()
     holder.set_policy (gtk.POLICY_AUTOMATIC,
                        gtk.POLICY_AUTOMATIC)
     holder.add (text)
     
     dialog.vbox.pack_start (holder)
+    holder.show_all ()
     
-    dialog.show_all ()
+    dialog.run ()
+    dialog.destroy ()
+    
     return
+
 
 color = {}
 

@@ -697,7 +697,7 @@ class NativeEditor (Connector.Publisher):
         self.database = database
 
         if database.has_key (entry.key):
-            self.original = database.get_native (entry.key)
+            self.original = database.get_native (entry)
         else:
             self.original = ''
         
@@ -722,9 +722,9 @@ class NativeEditor (Connector.Publisher):
         try:
             new = self.database.create_native (text)
             
-        except Exceptions.ParserError, error:
+        except Exceptions.ParserError, msg:
             Utils.error_dialog (_("Error in native string parsing"),
-                                str (error))
+                                str (msg))
         return new
 
     
@@ -775,6 +775,9 @@ class Editor (Connector.Publisher):
         self.database    = database
         self.editor      = None
 
+        # this is the working copy of the entry
+        self.current     = copy.deepcopy (entry)
+        
         # put the negated value, so that we can call toggle to switch and create
         self.native_mode = not (self.has_native and
                                 Config.get ('gnome/native-as-default').data)
@@ -789,26 +792,45 @@ class Editor (Connector.Publisher):
         self.save_size ()
         
         if self.native_mode:
+
+            if self.editor:
+                cur = self.editor.update (self.database, self.current)
+
+                # Reject the switch if the data is invalid
+                if cur is None: return
+                
+                self.editor.w.destroy ()
+                self.current = cur
+                
             # real edition
             self.native_mode = False
+            
             if self.has_native:
                 self.native_b.get_children () [0].set_text (_("Native Editing"))
 
-            if self.editor: self.editor.w.destroy ()
-            self.editor = RealEditor (self.database,
-                                      copy.deepcopy (self.entry))
+            
+            self.editor = RealEditor (self.database, self.current)
             
             ui_width  = Utils.config.get_int ('/apps/pybliographic/editor/width')  or -1
             ui_height = Utils.config.get_int ('/apps/pybliographic/editor/height') or -1
+
         else:
+            if self.editor:
+                cur = self.editor.update (self.database, self.current)
+
+                # Reject the switch if the data is invalid
+                if cur is None: return
+                
+                self.editor.w.destroy ()
+                self.current = cur
+
             # native edition
             self.native_mode = True
+
             if self.has_native:
                 self.native_b.get_children () [0].set_text (_("Standard Editing"))
             
-            if self.editor: self.editor.w.destroy ()
-            self.editor = NativeEditor (self.database,
-                                        copy.deepcopy (self.entry))
+            self.editor = NativeEditor (self.database, self.current)
 
             ui_width  = Utils.config.get_int ('/apps/pybliographic/native/width')  or -1
             ui_height = Utils.config.get_int ('/apps/pybliographic/native/height') or -1
@@ -857,7 +879,7 @@ class Editor (Connector.Publisher):
 
 
     def apply_changes (self, * arg):
-        new = self.editor.update (self.database, self.entry)
+        new = self.editor.update (self.database, self.current)
         if new:
             self.close_dialog ()
             if new is not self.entry:

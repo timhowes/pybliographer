@@ -417,11 +417,11 @@ class DataBase (Base.DataBase):
 	       (self.key, len (self))
 
 
-    def get_native (self, key):
+    def get_native (self, entry):
 	''' Return the object in its native format '''
 
 	stream = Utils.StringStream ()
-	entry_write (self.dict [key], stream)
+	entry_write (entry, stream)
 
 	return stream.text
 
