@@ -21,19 +21,28 @@
 
 ''' Defines a Dialog to format a subset of entries as a bibliography '''
 
-from gtk import *
-from gnome.ui import *
+import gtk
+from gnome import ui
 
-import gettext, string, os
-_ = gettext.gettext
+import string, os
 
 from Pyblio import Connector, version, Autoload
 from Pyblio.GnomeUI import Utils
 
-class FormatDialog (Connector.Publisher):
 
+class FormatDialog (Connector.Publisher, Utils.GladeWindow):
+
+    gladeinfo = { 'file': 'format.glade',
+                  'root': '_w_format',
+                  'name': 'format'
+                  }
+    
     def __init__ (self, parent = None):
 
+        Utils.GladeWindow.__init__ (self, parent)
+
+        return
+    
         self.w = GnomeDialog (_("Format entries"),
                               STOCK_BUTTON_OK,
                               STOCK_BUTTON_CANCEL)
@@ -87,7 +96,7 @@ class FormatDialog (Connector.Publisher):
     
 
     def show (self):
-        self.w.show ()
+        self._w_format.show ()
         return
     
 
@@ -104,5 +113,6 @@ class FormatDialog (Connector.Publisher):
     
 
     def close (self, * arg):
-        self.w.close ()
+        self.size_save ()
+        self._w_format.close ()
         return
