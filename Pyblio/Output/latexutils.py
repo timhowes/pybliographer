@@ -20,9 +20,7 @@
 # $Id$
 
 import string, os, re, copy
-from Pyblio import Base
-
-from Pyblio.TextUI import *
+from Pyblio import Base, Key, Open
 
 # regular expression to match in the .aux file
 citation_re = re.compile ('^\\\\citation\\{([^\\}]+)\\}')
@@ -39,23 +37,24 @@ def find_entries (auxfile, bibtex):
 
     if not bibtex:
         bibtex = data
+
+    # we have to create a Reference database to hold the entries contained in the
+    # current database.
+    r    = Base.DataBase (None)
+    keys = copy.copy (entries)
     
     # is there something to do ?
-    if len (entries) == 0:
-        sys.stderr.write ("pybcompact: no entry\n")
-        sys.exit (0)
+    if len (entries) == 0: return r, style, entries
 	
     # use the bibliographic databases in order of declaration
     # to solve the references
 	
-    # we have to create a Reference database to hold the entries contained in the
-    # current database.
-    r = Base.Reference ()
-	    
     for bib in bibtex:
+        (root, ext) = os.path.splitext (bib)
+        if not ext: ext = '.bib'
         
         # open the database
-        db = bibopen (bib)
+        db = Open.bibopen (root + ext)
 
         # as we are modifying the list of entries in this loop, we make a copy
         # of it in order to avoir strange behaviors
@@ -65,13 +64,13 @@ def find_entries (auxfile, bibtex):
         for e in orig:
 	
             # create a key in the current database
-            key = Base.Key (db, e)
+            key = Key.Key (db, e)
             
             # does the database provide the key ?
             if db.has_key (key):
 	            
                 # yes, add it to the reference
-                r.add (db, key)
+                r [Key.Key (None, e)] = db [key]
                 
                 # and remove it from the list
                 entries.remove (e)
@@ -80,7 +79,10 @@ def find_entries (auxfile, bibtex):
         if len (entries) == 0: break
 
     # return the reference on all the entries, plus the missing ones
-    return r, style, entries
+    keys = filter (lambda x, entries = entries: not entries.count (x), keys)
+    keys = map (lambda x, r = r: Key.Key (r, x), keys)
+
+    return r, keys, style, entries
 
 
 def list_entries (file):
@@ -94,12 +96,7 @@ def list_entries (file):
             data  = None
             style = None
             
-        try:
-            aux = open (auxfile, 'r')
-        except IOError, err:
-            sys.stderr.write ("pybcompact:%s: %s\n" % (auxfile, err))
-            return []
-	    
+        aux = open (auxfile, 'r')
         citations = []
 	
         # parse the whole file
