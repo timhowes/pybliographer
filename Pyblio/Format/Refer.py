@@ -112,7 +112,7 @@ class ReferIterator (Iterator.Iterator):
                 entry = Types.get_entry (type)
 
                 for f in fields.keys ():
-                    type = entry (f)
+                    type = Types.get_field (f).type
                     
                     if type == Fields.AuthorGroup:
                         group = Fields.AuthorGroup ()
@@ -171,7 +171,7 @@ def writer (iter, output):
             field = mapping [key] [0]
             
             if entry.has_key (field):
-                type = entry.type (field)
+                type = Types.get_field (field).type
                 
                 if type == Fields.AuthorGroup:
                     # one field per author
