@@ -5,7 +5,7 @@
   
   <module name="generic">
     <define field="author">initials_authors</define>
-    <define field="editor">initials_authors</define>
+    <define field="editor">first_last_initials_authors</define>
     <define field="date">european_date</define>
     <define method="keys">string_keys</define>
   </module>
