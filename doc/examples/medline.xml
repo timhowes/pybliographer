@@ -1,11 +1,51 @@
 <?xml version="1.0"?>
 
-<PyblioQuery>
- <Connection type="medline">
+<Connection>
   <Name>Medline</Name>
-  
-  <Host>medline.toto.com</Host>
 
-  <Parameter name="a"></Parameter>
- </Connection>
-</PyblioQuery>
+  <Server type="medline">
+    <Host>medline.toto.com</Host>
+    <Parameter name="a"></Parameter>
+  </Server>
+
+  <Query>
+    <Default>
+      <!-- Dynamic number of fields, connected by boolean connectors -->
+      <Fields max="4">
+        <Title></Title>
+	
+	<!-- Common operators -->
+        <Operator name="equal">Matches</>
+
+	<!-- A single field entry with its specific operators -->        
+        <Field name="author" type="text">
+	  <Title>Author</Title>
+	  <Operator name="like">Like</>
+	</Field>
+
+        <Field name="date" type="date">
+	  <Title>Publication Date</Title>
+	  <Operator name="before">Before</>
+	  <Operator name="after">After</>
+	</Field>
+      </Fields>
+
+      <Group>
+        <Title></Title>
+        <Selection name="language">
+	  <Title>Select Language</Title>
+	  <Item name="french">French</Item>
+	</Selection>
+
+	<Toggle name="abstracts" default="true">
+	  <Title>Only with abstracts</Title>
+	</Toggle>
+      </Group>
+
+    </Default>
+
+    <Extra>
+    
+    </Extra>
+  </Query>
+</Connection>
