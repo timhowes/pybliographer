@@ -74,7 +74,6 @@ sys.path.append (lib_pybdir)
 sys.path.insert (0, '.')
 sys.path.insert (0, './compiled')
 
-
 optlist, args = getopt.getopt (sys.argv [1:],
 			       'qf:nvh',
 			       ['quiet',
@@ -83,6 +82,9 @@ optlist, args = getopt.getopt (sys.argv [1:],
 				'help'])
 
 sys.argv = sys.argv [0:1] + args
+try:
+	sys.argv.remove ('--')
+except ValueError: pass
 
 quiet = 0
 
@@ -146,11 +148,10 @@ for filename in sources:
 		pass
 	else:
 		execfile (filename, user_global)
-
+		
 # Fichiers passes en argument au programme
 if len (args) > 0 :
 	filename = args [0]
-	
 	try:
 		os.stat (filename)
 	except os.error:
