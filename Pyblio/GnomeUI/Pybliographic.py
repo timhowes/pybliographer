@@ -27,6 +27,7 @@ from Pyblio.GnomeUI import Document
 from Pyblio import Base
 
 from gtk import *
+from gnome import config
 
 class Pybliographic:
     ''' Main class holding all the documents and performing
@@ -36,6 +37,7 @@ class Pybliographic:
         self.version   = version
         self.documents = []
 
+        self.opened = list (config.get_vector ('Pybliographic/Base/History='))
         return
 
     def new_document (self, * arg):
@@ -44,12 +46,32 @@ class Pybliographic:
 
         # register several callbacks
         doc.Subscribe ('new-document',     self.new_document)
+        doc.Subscribe ('open-document',    self.cb_open_document)
         doc.Subscribe ('close-document',   self.close_document)
         doc.Subscribe ('exit-application', self.exit_application)
 
+        doc.update_history (self.opened)
+        
         self.documents.append (doc)
         return doc
 
+    def cb_open_document (self, doc):
+        ''' a document has been opened '''
+
+        file = str (doc.data.key)
+        
+        try:
+            self.opened.remove (file)
+        except ValueError:
+            pass
+        
+        self.opened.insert (0, file)
+
+        # warn all the documents
+        for doc in self.documents:
+            doc.update_history (self.opened)
+        return
+    
     def open_document (self, url, how = None):
         doc = self.new_document ()
         doc.open_document (url, how)
@@ -71,8 +93,13 @@ class Pybliographic:
         self.documents.remove (document)
         return
 
+
     def exit_application (self, document):
         document.update_configuration ()
+        
+        config.set_vector ('Pybliographic/Base/History=',
+                           self.opened [0:10])
+        config.sync ()
         
         for doc in self.documents:
             if not doc.close_document_request ():

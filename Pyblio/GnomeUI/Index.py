@@ -185,7 +185,7 @@ class Index (Connector.Publisher):
     def click_column (self, clist, column, * data):
         ''' handler for column title selection '''
         
-        self.issue ('sort-by-field', self.fields [column])
+        self.issue ('click-on-field', self.fields [column])
         return
 
     
@@ -208,6 +208,13 @@ class Index (Connector.Publisher):
         
         return map (lambda x, self=self: self.access [x],
                     self.clist.selection)
+
+
+    def select_all (self):
+        ''' select all the lines of the index '''
+        
+        self.clist.select_all ()
+        return
 
     
     def button_press (self, clist, event, *arg):

@@ -19,15 +19,14 @@
 # 
 # $Id$
 
-''' This module defines a Document class, corresponding to a
-GnomeMDI Child '''
+''' This module defines a Document class '''
 
 from gnome.ui import *
 from gtk import *
 from gnome import config
 
 from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector
-from Pyblio import Connector, Open, Exceptions
+from Pyblio import Connector, Open, Exceptions, Selection, Sort
 
 import gettext, os, string
 
@@ -72,6 +71,7 @@ class Document (Connector.Publisher):
             UIINFO_ITEM_STOCK(_("Delete"), None, self.delete_entry, STOCK_MENU_TRASH),
             UIINFO_SEPARATOR,
             UIINFO_MENU_FIND_ITEM (self.find_entries),
+            UIINFO_ITEM           (_("Sort..."),None, self.sort_entries),
             ]
 
         menus = [
@@ -104,6 +104,7 @@ class Document (Connector.Publisher):
         self.index.Subscribe ('select-entry',   self.update_display)
         self.index.Subscribe ('select-entries', self.freeze_display)
         self.index.Subscribe ('drag-received',  self.drag_received)
+        self.index.Subscribe ('click-on-field', self.sort_by_field)
 
         # The text area
         self.display = Entry.Entry ()
@@ -120,27 +121,49 @@ class Document (Connector.Publisher):
         self.w.set_statusbar  (self.statusbar)
 
         # set window size
-        ui_width  = config.get_int ('Pybliographer/UI/Width=-1')
-        ui_height = config.get_int ('Pybliographer/UI/Height=-1')
+        ui_width  = config.get_int ('Pybliographic/UI/Width=-1')
+        ui_height = config.get_int ('Pybliographic/UI/Height=-1')
 
         if ui_width != -1 and ui_height != -1:
             self.w.set_default_size (ui_width, ui_height)
 
         # set paned size
-        paned_height = config.get_int ('Pybliographer/UI/Paned=-1')
+        paned_height = config.get_int ('Pybliographic/UI/Paned=-1')
         self.paned.set_position (paned_height)
         
         self.w.show_all ()
         
         # application variables
-        self.data    = database
-        self.version = version
+        self.data      = database
+        self.version   = version
+        self.selection = Selection.Selection ()
+        
         self.changed = 0
 
         self.redisplay_index ()
         return
 
 
+    def update_history (self, history):
+        ''' fill the " Previous Documents " menu with the specified list of documents '''
+        
+        self.w.remove_menus (_("File") + '/' + _("Previous Documents") + '/',
+                             100)
+
+        menuinfo = []
+        for item in history:
+            def callback (widget, self = self, file = item):
+                if not self.confirm (): return
+                self.open_document (file)
+                return
+
+            menuinfo.append (UIINFO_ITEM_STOCK (item, None, callback, STOCK_MENU_OPEN))
+
+        self.w.insert_menus (_("File") + '/' + _("Previous Documents") + '/',
+                             menuinfo)
+        return
+
+    
     def redisplay_index (self, changed = -1):
         ''' redisplays the index. If changed is specified, set the
         self.changed status to the given value '''
@@ -148,7 +171,7 @@ class Document (Connector.Publisher):
         if changed != -1:
             self.changed = changed
         
-        self.index.display (self.data.iterator ())
+        self.index.display (self.selection.iterator (self.data.iterator ()))
         self.update_status ()
         return
 
@@ -208,7 +231,11 @@ class Document (Connector.Publisher):
         
         try:
             data = Open.bibopen (url, how = how)
-        except (Exceptions.ParserError, Exceptions.FormatError), error:
+            
+        except (Exceptions.ParserError,
+                Exceptions.FormatError,
+                Exceptions.FileError), error:
+            
             Utils.set_cursor (self.w, 'normal')
             Utils.error_dialog (_("Open error"), error)
             return
@@ -269,6 +296,7 @@ class Document (Connector.Publisher):
         if self.data.key is None:
             # we wrote an anonymous database. Lets reopen it !
             self.data = Open.bibopen (url, how = how)
+            self.issue ('open-document', self)
             
         Utils.set_cursor (self.w, 'normal')
 
@@ -312,10 +340,25 @@ class Document (Connector.Publisher):
         pass
     
     def clear_entries (self, * arg):
-        pass
+        if len (self.data) == 0: return
+
+        cb = Utils.Callback ()
+        self.w.question (_("Really remove all the entries ?"), cb.callback)
+
+        if not cb.answer (): return
+
+        keys = self.data.keys ()
+        for key in keys:
+            del self.data [key]
+
+        self.redisplay_index (1)
+        return
+    
     
     def select_all_entries (self, * arg):
-        pass
+        self.index.select_all ()
+        return
+    
     
     def add_entry (self, * arg):
         pass
@@ -347,7 +390,14 @@ class Document (Connector.Publisher):
     def find_entries (self, * arg):
         pass
 
-    
+    def sort_entries (self, * arg):
+        pass
+
+    def sort_by_field (self, field):
+        self.selection.sort = Sort.Sort ([Sort.FieldSort (field)])
+        self.redisplay_index ()
+        return
+        
     def update_display (self, entry):
         self.display.display (entry)
         return
@@ -364,12 +414,12 @@ class Document (Connector.Publisher):
         # Save the graphical aspect of the interface
         # 1.- Window size
         alloc = self.w.get_allocation ()
-        config.set_int ('Pybliographer/UI/Width',  alloc [2])
-        config.set_int ('Pybliographer/UI/Height', alloc [3])
+        config.set_int ('Pybliographic/UI/Width',  alloc [2])
+        config.set_int ('Pybliographic/UI/Height', alloc [3])
 
         # 2.- Proportion betzeen list and text
         height = self.paned.children () [0].get_allocation () [3]
-        config.set_int ('Pybliographer/UI/Paned', height)
+        config.set_int ('Pybliographic/UI/Paned', height)
         config.sync ()
         return
 
