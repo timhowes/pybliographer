@@ -38,13 +38,13 @@ def print_version ():
 	print _("This is %s, version %s") % (progname, version)
 
 def copyright ():
-	print 'Copyright (C) 1998-1999 Frederic GOBRY'
+	print 'Copyright (C) 1998-2000 Frederic GOBRY'
 	print _("This is free software with ABSOLUTELY NO WARRANTY.")
 	print _("For details, type `warranty'.")
 
 def warranty ():
 	print_version ()
-	print 'Copyright (C) 1998-1999 Frederic GOBRY'
+	print 'Copyright (C) 1998-2000 Frederic GOBRY'
 	
 	print _("This is free software with ABSOLUTELY NO WARRANTY.")
 	print """
