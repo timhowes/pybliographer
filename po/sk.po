@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2002-01-23 10:45-0500\n"
-"PO-Revision-Date: 2002-01-24 16:42GMT+0100\n"
+"POT-Creation-Date: 2002-02-06 11:48-0500\n"
+"PO-Revision-Date: 2002-02-07 16:24+0100\n"
 "Last-Translator: Zdenko Podobný <zdpo@mailbox.sk>\n"
-"Language-Team: Slovak <sk-i18n@linux.sk>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -168,7 +168,7 @@ msgstr "Neplatné pole rok v dátume"
 msgid "Entry type"
 msgstr "Typ polo¾ky"
 
-#: Pyblio/GnomeUI/Config.py:482 Pyblio/GnomeUI/Editor.py:428
+#: Pyblio/GnomeUI/Editor.py:428 Pyblio/GnomeUI/Config.py:482
 msgid "Key"
 msgstr "Klávesa"
 
@@ -213,8 +213,8 @@ msgstr "Pôvodné úpravy"
 msgid "Standard Editing"
 msgstr "©tandardné úpravy"
 
-#: Pyblio/GnomeUI/Document.py:214 Pyblio/GnomeUI/Document.py:228
-#: Pyblio/GnomeUI/FileSelector.py:41
+#: Pyblio/GnomeUI/FileSelector.py:41 Pyblio/GnomeUI/Document.py:214
+#: Pyblio/GnomeUI/Document.py:228
 msgid "File"
 msgstr "Súbor"
 
@@ -238,7 +238,7 @@ msgstr "Zmaza»"
 msgid "Search"
 msgstr "Hµada»"
 
-#: Pyblio/GnomeUI/Fields.py:225 Pyblio/GnomeUI/Search.py:133
+#: Pyblio/GnomeUI/Search.py:133 Pyblio/GnomeUI/Fields.py:225
 msgid "Field"
 msgstr "Pole"
 
@@ -337,7 +337,7 @@ msgstr "_Zlúèi» s..."
 
 #: Pyblio/GnomeUI/Document.py:66
 msgid "Medline Query..."
-msgstr ""
+msgstr "Medline otázka..."
 
 #: Pyblio/GnomeUI/Document.py:70
 msgid "_Previous Documents"
@@ -403,7 +403,7 @@ msgstr "Otvori»"
 msgid "Save"
 msgstr "Ulo¾i»"
 
-#: Pyblio/GnomeUI/Config.py:390 Pyblio/GnomeUI/Document.py:120
+#: Pyblio/GnomeUI/Document.py:120 Pyblio/GnomeUI/Config.py:390
 msgid "Add"
 msgstr "Prida»"
 
@@ -482,7 +482,7 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Document.py:355
 msgid "Enter your Medline query"
-msgstr ""
+msgstr "Vlo¾te svoju Medline otázku"
 
 #: Pyblio/GnomeUI/Document.py:367
 msgid "Search PubMed for: "
@@ -501,10 +501,12 @@ msgid ""
 "Start listing at\n"
 "result number: "
 msgstr ""
+"Zaèa» zoznam\n"
+"pri výsledku èíslo:"
 
 #: Pyblio/GnomeUI/Document.py:387
 msgid "Limited to:"
-msgstr ""
+msgstr "Obmedzi» do:"
 
 #: Pyblio/GnomeUI/Document.py:463
 msgid "From:"
@@ -516,7 +518,7 @@ msgstr "Komu:"
 
 #: Pyblio/GnomeUI/Document.py:472
 msgid "Use the format YYYY/MM/DD; month and day are optional."
-msgstr ""
+msgstr "Pou¾i» formát RRRR/MM/DD; mesiac a deò nie sú povinné."
 
 #: Pyblio/GnomeUI/Document.py:527
 msgid "Merge file"
