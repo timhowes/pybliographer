@@ -108,6 +108,8 @@ class Document (Connector.Publisher):
             UIINFO_ITEM_STOCK(_("Open"),  None, self.ui_open_document, STOCK_PIXMAP_OPEN),
             UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,    STOCK_PIXMAP_SAVE),
             UIINFO_SEPARATOR,
+            UIINFO_ITEM_STOCK(_("Add"),   None, self.add_entry,        STOCK_PIXMAP_NEW),
+            UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,     STOCK_PIXMAP_SEARCH),
             UIINFO_ITEM_STOCK(_("Cite"),  None, self.lyx_cite,          STOCK_MENU_CONVERT),
             UIINFO_SEPARATOR,
