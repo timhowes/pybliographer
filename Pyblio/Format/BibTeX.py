@@ -168,6 +168,9 @@ class Entry (Base.Entry):
             value = string.join (map (lambda item: item.key, value.list), ', ')
             quote = 0
             
+        if isinstance (value, URL):
+            quote = 0
+        
 	self.dict [key] = _bibtex.reverse (_fieldtype (Types.get_field (key)),
                                            Config.get ('bibtex+/braces').data,
                                            value, quote)
