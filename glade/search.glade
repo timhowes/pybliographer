@@ -32,6 +32,7 @@
 	      <property name="can_focus">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="apply_cb" last_modification_time="Wed, 13 Aug 2003 12:51:45 GMT"/>
 
 	      <child>
 		<widget class="GtkAlignment" id="alignment1">
@@ -173,7 +174,7 @@
 	  <property name="spacing">0</property>
 
 	  <child>
-	    <widget class="GtkNotebook" id="notebook1">
+	    <widget class="GtkNotebook" id="notebook">
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="show_tabs">True</property>
@@ -247,7 +248,7 @@
 		      <property name="max_saved">10</property>
 
 		      <child internal-child="entry">
-			<widget class="GtkEntry" id="combo-entry4">
+			<widget class="GtkEntry" id="field_text">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="editable">True</property>
@@ -274,9 +275,10 @@
 		      <property name="visible">True</property>
 		      <property name="history_id">search_pattern</property>
 		      <property name="max_saved">10</property>
+		      <signal name="activate" handler="apply_cb" last_modification_time="Wed, 13 Aug 2003 19:31:58 GMT"/>
 
 		      <child internal-child="entry">
-			<widget class="GtkEntry" id="combo-entry5">
+			<widget class="GtkEntry" id="pattern_text">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="editable">True</property>

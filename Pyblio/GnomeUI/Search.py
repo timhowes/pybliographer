@@ -22,7 +22,7 @@
 import os
 
 from gnome import ui
-import gtk
+import gtk, gobject
 
 import string, re, sys, traceback, copy
 
@@ -32,73 +32,155 @@ from Pyblio import Types, Search, Config, \
 from Pyblio.GnomeUI import Utils
 
 
-class ItemStorage (gtk.TreeModel):
+class ItemStorage:
 
     ''' Extension to TreeItem that stores additional information about
     the search nodes '''
     
     def __init__ (self, name, data):
-        TreeItem.__init__ (self, name)
-
+        self.name   = name
         self.data   = data
         self.parent = None
         self.children = []
-        self.tree     = None
-
         return
 
     def add (self, new):
-        ret = None
-
-        # eventually create the new tree
-        if not self.tree:
-            self.tree = GtkTree ()
-            self.set_subtree (self.tree)
-            ret = self.tree
-            
         self.children.append (new)
-        self.tree.append (new)
-
         new.parent = self
-        return ret
+        return
 
     def remove (self, child):
-        # eventually remove the item
-        if self.tree:
-            # recursively proceed
-            child.remove_subtree ()
-            
-            self.tree.remove_item (child)
-            self.children.remove (child)
-        
-            # clear an empty group
-            if len (self.children) == 0:
-                self.remove_subtree ()
+        self.children.remove (child)
+
+        for c in child.children:
+            child.remove (c)
         return
 
-    def remove_subtree (self):
-        if not self.tree: return
+    def search (self, node, path):
+        if self == node: return path
 
-        # remove the children also
-        for child in copy.copy (self.children):
-            # recursively proceed
-            child.remove_subtree ()
-            
-            self.tree.remove_item (child)
-            self.children.remove (child)
+        i = 0
+        for c in self.children:
+            r = c.search (node, path + (i,))
+            if r is not None:
+                return r
+            i = i + 1
+        return None
 
-        self.tree = None
+    def get (self, path):
+        if len (path) == 1:
+            return self.children [path [0]]
+
+        return self.children [path [0]].get (path [1:])
+
+
+class SearchTree (gtk.GenericTreeModel):
+
+    ''' Data Model of the Search Tree '''
+    
+    def __init__(self):
+	gtk.GenericTreeModel.__init__(self)
+
+        self.tree = ItemStorage (_("Full database"), None)
+        return
+
+    def add (self, path, node):
+        parent = self.on_get_iter (path)
+        parent.add (node)
+
+        path = self.on_get_path (node)
+        iter = self.get_iter (path)
+
+        self.emit ('row-inserted', path, iter)
+        return path
+    
+    def remove (self, node):
+        path = self.on_get_path (node)
+
+        parent = node.parent
+        parent.remove (node)
+
+        self.emit ('row-deleted', path)
         return
     
-    def search (self, name):
-        if self == name:
-            return self
 
-        for other in self.children:
-            ret = other.search (name)
-            if ret: return ret
-            
-        return None
+    def on_get_flags(self):
+	'''returns the GtkTreeModelFlags for this particular type of model'''
+	return 0
+    
+    def on_get_n_columns(self):
+	'''returns the number of columns in the model'''
+	return 1
+    
+    def on_get_column_type(self, index):
+	'''returns the type of a column in the model'''
+	return gobject.TYPE_STRING
+    
+    def on_get_path(self, node):
+	'''returns the tree path (a tuple of indices at the various
+	levels) for a particular node.'''
+	return self.tree.search (node, (0,))
+    
+    def on_get_iter(self, path):
+        '''returns the node corresponding to the given path.  In our
+        case, the node is the path'''
+        if path == (0,): return self.tree
+        if len (path) < 2: return None
+        
+        return self.tree.get (path [1:])
+    
+    def on_get_value(self, node, column):
+	'''returns the value stored in a particular column for the node'''
+	assert column == 0
+
+        if node is None: return ''
+	return node.name
+    
+    def on_iter_next(self, node):
+	'''returns the next node at this level of the tree'''
+        if node.parent is None: return None
+
+        p = node.parent
+        i = p.children.index (node)
+
+        if len (p.children) <= i: return None
+        try:
+            return p.children [i+1]
+        except IndexError:
+            return None
+    
+    def on_iter_children(self, node):
+	'''returns the first child of this node'''
+	if node == None: return self.tree
+        try:
+            return node.children [0]
+        except IndexError:
+            return None
+    
+    def on_iter_has_child(self, node):
+	'''returns true if this node has children'''
+	return self.on_iter_n_children (node) > 0
+    
+    def on_iter_n_children(self, node):
+	'''returns the number of children of this node'''
+        if node is None: return 1
+	return len (node.children)
+        
+    def on_iter_nth_child(self, node, n):
+	'''returns the nth child of this node'''
+        if node == None:
+            if n == 0: return self.tree
+            return None
+
+        try:
+            return node.children [n]
+        except IndexError:
+            return None
+        
+    def on_iter_parent(self, node):
+	'''returns the parent of this node'''
+        if node is None: return None
+        return node.parent
 
     
 class SearchDialog (Connector.Publisher):
@@ -111,71 +193,60 @@ class SearchDialog (Connector.Publisher):
         self.xml = gtk.glade.XML (gp)
         self.xml.signal_autoconnect (self)
 
-        self.w = self.xml.get_widget ('search')
-        if parent: self.w.set_transient_for (parent)
-
-        self.pairs   = []
-
-        # fill the combo
-        self.field = self.xml.get_widget ('field')
-        self.field.set_popdown_strings ([' - any field - '] +
-                                        list (Config.get
-                                              ('gnome/searched').data) +
-                                        [' - type - ', ' - key - '])
-
-
-        self.root_tree = self.xml.get_widget ('tree')
+        for k in ('search', 'notebook', 'tree',
+                  'field', 'field_text', 'pattern_text'):
+            w = self.xml.get_widget (k)
+            assert (w is not None)
+            
+            setattr (self, '_w_' + k, w)
         
-        # database
-#        self.root_tree.connect ('selection_changed', self.selection)
+        if parent: self._w_search.set_transient_for (parent)
 
+
+        col = gtk.TreeViewColumn ('field', gtk.CellRendererText (), text = 0)
+        self._w_tree.append_column (col)
+        self._w_tree.expand_all ()
+        
+        # the tree model only has the query as displayed data
+        self._model = SearchTree ()
+        self._w_tree.set_model (self._model)
+
+        # Monitor the selected items
+        self._selection = self._w_tree.get_selection ()
+        self._selection.connect ('changed', self.selection)
+        
+        # fill the combo
+        self._w_field.set_popdown_strings ([' - any field - '] +
+                                          list (Config.get
+                                                ('gnome/searched').data) +
+                                          [' - type - ', ' - key - '])
 
         # connect a menu to the right button
         self.menu = gtk.Menu ()
-        self.delete_button = Utils.popup_add (self.menu, _("Delete"),  self.search_delete)
+        self.delete_button = Utils.popup_add (self.menu, _("Delete"),
+                                              self.search_delete)
         self.menu.show ()
 
-
-        self.root_item = None
-        self.create_root_item (None)
-
-        self.w.show_all ()
+        self._w_search.show_all ()
         return
 
+
+    def show (self):
+        ''' Invoked to show the interface again when it has been closed '''
+        
+        self._w_search.show ()
+        return
 
     def update_configuration (self):
         return
 
-        
-    def create_root_item (self, data):
-
-        return
-    
-        if self.root_item:
-            self.root_item.remove_subtree ()
-            self.root_tree.remove (self.root_item)
-            
-        # initialize the tree with the full database
-        self.root_item = ItemStorage (_("Full database"), None)
-        self.root_tree.append (self.root_item)
-        self.root_item.show ()
-        return
-
-
     def close_cb (self, widget):
-        self.w.hide ()
+        self._w_search.hide ()
         return
     
 
-    def apply_button_cb (self, widget):
-        if self.notebook.get_current_page () == 0:
-            self.text.append_history (TRUE, self.text.gtk_entry ().get_text ())
-
-        self.apply_cb (widget)
-        return
-    
     def apply_cb (self, widget):
-        page = self.notebook.get_current_page ()
+        page = self._w_notebook.get_current_page ()
 
         name = None
         
@@ -206,8 +277,9 @@ class SearchDialog (Connector.Publisher):
 
         # Simple Search
         elif page == 0:
-            field = string.lower (self.field.entry.get_text ())
-            match = self.text.gtk_entry ().get_text ()
+            
+            field = self._w_field_text.get_text ().lower ()
+            match = self._w_pattern_text.get_text ()
             
             if match == '': return
 
@@ -259,42 +331,28 @@ class SearchDialog (Connector.Publisher):
         if name is None:
             name = str (test)
             
-        # get selection
-        selection = self.root_tree.get_selection ()
+        s, i = self._selection.get_selected ()
+        if i is None: i = (0,)
+        else:         i = s.get_path (i)
         
-        if len (selection) == 0:
-            selection = self.root_item
-        else:
-            selection = selection [0]
-
-        selection = self.root_item.search (selection)
-        if selection.data:
-            test = selection.data & test
+        selection = self._model.on_get_iter (i)
+        
+        if selection.data: test = selection.data & test
 
         item = ItemStorage (name, test)
-        item.show ()
-        
-        tree = selection.add (item)
-        
-        if tree:
-            # if we created a new subtree
-            tree.connect ('button_press_event', self.popup_menu)
-            selection.expand ()
+        path = self._model.add (i, item)
 
-        selection.tree.select_child (item)
+        self._w_tree.expand_row (path [:-1], True)
+        self._selection.select_path (path)
         return
 
     
     def selection (self, *arg):
-        selection = self.root_tree.get_selection ()
-
-        if len (selection) == 0:
-            return
-
-        selection = selection [0]
+        s, i = self._selection.get_selected ()
+        if i is None: return
         
-        data = self.root_item.search (selection).data
-        
+        data = self._model.on_get_iter (s.get_path (i)).data
+
         self.issue ('search-data', data)
         return
 
@@ -306,28 +364,19 @@ class SearchDialog (Connector.Publisher):
         
         self.menu.popup (None, None, None, event.button, event.time)
 
-        #sel = self.root_tree.get_selection ()
-        #if len (sel) == 0:
-        #    self.delete_button.set_sensitive (FALSE)
-        #else:
-        #    self.delete_button.set_sensitive (TRUE)
-                
+        s, i = self._selection.get_selected ()
+        self.delete_button.set_sensitive (i is not None)
         return
     
 
-    def delete_search (self, sel):
-        if sel == self.root_item:
-            sel.remove_subtree ()
-            return
-        
-        sel.parent.remove (sel)
-        return
-        
     def search_delete (self, *arg):
-        sel = self.root_tree.get_selection () [0]
-        sel = self.root_item.search (sel)
+        s, i = self._selection.get_selected ()
+        if i is None: return
         
-        self.delete_search (sel)
+        selection = self._model.on_get_iter (s.get_path (i))
+        if selection.data is None: return
+        
+        self._model.remove (selection)
         return
 
 

@@ -48,9 +48,10 @@ typedef enum
 
 #endif /* HAVE_STDBOOL_H */
 
+#include <Python.h>
+
 #include <stdio.h>
 #include <recodext.h>
-#include <Python.h>
 
 static RECODE_OUTER outer;
 char * program_name = "pyrecode";
