@@ -24,20 +24,47 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
 
-AC_INIT(pybliographer, 1.1.90)
+AC_INIT(pybliographer, 1.1.93)
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_SRCDIR(pybliographer.py)
 
-AM_ACLOCAL_INCLUDE(macros)
+AC_PROG_LN_S
 
-AM_CHECK_PYTHON(2.2)
+AC_PATH_PROG(Python, python, no)
+
+if test "${Python}" = "no" ; then
+  AC_MSG_ERROR([please install python first])
+fi
+
+dnl Python version
+MINIMUM_VERSION="2.2"
+
+AC_MSG_CHECKING([python requirements])
+
+${Python} ${srcdir}/setup-check.py ${MINIMUM_VERSION} 2>&5 1>&2
+
+result=$?
+
+if test -f conftest.out ; then
+	. ./conftest.out
+	rm -f conftest.out
+else
+	AC_MSG_RESULT([no])
+	AC_MSG_ERROR([unable to run the test program])
+fi
+
+if test $result = 0 ; then
+	AC_MSG_RESULT([yes (python version ${Python_Version})])
+else
+	AC_MSG_RESULT([no])
+	AC_MSG_ERROR([${Status}])
+fi
 
 dnl NLS is now hand-managed for python.
 
 AC_CONFIG_FILES(	
 	Makefile 
-	macros/Makefile
 	po/Makefile
 	etc/installer
 	scripts/Makefile

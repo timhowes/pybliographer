@@ -29,7 +29,6 @@ SUBDIRS = 	Pyblio 		\
 		scripts		\
 		tests		\
 		Styles		\
-		macros		\
 		doc
 
 
@@ -47,14 +46,10 @@ app_DATA = pybliographic.desktop
 
 bin_SCRIPTS = pybliographer
 
-EXTRA_DIST = 	config.h.in			\
+EXTRA_DIST = 	setup-check.py			\
 		pybrc.py 			\
 	 	pybliographer.py 		\
 		etc/installer.in		\
-		compiled/Makefile.pre.in 	\
-		compiled/Setup.in 		\
-		compiled/recodemodule.c		\
-		compiled/bibtexmodule.c		\
 		pybliographic.keys.in		\
 		pybliographic.mime		\
 		pybliographic.desktop		\

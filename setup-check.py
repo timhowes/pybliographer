@@ -12,9 +12,54 @@ fd.write ('Python_Micro_Version=%d\n' % version [2])
 fd.write ('Python_Prefix="%s"\n' % sys.exec_prefix)
 fd.close ()
 
+
+def error (msg):
+    fd = open ('conftest.out', 'a')
+    fd.write ('Status="%s"\n' % msg)
+    fd.close ()
+
+    sys.exit (1)
+
 testversion = map (int, string.split (sys.argv [1], '.'))
 if len (testversion) < 3: testversion.append (0)
 
 for pair in map (None, version, testversion):
-	if pair [0] > pair [1]: sys.exit (0)
-	if pair [0] < pair [1]: sys.exit (1)
+    if pair [0] > pair [1]: break
+    
+    if pair [0] < pair [1]:
+        error ('minmal version %s, detected %s' % (
+            sys.argv [1], sys.version))
+        
+# check for gtk and gnome 2.0
+err = None
+
+try:
+    import pygtk
+	
+    pygtk.require ('2.0')
+    
+    import gnome
+    import gtk.glade
+
+    import _recode
+    import _bibtex
+
+    rq = _recode.request ('latin1..latex')
+
+    l = 'abcd'
+    c = _recode.recode (rq, l)
+
+    if l != c:
+        error ('broken recode version')
+    
+except ImportError, msg:
+
+    error ('missing dependency: %s' % msg)
+
+except:
+    etype, value, tb = sys.exc_info ()
+    traceback.print_exception (etype, value, tb)
+
+    error ('unexpected error')
+
+    

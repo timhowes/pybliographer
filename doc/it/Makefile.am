@@ -44,7 +44,7 @@ install-data-local:
 	done
 
 dist-hook:
-	cp -rf $(srcdir)/pyblio $(distdir)
+	if test -d pyblio ; then cp -rf $(srcdir)/pyblio $(distdir) ; fi
 
 doc-pack:
 	mkdir documentation
