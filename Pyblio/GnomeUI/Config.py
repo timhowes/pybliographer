@@ -94,31 +94,38 @@ class ConfigDialog:
 
                 label.set_markup('<b>%s</b>' % (nice))
                 label.set_alignment(xalign=0.5, yalign=0.5)
-                table.pack_start (label,False)
+                hbox = gtk.HBox (spacing = 12)
+                hbox.pack_start (label,False)
                 
                 desc  = data.description
                 desc  = string.translate (desc, _map)
                 desc  = string.strip (_cpt.sub (' ', desc))
-                
-                hbox = gtk.HBox (spacing = 5)
-                hbox.set_border_width (5)
-                
+
+                table.pack_start (hbox, False)
                 # Create the edition widget...
                 edit = data.type.w (data.type, self.w, item, help_text=desc)
+                if edit.allow_help:
+                    label = gtk.Label ()
+                    label.set_line_wrap (True)
+                    label.set_text(desc)
+                    hbox.pack_start(label, False)
+                hbox = gtk.HBox (spacing = 6)
+                hbox.set_border_width (6)
+                
                 cw [item] = edit
                 hbox.pack_start (edit.w)
 
-                # helper button
-                #help = gnome.ui.Pixmap (gtk.STOCK_HELP) XXX
-                if edit.allow_help:
-                    help = gtk.Label('HELP!')
-                    button = gtk.Button ()
-                    button.add (help)
-                    button.set_relief (gtk.RELIEF_NONE)
-                    button.connect ('clicked', self.display_help,
-                                (self.w, _("Item `%s':\n\n%s") % (item, desc)))
-                    hbox.pack_start (button, False, False)
-                    tooltips.set_tip (button, desc)
+##                 # helper button
+##                 #help = gnome.ui.Pixmap (gtk.STOCK_HELP) XXX
+##                 if edit.allow_help:
+##                     help = gtk.Label('HELP!')
+##                     button = gtk.Button ()
+##                     button.add (help)
+##                     button.set_relief (gtk.RELIEF_NONE)
+##                     button.connect ('clicked', self.display_help,
+##                                 (self.w, _("Item `%s':\n\n%s") % (item, desc)))
+##                     hbox.pack_start (button, False, False)
+##                     tooltips.set_tip (button, desc)
 
                 table.pack_start (hbox,
                                   expand = edit.resize,
@@ -319,7 +326,7 @@ class BooleanConfig (BaseConfig):
     def __init__ (self, dtype, props, key = None, help_text=''):
         BaseConfig.__init__ (self, dtype, props, key)
         self.allow_help = False
-        self.w = gtk.HBox ()
+        self.w = gtk.HBox (spacing=6)
         self.button = gtk.CheckButton ()
         self.w.pack_start (self.button, False)
 
