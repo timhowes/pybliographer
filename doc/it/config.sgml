@@ -3,7 +3,7 @@
   
   <para>La configurazione del sistema &egrave pesantemente basata su un sistema di moduli di
     pyton. I file di configurazione sono standard script di  &pyb; (cio&egrave 
-    funzioni e classi extra in codice python che fanno uso di &pyb; ),
+    funzioni e classi extra scritti in python che fanno uso di &pyb; ),
     la cui caratteristica speciale &egrave di essere automaticamente analizzati
     all'avvio o quando ce n'&egrave bisogno.</para>
   

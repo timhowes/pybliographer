@@ -106,7 +106,7 @@
 
 	<para>Questo tag vuoto &egrave rimpiazzato dal contenuto dell'attuale
 	campo (quando &egrave posto in un blocco &lt;infield> ) o dal contenuto
-	del cmpo specificato come attributo.</para>
+	del campo specificato come attributo.</para>
       </listitem>
 
       <listitem>

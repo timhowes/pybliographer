@@ -18,7 +18,7 @@
 	</menuchoice> o clicca col pulsante destro nella finestra della lista
 	e seleziona <guibutton>Aggiunge...</guibutton> </para>
     
-    <para>Puoi trovare maggiori informazioni circa l'uso della finestra principale in
+    <para>Puoi trovare maggiori informazioni circa l'uso della finestra principale ne
       <xref linkend="gui-navigate">.</para>
 
   </sect1>
@@ -81,7 +81,7 @@
       </listitem>
     </itemizedlist>
     
-    <para>Notare che alcune opzioni di questi menu possono essere disabilitate
+    <para>Notate che alcune opzioni di questi menu possono essere disabilitate
       per un dato database o una data voce, significa che l'azione corrispondente
       non pu&ograve essere compiuta.</para>
     
@@ -125,7 +125,7 @@ in alto un modulo di ricerca.</para>
       
 <para> Una tale espressione significa: seleziona le voci dove il
     campo <emphasis>author</emphasis> eguaglia
-    <emphasis>nome</emphasis>,  o  (symbol <symbol>|</symbol>)  dove
+    <emphasis>nome</emphasis>,  o  (simbolo <symbol>|</symbol>)  dove
     il campo <emphasis>title</emphasis> <emphasis>non</emphasis>
     eguaglia <emphasis>testo</emphasis>.  Il booleano <symbol>and</symbol> &egrave
     <symbol>&</symbol>.</para>
@@ -205,7 +205,7 @@ contestuale che ti permette di rimuovere le inutili ricerche.</para>
 	</listitem>
 	<listitem>
 	  <para>Un <symbol>&lt;</symbol> significa che l'ordinamento &egrave
-	    <emphasis>descendente</emphasis>.</para>
+	    <emphasis>discendente</emphasis>.</para>
 	</listitem>
       </itemizedlist>
     </para>
@@ -213,7 +213,7 @@ contestuale che ti permette di rimuovere le inutili ricerche.</para>
     raggruppare i campi attivati in cima alla lista, per un accesso pi&ugrave
     conveniente.</para>
     <para>L'ordine in cui l'ordinamento &egrave eseguito dipende dall'ordine
-    nella lista. Per modifare quest'ordine, semplicemente fai drag and drop su un
+    nella lista. Per modificare quest'ordine, semplicemente fai drag and drop su un
     oggetto per cambiare la sua posizione.</para>
 
       <Figure id="figsort">
@@ -243,8 +243,8 @@ contestuale che ti permette di rimuovere le inutili ricerche.</para>
       campo impostando una palla rossa sulla sua destra, invece di una verde.</para>
     <warning>
       <para>Se modifichi una tale voce, puoi perdere le informazioni addizionali
-      in essa contenute. Per evitare questo,  considera di usare l'editing 
-      nativo(see <xref linkend="gui-native">).</para>
+      in essa contenute. Per evitare questo,  considera l'uso dell'editing 
+      nativo(vedi <xref linkend="gui-native">).</para>
     </warning>
 
     <para>Per modificare le voci,  semplicemente  digita il testo corrispondente, senza

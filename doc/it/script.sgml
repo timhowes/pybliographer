@@ -132,8 +132,8 @@ e rendilo eseguibile.
   <sect1>
   <title>Scrivere i propri script</title>                                                                                         
                                                                                                                                     
-    <para>Per iniziare a scrivere i vostri script puoi leggere quello che segue
-    e dare un'occhiata agli scripts esistenti. Provare ad adattarli alle
+    <para>Per iniziare a scrivere i tuoi script puoi leggere quello che segue
+    e dare un'occhiata agli script esistenti. Provare ad adattarli alle
     tue esigenze personali pu&ograve essere un buon modo per verificare quello
     che hai letto.</para>
 
@@ -168,7 +168,7 @@ e rendilo eseguibile.
       </itemizedlist>
       
       <para><symbol>Key.Key</symbol> &egrave l'oggetto che identifica unicamente                                                      
-	una voce.  Questo oggetto deve essere unico nell'intera                                                                     
+	una voce.  Quest'oggetto deve essere unico nell'intera                                                                     
 	applicazione ed &egrave composto da una parte del database e da una parte                                                        
 	della voce.</para>
 

@@ -42,7 +42,7 @@ item = iterator.first ()
 </programlisting>
 
       <para>Questo metodo restituisce il primo oggetto della sequenza. Il tipo
-	di oggetto dipende da come  Iterator   &egrave stato instanciated.</para>
+	di oggetto dipende da come  Iterator   &egrave stato instanziato.</para>
     </refsect2>
 
     <refsect2 id="meth-iterator-next">

@@ -1,7 +1,7 @@
 <refentry id="class-url">
   <refnamediv>
     <refname>Fields.URL</refname>
-    <refpurpose>Tiene un URL d&agrave accesso ai suoi componenti</refpurpose>
+    <refpurpose>Tiene un URL e d&agrave accesso ai suoi componenti</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <programlisting>
@@ -24,7 +24,7 @@ class <classname>Fields.URL</classname>:
     <title>Membri</title>
     <refsect2 id="mem-url-url">
       <title>self.url</title>
-      <para>Tiene la tuple che descrive l'URL.</para>
+      <para>Tiene la tupla che descrive l'URL.</para>
     </refsect2>
   </refsect1>
 
