@@ -125,6 +125,7 @@ StringMapping commands [] = {
     {"o",  "ø"},
     {"TH", "Þ"},
     {"th", "þ"},
+    {"aa", "å"},
     {"AA", "Å"},
     {"guillemotleft",    "«"},
     {"guillemotright",   "»"},
@@ -132,11 +133,17 @@ StringMapping commands [] = {
     {"guilsingright",    ">"},
     {"textquestiondown", "¿"},
     {"textexclamdown",   "¡"},
+    {"copyright",        "©"},
+    {"pound",            "£"},
+    {"neg",              "¬"},
+    {"-",                "­"},
+    {"cdotp",            "·"},
+    {",",                "¸"},
     {NULL, NULL}
 };
 
 static gchar *
-initialize_table (CharMapping * map) {
+initialize_table (CharMapping * map, char empty) {
     gchar * table;
 
     g_return_val_if_fail (map != NULL, NULL);
@@ -147,6 +154,8 @@ initialize_table (CharMapping * map) {
 	table [map->c] = map->m;
 	map ++;
     }
+
+    table [0] = empty;
 
     return table;
 }
@@ -220,12 +229,12 @@ bibtex_accent_string (BibtexStruct * s,
     if (acute_table == NULL) {
 	/* Initialize accent table if necessary */
 
-	acute_table    = initialize_table   (acute);
-	grave_table    = initialize_table   (grave);
-	hat_table      = initialize_table   (hat);
-	trema_table    = initialize_table   (trema);
-	cedilla_table  = initialize_table   (cedilla);
-	tilda_table    = initialize_table   (tilda);
+	acute_table    = initialize_table   (acute,   '´');
+	grave_table    = initialize_table   (grave,   '\0');
+	hat_table      = initialize_table   (hat,     '\0');
+	trema_table    = initialize_table   (trema,   '¨');
+	cedilla_table  = initialize_table   (cedilla, '\0');
+	tilda_table    = initialize_table   (tilda,   '\0');
 
 	commands_table = initialize_mapping (commands);
     }
@@ -247,6 +256,7 @@ bibtex_accent_string (BibtexStruct * s,
 	    accent == 'c') {
 	    
 	    text = eat_as_string (flow, 1, loss);
+
 	    tmp  = NULL;
 
 	    switch (accent) {
@@ -276,7 +286,14 @@ bibtex_accent_string (BibtexStruct * s,
 	    
 	    /* We know how to convert */
 	    if (tmp [text [0]] != 0) {
-		text[0] = tmp [text [0]];
+		if (text [0]) {
+		    text [0] = tmp [text [0]];
+		}
+		else {
+		    tmp = g_strdup_printf ("%c", tmp [text [0]]);
+		    g_free (text);
+		    text = tmp;
+		}
 	    }
 	    else {
 		if (loss) * loss = TRUE;
