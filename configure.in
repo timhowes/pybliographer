@@ -24,7 +24,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT(pybliographer.py)
 
-AM_INIT_AUTOMAKE(pybliographer, 1.0.10)
+AM_INIT_AUTOMAKE(pybliographer, 1.0.11)
 AM_CONFIG_HEADER(config.h)
 AM_ACLOCAL_INCLUDE(macros)
 
@@ -108,16 +108,46 @@ old_LIBS=${LIBS}
 LIBS=${RECODELIB}
 
 if test "x${USE_INCLUDED_LIBINTL}" = "xyes" ; then
-  AC_MSG_RESULT(not tested because of i18n dependancy)
+  AC_MSG_RESULT(not tested because of i18n dependency)
 else
-  AC_TRY_LINK([
-  	char recode_new_request();
-   	char * program_name;
-  ], [  
-  	recode_new_request(); 
+  
+  echo "configure: checking if librecode can be found at compile time" >&5
+  AC_TRY_LINK(
+  [
+  
+  char recode_new_outer();
+  char * program_name;
+  
+  ],
+  
+  [
+    recode_new_outer (0); 
   ],,
-    AC_MSG_RESULT(no)
-    AC_MSG_ERROR([please install GNU Recode (version >= 3.5) first]), [/bin/false])
+  
+  [
+    AC_MSG_RESULT([no (cannot compile)])
+    AC_MSG_ERROR([please install GNU Recode (version 3.5)]) 
+  ])
+  
+
+  echo "configure: checking if librecode can be found at runtime" >&5
+  AC_TRY_RUN(
+  [
+
+  char recode_new_outer();
+  char * program_name;
+  
+  int main () {
+    recode_new_outer (0); 
+    return 0;
+  }
+  
+  ],,
+    AC_MSG_RESULT([no (cannot run)])
+    AC_MSG_ERROR([please check that librecode can be found at runtime]), 
+
+  [/bin/false]
+ )
   
   AC_MSG_RESULT([found])
 fi
