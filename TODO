@@ -1,3 +1,11 @@
+For 1.0:
+
+- add default suffix to file whenever it is missing ?
+- customize the use of " or {} in BibTeX
+- customize the automatic capitalization 
+
+Long term:
+
 - Client/Server module ?
 - extensive use of Glade
 - handling of intra/inter references

@@ -71,9 +71,9 @@ pybliographer: $(top_srcdir)/pybliographer.py etc/installer
 	chmod 755 pybliographer
 
 install-data-local:
-	mv -f $(pybdir)/pybrc.py $(pybdir)/pybrc.old || true
-	$(INSTALL_DATA) $(srcdir)/pybrc.py $(pybdir)
-	$(python) -c "import compileall ; compileall.compile_dir ('"$(pybdir)"');"
+	mv -f $(DESTDIR)$(pybdir)/pybrc.py $(DESTDIR)$(pybdir)/pybrc.old || true
+	$(INSTALL_DATA) $(srcdir)/pybrc.py $(DESTDIR)$(pybdir)
+	$(python) -c "import compileall ; compileall.compile_dir ('"$(DESTDIR)$(pybdir)"');"
 
 pybliographic.keys: pybliographic.keys.in Makefile
 	sed -e 's^\@icondir\@^$(appicondir)^g' \

@@ -1,3 +1,28 @@
+2000-04-14  Fred  <fred@pium.home.org>
+
+	* bibtex/bibtex.c:
+	Numeric keys are valid entry keys now.
+
+	* Pyblio/Base.py, Pyblio/GnomeUI/Document.py:
+	Save the documents in the same order as they are sorted.
+
+	* po/hu.po, configure.in:
+	added hungarian po file
+
+	* bibtex/reverse.c, Pyblio/Format/BibTeX.c, compiled/bibtexmodule.c:
+	configuration for the use of braces / automatic capitalization
+
+2000-04-12  fredgo  <fred@pium.home.org>
+
+	* Pyblio/Format/BibTeX.py, bibtex/bibtex.c, compiled/bibtexmodule.c:
+	Improved parser flexibility for files exported by endnote
+
+	* po/Makefile.in.in:
+	conditional use of xpot to create the pot file.
+
+	* Pyblio/GnomeUI/Document.py:
+	added Shortcuts to the menu entries
+
 2000-04-07  fredgo  <fredgo@pium.home.org>
 
 	* NEWS: update for 0.9.9
