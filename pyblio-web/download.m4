@@ -1,4 +1,4 @@
-dnl -*- html -*-
+m4_dnl -*- html -*-
 
 html_header(Pybliographer - Downloads)
 
@@ -45,24 +45,24 @@ mirrors</a> where you can find pybliographer.
 formats:
 
 <ul>
-ifelse(html_testfile(local_stable/pybliographer-pyblio_last.tar.gz), 0,
-<li><a href="pyblio_stable/pybliographer-pyblio_last.tar.gz">gzipped</a> 
-(.tar.gz, html_filesize(local_stable/pybliographer-pyblio_last.tar.gz))
+m4_ifelse(html_testfile(local_stable/sources/pybliographer-pyblio_last.tar.gz), 0,
+<li><a href="pyblio_stable/sources/pybliographer-pyblio_last.tar.gz">gzipped</a> 
+(.tar.gz, html_filesize(local_stable/sources/pybliographer-pyblio_last.tar.gz))
 )
 
-ifelse(html_testfile(local_stable/pybliographer-pyblio_last.tar.bz2), 0,
-<li><a href="pyblio_stable/pybliographer-pyblio_last.tar.bz2">bzipped</a> 
-(.tar.bz2, html_filesize(local_stable/pybliographer-pyblio_last.tar.bz2))
+m4_ifelse(html_testfile(local_stable/sources/pybliographer-pyblio_last.tar.bz2), 0,
+<li><a href="pyblio_stable/sources/pybliographer-pyblio_last.tar.bz2">bzipped</a> 
+(.tar.bz2, html_filesize(local_stable/sources/pybliographer-pyblio_last.tar.bz2))
 )
 
-ifelse(html_testfile(local_stable/pybliographer-pyblio_last-1.i386.rpm), 0,
-<li><a href="pyblio_stable/pybliographer-pyblio_last-1.i386.rpm">RPM</a>
-(.i386.rpm, html_filesize(local_stable/pybliographer-pyblio_last-1.i386.rpm))
+m4_ifelse(html_testfile(local_stable/rpm/pybliographer-pyblio_last-1.i386.rpm), 0,
+<li><a href="pyblio_stable/rpm/pybliographer-pyblio_last-1.i386.rpm">RPM</a>
+(.i386.rpm, html_filesize(local_stable/rpm/pybliographer-pyblio_last-1.i386.rpm))
 )
 
-ifelse(html_testfile(local_stable/pybliographer-pyblio_last-1.src.rpm), 0,
-<li>or <a href="pyblio_stable/pybliographer-pyblio_last-1.src.rpm">source RPM</a>
-(.src.rpm, html_filesize(local_stable/pybliographer-pyblio_last-1.src.rpm))
+m4_ifelse(html_testfile(local_stable/rpm/pybliographer-pyblio_last-1.src.rpm), 0,
+<li>or <a href="pyblio_stable/rpm/pybliographer-pyblio_last-1.src.rpm">source RPM</a>
+(.src.rpm, html_filesize(local_stable/rpm/pybliographer-pyblio_last-1.src.rpm))
 )
 </ul>
 

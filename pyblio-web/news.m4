@@ -1,10 +1,15 @@
-dnl -*- html -*-
-dnl
-dnl --------------------------------------------------
-define(pyblio_last,  [[1.0.0]])dnl
-dnl --------------------------------------------------
-dnl
-define(pyblio_news, [[
+m4_dnl -*- html -*-
+m4_dnl
+m4_dnl --------------------------------------------------
+m4_define(pyblio_last,  [[1.0.0]])m4_dnl
+m4_dnl --------------------------------------------------
+m4_dnl
+m4_define(pyblio_news, [[
+
+[[ <b>18/05/2000</b>: I  plan to setup a FAQ  on pybliographer. If you
+think that  a particular question should  go in it, let  me know! I've
+also  added a  <a  href="development.html">Development</a> section  on
+this site.]],
 
 [[ <b>12/05/2000</b>: pybliographer 1.0.0 is out ! A few fixes in this
 version (concerning the save order for entries with crossreferences).
@@ -136,8 +141,8 @@ wxWindows.]]
 
 ]]
 )
-dnl
-define(latest_news,
+m4_dnl
+m4_define(latest_news,
 <li> $1
 <li> $2
 <li> $3
@@ -149,8 +154,8 @@ define(latest_news,
 <li> $9
 <li> $10
 )
-dnl
-define(all_the_news, [[ifelse($#, 0, , $#, 1, [[<li> $1]],
+m4_dnl
+m4_define(all_the_news, [[m4_ifelse($#, 0, , $#, 1, [[<li> $1]],
 [[<li> $1
-all_the_news(shift($@))]])
+all_the_news(m4_shift($@))]])
 ]])

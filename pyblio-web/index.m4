@@ -1,4 +1,4 @@
-dnl -*- html -*-
+m4_dnl -*- html -*-
 html_header(Pybliographer - News)
 
 html_summary(new, summary.m4, [[

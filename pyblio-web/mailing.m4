@@ -1,4 +1,4 @@
-dnl -*- html -*-
+m4_dnl -*- html -*-
 
 html_header(Pybliographer - Mailing List)
 
@@ -16,3 +16,5 @@ mailing list.</p>
 <a href="http://www.geocrawler.com/redir-sf.php3?list=pybliographer-general">here</a>.
 
 ]])
+
+html_footer
