@@ -1,0 +1,80 @@
+-*- outline -*-
+
+What should be stored in a database, and how does pyblio manage
+different database schemas (conversions,...) ?
+
+* The problem
+  
+  In pyblio 1.0, entries were stored as dictionnaries, which means
+  that it was easy to store unexpected fields (like classification
+  codes, extra information used in a format but not in another,...) in
+  any entry: this has been used (and abused as it led to entries with
+  meaningless fields) in order to keep all the data from every format
+  supported by pyblio.
+
+  Now that pyblio 2.0 heads toward a database engine as its storage
+  mechanism, there is a need to define a "static" schema, and how
+  databases with different schemas can exchange some content.
+
+
+* Schema Definition
+
+Some aspects of the schema won't be modifiable by the user, especially
+the available entities and elementary types. The schema defines how
+these objects are related.
+
+** Available entities
+   
+   - Person / Corporate
+   - Keyword / Topic
+   - ...
+  
+** Available types
+
+   - Rich text (unicode plus markup)
+   - URL
+   - Date
+   - Date range
+   - Integer
+   - Integer range
+   - ...
+  
+* Storage
+
+The schema is implicitely stored in the database itself. It must also
+be explicitely stored in the XML file that contains the serialized
+version of the database. BTW, how do we manage the difference between
+data stored in a file (which must be put in a temporary database
+before use) and data that remains in a database all the time ?
+
+Proposal: provide two formats
+
+	- a "working" format, which only contains the schema and how
+          to connect to the database that contains the actual data.
+
+	  PRO:  faster, as there is no parsing of the data itself
+	  CONS: data is split between two locations
+
+	- an "export" format, which is the same as the previous,
+          except that the data is stored in the file itself.
+
+	  PRO:  the data can be moved/managed as a single file
+	  CONS: slower at startup for large databases
+  
+
+** Private data
+
+When the system will be able to provide access to a central database
+to several users, the problem of storing personal data (notes,
+status,...) about the items will arise.
+
+Should these data be stored in the same database (in a separate table
+with specific right access for instance) or in a local instance ?
+
+
+* Merging data from different schemas
+
+Hmmm...
+
+
+$Id$
