@@ -31,5 +31,6 @@ ENTRY_TYPE = 'application/x-pybliography'
 atom = {
     'STRING': gtk.gdk.atom_intern ("STRING"),
     'self'  : gtk.gdk.atom_intern ('pybliographic'),
+
     ENTRY_TYPE: gtk.gdk.atom_intern (ENTRY_TYPE),
 }

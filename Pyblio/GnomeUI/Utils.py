@@ -21,9 +21,6 @@
 
 ''' Useful functions for Gnome Interface '''
 
-# TO FIX
-#
-#  - busy cursor
 
 import gtk
 from gnome import ui
@@ -37,22 +34,21 @@ import gconf
 
 config = gconf.client_get_default ()
 
+cursor = {
+    'clock' : gtk.gdk.Cursor (gtk.gdk.WATCH),
+    'normal': gtk.gdk.Cursor (gtk.gdk.LEFT_PTR),
+    }
 
-#cursor = {}
-#cursor ['clock']  = cursor_new (150)
-#cursor ['normal'] = cursor_new (68)
 
 def set_cursor (self, name):
 
-    return
-
-    window = self.get_window ()
+    window = self.get_toplevel ().window
     if not window: return
     
     window.set_cursor (cursor [name])
         
-    while events_pending ():
-        mainiteration (FALSE)
+    while gtk.events_pending ():
+        gtk.mainiteration (False)
     return
 
 

@@ -22,8 +22,8 @@
 
 # TO FIX
 #
-#  - DnD
-#  - Copy/Paste
+#  - DnD with the world
+#  - Copy/Paste with the world
 #  - contextual popup menu
 #  - column width storage
 
@@ -118,8 +118,12 @@ class Index (Connector.Publisher):
         self.list.connect ('selection_get', self.selection_get)
         self.list.connect ('selection_clear_event', self.selection_clear)
  
-        self.list.selection_add_target (Mime.atom ['self'], Mime.atom ['STRING'], 0)
-        self.list.selection_add_target (Mime.atom ['self'], Mime.atom [Mime.ENTRY_TYPE],
+        self.list.selection_add_target (Mime.atom ['self'],
+                                        Mime.atom ['STRING'],
+                                        Mime.STRING)
+        
+        self.list.selection_add_target (Mime.atom ['self'],
+                                        Mime.atom [Mime.ENTRY_TYPE],
                                         Mime.ENTRY)
         return
 
@@ -130,6 +134,7 @@ class Index (Connector.Publisher):
 
     
     def selection_received (self, widget, selection, info):
+        
         data = selection.data
         
         if not data: return
@@ -140,6 +145,7 @@ class Index (Connector.Publisher):
 
 
     def selection_get (self, widget, selection, info, time):
+
         if not self.selection_buffer: return
         
         if info == Mime.ENTRY:
@@ -194,6 +200,8 @@ class Index (Connector.Publisher):
 
         entries = self.selection ()
         if not entries: return
+
+        print info
         
         if info == Mime.KEY:
             # must return a set of keys
@@ -205,7 +213,7 @@ class Index (Connector.Publisher):
             data = pickle.dumps (entries)
             selection.set (selection.target, 8, data)
 
-        if context.action == GDK.ACTION_MOVE:
+        if context.action == gtk.gdk.ACTION_MOVE:
             self.issue ('drag-moved', entries)
         
         return
@@ -245,8 +253,10 @@ class Index (Connector.Publisher):
             item = self.get_item_position (item)
 
         if item == -1: return
-            
-        self.clist.moveto (item, 0, .5, 0)
+        
+        self.list.scroll_to_cell ((item,),
+                                  use_align = True,
+                                  row_align = .5)
         return
 
     

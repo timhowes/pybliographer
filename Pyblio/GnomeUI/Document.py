@@ -79,7 +79,7 @@ class Document (Connector.Publisher):
 
         self.paned.show_all ()
 
-#        # The text area
+        # The text area
         self.display = Entry.Entry ()
         self.paned.add2 (self.display.w)
 
