@@ -27,6 +27,13 @@ lib_pybdir  = "@libpyb@"
 data_pybdir = "@datapyb@"
 localedir   = "@localedir@"
 
+import sys
+
+sys.path.append (data_pybdir)
+sys.path.append (lib_pybdir)
+sys.path.insert (0, '.')
+sys.path.insert (0, './compiled')
+
 import gettext
 	
 gettext.bindtextdomain(progname, localedir)
@@ -63,16 +70,10 @@ along with this program. If not, write to the Free Software
 Foundation, 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 """
 	
-import sys
 import os
 import getopt, string
 
 sys.ps1 = 'python > '
-
-sys.path.append (data_pybdir)
-sys.path.append (lib_pybdir)
-sys.path.insert (0, '.')
-sys.path.insert (0, './compiled')
 
 optlist, args = getopt.getopt (sys.argv [1:],
 			       'qf:nvh',

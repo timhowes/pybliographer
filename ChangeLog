@@ -1,3 +1,9 @@
+2000-10-03  Gobry Frederic  <gobry@lithpc18.epfl.ch>
+
+	* configure.in, extras, tests, scripts: added path access to the
+	extras/ subdir, and installation of missing files for the
+	text-only version. Fixed configuration with python 1.6.
+
 2000-09-25  Gobry Frederic  <gobry@lithpc18.epfl.ch>
 
 	* Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Document.py: use of the
