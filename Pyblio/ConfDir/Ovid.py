@@ -18,10 +18,15 @@ the values are tuples of  the form (<pyblio field name>, <entry type>)
 
 Config.set ('ovid/mapping', {
     'title'    : ('title',    SimpleField),
-    'authors'  : ('author',   AuthorField),
+    'author'   : ('author',   AuthorField),
     'abstract' : ('abstract', SimpleField),
-    'source'   : (('journal', 'volume', 'number', 'pages', 'date'),
-                  SourceField),
+    'key phrase identifiers' : ('keywords', SimpleField),
+    'subject headings' : ('subjectHeadings', SimpleField),
+    'classification codes' : ('classificationCodes', SimpleField),
+    'publication type' : ('type', SimpleField),
+    'treatment'        : ('treatment', SimpleField),
+    'source'           : (('journal', 'volume', 'number', 'pages', 'date'),
+                          SourceField),
     'author keywords' : ('keywords', KeywordField),
     'keywords+'       : ('keywords', KeywordField),
     })
