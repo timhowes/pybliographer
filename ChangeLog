@@ -1,3 +1,16 @@
+2001-12-07  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/GnomeUI: implemented an incremental search.
+
+2001-12-05  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/GnomeUI: added a "Add" button in the toolbar, and added a
+	default sort method for the entries. This default can be set from
+	the "Sort" popup.
+
+	* Pyblio/Format/Medline.py: fixed problem with authors without
+	first names (like "et al.").
+
 2001-11-28  Frédéric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/GnomeUI: added Medline Query interface
