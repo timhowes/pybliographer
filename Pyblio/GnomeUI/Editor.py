@@ -32,7 +32,7 @@ from Pyblio import Fields, Config, Base, Types, Connector, Exceptions, Key
 
 from Pyblio.GnomeUI import FieldsInfo, Utils, Mime
 
-key_re = re.compile ("^[\w:_+-]+$")
+key_re = re.compile ("^[\w:_+-.]+$")
 
 _newcontent = {
     Fields.AuthorGroup : _("Last Name, First Name"),
@@ -464,6 +464,8 @@ class RealEditor (Connector.Publisher):
         self.newfield_area = GtkHBox (spacing = 5)
         self.newfield_area.set_border_width (5)
         self.newfield = GnomeEntry ('newfield')
+        self.newfield.load_history ()
+        
         self.newfield_area.pack_start (self.newfield)
 
         b = GtkButton (_("Create Field"))
@@ -474,11 +476,14 @@ class RealEditor (Connector.Publisher):
         self.w.pack_start (self.newfield_area, FALSE, FALSE)
         
         # Notebook
+        scroll = GtkScrolledWindow ()
+        scroll.set_policy (GTK.POLICY_AUTOMATIC, GTK.POLICY_AUTOMATIC)
         self.notebook = GtkNotebook ()
         self.notebook.show ()
 
-        self.w.pack_start (self.notebook)
-        self.w.show ()
+        scroll.add_with_viewport (self.notebook)
+        self.w.pack_start (scroll)
+        self.w.show_all ()
         
         self.notebook_init = FALSE
         self.update_notebook ()

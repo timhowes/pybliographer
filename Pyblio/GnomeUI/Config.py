@@ -21,7 +21,6 @@
 
 from gtk import *
 from gnome.ui import *
-from gnome import config
 
 import string, gettext, re, copy
 
@@ -45,19 +44,13 @@ class ConfigDialog:
         self.w.set_parent (parent)
         self.w.set_title (_("Choose your preferences"))
         self.w.connect ('apply', self.apply)
-        self.w.connect ('close', self.close)
         self.w.set_policy (TRUE, TRUE, FALSE)
 
-        ui_width  = config.get_int ('Pybliographic/Preferences/Width=-1')
-        ui_height = config.get_int ('Pybliographic/Preferences/Height=-1')
-
-        if ui_width > 0 and ui_height > 0:
-            self.w.set_default_size (ui_width, ui_height)
-        
         self.warning = 0
-        self.parent  = parent
+        self.parent = parent
         
         domains = Config.domains ()
+        domains = map (lambda x: string.capitalize (x), domains)
         domains.sort ()
 
         self.page = []
@@ -65,32 +58,21 @@ class ConfigDialog:
         for dom in domains:
             
             cw    = {}
-            keys  = Config.keys_in_domain (dom)
+            keys  = Config.keys_in_domain (string.lower (dom))
             keys.sort ()
             
-            try:
-                value = Config.get (dom)
-                domain_name = value.real
-                domain_desc = value.desc
-            except KeyError:
-                domain_name = string.capitalize (dom)
-                domain_desc = None
-            
             table = GtkVBox ()
-
-            if domain_desc:
-                table.pack_start (GtkLabel (domain_desc),
-                                  expand = FALSE, fill = FALSE)
-                
+            
             for item in keys:
                 data  = Config.get (item)
                 if data.type is None or not hasattr (data.type, 'w'):
                     continue
 
-                label = GtkFrame (data.real)
+                nice  = string.capitalize (string.split (item, '/') [1])
+                label = GtkFrame (nice)
                 label.set_border_width (5)
                 
-                desc  = data.desc
+                desc  = data.description
                 desc  = string.translate (desc, _map)
                 desc  = string.strip (_cpt.sub (' ', desc))
 
@@ -118,7 +100,7 @@ class ConfigDialog:
                                   fill   = edit.resize)
 
             if cw:
-                self.w.append_page (table, GtkLabel (domain_name))
+                self.w.append_page (table, GtkLabel (dom))
                 self.page.append (cw)
             
         self.w.show_all ()
@@ -145,13 +127,6 @@ class ConfigDialog:
             self.warning = 1
             self.parent.warning (_("Some changes require to restart Pybliographic\n"
                                    "to be correctly taken into account"))
-        return
-
-    def close (self, * arg):
-        alloc = self.w.get_allocation ()
-        config.set_int ('Pybliographic/Preferences/Width',  alloc [2])
-        config.set_int ('Pybliographic/Preferences/Height', alloc [3])
-        config.sync ()
         return
 
 
@@ -196,32 +171,25 @@ class StringConfig (BaseConfig):
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
-
-        self.w    = GtkHBox (spacing = 5)
-        self.text = GtkEntry ()
-
-        if dtype.desc:
-            self.w.pack_start (GtkLabel (dtype.desc),
-                               expand = FALSE, fill = FALSE)
-            
-        self.w.pack_start (self.text)
+        
+        self.w = GtkEntry ()
         
         if self.key:
             text = Config.get (key).data
-            if text: self.text.set_text (text)
+            if text: self.w.set_text (text)
         
-        self.text.connect ('changed', self.changed)
+        self.w.connect ('changed', self.changed)
         self.w.show_all ()
         return
 
 
     def get (self):
-        return self.text.get_text ()
+        return self.w.get_text ()
 
 
     def set (self, value):
         self.freeze ()
-        self.text.set_text (value)
+        self.w.set_text (value)
         self.thaw ()
         return
     
@@ -241,27 +209,21 @@ class IntegerConfig (StringConfig):
         else:
             vmin = 0
             vmax = +100
-
-        self.w    = GtkHBox (spacing = 5)
-        if dtype.desc:
-            self.w.pack_start (GtkLabel (dtype.desc),
-                               expand = FALSE, fill = FALSE)
-
-        adj       = GtkAdjustment (0, vmin, vmax, 1, 10, 1)
-        self.spin = GtkSpinButton (adj, 1, 0)
-        self.w.pack_start (self.spin)
+            
+        adj = GtkAdjustment (0, vmin, vmax, 1, 10, 1)
+        self.w = GtkSpinButton (adj, 1, 0)
         
         if self.key:
             value = Config.get (key).data
-            if value is not None: self.spin.set_value (value)
+            if value is not None: self.w.set_value (value)
         
-        self.spin.connect ('changed', self.changed)
+        self.w.connect ('changed', self.changed)
         self.w.show_all ()
         return
 
 
     def get (self):
-        value = self.spin.get_value_as_int ()
+        value = self.w.get_value_as_int ()
         type = Config.get (self.key).type
         if type.min and value < type.min: return None
         if type.max and value > type.max: return None
@@ -271,7 +233,7 @@ class IntegerConfig (StringConfig):
 
     def set (self, value):
         self.freeze ()
-        self.spin.set_value (value)
+        self.w.set_value (value)
         self.thaw ()
         return
     
@@ -283,11 +245,7 @@ class BooleanConfig (BaseConfig):
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
-        self.w = GtkHBox (spacing = 5)
-        if dtype.desc:
-            self.w.pack_start (GtkLabel (dtype.desc),
-                               expand = FALSE, fill = FALSE)
-
+        self.w = GtkHBox ()
         self.true  = GtkRadioButton (label = _("True"))
         self.false = GtkRadioButton (group = self.true, label = _("False"))
         

@@ -79,7 +79,7 @@ def string_key (entry, fmt, table):
     """ Generates an alphabetical key for an entry. fmt is the
     output coding """
 
-    rc = recode.recode (fmt)
+    rc = recode.recode ("latin1.." + fmt)
 
     if   entry.has_key ('author'): aut = entry ['author']
     elif entry.has_key ('editor'): aut = entry ['editor']
@@ -156,13 +156,12 @@ def create_string_key (database, keys, fmt):
 
 def create_numeric_key (database, keys, fmt):
     table = {}
+    skeys = []
     for key in keys:
         s = numeric_key (database [key], fmt, table)
         table [s] = key
-   
-    skeys = table.keys ()
-    skeys.sort ()
-
+        skeys.append (s)
+        
     return table, skeys
 
 

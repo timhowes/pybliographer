@@ -1,5 +1,6 @@
 ## Please update this variable if any new macros are created
 MACROS=						\
+  python.m4					\
   aclocal-include.m4				\
   compiler-flags.m4				\
   curses.m4					\
@@ -23,7 +24,7 @@ MACROS=						\
   linger.m4					\
   need-declaration.m4
 
-EXTRA_DIST=$(MACROS) gnome-common.m4 autogen.sh
+EXTRA_DIST=$(MACROS) gnome-common.m4 
 MAINTAINERCLEANFILES=macros.dep
 
 @MAINT@macros.dep: Makefile.am

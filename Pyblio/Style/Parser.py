@@ -39,11 +39,11 @@ class BibStyle:
         return
 
     def output (self, entry, fmt, key = None):
-        fmt.begin_entry (key, entry)
+        fmt.start (key, entry)
         had_text = 0
         for item in self.data:
             had_text = item.output (entry, fmt, None, self.meth, had_text)
-        fmt.end_entry ()
+        fmt.end ()
         return
 
     

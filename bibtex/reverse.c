@@ -26,6 +26,7 @@
 #endif
 
 #include <string.h>
+#include <regex.h>
 
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>
@@ -85,13 +86,32 @@ text_to_struct (gchar * string) {
     return s;
 }
 
+
+static gboolean
+author_needs_quotes (gchar * string) {
+  static gboolean initialized = FALSE;
+  static regex_t and_re;
+  
+  if (! initialized) {
+    initialized = regcomp (& and_re, "[^[:alnum:]]and[^[:alnum:]]", REG_ICASE |
+			   REG_EXTENDED) == 0;
+    g_assert (initialized);
+  }
+
+  return
+    (strpbrk (string, ",") != NULL) || 
+    (regexec (& and_re, string, 0,NULL, 0)  == 0);
+}
+
+
 BibtexField * 
 bibtex_reverse_field (BibtexField * field,
-		      gboolean use_braces) {
+		      gboolean use_braces,
+		      gboolean do_quote) {
 #ifdef USE_RECODE
     BibtexStruct * s;
     gchar * string, * tmp, c;
-    gboolean has_upper, is_upper, has_space;
+    gboolean has_upper, is_upper, has_space, is_command;
     gint start, stop, last, i;
     BibtexAuthor * author;
 
@@ -135,8 +155,6 @@ bibtex_reverse_field (BibtexField * field,
 	    }
 	}
 
-	tmp = recode_string (request, field->text);
-
 	if (use_braces) {
 	    g_string_append (st, "@preamble{{");
 	}
@@ -144,8 +162,14 @@ bibtex_reverse_field (BibtexField * field,
 	    g_string_append (st, "@preamble{\"");
 	}
 
-	g_string_append (st, tmp);
-	g_free (tmp);
+	if (do_quote) {
+	  tmp = recode_string (request, field->text);
+	  g_string_append (st, tmp);
+	  g_free (tmp);
+	}
+	else {
+	  g_string_append (st, field->text);
+	}
 
 	if (use_braces) {
 	    g_string_append (st, "}}");
@@ -177,19 +201,53 @@ bibtex_reverse_field (BibtexField * field,
 	    g_string_append (st, "@preamble{\"");
 	}
 
-	/* Put the upper cases or the first lower cases between {} */
+	/* Put the first lower case between {} */
 	string = tmp;
 	if (* tmp >= 'a' && * tmp <= 'z') {
 	    /* Put the beginning in lower cases */
 	    g_string_append_c (st, '{');
 	    g_string_append_c (st, * tmp);
 	    g_string_append_c (st, '}');
-	    tmp ++;
 	}
+	else {
+	    /* The first character is done */
+	    g_string_append_c (st, * tmp);
+	}
+	
+	tmp ++;
 
-	is_upper = false;
+	/* check for upper cases afterward */
+	is_upper   = false;
+	is_command = false;
+
 	while (* tmp) {
-	    if (* tmp >= 'A' && * tmp <= 'Z' && (tmp > string)) {
+	    /* start a latex command */
+	    if (* tmp == '\\') {
+
+		/* eventually closes the bracket */
+		if (is_upper) {
+		    is_upper = false;
+		    g_string_append_c (st, '}');
+		}
+
+		is_command = true;
+		g_string_append_c (st, * tmp);
+		tmp ++;
+
+		continue;
+	    }
+	    if (is_command) {
+		if (! ((* tmp >= 'a' && * tmp <= 'z') ||
+		       (* tmp >= 'A' && * tmp <= 'Z'))) {
+		    is_command = false;
+		}
+		g_string_append_c (st, * tmp);
+		tmp ++;
+
+		continue;
+	    }
+
+	    if (* tmp >= 'A' && * tmp <= 'Z') {
 		if (! is_upper) {
 		    g_string_append_c (st, '{');
 		    is_upper = true;
@@ -206,6 +264,8 @@ bibtex_reverse_field (BibtexField * field,
 	    }
 	    tmp ++;
 	}
+
+	/* eventually close the brackets */
 	if (is_upper) {
 	    g_string_append_c (st, '}');
 	    is_upper = false;
@@ -218,7 +278,7 @@ bibtex_reverse_field (BibtexField * field,
 	else {
 	    g_string_append (st, "\"}");
 	}
-	
+
 	s = text_to_struct (st->str);
 	break;
 
@@ -262,7 +322,11 @@ bibtex_reverse_field (BibtexField * field,
 	    }
 
 	    if (author->last) {
-		has_space = strpbrk (author->last, " \t") != NULL;
+	        /* quotes if there is no first name */
+	        has_space = author_needs_quotes (author->last) ||
+		  (author->first == NULL && 
+		   strpbrk (author->last, " \t") != NULL);
+
 		if (has_space) {
 		    g_string_append_c (st, '{');
 		}
@@ -279,7 +343,8 @@ bibtex_reverse_field (BibtexField * field,
 	    if (author->lineage) {
 		g_string_append (st, ", ");
 
-		has_space = strpbrk (author->lineage, " \t") != NULL;
+	        has_space = author_needs_quotes (author->lineage);
+
 		if (has_space) {
 		    g_string_append_c (st, '{');
 		}
@@ -297,7 +362,8 @@ bibtex_reverse_field (BibtexField * field,
 	    if (author->first) {
 		g_string_append (st, ", ");
 
-		has_space = strpbrk (author->first, " \t") != NULL;
+	        has_space = author_needs_quotes (author->first);
+
 		if (has_space) {
 		    g_string_append_c (st, '{');
 		}

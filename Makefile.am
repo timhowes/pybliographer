@@ -24,6 +24,7 @@ appdir  = $(datadir)/gnome/apps/Applications
 
 SUBDIRS = 	Pyblio 		\
 		intl		\
+		extras		\
 		bibtex 		\
 		compiled 	\
 		po		\
@@ -31,6 +32,7 @@ SUBDIRS = 	Pyblio 		\
 		scripts		\
 		tests		\
 		Styles		\
+		macros		\
 		doc
 
 
@@ -73,7 +75,7 @@ pybliographer: $(top_srcdir)/pybliographer.py etc/installer
 install-data-local:
 	mv -f $(DESTDIR)$(pybdir)/pybrc.py $(DESTDIR)$(pybdir)/pybrc.old || true
 	$(INSTALL_DATA) $(srcdir)/pybrc.py $(DESTDIR)$(pybdir)
-	$(python) -c "import compileall ; compileall.compile_dir ('"$(DESTDIR)$(pybdir)"');"
+	$(Python) -c "import compileall ; compileall.compile_dir ('"$(DESTDIR)$(pybdir)"');"
 
 pybliographic.keys: pybliographic.keys.in Makefile
 	sed -e 's^\@icondir\@^$(appicondir)^g' \

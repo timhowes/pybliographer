@@ -46,7 +46,8 @@ class FieldsDialog:
                               STOCK_BUTTON_APPLY,
                               STOCK_BUTTON_CANCEL)
         if parent: self.w.set_parent (parent)
-
+        self.parent = parent
+        
         self.w.button_connect (0, self.apply)
         self.w.set_close (1)
         self.w.set_policy (TRUE, TRUE, FALSE)
@@ -108,6 +109,8 @@ class FieldsDialog:
             self.list.set_row_data (self.list.rows - 1, item)
         
         self.w.show_all ()
+
+        self.changed = 0
         return
 
 
@@ -143,10 +146,16 @@ class FieldsDialog:
 
 
     def apply (self, * arg):
+        if not self.changed: return
+        
         result = self.get ()
         
         Config.set ('base/fields', result)
         Config.save_user ({'base/fields' : result})
+
+        if self.parent:
+            self.parent.warning (_("Some changes require to restart Pybliographic\n"
+                                   "to be correctly taken into account"))
         return
 
 
@@ -158,6 +167,8 @@ class FieldsDialog:
         field = Types.FieldDescription (name, self.current_menu)
         table [string.lower (name)] = field
         self.set (table)
+
+        self.changed = 1
         return
 
 
@@ -170,6 +181,8 @@ class FieldsDialog:
         table = self.get ()
         del table [string.lower (item.name)]
         self.set (table)
+
+        self.changed = 1
         return
 
 
@@ -186,7 +199,8 @@ class EntriesDialog:
                               STOCK_BUTTON_APPLY,
                               STOCK_BUTTON_CANCEL)
         if parent: self.w.set_parent (parent)
-
+        self.parent = parent
+        
         self.w.button_connect (0, self.apply)
         self.w.set_close (1)
         self.w.set_policy (TRUE, TRUE, FALSE)
@@ -241,6 +255,8 @@ class EntriesDialog:
                                       [item, 0])
             
         self.w.show_all ()
+
+        self.changed = 0
         return
 
     def select_main (self, w, row, col, event):
@@ -307,8 +323,21 @@ class EntriesDialog:
         return
     
     def apply (self, * arg):
+        if not self.changed: return
+        
         Config.set ('base/entries', self.entries)
-        Config.save_user ({'base/entries' : self.entries})
+
+        default  = string.lower (Config.get ('base/defaulttype').data.name)
+        def_type = Config.get ('base/entries').data [default]
+        
+        Config.set ('base/defaulttype', def_type)
+        
+        Config.save_user ({'base/entries' : self.entries,
+                           'base/defaulttype' : def_type})
+
+        if self.parent:
+            self.parent.warning (_("Some changes require to restart Pybliographic\n"
+                                   "to be correctly taken into account"))
         return
 
     def add_cb (self, * arg):
@@ -327,6 +356,8 @@ class EntriesDialog:
 
         self.entries [string.lower (name)] = newentry
         self.update_main ()
+
+        self.changed = 1
         return
 
     def remove_cb (self, * arg):
@@ -336,5 +367,7 @@ class EntriesDialog:
 
         del self.entries [self.main.get_row_data (selection)]
         self.update_main ()
+
+        self.changed = 1
         return
     

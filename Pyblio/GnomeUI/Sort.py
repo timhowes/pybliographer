@@ -23,12 +23,19 @@
 
 from gtk import *
 from gnome.ui import *
+from gnome import config
 
 import gettext, string
 _ = gettext.gettext
 
 from Pyblio import Connector, Sort, Config
 from Pyblio.GnomeUI import Utils
+
+import cPickle
+
+pickle = cPickle
+del cPickle
+
 
 class SortDialog (Connector.Publisher):
     
@@ -97,6 +104,12 @@ class SortDialog (Connector.Publisher):
         b = GtkButton (_("Unselect all"))
         Utils.set_tip (b, _("Removes all the sort criterions"))
         b.connect ('clicked', self.unselect_items)
+        box.pack_start (b)
+
+        b = GtkButton (_("Set as default"))
+        Utils.set_tip (b, _("Use this sort criterion as the default"
+                            " for new files"))
+        b.connect ('clicked', self.set_as_default)
         box.pack_start (b)
 
         self.window.vbox.pack_start (box, FALSE, FALSE)
@@ -171,15 +184,28 @@ class SortDialog (Connector.Publisher):
         self.window.show ()
         return
 
-    
-    def apply (self, * arg):
+
+    def get_result (self):
         data   = filter (lambda x: x [0], self.get_criterions ())
         result = []
         for d in data:
             d [1].ascend = d [0]
             result.append (d [1])
-            
-        self.issue ('sort-data', result)
+
+        if result == []: result = None
+
+        return result
+
+
+    def set_as_default (self, * arg):
+        config.set_string ('Pybliographic/Sort/Default',
+                           pickle.dumps (self.get_result ()))
+        config.sync ()
+        return
+    
+    
+    def apply (self, * arg):
+        self.issue ('sort-data', self.get_result ())
         self.window.close ()
         return
     

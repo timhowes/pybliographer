@@ -39,7 +39,7 @@ def get_formatter (format):
     if formatter_cache.has_key (format):
         ft = formatter_cache [format]
     else:
-        ft = recode.recode (format)
+        ft = recode.recode ('latin1..' + format)
         formatter_cache [format] = ft
 
     return ft
@@ -121,7 +121,7 @@ class Author:
         ''' Returns the fields in a given format '''
         
         ft = get_formatter (fmt)
-            
+        
         return (ft (self.honorific), ft (self.first),
                 ft (self.last), ft (self.lineage))
 
@@ -382,6 +382,7 @@ class URL:
     def __init__ (self, url):
 
         if type (url) is types.StringType:
+            url = string.strip (url)
             url = list (urlparse.urlparse (url))
 
         if url [0] == '':
@@ -395,6 +396,10 @@ class URL:
         self.url = tuple (url)
         return
 
+    def match (self, regex):
+        ''' '''
+        return regex.search (str (self))
+        
     def __cmp__ (self, other):
         return cmp (self.url, other.url)
 

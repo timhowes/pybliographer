@@ -2,13 +2,6 @@
 
 - fill fields with crossref informations
 - ranges for dates
-- postgres/gnome-db
-- saving of searches
-- structured db
-- time test to avoid overwriting a modified file
-- XSL for formatting
-- Web queries
-- ability to display key/type in main list
 
 Long term:
 

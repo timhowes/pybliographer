@@ -1,8 +1,5 @@
-M4    = m4 -P
-M4INC = template.m4 defines.m4 news.m4 
-WEB   = /usr/local/www/www.gnome.org/pybliographer
-
-#WEB   = /home/groups/pybliographer/htdocs
+M4   = template.m4 defines.m4 news.m4 
+WEB  = /usr/local/www/www.gnome.org/pybliographer
 
 HTML =	index.html 		\
 	download.html 		\
@@ -10,10 +7,9 @@ HTML =	index.html 		\
 	documentation.html 	\
 	history.html 		\
 	mailing.html 		\
-	faq.html		\
 	development.html
 
-EXTRA = pyblio.png sample.html anybrowser.png
+EXTRA = pyblio.png
 
 
 all: $(HTML)
@@ -26,13 +22,12 @@ install: all
 clean:
 	test -z "$(HTML)" || rm -f $(HTML)
 
-remote:
-	rsync *.m4 $(EXTRA) Makefile frederic@canvas.gnome.org:/home/frederic/html
-	ssh frederic@canvas.gnome.org 'cd html && make install'
+gnome:
+	scp -r *.m4 $(EXTRA) Makefile frederic@www.gnome.org:/home/frederic/html
 
 .SUFFIXES: .html .m4
 
-%.html: %.m4 $(M4INC)
-	$(M4) $(M4INC) $< > $@
+%.html: %.m4 $(M4)
+	m4 $(M4) $< > $@
 
 screenshots.html: sample.html

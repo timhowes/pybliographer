@@ -1,85 +1,49 @@
-2001-07-21  Christian Rose  <menthos@menthos.com>
+2001-12-07  Christian Rose  <menthos@menthos.com>
 
 	* sv.po: Updated Swedish translation.
+
+2001-11-30  Christian Rose  <menthos@menthos.com>
+
+	* sv.po: Updated Swedish translation.
+
+2001-05-22  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* no.po: Updated Norwegian (bokmål) translation.
+	
+2001-03-28  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* az.po: Updated Azeri file
 
 2001-03-20  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* az.po: Added Azeri file
-	* fr.po,it.po,hu.po: corrected headers
 
-2001-03-04  Christian Meyer  <chrisime@gnome.org>
+2001-02-06  Christian Meyer  <cm@ggtt.de>
 
 	* de.po: Updated German translation.
 
-2001-02-08  Szabolcs Ban <shooby@gnome.hu>                  
-                                                     
-        * hu.po: Updated and corrected Hungarian translations
-	from Zoltán Kóta <kota@szbk.u-szeged.hu>
+2001-01-18  Kjartan Maraas  <kmaraas@gnome.org>
 
-2001-01-31  Fatih Demir	<kabalak@gmx.net>
-
-	* tr.po: Committed updated Turkish translation
-		by Kemal Yilmaz.
-
-2001-01-20  Jarkko Ranta  <jjranta@cc.joensuu.fi>
-
-	* fi.po: Updated Finnish translation by 
-	  Pauli Virtanen
-
+	* no.po: Updated Norwegian (bokmål) translation.
+	
 2001-01-15  Fatih Demir	<kabalak@gmx.net>
 
-	* tr.po: Added Turkish translation contributed
-		by Kemal YILMAZ.
+	* tr.po: Added Turkish translation also for the
+		branch.
 
-2000-11-29  Pauli Virtanen  <pauli.virtanen@saunalahti.fi>
+2000-12-31  Pauli Virtanen  <pauli.virtanen@saunalahti.fi>
 
 	* fi.po: Added Finnish translation.
+
+2000-11-29  Martin NorbÃ¤ck  <d95mback@dtek.chalmers.se>
+
+	* sv.po: Imported from HEAD
+
+2000-09-10  Kai Lahmann <kl@linuxfaqs.de>
+
+	* de.po: Merged German translation with HEAD
+
+2000-08-21  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* no.po: Added Norwegian translation.
 	
-2000-11-20  Martin Norbäck  <d95mback@dtek.chalmers.se>
-
-	* sv.po: Updated translation
-
-2000-11-17  Martin Norbäck  <d95mback@dtek.chalmers.se>
-
-	* sv.po: Updated translation
-	* update.pl: Updated script since it destroyed my sv.po!!!
-
-2000-11-17  Christian Rose  <menthos@menthos.com>
-
-	* sv.po: Started Swedish translation.
-
-2000-10-15  Yukihiro Nakai  <nakai@gnome.gr.jp>
-
-	* ja.po: Initial Japanese translation.
-
-2000-08-28  Kai Lahmann <kl@linuxfaqs.de>
-
-	* de.op: Updated German translation from chrisime <linux@chrisime.de>
-
-2000-08-23  Yuri Syrota <rasta@renome.rovno.ua>
-
-	* uk.op: Added Ukrainian translation
-
-2000-08-19  Valek Filippov  <frob@df.ru>
-
-	* ru.po: Updated russian translation.
-	
-2000-08-14  Kai Lahmann <kl@linuxfaqs.de>
-
-	* de.op: Updated German translation from chrisime <linux@chrisime.de>
-
-2000-08-12  Kai Lahmann <kl@linuxfaqs.de>
-
-	* de.op: Updated German translation
-
-2000-08-11  Kai Lahmann <kl@linuxfaqs.de>
-
-	* de.op: Updated German translation
-
-2000-08-09  Kai Lahmann <kl@linuxfaqs.de>
-
-	* de.op: Updated German translation
-
-2000-07-25  Valek Filippov  <frob@df.ru>
-
-	* ru.po: Added russian translation.

@@ -19,7 +19,6 @@
 # 
 # $Id$
 
-from Pyblio import Connector
 import string, os, sys, types, gettext, cPickle
 
 pickle = cPickle
@@ -30,18 +29,19 @@ _ = gettext.gettext
 
 ''' System for Configuration handling '''
 
-class ConfigItem (Connector.Publisher):
+class ConfigItem:
 
-    def __init__ (self,
-                  name,
-                  real = None,
-                  desc = "",
-                  datatype = None):
+    def __init__ (self, name, description, vtype = None, hook = None, user = None):
+        self.name        = name
+        self.description = description
+
+        # type definition
+        self.type     = vtype
         
-        self.name = name
-        self.real = real
-        self.desc = desc
-        self.type = datatype
+        # callback definition
+        self.hook     = hook
+        self.userdata = user
+
         self.data = None
         return
 
@@ -52,8 +52,13 @@ class ConfigItem (Connector.Publisher):
                 raise ValueError, \
                       _("value of `%s' should be of type %s") % (self.name,
                                                                  str (self.type))
+            
+        # eventually call the hook
+        if self.hook:
+            if not self.hook (self, value, self.userdata):
+                raise ValueError, "value refused by hook"
+
         self.data = value
-        self.issue ('changed')
         return
 
     def get (self):
@@ -63,7 +68,7 @@ class ConfigItem (Connector.Publisher):
 class Storage:
 
     def __init__ (self):
-        self.items   = {}
+        self.items = {}
         self.sources = {}
         return
 
@@ -134,15 +139,11 @@ class Storage:
         
 ConfigItems = Storage ()
 
-def define (key,
-            name = None,
-            desc = '',
-            datatype = None):
-    
+def define (key, description, vtype = None, hook = None, user = None):
     if ConfigItems.has_key (key):
         raise KeyError, "key `%s' already defined" % key
 
-    ConfigItems [key] = ConfigItem (key, name, desc, datatype)
+    ConfigItems [key] = ConfigItem (key, description, vtype, hook, user)
     return
 
 
@@ -181,18 +182,13 @@ def parse_directory (dir):
 
 class PrimaryType:
     ''' Base class for simple types '''
-    def __init__ (self, desc = ''):
-        self.desc = desc
-        return
-    
     def match (self, value):
         return type (value) is self.type
 
     
     
 class String (PrimaryType):
-    def __init__ (self, desc = ''):
-        PrimaryType.__init__ (self, desc)
+    def __init__ (self):
         self.type = types.StringType
         return
 
@@ -201,8 +197,7 @@ class String (PrimaryType):
 
 
 class Boolean (PrimaryType):
-    def __init__ (self, desc = ''):
-        PrimaryType.__init__ (self, desc)
+    def __init__ (self):
         self.type = types.IntType
         return
 
@@ -211,8 +206,7 @@ class Boolean (PrimaryType):
 
 
 class Integer (PrimaryType):
-    def __init__ (self, min = None, max = None, desc = ''):
-        PrimaryType.__init__ (self, desc)
+    def __init__ (self, min = None, max = None):
         self.type = types.IntType
         self.min  = min
         self.max  = max
@@ -237,9 +231,8 @@ class Integer (PrimaryType):
     
 
 class Element:
-    def __init__ (self, elements, desc = ''):
-        self.get  = elements
-        self.desc = desc
+    def __init__ (self, elements):
+        self.get = elements
         return
 
     def match (self, value):
@@ -252,9 +245,8 @@ class Element:
 class Tuple:
     ''' A tuple composed of different subtypes '''
     
-    def __init__ (self, subtypes, desc = ''):
+    def __init__ (self, subtypes):
         self.subtypes = subtypes
-        self.desc     = desc
         return
 
     def match (self, value):
@@ -274,9 +266,8 @@ class Tuple:
 class List:
     ''' An enumeration of items of the same type '''
 
-    def __init__ (self, subtype, desc = ''):
+    def __init__ (self, subtype):
         self.subtype = subtype
-        self.desc    = desc
         return
 
     def match (self, value):
@@ -295,10 +286,9 @@ class List:
 class Dict:
     ''' A dictionnary '''
 
-    def __init__ (self, key, value, desc = ''):
+    def __init__ (self, key, value):
         self.key   = key
         self.value = value
-        self.desc  = desc
         return
 
     def match (self, value):
@@ -325,10 +315,10 @@ def load_user ():
     try:
         file = open (os.path.expanduser ('~/.pybrc.conf'), 'r')
     except IOError: return
-    
+
     changed = pickle.load (file)
     file.close ()
-    
+
     for item in changed.keys ():
         ConfigItems.eventually_resolve (item)
         set (item, changed [item])

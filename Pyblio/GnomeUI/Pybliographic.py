@@ -21,7 +21,7 @@
 
 ''' Main Module holding all the documents '''
 
-import gettext, copy
+import gettext, copy, os, stat
 
 _ = gettext.gettext
 
@@ -92,6 +92,12 @@ class Pybliographic:
         # warn all the documents
         for doc in self.documents:
             doc.update_history (self.opened)
+
+        # get the modification date...
+        if doc.data.key and doc.data.key.url [0] == 'file':
+            file = doc.data.key.url [2]
+            doc.modification_date = os.stat (file) [stat.ST_MTIME]
+        
         return
 
     

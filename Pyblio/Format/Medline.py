@@ -25,7 +25,7 @@ from Pyblio import Base, Fields, Types, Autoload, Open, Iterator, Utils, Config
 
 import re, string,sys
 
-header = re.compile ('^(\w\w[\w ][\w ])-\s+(.*)$')
+header = re.compile ('^(\w\w[\w ][\w ])- (.*)$')
 contin = re.compile ('^      (.*)$')
 
 one_to_one = Config.get ('medline/mapping').data
@@ -99,11 +99,44 @@ class MedlineIterator (Iterator.Iterator):
             group = Fields.AuthorGroup ()
             
             for au in table ['AU']:
-                author = Fields.Author (au)
-                if author.first is not None:
-                    author.first, author.last = author.last, author.first
+                # analyze the author by ourself.
+                first, last, lineage = [], [], []
+                
+                for part in string.split (au, ' '):
+                    if part == string.upper (part):
+                        # in upper-case, this is a first name
+                        if len (last) > 0:
+                            first.append (part)
+                        else:
+                            # if there is no last name, there can't be a first name
+                            last.append (part)
+                    else:
+                        if len (first) > 0:
+                            # there was a first name, this must be a lineage
+                            lineage.append (part)
+                        else:
+                            last.append (part)
+
+                if len (first) > 1:
+                    print "medline: long first name found. skipping."
+                    first = first [0:1]
+
+                if len (first) > 0:
+                    first = string.join (first [0], '. ') + '.'
+                else:
+                    first = None
+
+                if len (last) > 0:
+                    last = string.join (last, ' ')
+                else:
+                    last = None
+
+                if len (lineage) > 0:
+                    lineage = string.join (lineage, ' ')
+                else:
+                    lineage = None
                     
-                group.append (author)
+                group.append (Fields.Author ((None, first, last, lineage)))
                 
             norm [one_to_one ['AU']] = group
             del table ['AU']
@@ -200,7 +233,14 @@ def writer (iter, output):
         if entry.has_key (med):
             del ekeys [med]
             for auth in entry [med]:
-                text = '%s %s' % (auth.last or '', auth.first or '')
+                first = auth.first or ''
+                compact = []
+                for seq in string.split (first, ' '):
+                    if len (seq) > 0: compact.append (seq [0])
+
+                first = string.join (compact, '')
+                text = string.join ((auth.last or '', first, auth.lineage or ''), ' ')
+                
                 output.write ('%-4.4s- %s\n' % ('AU', text))
 
         med = one_to_one ['DP']

@@ -19,38 +19,15 @@
 # 
 # $Id$
 
-import _recode, string, re
+import _recode
 
-class std_recode:
-    def __init__ (self, req):
-        self.request = _recode.request ('latin1..' + req)
+class recode:
+
+    def __init__ (self, request):
+        self.request = _recode.request (request)
         return
     
     def __call__ (self, text):
         if text is None: return None
         
         return _recode.recode (self.request, text)
-
-
-abi_re = re.compile ('[<>\x80-\xff]')
-
-class abi_recode:
-
-    def abi_replacer (self, match):
-        c = match.group (0)
-        if c == '<': return '&lt;'
-        if c == '>': return '&gt;'
-        
-        return '&#x%x;' % ord (c)
-
-    def __call__ (self, text):
-        if text is None: return None
-
-        return re.sub (abi_re, self.abi_replacer, text)
-
-
-def recode (format):
-    if string.lower (format) == 'abiword':
-        return abi_recode ()
-
-    return std_recode (format)

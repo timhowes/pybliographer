@@ -1,26 +1,182 @@
-2001-02-08  Szabolcs Ban <shooby@gnome.hu>
+2001-12-07  Frédéric Gobry  <frederic.gobry@smartdata.ch>
 
-	* pybliographic.desktop: Added Hungarian translations
-          from Zoltán Kóta
+	* Pyblio/GnomeUI: implemented an incremental search.
+
+2001-12-05  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/GnomeUI: added a "Add" button in the toolbar, and added a
+	default sort method for the entries. This default can be set from
+	the "Sort" popup.
+
+	* Pyblio/Format/Medline.py: fixed problem with authors without
+	first names (like "et al.").
+
+2001-11-28  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/GnomeUI: added Medline Query interface
+	* Pyblio/Format/Medline.py: consider first names as set of
+	initials
+	* Pyblio/Utils.py: flatify key names so that they contain no
+	accents.
+	* Pyblio/Format/isfile.py: committed fixes from	Peter
+	Schulte-Stracke
+	* Pyblio/Style/apa4e.py: added style APA 4th edition from Darrell
+	Rudmann.
+	
+	
+2001-10-24  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/GnomeUI/Editor.py: added . as a valid character for a
+	field key.
+	* bibtex/accents.c: code flqq and frqq (sorry, ldots is not a
+	latin1 character)
+	* Pyblio/GnomeUI/Index.py: possibility to copy/paste entry keys
+	instead of content.
+
+2001-10-17  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/Fields.py: remove white space around URLs
+	
+2001-06-29  Karl Eichwalder  <ke@suse.de>
+
+	* compiled/Setup.in: Don't try to link non-pic objects in shared
+	lib.  From Andreas Schwab.
+	* compiled/Makefile.pre.in (Setup): Ditto.
+
+2001-06-26  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/Format/BibTeX.py: fixed order of referenced/referencing entries
+
+2001-06-25  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/Format: added isifile from Peter Schulte-Stracke
+	* bibtex/reverse.c: better analyze of author output
+	* Pyblio/Base.py: update files by creating a temporary buffer
+	* Pyblio/GnomeUI/Entry.py: use of GtkHTML when available
+
+2001-03-28  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* configure.in: handled the case where no DISPLAY is available
+	during configuration (this breaks importing gtk)
 
 2001-01-15  Fatih Demir	<kabalak@gmx.net>
 
-	* configure.in Added tr to ALL_LINGUAS.
+	* configure.in: Added tr to ALL_LINGUAS and
+		resorted it.
 
-2000-11-29  Pauli Virtanen  <pauli.virtanen@saunalahti.fi>
+2001-01-09  Gobry Frederic  <frederic.gobry@epfl.ch>
 
-	* pybliographic.desktop: Added Finnish description.
-	* configure.in: Added fi to ALL_LINGUAS
+	* Pyblio/GnomeUI/Search.py: fixed broken "Search" button
 	
-2000-10-20  Martin Norbäck  <d95mback@dtek.chalmers.se>
+2000-11-31  Pauli Virtanen  <pauli.virtanen@saunalahti.fi>
 
-	* pybliographic.desktop: added Swedish description
-	* configure.in: added da, pt_BR and sv to ALL_LINGUAS
+	* configure.in: Added fi to ALL_LINGUAS.
+	* pybliographer.desktop: Added Finnish translation
 
-2000-10-15  Yukihiro Nakai  <nakai@gnome.gr.jp>
+2000-11-30  Gobry Frederic  <frederic.gobry@epfl.ch>
 
-	* configure.in: Add ja to ALL_LINGUAS
-	* .desktop: Add Japanese translation
+	* bibtex/accents.c: completed latin1 set
+	* bibtex/author.c: parsing of "template" authors, like {, and ,}
+
+2000-11-30  Martin Norbäck  <d95mback@dtek.chalmers.se>
+
+	* pybliographer.desktop: Added Swedish translation
+
+2000-11-21  Gobry Frederic  <frederic.gobry@epfl.ch>
+
+	* Pyblio/Format/OvidLike.py: fixed keyword separators
+
+	* tests: fixed medline to bibtex conversion test
+
+2000-11-13  Gobry Frederic  <frederic.gobry@epfl.ch>
+
+	* Pyblio/GnomeUI/Document.py, Pyblio/GnomeUI/Pybliographer.py:
+	added warning to avoid overwriting of an externally modified document.
+
+2000-11-09  Gobry Frederic  <frederic.gobry@epfl.ch>
+
+	* bibtex/reverse.c: the reverse saga continues... fixed a bug
+	introdiced by the previous fix...
+
+	* Pyblio/Format/OvidLike.py: improved source parsing (for missing
+	volume).
+
+2000-10-30  Gobry Frederic  <gobry@lithpc18.epfl.ch>
+
+	* bibtex/authors.c: fixed parsing of comma separated author field,
+	having a lowercase part in their name...
+
+2000-10-17  Gobry Frederic  <gobry@lithpc18.epfl.ch>
+
+	* configure.in, Makefile.am, macros/python.m4: improved the
+	testing of the python interpreter version.
+
+2000-10-09  Fred  <fred@lepriv1.epfl.ch>
+
+	* pybliographer.py, pybrc.py, Pyblio/Base.py, Pyblio/Utils.py:
+	modularized key generation function
+
+	* bibtex/reverse.c, bibtex/accents.c: solved problem with LaTeX
+	command in reversed titles.
+
+2000-10-03  Gobry Frederic  <gobry@lithpc18.epfl.ch>
+
+	* configure.in, extras, tests, scripts: added path access to the
+	extras/ subdir, and installation of missing files for the
+	text-only version. Fixed configuration with python 1.6.
+
+2000-09-25  Gobry Frederic  <gobry@lithpc18.epfl.ch>
+
+	* Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Document.py: use of the
+	virtual fields -key- and -type- in the index list.
+
+	* Pyblio/Style/Generic.py: fixed numeric_keys.
+
+	* Pyblio/GnomeUI/Search.py: add the search term to the history
+	when the user clicked on search (and didn't use Enter to validate
+	its choice).
+	
+2000-09-20  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/GnomeUI/DOcument.py, Pyblio/Style/Generic.py: fixed
+	numeric key and format entries in the same order as they are displayed.
+
+2000-08-28  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Added no to ALL_LINGUAS.
+	
+2000-08-03  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/Search.py: make typed
+	words history in GnomeEntry permanent.
+
+	* bibtex/accents.c: added some missing special characters.
+
+2000-07-27  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/GnomeUI/__init__.py: explicitely import gtk with modified
+	sys.argv, so that script options are not seen by gtk_init
+
+	* Pyblio/GnomeUI/Fields.py: added "restart now" dialog when
+	editing Fields/Entries.
+
+2000-07-24  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/GnomeUI: added scrollbar around notebook in edition
+	window, save column width in index, update default type when
+	changing entry description
+
+	* Pyblio/Format/Refer.py: merged patch from Martin Wilck
+	<martin@tropos.de> to support label saving/loading from Refer
+	databases.
+
+2000-07-18  Fred  <fred@lithpc10.epfl.ch>
+
+	* bibtex/accents.c, bibtex/bibparse.y: parsing of ß and of
+	@comment in strict mode
+
+	* Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Document.py: select an
+	entry after an edition operation
 
 2000-06-13  Fred  <fred@lithpc10.epfl.ch>
 

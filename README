@@ -35,14 +35,16 @@ Please  check  that  python  and  recode  have  their  devel  packages
 installed. For *Debian*, this means that the following packages should
 be present :
 
-	python-base
-	python-dev
-	python-gdk-imlib
-	python-gnome
-	python-gtk
-	python-misc
-	python-net
-	python-tk
+   librecode0
+   librecode-dev
+   python-base
+   python-dev
+   python-gdk-imlib
+   python-gnome
+   python-gtk
+   python-numeric
+   python-tk
+   python-xml                                                                                                 
 
 (thanks to Yuri Bongiorno for having isolated the minimal required list ;-))
 

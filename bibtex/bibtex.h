@@ -282,7 +282,8 @@ extern "C" {
     /* recreate structure after modifications */
 
     BibtexField * bibtex_reverse_field (BibtexField * field,
-					gboolean use_braces);
+					gboolean use_braces,
+					gboolean do_quote);
 
     /* --------------------------------------------------
        Low level function

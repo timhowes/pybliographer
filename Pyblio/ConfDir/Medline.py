@@ -1,13 +1,8 @@
-import gettext
-_ = gettext.gettext
-
 from Pyblio import Config
 
 Config.define ('medline/mapping',
-               _("Medline Mapping"),
-               _("Medline field names correspondances"),
-               Config.Dict (Config.String (),
-                            Config.String ()))
+               """ A hash table containing field names correspondances """,
+               Config.Dict (Config.String (), Config.String ()))
 
 Config.set ('medline/mapping', {
     'UI' : 'medlineref',

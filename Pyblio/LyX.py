@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-import os, string, gettext
+import os, string, gettext, select, signal
 
 _ = gettext.gettext
 
@@ -43,9 +43,14 @@ class LyXClient:
             ans = os.stat (pout)
         except os.error:
             raise IOError, (-1, _("no output pipe `%s'") % pout)
+
+        def noaction (* arg): return
         
+        signal.signal (signal.SIGALRM, noaction)
+        signal.alarm (2)
         self.pout = open (pout, 'r')
-        self.pin = open (pin, 'w')
+        self.pin  = open (pin,  'w')
+        signal.alarm (0)
         
         # Say hello !
         self.pin.write ('LYXSRV:pyblio:hello\n')
@@ -55,6 +60,7 @@ class LyXClient:
     def __call__ (self, command, * arg):
         self.pin.write ('LYXCMD:%s:%s:%s\n' % ('pyblio', command, string.join (arg, ' ')))
         self.pin.flush ()
+        
         #print self.pout.read ()
         
         #ans = string.strip (ans)

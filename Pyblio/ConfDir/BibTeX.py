@@ -1,34 +1,23 @@
-import gettext
-_ = gettext.gettext
-
 from Pyblio import Config
 
 # ==================================================
 
-Config.define ('bibtex',
-               _("BibTeX"),
-               _("BibTeX parser configuration"))
-
 Config.define ('bibtex/strict',
-               _("Strict Parsing"),
-               _("""Turn warnings into errors"""),
+               """ A boolean indicating the strictness of the parsing """,
                Config.Boolean ())
 
-Config.define ('bibtex/macros',
-               _("Macros"),
-               _("BibTeX @String{} macros"),
+Config.define ('bibtex/macros', """ A dictionnary defining the BibTeX
+macros (@String{} macros). Each entry of the dictionnary is a 2-uple :
+the first field is the expansion of the macro, the second is a boolean
+indicating if this macro definition has to be saved in the .bib files """,
                Config.Dict (Config.String (),
                             Config.Tuple ((Config.String (), Config.Boolean ()))))
 
-Config.define ('bibtex/datefield',
-               _("Date Fields"),
-               _("""Links from `real' date field to the two bibtex
-               fields that compose it"""))
+Config.define ('bibtex/datefield', """ A hash table linking a `real'
+date field to the two bibtex fields that compose it """)
 
-Config.define ('bibtex/months',
-               _("Month values"),
-               _(""" A hash table linking month names to their
-               values """))
+Config.define ('bibtex/months', """ A hash table linking month names to their
+values """)
 
 # ==================================================
 

@@ -21,7 +21,9 @@
 
 # Extension module for Refer files
 
-from Pyblio import Base, Types, Fields, Config, Autoload, Open, Iterator, Utils
+# Martin Wilck <martin@tropos.de> added support for citation label field.
+
+from Pyblio import Base, Types, Fields, Config, Autoload, Open, Iterator, Utils, Key
 
 import re, string, sys
 
@@ -69,6 +71,7 @@ class ReferIterator (Iterator.Iterator):
         data   = ''
         fields = {}
         type   = None
+        label = None
 
         while 1:
 	    line = self.file.readline ()
@@ -81,8 +84,9 @@ class ReferIterator (Iterator.Iterator):
 
                 # store the current field
                 if type:
-                    
-                    if fields.has_key (type):
+                    if type == "label":
+                        label = string.join (string.split (data), ' ')
+                    elif fields.has_key (type):
                         fields [type].append (string.join (string.split (data), ' '))
                     else:
                         fields [type] = [string.join (string.split (data), ' ')]
@@ -100,6 +104,10 @@ class ReferIterator (Iterator.Iterator):
 
                     if fields.has_key ('volume') or fields.has_key ('number'):
                         type = 'inproceedings'
+                        break
+
+                    if fields.has_key ('publisher'):
+                        type = 'book'
                         break
 
                     if fields.has_key ('author') and fields.has_key ('title'):
@@ -129,15 +137,20 @@ class ReferIterator (Iterator.Iterator):
                         
                         fields [f] = type (fields [f] [0])
                         
-                return Base.Entry (None, entry, fields)
-
+                if label:
+                    key = Key.Key (None, label)
+                    return Base.Entry (key, entry, fields)
+                else:
+                    return Base.Entry (None, entry, fields)
+                
             
             t = tag_re.match (line)
             # we matched a new field start
             if t:
                 if type:
-                    
-                    if fields.has_key (type):
+                    if type == "label":
+                        label = string.join (string.split (data), ' ')
+                    elif fields.has_key (type):
                         fields [type].append (string.join (string.split (data), ' '))
                     else:
                         fields [type] = [string.join (string.split (data), ' ')]
@@ -169,8 +182,14 @@ def writer (iter, output):
             # lost their content
             if not mapping [key] [1]: continue
             field = mapping [key] [0]
-            
-            if entry.has_key (field):
+
+            if field == "label" and entry.key:
+                output.write ('%' + key + ' ')
+                output.write (Utils.format (str (entry.key.key), 75, 0, 0))
+                output.write ('\n')
+                continue
+                
+            elif entry.has_key (field):
                 type = Types.get_field (field).type
                 
                 if type == Fields.AuthorGroup:

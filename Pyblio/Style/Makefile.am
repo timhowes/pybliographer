@@ -22,6 +22,7 @@
 pybdir = $(datadir)/$(PACKAGE)/Pyblio/Style
 
 EXTRA_DIST = 	__init__.py	\
+		apa4e.py	\
 		Utils.py	\
 		Generic.py	\
 		Parser.py

@@ -1,14 +1,12 @@
-import gettext
-_ = gettext.gettext
-
 from Pyblio import Config
 
 Config.define ('refer/mapping',
-               _("Mapping"),
-               _("Field names correspondances"),
-               Config.Dict (Config.String (),
-                            Config.Tuple ((Config.String (),
-                                           Config.Boolean ()))))
+               """ A hash table containing field names
+               correspondances. The boolean flag specifies if the
+               mapping should be reversible. """,
+               vtype = Config.Dict (Config.String (),
+                                    Config.Tuple ((Config.String (),
+                                                   Config.Boolean ()))))
 
 Config.set ('refer/mapping', {
     'U' : ('url', 1),
@@ -29,8 +27,5 @@ Config.set ('refer/mapping', {
     'K' : ('keywords', 1),
     'X' : ('abstract', 1),
     'W' : ('location', 1),
+    'F' : ('label', 1),
     })
-
-
-
-

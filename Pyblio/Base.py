@@ -24,7 +24,7 @@ import re, copy, os
 import Pyblio.Help
 from types import *
 
-from Pyblio import Config, Open, Utils, Key, Iterator, Selection
+from Pyblio import Config, Open, Utils, Key, Iterator, Selection, Autoload
 
 import gettext
 _ = gettext.gettext
@@ -183,7 +183,9 @@ class DataBase:
 	''' Adds an (eventually) anonymous entry '''
 
         if entry.key is None:
-            entry.key = Utils.generate_key (entry, self)
+            # call a key generator
+            keytype   = Config.get ('base/keyformat').data
+            entry.key = Autoload.get_by_name ('key', keytype).data (entry, self)
         else:
             entry.key.base = self.key
             
@@ -275,18 +277,24 @@ class DataBase:
 	''' Updates the Entries stored in the database '''
 	
 	if self.key.url [0] != 'file':
-	    raise IOError, "can't update the remote database `%s'" % self.url
+	    raise IOError, "can't update the remote database `%s'" % self.key
 
 	name = self.key.url [2]
 
-	# backup file
-	os.rename (name, name + '.bak')
-
-	tmpfile = open (name, 'w')
+        # create a temporary file for the new version
+        tmp = os.path.join (os.path.dirname (name),
+                            '.#' + os.path.basename (name))
+        
+        tmpfile = open (tmp, 'w')
 
         iterator = Selection.Selection (sort = sorting).iterator (self.iterator ())
-        
 	Open.bibwrite (iterator, out = tmpfile, how = self.id)
+        
 	tmpfile.close ()
+        
+	# if we succeeded, backup file
+	os.rename (name, name + '.bak')
+	# ...and bring new version online
+        os.rename (tmp, name)
         return
 

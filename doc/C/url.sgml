@@ -34,7 +34,7 @@ class <classname>Fields.URL</classname>:
     <refsect2 id="meth-url-init">
       <title>__init__ (self, url)</title>
       <para>Instantiates an URL from its string description. In the
-      cas of a file, user directory expansion is performed.</para>
+      case of a file, user directory expansion is performed.</para>
     </refsect2>
 
   </refsect1>

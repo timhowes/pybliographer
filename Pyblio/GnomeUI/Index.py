@@ -21,9 +21,11 @@
 
 ''' Main index containing the columned view of the entries '''
 
-from Pyblio import Fields, Config, Connector, Types
+from Pyblio import Fields, Config, Connector, Types, Sort
 
 from gnome.ui import *
+from gnome import config
+
 from Pyblio.GnomeUI import FieldsInfo, Utils, Mime
 from gtk import *
 import GTK, GDK
@@ -70,12 +72,21 @@ class Index (Connector.Publisher):
         
         self.menu.show ()
 
+        self.field_width = []
         # resize the columns
         for c in range (len (self.fields)):
-            self.clist.set_column_width (c, FieldsInfo.width (self.fields [c]))
+            width = config.get_int ('Pybliographic/Columns/%s=-1' % self.fields [c])
+            if width == -1:
+                width = FieldsInfo.width (self.fields [c])
+
+            self.field_width.append (width)
+            
+            self.clist.set_column_width (c, width)
             self.clist.set_column_justification (c, FieldsInfo.justification (self.fields [c]))
+            
         # some events we want to react to...
         self.clist.connect ('click_column',       self.click_column)
+        self.clist.connect ('resize_column',      self.resize_column)
         self.clist.connect ('select_row',         self.select_row)
         self.clist.connect ('button_press_event', self.button_press)
 
@@ -135,7 +146,15 @@ class Index (Connector.Publisher):
         if info == Mime.ENTRY:
             text = pickle.dumps (self.selection_buffer)
         else:
-            text = join (map (str, self.selection_buffer), '\n\n')
+            if Config.get ('gnome/paste-key').data:
+                # if we want the keys, return the keys !
+                keys = []
+                for e in self.selection_buffer:
+                    keys.append (str (e.key.key))
+                text = join (keys, ',')
+            else:
+                # else, return the full entries
+                text = join (map (str, self.selection_buffer), '\n\n')
         
         selection.set (1, 8, text)
         return
@@ -198,6 +217,36 @@ class Index (Connector.Publisher):
 
         return len (self.access)
 
+
+    def get_item_position (self, item):
+        try:
+            return self.access.index (item)
+        except ValueError:
+            return -1
+
+        
+    def select_item (self, item):
+        if type (item) is not type (1):
+            item = self.get_item_position (item)
+
+        if item == -1 or item >= len (self.access): return
+        
+        self.clist.select_row (item, 0)
+        self.set_scroll (item)
+
+        self.issue ('select-entry', self.access [item])
+        return
+    
+        
+    def set_scroll (self, item):
+        if type (item) is not type (1):
+            item = self.get_item_position (item)
+
+        if item == -1: return
+            
+        self.clist.moveto (item, 0, .5, 0)
+        return
+
     
     def display (self, iterator):
 
@@ -214,7 +263,13 @@ class Index (Connector.Publisher):
             row = []
             
             for f in self.fields:
-                if entry.has_key (f):
+                if f == '-key-':
+                    row.append (str (entry.key.key))
+                    
+                elif f == '-type-':
+                    row.append (str (entry.type.name))
+                    
+                elif entry.has_key (f):
                     
                     if Types.get_field (f).type == Fields.AuthorGroup:
                         text = join (map (lambda a: str (a.last), entry [f]), ', ')
@@ -234,11 +289,47 @@ class Index (Connector.Publisher):
         Utils.set_cursor (self.w, 'normal')
         return
 
+
+    def go_to_first (self, query, field):
+        ''' Go to the first entry that matches a key '''
+        if not isinstance (field, Sort.FieldSort): return 0
+
+        f = field.field
+        q = lower (query)
+        l = len (q)
+        i = 0
+        
+        for e in self.access:
+            if not e.has_key (f): continue
+
+            c = cmp (lower (str (e [f])) [0:l], q)
+
+            if c == 0:
+                # matching !
+                self.set_scroll (i)
+                return 1
+
+            if c > 0:
+                # we must be after the entry...
+                self.set_scroll (i)
+                return 0
+            
+            i = i + 1
+
+        # well, show the user its entry must be after the bounds
+        self.set_scroll (i)
+        return  0
+        
     
     def click_column (self, clist, column, * data):
         ''' handler for column title selection '''
         
         self.issue ('click-on-field', self.fields [column])
+        return
+
+
+    def resize_column (self, clist, column, width):
+        self.field_width [column] = width
         return
 
     
@@ -326,4 +417,12 @@ class Index (Connector.Publisher):
         
         self.issue ('delete-entry', map (lambda x, self=self: self.access [x],
                                        self.clist.selection))
+        return
+
+
+    def update_configuration (self):
+
+        for i in range (len (self.fields)):
+            config.set_int ('Pybliographic/Columns/%s' % self.fields [i],
+                            self.field_width [i])
         return

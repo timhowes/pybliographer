@@ -32,13 +32,21 @@ from Pyblio.GnomeUI.Config import ConfigDialog
 from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
 
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
-from Pyblio import version, Fields, Types
+from Pyblio import version, Fields, Types, Query
 
 import Pyblio.Style.Utils
 
-import gettext, os, string, copy, types, sys, traceback
+import gettext, os, string, copy, types, sys, traceback, stat
 
 _ = gettext.gettext
+
+import cPickle
+
+pickle = cPickle
+del cPickle
+
+printable = string.lowercase + string.uppercase + string.digits
+
 
 class Document (Connector.Publisher):
     
@@ -46,12 +54,16 @@ class Document (Connector.Publisher):
         
         self.w = GnomeApp ('Pybliographic', 'Pybliographic')
 
+        self.w.add_events (GDK.KEY_PRESS_MASK)
+        
         self.w.connect ('delete_event', self.close_document)
+        self.w.connect ('key_press_event', self.key_pressed)
         
         file_menu = [
             UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
             UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
+            UIINFO_ITEM              (_("Medline Query..."),None, self.query_database),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -107,8 +119,10 @@ class Document (Connector.Publisher):
             UIINFO_ITEM_STOCK(_("Open"),  None, self.ui_open_document, STOCK_PIXMAP_OPEN),
             UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,    STOCK_PIXMAP_SAVE),
             UIINFO_SEPARATOR,
+            UIINFO_ITEM_STOCK(_("Add"),   None, self.add_entry,        STOCK_PIXMAP_NEW),
+            UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,     STOCK_PIXMAP_SEARCH),
-            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,          STOCK_MENU_CONVERT),
+            UIINFO_ITEM_STOCK(_("Cite"),  None, self.lyx_cite,          STOCK_MENU_CONVERT),
             UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Close"), None, self.close_document,   STOCK_PIXMAP_CLOSE),
             ]
@@ -167,8 +181,17 @@ class Document (Connector.Publisher):
         self.lyx       = None
         self.changed   = 0
         self.directory = None
+
+        self.incremental_start  = None
+        self.incremental_search = ''
         
-        self.redisplay_index ()
+        self.modification_date = None
+
+        # set the default sort method
+        default = config.get_string ('Pybliographic/Sort/Default')
+        if default is not None: default = pickle.loads (default)
+
+        self.sort_view (default)
         return
 
 
@@ -215,8 +238,9 @@ class Document (Connector.Publisher):
         
         if changed != -1:
             self.changed = changed
-        
+
         self.index.display (self.selection.iterator (self.data.iterator ()))
+        
         self.update_status ()
         return
 
@@ -232,7 +256,13 @@ class Document (Connector.Publisher):
         entries = map (lambda x: x.key, self.index.selection ())
         
         if not entries:
-            entries = self.data.keys ()
+            iter    = self.selection.iterator (self.data.iterator ())
+            entries = []
+            
+            e = iter.first ()
+            while e:
+                entries.append (e.key)
+                e = iter.next ()
 
         url = Fields.URL (style)
 
@@ -301,6 +331,40 @@ class Document (Connector.Publisher):
         return
 
 
+    def query_database (self, * arg):
+        ''' callback corresponding to the "Query..." button '''
+
+        if not self.confirm (): return
+
+        def dlg_cb_2 (dummy): return
+        
+        dlg = GnomeOkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
+        
+        key_w = GtkEntry()
+        adj   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
+        max_w = GtkSpinButton (adj=adj, digits=0)
+
+        dlg.vbox.pack_start (GtkLabel (_("Search string")))
+        dlg.vbox.pack_start (key_w)
+        key_w.set_editable (TRUE)
+        
+        dlg.vbox.pack_start (GtkLabel (_("Maximum number of results")))
+        dlg.vbox.pack_start (max_w)
+        
+        dlg.show_all ()
+        dlg.run_and_close ()
+        
+        keyword  = string.strip (key_w.get_text ())
+        maxcount = max_w.get_value_as_int ()
+        
+        if keyword == "": return
+        
+        url = Query.medline_query (keyword, maxcount)
+        
+        self.open_document (url, 'medline', no_name = TRUE)
+        return
+
+
     def merge_database (self, * arg):
         ''' add all the entries of another database to the current one '''
         # get a new file name
@@ -364,10 +428,10 @@ class Document (Connector.Publisher):
         return
 
     
-    def open_document (self, url, how = None):
+    def open_document (self, url, how = None, no_name = FALSE):
         
         Utils.set_cursor (self.w, 'clock')
-
+        
         try:
             data = Open.bibopen (url, how = how)
             
@@ -381,6 +445,8 @@ class Document (Connector.Publisher):
             return
 
         Utils.set_cursor (self.w, 'normal')
+
+        if no_name: data.key = None
         
         self.data    = data
         self.redisplay_index (0)
@@ -388,12 +454,23 @@ class Document (Connector.Publisher):
         # eventually warn interested objects
         self.issue ('open-document', self)
         return
+
     
     def save_document (self, * arg):
         if self.data.key is None:
             self.save_document_as ()
             return
 
+        file = self.data.key.url [2]
+        
+        if self.modification_date:
+            mod_date = os.stat (file) [stat.ST_MTIME]
+            
+            if mod_date > self.modification_date:
+                if not Utils.Callback (_("The database has been externally modified.\nOverwrite changes ?"),
+                                       self.w).answer ():
+                    return
+        
         Utils.set_cursor (self.w, 'clock')
         try:
             try:
@@ -413,6 +490,9 @@ class Document (Connector.Publisher):
 
         Utils.set_cursor (self.w, 'normal')
 
+        # get the current modification date
+        self.modification_date = os.stat (file) [stat.ST_MTIME]
+        
         self.update_status (0)
         return
     
@@ -442,22 +522,20 @@ class Document (Connector.Publisher):
                        out = file, how = how)
         file.close ()
         
-        if self.data.key is None:
-            # we wrote an anonymous database. Lets reopen it !
-            try:
-                self.data = Open.bibopen (url, how = how)
+        try:
+            self.data = Open.bibopen (url, how = how)
                 
-            except (Exceptions.ParserError,
-                    Exceptions.FormatError,
-                    Exceptions.FileError), error:
+        except (Exceptions.ParserError,
+                Exceptions.FormatError,
+                Exceptions.FileError), error:
                     
-                Utils.set_cursor (self.w, 'normal')
-                Utils.error_dialog (_("Reopen error"), error,
-                                    parent = self.w)
-                return
+            Utils.set_cursor (self.w, 'normal')
+            Utils.error_dialog (_("Reopen error"), error,
+                                parent = self.w)
+            return
             
-            self.redisplay_index ()
-            self.issue ('open-document', self)
+        self.redisplay_index ()
+        self.issue ('open-document', self)
             
         Utils.set_cursor (self.w, 'normal')
 
@@ -501,6 +579,7 @@ class Document (Connector.Publisher):
             self.data.add (entry)
 
         self.redisplay_index ()
+        self.index.set_scroll (entries [-1])
         return
 
                 
@@ -585,18 +664,21 @@ class Document (Connector.Publisher):
         else:
             self.data.add (new)
 
-        self.redisplay_index (1)
         self.freeze_display (None)
+
+        self.redisplay_index (1)
+        self.index.select_item (new)
         return
     
     
     def delete_entry (self, * arg):
         ''' removes the selected list of items after confirmation '''
         entries = self.index.selection ()
-
         l = len (entries)
         if l == 0: return
-        
+
+        offset = self.index.get_item_position (entries [-1])
+
         if l > 1:
             question = _("Remove all the %d entries ?") % len (entries)
         else:
@@ -610,6 +692,7 @@ class Document (Connector.Publisher):
             del self.data [entry.key]
             
         self.redisplay_index (1)
+        self.index.select_item (offset)
         return
     
     
@@ -637,13 +720,24 @@ class Document (Connector.Publisher):
 
 
     def sort_view (self, sort):
-        self.selection.sort = Sort.Sort (sort)
+        if sort is None:
+            self.selection.sort = None
+        else:
+            self.selection.sort = Sort.Sort (sort)
+        
         self.redisplay_index ()
         return
     
 
     def sort_by_field (self, field):
-        self.selection.sort = Sort.Sort ([Sort.FieldSort (field)])
+        if field == '-key-':
+            mode = Sort.KeySort ()
+        elif field == '-type-':
+            mode = Sort.TypeSort ()
+        else:
+            mode = Sort.FieldSort (field)
+            
+        self.selection.sort = Sort.Sort ([mode])
         self.redisplay_index ()
         return
 
@@ -679,6 +773,37 @@ class Document (Connector.Publisher):
         return
 
 
+    def key_pressed (self, app, event):
+        if event.string == '': return 1
+
+        if self.selection.sort is None:
+            app.flash ("Select a column to search in first.")
+            return 1
+        
+        if event.string in printable:
+            # the user searches the first entry in its ordering that starts with this letter
+            if self.incremental_search == '':
+                self.incremental_search = event.string
+                self.incremental_start  = event.time
+            else:
+                if event.time - self.incremental_start > 1000:
+                    self.incremental_search = event.string
+                else:
+                    # two keys in a same shot: we search for the composition of the words
+                    self.incremental_search = self.incremental_search + event.string
+                
+                self.incremental_start  = event.time
+
+            # search first occurence
+            if self.index.go_to_first (self.incremental_search,
+                                       self.selection.sort.fields [0]):
+                app.flash ("Searching for '%s...'" % self.incremental_search)
+            else:
+                app.flash ("Cannot find '%s...'" % self.incremental_search)
+                
+        return 1
+
+
     def update_configuration (self):
         ''' save current informations about the program '''
         
@@ -691,7 +816,13 @@ class Document (Connector.Publisher):
         # 2.- Proportion betzeen list and text
         height = self.paned.children () [0].get_allocation () [3]
         config.set_int ('Pybliographic/UI/Paned', height)
-        config.sync ()
+
+        # updates the index's config
+        self.index.update_configuration ()
+
+        # ...and the search window
+        if self.search_dg:
+            self.search_dg.update_configuration ()
         return
 
     

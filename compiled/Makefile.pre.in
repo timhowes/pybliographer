@@ -313,5 +313,5 @@ Setup.tmp: Setup.in ../etc/installer
 Setup: Setup.tmp ../etc/installer
 	/bin/sh ../etc/installer < Setup.tmp > Setup
 
-_bibtexmodule.so: ../bibtex/.libs/libbibtex.a ../bibtex/bibtex.h
+_bibtexmodule.so: ../bibtex/libbibtex.la ../bibtex/bibtex.h
 

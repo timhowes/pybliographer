@@ -1,14 +1,16 @@
 %define pyb_prefix   /usr
 
-
 Summary: A framework for working with bibliographic databases.
 Name: pybliographer
-Version: 0.9.7.1
-Release: 1
+Version: 1.0.3
+Release: 4
 Copyright: GPL
 Group: Applications/Productivity
-Source: pybliographer-0.9.7.1.tar.gz
+Source: pybliographer-1.0.3.tar.gz
+Patch: pybliographer.patch
+Requires: python, pygnome >= 1.0.53
 Packager: Konrad Hinsen <hinsen@cnrs-orleans.fr>
+BuildRoot: /var/tmp/pybliographer-root
 
 %description
 Pybliographer is a tool for managing bibliographic databases. It currently supports the following formats: 
@@ -29,8 +31,9 @@ is available. It provides powerful editing capabilities, in addition
 to a nice hierarchical search mechanism.
 
 %prep
-%setup -n pybliographer-0.9.7.1
+%setup -n pybliographer-1.0.3
 CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{pyb_prefix}
+%patch
 
 %build
 make
@@ -61,3 +64,7 @@ make DESTDIR=$RPM_BUILD_ROOT install
 %{pyb_prefix}/share/mime-info/pybliographic.mime
 %{pyb_prefix}/share/pixmaps/pybliographic-logo.png
 %{pyb_prefix}/share/pixmaps/pybliographic.png
+%{pyb_prefix}/share/locale/fr/LC_MESSAGES/pybliographer.mo
+%{pyb_prefix}/share/locale/it/LC_MESSAGES/pybliographer.mo
+%{pyb_prefix}/share/locale/de/LC_MESSAGES/pybliographer.mo
+%{pyb_prefix}/share/locale/hu/LC_MESSAGES/pybliographer.mo

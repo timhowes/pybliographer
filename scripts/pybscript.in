@@ -5,6 +5,9 @@ prefix="@datapyb@"
 
 if test -x "./pybliographer" ; then
     pyblio="./pybliographer"
+    # eventually add the extras directory
+    PYTHONPATH="$PYTHONPATH:extras"
+    export PYTHONPATH
 else
     pyblio="@bin_dir@/pybliographer"
 fi

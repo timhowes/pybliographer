@@ -21,13 +21,13 @@
 
 
 TESTS = \
+	$(srcdir)/import-export \
+	$(srcdir)/test-pybcheck \
 	$(srcdir)/convert	\
 	$(srcdir)/pybformat	\
 	$(srcdir)/pybtex	\
 	$(srcdir)/compact	\
-	$(srcdir)/format 	\
-	$(srcdir)/test-pybcheck \
-	$(srcdir)/import-export
+	$(srcdir)/format
 
 EXTRA_DIST =  \
 	bibtex.bib		\
@@ -44,7 +44,11 @@ EXTRA_DIST =  \
 	format.raw		\
 	format.text		\
 	import-export.py	\
+	reorder.py		\
 	medline.med		\
+	medline.bib		\
+	pubmed.med		\
+	pubmed.bib		\
 	ovid.ovid		\
 	refer.refer		\
 	testing.sh

@@ -1,3 +1,5 @@
+-*- text -*-
+
 Simple install procedure
 ========================
 
@@ -8,5 +10,9 @@ Simple install procedure
 [become root if necessary]
 % make install
 
+The  ./configure  step  requires  that  you  can  connect  to  your  X
+server.  This may  not  be the  case  if you  compile  the program  as
+root. In this case, simply compile  as a user, and become root for the
+last step of the installation.
 
 For additional configuration options, please run `configure --help'

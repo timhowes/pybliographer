@@ -21,7 +21,9 @@
 
 from string import *
 
-from Pyblio import Key
+from Pyblio import Key, Autoload, recode
+
+_flat = recode.recode ('latin1..flat')
 
 def format (string, width, first, next):
     ''' Format a string on a given width '''
@@ -58,7 +60,7 @@ __entry = 0
 
 
 def generate_key (entry, table):
-        
+
     if   entry.has_key ('author'): aut = entry ['author']
     elif entry.has_key ('editor'): aut = entry ['editor']
     else:                          aut = ()
@@ -91,10 +93,10 @@ def generate_key (entry, table):
         if entry.has_key ('date'):
             year = entry ['date'].year
             
-            if year:
-                key = key + str (year) [2:]
+            if year: key = key + str (year) [2:]
 
-    base = key
+
+    base = _flat (key)
     key  = Key.Key (table, base)
     
     if table.has_key (key):
@@ -106,10 +108,12 @@ def generate_key (entry, table):
             if suff > ord ('z'):
                 suff = ord ('a')
                 base = base + 'a'
-                
+
             key  = Key.Key (table, base + chr (suff))
-	            
+            
     return Key.Key (table, key)
+
+Autoload.register ('key', 'Default', generate_key)
 
 
 class StringStream:

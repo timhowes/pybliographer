@@ -29,7 +29,7 @@ class TextFormat (Formatter.Formatter):
 
     coding = 'Latin1'
     
-    def begin_biblio (self, id, key_list = None):
+    def start_group (self, id, key_list = None):
         self.out.write ("%s\n\n" % id)
         
         if key_list:
@@ -44,11 +44,11 @@ class TextFormat (Formatter.Formatter):
         self.length = self.length + 3
         return
 
-    def end_biblio (self):
+    def end_group (self):
         self.out.write ("\n")
         pass
 
-    def begin_entry (self, key, entry):
+    def start (self, key, entry):
         if key is None: key = self.next_key ()
         
         self.data = ""
@@ -66,7 +66,7 @@ class TextFormat (Formatter.Formatter):
         self.write (" ")
         return
     
-    def end_entry (self):
+    def end (self):
         self.data = string.strip (self.data)
         
         text = Utils.format (self.data, 79, self.length, self.length)

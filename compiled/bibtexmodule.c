@@ -290,12 +290,16 @@ bib_get_native (PyObject * self, PyObject * args) {
     BibtexField * field;
     PyBibtexField_Object * field_obj;
     gchar * text;
-    int i;
 
     if (! PyArg_ParseTuple(args, "O!:get_native", & PyBibtexField_Type, & field_obj))
 	return NULL;
 
     field = field_obj->obj;
+
+    if (field->structure == NULL) {
+      Py_INCREF (Py_None);
+      return Py_None;
+    }
 
     text = bibtex_struct_as_bibtex (field->structure);
     tmp = Py_BuildValue("s", text); 
@@ -306,10 +310,8 @@ bib_get_native (PyObject * self, PyObject * args) {
 
 static PyObject *
 bib_copy_field (PyObject * self, PyObject * args) {
-    BibtexField * field, * copy;
+    BibtexField * field;
     PyBibtexField_Object * field_obj, * new_obj;
-    gchar * text;
-    int i;
 
     if (! PyArg_ParseTuple(args, "O!:get_native", & PyBibtexField_Type, & field_obj))
 	return NULL;
@@ -332,7 +334,6 @@ bib_get_latex (PyObject * self, PyObject * args) {
     BibtexSource * file;
     PyBibtexSource_Object * file_obj;
     gchar * text;
-    int i;
 
     if (! PyArg_ParseTuple(args, "O!O!i:get_latex", 
 			   &PyBibtexSource_Type, & file_obj, 
@@ -361,9 +362,7 @@ bib_set_native (PyObject * self, PyObject * args) {
     BibtexStruct * s;
     BibtexFieldType type;
 
-    PyBibtexField_Object * field_obj;
     gchar * text, * to_parse;
-    int i;
 
     if (! PyArg_ParseTuple(args, "si:set_native", & text, &type))
 	return NULL;
@@ -474,7 +473,7 @@ bib_next (PyObject * self, PyObject * args)
     BibtexSource * file;
     PyBibtexSource_Object * file_obj;
 
-    PyObject * dico, * tmp, * tmp2, * name;
+    PyObject * dico, * tmp, * name;
 
     if (! PyArg_ParseTuple(args, "O!:next", & PyBibtexSource_Type, & file_obj))
 	return NULL;
@@ -519,7 +518,7 @@ bib_get_dict (PyObject * self, PyObject * args)
     BibtexSource * file;
     PyBibtexSource_Object * file_obj;
 
-    PyObject * dico, * tmp, * tmp2;
+    PyObject * dico;
 
     if (! PyArg_ParseTuple(args, "O!:next", &PyBibtexSource_Type, & file_obj))
 	return NULL;
@@ -558,9 +557,9 @@ bib_reverse (PyObject * self, PyObject * args)
     BibtexFieldType type;
     BibtexAuthor * auth;
 
-    gint length, i, brace;
+    gint length, i, brace, quote;
 
-    if (! PyArg_ParseTuple(args, "iiO:reverse", & type, & brace, & tuple))
+    if (! PyArg_ParseTuple(args, "iiOi:reverse", & type, & brace, & tuple, &quote))
 	return NULL;
 
     field = bibtex_field_new (type);
@@ -648,7 +647,7 @@ bib_reverse (PyObject * self, PyObject * args)
 	}
     }
 
-    bibtex_reverse_field (field, brace);
+    bibtex_reverse_field (field, brace, quote);
 
     tmp = (PyObject *) PyObject_NEW (PyBibtexField_Object, & PyBibtexField_Type);
     ((PyBibtexField_Object *) tmp)->obj = field;
@@ -660,7 +659,7 @@ static PyObject *
 bib_set_offset (PyObject * self, PyObject * args)
 {
     BibtexSource * file;
-    gint offset;
+    gint offset = 0;
     PyBibtexSource_Object * file_obj;
 
     if (! PyArg_ParseTuple(args, "O!:first", &PyBibtexSource_Type, & file_obj))
@@ -718,7 +717,7 @@ static PyMethodDef bibtexMeth [] = {
 };
 
 
-void init_bibtex ()
+void init_bibtex (void)
 {
     bibtex_set_default_handler ();
     g_log_set_handler ("BibTeX", BIB_LEVEL_ERROR,   

@@ -1,4 +1,3 @@
-#! /usr/local/bin/pybliographer -q
 # -*- python -*-
 # This file is part of pybliographer
 # 
@@ -53,7 +52,7 @@ optlist, args = getopt.getopt (sys.argv [2:],
                                 'output=',
                                 'list=',
                                 'style=',
-                                'format='
+                                'format=',
 				'version',
 				'help'])
 

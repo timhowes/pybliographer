@@ -113,7 +113,7 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         
         if parent: self.set_parent (parent)
 
-        self.button_connect (0, self.apply_cb)
+        self.button_connect (0, self.apply_button_cb)
         self.button_connect (1, self.close_cb)
         self.set_default (0)
         self.close_hides (1)
@@ -137,6 +137,8 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         table.attach (self.field, 0, 1, 1, 2)
 
         self.text = GnomeEntry ('match')
+        self.text.load_history ()
+        
         table.attach (self.text, 1, 2, 1, 2)
         self.text.gtk_entry ().connect ('activate', self.apply_cb)
 
@@ -182,8 +184,11 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         self.show_all ()
         return
 
-    def destroyed (self, * arg):
-        print "nooo !"
+
+    def update_configuration (self):
+        self.text.save_history ()
+        return
+
         
     def create_root_item (self, data):
         if self.root_item:
@@ -201,6 +206,13 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         self.close ()
         return
     
+
+    def apply_button_cb (self, widget):
+        if self.notebook.get_current_page () == 0:
+            self.text.append_history (TRUE, self.text.gtk_entry ().get_text ())
+
+        self.apply_cb (widget)
+        return
     
     def apply_cb (self, widget):
         page = self.notebook.get_current_page ()

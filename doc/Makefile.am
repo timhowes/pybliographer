@@ -19,38 +19,5 @@
 # 
 # $Id$
 
-SUBDIRS = . C it
+SUBDIRS = C it
 
-DOCUMENTED_FILES = \
-	Autoload.py	\
-	Base.py		\
-	Config.py	\
-	Connector.py	\
-	Core.py		\
-	Exceptions.py	\
-	Fields.py	\
-	Formatter.py	\
-	Help.py		\
-	Iterator.py	\
-	Key.py		\
-	LyX.py		\
-	Open.py		\
-	Search.py	\
-	Selection.py	\
-	Sort.py		\
-	Text.py		\
-	TextUI.py	\
-	Types.py	\
-	Utils.py	\
-	recode.py
-
-noinst_DATA = reference.sgml
-
-reference.sgml: reference.xml docbook.xsl
-	4xslt reference.xml docbook.xsl > reference.sgml || \
-	echo "*** can't regenerate reference" ;
-
-reference.xml: $(DOCUMENTED_FILES:%=../Pyblio/%)
-	$(srcdir)/xmldoc --root=../Pyblio $(DOCUMENTED_FILES) > reference.xml
-
-EXTRA_DIST = reference.xml reference.sgml docbook.xsl xmldoc

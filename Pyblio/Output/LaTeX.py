@@ -43,7 +43,7 @@ class LaTeX (Formatter.Formatter):
         else:
             self.out.write (text)
 
-    def begin_biblio (self, id, key_list = None):
+    def start_group (self, id, key_list = None):
         if key_list:
             id = ''
             l  = 0
@@ -70,11 +70,11 @@ class LaTeX (Formatter.Formatter):
         self.out.write ('\n\\newblock ')
         return
     
-    def end_biblio (self):
+    def end_group (self):
         self.out.write ('\\end{thebibliography}\n')
         return
 
-    def begin_entry (self, key, entry):
+    def start (self, key, entry):
         if key is None: key = self.next_key ()
         
         self.out.write ('\\bibitem[%s]{%s}\n' % (key, entry.key.key))

@@ -27,13 +27,14 @@ import sys, re, string
 
 from Pyblio import Iterator, Base, Fields, Exceptions, Utils
 
-SimpleField = 0
-AuthorField = 1
-SourceField = 2
+SimpleField  = 0
+AuthorField  = 1
+SourceField  = 2
+KeywordField = 3
 
-
-separator_re = re.compile ('<\d+>$')
-source_re    = re.compile ('(\w+)\(([^\)]+)\):(\d+-\d+)')
+separator_re = re.compile (r'<\d+>$')
+source_re    = re.compile (r'(\w+)?\(([^\)]+)\):(\d+-\d+)')
+compact_dot  = re.compile (r'\.(\s*\.)+')
 
 long_month = {
     'Jan': 1,  'Feb': 2,  'Mar': 3,
@@ -130,6 +131,14 @@ class OvidLike (Iterator.Iterator):
                 entry [name] = Fields.Text (string.strip (dict [key]))
                 continue
 
+            if type == KeywordField:
+                text = string.strip (dict [key])
+                if entry.has_key (name):
+                    text = str (entry [name]) + '  ' + text
+                    
+                entry [name] = Fields.Text (text)
+                continue
+
             # parse an author field
             if type == AuthorField:
                 ag = Fields.AuthorGroup ()
@@ -142,55 +151,69 @@ class OvidLike (Iterator.Iterator):
                         first = la [1]
                     else:
                         first = None
-                        
+
                     auth = Fields.Author ((None, first, last, None))
                     ag.append (auth)
+
+                    # authors may be separated by just a single space if more
+                    # than one line of authors appears in ovid file
+                    if len (la) > 3:
+                        last = la [-2]
+                        first = la [-1]
+                        auth = Fields.Author ((None, first, last, None))
+                        ag.append (auth)
 
                 entry [name] = ag
                 continue
 
             # parse a source field
             if type == SourceField:
-                # separate  fields by .
-                fields = string.split (dict [key], '.')
-
-                # First one : the journal name
-                entry [name [0]] = Fields.Text (string.strip (fields [0]))
+                # separate fields by ,
+                fields = string.split(dict [key], ',')
 
                 if len (fields) == 1:
                     print "warning: can't parse source"
                     continue
 
-                # second one : the volume, number, page, ...
-                fields = string.split (fields [1], ',')
-
-                source = source_re.match (string.strip (fields [0]))
-
-                if source:
-                    for i in range (1, 4):
-                        entry [name [i]] = Fields.Text (source.group (i))
-                        entry [name [i]] = Fields.Text (source.group (i))
-                        entry [name [i]] = Fields.Text (source.group (i))
-
-                if len (fields) == 1: continue
-                
-                date = string.split (fields [1])
-                
-                (year, month, day) = (int (date [0]), None, None)
-                if len (date) > 1:
-                    try:
-                        month = long_month [date [1]]
-                    except KeyError:
-                        # Try again for a month pair like Jul-Aug
+                journalName = string.strip(fields [0])
+                # extract volume, number, pages, ...
+                for i in range(1, len(fields)):
+                    fs = string.strip(fields[i])
+                    if fs[0:4] == 'vol.':
+                        entry ['volume'] = Fields.Text (fs[4:])
+                    elif fs[0:3] == "no.":
+                        entry ['number'] = Fields.Text (fs[3:])
+                    elif fs[0:3] == "pp.":
+                        fss = string.split(fs,'.')
+                        entry ['pages'] = Fields.Text(fss[1])
+                        journalName = journalName + ","\
+                                      + string.join(fss[2:], '.')
+                        # the date field precedes pages
+                        fss = string.split(fields[i-1])
+                        # we have to work from the end since there may be
+                        # characters unrelated to the date at the start of the
+                        # field
                         try:
-                            month = long_month [string.split (date [1], '-') [0]]
-                        except KeyError:
-                            print "warning: unknown month `%s'" % date [1]
-
-                if len (date) > 2:
-                    day = int (date [2])
-
-                entry [name [4]] = Fields.Date ((year, month, day))
+                            year = int(fss[-1])
+                        except:
+                            year  = None
+                            print "warning: cannot parse year"
+                            print "offending line:", dict[key]
+                        try:
+                            month = long_month [fss[-2][:3]]
+                        except:
+                            month = None
+                        try:
+                            day = int(fss[-3])
+                        except:
+                            day   = None
+                        entry ['date'] = Fields.Date((year, month, day))
+                    else:
+                        # additional information we do not want to loose
+                        journalName = journalName + ", " + fs
+                        
+                # the journal name and additional information
+                entry [name [0]] = Fields.Text (journalName)
                 continue
 
             raise TypeError, "unknown field type `%d'" % type
@@ -266,6 +289,9 @@ def writer (iter, output, mapping):
 
                 # final dot.
                 if text: text = text + '.'
+
+                # correct the number of dots...
+                text = compact_dot.sub ('.', text)
                 
                 output.write (Utils.format (text,
                                             75, 2, 2) + '\n')

@@ -19,57 +19,26 @@
 # 
 # $Id$
 
-''' This module overrides the standard error so that all problems get
-redirected to a GnomeDialog '''
+# Perform the first initialisation of Gnome, so that the options passed to the script
+# are not passed to Gnome
 
 import sys
-from gnome.ui import *
-from gtk import *
 
-import gettext
-_ = gettext.gettext
+sys.argv = sys.argv [:2] + ['--'] + sys.argv [2:]
 
-class ErrorHandler:
-    def __init__ (self):
-        self.stderr = sys.stderr
-        
-        self.w = GnomeDialog (_("Internal Error"), STOCK_BUTTON_CLOSE)
+# correctly identify the program
+import gnome
+from Pyblio import version
 
-        self.w.button_connect (0, self.close_window)
-        self.w.set_close (TRUE)
-        self.w.close_hides (TRUE)
-        self.w.set_usize (500, 300)
-        
-        self.text = GtkText ()
-    
-        holder = GtkScrolledWindow ()
-        holder.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
-        holder.add (self.text)
-    
-        self.w.vbox.pack_start (holder)
+gnome.app_id      = 'Pybliographic'
+gnome.app_version = version.version
 
-        self.shown = FALSE
-        return
+# import the GUI
+import gnome.ui
 
-    def close_window (self, * arg):
-        self.text.delete_text (0, -1)
-        self.shown = FALSE
-        return
+# clean up our garbage
+sys.argv = sys.argv [:2] + sys.argv [3:]
 
-    def write (self, text):
-        self.stderr.write (text)
-        self.text.insert_defaults (text)
+del sys, gnome
 
-        if not self.shown: 
-            self.shown = TRUE
-            self.w.show_all ()
-        return
-    
-    def flush (self):
-        self.stderr.flush ()
-        return
 
-    def close (self):
-        return
-
-sys.stderr = ErrorHandler ()

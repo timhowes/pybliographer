@@ -144,6 +144,8 @@ btgroup_destroy (BTGroup * group) {
     g_chunk_free (group, chunk);
 }
 
+/* this function adds the comma separated blocks to the token list */
+
 static GList *
 split_spaces (GList * tokens,
 	      gchar * data,
@@ -288,7 +290,7 @@ extract_author (BibtexAuthorGroup * authors,
     gchar * text, * tmp_text;
     BibtexAuthor * author;
     gint length, i;
-    guint sections, comas;
+    gint sections, comas;
     GPtrArray * section [SECTION_LENGTH], * array;
     BTGroup * group;
 
@@ -307,13 +309,29 @@ extract_author (BibtexAuthorGroup * authors,
 	section [i]  = g_ptr_array_new ();
     }
     
+    /* count the , */
+    tmp   = aut_elem;
+    comas = 0;
+
+    while (tmp) {
+	group = (BTGroup *) tmp->data;
+	text = group->text;
+
+	tmp = tmp->next;
+
+	/* Check for , syntax */
+	if (strcmp (",", text) == 0) {
+	  comas ++;
+	}
+    }
+
+/*      g_message ("%d comas", comas); */
+
     /* Parse the list into several groups */
-    tmp = aut_elem;
 
-    sections = 0;
-    comas    = 0;
-
+    tmp      = aut_elem;
     array    = section [0];
+    sections = 0;
 
     lastname_section = -1;
 
@@ -330,19 +348,19 @@ extract_author (BibtexAuthorGroup * authors,
 	    if (array->len) {
 		sections ++;
 
-		/* count the new coma */
-		comas ++;
-		
 		/* only consider the 3 first sections */
 		if (sections < SECTION_LENGTH)
 		    array = section [sections];
 	    }
 
+	    lastname_section = -1;
 	    continue;
 	}
 
 	/* If we have the particule in lowercase */
-	if (group->level == 1 && islower (text [0]) && 
+	if (group->level == 1  &&
+	    comas == 0         &&
+	    islower (text [0]) && 
 	    lastname_section == -1) {
 
 	    if (array->len) {
@@ -376,6 +394,19 @@ extract_author (BibtexAuthorGroup * authors,
 
     if (sections < comas) {
 	comas = sections;
+    }
+
+    if (sections < 0) {
+	/* no definition here, skip this author */
+
+	bibtex_warning ("empty author definition");
+
+	for (i = 0; i < SECTION_LENGTH; i ++) {
+	    g_ptr_array_free (section [i], TRUE);
+	}
+
+	g_array_set_size (authors, authors->len - 1);
+	return;
     }
 
     switch (comas) {
@@ -499,14 +530,6 @@ bibtex_author_parse (BibtexStruct * s,
 	while (list) {
 	    group = (BTGroup *) list->data;
 	    text = group->text;
-	    
-	    /* Capitalize only during first pass, as we can compact entries
-	       from different levels afterward... */
-/*  	    if (first_pass) { */
-/*  		if (group->level == 1 && isupper (text [0])) { */
-/*  		    bibtex_capitalize (text, TRUE, skip); */
-/*  		} */
-/*  	    } */
 	    
 	    /* Skip and remove spaces */
 	    if (strcmp (" ", text) == 0) {

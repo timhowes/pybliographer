@@ -163,12 +163,17 @@ class Entry (Base.Entry):
         if isinstance (value, Date): return
         
         # then, convert as bibtex.
+        quote = 1
         if isinstance (value, Reference):
             value = string.join (map (lambda item: item.key, value.list), ', ')
+            quote = 0
+            
+        if isinstance (value, URL):
+            quote = 0
         
 	self.dict [key] = _bibtex.reverse (_fieldtype (Types.get_field (key)),
                                            Config.get ('bibtex+/braces').data,
-                                           value)
+                                           value, quote)
 	return
 
 
@@ -347,7 +352,7 @@ class DataBase (Base.DataBase):
 		_bibtex.set_string (self.parser, k,
 				    _bibtex.reverse (_base_fieldtype [Text],
                                                      Config.get ('bibtex+/braces').data,
-						     user [k] [0]))
+						     user [k] [0], 0))
 
 	finished = 0
 	errors = []
@@ -405,7 +410,7 @@ class DataBase (Base.DataBase):
 		_bibtex.set_string (self.parser, k,
 				    _bibtex.reverse (_base_fieldtype [Text],
                                                      Config.get ('bibtex+/braces').data,
-						     user [k] [0]))
+						     user [k] [0], 0))
 	return
 
 
@@ -452,7 +457,7 @@ def _nativify (field, fieldtype):
     ''' private method to convert from field to native format '''
 
     obj = _bibtex.reverse (fieldtype, Config.get ('bibtex+/braces').data,
-                           field)
+                           field, 1)
     return _bibtex.get_native (obj)
 
 
@@ -464,8 +469,7 @@ def entry_write (entry, output):
     tp = entry.type
 
     # write the type and key
-    output.write ('@%s{%s,\n' % (string.capitalize (tp.name),
-                                 entry.key.key))
+    output.write ('@%s{%s,\n' % (tp.name, entry.key.key))
 
     # create a hash containing all the keys, to keep track
     # of those who have been already written
@@ -524,8 +528,8 @@ def entry_write (entry, output):
                     value = string.join (map (lambda item: item.key, value.list), ', ')
                     
                 fieldtype = _fieldtype (Types.get_field (field))
-                dico [field] = _nativify (value, fieldtype)
 
+                dico [field] = _nativify (value, fieldtype)
 
     # write according to the type order
     for f in tp.mandatory + tp.optional:
@@ -534,9 +538,9 @@ def entry_write (entry, output):
 	field = string.lower (f.name)
 	if not dico.has_key (field): continue
 
-	output.write ('  %-14s = ' % string.capitalize (f.name))
-	output.write (Utils.format (dico [field],
-				    75, 19, 19) [19:] + ',\n')
+	output.write ('  %-14s = ' % f.name)
+        output.write (Utils.format (dico [field],
+                                    75, 19, 19) [19:] + ',\n')
 	del dico [field]
 
     for f in dico.keys ():
@@ -596,6 +600,10 @@ def writer (it, output):
 
 	    output.write ('\n')
 
+    # write the crossreferenced ones
+    for entry in refere.values ():
+        entry_write (entry, output)
+    
     # write the entries with no cross references
     entry = it.first ()
     while entry:
@@ -603,10 +611,6 @@ def writer (it, output):
             entry_write (entry, output)
 	entry = it.next ()
 
-    # write the crossreferenced ones
-    for entry in refere.values ():
-        entry_write (entry, output)
-    
     return
 
 

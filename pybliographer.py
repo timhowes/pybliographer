@@ -27,6 +27,13 @@ lib_pybdir  = "@libpyb@"
 data_pybdir = "@datapyb@"
 localedir   = "@localedir@"
 
+import sys
+
+sys.path.append (data_pybdir)
+sys.path.append (lib_pybdir)
+sys.path.insert (0, '.')
+sys.path.insert (0, './compiled')
+
 import gettext
 	
 gettext.bindtextdomain(progname, localedir)
@@ -63,16 +70,10 @@ along with this program. If not, write to the Free Software
 Foundation, 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 """
 	
-import sys
 import os
 import getopt, string
 
 sys.ps1 = 'python > '
-
-sys.path.append (data_pybdir)
-sys.path.append (lib_pybdir)
-sys.path.insert (0, '.')
-sys.path.insert (0, './compiled')
 
 optlist, args = getopt.getopt (sys.argv [1:],
 			       'qf:nvh',
@@ -93,6 +94,7 @@ except os.error: sources = [ os.path.join (data_pybdir, "pybrc.py") ]
 else:  	         sources = [ "pybrc.py" ]
 
 sources.append (os.path.expanduser('~/.pybrc.py'))
+load_config = 1
 
 for opt, value in optlist:
 	if opt == '-q' or opt == '--quiet':
@@ -101,6 +103,7 @@ for opt, value in optlist:
 	
 	if opt == '-n':
 		sources = []
+		load_config = 0
 		continue
 
 	if opt == '-f' or opt == '--file':
@@ -148,7 +151,11 @@ for filename in sources:
 		pass
 	else:
 		execfile (filename, user_global)
-		
+
+if load_config:
+	from Pyblio import Config
+	Config.load_user ()
+
 # Fichiers passes en argument au programme
 if len (args) > 0 :
 	filename = args [0]

@@ -49,18 +49,11 @@ typedef enum
 #endif /* HAVE_STDBOOL_H */
 
 #include <stdio.h>
-
-#ifdef USE_RECODE
-#include <recode.h>
-#endif
-
+#include <recodext.h>
 #include <Python.h>
 
-#ifdef USE_RECODE
 static RECODE_OUTER outer;
 char * program_name = "pyrecode";
-#endif
-
 
 typedef struct {
   PyObject_HEAD
@@ -69,9 +62,8 @@ typedef struct {
 
 /* Destructor of BibtexFile */
 static void py_delete_recoder (PyRecodeRequest_Object * self) {
-#ifdef USE_RECODE
+
     recode_delete_request (self->obj);
-#endif
     PyMem_DEL (self);
 }
 
@@ -101,7 +93,6 @@ static PyTypeObject PyRecodeRequest_Type = {
 
 static PyObject *
 py_new_recoder (PyObject * self, PyObject * args) {
-#ifdef USE_RECODE
     PyRecodeRequest_Object * ret;
 
     char * string;
@@ -111,6 +102,7 @@ py_new_recoder (PyObject * self, PyObject * args) {
 	return NULL;
 
     request = recode_new_request (outer);
+
     if (request == NULL) {
 	PyErr_SetString (PyExc_IOError, "can't initialize new request");
 	return NULL;
@@ -127,17 +119,15 @@ py_new_recoder (PyObject * self, PyObject * args) {
     ret->obj = request;
 
     return (PyObject *) ret;
-#else
-    Py_INCREF (Py_None);
-    return Py_None;
-#endif
 }
 
 static PyObject *
 py_recode (PyObject * self, PyObject * args) {
-#ifdef USE_RECODE
     char * string;
+    int length;
+
     RECODE_REQUEST request;
+
     PyObject * tmp;
     PyRecodeRequest_Object * req_obj;
 
@@ -145,21 +135,23 @@ py_recode (PyObject * self, PyObject * args) {
 	return NULL;
 
     request = req_obj->obj;
-    
+    length  = strlen (string);
+
+    if (length == 0) {
+      return PyString_FromString ("");
+    }
+
     string = recode_string (request, string);
+
     if (string == NULL) {
-	PyErr_SetString (PyExc_IOError, "can't convert");
-	return NULL;
+      PyErr_SetString (PyExc_IOError, "can't convert");
+      return NULL;
     }
 
     tmp = PyString_FromString (string);
     free (string);
 
     return tmp;
-#else
-    Py_INCREF (Py_None);
-    return Py_None;
-#endif
 }
 
 static PyMethodDef recodeMeth [] = {
@@ -169,15 +161,10 @@ static PyMethodDef recodeMeth [] = {
 };
 
 
-void init_recode ()
+void init_recode (void)
 {
-#ifdef USE_RECODE
-    outer = recode_new_outer (false);
+    outer = recode_new_outer (true);
     if (outer == NULL) return;
-#else
-    fprintf (stderr, "warning: module recode is currently disabled.\n");
-    fprintf (stderr, "warning: to enable it, install GNU Recode and recompile.\n");
-#endif
 
     (void) Py_InitModule ("_recode", recodeMeth);
 }

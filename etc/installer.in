@@ -40,7 +40,7 @@ sed "
 s%@bin_dir@%${bindir}%g
 s%@libpyb@%${libpyb}%g
 s%@datapyb@%${datapyb}%g
-s%@python_path@%@python@%g
+s%@python_path@%@Python@%g
 s%@package@%@PACKAGE@%g
 s%@version@%@VERSION@%g
 s%@localedir@%${localedir}%g
