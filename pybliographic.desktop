@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Pybliographic
 Comment=Bibliographic database editor
+Comment[fr]=Éditeur de bases de données bibliographiques
 Icon=pybliographic.png
 Exec=pybliographic
 Terminal=0
