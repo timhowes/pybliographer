@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-import string
+import string, copy
 from Pyblio import Config, Fields
 
 
@@ -45,6 +45,9 @@ class FieldDescription:
 	self.type = type
 	return
 
+    def __deepcopy__ (self, memo):
+        return FieldDescription (self.name, self.type)
+    
     def __str__ (self):
 	return "<FieldDescription `%s'>" % self.name
 
@@ -82,7 +85,7 @@ class EntryDescription:
 
 	self.__dict__ [attr] = value
 	return
-
+        
     def __call__ (entry, field):
 	''' Return a field type given its name and the entry it
 	belongs to '''
