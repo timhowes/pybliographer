@@ -178,7 +178,8 @@ class Index (Connector.Publisher):
         
         if info == Mime.KEY:
             # must return a set of keys
-            data = join (map (lambda e: str (e.key.base) + '\0' + str (e.key.key), entries), '\n')
+            data = join (map (lambda e: str (e.key.base or '') + '\0' +
+                              str (e.key.key), entries), '\n')
             selection.set (selection.target, 8, data)
             
         elif info == Mime.ENTRY:

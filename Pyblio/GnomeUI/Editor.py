@@ -374,6 +374,8 @@ class Reference (BaseField):
         reflist = []
         for k in keys:
             (base, key) = string.split (k, '\0')
+            if not base: base = None
+            
             reflist.append (Key.Key (base, key))
 
         self.current = Fields.Reference (reflist)
