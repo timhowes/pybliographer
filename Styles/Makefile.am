@@ -21,6 +21,6 @@
 
 styledir  = $(datadir)/$(PACKAGE)/Styles
 
-EXTRA_DIST = Abbrev.xml Alpha.xml bibstyle.dtd
+EXTRA_DIST = apa4e.xml Abbrev.xml Alpha.xml bibstyle.dtd
 
 style_DATA = $(EXTRA_DIST)
