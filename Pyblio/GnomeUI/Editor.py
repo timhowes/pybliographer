@@ -476,13 +476,14 @@ class RealEditor (Connector.Publisher):
         self.w.pack_start (self.newfield_area, FALSE, FALSE)
         
         # Notebook
-        scroll = GtkScrolledWindow ()
-        scroll.set_policy (GTK.POLICY_AUTOMATIC, GTK.POLICY_AUTOMATIC)
+        # scroll = GtkScrolledWindow ()
+        # scroll.set_policy (GTK.POLICY_AUTOMATIC, GTK.POLICY_AUTOMATIC)
         self.notebook = GtkNotebook ()
         self.notebook.show ()
 
-        scroll.add_with_viewport (self.notebook)
-        self.w.pack_start (scroll)
+        #scroll.add_with_viewport (self.notebook)
+        
+        self.w.pack_start (self.notebook)
         self.w.show_all ()
         
         self.notebook_init = FALSE
@@ -548,8 +549,13 @@ class RealEditor (Connector.Publisher):
             else:        table = copy.copy (fields)
 
             if len (table) == 0: continue
-            
+
+            scroll = GtkScrolledWindow ()
+            scroll.set_policy (GTK.POLICY_AUTOMATIC, GTK.POLICY_AUTOMATIC)
+
             content = GtkTable (1, len (table))
+            
+            scroll.add_with_viewport (content)
 
             j = 0
             for field in table:
@@ -568,8 +574,9 @@ class RealEditor (Connector.Publisher):
 
             label.show ()
             content.show ()
+            scroll.show ()
             
-            self.notebook.insert_page (content, label, i)
+            self.notebook.insert_page (scroll, label, i)
             
         self.notebook.show ()
         return
