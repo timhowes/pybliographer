@@ -1,7 +1,8 @@
 from Pyblio import Config
 
 Config.define ('medline/mapping',
-               """ A hash table containing field names correspondances """)
+               """ A hash table containing field names correspondances """,
+               Config.Dict (Config.String (), Config.String ()))
 
 Config.set ('medline/mapping', {
     'UI' : 'medlineref',

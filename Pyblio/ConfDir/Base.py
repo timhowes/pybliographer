@@ -1,24 +1,27 @@
 from Pyblio import Config, Types, Fields
 
+def _get_entries ():
+    return Config.get ('base/entries').data.values ()
+
+def _get_fields ():
+    return Config.get ('base/fields').data.values ()
+
 Config.define ('base/fields', """ Existing fields.  It's a hash table,
                with the field name (lower case) as key, and a instance
                of Types.FieldDescription as value. """)
-
+               
 
 Config.define ('base/entries', """ Existing entries.  It's a hash
                table, with the entry name (lower case) as key, and a
                instance of Types.EntryDescription as value. """)
 
 Config.define ('base/defaulttype', """ Default type for a newly created entry """,
-               vtype = Config.Element (lambda Config = Config:
-                                       Config.get ('base/entries').data.values ()))
+               vtype = Config.Element (_get_entries))
 
 Config.define ('base/lyxpipe', """ Path to the LyX server """,
                vtype = Config.String ())
 
 # --------------------------------------------------
-
-Config.set ('base/lyxpipe', '~/.lyx/lyxpipe')
 
 # Available fields
 
@@ -30,25 +33,6 @@ fields = [ 'CrossRef', 'Key', 'Author', 'Address_1', 'Address_2',
            'Date', 'NoSeries', 'ConfPlace', 'Cote', 'IEEECN',
            'LoCN', 'ISBN', 'ISSN', 'Note', 'Language', 'HowPublished', 'To_Appear',
            'From', 'Received', 'Owner', 'Keywords', 'Abstract', 'Remarks', 'URL' ]
-
-desc = {}
-# create the hash table
-for f in fields:
-    desc [string.lower (f)] = Types.FieldDescription (f)
-    
-# Special fields
-
-desc ['author'].type = Fields.AuthorGroup
-desc ['editor'].type = Fields.AuthorGroup
-
-desc ['date'].type  = Fields.Date
-
-desc ['crossref'].type = Fields.Reference
-
-desc ['url'].type      = Fields.URL
-
-
-# Entry types
 
 entries = {
     'Article' : (('author', 'title', 'journal', 'date'),
@@ -101,21 +85,48 @@ entries = {
                      ('date',)),
     }
 
-ent = {}
-for e in entries.keys ():
-    d = Types.EntryDescription (e)
 
-    d.mandatory = \
-        map (lambda x, desc=desc: desc [x], entries [e] [0])
-    d.optional  = \
-        map (lambda x, desc=desc: desc [x], entries [e] [1])
+Config.set ('base/lyxpipe', '~/.lyx/lyxpipe')
 
-    ent [string.lower (e)] = d
+# --------------------------------------------------
 
+desc = {}
+# create the hash table
+for f in fields:
+    desc [string.lower (f)] = Types.FieldDescription (f)
+    
+# Special fields
+
+desc ['author'].type   = Fields.AuthorGroup
+desc ['editor'].type   = Fields.AuthorGroup
+desc ['date'].type     = Fields.Date
+desc ['crossref'].type = Fields.Reference
+desc ['url'].type      = Fields.URL
 
 Config.set ('base/fields', desc)
-Config.set ('base/entries', ent)
-Config.set ('base/defaulttype', ent ['article'])
+
+# Entry types
+def _set_entries (entries):
+    desc = Config.get ('base/fields').data
+    ent  = {}
+    
+    for e in entries.keys ():
+        d = Types.EntryDescription (e)
+
+        d.mandatory = \
+                    map (lambda x, desc=desc: desc [x], entries [e] [0])
+        d.optional  = \
+                   map (lambda x, desc=desc: desc [x], entries [e] [1])
+
+        ent [string.lower (e)] = d
+
+    Config.set ('base/entries', ent)
+    return
+
+_set_entries (entries)
+
+Config.set ('base/defaulttype',
+            Config.get ('base/entries').data ['article'])
 
 
 

@@ -2,9 +2,12 @@ from Pyblio import Config, Types
 from Pyblio.Format.OvidLike import SimpleField, AuthorField, SourceField
 
 
-Config.define ('ovid/deftype', """ Default type for an Ovid entry """)
+Config.define ('ovid/deftype', """ Default type for an Ovid entry """,
+               Config.Element (lambda Config = Config:
+                               Config.get ('base/entries').data.values ()))
 
-Config.set ('ovid/deftype', 'article')
+Config.set ('ovid/deftype',
+            Config.get ('base/entries').data ['article'])
 
 
 Config.define ('ovid/mapping',

@@ -38,9 +38,7 @@ Config.set ('bibtex/override', 0)
 
 
 Config.define ('bibtex/datefield', """ A hash table linking a `real'
-date field to the two bibtex fields that compose it """,
-               Config.Dict (Config.String (),
-                            Config.Tuple ((Config.String (), Config.String ()))))
+date field to the two bibtex fields that compose it """)
 
 Config.set ('bibtex/datefield', {
     'date'  : ('year', 'month'),
