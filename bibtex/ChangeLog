@@ -1,7 +1,0 @@
-2003-08-11  Frederic Gobry  <gobry@pybliographer.org>
-
-	* configure.ac, Makefile.am: now, the libbibtex is a standalone
-	autoconf projet. The rest of the build tool will be based on
-	distutils.
-	
-
