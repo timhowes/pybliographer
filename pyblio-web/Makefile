@@ -27,8 +27,8 @@ clean:
 	test -z "$(HTML)" || rm -f $(HTML)
 
 remote:
-	rsync *.m4 $(EXTRA) Makefile frederic@www.gnome.org:/home/frederic/html
-	ssh frederic@www.gnome.org 'cd html && make install'
+	rsync *.m4 $(EXTRA) Makefile frederic@canvas.gnome.org:/home/frederic/html
+	ssh frederic@canvas.gnome.org 'cd html && make install'
 
 .SUFFIXES: .html .m4
 

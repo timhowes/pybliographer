@@ -41,7 +41,7 @@ href="http://www.daa.com.au/~james/pygtk">Gnome-Python</a></b> version
 m4_define(rpm_bin, 1)
 m4_define(rpm_src, 1)
 
-
+<hr>
 <dl>
   <dt><i>Debian</i><dd> from any <a href="http://packages.debian.org/unstable/text/pybliographer.html">Debian</a> mirror.</dd>
 
@@ -51,7 +51,7 @@ m4_define(rpm_src, 1)
 
     <ul>
 
-      <li>from <a href="http://sourceforge.net/project/filelist.php?group_id=4825">SourceForge</a>
+      <li>from <a href="http://sourceforge.net/project/showfiles.php?group_id=4825">SourceForge</a>
 
       <li>from any <a href="ftp://ftp.gnome.org/pub/GNOME/MIRRORS.html">Gnome mirror</a>, as a
 
@@ -71,7 +71,7 @@ m4_ifelse(html_testfile(local_stable/pybliographer-pyblio_last-rpm_src.src.rpm),
   
   <ul>
 
-    <li>from <a href="http://sourceforge.net/project/filelist.php?group_id=4825">SourceForge</a>
+    <li>from <a href="http://sourceforge.net/project/showfiles.php?group_id=4825">SourceForge</a>
 
     <li>from any <a href="ftp://ftp.gnome.org/pub/GNOME/MIRRORS.html">Gnome mirror</a>, as a
 
@@ -90,12 +90,16 @@ archive
   </dd>
 </dl>
 
+<hr>
+
 <p>The RPM files are kindly provided by <a
 href="mailto:hinsen@cnrs-orleans.fr">Konrad Hinsen</a>.
 
 <p>Pybliographer is available on <a
 href="http://www.debian.org">Debian</a>, thanks to Paul Seelig, Tobias
 Bachmor and Pedro Guerreiro.
+
+<p> Johann Visagie is the author of the <a href="http://www.freebsd.org">FreeBSD</a> port.
 
 <p>Historical  versions   of  pybliographer  are   available  from  <a
 href="pyblio_unstable">here</a>. Don't use them, really.</p>
