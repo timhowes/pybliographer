@@ -63,11 +63,14 @@ def popup_add (menu, item, action = None, argument = None):
     
     return tmp
 
-def error_dialog (title, err):
+def error_dialog (title, err, parent = None):
     dialog = GnomeDialog (title, STOCK_BUTTON_CLOSE)
     dialog.button_connect (1, GnomeDialog.close)
     dialog.set_usize (500, 300)
-            
+    
+    if parent:
+        dialog.set_parent (parent)
+        
     text = GtkText ()
     text.insert_defaults (_("The following errors occured:\n\n"))
     text.insert (None, color ['red'], None, str (err))
@@ -95,8 +98,11 @@ def init_colors (colormap):
 
 
 class Callback:
-    def __init__ (self):
+    def __init__ (self, question, parent = None):
         self.ans = 0
+
+        dialog = GnomeQuestionDialog (question, self.callback, parent = parent)
+        dialog.connect ('delete_event', mainquit)
         return
 
     def answer (self):

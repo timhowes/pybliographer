@@ -35,9 +35,15 @@ del cPickle
 
 _ = gettext.gettext
 
+PYBLIOSTRING = 0
+PYBLIOKEY    = 1
+PYBLIOENTRY  = 2
 
-PYBLIOKEY   = 1
-PYBLIOENTRY = 2
+PYBLIOKEY_MIME   = 'application/x-pybliokey'
+PYBLIOENTRY_MIME = 'application/x-pybliography'
+
+_atom = {}
+
 
 class Index (Connector.Publisher):
     ''' Graphical index of an iterator '''
@@ -45,6 +51,10 @@ class Index (Connector.Publisher):
     def __init__ (self, fields = None):
         ''' Creates a new list of entries '''
 
+        if not _atom:
+            _atom ['STRING'] = atom_intern ("STRING")
+            _atom [PYBLIOENTRY_MIME] = atom_intern (PYBLIOENTRY_MIME)
+            
         fields = fields or Config.get ('gnomeui/columns').data
         self.fields = map (lower, fields)
 
@@ -81,16 +91,15 @@ class Index (Connector.Publisher):
         self.clist.connect ('select_row',         self.select_row)
         self.clist.connect ('button_press_event', self.button_press)
 
-        # DnD configuration
+        # ---------- DnD configuration
+
         targets = (
-            # request for a Key
-            ('application/x-pybliokey',    0, PYBLIOKEY),
-            # request for a full entry
-            ('application/x-pybliography', 0, PYBLIOENTRY),
+            (PYBLIOKEY_MIME,   0, PYBLIOKEY),
+            (PYBLIOENTRY_MIME, 0, PYBLIOENTRY),
             )
 
         accept = (
-            ('application/x-pybliography', 0, PYBLIOENTRY),
+            (PYBLIOENTRY_MIME, 0, PYBLIOENTRY),
             )
 
         self.clist.drag_dest_set (DEST_DEFAULT_MOTION |
@@ -98,18 +107,60 @@ class Index (Connector.Publisher):
                                   DEST_DEFAULT_DROP,
                                   accept,
                                   GDK.ACTION_COPY)
-
         self.clist.connect ("drag_data_received", self.drag_received)
 
 
         self.clist.drag_source_set (GDK.BUTTON1_MASK | GDK.BUTTON3_MASK,
                                 targets, GDK.ACTION_COPY)
-
         self.clist.connect ('drag_data_get', self.dnd_drag_data_get)
+
+        # ---------- Copy/Paste configuration
+
+        self.selection_buffer = None
         
+        self.clist.connect ('selection_received', self.selection_received)
+        self.clist.connect ('selection_get',   self.selection_get)
+        self.clist.connect ('selection_clear_event', self.selection_clear)
+
+        self.clist.selection_add_target (1, _atom ['STRING'], 0)
+        self.clist.selection_add_target (1, _atom [PYBLIOENTRY_MIME],
+                                         PYBLIOENTRY)
         return
 
 
+    def selection_clear (self, * arg):
+        self.selection_buffer = None
+        return
+    
+    def selection_received (self, widget, selection, info):
+        if selection.length < 0: return
+ 
+        entries = pickle.loads (selection.data)
+        self.issue ('drag-received', entries)
+        return
+
+
+    def selection_get (self, widget, selection, info, time):
+        if not self.selection_buffer: return
+        
+        if info == PYBLIOENTRY:
+            text = pickle.dumps (self.selection_buffer)
+        else:
+            text = join (map (str, self.selection_buffer), '\n\n')
+        
+        selection.set (1, 8, text)
+        return
+
+    def selection_copy (self, entries):
+        self.clist.selection_owner_set (1, 0)
+        self.selection_buffer = entries
+        return
+
+    def selection_paste (self):
+        self.clist.selection_convert (1, _atom [PYBLIOENTRY_MIME],
+                                      0)
+        return
+        
     def set_menu_active (self, item, value):
         ''' This method sets the sensitivity of each popup menu item '''
 
@@ -146,6 +197,12 @@ class Index (Connector.Publisher):
     
     # --------------------------------------------------
 
+    def __len__ (self):
+        ''' returns the number of lines in the current index '''
+
+        return len (self.access)
+
+    
     def display (self, iterator):
 
         # clear the access table

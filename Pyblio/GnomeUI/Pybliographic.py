@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-import gettext
+import gettext, copy
 
 _ = gettext.gettext
 
@@ -100,8 +100,10 @@ class Pybliographic:
         config.set_vector ('Pybliographic/Base/History=',
                            self.opened [0:10])
         config.sync ()
+
+        doclist = copy.copy (self.documents)
         
-        for doc in self.documents:
+        for doc in doclist:
             if not doc.close_document_request ():
                 return
             

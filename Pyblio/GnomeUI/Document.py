@@ -28,7 +28,7 @@ from gnome import config
 from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector
 from Pyblio import Connector, Open, Exceptions, Selection, Sort
 
-import gettext, os, string
+import gettext, os, string, copy
 
 _ = gettext.gettext
 
@@ -176,16 +176,32 @@ class Document (Connector.Publisher):
         return
 
     
-    def update_status (self):
+    def update_status (self, status = -1):
         ''' redisplay status bar according to the current status '''
+
+        if status != -1: self.changed = status
         
         if self.data.key is None:
             text = _("New database")
         else:
-            text = _("Database `%s'") % str (self.data.key)
+            text = str (self.data.key)
 
+        li = len (self.index)
+        ld = len (self.data)
+        
+        if li == ld:
+            if   ld == 0: num = _("[no entry]")
+            elif ld == 1: num = _("[1 entry]")
+            else:         num = _("[%d entries]")    %  ld
+        else:
+            if   ld == 0: num = _("[no entry]")
+            elif ld == 1: num = _("[%d/1 entry]")    % li
+            else:         num = _("[%d/%d entries]") % (li, ld)
+
+        text = text + ' ' + num
+        
         if self.changed:
-            text = text + _(" [modified]")
+            text = text + ' ' + _("[modified]")
 
         self.statusbar.set_default (text)
         return
@@ -195,11 +211,8 @@ class Document (Connector.Publisher):
         ''' eventually ask for modification cancellation '''
         
         if self.changed:
-            cb = Utils.Callback ()
-            self.w.question (_("The database has been modified.\nDiscard changes ?"),
-                             cb.callback)
-
-            return cb.answer ()
+            return Utils.Callback (_("The database has been modified.\nDiscard changes ?"),
+                                   self.w).answer ()
         
         return 1
 
@@ -237,7 +250,8 @@ class Document (Connector.Publisher):
                 Exceptions.FileError), error:
             
             Utils.set_cursor (self.w, 'normal')
-            Utils.error_dialog (_("Open error"), error)
+            Utils.error_dialog (_("Open error"), error,
+                                parent = self.w)
             return
 
         Utils.set_cursor (self.w, 'normal')
@@ -276,11 +290,9 @@ class Document (Connector.Publisher):
         if url is None: return
             
         if os.path.exists (url):
-            cb = Utils.Callback ()
-            self.w.question (_("The file `%s' already exists.\nOverwrite it ?") % url,
-                             cb.callback)
-
-            if not cb.answer (): return
+            if not Utils.Callback (_("The file `%s' already exists.\nOverwrite it ?")
+                                   % url, parent = self.w).answer ():
+                return
 
         try:
             file = open (url, 'w')
@@ -296,6 +308,8 @@ class Document (Connector.Publisher):
         if self.data.key is None:
             # we wrote an anonymous database. Lets reopen it !
             self.data = Open.bibopen (url, how = how)
+            self.redisplay_index ()
+            
             self.issue ('open-document', self)
             
         Utils.set_cursor (self.w, 'normal')
@@ -318,12 +332,10 @@ class Document (Connector.Publisher):
         for entry in entries:
             
             if self.data.has_key (entry.key):
-                cb = Utils.Callback ()
-                self.w.question (_("An entry called `%s' already exists.\nRename and add it anyway ?")
-                                 % entry.key.key, cb.callback)
-
-                if not cb.answer (): continue
-
+                if not Utils.Callback (_("An entry called `%s' already exists.\nRename and add it anyway ?")
+                                       % entry.key.key, parent = self.w).answer ():
+                    continue
+                
             self.changed = 1
             self.data.add (entry)
 
@@ -331,21 +343,29 @@ class Document (Connector.Publisher):
         return
                 
     def cut_entry (self, * arg):
+        entries = self.index.selection ()
+        
+        self.index.selection_copy (entries)
+        for entry in entries:
+            del self.data [entry.key]
+            
+        self.redisplay_index (1)
         pass
     
     def copy_entry (self, * arg):
-        pass
+        self.index.selection_copy (self.index.selection ())
+        return
     
     def paste_entry (self, * arg):
-        pass
+        self.index.selection_paste ()
+        return
     
     def clear_entries (self, * arg):
         if len (self.data) == 0: return
 
-        cb = Utils.Callback ()
-        self.w.question (_("Really remove all the entries ?"), cb.callback)
-
-        if not cb.answer (): return
+        if not Utils.Callback (_("Really remove all the entries ?"),
+                               parent = self.w).answer ():
+            return
 
         keys = self.data.keys ()
         for key in keys:
@@ -364,21 +384,40 @@ class Document (Connector.Publisher):
         pass
     
     def edit_entry (self, * arg):
-        pass
+        entries = self.index.selection ()
+        l = len (entries)
+        if l == 0: return
+        
+        if l > 5:
+            if not Utils.Callback (_("Really edit %d entries ?" % l)):
+                return
+
+        for entry in entries:
+            edit = Editor.Editor (copy.deepcopy (entry), self.w)
+            edit.Subscribe ('commit-edition', self.commit_edition)
+
+        return
+
+    def commit_edition (self, old, new):
+        print old, new
+        return
+    
     
     def delete_entry (self, * arg):
         ''' removes the selected list of items after confirmation '''
         entries = self.index.selection ()
+
+        l = len (entries)
+        if l == 0: return
         
-        cb = Utils.Callback ()
-        if len (entries) > 1:
-            self.w.question (_("Remove all the %d entries ?")
-                             % len (entries), cb.callback)
+        if l > 1:
+            question = _("Remove all the %d entries ?") % len (entries)
         else:
-            self.w.question (_("Remove entry `%s' ?")
-                             % entries [0].key.key, cb.callback)
+            question = _("Remove entry `%s' ?") % entries [0].key.key
             
-        if not cb.answer (): return
+        if not Utils.Callback (question,
+                               parent = self.w).answer ():
+            return
 
         for entry in entries:
             del self.data [entry.key]
