@@ -1,10 +1,19 @@
-2003-09-03  Frederic Gobry  <gobry@pybliographer.org>
+2003-09-07  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
-	* intl/, po/: removed C code, as everything will be performed in
-	Python.
+	* Pyblio/GnomeUI/Document.py (Document.set_preferences): delayed
+	loading 
 
-	* configure.ac: cleaned up the unnecessary checks
-	
+	* Pyblio/GnomeUI/Config.py (ConfigDialog.changed): this routine
+	now commits the changes to the update list
+	(BaseConfig.update): update routine allows to force an update and
+	uses new parent pointer to serve subwidgets
+	(ElementConfig): uses option menu, Boolean a checkBox
+	(ConfigDialog.__init__): make data element point to Main class
+	instead of notebook, Help string made into label, uses instant
+	apply throughout
+
+	* Pyblio/Config.py (save_changes): Termination routine added
+
 2003-08-14  Frederic Gobry  <gobry@pybliographer.org>
 
 	* Pyblio/GnomeUI/Search.py, glade/search.glade: both simple and

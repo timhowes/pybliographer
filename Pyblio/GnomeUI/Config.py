@@ -20,16 +20,14 @@
 # $Id$
 
 # TO DO:
-# Pixmap instead of text label for help button
 # Parent for dialogue
-# Only close button needed -- instantly apply changes
-# improve the layout & placement of help text
-
+# instantly apply changes
+# refactor to better adapt to instant apply 
 
 import pygtk
 pygtk.require("2.0")
 
-import gtk, gtk.glade
+import gobject, gtk, gtk.glade
 import gnome.ui 
 
 import copy, gettext, os.path, re, string   
@@ -93,7 +91,7 @@ class ConfigDialog:
                 label.set_use_markup(gtk.TRUE)
 
                 label.set_markup('<b>%s</b>' % (nice))
-                label.set_alignment(xalign=0.5, yalign=0.5)
+                label.set_alignment(xalign=0.5, yalign=0)
                 hbox = gtk.HBox (spacing = 12)
                 hbox.pack_start (label,False)
                 
@@ -103,7 +101,7 @@ class ConfigDialog:
 
                 table.pack_start (hbox, False)
                 # Create the edition widget...
-                edit = data.type.w (data.type, self.w, item, help_text=desc)
+                edit = data.type.w (data.type, self, item, help_text=desc)
                 if edit.allow_help:
                     label = gtk.Label ()
                     label.set_line_wrap (True)
@@ -113,108 +111,59 @@ class ConfigDialog:
                 hbox.set_border_width (6)
                 
                 cw [item] = edit
-                hbox.pack_start (edit.w)
+                hbox.pack_start (edit.w, False)
 
-##                 # helper button
-##                 #help = gnome.ui.Pixmap (gtk.STOCK_HELP) XXX
-##                 if edit.allow_help:
-##                     help = gtk.Label('HELP!')
-##                     button = gtk.Button ()
-##                     button.add (help)
-##                     button.set_relief (gtk.RELIEF_NONE)
-##                     button.connect ('clicked', self.display_help,
-##                                 (self.w, _("Item `%s':\n\n%s") % (item, desc)))
-##                     hbox.pack_start (button, False, False)
+
 ##                     tooltips.set_tip (button, desc)
 
                 table.pack_start (hbox,
                                   expand = edit.resize,
                                   fill   = edit.resize)
-
+                # items should not be spread vertically, however 
             if cw:
                 self.w.append_page (table, gtk.Label (dom))
                 self.page.append (cw)
-            
-        self.dialog.show_all ()
+
+        self.show()
         return
 
-    def on_applybutton1_clicked(self, w):
-        #print 'ON_APPLY_BUTTON_CLICKED:', self, w
-        page = self.w.get_current_page()
+    def on_close1 (self, w):
+        self.dialog.hide_all()
+
+    def show (self):
+        self.dialog.show_all()
         
-        if page == -1: return
-        changed = {}
-
-        cw = self.page [page]
-        for item in cw.keys ():
-
-            if cw [item].update ():
-                #print 'UPDATE:', Config.get (item).data
-                changed [item] = Config.get (item).data
-            print changed.get(item, '*unchanged*')
-        Config.save_user (changed)
-
-        if not self.warning:
-            self.warning = 1
-            self.parent.warning (
-                _("Some changes require to restart Pybliographic\n"
-                  "to be correctly taken into account"))
-        self.dialog.response(gtk.RESPONSE_APPLY)
-        self.dialog.destroy()
-        return
-        
-    def on_okbutton1_clicked(self, w, *data):
-        #print 'ON_OK_BUTTON_CLICKED:', self, w, data
-        #self.apply (w, page)
-        self.dialog.response(gtk.RESPONSE_OK)
-        self.dialog.hide()
-       
-    def on_helpbutton1_clicked(self, w, *data):
-        #print 'ON_HELP_BUTTON_CLICKED:',self, w, data
-
-        self.dialog.response(gtk.RESPONSE_HELP)
-        self.dialog.destroy()
-        
-    def on_cancelbutton1_clicked(self, w, *data):
-        #print 'ON_CANCEL_BUTTON_CLICKED:',self, w, data
-        self.dialog.response(gtk.RESPONSE_CANCEL)
-        self.dialog.destroy()
-       
-       
     def display_help (self, w, data):
         (w, help) = data
         d = gnome.ui.OkDialog (format (help, 40, 0, 0), w)
         d.show_all ()
-        
         return
-
-    def apply (self, w, page):
-        page = self.w.get_current_page()
         
-        if page == -1: return
-
-        changed = {}
-        cw = self.page [page]
-        for item in cw.keys ():
-            if cw [item].update ():
-                changed [item] = Config.get (item).data
-
-        Config.save_user (changed)
-
+    def changed (self, key):
+        changed = {key: Config.get (key).data}
+        Config.save_changes (changed)
+        #print 'CHANGED:', changed
         if not self.warning:
             self.warning = 1
             self.parent.warning (
                 _("Some changes require to restart Pybliographic\n"
                   "to be correctly taken into account"))
-        return
-
+        
+        #self.apply_changes (key)
 
 class BaseConfig:
-    def __init__ (self, dtype, props, key, help_text=''):
-
+    def __init__ (self, dtype, props, key, parent=None, help_text=''):
+        """Base class for configuration data display elements.
+        dtype is the tpye attribute of the configuration data element
+        props is the Dialog object
+        key   is the name of the configuratio item
+        help_txt its description
+        """
+        
         self.type    = dtype
         self.key     = key
         self.prop    = props
+        self.parent  = parent
         self._state  = 0
         self.frozen  = 0
         self.allow_help = 1
@@ -224,9 +173,8 @@ class BaseConfig:
         return self._state
     
     def changed (self, * arg):
+        #print 'CHANGED:', self.key
         if self.frozen: return
-        
-        #self.prop.changed () XXX
         self._state = 1
         return
 
@@ -238,35 +186,39 @@ class BaseConfig:
         self.frozen = 0
         return
 
-    def update (self):
-        if not self.state (): return 0
-
+    def update (self, force=False, *args):
+        """Call this with an additional parameter
+        force=True if the widget does nor use changed()."""
+        #print 'UPDATE:', self.key, self.get(), force
+        if not (force or self.state ()): return 0
         if self.key:
             Config.set (self.key, self.get ())
-        return 1
+            self.prop.changed(self.key)
+        else:
+            self.parent.update(force = force)
+        return False
 
 
 class StringConfig (BaseConfig):
 
     resize = False
     
-    def __init__ (self, dtype, props, key = None, help_text=''):
-        BaseConfig.__init__ (self, dtype, props, key)
+    def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
+        BaseConfig.__init__ (self, dtype, props, key, parent)
         
         self.w = gtk.Entry ()
         
         if self.key:
             text = Config.get (key).data
             if text: self.w.set_text (text)
-        
+
+        self.w.connect ('focus-out-event', self.update)
         self.w.connect ('changed', self.changed)
         self.w.show_all ()
         return
-
-
+        
     def get (self):
         return self.w.get_text ()
-
 
     def set (self, value):
         self.freeze ()
@@ -279,8 +231,8 @@ class IntegerConfig (StringConfig):
 
     resize = False
     
-    def __init__ (self, dtype, props, key = None, help_text=''):
-        BaseConfig.__init__ (self, dtype, props, key)
+    def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
+        BaseConfig.__init__ (self, dtype, props, key, parent)
 
         if self.key:
             value = Config.get (key).type
@@ -298,7 +250,8 @@ class IntegerConfig (StringConfig):
             value = Config.get (key).data
             if value is not None: self.w.set_value (value)
         
-        self.w.connect ('changed', self.changed)
+        self.w.connect ('changed', self.update, True)
+        self.w.connect ('focus-out-event', self.update)
         self.w.show_all ()
         return
 
@@ -308,9 +261,7 @@ class IntegerConfig (StringConfig):
         type = Config.get (self.key).type
         if type.min and value < type.min: return None
         if type.max and value > type.max: return None
-
         return value
-
 
     def set (self, value):
         self.freeze ()
@@ -323,8 +274,8 @@ class BooleanConfig (BaseConfig):
 
     resize = False
 
-    def __init__ (self, dtype, props, key = None, help_text=''):
-        BaseConfig.__init__ (self, dtype, props, key)
+    def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
+        BaseConfig.__init__ (self, dtype, props, key, parent)
         self.allow_help = False
         self.w = gtk.HBox (spacing=6)
         self.button = gtk.CheckButton ()
@@ -334,7 +285,7 @@ class BooleanConfig (BaseConfig):
             value = Config.get (key).data
             self.button.set_active(value)
         
-        self.button.connect  ('clicked', self.clicked)
+        self.button.connect  ('clicked', self.update, True)
         description = gtk.Label()
         description.set_use_markup(gtk.TRUE)
         description.set_line_wrap(True)
@@ -345,11 +296,6 @@ class BooleanConfig (BaseConfig):
         
         self.w.show_all ()
         return
-    
-    def clicked(self, *args):
-        print 'CLICKED:', args
-        self.changed()
-        self.update()
 
     def get (self):
         return self.button.get_active ()
@@ -363,54 +309,54 @@ class BooleanConfig (BaseConfig):
 
 class ElementConfig (BaseConfig):
     
-    resize = True
+    resize = False
     
-    def __init__ (self, dtype, props, key = None, help_text=''):
-        BaseConfig.__init__ (self, dtype, props, key)
-
-        self.w = gtk.ScrolledWindow ()
-        self.w.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
-        self.list = gtk.CList (1)
-        self.w.add (self.list)
-        
-        self.items = dtype.get ()
-            
-        self.list.freeze ()
-        for i in self.items:
-            self.list.append ((str (i),))
-        self.list.thaw ()
+    def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
+        BaseConfig.__init__ (self, dtype, props, key, parent)
 
         if key:
-            data = Config.get (key).data
-            self.list.select_row (self.items.index (data), 0)
-            
-        self.list.connect ('select-row', self.changed)
+            data = str(Config.get (key).data)
+        else: data = ''
+        self.m = gtk.Menu()
+        self.items = dtype.get()
+
+        ix = 0
+        select = -1
+        for i in self.items:
+            self.m.append (gtk.MenuItem(str(i)))
+            if data == str(i):
+                select = ix
+            ix += 1
+        self.o = gtk.OptionMenu()
+        self.o.set_menu(self.m)
+        self.o.set_history (select)
+        self.o.connect ('changed', self.update, True)
+        
+        self.w = gtk.HBox(spacing = 12)
+        self.w.pack_start(self.o, True, True, padding=12)
         self.w.show_all ()
         return
 
     def get (self):
-        return self.items [self.list.selection [0]]
-
-
+        return self.items[self.o.get_history()]
+    
     def set (self, value):
         self.freeze ()
-        self.list.select_row (self.items.index (value), 0)
+        self.o.set_history (self.items.index(value))
         self.thaw ()
         return
-
     
 class TupleConfig (BaseConfig):
 
-    def __init__ (self, dtype, props, key = None, help_text=''):
-        BaseConfig.__init__ (self, dtype, props, key)
-
-        self.w = gtk.VBox (spacing = 5)
+    def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
+        BaseConfig.__init__ (self, dtype, props, key, parent)
+        self.w = gtk.VBox (spacing = 6)
         self.sub = []
 
         self.resize = False
 
         for sub in dtype.subtypes:
-            w = sub.w (sub, props)
+            w = sub.w (sub, props, parent=self)
             self.sub.append (w)
             
             if w.resize:
@@ -441,14 +387,15 @@ class TupleConfig (BaseConfig):
             ret.append (item.get ())
         return ret
 
-
     def set (self, value):
         self.freeze ()
         i = 0
         for item in value:
+            #print 'SET TUPLE:', value, item
             self.sub [i].set (item)
             i = i + 1
         self.thaw ()
+        self.update(True)
         return
 
 
@@ -456,21 +403,28 @@ class ListConfig (BaseConfig):
 
     resize = True
     
-    def __init__ (self, dtype, props, key = None, help_text=''):
-        BaseConfig.__init__ (self, dtype, props, key)
-
-        self.w = gtk.VBox (spacing = 5)
-        h = gtk.HBox (spacing = 5)
+    def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
+        BaseConfig.__init__ (self, dtype, props, key, parent)
+        self.w = gtk.VBox (spacing = 6)
+        h = gtk.HBox (spacing = 6)
         scroll = gtk.ScrolledWindow ()
         scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 
-        self.list = gtk.CList (1)
-        self.list.connect ('select-row', self.select_cb)
-        self.list.set_reorderable (True)
-        self.list.connect ('row_move', self.changed)
-        scroll.add (self.list)
-        h.pack_start (scroll)
-
+        self.m = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
+        self.v = gtk.TreeView(self.m)
+        self.v.set_reorderable (True)
+        self.v.set_headers_visible (False)
+        rend = gtk.CellRendererText ()
+        col = gtk.TreeViewColumn ('', rend, text=0)
+        col.set_resizable(True)
+        #col.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col.set_min_width(200)
+        self.v.append_column (col)
+        self.s = self.v.get_selection()
+        self.s.connect ('changed', self.select_cb)
+        
+        scroll.add (self.v)
+        h.pack_start (scroll, True, True)
         bbox = gtk.VButtonBox ()
 
         button = gtk.Button (_("Add"))
@@ -483,72 +437,64 @@ class ListConfig (BaseConfig):
         bbox.pack_start (button)
         button.connect ('clicked', self.remove_cb)
 
-        h.pack_start (bbox, False, False)
-        self.w.pack_start (h)
+        self.w.connect ('focus-out-event', self.update)
+        h.pack_end (bbox, False)
+        self.w.pack_start (h, True)
 
         # Bottom
-        self.subw = dtype.subtype.w (dtype.subtype, props)
+        self.subw = dtype.subtype.w (dtype.subtype, props, parent=self)
         self.w.pack_start (self.subw.w,
                            expand = self.subw.resize,
                            fill   = self.subw.resize)
-
         if self.key:
             data = Config.get (self.key).data
             i = 0
             for item in data:
-                self.list.append ((str (item),))
-                self.list.set_row_data (i, item)
+                self.m.append ((str (item), item))
                 i = i + 1
-            
+           
         self.w.show_all ()
         return
 
     def add_cb (self, * arg):
-        self.changed ()
         data = self.subw.get ()
-        self.list.append ((str (data),))
-        self.list.set_row_data (self.list.rows - 1, data)
+        self.m.append ((str (data), data))
+        self.update (True)
         return
 
     def remove_cb (self, * arg):
-        if not self.list.selection: return
-
-        self.changed ()
-        self.list.remove (self.list.selection [0])
+        if not self.s: return
+        m, iter = self.s.get_selected()
+        m.remove(iter)
+        self.update (True)
         return
 
     def update_cb (self, * arg):
-        if not self.list.selection: return
-        self.changed ()
+        if not self.s: return
         data = self.subw.get ()
-        row  = self.list.selection [0]
-        self.list.set_text (row, 0, str (data))
-        self.list.set_row_data (row, data)
+        m, row  = self.s.get_selected()
+        m[row] = (str(data), data)
+        #m.row.changed(row)
+        self.update (True)
         pass
-    
 
-    def select_cb (self, w, row, col, event):
-        data = self.list.get_row_data (self.list.selection [0])
+    def select_cb (self, *args):
+        m, row = self.s.get_selected()
+        data = m.get_value(row, 1)
         self.subw.set (data)
         return
 
     def set (self, data):
         self.freeze ()
-        self.list.freeze ()
-        self.list.clear  ()
-        i = 0
         for item in data:
-            self.list.append ((str (item),))
-            self.list.set_row_data (i, item)
-            i = i + 1
-        self.list.thaw ()
+            self.m.append((str(item), item))
         self.thaw ()
         return
 
     def get (self):
         ret = []
-        for i in range (0, self.list.rows):
-            data = self.list.get_row_data (i)
+        for i in self.m:
+            data = i[1]
             ret.append (data)
         return ret
     
@@ -557,20 +503,34 @@ class DictConfig (BaseConfig):
 
     resize = True
     
-    def __init__ (self, dtype, props, key = None, help_text=''):
-        BaseConfig.__init__ (self, dtype, props, key)
-
-        self.w = gtk.VBox (spacing = 5)
-        h = gtk.HBox (spacing = 5)
+    def __init__ (self, dtype, props, key=None, parent=None, help_text=''):
+        BaseConfig.__init__ (self, dtype, props, key, parent)
+        self.w = gtk.VBox (spacing = 6)
+        h = gtk.HBox (spacing = 6)
         scroll = gtk.ScrolledWindow ()
         scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 
-        self.list = gtk.CList (2, (_("Key"), _("Value")))
-        self.list.connect ('select-row', self.select_cb)
-        self.list.set_column_auto_resize (0, True)
+        self.m = gtk.ListStore(gobject.TYPE_STRING,
+                               gobject.TYPE_STRING,
+                               gobject.TYPE_PYOBJECT)
+        self.v = gtk.TreeView(self.m)
+
+        rend = gtk.CellRendererText()
+        col = gtk.TreeViewColumn('Key', rend, text=0)
+        col.set_resizable(True)
+        #col.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col.set_min_width(100)
+        self.v.append_column(col)
+       
+        rend = gtk.CellRendererText()
+        col = gtk.TreeViewColumn('Value', rend, text=1)
+        self.v.append_column(col)
+
+        self.s = self.v.get_selection()
+        self.s.connect ('changed', self.select_cb)
         
-        scroll.add (self.list)
-        h.pack_start (scroll)
+        scroll.add (self.v)
+        h.pack_start (scroll, True, True)
 
         bbox = gtk.VButtonBox ()
 
@@ -583,26 +543,25 @@ class DictConfig (BaseConfig):
 
         h.pack_start (bbox, False, False)
         self.w.pack_start (h)
-
         self.w.pack_start (gtk.HSeparator (), expand = False, fill = False)
         
         # Bottom
         table = gtk.Table (2, 2, homogeneous = False)
-        table.set_row_spacings (5)
-        table.set_col_spacings (5)
+        table.set_row_spacings (6)
+        table.set_col_spacings (6)
         table.attach (gtk.Label (_("Key:")), 0, 1, 0, 1,
                       xoptions = 0, yoptions = 0)
         table.attach (gtk.Label (_("Value:")), 0, 1, 1, 2,
                       xoptions = 0, yoptions = 0)
 
-        self.keyw   = dtype.key.w (dtype.key, props)
+        self.keyw   = dtype.key.w (dtype.key, props, parent=self)
         if self.keyw.resize:
             table.attach (self.keyw.w, 1, 2, 0, 1)
         else:
             table.attach (self.keyw.w, 1, 2, 0, 1,
                           yoptions = 0)
             
-        self.valuew = dtype.value.w (dtype.value, props)
+        self.valuew = dtype.value.w (dtype.value, props, parent=self)
         if self.valuew.resize:
             table.attach (self.valuew.w, 1, 2, 1, 2)
         else:
@@ -619,48 +578,67 @@ class DictConfig (BaseConfig):
             keys.sort ()
             for k in keys:
                 v = data [k]
-                self.list.append ((str (k), str (v)))
-                self.list.set_row_data (self.list.rows - 1,
-                                        (k, v))
+                self.m.append ((str (k), str (v), v))
         self.w.show_all ()
         return
 
     def remove_cb (self, * arg):
-        if not self.list.selection: return
-
+        
+        if not self.s: return
         self.changed ()
-        key = self.list.get_row_data (self.list.selection [0]) [0]
+        m, iter = self.s.get_selected()
+        #print 'REMOVE:', m, iter, dict
+        key = m.get_value(iter, 0)
+        path = m.get_path(iter)
+        m.remove(iter)
+        m.row_deleted(path)
         del self.dict [key]
-        self.set (self.dict)
         return
 
     def update_cb (self, * arg):
         self.changed ()
-        self.dict [self.keyw.get ()] = self.valuew.get ()
-        self.set (self.dict)
+        m, row = self.s.get_selected()
+        key = self.keyw.get()
+        #print 'UPDATE:', self.valuew.get()
+        try:
+            val = tuple(self.valuew.get())
+        except TypeError:
+            val = self.valuew.get()
+        if self.dict.has_key (key):
+            for i in m:
+                if i[0] == key:
+                    m [i.iter] =  (key, str(val), val)
+                    m.row_changed(i.path, i.iter)
+                    break
+            else:
+                print 'ERROR'
+        else:
+            iter = m.append ((key, str(val), val))
+            i = m[iter]
+            #m.row_inserted (i.path, i.iter)
+        self.dict [key] = val
+        self.update()
         pass
     
 
-    def select_cb (self, w, row, col, event):
-        data = self.list.get_row_data (self.list.selection [0])
-        self.keyw.set   (data [0])
-        self.valuew.set (data [1])
+    def select_cb (self, *args):
+        m, row = self.s.get_selected()
+        #print 'SELECT:', m, row
+        if row:
+            self.keyw.set   (m.get_value(row, 0))
+            self.valuew.set (m.get_value(row, 2))
         return
 
     def set (self, data):
         self.freeze ()
-        self.list.freeze ()
-        self.list.clear ()
+        self.m.clear ()
         
         self.dict = copy.copy (data)
         keys = data.keys ()
         keys.sort ()
         for k in keys:
             v = data [k]
-            self.list.append ((str (k), str (v)))
-            self.list.set_row_data (self.list.rows - 1,
-                                    (k, v))
-        self.list.thaw ()
+            self.m.append ((str (k), str (v)))
         self.thaw ()
         return
 
@@ -676,7 +654,17 @@ Config.Tuple.w   = TupleConfig
 Config.List.w    = ListConfig
 Config.Dict.w    = DictConfig
 
+__dialog_object = None
 
+def run (w):
+    global __dialog_object
+
+    if __dialog_object:
+        __dialog_object.show()
+    else:
+        __dialog_object = ConfigDialog(w)
+
+    
 # Local Variables:
 # py-master-file: "tConfig.py"
 # End:

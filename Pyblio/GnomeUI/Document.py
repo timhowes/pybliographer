@@ -30,8 +30,8 @@ import gtk.glade
 from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor
 from Pyblio.GnomeUI import Search, Format
 from Pyblio.GnomeUI.Sort import SortDialog
-from Pyblio.GnomeUI.Config import ConfigDialog
-from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
+#from Pyblio.GnomeUI.Config import ConfigDialog
+#from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
 
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
 from Pyblio import version, Fields, Types, Query
@@ -52,6 +52,7 @@ printable = string.lowercase + string.uppercase + string.digits
 class Document (Connector.Publisher):
     
     def __init__ (self, database):
+
 
         gp = os.path.join (version.prefix, 'glade', 'pyblio.glade')
         
@@ -120,17 +121,20 @@ class Document (Connector.Publisher):
 
 
     def set_preferences (self, * arg):
-        w = ConfigDialog (self.w)
+        from Pyblio.GnomeUI import Config
+        Config.run(self.w)
         return
 
 
     def set_fields (self, * arg):
-        w = FieldsDialog (self.w)
+        from Pyblio.GnomeUI import Fields
+        Fields.run_fields (self.w)
         return
     
 
     def set_entries (self, * arg):
-        w = EntriesDialog (self.w)
+        from Pyblio.GnomeUI import Fields
+        Fields.run_entries (self.w)
         return
     
 

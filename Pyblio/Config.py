@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-import string, os, sys, types, gettext, cPickle
+import atexit, cPickle, gettext, os, string, sys, types
 
 pickle = cPickle
 del cPickle
@@ -326,20 +326,32 @@ def load_user ():
     return
         
 def save_user (changed):
+    print 'SAVE USER:', changed
+    if not changed:
+        return
     # read what has to be saved again
     try:
         file = open (os.path.expanduser ('~/.pybrc.conf'), 'r')
         previous = pickle.load (file)
         file.close ()
     except IOError: previous = {}
-    
-    for item in changed.keys ():
-        previous [item] = changed [item]
+    previous.update(changed)
+##     for item in changed.keys ():
+##         previous [item] = changed [item]
     
     file = open (os.path.expanduser ('~/.pybrc.conf'), 'w')
     pickle.dump (previous, file)
     file.close ()
     return
 
+#   TERMINATION ROUTINE
 
+_changes = {}
+
+def save_changes(changes):
+    global _changes
+    print 'ADD TO CHANGES:', changes
+    _changes.update(changes)
+    
+atexit.register(save_user, _changes)
 
