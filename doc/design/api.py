@@ -23,51 +23,109 @@ class Database (object):
         return self.iter ()
 
 
-class Work (object):
-    pass
+
+class Record (object):
+
+    ''' Set of attributes describing a bibliographic object '''
+
+    def __init__ (self):
+        self.attribute = {}
+        return
 
 
-class Expression (object):
-    def __init__ (self, work):
-        pass
+
+class Work (Record):
+    
+    def __init__ (self):
+        Record.__init__ (self)
+        
+        self.expression = []
+        return
 
 
-class Manifestation (object):
-    def __init__ (self, expression):
-        pass
+class Expression (Record):
+    
+    def __init__ (self):
+        Record.__init__ (self)
+
+        self.work = None
+        self.manifestation = []
+        return
 
 
-class Item (object):
+class Manifestation (Record):
+    
+    def __init__ (self):
+        Record.__init__ (self)
 
-    def __init__ (self, manifestation):
-        pass
+        self.expression = None
+        self.item = []
+        return
 
+
+class Item (Record):
+
+    def __init__ (self):
+        Record.__init__ (self)
+        
+        self.manifestation = None
+        return
+    
 
 class Role (object):
 
-    ''' Detailed information about a role '''
+    ''' Detailed information about an attribute role. A role can be a
+    specialization of another role. '''
     
-    def __init__ (self):
-        pass
+    def __init__ (self, role_name, type):
+        self.role  = role_name
+        self.type  = type
+        self.super = None
+        self.sub = []
+        return
 
 
-class Type (object):
-    ''' The base class of all the data stored in a record '''
+class Attribute (object):
 
-    def __init__ (self, role, id = None):
+    ''' The base class of all the attributes of a record '''
+
+    def __init__ (self, role_name):
+        self.id = None
+        self.db = None
+        
         self.role = role
-        self.id   = id
         return
 
     def __cmp__ (self, other):
         pass
 
-class Actor (Type):
+
+class Actor (Attribute):
+    ''' A Person or Corporate Entity '''
     pass
+
 
 class Person (Actor):
     pass
 
+
 class Corporate (Actor):
     pass
 
+
+class Text (Attribute):
+
+    ''' A non-constrained text attribute, with formatting and language
+    properties. '''
+    
+    def __init__ (self, role_name, lang = None):
+        Attribute.__init__ (self, role_name)
+        
+        self.lang = lang
+        return
+
+
+class Keyword (Attribute):
+
+    ''' A keyword '''
+    pass
