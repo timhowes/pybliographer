@@ -6,17 +6,90 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-11-22 14:39+0100\n"
+"POT-Creation-Date: 1999-11-29 13:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain; charset=iso-latin-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pybliographer.py:38
+#, c-format
+msgid "This is %s, version %s"
+msgstr "Bienvenue dans %s, version %s"
+
+#: pybliographer.py:42 pybliographer.py:49
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr "Ceci est un logiciel libre, sans AUCUNE GARANTIE"
+
+#: pybliographer.py:43
+msgid "For details, type `warranty'."
+msgstr "Pour plus de détails, tapez `warranty'."
+
+#: pybliographer.py:108 pybliographer.py:160
+#, c-format
+msgid "%s: error: can't open file `%s'"
+msgstr "%s: erreur : impossible d'ouvrir le fichier `%s'"
+
+#: pybliographer.py:121
+#, c-format
+msgid "For help, run %s and type `help' at the prompt"
+msgstr "Pour de l'aide, tapez %s puis le mot `help' à l'invite"
+
+#: pybliographer.py:130
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+"Commandes utiles :\n"
+"\thelp\tpour obtenir de l'aide\n"
+"\tquit\tpour quitter le programme\n"
+
+#: Pyblio/Base.py:188
+#, c-format
+msgid "entry has no key `%s'"
+msgstr "L'entrée n'a pas de clé `%s'"
+
+#: Pyblio/Base.py:272
+#, c-format
+msgid "error: field `%s' appears more than once in the definition of `%s'"
+msgstr ""
+"erreur : le champ `%s' apparait plusieurs fois dans la définition de `%s'"
+
+#: Pyblio/Base.py:401
+msgid "no update method defined"
+msgstr "pas de méthode de mise à jour disponible"
+
+#: Pyblio/Base.py:638
+#, c-format
+msgid "database `%s' is unknown in this Reference"
+msgstr "la base de données `%s' est inconnue dans cette Reference"
+
+#: Pyblio/Base.py:662
+#, fuzzy
+msgid "can't update a database of type Reference ()"
+msgstr "impossible de mettre à jour une base de données de type Reference"
+
+#: Pyblio/Format/BibTeX.py:369 Pyblio/Format/BibTeX.py:412
+#, c-format
+msgid "key `%s' is malformed"
+msgstr "la clé `%s' est mal formée"
+
+#: Pyblio/Format/BibTeX.py:399
+#, fuzzy, c-format
+msgid "%s:%d: key `%s' already defined"
+msgstr "La clé `%s' existe déjà"
+
+#: Pyblio/Format/BibTeX.py:427
+#, c-format
+msgid "in entry %s: nested crossrefs"
+msgstr "dans l'entrée `%s' : références croisées imbriquées"
 
 #: Pyblio/GnomeUI/Entry.py:55
-#, c-format
-msgid "Native edition of field `%s'"
+#, fuzzy, c-format
+msgid "Native editing of field `%s'"
 msgstr "Édition du champ `%s' en format natif"
 
 #: Pyblio/GnomeUI/Entry.py:194
@@ -37,8 +110,8 @@ msgstr "Ajouter un champ supplémentaire"
 
 #: Pyblio/GnomeUI/Entry.py:662 Pyblio/GnomeUI/Entry.py:704
 #: Pyblio/GnomeUI/Entry.py:994
-#, c-format
-msgid "Cross-Reference `%s' is unexistant in the database"
+#, fuzzy, c-format
+msgid "Cross-Reference `%s' is unexistent in the database"
 msgstr "La référence croisée `%s' n'existe pas dans cette base"
 
 #: Pyblio/GnomeUI/Entry.py:797
@@ -184,8 +257,12 @@ msgstr ""
 "Veuillez créer une nouvelle base avant tout.\n"
 "Utilisez le menu Fichier/Nouveau pour cela"
 
-#: Pyblio/GnomeUI/Pybliographic.py:702 Pyblio/GnomeUI/Pybliographic.py:734
-#: Pyblio/GnomeUI/Pybliographic.py:783
+#: Pyblio/GnomeUI/Pybliographic.py:702
+#, fuzzy
+msgid "editing is disabled in this database"
+msgstr "L'édition n'est pas autorisée dans cette base"
+
+#: Pyblio/GnomeUI/Pybliographic.py:734 Pyblio/GnomeUI/Pybliographic.py:783
 msgid "edition is disabled in this database"
 msgstr "L'édition n'est pas autorisée dans cette base"
 
@@ -302,33 +379,10 @@ msgstr ""
 "Les erreurs suivantes se sont produites :\n"
 "\n"
 
-#~ msgid "This is %s, version %s"
-#~ msgstr "Bienvenue dans %s, version %s"
+#: Pyblio/Autoload.py:57
+#, c-format
+msgid "warning: can't import %s: %s"
+msgstr "attention: impossible d'importer %s : %s"
 
-#~ msgid "%s: error: can't open file `%s'"
-#~ msgstr "%s: erreur : impossible d'ouvrir le fichier `%s'"
-
-#~ msgid "For help, run %s and type `help' at the prompt"
-#~ msgstr "Pour de l'aide, tapez %s puis le mot `help' à l'invite"
-
-#~ msgid ""
-#~ "Useful commands:\n"
-#~ "\thelp     to get some help\n"
-#~ "\tquit     to quit\n"
-#~ msgstr ""
-#~ "Commandes utiles :\n"
-#~ "\thelp\tpour obtenir de l'aide\n"
-#~ "\tquit\tpour quitter le programm\n"
-
-#~ msgid "error: field `%s' appears more than once in the definition of `%s'"
-#~ msgstr ""
-#~ "erreur : le champ `%s' apparait plusieurs fois dans la définition de `%s'"
-
-#~ msgid "database `%s' is unknown in this Reference"
-#~ msgstr "la base de données `%s' est inconnue dans cette Reference"
-
-#~ msgid "can't update a database of type Reference"
-#~ msgstr "impossible de mettre à jour une base de données de type Reference"
-
-#~ msgid "warning: can't import %s: %s"
-#~ msgstr "attention: impossible d'importer %s : %s"
+#~ msgid "Cross-Reference `%s' is unexistant in the database"
+#~ msgstr "La référence croisée `%s' n'existe pas dans cette base"
