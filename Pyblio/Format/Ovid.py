@@ -2,7 +2,7 @@
 #  
 # Original author of Ovid reader: Travis Oliphant <Oliphant.Travis@mayo.edu>
 #
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -21,287 +21,64 @@
 # 
 # $Id$
 
-# Extension module for Ovid files
+""" Extension module for Ovid files """
 
-from Pyblio import Base, Autoload, Types, Fields
+from Pyblio.Format import OvidLike
+from Pyblio import Base, Open, Config, Types, Autoload
 
-import sys, re, string
-
-long_month = {"Jan":'January',   "Feb":'February', "Mar":'March',
-              "Apr":'April',     "May":'May',      "Jun":'June',
-              "Jul":'July',      "Aug":'August',   "Sep":'September',
-              "Oct":'October',   "Nov":'November', "Dec":'December'}
-
-source_obj = re.compile ('([^\.]+)\.\s*(\w+)\((\w+)\):(\w+),\s*(\d+)\s*(\w+)')
-
-pages_obj = re.compile(r".*(\s+pp[.]([0-9\-]+)[.\s]*)")
-year_obj  = re.compile(r".*(\s*(\d\d\d\d),)")
-
-# Records separated by two newlines + integer + newline
-split_obj = re.compile(r"<\d+>$")
-
-def parse_so(dict):
-    so_match = source_obj.match (dict ["source"])
-    
-    dict ["journal"] = so_match.group(1)
-    dict ["volume"]  = so_match.group(2)
-    dict ["number"]  = so_match.group(3)
-    dict ["pages"]   = so_match.group(4)
-    dict ["year"]    = so_match.group(5)
-    dict ["month"]   = string.replace(so_match.group(6),'.','')
-    
-    if len (dict ["month"]) == 3:
-        dict ["month"] = long_month [dict ["month"]]
-        
-    return dict
-
-def parse2_so(dict):
-    
-    dict["journal"] = dict["source"]
-    
-    pp_match = pages_obj.match(dict["journal"])
-    
-    if pp_match:
-        dict["pages"]   = string.replace(pp_match.group(2),'-','--')
-        dict["journal"] = dict["journal"][:pp_match.start(1)] + \
-                          dict["journal"][pp_match.end(1):]
-    else:
-        dict["pages"] = ""
-        
-    yr_match = year_obj.match(dict["journal"])
-    
-    if yr_match:
-        dict["year"] = yr_match.group(2)
-        dict["journal"] = dict["journal"][:yr_match.start(1)] + \
-                          dict["journal"][yr_match.end(1):]
-    else:
-        dict["year"] = ""
-
-    if not (yr_match or pp_match):
-        raise "TypeError", "nothing found"
-        return None
-    
-    dict ["volume"]    = ""
-    dict ["number"]    = ""
-    dict ["part"]      = ""
-    dict ["month"]     = ""
-    dict ["pubadd"]    = ""
-    dict ["publisher"] = ""
-    
-    return dict
-
-subs_pat   = re.compile(r"\s{2,}")
-search_pat = re.compile(r"\n[A-Z]\w+(?:\s+\w+)*?\n[ ]{2,2}")
-
-ovid2dict = {"Accession Number":"ui", "Authors":"author", "Editor":"editor",
-             "Source":"source", "Abstract":"abstract", "Title":"title",
-             "Subject Headings":"keywords", "Corporate Author":"corp_auth",
-             "Country of Publication":"cop"}
-
-def get_entry (entry):
-    
-    thedict = {}
-    
-    entry = "\n" + entry
-
-    # This is the list of entries actually parsed if present
-    tofind = ["Accession Number", "Authors", "Editor", "Title", "Source",
-              "Abstract", "Subject Headings"]
-
-    for field in tofind:
-        indx = string.find(entry,"\n"+field+"\n")
-        if indx >= 0:
-            start_ind = indx + 2 + len(field)
-            try:
-                end_ind = start_ind + search_pat.search(entry[start_ind:]).start(0)
-                thedict [ovid2dict [field]] = \
-                        subs_pat.sub (" ",
-                                      string.strip (entry [start_ind:end_ind]))
-            except:
-                thedict [ovid2dict [field]] = \
-                        subs_pat.sub (" ",
-                                      string.strip (entry [start_ind:]))
-
-    if thedict.has_key("author"):
-        temp = string.split(thedict["author"], '. ')
-        temp[-1] = temp[-1][:-1]
-        thedict["author"] = temp
-        
-    if thedict.has_key("editor"):
-        temp = string.split(thedict["editor"], '; ')
-        temp[-1] = temp[-1][:-1]
-        thedict["editor"] = temp
-
-    if thedict.has_key("keywords"):
-        temp = string.split(thedict["keywords"],'. ')
-        temp[-1] = temp[-1][:-1]
-        thedict["keywords"] = temp
-        
-    return thedict
-
-def make_key (dict):
-    try:
-        key = string.replace(string.lower(dict["author"][0]),"'","_")
-        key = key[:string.find(key," ")]
-        if len(dict["author"]) > 1:
-            key = key + ":etal" + `len(dict["author"])`
-
-    except:           # no authors take key from title
-        thelist = string.split(dict["title"]," ")
-        key = ""
-        num = 0
-        inum = 0; num_words = len(thelist)
-        while num < 3:
-            if inum >= num_words:
-                break
-            a_word=thelist[inum]
-            if a_word not in ["the","The","a","A","An","an","of","Of"]:
-                key = key + string.lower(a_word) + ":"
-                num = num + 1
-            inum = inum + 1
-        try:                # Just in case key is still ""
-            key = key[:-1]
-        except:
-            pass
-
-    key = key + "_"
-    return key
-
-
+import string
 
 class Ovid (Base.DataBase):
 
     id = 'Ovid'
+    
+    def __init__ (self, url):
+        Base.DataBase.__init__ (self, url)
 
-    properties = {
-        'edit'        : 1,
-        'add'         : 1,
-        'remove'      : 1,
-        }
+        iter = iterator (url, 0)
 
-    def __init__ (self, name):
-        Base.DataBase.__init__ (self, name)
+        entry = iter.first ()
+        while entry:
+            self.add (entry)
 
-        # parse entries
-        fid  = open (self.name, 'r')
-        k    = 0
-        data = ''
-        
-        # skip initial header
-	while 1:
-	    line = fid.readline ()
-	    if line == '': break
-	    
-	    if split_obj.match (line):
-	        break
-	    
-	while 1:
-	    line = fid.readline ()
-	    if line == '': break
-	    
-	    if split_obj.match (line):
-	        
-	        if data != '':
-	            k = k + 1
-	            try:
-	                entry_dict = get_entry (data)
-	            except:
-	                raise IOError, "can't read entry %d" % (k)
-	
-	            allsource = 1
-	            
-	            try:
-	                entry_dict = parse_so (entry_dict)
-	            except:
-	                try:
-	                    entry_dict = parse2_so (entry_dict)
-	                except:
-	                    allsource = 0
-	                    
-	            self.__append_entry (entry_dict)
-	            data = ''
-	        continue
-	
-	    data = data + line
-            
-        fid.close ()
+            entry = iter.next ()
+
         return
 
     
-    def __repr__ (self):
-        return "<Ovid database (" + `len (self)` + \
-               " entries)>"
-
-
-    def __append_entry (self, dict):
-        # determine type...
-        type = 'article'
-        
-        procee = (string.find (dict["source"], 'roceedings') > 0) or \
-                 (string.find (dict["title"], 'roceedings')  > 0)
-
-        if procee:
-            if dict.has_key("author"):
-                type = 'inproceedings'
-            else:
-                type = 'proceedings'
-        
-        type = Types.getentry (type)
-
-        # construct unique key
-        basekey = make_key (dict)
-        key = basekey
-        k   = 1
-
-        while self.has_key (Base.Key (self, key)):
-            key = basekey + str (k)
-            k = k + 1
-
-        # convert fields
-        entrydict = {}
-        for f in dict.keys ():
-            ftype = Types.gettype (type, f)
-            
-            if ftype == Types.TypeAuthor:
-                # Author
-                val = Fields.AuthorGroup ()
-                for auth in dict [f]:
-                    # Try some split method
-                    fields = string.split (auth, ' ')
-                    last = fields [0]
-                    if len (fields) > 1:
-                        first = string.join (fields [1:], ' ')
-                        
-                    val.append (Fields.Author ((None, first, last, None)))
-                    
-            elif ftype == Types.TypeDate:
-                try:
-                    # Date
-                    val = Fields.Date (dict [f])
-                except ValueError:
-                    val = None
-            else:
-                # Any other text
-                val = Fields.Text (dict [f])
-
-            if val:
-                entrydict [f] = val
-
-        fullkey = Base.Key (self, key)
-        self [fullkey] = Base.Entry (fullkey, type, entrydict)
-
-
-def my_open (entity, check):
+def opener (url, check):
 	
-    method, address, file, p, q, f = entity
     base = None
 	
-    if (not check) or (method == 'file' and file [-5:] == '.ovid'):
-        base = Ovid (file)
+    if (not check) or (url.url [2] [-5:] == '.ovid'):
+        base = Ovid (url)
 		
     return base
 
+
+def iterator (url, check):
+	''' This methods returns an iterator that will parse the
+	database on the fly (useful for merging or to parse broken
+	databases '''
+
+        file = open (Open.url_to_local (url))
+
+        type = Types.get_entry (Config.get ('ovid/deftype').data)
+        
+        return  OvidLike.OvidLike (file,
+                                   Config.get ('ovid/mapping').data,
+                                   type)
+
+def writer (iter, output):
     
-Autoload.register ('format', 'Ovid', {'open'  : my_open})
+    mapping = Config.get ('ovid/mapping').data
+    OvidLike.writer (iter, output, mapping)
+
+    return
+
+        
+Autoload.register ('format', 'Ovid', {'open'  : opener,
+                                      'write' : writer,
+                                      'iter'  : iterator})
 
 
