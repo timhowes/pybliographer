@@ -10,7 +10,7 @@ html_summary(devel, summary.m4, [[
 find here some documents that show the current state of this study
 (this is a work in progress)
 
-m4_syscmd(cd ../doc/design && ./list-documents.sh)
+m4_syscmd(cd design && ../list-documents.sh)
 
 <p>Of course, people interested in  any of these topics are invited to
 join the <a href="mailing.html">mailing-list</a>  and see how they can

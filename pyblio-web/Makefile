@@ -13,7 +13,7 @@ HTML =	index.html 		\
 	faq.html		\
 	development.html
 
-EXTRA = pyblio.png sample.html anybrowser.png
+EXTRA = pyblio.png sample.html anybrowser.png list-documents.sh
 
 
 all: $(HTML)
