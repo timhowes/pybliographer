@@ -15,6 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>query</name>
+  <visible>False</visible>
   <title>Query</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
@@ -156,6 +157,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>connections</name>
+  <visible>False</visible>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

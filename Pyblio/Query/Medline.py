@@ -19,16 +19,20 @@
 # 
 # $Id$
 
-from Pyblio.BaseQuery import Query
+from Pyblio.QueryEngine import Engine
 from Pyblio.Autoload import register
 
 
-class Medline (Query):
+class Medline (Engine):
 
     def __init__ (self, host, parameters):
         print parameters
         return
 
-
+    def search (self, query):
+        print query
+        self.issue ('progress', 100)
+        return
+    
 
 register ('query', 'Medline', Medline)

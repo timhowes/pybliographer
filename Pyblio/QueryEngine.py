@@ -27,8 +27,9 @@ from xml.dom import minidom
 
 from Pyblio import Exceptions
 from Pyblio import Autoload
+from Pyblio.Connector import Publisher
 
-class Query:
+class Engine (Publisher):
 
     ''' A base query class that must be derived by each search
     connection family '''
@@ -39,6 +40,7 @@ class Query:
 
     def search (self, args):
         pass
+
 
 
 def getString (element):

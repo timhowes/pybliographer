@@ -26,7 +26,7 @@ from gnome.ui import *
 
 from libglade import GladeXML
 from Pyblio import version, Exceptions
-from Pyblio.BaseQuery import Connection
+from Pyblio.QueryEngine import Connection
 from Pyblio.GnomeUI import Utils
 
 import os, pickle
@@ -56,11 +56,8 @@ class QueryUI:
         self.load ()
         
         # ...and display them in the dropdown menu
-        menu = self.xml.get_widget ('query_option').get_menu ()
+        self.update ()
 
-        for cnx in self.cnx:
-            menu.append (GtkMenuItem (cnx.name))
-        
         self.w_search.show ()
         return
 
@@ -74,19 +71,51 @@ class QueryUI:
     def save (self):
         pickle.dump (self.cnx, open (self.file, 'w'))
         return
+
+    def update (self):
+        # display in the dropdown menu
+        option = self.xml.get_widget ('query_option')
+        menu   = GtkMenu ()
+
+        for cnx in self.cnx:
+            item = GtkMenuItem (cnx.name)
+            item.set_data ('cnx', cnx)
+            item.show ()
+            
+            menu.append (item)
+
+        option.set_menu (menu)
+        option.set_history (0)
+        return
+
         
     def search (self, * arg):
+        menu = self.xml.get_widget ('query_option').get_menu ()
+        cnx = menu.get_active ().get_data ('cnx')
+
+        engine = cnx.engine ()
+
+        # display a progress bar...
+        engine.Subscribe ('progress', self.search_progress)
+
+        engine.search ({})
         
         if self.w_cnx:
             self.w_cnx.destroy ()
         self.w_search.destroy ()
         return
 
+    def search_progress (self, progress):
+        print "Progress: %d" % progress
+        return
+    
+
     def cancel (self, * arg):
         if self.w_cnx:
             self.w_cnx.destroy ()
         self.w_search.destroy ()
         return
+
 
 
     def cnx_validate (self, * arg):
@@ -134,6 +163,9 @@ class QueryUI:
 
     def cnx_delete (self, * arg):
         list = self.x_cnx.get_widget ('cnx_list')
+
+        if not list.selection: return
+        
         row = list.selection [0]
         list.remove (row)
         
