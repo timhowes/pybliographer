@@ -32,9 +32,6 @@ from Pyblio.GnomeUI import Search, Format
 from Pyblio.GnomeUI.Sort import SortDialog
 from Pyblio.GnomeUI.Medline import MedlineUI
 
-#from Pyblio.GnomeUI.Config import ConfigDialog
-#from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
-
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
 from Pyblio import version, Fields, Types, Query
 
@@ -127,16 +124,15 @@ class Document (Connector.Publisher):
         Config.run(self.w)
         return
 
-
     def set_fields (self, * arg):
         from Pyblio.GnomeUI import Fields
-        Fields.run_fields (self.w)
+        Fields.run (self.w)
         return
     
-
+    # remove !
     def set_entries (self, * arg):
         from Pyblio.GnomeUI import Fields
-        Fields.run_entries (self.w)
+        Fields.run (self.w)
         return
     
 

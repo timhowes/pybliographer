@@ -23,7 +23,7 @@
 bibliography '''
 
 # TO DO:
-# 
+# correctly create entry types
 
 import gobject, gtk
 
@@ -52,7 +52,7 @@ class FieldsDialog:
         self.xml.signal_autoconnect (self)
 
         self.dialog = self.xml.get_widget ('fields1')
-        self.w = self.xml.get_widget ('dialog-vbox')
+        self.w = self.xml.get_widget ('notebook')
 
         tooltips = gtk.Tooltips ()
         tooltips.enable ()
@@ -82,22 +82,68 @@ class FieldsDialog:
         keys.sort ()
         for item in [data[key] for key in keys]:
             self.fm.append((item.name, _(_typename [item.type]), item.type))
-
-##         self.list.connect ('select_row', self.select_row)
-##         (width, height) = self.list.size_request ()
-##         self.list.set_usize (width, 4 * height)
         
         self.name1 = self.xml.get_widget('name1')
-        self.menu = self.xml.get_widget('type1')
+        self.menu1 = self.xml.get_widget('type1')
         menu = gtk.Menu ()
-        self.menu.set_menu (menu)
+        self.menu1.set_menu (menu)
         self.menu_items = _typename.keys ()
         for item in self.menu_items:
             Utils.popup_add (menu, _typename [item], self.select_menu, item)
-        self.menu.set_history (0)
+        self.menu1.set_history (0)
         self.current_menu = self.menu_items [0]
 
+        # PAGE 2
+
+        self.entries2 = self.xml.get_widget('e_list_2')
+        self.em = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
+        self.entries = copy.copy (Config.get ('base/entries').data)
+        keys = self.entries.keys()
+        keys.sort()
+        for i in [self.entries[x] for x in keys]:
+            self.em.append ((i.name, i))
+        rend = gtk.CellRendererText()
+        col = gtk.TreeViewColumn(_('Entry type'), rend, text = 0)
+        self.entries2.append_column(col)
+        self.entries2.set_model(self.em)
+        self.name2 = self.xml.get_widget('entryname2')
+        self.s2 = self.entries2.get_selection()
+        self.s2.connect('changed', self.elist_select)
+
+        # PAGE 3
+
+        self.menu3 = self.xml.get_widget ('menu3')
+        menu = gtk.Menu ()
+        self.menu3.set_menu (menu)
+        for item in self.em:
+            Utils.popup_add (menu, item[0], self.select_menu, item[1])
+        self.menu3.set_history (0)
+        self.menu3.connect ('changed', self.menu3_select)
+        
+        self.flist3a = self.xml.get_widget ('f_list_3a')
+        self.flist3a.set_model (self.fm)
+        rend = gtk.CellRendererText()
+        col = gtk.TreeViewColumn(_('Available'), rend, text = 0)
+        self.flist3a.append_column(col)
+        self.s3a = self.flist3a.get_selection()
+        self.flist3b = self.xml.get_widget ('f_list_3b')
+        rend = gtk.CellRendererToggle()
+        rend.connect('toggled', self.toggle_mandatory)
+        col = gtk.TreeViewColumn('X', rend, active = 1)
+        self.flist3b.append_column(col)
+        rend = gtk.CellRendererText()
+        col = gtk.TreeViewColumn(_('Associated'), rend, text = 2)
+        self.flist3b.append_column(col)
+        self.sm = gtk.ListStore(gobject.TYPE_STRING,
+                                gobject.TYPE_BOOLEAN,
+                                gobject.TYPE_STRING,
+                                gobject.TYPE_PYOBJECT)
+        self.ssm = gtk.TreeModelSort(self.sm)
+        self.ssm.set_sort_column_id(0, gtk.SORT_ASCENDING)
+        self.flist3b.set_model(self.ssm)
+        self.s3b = self.flist3b.get_selection()
         self.show()
+
 
         self.changed = 0
         return
@@ -109,22 +155,58 @@ class FieldsDialog:
         self.dialog.hide_all()
 
     def on_add(self, *args):
-        t = self.menu_items[0]
-        iter = self.fm.append(('new field', _(_typename[t]), t))
-        if iter:
-            path = self.fm.get_path (iter)
-            self.fields1.scroll_to_cell(path)
-            sel = self.fields1.get_selection()
-            sel.select_iter(iter)
+        page = self.w.get_current_page()
+        print 'ADD PAGE:', page
+        if page == 0:
+            t = self.menu_items[0]
+            iter = self.fm.append(('new field', _(_typename[t]), t))
+            if iter:
+                path = self.fm.get_path (iter)
+                self.fields1.scroll_to_cell(path)
+                self.s1.select_iter(iter)
+        elif page == 1:
+            iter = self.em.append(('NEU', None))
+            if iter:
+                path = self.em.get_path (iter)
+                self.entries2.scroll_to_cell(path)
+                self.s2.select_iter(iter)
+        elif page == 2:
+            
+            pass
         
     def on_remove (self, *args):
-        sel = self.fields1.get_selection()
-        m, iter = sel.get_selected()
-        if iter:
-            m.remove(iter)
+        page = self.w.get_current_page()
+        if page == 0:
+            m, iter = self.s1.get_selected()
+            if iter:
+                m.remove(iter)
+        elif page == 1:
+            m, iter = self.s2.get_selected()
+            if iter:
+                m.remove(iter)
+        elif page == 2:
+            pass
 
     def on_help (self, *args):
         print 'ON HELP:', args
+
+    def toggle_mandatory (self, rend, path):
+        p = self.ssm.convert_path_to_child_path(path)
+        iter = self.sm.get_iter(p)
+        field = self.sm[iter][3]
+        x = self.sm.get_value (iter, 1)
+        self.sm.set_value(iter, 1, not x)
+        sel = self.menu3.get_history()
+        item = self.em[sel][1]
+        if x:
+            item.mandatory.remove(field)
+            item.optional.append(field)
+        else:
+            item.optional.remove(field)
+            item.mandatory.append(field)
+        self.entries [item.name] = item
+        Config.set_and_save ('base/entries', self.entries)
+            
 
     def list_1_select (self, sel):
         m, iter = sel.get_selected()
@@ -132,7 +214,27 @@ class FieldsDialog:
         if iter:
             data = m[iter]
             self.name1.set_text(data[0])
-            self.menu.set_history (self.menu_items.index(data[2]))
+            self.menu1.set_history (self.menu_items.index(data[2]))
+
+    def elist_select (self, sel):
+        m, iter = sel.get_selected()
+        print 'SELECT:', m, iter
+        if iter:
+            data = m[iter]
+            self.name2.set_text(data[0])
+            
+    def menu3_select (self, *args):
+        sel = self.menu3.get_history()
+        item = self.em[sel]
+        print 'MENU3:', args, sel, item
+        self.sm.clear()
+
+        for i in item[1].mandatory:
+            print i
+            self.sm.append((i.name, True, i.name, i))
+        for i in item[1].optional:
+            print i
+            self.sm.append((i.name, False, i.name, i))
 
     def on_name1_changed (self, *args):
         sel = self.fields1.get_selection()
@@ -141,7 +243,7 @@ class FieldsDialog:
 
     def on_type1_changed (self, *args):
         print 'TYP!', args
-        x = self.menu_items[self.menu.get_history()]
+        x = self.menu_items[self.menu1.get_history()]
         sel = self.fields1.get_selection()
         m, iter = sel.get_selected()
         if iter:
@@ -152,7 +254,6 @@ class FieldsDialog:
         self.current_menu = data
         return
 
-        
     def set (self, data):
         self.list.freeze ()
         self.list.clear ()
@@ -174,7 +275,7 @@ class FieldsDialog:
     def select_row (self, widget, row, col, event):
         item = self.list.get_row_data (row)
         self.name.set_text (item.name)
-        self.menu.set_history (self.menu_items.index (item.type))
+        self.menu1.set_history (self.menu_items.index (item.type))
         self.current_menu = item.type
         return
 
@@ -184,8 +285,7 @@ class FieldsDialog:
         
         result = self.get ()
         
-        Config.set ('base/fields', result)
-        Config.save_user ({'base/fields' : result})
+        Config.set_and_save ('base/fields', result)
 
         if self.parent:
             self.parent.warning (_("Some changes require to restart Pybliographic\n"
