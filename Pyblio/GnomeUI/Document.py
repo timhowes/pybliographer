@@ -27,6 +27,7 @@ from gnome import config
 
 from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor, Search, Format
 from Pyblio.GnomeUI.Sort import SortDialog
+from Pyblio.GnomeUI.Config import ConfigDialog
 
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
 from Pyblio import version, Fields
@@ -84,11 +85,16 @@ class Document (Connector.Publisher):
             UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,            STOCK_MENU_CONVERT),
             UIINFO_ITEM_STOCK(_("Format..."), None, self.format_entries, STOCK_MENU_REFRESH),
             ]
-        
+
+        settings_menu = [
+            UIINFO_MENU_PREFERENCES_ITEM   (self.set_preferences),
+            ]
+            
         menus = [
             UIINFO_SUBTREE (_("File"),     file_menu),
             UIINFO_SUBTREE (_("Edit"),     edit_menu),
             UIINFO_SUBTREE (_("Cite"),     cite_menu),
+            UIINFO_SUBTREE (_("Settings"), settings_menu),
             UIINFO_SUBTREE (_("Help"),     help_menu)
             ]
         
@@ -158,6 +164,11 @@ class Document (Connector.Publisher):
         self.redisplay_index ()
         return
 
+
+    def set_preferences (self, * arg):
+        w = ConfigDialog (self.w)
+        return
+    
 
     def update_history (self, history):
         ''' fill the " Previous Documents " menu with the specified list of documents '''

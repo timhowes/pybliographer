@@ -19,16 +19,22 @@
 # 
 # $Id$
 
-import string, os, sys
+import string, os, sys, types, gettext
+
+_ = gettext.gettext
+
 
 ''' System for Configuration handling '''
 
 class ConfigItem:
 
-    def __init__ (self, name, description, hook = None, user = None):
+    def __init__ (self, name, description, vtype = None, hook = None, user = None):
         self.name        = name
         self.description = description
 
+        # type definition
+        self.type     = vtype
+        
         # callback definition
         self.hook     = hook
         self.userdata = user
@@ -38,6 +44,11 @@ class ConfigItem:
 
     def set (self, value):
 
+        if self.type:
+            if not self.type.match (value):
+                raise ValueError, _("value of `%s' should be %s") % (self.name,
+                                                                     str (self.type))
+            
         # eventually call the hook
         if self.hook:
             if not self.hook (self, value, self.userdata):
@@ -83,7 +94,7 @@ class Storage:
 
         return hsht.keys ()
 
-    def keys_in_domain (domain):
+    def keys_in_domain (self, domain):
         self.eventually_resolve (domain)
 
         # simplify the list
@@ -127,11 +138,11 @@ class Storage:
 ConfigItems = Storage ()
 
 
-def define (key, description, hook = None, user = None):
+def define (key, description, vtype = None, hook = None, user = None):
     if ConfigItems.has_key (key):
         raise KeyError, "key `%s' already defined" % key
 
-    ConfigItems [key] = ConfigItem (key, description, hook, user)
+    ConfigItems [key] = ConfigItem (key, description, vtype, hook, user)
     return
 
 
@@ -160,10 +171,138 @@ def domains ():
 
 
 def keys_in_domain (domain):
-    return ConfigItems.keys_in_domain ()
+    return ConfigItems.keys_in_domain (domain)
 
 
 def parse_directory (dir):
     ConfigItems.parse_dir (dir)
     return
 
+
+class PrimaryType:
+    ''' Base class for simple types '''
+    def match (self, value):
+        return type (value) is self.type
+
+    
+    
+class StringType (PrimaryType):
+    def __init__ (self):
+        self.type = types.StringType
+        return
+
+    def __str__ (self):
+        return _("a String")
+
+
+class BooleanType (PrimaryType):
+    def __init__ (self):
+        self.type = types.IntType
+        return
+
+    def __str__ (self):
+        return _("a String")
+
+
+class IntegerType (PrimaryType):
+    def __init__ (self, min = None, max = None):
+        self.type = types.IntType
+        self.min  = min
+        self.max  = max
+        return
+
+    def match (self, value):
+        if not PrimaryType.match (self, value): return 0
+        if self.min and value < self.min: return 0
+        if self.max and value > self.max: return 0
+
+        return 1
+
+    def __str__ (self):
+        if self.min is None and self.max is None:
+            return _("an Integer")
+        if self.min is None:
+            return _("an Integer under %d") % self.max
+        if self.max is None:
+            return _("an Integer over %d") % self.min
+
+        return _("an Integer between %d and %d") % (self.min, self.max)
+    
+
+class InstanceType:
+    def __init__ (self, cl):
+        self.instance_class = cl
+        return
+
+    def match (self, value):
+        return isinstance (value, self.instance_class)
+
+    def __str__ (self):
+        return _("an Instance of `%s'") % str (self.instance_class)
+
+    
+class TupleType:
+    ''' A tuple composed of different subtypes '''
+    
+    def __init__ (self, subtypes):
+        self.subtypes = subtypes
+        return
+
+    def match (self, value):
+        i = 0
+        for sub in self.subtypes:
+            if not sub.match (value [i]):
+                return 0
+            i = i + 1
+        
+        return 1
+
+    def __str__ (self):
+        return _("a Tuple ([%s])") % \
+               string.join (map (str, self.subtypes), ', ')
+    
+
+class ListType:
+    ''' An enumeration of items of the same type '''
+
+    def __init__ (self, subtype):
+        self.subtype = subtype
+        return
+
+    def match (self, value):
+        try:
+            for v in value:
+                if not self.subtype.match (v):
+                    return 0
+        except TypeError:
+            return 0
+        return 1
+
+    def __str__ (self):
+        return _("a List (%s)") % str (self.subtype)
+    
+
+class DictType:
+    ''' A dictionnary '''
+
+    def __init__ (self, key, value):
+        self.key   = key
+        self.value = value
+        return
+
+    def match (self, value):
+        try:
+            for k in value.keys ():
+                if not self.key.match (k):
+                    return 0
+                if not self.value.match (value [k]):
+                    return 0
+        except AttributeError:
+            return 0
+        
+        return 1
+
+    def __str__ (self):
+        return _("a Dictionnary (%s, %s)") % (str (self.key),
+                                              str (self.value))
+    
