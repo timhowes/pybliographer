@@ -909,7 +909,7 @@ class Pybliographic (GnomeApp):
         vbox = GtkVBox (TRUE, 0)
         button = GtkButton(_("Submit a bug report\n using bug-buddy"))
         
-        link = GnomeHRef ('http://www.idiap.ch/~gobry/pybliographer.php3',
+        link = GnomeHRef ('http://www.gnome.org/pybliographer',
                           _("Pybliographer Home Page"))
         link.show ()
         about.vbox.pack_start (link)
