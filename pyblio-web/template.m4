@@ -43,8 +43,8 @@ width="88" heigth="36" border="0"></A></td>
 
 m4_dnl<p align="center">Thanks to the GNOME Project for hosting these pages</p>
 <p align="center"><A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=4825&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A></p>
-<p align="right">Send your comments to 
-<a href="mailto:gobry@users.sourceforge.net">Frédéric Gobry</a>
+<p align="right">Send your comments to the
+<a href="mailto:webmaster@pybliographer.org">Webmaster</a>
 <br><small>Last update: html_date</small>
 </body></html>]]) m4_dnl
 m4_dnl
