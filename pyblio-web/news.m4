@@ -1,10 +1,15 @@
 dnl -*- html -*-
 dnl
 dnl --------------------------------------------------
-define(pyblio_last,  [[1.0.0]])dnl
+define(pyblio_last,  [[1.0.1]])dnl
 dnl --------------------------------------------------
 dnl
 define(pyblio_news, [[
+
+[[ <b>30/05/2000</b>: bugfix release 1.0.1 is out. It corrects
+problems with empty bibtex databases and fixes the broken the
+pybconvert script. The German and Italian translations are also
+updated]],
 
 [[ <b>12/05/2000</b>: pybliographer 1.0.0 is out ! A few fixes in this
 version (concerning the save order for entries with crossreferences).

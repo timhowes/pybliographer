@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.8\n"
-"POT-Creation-Date: 2000-05-30 10:05+ZONE\n"
+"POT-Creation-Date: 2000-06-13 10:22+ZONE\n"
 "PO-Revision-Date: 2000-05-14\n"
 "Last-Translator: Holger Daszler <holger@daszler.de>\n"
 "Language-Team: de <de@li.org> \n"
@@ -169,27 +169,27 @@ msgstr "Optional"
 msgid "Extra"
 msgstr "Extra"
 
-#: .././Pyblio/GnomeUI/Editor.py:593
+#: .././Pyblio/GnomeUI/Editor.py:596
 msgid "Invalid key format"
 msgstr "Ungültiges Schlüsselformat"
 
-#: .././Pyblio/GnomeUI/Editor.py:601
+#: .././Pyblio/GnomeUI/Editor.py:604
 msgid "Key `%s' already exists"
 msgstr "Schlüssel `%s' existiert bereits"
 
-#: .././Pyblio/GnomeUI/Editor.py:668
+#: .././Pyblio/GnomeUI/Editor.py:671
 msgid "Error in native string parsing"
 msgstr "Fehler beim Stringparsen"
 
-#: .././Pyblio/GnomeUI/Editor.py:681
+#: .././Pyblio/GnomeUI/Editor.py:684
 msgid "Edit entry"
 msgstr "Eintrag ändern"
 
-#: .././Pyblio/GnomeUI/Editor.py:695
+#: .././Pyblio/GnomeUI/Editor.py:698
 msgid "Native Editing"
 msgstr "Natives editieren"
 
-#: .././Pyblio/GnomeUI/Editor.py:748
+#: .././Pyblio/GnomeUI/Editor.py:751
 msgid "Standard Editing"
 msgstr "Standard editieren"
 
@@ -197,7 +197,7 @@ msgstr "Standard editieren"
 msgid "File"
 msgstr "Datei"
 
-#: .././Pyblio/GnomeUI/FileSelector.py:73
+#: .././Pyblio/GnomeUI/FileSelector.py:74
 msgid "Bibliography type:"
 msgstr "Bibliographietyp:"
 
@@ -397,35 +397,41 @@ msgstr ""
 "Kann Datei `%s' nicht zum Schreiben öffnen:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:258
+#: .././Pyblio/GnomeUI/Document.py:243
+msgid ""
+"Error while parsing `%s':\n"
+"%s"
+msgstr ""
+
+#: .././Pyblio/GnomeUI/Document.py:262
 msgid "New database"
 msgstr "Neue Datenbank"
 
-#: .././Pyblio/GnomeUI/Document.py:266
+#: .././Pyblio/GnomeUI/Document.py:270
 msgid "[no entry]"
 msgstr "[kein Eintrag]"
 
-#: .././Pyblio/GnomeUI/Document.py:267
+#: .././Pyblio/GnomeUI/Document.py:271
 msgid "[1 entry]"
 msgstr "[1 Eintrag]"
 
-#: .././Pyblio/GnomeUI/Document.py:268
+#: .././Pyblio/GnomeUI/Document.py:272
 msgid "[%d entries]"
 msgstr "[%d Einträge]"
 
-#: .././Pyblio/GnomeUI/Document.py:271
+#: .././Pyblio/GnomeUI/Document.py:275
 msgid "[%d/1 entry]"
 msgstr "[%d/1 Eintrag]"
 
-#: .././Pyblio/GnomeUI/Document.py:272
+#: .././Pyblio/GnomeUI/Document.py:276
 msgid "[%d/%d entries]"
 msgstr "[%d/%d Einträge]"
 
-#: .././Pyblio/GnomeUI/Document.py:277
+#: .././Pyblio/GnomeUI/Document.py:281
 msgid "[modified]"
 msgstr "[geändert]"
 
-#: .././Pyblio/GnomeUI/Document.py:287
+#: .././Pyblio/GnomeUI/Document.py:291
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -433,23 +439,23 @@ msgstr ""
 "Diese Datenbank wurde geändert.\n"
 "Änderungen verwerfen?"
 
-#: .././Pyblio/GnomeUI/Document.py:303
+#: .././Pyblio/GnomeUI/Document.py:307
 msgid "Merge file"
 msgstr "Datei zusammenführen"
 
-#: .././Pyblio/GnomeUI/Document.py:315
+#: .././Pyblio/GnomeUI/Document.py:319
 msgid "Open error"
 msgstr "Fehler beim Öffnen"
 
-#: .././Pyblio/GnomeUI/Document.py:339
+#: .././Pyblio/GnomeUI/Document.py:343
 msgid "Merge status"
 msgstr "Status des Zusammenführens"
 
-#: .././Pyblio/GnomeUI/Document.py:350
+#: .././Pyblio/GnomeUI/Document.py:354
 msgid "Open file"
 msgstr "Datei öffnen"
 
-#: .././Pyblio/GnomeUI/Document.py:399
+#: .././Pyblio/GnomeUI/Document.py:403
 msgid ""
 "Unable to save `%s':\n"
 "%s"
@@ -457,7 +463,7 @@ msgstr ""
 "Kann `%s' nicht speichern:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:407
+#: .././Pyblio/GnomeUI/Document.py:411
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -465,11 +471,11 @@ msgstr ""
 "Ein interner Fehler trat während des Speicherns auf\n"
 "Probiere Speichern als..."
 
-#: .././Pyblio/GnomeUI/Document.py:418
+#: .././Pyblio/GnomeUI/Document.py:422
 msgid "Save As..."
 msgstr "Speichern als..."
 
-#: .././Pyblio/GnomeUI/Document.py:424
+#: .././Pyblio/GnomeUI/Document.py:428
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
@@ -477,7 +483,7 @@ msgstr ""
 "Die Datei `%s' existiert bereits.\n"
 "Überschreiben?"
 
-#: .././Pyblio/GnomeUI/Document.py:431
+#: .././Pyblio/GnomeUI/Document.py:435
 msgid ""
 "During opening:\n"
 "%s"
@@ -485,11 +491,11 @@ msgstr ""
 "Während des Öffnens:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:451
+#: .././Pyblio/GnomeUI/Document.py:455
 msgid "Reopen error"
 msgstr "Fehler beim Öffnen"
 
-#: .././Pyblio/GnomeUI/Document.py:492
+#: .././Pyblio/GnomeUI/Document.py:496
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
@@ -497,27 +503,27 @@ msgstr ""
 "Ein Eintrag namens `%s' existiert bereits.\n"
 "Trotzdem umbenennen und hinzufügen?"
 
-#: .././Pyblio/GnomeUI/Document.py:528
+#: .././Pyblio/GnomeUI/Document.py:532
 msgid "Really remove all the entries ?"
 msgstr "Wirklich alle Einträge entfernen?"
 
-#: .././Pyblio/GnomeUI/Document.py:548
+#: .././Pyblio/GnomeUI/Document.py:552
 msgid "Create new entry"
 msgstr "Neuen Eintrag erzeugen"
 
-#: .././Pyblio/GnomeUI/Document.py:562
+#: .././Pyblio/GnomeUI/Document.py:566
 msgid "Really edit %d entries ?"
 msgstr "Wirklich %d Einträge editieren?"
 
-#: .././Pyblio/GnomeUI/Document.py:597
+#: .././Pyblio/GnomeUI/Document.py:601
 msgid "Remove all the %d entries ?"
 msgstr "Alle %d Einträge entfernen?"
 
-#: .././Pyblio/GnomeUI/Document.py:599
+#: .././Pyblio/GnomeUI/Document.py:603
 msgid "Remove entry `%s' ?"
 msgstr "Eintrag `%s' entfernen?"
 
-#: .././Pyblio/GnomeUI/Document.py:657
+#: .././Pyblio/GnomeUI/Document.py:661
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
@@ -525,7 +531,7 @@ msgstr ""
 "Kann keine Verbindung zu LyX herstellen:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:705
+#: .././Pyblio/GnomeUI/Document.py:709
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -533,15 +539,15 @@ msgstr ""
 "Bitte `bug-buddy' installieren\n"
 "um diese Funktion zu benutzen"
 
-#: .././Pyblio/GnomeUI/Document.py:716
+#: .././Pyblio/GnomeUI/Document.py:720
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Dieses Programm steht unter der GNU GPL"
 
-#: .././Pyblio/GnomeUI/Document.py:718
+#: .././Pyblio/GnomeUI/Document.py:722
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Grafisches Interface zu Pybliographer"
 
-#: .././Pyblio/GnomeUI/Document.py:723
+#: .././Pyblio/GnomeUI/Document.py:727
 msgid "Pybliographer Home Page"
 msgstr "Pybliographer Homepage"
 

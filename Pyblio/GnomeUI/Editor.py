@@ -572,8 +572,11 @@ class RealEditor (Connector.Publisher):
 
     def create_field (self, * arg):
         widget = self.newfield.gtk_entry ()
-        text = string.strip (string.lower (widget.get_text ()))
+        text   = string.strip (string.lower (widget.get_text ()))
         if text == '': return
+
+        # update the current entry
+        self.entry = self.update (self.database, copy.deepcopy (self.entry))
 
         newtype = Types.get_field (text).type
         self.entry [text] = newtype (_newcontent [newtype])

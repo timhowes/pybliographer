@@ -235,8 +235,12 @@ class Document (Connector.Publisher):
             entries = self.data.keys ()
 
         url = Fields.URL (style)
-        
-        Pyblio.Style.Utils.generate (url, format, self.data, entries, file)
+
+        try:
+            Pyblio.Style.Utils.generate (url, format, self.data, entries, file)
+        except RuntimeError, err:
+            print err
+            self.w.error (_("Error while parsing `%s':\n%s") % (style, err))
         return
 
 

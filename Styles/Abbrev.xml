@@ -200,27 +200,23 @@ In <content/>, <singular>editor</singular><plural>editors</plural>
 <inentry name="phdthesis">
 <style name="emph"><content name="title"/></style>
 </inentry>
-<inentry name="masterthesis"><content name="title"/></inentry>
+<inentry name="mastersthesis"><content name="title"/></inentry>
 <inentry name="techreport"><content name="title"/></inentry>
 <inentry name="misc"><content name="title"/></inentry>
 <separator>.</separator>
 
-<inentry name="masterthesis">
-<infield name="type">
-<content/>
-<infield name="school">, <content/></infield>
+<inentry name="mastersthesis">
+<infield name="type"><content/>, </infield>
+<infield name="school"><content/></infield>
 <infield name="address">, <content/></infield>
-</infield>
 <infield name="date">, <content/></infield>
 <separator>.</separator>
 </inentry>
 
 <inentry name="phdthesis">
-<infield name="type">
-<content/>
-<infield name="school">, <content/></infield>
+<infield name="type"><content/>, </infield>
+<infield name="school"><content/></infield>
 <infield name="address">, <content/></infield>
-</infield>
 <infield name="date">, <content/></infield>
 <separator>.</separator>
 </inentry>
