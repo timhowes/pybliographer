@@ -6,6 +6,7 @@
 <!Entity gui    System "gui.sgml">
 <!Entity script System "script.sgml"> 
 <!Entity config System "config.sgml"> 
+<!Entity styles System "styles.sgml"> 
 
 <!Entity ref-iter   System "iterator.sgml"> 
 <!Entity ref-db     System "database.sgml"> 
@@ -39,12 +40,10 @@
   
     &config;
   
-  <chapter>
-    <title>Adding new formats</title>
-    <para>to be written...</para>
-  </chapter>
+    &styles;
 
-  <reference>
+
+  <reference id="reference">
     <title>Class reference</title>
 
     <partintro>

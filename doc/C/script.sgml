@@ -33,11 +33,13 @@
 
     <sect2>
       <title>pybcheck</title>
-
-      <synopsis> This  tool takes  a list of  files or  directory, and
-	check  if they  are valid  (syntax, no  entries with  the same
-	key,...)
-      </synopsis>
+      
+      
+      <abstract>
+	<para>This tool takes a list  of files or directory, and check
+	if  they   are  valid  (syntax,  no  entries   with  the  same
+	key,...)</para>
+      </abstract>
 
       <para>It  is possible  to use  its output  directly in  an emacs
 	compile buffer,  in order to jump directly  to the encountered
@@ -50,9 +52,11 @@
     <sect2>
       <title>pybcompact</title>
       
-      <synopsis>This  tool  extracts the  citations  made  in a  LaTeX
+      <abstract>
+	<para>This  tool  extracts  the  citations  made  in  a  LaTeX
 	document    and   generates    a   BibTeX    file   containing
-	them.</synopsis>
+	them.</para>
+      </abstract>
       
       <para>Usually, one  stores its bibliographies in  one or several
 	large BibTeX files, and lets <command>bibtex</command> extract
@@ -68,8 +72,10 @@
     <sect2>
       <title>pybconvert</title>
       
-      <synopsis>This  tool converts from  one bibliographic  format to
-	another.</synopsis>
+      <abstract>
+	<para>This  tool  converts from  one  bibliographic format  to
+	another.</para>
+      </abstract>
 
       <para>The general syntax is pretty simple. To convert from Refer
 	to BibTeX for example, just run: </para>
@@ -82,13 +88,15 @@
     <sect2>
       <title>pybformat</title>
 
-      <synopsis>This  script generates a  bibliography according  to a
+      <abstract>
+	<para>This  script generates a  bibliography according  to a
 	bibliographic style, and outputs it in a specific format (like
-	HTML, LaTeX,...) as it should appear in a document.</synopsis>
+	HTML, LaTeX,...) as it should appear in a document.</para>
+      </abstract>
       
       <para>The general form of the command is</para>
       <screen>
-	<prompt>&gt; </><command>pybformat</> [options] &lt;style&gt;:&lt;format&gt; <filename>database...</>
+	<prompt>&gt; </><command>pybformat</> [options] <filename>database...</>
       </screen>
 
       <para>This    command    will     use    the    format    called
@@ -98,8 +106,19 @@
 
       <itemizedlist>
 	<listitem>
+	  <para><option>--style=... or -s ...</option>: specify a
+	    bibliography style. This can be a full path to an existing
+	    XML file, or a name which will be searched in the standard
+	    places. Default is Alpha.</para>
+	</listitem>
+	<listitem>
+	  <para><option>--format=... or -f ...</option>: specify an
+	  output format (like HTML, LaTeX,...). Default is
+	  Text.</para>
+	</listitem>
+	<listitem>
 	  <para><option>--output=...  or -o  ...</option>:  specify an
-	    output filename. STDOUT is the default</para>
+	    output filename. STDOUT is the default.</para>
 	</listitem>
 	<listitem>
 	  <para><option>--header=...  or  -H  ...</option>: defines  a
@@ -108,10 +127,6 @@
 	<listitem>
 	  <para><option>--footer=...  or  -F  ...</option>: defines  a
 	    file that will be appended to the output file.</para>
-	</listitem>
-	<listitem>
-	  <para><option>--list=styles or -l styles</option>: lists the
-	    available styles</para>
 	</listitem>
 	<listitem>
 	  <para><option>--list=output or -l output</option>: lists the
@@ -125,41 +140,59 @@
   <sect1>
     <title>Writing your own scripts</title>
 
-    <para>In the  following, all the  modules that will be  refered to
-      belong to the <symbol>Pyblio</symbol>  domain. So, to access the
-      members  of  the <symbol>Open</symbol>  module,  you'll have  to
-      write at the beginning of your script something like</para>
+    <para>To start writing your own script, you can read what follows,
+    and then have a look at the existing scripts. Trying to adapt them
+    to fit your  personal needs can be a good way  of testing what you
+    read.</para>
 
-    <programlisting>from Pyblio import Open</programlisting>
+    <sect2>
+      <title>Some concepts</title>
 
-    <para>The <symbol>Base</symbol>  module contains some  of the most
-      basical classes used in the application:</para>
+      <para>This section describes some basic classes and ideas that
+      are useful to understand how &pyb; works. More information can
+	be found in <xref linkend="reference">.</para> 
 
-    <itemizedlist>
-      <listitem>
-	<para><symbol>Base.Entry</symbol>    represents   a   specific
-	  bibliographic entry, with all  its fields. It behaves like a
-	  hash table  which returns the  content of a field  given its
-	  name</para>
-      </listitem>
-      <listitem>
-	<para><symbol>Base.Key</symbol>  is the  object  that uniquely
-	  identifies an  entry.  This object  must be unique  over the
-	  whole application, and is composed of a database part and an
-	  entry part.</para>
-      </listitem>
-      <listitem>
-	<para><symbol>Base.DataBase</symbol>  is the class  from which
-	  every database  type inherits. It behaves like  a hash table
+      <para>In the following, all the  modules that will be refered to
+	belong to  the <symbol>Pyblio</symbol> domain.   So, to access
+	the members  of the <symbol>Open</symbol>  module, you'll have
+	to write at the beginning of your script something like</para>
+
+      <programlisting>from Pyblio import Open</programlisting>
+      
+      <para>The <symbol>Base</symbol>  module contains some  of the most
+	basical classes used in the application:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para><symbol>Base.Entry</symbol>    represents   a   specific
+	    bibliographic entry, with all  its fields. It behaves like a
+	    hash table  which returns the  content of a field  given its
+	    name</para>
+	</listitem>
+	<listitem>
+	  <para><symbol>Base.DataBase</symbol>  is the class  from which
+	    every database  type inherits. It behaves like  a hash table
 	  that returns a Base.Entry given a Base.Key</para>
-      </listitem>
-    </itemizedlist>
+	</listitem>
+      </itemizedlist>
+      
+      <para><symbol>Key.Key</symbol>  is the  object  that uniquely
+	identifies an  entry.  This object  must be unique  over the
+	whole application, and is composed of a database part and an
+	entry part.</para>
 
-    <para>This  module   also  defines  a   special  database,  called
-      <symbol>Base.Reference</symbol>,   which    can   hold   several
-      databases  or  subsets  of  databases.  This  database  is  also
-      returned   by    several   operations,   like    searching   and
-      sorting.</para>
+      <para>An <symbol>Iterator</symbol> is  an object that provides a
+	way to  access a sequence  of items in order.  These iterators
+	are  used   extensively  in  &pyb;,  because   they  hide  the
+	underlying access  mechanism, and  provide the same  access on
+	any database. They are  also perfectly suited for implementing
+	transparent   filtering   and    sorting   of   entries:   the
+	<symbol>Selection.Selection</symbol>  class for  example takes
+	an iterator (on  a database for example) and  return a new one
+	which will only iterate on  a subset of the entries, according
+	to a search criterion.</para>
+
+    </sect2>
 
   </sect1>
 </chapter>
