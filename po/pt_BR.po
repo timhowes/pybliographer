@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.v_1_0_x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-30 20:22+0200\n"
-"PO-Revision-Date: 2004-07-31 10:37-0300\n"
+"POT-Creation-Date: 2004-08-28 20:13+0200\n"
+"PO-Revision-Date: 2004-09-02 12:43-0300\n"
 "Last-Translator: Afonso Celso Medina <medina@maua.br>\n"
 "Language-Team: Portuguese/Brazil <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -913,32 +913,32 @@ msgstr "Selecionar critérios de ordenação"
 msgid "Set as default"
 msgstr "Definir como padrão"
 
-#: pybliographer.py:45
+#: pybliographer.py:43
 #, python-format
 msgid "This is %s, version %s"
 msgstr "Esta é %s, versão %s"
 
 # .././pybliographer.py:42 :49
-#: pybliographer.py:49 pybliographer.py:56
+#: pybliographer.py:47 pybliographer.py:54
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
 msgstr "Este é um software livre com ABSOLUTAMENTE NENHUMA GARANTIA."
 
-#: pybliographer.py:50
+#: pybliographer.py:48
 msgid "For details, type `warranty'."
 msgstr "Para detalhes, digite `warranty'."
 
 # .././pybliographer.py:110 :158
-#: pybliographer.py:113 pybliographer.py:165
+#: pybliographer.py:111 pybliographer.py:163
 #, python-format
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: erro: não é possível abrir o arquivo `%s'"
 
-#: pybliographer.py:126
+#: pybliographer.py:124
 #, python-format
 msgid "For help, run %s and type `help' at the prompt"
 msgstr "Para ajuda, execute %s e digite `help' no prompt"
 
-#: pybliographer.py:135
+#: pybliographer.py:133
 msgid ""
 "Useful commands:\n"
 "\thelp     to get some help\n"
@@ -1012,17 +1012,17 @@ msgid ""
 "      -v, --version\t\t\tshow this help message\n"
 "    "
 msgstr ""
-"utilização: pybformat [opções] <database...>\n"
+"uso: pybformat [opções] <banco de dados...>\n"
 "\n"
 "    opções:\n"
-"      -o arquivo, --output=arquivo\t\tforneça o nome de um arquivo de saída\n"
-"      -s estilo, --style=style\t\tforneça um estilo bibliográfico\n"
-"      -f formato, --format=format\tforneça um formato de saída\n"
+"      -o arquivo, --output=arquivo\t\tespecifique o nome do arquivo de saída\n"
+"      -s estilo, --style=estilo\t\tespecifique um estilo bibliográfico\n"
+"      -f formato, --format=formato\t\tespecifique um formato de saídaa\n"
 "      -H cabeçalho, --header=header\tdefine um arquivo de cabeçalho\n"
-"      -F nota, --footer=footer\tdefine um arquivo de notas\n"
-"      -l 'saída', --list='output'\trelaciona os formatos disponíveis de saída\n"
-"      -h, --help\t\t\tmostra esta menssagem de ajuda\n"
-"      -v, --version\t\t\tmostra esta menssagem de ajuda\n"
+"      -F rodapé, --footer=rodapé\tdefine um arquivo de rodapé\n"
+"      -l 'output', --list='output'\trelaciona os formatos de saída disponíveis\n"
+"      -h, --help\t\t\tmostra esta mensagem de ajuda\n"
+"      -v, --version\t\t\tmostra esta mensagem de ajuda\n"
 "    "
 
 #: scripts/pybformat.py:49
@@ -1111,7 +1111,7 @@ msgstr "nenhum estilo definido"
 
 #: scripts/pybtext.py:41
 msgid "usage: pybtext [-o outputfile] [-s style] <textfile> <bibfiles...>"
-msgstr "utilização: pybtext [-o arqsaída] [-s estilo] <arqtexto> <arqbib...>"
+msgstr "uso: pybtext [-o arqsaída] [-s estilo] <arqtexto> <arqbib...>"
 
 #: scripts/pybtext.py:45
 #, python-format
