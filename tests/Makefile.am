@@ -20,7 +20,13 @@
 # $Id$
 
 
-TESTS = $(srcdir)/format $(srcdir)/test-pybcheck $(srcdir)/import-export
+TESTS = \
+	$(srcdir)/pybformat	\
+	$(srcdir)/pybtex	\
+	$(srcdir)/compact	\
+	$(srcdir)/format 	\
+	$(srcdir)/test-pybcheck \
+	$(srcdir)/import-export
 
 EXTRA_DIST =  \
 	format.py		\

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+. ${srcdir}/testing.sh
+
+tst_start
+
+run ../scripts/pybtex ${srcdir}/document ${srcdir}/bibtex.bib > /dev/null
+run diff document.bbl document.bbl.ref
+run rm -f document.bbl
+
+tst_stop
+

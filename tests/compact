@@ -1,0 +1,12 @@
+#!/bin/sh
+
+. ${srcdir}/testing.sh
+
+tst_start
+
+run ../scripts/pybcompact ${srcdir}/compact ${srcdir}/bibtex.bib > tmp.bib
+run diff tmp.bib compact.bib
+run rm -f tmp.bib
+
+tst_stop
+
