@@ -36,17 +36,9 @@ from Pyblio import version, Fields, Types, Query
 
 import Pyblio.Style.Utils
 
-import gettext, os, string, copy, types, sys, traceback, stat
+import gettext, os, string, copy, types, sys, traceback, stat, re
 
 _ = gettext.gettext
-
-import cPickle
-
-pickle = cPickle
-del cPickle
-
-printable = string.lowercase + string.uppercase + string.digits
-
 
 class Document (Connector.Publisher):
     
@@ -54,16 +46,14 @@ class Document (Connector.Publisher):
         
         self.w = GnomeApp ('Pybliographic', 'Pybliographic')
 
-        self.w.add_events (GDK.KEY_PRESS_MASK)
-        
         self.w.connect ('delete_event', self.close_document)
-        self.w.connect ('key_press_event', self.key_pressed)
         
         file_menu = [
             UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
             UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
             UIINFO_ITEM              (_("Medline Query..."),None, self.query_database),
+            UIINFO_ITEM              (_("Query Z39.50 Server..."),None, self.query_z3950server),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -118,8 +108,6 @@ class Document (Connector.Publisher):
         toolbar = [
             UIINFO_ITEM_STOCK(_("Open"),  None, self.ui_open_document, STOCK_PIXMAP_OPEN),
             UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,    STOCK_PIXMAP_SAVE),
-            UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK(_("Add"),   None, self.add_entry,        STOCK_PIXMAP_NEW),
             UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,     STOCK_PIXMAP_SEARCH),
             UIINFO_ITEM_STOCK(_("Cite"),  None, self.lyx_cite,          STOCK_MENU_CONVERT),
@@ -182,16 +170,9 @@ class Document (Connector.Publisher):
         self.changed   = 0
         self.directory = None
 
-        self.incremental_start  = None
-        self.incremental_search = ''
-        
         self.modification_date = None
 
-        # set the default sort method
-        default = config.get_string ('Pybliographic/Sort/Default')
-        if default is not None: default = pickle.loads (default)
-
-        self.sort_view (default)
+        self.redisplay_index ()
         return
 
 
@@ -337,33 +318,321 @@ class Document (Connector.Publisher):
         if not self.confirm (): return
 
         def dlg_cb_2 (dummy): return
-        
-        dlg = GnomeOkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
-        
-        key_w = GtkEntry()
-        adj   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
-        max_w = GtkSpinButton (adj=adj, digits=0)
 
-        dlg.vbox.pack_start (GtkLabel (_("Search string")))
-        dlg.vbox.pack_start (key_w)
-        key_w.set_editable (TRUE)
+        #################################################
+        # Changes to Document.py by John Vu starts here #
+        #################################################
         
-        dlg.vbox.pack_start (GtkLabel (_("Maximum number of results")))
-        dlg.vbox.pack_start (max_w)
+        # Load up the past search queries by reading the file .pybsearchhis in the user's home directory; otherwise, the list will be empty via the searchhistory = [''] command
+        try:
+            pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches', 'r')
+            searchhistory = pybsearchhis.readlines()
+            pybsearchhis.close()
+        except IOError:
+            searchhistory = ['']
+        
+        # get rid of newline character so that search history is displayed correctly in the combobox
+        for x in range(0,len(searchhistory)):
+            searchhistory[x] = string.replace(searchhistory[x],'\n','') 
+
+        dlg = GnomeOkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
+        key_w_combo = GtkCombo() # make it a combo box so that past search entries can be viewed
+        key_w_combo.set_popdown_strings(searchhistory)
+        key_w = key_w_combo.entry # the query string will be loaded onto key_w assigned here
+        key_w.set_text ('') # the entry should be empty; if this option is not set, the first list item will show instead
+        key_w.set_editable (TRUE)
+        adj1   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
+        adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
+        max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
+        disp_s = GtkSpinButton (adj=adj2, digits=0) # disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
+
+        hbox1 = GtkHBox()
+        hbox1.pack_start (GtkLabel (_("Search PubMed for: ")))
+        hbox1.pack_start (key_w_combo)
+        hbox1.pack_start (GtkLabel (_("Maximum number\nof results: ")))
+        hbox1.pack_start (max_w)
+        hbox1.pack_start (GtkLabel (_("Start listing at\nresult number: ")))
+        hbox1.pack_start (disp_s)
+        dlg.vbox.pack_start (hbox1)
+        
+        hseparator1 = GtkHSeparator()
+        dlg.vbox.pack_start (hseparator1)
+
+        # Print partial instructions on use of the limits
+        hbox2 = GtkHBox()
+        instructions = GtkLabel ("o   Leave options below unchanged if you do not want your search limited.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Boolean operators AND, OR, NOT must be in upper case.\no   If search fields tags are used, enclose in square brackets with no space\n     between the search term and the tag, e.g., rubella[ti].\no   Search limits may exclude \"in process\" and \"publisher supplied\" citations.\no   For more help goto: http://www.ncbi.nlm.nih.gov:80/entrez/query/static/help/pmhelp.html")
+        instructions.set_justify (0) # LEFT justify the instructions
+        hbox2.pack_start (instructions)
+        dlg.vbox.pack_start (hbox2)
+
+        hseparator2 = GtkHSeparator()
+        dlg.vbox.pack_start (hseparator2)
+        dlg.vbox.pack_start (GtkLabel (_("Limited to:")))
+
+        # Below are all the limits allowable. All entries are not editable, except for the date entries.
+        hbox3 = GtkHBox()
+        field_combo = GtkCombo()
+        field_combo.set_popdown_strings (['All Fields', 'Affiliation', 'Author Name', 'EC/RN Number', 'Entrez Date', 'Filter', 'Issue', 'Journal Name', 'Language', 'MeSH Date', 'MeSH Major Topic', 'MeSH Subheading', 'MeSH Terms', 'Pagination', 'Publication Date', 'Publication Type', 'Secondary Source ID', 'Substance Name', 'Text Word', 'Title', 'Title/Abstract', 'UID', 'Volume'])
+        field_combo_entry = field_combo.entry
+        field_combo_entry.set_text ('All Fields')
+        GtkEditable.set_editable(field_combo_entry,0) # command to prevent the user from editing the limit
+        hbox3.pack_start (field_combo)
+        checkbutton1 = GtkCheckButton (label='Only items\nwith abstracts')
+        hbox3.pack_start (checkbutton1)
+        checkbutton2 = GtkCheckButton (label='Only items\nahead of print')
+        hbox3.pack_start (checkbutton2)
+        dlg.vbox.pack_start (hbox3)
+
+        hbox4 = GtkHBox()
+        pub_type_combo = GtkCombo()
+        pub_type_combo.set_popdown_strings (['Publication Types', 'Addresses', 'Bibliography', 'Biography', 'Classical Article', 'Clinical Conference', 'Clinical Trial', 'Clinical Trial, Phase I', 'Clinical Trial, Phase II', 'Clinical Trial, Phase III', 'Clinical Trial, Phase IV', 'Comment', 'Congresses', 'Consensus Development Conference', 'Consensus Development Conference, NIH', 'Controlled Clinical Trial', 'Corrected and Republished Article', 'Dictionary', 'Directory', 'Duplicate Publication', 'Editorial', 'Evaluation Studies', 'Festschrift', 'Government Publications', 'Guideline', 'Historical Article', 'Interview', 'Journal Article', 'Lectures', 'Legal Cases', 'Legislation', 'Letter', 'Meta-Analysis', 'Multicenter Study', 'News', 'Newspaper Article', 'Overall', 'Periodical Index', 'Practice Guideline', 'Published Erratum', 'Randomized Controlled Trial', 'Retraction of Publication', 'Retracted Publication', 'Review', 'Review, Academic', 'Review Literature', 'Review, Multicase', 'Review of Reported Cases', 'Review, Tutorial', 'Scientific Integrity Review', 'Technical Report', 'Twin Study', 'Validation Studies'])
+        pub_type_combo_entry = pub_type_combo.entry
+        pub_type_combo_entry.set_text ('Publication Types')
+        GtkEditable.set_editable (pub_type_combo_entry,0) # again, entry not editable, only selectable
+        hbox4.pack_start (pub_type_combo)
+        lang_combo = GtkCombo ()
+        lang_combo.set_popdown_strings (['Languages', 'English', 'French', 'German', 'Italian', 'Japanese', 'Russian', 'Spanish'])
+        lang_combo_entry = lang_combo.entry
+        lang_combo_entry.set_text ('Languages')
+        GtkEditable.set_editable (lang_combo_entry,0)
+        hbox4.pack_start (lang_combo)
+        subset_combo = GtkCombo()
+        subset_combo.set_popdown_strings (['Subsets', 'AIDS', 'AIDS/HIV journals', 'Bioethics', 'Bioethics journals',  'Biotechnology journals', 'Communication disorders journals', 'Complementary and Alternative Medicine', 'Consumer health journals', 'Core clinical journals', 'Dental journals', 'Health administration journals', 'Health tech assessment journals', 'History of Medicine', 'History of Medicine journals', 'In process', 'Index Medicus journals', 'MEDLINE', 'NASA journals', 'Nursing journals', 'PubMed Central', 'Reproduction journals', 'Space Life Sciences', 'Supplied by Publisher', 'Toxicology'])
+        subset_combo_entry = subset_combo.entry
+        subset_combo_entry.set_text ('Subsets')
+        GtkEditable.set_editable (subset_combo_entry,0)
+        hbox4.pack_start (subset_combo)
+        dlg.vbox.pack_start (hbox4)
+
+        hbox5 = GtkHBox()
+        age_range_combo = GtkCombo ()
+        age_range_combo.set_popdown_strings (['Ages', 'All Infant: birth-23 month', 'All Child: 0-18 years', 'All Adult: 19+ years', 'Newborn: birth-1 month', 'Infant: 1-23 months', 'Preschool Child: 2-5 years', 'Child: 6-12 years', 'Adolescent: 13-18 years', 'Adult: 19-44 years', 'Middle Aged: 45-64 years', 'Aged: 65+ years', '80 and over: 80+ years'])
+        age_range_combo_entry = age_range_combo.entry
+        age_range_combo_entry.set_text ('Ages')
+        GtkEditable.set_editable (age_range_combo_entry,0)
+        hbox5.pack_start (age_range_combo)
+        human_animal_combo = GtkCombo ()
+        human_animal_combo.set_popdown_strings (['Human or Animal', 'Human', 'Animal'])
+        human_animal_combo_entry = human_animal_combo.entry
+        human_animal_combo_entry.set_text ('Human or Animal')
+        GtkEditable.set_editable (human_animal_combo_entry,0)
+        hbox5.pack_start (human_animal_combo)
+        gender_combo = GtkCombo ()
+        gender_combo.set_popdown_strings (['Gender', 'Female', 'Male'])
+        gender_combo_entry = gender_combo.entry
+        gender_combo_entry.set_text ('Gender')
+        GtkEditable.set_editable (gender_combo_entry,0)
+        hbox5.pack_start (gender_combo)
+        dlg.vbox.pack_start (hbox5)
+
+        hbox6 = GtkHBox ()
+        entrez_date_combo = GtkCombo ()
+        entrez_date_combo.set_popdown_strings (['Entrez Date', '30 Days', '60 Days', '90 Days', '180 Days', '1 Year', '2 Years', '5 Years', '10 Years'])
+        entrez_date_combo_entry = entrez_date_combo.entry
+        entrez_date_combo_entry.set_text ('Entrez Date')
+        GtkEditable.set_editable (entrez_date_combo_entry,0)
+        hbox6.pack_start (entrez_date_combo)
+        dlg.vbox.pack_start (hbox6)
+
+        hbox7 = GtkHBox ()
+        pub_date_combo = GtkCombo ()
+        pub_date_combo.set_popdown_strings (['Publication Date', 'Entrez Date'])
+        pub_date_combo_entry = pub_date_combo.entry
+        pub_date_combo_entry.set_text ('Publication Date')
+        GtkEditable.set_editable (pub_date_combo_entry,0)
+        hbox7.pack_start (pub_date_combo)
+        hbox7.pack_start (GtkLabel (_("From:")))
+        from_date_entry = GtkEntry ()
+        hbox7.pack_start (from_date_entry)
+        hbox7.pack_start (GtkLabel (_("To:")))        
+        to_date_entry = GtkEntry ()
+        hbox7.pack_start (to_date_entry)
+        dlg.vbox.pack_start (hbox7)
+
+        hbox8 = GtkHBox ()
+        hbox8.pack_start (GtkLabel (_("Use the format YYYY/MM/DD; month and day are optional.")))
+        dlg.vbox.pack_start (hbox8)
         
         dlg.show_all ()
         dlg.run_and_close ()
         
         keyword  = string.strip (key_w.get_text ())
         maxcount = max_w.get_value_as_int ()
-        
+        displaystart = disp_s.get_value_as_int ()
+        field = field_combo_entry.get_text ()
+        abstract = checkbutton1.get_active ()
+        epubahead = checkbutton2.get_active ()
+        pubtype = pub_type_combo_entry.get_text ()
+        language = lang_combo_entry.get_text ()
+        subset = subset_combo_entry.get_text ()
+        agerange = age_range_combo_entry.get_text ()
+        humananimal = human_animal_combo_entry.get_text ()
+        gender = gender_combo_entry.get_text ()
+        entrezdate = entrez_date_combo_entry.get_text ()
+        pubdate = pub_date_combo_entry.get_text ()
+        fromdate = from_date_entry.get_text ()
+        todate = to_date_entry.get_text ()
+
+        # Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
+        for x in range(0,len(searchhistory)):
+            searchhistory[x] = searchhistory[x] + '\n'
+
         if keyword == "": return
-        
-        url = Query.medline_query (keyword, maxcount)
-        
+        else: # save keyword to medline search history if it's a valid keyword
+            if len(searchhistory) < 10: # I only want a maximum of the 10 most recent keywords
+                searchhistory.insert(0,keyword+'\n') # I don't want to append to the list, I want to add the most recent search term at the top of the list
+            else:
+                searchhistory[9] = '' # essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
+                searchhistory.insert(0,keyword+'\n')
+            try:
+                pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches','w') # save the search history
+                pybsearchhis.writelines(searchhistory)
+                pybsearchhis.close()
+            except IOError:
+                print "Can't save search history."
+
+        # Call the actual function to do the search and then return the results into url: 16 parameters passed altogether
+        url = Query.medline_query (keyword,maxcount,displaystart,field,abstract,epubahead,pubtype,language,subset,agerange,humananimal,gender,entrezdate,pubdate,fromdate,todate)
+
         self.open_document (url, 'medline', no_name = TRUE)
         return
 
+    def query_z3950server (self, * arg):
+        ''' Query a Z39.50 Server and convert the returned MARC formatted result to something pyblio can read '''
+
+        if not self.confirm (): return
+
+        def dlg_cb_2 (dummy): return
+
+        try:
+            fd = open(os.path.expanduser('~')+'/.pybliographer/zservers', 'r') #this is the file that lists all the available servers; the file is edited and placed there by the user
+            serverlist = fd.readlines()
+            fd.close()
+        except IOError:
+            serverlist = ['Library of Congress|z3950.loc.gov|7090|Voyager', 'Aberdeen University|library.abdn.ac.uk|210|dynix', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS'] #default server list of working servers that I know
+
+        if serverlist[len(serverlist)-1] == '' or serverlist[len(serverlist)-1] == ' ' or serverlist[len(serverlist)-1] == ' ': del serverlist[len(serverlist)-1]  # this is an error handling function; sometimes the user may add a whitespace or extra lines at the end of the file
+        server = {}
+        servernames = [] #list of just the names of the servers, to be used in the pulldown menu
+        serverdictionary = {}
+        i = 0
+        for serverentry in serverlist:
+            linespl = re.split('\|',serverentry)
+            server['Name'+`i`] = linespl[0]
+            servernames.append(linespl[0]) #append the name of the server to the servername list
+            serverdictionary[linespl[0]]=i #dictionary key is the name of the server, the value is it's index number i. The index number i, will be used to pull the address, port and database name for the particular server later for the actual query.
+            server['Address'+`i`] = linespl[1]
+            server['Port'+`i`] = string.atoi(linespl[2])
+            server['Database'+`i`] = string.replace (linespl[3], '\n', '')
+            i = i+1
+        
+        dlg = GnomeOkCancelDialog (_("Enter your query"), dlg_cb_2, self.w)
+        adj1   = GtkAdjustment (20, 0, 10000, 1.0, 100.0, 0.0)
+        adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
+        max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
+        disp_s = GtkSpinButton (adj=adj2, digits=0) # disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
+        
+        hbox1 = GtkHBox ()
+        hbox1.pack_start (GtkLabel (_("Query server: ")))
+        server_combo = GtkCombo ()
+        server_combo.set_popdown_strings (servernames) # This is so the user can choose which server to query, future releases will read either a file or directory of files which contain server info so that the user can add new servers
+        server_combo_entry = server_combo.entry
+        server_combo_entry.set_text (server['Name0'])
+        GtkEditable.set_editable (server_combo_entry,0)
+        hbox1.pack_start (server_combo)
+        hbox1.pack_start (GtkLabel (_("Maximum number\nof results: ")))
+        hbox1.pack_start (max_w)
+        hbox1.pack_start (GtkLabel (_("Start listing at\nresult number: ")))
+        hbox1.pack_start (disp_s)
+        dlg.vbox.pack_start (hbox1)
+
+        hbox2 = GtkHBox ()
+        field_combo1 = GtkCombo ()
+        field_combo1.set_popdown_strings (['All Fields', 'Any Fields', 'Author', 'Personal Author (Last, First)', 'Title (Phrase)', 'Title (Word)', 'Keywords', 'Year', 'ISBN', 'ISSN'])
+        field_combo1_entry = field_combo1.entry
+        field_combo1_entry.set_text ('All Fields')
+        GtkEditable.set_editable(field_combo1_entry,0) # command to prevent the user from editing the limit
+        hbox2.pack_start (field_combo1)
+        limit_combo1 = GtkCombo()
+        limit_combo1.set_popdown_strings (['Contains'])
+        limit_combo1_entry = limit_combo1.entry
+        limit_combo1_entry.set_text ('Contains')
+        GtkEditable.set_editable(limit_combo1_entry,0) # command to prevent the user from editing the limit
+        hbox2.pack_start (limit_combo1)
+        dlg.vbox.pack_start (hbox2)
+
+        hbox3 = GtkHBox()
+        term1_entry = GtkEntry()
+        GtkEditable.set_editable (term1_entry,1)
+        hbox3.pack_start (term1_entry)
+        dlg.vbox.pack_start (hbox3)
+
+        hbox4 = GtkHBox()
+        radiobutton1 = GtkRadioButton(label='And')
+        hbox4.pack_start (radiobutton1)
+        radiobutton2 = GtkRadioButton(radiobutton1, 'Or')
+        hbox4.pack_start (radiobutton2)
+        radiobutton3 = GtkRadioButton(radiobutton2, 'Not')
+        hbox4.pack_start (radiobutton3)
+        dlg.vbox.pack_start (hbox4)
+
+        hbox5 = GtkHBox()
+        field_combo2 = GtkCombo()
+        field_combo2.set_popdown_strings (['All Fields', 'Any Fields', 'Author', 'Personal Author (Last, First)', 'Title (Phrase)', 'Title (Word)', 'Keywords', 'Year', 'ISBN', 'ISSN'])
+        field_combo2_entry = field_combo2.entry
+        field_combo2_entry.set_text ('All Fields')
+        GtkEditable.set_editable(field_combo2_entry,0) # command to prevent the user from editing the limit
+        hbox5.pack_start (field_combo2)
+        limit_combo2 = GtkCombo()
+        limit_combo2.set_popdown_strings (['Contains'])
+        limit_combo2_entry = limit_combo2.entry
+        limit_combo2_entry.set_text ('Contains')
+        GtkEditable.set_editable(limit_combo2_entry,0) # command to prevent the user from editing the limit
+        hbox5.pack_start (limit_combo2)
+        dlg.vbox.pack_start (hbox5)
+
+        hbox6 = GtkHBox()
+        term2_entry = GtkEntry()
+        GtkEditable.set_editable (term2_entry,1)
+        hbox6.pack_start (term2_entry)
+        dlg.vbox.pack_start (hbox6)
+
+        dlg.show_all ()
+        dlg.run_and_close ()
+
+        servername = server_combo_entry.get_text ()
+        serveraddress  = server['Address'+`serverdictionary[servername]`]
+        port = server['Port'+`serverdictionary[servername]`]
+        database = server['Database'+`serverdictionary[servername]`]
+        displaystart = disp_s.get_value_as_int ()
+        maxresults = max_w.get_value_as_int ()
+        term1 = term1_entry.get_text ()
+        term1attribute = field_combo1_entry.get_text ()
+        term2 = term2_entry.get_text ()
+        term2attribute = field_combo2_entry.get_text ()
+        if radiobutton1.get_active (): operator = 'and'
+        elif radiobutton2.get_active (): operator = 'or'
+        elif radiobutton3.get_active (): operator = 'and-not'
+
+        connectcount = 1
+        accesscomplete = FALSE
+        while connectcount < 5 and not accesscomplete:
+            try:
+                query_result = Query.z3950_query (serveraddress,port,database,displaystart,maxresults,term1,term1attribute,term2,term2attribute,operator)
+                if query_result <> '':
+                    pybzsearch = open(os.path.expanduser('/tmp')+'/pybzsearch_'+serveraddress,'w')
+                    pybzsearch.writelines(query_result)
+                    pybzsearch.close()
+                else:
+                    pybzsearch = open(os.path.expanduser('/tmp')+'/pybzsearch_'+serveraddress,'w')
+                    pybzsearch.writelines('No results\n') #eventually this should optimally be replaced with a popup window informing the user that there were no results
+                    pybzsearch.close()
+                self.open_document ('/tmp/pybzsearch_'+serveraddress,'bibtex',no_name = TRUE)
+                accesscomplete = TRUE
+            except (EOFError, NameError):
+                print "Can't connect to server " +serveraddress +". Attempt " + `connectcount+1` + "."  #debugging
+                connectcount = connectcount + 1
+        return
 
     def merge_database (self, * arg):
         ''' add all the entries of another database to the current one '''
@@ -720,11 +989,7 @@ class Document (Connector.Publisher):
 
 
     def sort_view (self, sort):
-        if sort is None:
-            self.selection.sort = None
-        else:
-            self.selection.sort = Sort.Sort (sort)
-        
+        self.selection.sort = Sort.Sort (sort)
         self.redisplay_index ()
         return
     
@@ -771,37 +1036,6 @@ class Document (Connector.Publisher):
     def freeze_display (self, entry):
         self.display.clear ()
         return
-
-
-    def key_pressed (self, app, event):
-        if event.string == '': return 1
-
-        if self.selection.sort is None:
-            app.flash ("Select a column to search in first.")
-            return 1
-        
-        if event.string in printable:
-            # the user searches the first entry in its ordering that starts with this letter
-            if self.incremental_search == '':
-                self.incremental_search = event.string
-                self.incremental_start  = event.time
-            else:
-                if event.time - self.incremental_start > 1000:
-                    self.incremental_search = event.string
-                else:
-                    # two keys in a same shot: we search for the composition of the words
-                    self.incremental_search = self.incremental_search + event.string
-                
-                self.incremental_start  = event.time
-
-            # search first occurence
-            if self.index.go_to_first (self.incremental_search,
-                                       self.selection.sort.fields [0]):
-                app.flash ("Searching for '%s...'" % self.incremental_search)
-            else:
-                app.flash ("Cannot find '%s...'" % self.incremental_search)
-                
-        return 1
 
 
     def update_configuration (self):
