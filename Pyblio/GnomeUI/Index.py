@@ -42,7 +42,7 @@ class Index (Connector.Publisher):
     def __init__ (self, fields = None):
         ''' Creates a new list of entries '''
 
-        fields = fields or Config.get ('gnomeui/columns').data
+        fields = fields or Config.get ('gnome/columns').data
         self.fields = map (lower, fields)
 
         self.clist = GtkCList (len (fields), fields)

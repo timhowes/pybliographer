@@ -28,6 +28,7 @@ _ = gettext.gettext
 
 from Pyblio.GnomeUI import Utils
 from Pyblio import Config
+from Pyblio.Utils import format
 
 _map = string.maketrans ('\t\n', '  ')
 _cpt = re.compile ('\s+')
@@ -70,7 +71,7 @@ class ConfigDialog:
                 
                 desc  = data.description
                 desc  = string.translate (desc, _map)
-                desc  = _cpt.sub (' ', desc)
+                desc  = string.strip (_cpt.sub (' ', desc))
 
                 hbox = GtkHBox ()
                 hbox.set_border_width (5)
@@ -85,7 +86,8 @@ class ConfigDialog:
                 button = GtkButton ()
                 button.add (help)
                 button.set_relief (RELIEF_NONE)
-                
+                button.connect ('clicked', self.display_help,
+                                (self.w, _("Item `%s':\n\n%s") % (item, desc)))
                 hbox.pack_start (button, FALSE, FALSE)
                 tooltips.set_tip (button, desc)
 
@@ -99,6 +101,11 @@ class ConfigDialog:
         self.w.show_all ()
         return
 
+    def display_help (self, w, data):
+        (w, help) = data
+        d = GnomeOkDialog (format (help, 40, 0, 0), w)
+        d.show_all ()
+        return
 
     def apply (self, w, page):
         if page == -1: return
@@ -257,7 +264,7 @@ class ElementConfig (BaseConfig):
         BaseConfig.__init__ (self, dtype, props, key)
 
         self.w = GtkScrolledWindow ()
-        self.w.set_policy (POLICY_NEVER, POLICY_NEVER)
+        self.w.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
         self.list = GtkCList (1)
         self.w.add (self.list)
         
@@ -342,7 +349,7 @@ class ListConfig (BaseConfig):
         self.list = GtkCList (1)
         self.list.connect ('select-row', self.select_cb)
         self.list.set_reorderable (TRUE)
-        
+        self.list.connect ('row_move', self.changed)
         scroll.add (self.list)
         h.pack_start (scroll)
 

@@ -678,7 +678,9 @@ class Editor (Connector.Publisher):
         self.editor      = None
 
         # put the negated value, so that we can call toggle to switch and create
-        self.native_mode = not Config.get ('gnomeui/native-as-default').data
+        self.native_mode = not (self.has_native and
+                                Config.get ('gnome/native-as-default').data)
+
         self.toggle_native ()
         
         self.w.show ()

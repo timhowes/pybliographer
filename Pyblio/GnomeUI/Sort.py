@@ -29,6 +29,7 @@ _ = gettext.gettext
 
 from Pyblio import Connector, Sort, Config
 
+
 class SortDialog (Connector.Publisher):
     
     def __init__ (self, current_sort, parent = None):
@@ -83,7 +84,7 @@ class SortDialog (Connector.Publisher):
 
         # operation buttons
         box = GtkHButtonBox ()
-        box.set_layout_default (BUTTONBOX_START)
+        box.set_layout_default (BUTTONBOX_SPREAD)
         
         b = GtkButton (_("Reorder"))
         b.connect ('clicked', self.reorder_items)

@@ -142,7 +142,7 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         # fill the combo
         self.field.set_popdown_strings ([' - any field - '] +
                                         list (Config.get
-                                              ('gnomeui/searched').data) +
+                                              ('gnome/searched').data) +
                                         [' - type - ', ' - key - '])
 
         self.notebook.append_page (table, GtkLabel (_("Simple Search")))
@@ -307,12 +307,6 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         return
 
     
-    def close (self, * arg):
-        self.hide ()
-        
-        return 1
-
-
     def selection (self, *arg):
         selection = self.root_tree.get_selection ()
 
