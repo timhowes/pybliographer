@@ -68,7 +68,6 @@ def popup_add (menu, item, action = None, argument = None, sensitive= None):
         tmp.connect ('activate', action, argument)
     if sensitive != None:
         tmp.set_sensitive(sensitive)
-        print tmp, tmp['sensitive']
     tmp.show ()
     menu.append (tmp)
     
