@@ -26,6 +26,7 @@
 #endif
 
 #include <string.h>
+#include <regex.h>
 
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>
@@ -84,6 +85,24 @@ text_to_struct (gchar * string) {
 
     return s;
 }
+
+
+static gboolean
+author_needs_quotes (gchar * string) {
+  static gboolean initialized = FALSE;
+  static regex_t and_re;
+  
+  if (! initialized) {
+    initialized = regcomp (& and_re, "[^[:alnum:]]and[^[:alnum:]]", REG_ICASE |
+			   REG_EXTENDED) == 0;
+    g_assert (initialized);
+  }
+
+  return
+    (strpbrk (string, ",") != NULL) || 
+    (regexec (& and_re, string, 0,NULL, 0)  == 0);
+}
+
 
 BibtexField * 
 bibtex_reverse_field (BibtexField * field,
@@ -298,7 +317,8 @@ bibtex_reverse_field (BibtexField * field,
 	    }
 
 	    if (author->last) {
-		has_space = strpbrk (author->last, " \t") != NULL;
+	        has_space = author_needs_quotes (author->last);
+
 		if (has_space) {
 		    g_string_append_c (st, '{');
 		}
@@ -315,7 +335,8 @@ bibtex_reverse_field (BibtexField * field,
 	    if (author->lineage) {
 		g_string_append (st, ", ");
 
-		has_space = strpbrk (author->lineage, " \t") != NULL;
+	        has_space = author_needs_quotes (author->lineage);
+
 		if (has_space) {
 		    g_string_append_c (st, '{');
 		}
@@ -333,7 +354,8 @@ bibtex_reverse_field (BibtexField * field,
 	    if (author->first) {
 		g_string_append (st, ", ");
 
-		has_space = strpbrk (author->first, " \t") != NULL;
+	        has_space = author_needs_quotes (author->first);
+
 		if (has_space) {
 		    g_string_append_c (st, '{');
 		}
