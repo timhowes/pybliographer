@@ -334,7 +334,7 @@ def load_user ():
     return
         
 def save_user (changed):
-    print 'SAVE USER:', changed
+
     if not changed:
         return
     # read what has to be saved again
