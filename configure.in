@@ -24,7 +24,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT(pybliographer.py)
 
-AM_INIT_AUTOMAKE(pybliographer, 1.0.7)
+AM_INIT_AUTOMAKE(pybliographer, 1.0.8)
 AM_CONFIG_HEADER(config.h)
 AM_ACLOCAL_INCLUDE(macros)
 
@@ -70,7 +70,7 @@ AM_PROG_LEX
 AC_PROG_YACC
 
 dnl NLS
-ALL_LINGUAS="da de fr hu it no ru uk"
+ALL_LINGUAS="da de fr hu it ja no pt_BR ru uk sv"
 
 dnl Manually unset LINGUAS so that all the packages get installed
 unset LINGUAS
