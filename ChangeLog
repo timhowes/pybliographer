@@ -1,3 +1,21 @@
+2000-11-13  Gobry Frederic  <frederic.gobry@epfl.ch>
+
+	* Pyblio/GnomeUI/Document.py, Pyblio/GnomeUI/Pybliographer.py:
+	added warning to avoid overwriting of an externally modified document.
+
+2000-11-09  Gobry Frederic  <frederic.gobry@epfl.ch>
+
+	* bibtex/reverse.c: the reverse saga continues... fixed a bug
+	introdiced by the previous fix...
+
+	* Pyblio/Format/OvidLike.py: improved source parsing (for missing
+	volume).
+
+2000-10-30  Gobry Frederic  <gobry@lithpc18.epfl.ch>
+
+	* bibtex/authors.c: fixed parsing of comma separated author field,
+	having a lowercase part in their name...
+
 2000-10-17  Gobry Frederic  <gobry@lithpc18.epfl.ch>
 
 	* configure.in, Makefile.am, macros/python.m4: improved the
