@@ -115,23 +115,26 @@ class SearchDialog (Connector.Publisher):
         if parent: self.w.set_transient_for (parent)
 
         self.pairs   = []
-        
+
         # fill the combo
-#        self.field.set_popdown_strings ([' - any field - '] +
-#                                        list (Config.get
-#                                              ('gnome/searched').data) +
-#                                        [' - type - ', ' - key - '])
+        self.field = self.xml.get_widget ('field')
+        self.field.set_popdown_strings ([' - any field - '] +
+                                        list (Config.get
+                                              ('gnome/searched').data) +
+                                        [' - type - ', ' - key - '])
 
 
+        self.root_tree = self.xml.get_widget ('tree')
+        
         # database
 #        self.root_tree.connect ('selection_changed', self.selection)
 
 
         # connect a menu to the right button
-#        self.root_tree.connect ('button_press_event', self.popup_menu)
-#        self.menu = GtkMenu ()
-#        self.delete_button = Utils.popup_add (self.menu, _("Delete"),  self.search_delete)
-#        self.menu.show ()
+        self.menu = gtk.Menu ()
+        self.delete_button = Utils.popup_add (self.menu, _("Delete"),  self.search_delete)
+        self.menu.show ()
+
 
         self.root_item = None
         self.create_root_item (None)
@@ -141,11 +144,13 @@ class SearchDialog (Connector.Publisher):
 
 
     def update_configuration (self):
-        self.text.save_history ()
         return
 
         
     def create_root_item (self, data):
+
+        return
+    
         if self.root_item:
             self.root_item.remove_subtree ()
             self.root_tree.remove (self.root_item)
@@ -158,7 +163,7 @@ class SearchDialog (Connector.Publisher):
 
 
     def close_cb (self, widget):
-        self.close ()
+        self.w.hide ()
         return
     
 
@@ -294,17 +299,19 @@ class SearchDialog (Connector.Publisher):
         return
 
     
-    def popup_menu (self, *arg):
-        clist, event, = arg
+    def popup_menu (self, w, event, *arg):
 
-        if (event.type == GDK.BUTTON_PRESS and event.button == 3):
-            sel = self.root_tree.get_selection ()
-            if len (sel) == 0:
-                self.delete_button.set_sensitive (FALSE)
-            else:
-                self.delete_button.set_sensitive (TRUE)
+        if (event.type != gtk.gdk.BUTTON_PRESS or
+            event.button != 3): return
+        
+        self.menu.popup (None, None, None, event.button, event.time)
+
+        #sel = self.root_tree.get_selection ()
+        #if len (sel) == 0:
+        #    self.delete_button.set_sensitive (FALSE)
+        #else:
+        #    self.delete_button.set_sensitive (TRUE)
                 
-            self.menu.popup (None, None, None, event.button, event.time)
         return
     
 
