@@ -19,6 +19,9 @@
 # 
 # $Id$
 
+
+""" This module implements the Search dialog """
+
 import os
 
 from gnome import ui
@@ -32,159 +35,16 @@ from Pyblio import Types, Search, Config, \
 from Pyblio.GnomeUI import Utils
 
 
-class ItemStorage:
-
-    ''' Extension to TreeItem that stores additional information about
-    the search nodes '''
-    
-    def __init__ (self, name, data):
-        self.name   = name
-        self.data   = data
-        self.parent = None
-        self.children = []
-        return
-
-    def add (self, new):
-        self.children.append (new)
-        new.parent = self
-        return
-
-    def remove (self, child):
-        self.children.remove (child)
-
-        for c in child.children:
-            child.remove (c)
-        return
-
-    def search (self, node, path):
-        if self == node: return path
-
-        i = 0
-        for c in self.children:
-            r = c.search (node, path + (i,))
-            if r is not None:
-                return r
-            i = i + 1
-        return None
-
-    def get (self, path):
-        if len (path) == 1:
-            return self.children [path [0]]
-
-        return self.children [path [0]].get (path [1:])
-
-
-class SearchTree (gtk.GenericTreeModel):
-
-    ''' Data Model of the Search Tree '''
-    
-    def __init__(self):
-	gtk.GenericTreeModel.__init__(self)
-
-        self.tree = ItemStorage (_("Full database"), None)
-        return
-
-    def add (self, path, node):
-        parent = self.on_get_iter (path)
-        parent.add (node)
-
-        path = self.on_get_path (node)
-        iter = self.get_iter (path)
-
-        self.emit ('row-inserted', path, iter)
-        return path
-    
-    def remove (self, node):
-        path = self.on_get_path (node)
-
-        parent = node.parent
-        parent.remove (node)
-
-        self.emit ('row-deleted', path)
-        return
-    
-
-    def on_get_flags(self):
-	'''returns the GtkTreeModelFlags for this particular type of model'''
-	return 0
-    
-    def on_get_n_columns(self):
-	'''returns the number of columns in the model'''
-	return 1
-    
-    def on_get_column_type(self, index):
-	'''returns the type of a column in the model'''
-	return gobject.TYPE_STRING
-    
-    def on_get_path(self, node):
-	'''returns the tree path (a tuple of indices at the various
-	levels) for a particular node.'''
-	return self.tree.search (node, (0,))
-    
-    def on_get_iter(self, path):
-        '''returns the node corresponding to the given path.  In our
-        case, the node is the path'''
-        if path == (0,): return self.tree
-        if len (path) < 2: return None
-        
-        return self.tree.get (path [1:])
-    
-    def on_get_value(self, node, column):
-	'''returns the value stored in a particular column for the node'''
-	assert column == 0
-
-        if node is None: return ''
-	return node.name
-    
-    def on_iter_next(self, node):
-	'''returns the next node at this level of the tree'''
-        if node.parent is None: return None
-
-        p = node.parent
-        i = p.children.index (node)
-
-        if len (p.children) <= i: return None
-        try:
-            return p.children [i+1]
-        except IndexError:
-            return None
-    
-    def on_iter_children(self, node):
-	'''returns the first child of this node'''
-	if node == None: return self.tree
-        try:
-            return node.children [0]
-        except IndexError:
-            return None
-    
-    def on_iter_has_child(self, node):
-	'''returns true if this node has children'''
-	return self.on_iter_n_children (node) > 0
-    
-    def on_iter_n_children(self, node):
-	'''returns the number of children of this node'''
-        if node is None: return 1
-	return len (node.children)
-        
-    def on_iter_nth_child(self, node, n):
-	'''returns the nth child of this node'''
-        if node == None:
-            if n == 0: return self.tree
-            return None
-
-        try:
-            return node.children [n]
-        except IndexError:
-            return None
-        
-    def on_iter_parent(self, node):
-	'''returns the parent of this node'''
-        if node is None: return None
-        return node.parent
-
-    
 class SearchDialog (Connector.Publisher, Utils.GladeWindow):
-    ''' Search Dialog '''
+
+    ''' The actual Search Dialog. This dialog is created once, and
+    only hidden, not destroyed, to keep it always available in the
+    same state.
+
+    This dialog emits a "search-data" signal when a new search
+    criterion is selected.
+    
+    '''
 
     gladeinfo = { 'name': 'search',
                   'file': 'search.glade',
@@ -195,19 +55,27 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
 
         Utils.GladeWindow.__init__ (self, parent)
 
+        # the tree model contains a string that explains the query,
+        # and a python object representing the actual query.
+        
+        self._model = gtk.TreeStore (str, gobject.TYPE_PYOBJECT)
+        self._w_tree.set_model (self._model)
+
+        # the view does not display the python column, of course.
         col = gtk.TreeViewColumn ('field', gtk.CellRendererText (), text = 0)
         self._w_tree.append_column (col)
+
         self._w_tree.expand_all ()
         
-        # the tree model only has the query as displayed data
-        self._model = SearchTree ()
-        self._w_tree.set_model (self._model)
+        # The root of the search tree is the full database
+        self._model.append (None, (_("Full database"), None))
+
 
         # Monitor the selected items
         self._selection = self._w_tree.get_selection ()
         self._selection.connect ('changed', self.selection)
         
-        # fill the combo
+        # fill the combo containing the available fields
         self._w_field.set_popdown_strings ([' - any field - '] +
                                           list (Config.get
                                                 ('gnome/searched').data) +
@@ -226,15 +94,13 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
 
     def show (self):
         ''' Invoked to show the interface again when it has been closed '''
+        
         self._w_search.show ()
         return
 
 
-    def update_configuration (self):
-        return
-
-
     def close_cb (self, widget):
+        ''' Invoked to hide the interface when clicking on "Close" '''
 
         self.size_save ()
         self._w_search.hide ()
@@ -242,6 +108,9 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
     
 
     def apply_cb (self, widget):
+
+        ''' Construct the new query and add it to the query tree '''
+        
         page = self._w_notebook.get_current_page ()
 
         name = None
@@ -335,28 +204,36 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
 
         if name is None:
             name = str (test)
-            
-        s, i = self._selection.get_selected ()
-        if i is None: i = (0,)
-        else:         i = s.get_path (i)
-        
-        selection = self._model.on_get_iter (i)
-        
-        if selection.data: test = selection.data & test
 
-        item = ItemStorage (name, test)
-        path = self._model.add (i, item)
+        # Get the path to the query being refined
+        s, iter = self._selection.get_selected ()
+        if iter is None: iter = s.get_iter ((0,))
 
+        i = s.get_path (iter)
+
+        # If we are refining a previous query, build the new query as
+        # a logical and of the previous and new query.
+        
+        current = self._model [i] [1]
+        if current: test = current & test
+
+        # Add the new query in the tree and ensure it is visible and selected.
+        iter = self._model.append (iter, (name, test))
+        path = s.get_path (iter)
+        
         self._w_tree.expand_row (path [:-1], True)
         self._selection.select_path (path)
         return
 
     
     def selection (self, *arg):
+
+        ''' Called when the user clicks on a specific query '''
+        
         s, i = self._selection.get_selected ()
         if i is None: return
         
-        data = self._model.on_get_iter (s.get_path (i)).data
+        data = self._model [s.get_path (i)][1]
 
         self.issue ('search-data', data)
         return
@@ -364,24 +241,31 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
     
     def popup_menu (self, w, event, *arg):
 
+        ''' Called when the user right-clicks in the query tree '''
+        
         if (event.type != gtk.gdk.BUTTON_PRESS or
             event.button != 3): return
         
         self.menu.popup (None, None, None, event.button, event.time)
 
+        # Only allow removal when a valid query is selected
         s, i = self._selection.get_selected ()
-        self.delete_button.set_sensitive (i is not None)
+        self.delete_button.set_sensitive (i is not None and
+                                          s [i][1] is not None)
         return
     
 
     def search_delete (self, *arg):
+        
+        ''' Called when the user deletes a query in the tree '''
+
         s, i = self._selection.get_selected ()
         if i is None: return
+
+        # Do not allow removal of the root.
+        if s [i][1] is None: return
         
-        selection = self._model.on_get_iter (s.get_path (i))
-        if selection.data is None: return
-        
-        self._model.remove (selection)
+        self._model.remove (i)
         return
 
 
