@@ -83,7 +83,7 @@ class SortDialog (Connector.Publisher):
 
         # operation buttons
         box = GtkHButtonBox ()
-        box.set_layout_default (BUTTONBOX_END)
+        box.set_layout_default (BUTTONBOX_START)
         
         b = GtkButton (_("Reorder"))
         b.connect ('clicked', self.reorder_items)

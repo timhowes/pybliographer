@@ -25,9 +25,13 @@ from gnome.ui import *
 from gtk import *
 from gnome import config
 
-from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor, Search
+from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor, Search, Format
 from Pyblio.GnomeUI.Sort import SortDialog
+
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
+from Pyblio import version, Fields
+
+import Pyblio.Style.Utils
 
 import gettext, os, string, copy, types
 
@@ -35,7 +39,7 @@ _ = gettext.gettext
 
 class Document (Connector.Publisher):
     
-    def __init__ (self, database, version = '0.0'):
+    def __init__ (self, database):
         
         self.w = GnomeApp ('Pybliographic', 'Pybliographic')
 
@@ -77,7 +81,8 @@ class Document (Connector.Publisher):
             ]
 
         cite_menu = [
-            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,    STOCK_MENU_CONVERT),
+            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,            STOCK_MENU_CONVERT),
+            UIINFO_ITEM_STOCK(_("Format..."), None, self.format_entries, STOCK_MENU_REFRESH),
             ]
         
         menus = [
@@ -92,7 +97,7 @@ class Document (Connector.Publisher):
             UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,    STOCK_PIXMAP_SAVE),
             UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,     STOCK_PIXMAP_SEARCH),
-            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,    STOCK_MENU_CONVERT),
+            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,          STOCK_MENU_CONVERT),
             UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Close"), None, self.close_document,   STOCK_PIXMAP_CLOSE),
             ]
@@ -143,9 +148,9 @@ class Document (Connector.Publisher):
         
         # application variables
         self.data      = database
-        self.version   = version
         self.selection = Selection.Selection ()
         self.search_dg = None
+        self.format_dg = None
         self.sort_dg   = None
         self.lyx       = None
         self.changed   = 0
@@ -183,6 +188,33 @@ class Document (Connector.Publisher):
         
         self.index.display (self.selection.iterator (self.data.iterator ()))
         self.update_status ()
+        return
+
+
+    def format_query (self, style, format, output):
+        try:
+            file = open (output, 'w')
+        except IOError, err:
+            self.w.error (_("can't open file `%s' for writing:\n%s")
+                          % (output, str (err)))
+            return
+        
+        entries = map (lambda x: x.key, self.index.selection ())
+        
+        if not entries:
+            entries = self.data.keys ()
+
+        url = Fields.URL (style)
+        
+        Pyblio.Style.Utils.generate (url, format, self.data, entries, file)
+        return
+
+    def format_entries (self, * arg):
+        if self.format_dg is None:
+            self.format_dg = Format.FormatDialog (self.w)
+            self.format_dg.Subscribe ('format-query', self.format_query)
+            
+        self.format_dg.show ()
         return
 
     
@@ -464,7 +496,8 @@ class Document (Connector.Publisher):
         ''' updates the database and the display '''
 
         if old.key != new.key:
-            del self.data [old.key]
+            if self.data.has_key (old.key):
+                del self.data [old.key]
 
         if new.key:
             self.data [new.key] = new
@@ -595,14 +628,14 @@ class Document (Connector.Publisher):
             self.w.error (_("Please install bug-buddy\nto use this feature"))
             return
         
-        command = 'bug-buddy --package=pybliographer --package-ver=%s &' % self.version
+        command = 'bug-buddy --package=pybliographer --package-ver=%s &' % version.version
         
         os.system (command)
         return
 
     
     def about (self, *arg):
-        about = GnomeAbout ('Pybliographic', self.version,
+        about = GnomeAbout ('Pybliographic', version.version,
                             _("This program is copyrighted under the GNU GPL"),
                             ['Frédéric Gobry'],
                             _("Gnome interface to the Pybliographer system."),

@@ -106,14 +106,13 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
     
     def __init__ (self, parent = None):
 
-        GnomeDialog.__init__ (self, _("Search"))
+        GnomeDialog.__init__ (self, _("Search"),
+                              STOCK_PIXMAP_SEARCH,
+                              STOCK_BUTTON_CLOSE)
+        self.set_policy (TRUE, TRUE, FALSE)
         
-        self.append_button (STOCK_PIXMAP_SEARCH)
-        self.append_button (STOCK_BUTTON_CLOSE)
-
         if parent: self.set_parent (parent)
 
-        self.set_usize (400, 500)
         self.button_connect (0, self.apply)
         self.button_connect (1, self.close)
         self.set_default (0)

@@ -558,7 +558,7 @@ class RealEditor (Connector.Publisher):
                                     self.w.get_toplevel ())
                 return None
 
-            key = Key.Key (self.entry.key.base, key)
+            key = Key.Key (database, key)
 
             if key != self.entry.key:
                 if database.has_key (key):

@@ -22,6 +22,10 @@
 pybdir = $(datadir)/$(PACKAGE)/Pyblio
 
 EXTRA_DIST = \
+	version.py.in	\
+	$(PYTHON)
+
+PYTHON = \
 	Autoload.py 	\
 	Base.py 	\
 	Config.py 	\
@@ -45,4 +49,8 @@ EXTRA_DIST = \
 
 SUBDIRS = GnomeUI Output Format ConfDir Style
 
-pyb_DATA = $(EXTRA_DIST)
+pyb_DATA = $(PYTHON) version.py
+
+version.py: $(srcdir)/version.py.in ../etc/installer
+	$(SHELL) ../etc/installer < $(srcdir)/version.py.in > version.py
+	@if test $(srcdir) != '.' ; then cp -f version.py $(srcdir) ; fi

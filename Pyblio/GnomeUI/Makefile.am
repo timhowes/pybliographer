@@ -22,6 +22,7 @@
 pybdir = $(datadir)/$(PACKAGE)/Pyblio/GnomeUI
 
 EXTRA_DIST = \
+	Format.py		\
 	Document.py 		\
 	Editor.py 		\
 	Entry.py 		\

@@ -24,7 +24,7 @@ from Pyblio import Fields, Autoload
 
 def generate (style_url, format, database, keys, output):
     
-    fmt = Autoload.get_by_name ('output', format).data (output)
+    fmt = format (output)
     p = Parser.XMLBib (style_url)
     p.configure ()
 

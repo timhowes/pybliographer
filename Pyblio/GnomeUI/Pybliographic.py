@@ -33,8 +33,7 @@ class Pybliographic:
     ''' Main class holding all the documents and performing
     general tasks '''
 
-    def __init__ (self, version):
-        self.version   = version
+    def __init__ (self):
         self.documents = []
 
         self.opened = list (config.get_vector ('Pybliographic/Base/History='))
@@ -42,7 +41,7 @@ class Pybliographic:
 
     def new_document (self, * arg):
         db  = Base.DataBase (None)
-        doc = Document.Document (db, self.version)
+        doc = Document.Document (db)
 
         # register several callbacks
         doc.Subscribe ('new-document',     self.new_document)
