@@ -53,23 +53,61 @@ typedef enum
 
 #include <stdio.h>
 
-#ifdef USE_RECODE
 #include <recode.h>
-#endif
 
 #include "bibtex.h"
 
 
+static BibtexStruct *
+text_to_struct (gchar * string) {
+    BibtexEntry * entry;
+    BibtexStruct * s;
+    static BibtexSource * source = NULL;
+ 
+    if (source == NULL) source = bibtex_source_new ();
+ 
+    /* parse as a string */
+    if (! bibtex_source_string (source, "internal string", string)) {
+        g_error ("can't create string");
+    }
+ 
+    entry = bibtex_source_next_entry (source, FALSE);
+ 
+    if (entry == NULL) {
+        bibtex_error ("can't parse entry `%s'", string);
+        return NULL;
+    }
+ 
+    s = bibtex_struct_copy (entry->preamble);
+     
+    bibtex_entry_destroy (entry, TRUE);
+ 
+    return s;
+}
+
+static gboolean
+author_needs_quotes (gchar * string) {
+  static gboolean initialized = FALSE;
+  static regex_t and_re;
+
+  if (! initialized) {
+    initialized = regcomp (& and_re, "[^[:alnum:]]and[^[:alnum:]]", REG_ICASE |
+                           REG_EXTENDED) == 0;
+    g_assert (initialized);
+  }
+  return
+    (strpbrk (string, ",") != NULL) ||
+    (regexec (& and_re, string, 0,NULL, 0)  == 0);
+}
 
 BibtexField * 
 bibtex_reverse_field (BibtexField * field,
 		      gboolean use_braces,
 		      gboolean do_quote) {
-#ifdef USE_RECODE
-    BibtexStruct * s;
-    gchar * string, * tmp, c;
-    gboolean has_upper, is_upper, has_space, is_command;
-    gint start, stop, last, i;
+    BibtexStruct * s = NULL;
+    gchar * string, * tmp;
+    gboolean is_upper, has_space, is_command;
+    gint i;
     BibtexAuthor * author;
 
     static GString *      st      = NULL;
@@ -365,11 +403,4 @@ bibtex_reverse_field (BibtexField * field,
     }
 
     return field;
-
-#else  /* ! USE_RECODE */
-    bibtex_warning ("bibtex_reverse_field () is disabled");
-    bibtex_warning ("to enable it, install GNU Recode and recompile");
-
-    return NULL;
-#endif /* USE_RECODE */
 }
