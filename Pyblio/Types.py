@@ -40,7 +40,7 @@ def get_entry (entry, has_default = 1):
 class FieldDescription:
     ''' Available informations for a given field type '''
 
-    def __init__ (self, name, type = Fields.Text.id):
+    def __init__ (self, name, type = Fields.Text):
 	self.name = name
 	self.type = type
 	return
@@ -95,7 +95,7 @@ class EntryDescription:
 	if fields.has_key (field):
 	    return fields [field].type
 
-	return Fields.Text.id
+	return Fields.Text
 
 
     def __getitem__ (self, item):
