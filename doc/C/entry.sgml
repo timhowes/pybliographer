@@ -1,0 +1,98 @@
+<refentry id="class-entry">
+  <refnamediv>
+    <refname>Entry</refname>
+    <refpurpose>Holds all the fields describing a bibliographic entry</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <programlisting>
+class Entry:
+    <link linkend="mem-entry-id">self.id</link>
+
+    def <link linkend="meth-entry-init">__init__</link>    (self, key = None, type = None, dict = None):
+    def <link linkend="meth-entry-keys">keys</link>        (self):
+    def <link linkend="meth-entry-has-key">has_key</link>     (self, key):
+    def <link linkend="meth-entry-text">text</link>        (self, key):
+    def <link linkend="meth-entry-getitem">__getitem__</link> (self, key):
+    def <link linkend="meth-entry-setitem">__setitem__</link> (self, name, value):
+    def <link linkend="meth-entry-delitem">__delitem__</link> (self, name):
+    def <link linkend="meth-entry-add">__add__</link>     (self, other):
+</programlisting>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Usage</title>
+    <para></para>
+  </refsect1>
+
+  <refsect1>
+    <title>Members</title>
+    <refsect2 id="mem-entry-id">
+      <title>self.id</title>
+      <para>String representation of the Entry specific class.</para>
+    </refsect2>
+  </refsect1>
+
+  <refsect1>
+    <title>Methods</title>
+    
+    <refsect2 id="meth-entry-init">
+      <title>__init__ (self, key = None, type = None, dict = None)</title>
+      <para></para>
+    </refsect2>
+
+    <refsect2 id="meth-entry-keys">
+      <title>keys (self)</title>
+      <para></para>
+    </refsect2>
+
+    <refsect2 id="meth-entry-has-key">
+      <title>has_key (self, key)</title>
+      <para></para>
+    </refsect2>
+
+    <refsect2 id="meth-entry-text">
+      <title>text (self, key)</title>
+      <para></para>
+    </refsect2>
+
+    <refsect2 id="meth-entry-getitem">
+      <title>__getitem__ (self, key)</title>
+      <para></para>
+    </refsect2>
+
+    <refsect2 id="meth-entry-setitem">
+      <title>__setitem__ (self, key, field)</title>
+      <para></para>
+    </refsect2>
+
+    <refsect2 id="meth-entry-delitem">
+      <title>__delitem__ (self, key)</title>
+      <para></para>
+    </refsect2>
+
+    <refsect2 id="meth-entry-add">
+      <title>__add__ (self, entry)</title>
+      <para></para>
+    </refsect2>
+
+  </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-general-insert-case:lower
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:nil
+sgml-parent-document:("pyblio.sgml" "reference" "refentry")
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

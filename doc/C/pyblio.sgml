@@ -6,6 +6,13 @@
 <!Entity gui    System "gui.sgml">
 <!Entity script System "script.sgml"> 
 <!Entity config System "config.sgml"> 
+
+<!Entity ref-iter  System "iterator.sgml"> 
+<!Entity ref-db    System "database.sgml"> 
+<!Entity ref-sel   System "selection.sgml"> 
+<!Entity ref-key   System "key.sgml"> 
+<!Entity ref-entry System "entry.sgml"> 
+<!Entity ref-url   System "url.sgml"> 
 ]>
 
 <Book>
@@ -17,16 +24,16 @@
     </author>
     <abstract>
       <para>Pybliographer  is a  tool for  working  with bibliographic
-    databases. It  provides a  general framework that  can be  used to
-    manipulate these databases with  a simple graphical interface, but
-    that  can also  be  easily extended  by  the mean  of a  scripting
-    language to fit a wide range of needs.</para>
+	databases. It provides a general framework that can be used to
+	manipulate these databases  with a simple graphical interface,
+	but  that  can  also be  easily  extended  by  the mean  of  a
+	scripting language to fit a wide range of needs.</para>
     </abstract>
   </bookinfo>
   
-  &gui;
+    &gui;
   
-  &script;
+    &script;
   
   &config;
 
@@ -34,4 +41,36 @@
     <title>Adding new formats</title>
     <para>to be written...</para>
   </chapter>
+
+  <reference>
+    <title>Class reference</title>
+    
+    &ref-db;
+    &ref-entry;
+    &ref-iter;
+    &ref-key;
+    &ref-sel;
+    &ref-url;
+
+  </reference>
+
 </book>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-general-insert-case:lower
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-default-dtd-file:"pyblio.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

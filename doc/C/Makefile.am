@@ -19,7 +19,9 @@
 # 
 # $Id$
 
-SGML = gui.sgml pyblio.sgml script.sgml config.sgml
+SGML = 	gui.sgml pyblio.sgml script.sgml config.sgml \
+	iterator.sgml database.sgml selection.sgml key.sgml entry.sgml \
+	url.sgml
 
 EXTRA_DIST = \
 	topic.dat $(SGML)\

@@ -1,0 +1,60 @@
+<refentry id="class-selection">
+  <refnamediv>
+    <refname>Selection</refname>
+    <refpurpose>Defines restrictions on an iterator</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <programlisting>
+class Selection:
+    def <link linkend="meth-selection-init">__init__</link> (self, search = None, sort = None):
+    def <link linkend="meth-selection-iterator">iterator</link> (self, iterator):
+
+    <varname>search</varname>
+    <varname>sort</varname>
+</programlisting>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Usage</title>
+    <para>This class can hold Search and Sort criterions and provide
+    an iterator that follows these restrictions.</para>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Methods</title>
+    
+    <refsect2 id="meth-selection-init">
+      <title>__init__</title>
+      <programlisting>
+selection = Selection (search = some_search, sort = some_sorting)
+</programlisting>
+      <para>This class </para>
+    </refsect2>
+
+    <refsect2 id="meth-selection-iterator">
+      <title>iterator</title>
+      <para></para>
+    </refsect2>
+
+  </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-general-insert-case:lower
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:nil
+sgml-parent-document:("pyblio.sgml" "reference" "refentry")
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->
