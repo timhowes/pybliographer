@@ -1,3 +1,8 @@
+2001-01-15  Fatih Demir	<kabalak@gmx.net>
+
+	* configure.in: Added tr to ALL_LINGUAS and
+		resorted it.
+
 2001-01-09  Gobry Frederic  <frederic.gobry@epfl.ch>
 
 	* Pyblio/GnomeUI/Search.py: fixed broken "Search" button
