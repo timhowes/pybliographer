@@ -23,6 +23,7 @@ pybdir  = $(datadir)/$(PACKAGE)
 appdir  = $(datadir)/gnome/apps/Applications
 
 SUBDIRS = 	Pyblio 		\
+		intl		\
 		bibtex 		\
 		compiled 	\
 		intl		\

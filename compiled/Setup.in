@@ -35,7 +35,7 @@ CFLAGS=	-I.. $(OPT) -I$(INCLUDEPY) -I$(EXECINCLUDEPY) $(DEFS)
 _bibtex	-I$(srcdir)/../bibtex 				\
 	@GLIB_CFLAGS@ @RECODEINC@			\
        	bibtexmodule.c ../bibtex/.libs/libbibtex.a 	\
-	@GLIB_LIBS@ @RECODELIB@
+	@GLIB_LIBS@ @RECODELIB@ @INTLLIBS@
 
 _recode	@RECODEINC@ recodemodule.c @RECODELIB@
 
