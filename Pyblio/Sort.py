@@ -80,5 +80,5 @@ class FieldSort:
         try:
             return entry [self.field]
         except KeyError:
-            return None
-            
+            return entry.type (self.field) ('')
+        

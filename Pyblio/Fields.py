@@ -252,7 +252,7 @@ class Date:
                 if g:
                     year = int (g.group (1))
                 else:
-                    raise ValueError, 'can\'t parse `%s\' as a date' % arg
+                    year = None
                 
             month = None
             day   = None
@@ -276,22 +276,22 @@ class Date:
 
     def __cmp__ (self, other):
 
-        # No date is no date !
-        if not self.year and not other.year: return 0
-
-        diff = (self.year or other.year) - (other.year or self.year)
-        if diff: return diff
-
-        # Same year
-        if not self.month and not other.month: return 0
-
-        diff = (self.month or other.month) - (other.month or self.month)
-        if diff: return diff
+        s = self.year  or -1
+        o = other.year or -1
         
-        # Same month
-        if not self.day and not other.day: return 0
+        diff = s - o
+        if diff: return diff
 
-        return (self.day or other.day) - (other.day or self.day)
+        s = self.month  or -1
+        o = other.month or -1
+        
+        diff = s - o
+        if diff: return diff
+
+        s = self.day  or -1
+        o = other.day or -1
+        
+        return s - o
 
     def __str__ (self):
         ''' Returns textual representation '''
@@ -303,8 +303,12 @@ class Date:
             elif self.year and self.month:
                 self.text = '%d/%d' % (self.month, self.year)
             
-            else: self.text = str (self.year)
-            
+            elif self.year:
+                self.text = str (self.year)
+
+            else:
+                self.text = ''
+                
         return self.text
 
     def format (self, fmt = 'latin1'):
