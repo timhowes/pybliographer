@@ -357,15 +357,17 @@ class DataBase (Base.DataBase):
 
         try:
             entry = iter.first ()
-            
-            if entry.key is None:
-                self.add (entry)
-            else:
-                if self.dict.has_key (entry.key):
-                    errors.append (_("%s:%d: key `%s' already defined") % (
-                        str (self.key), entry.line, entry.key.key))
+
+            if entry is not None:
+                if entry.key is None:
+                    self.add (entry)
                 else:
-                    self.dict [entry.key] = entry
+                    if self.dict.has_key (entry.key):
+                        errors.append (_("%s:%d: key `%s' already defined") % (
+                            str (self.key), entry.line, entry.key.key))
+                    else:
+                        self.dict [entry.key] = entry
+                
         except Exceptions.ParserError, err:
             errors.append (str (err))
 
