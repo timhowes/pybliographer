@@ -139,19 +139,50 @@ class Database (api.Database):
     def save (self):
         return
 
+    def roles (self):
+        # get all the roles in a single pass
+        self._op.execute ("SELECT id, parent, info FROM role")
+
+        roles = []
+        assoc = {}
+
+        result = self._op.fetchall ()
+        
+        for role in result:
+            r = Role (role [0], role [2], None)
+            r.db = self
+
+            roles.append (r)
+            assoc [role [0]] = r
+
+        for role in result:
+            if not role [1]: continue
+            
+            assoc [role [0]]._parent = assoc [role [1]]
+
+        return roles
+
 
 class Role (api.Role):
+
+    def __init__ (self, role, description, type):
+        api.Role.__init__ (self, role, description, type)
+        self._parent = None
+        return
+    
 
     def register (self, db):
         self.db = db
 
+        self._parent = None
+        
         db._op.execute ("INSERT INTO role (id, info) "
                         "VALUES (%s, %s)",
                         self.id, self.desc)
         db._db.commit ()
         return self
     
-    def parent_set (self, super):
+    def _set_parent (self, super):
         ''' Set the parent Role, possibly to None '''
         
         self.db._op.execute ("UPDATE role SET parent = %s WHERE id = %s",
@@ -159,6 +190,14 @@ class Role (api.Role):
         self.db._db.commit ()
         return
 
+    def _get_parent (self):
+        return self._parent
+
+    parent = property (_get_parent,
+                       _set_parent,
+                       None,
+                       'Parent Role')
+    
     
 class Record (object):
 
@@ -202,21 +241,18 @@ class Record (object):
     
 
 class Work (Record, api.Work):
-
     _type = 'w'
 
-class Expression (Record, api.Expression):
 
+class Expression (Record, api.Expression):
     _type = 'e'
 
     
 class Manifestation (Record, api.Manifestation):
-
     _type = 'm'
 
     
 class Item (Record, api.Item):
-
     _type = 'i'
 
 
@@ -284,20 +320,20 @@ class Person (Type, api.Person):
         self.db._db.commit ()
         return
 
-    first = property (_get_first,
-                      _set_first,
-                      None,
-                      'Middle Name of a Person')
+    first  = property (_get_first,
+                       _set_first,
+                       None,
+                       'Middle Name of a Person')
     
     middle = property (_get_middle,
                        _set_middle,
                        None,
                        'Middle Name of a Person')
     
-    last = property (_get_last,
-                     _set_last,
-                     None,
-                     'Last Name of a Person')
+    last   = property (_get_last,
+                       _set_last,
+                       None,
+                       'Last Name of a Person')
     
 
 class Text (Type, api.Text):

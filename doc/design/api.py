@@ -11,10 +11,13 @@ class Database (object):
         ''' Save the database  '''
         pass
 
-    def query (self, query):
+    def query (self, query = None, order = None):
         ''' Perform a query on the database  '''
         pass
     
+    def roles (self):
+        pass
+
 
 
 class Record (object):
@@ -81,6 +84,8 @@ class Role (object):
 
     ''' Detailed information about an attribute role. A role can be a
     specialization of another role. '''
+
+    __slots__ = ('parent')
     
     def __init__ (self, role, description, type):
         
@@ -102,11 +107,6 @@ class Role (object):
         ''' Register the role in the database '''
         pass
 
-    def parent_set (self, super):
-        ''' Set the parent Role, possibly to None '''
-        pass
-
-    
 
 class Type (object):
 
@@ -117,9 +117,6 @@ class Type (object):
         self.db = None
         self.id = None
         return
-
-    def __cmp__ (self, other):
-        pass
 
     def register (self, db):
         ''' Register the attribute in the database '''

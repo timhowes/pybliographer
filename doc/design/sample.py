@@ -2,12 +2,15 @@ from db import *
 
 db = Database ('test', 1)
 
-author_r = Role ('base:author', 'An Author', None).register (db)
-title_r  = Role ('base:title', 'Title', None).register (db)
+a_r = Role ('base:author', 'Author', None).register (db)
+t_r = Role ('base:title',  'Title',  None).register (db)
+
+l_r = Role ('base:literal-author', 'Author', None).register (db)
+l_r.parent = a_r
 
 work  = Work ().register (db)
 title = Text (text = u'Un titre accentué')
 
 title.register (db)
 
-work.attr_ins (title, title_r, 1)
+work.attr_ins (title, t_r, 1)
