@@ -25,7 +25,7 @@ from gnome.ui import *
 from gtk import *
 from gnome import config
 
-from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector
+from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor
 from Pyblio import Connector, Open, Exceptions, Selection, Sort
 
 import gettext, os, string, copy
@@ -382,10 +382,12 @@ class Document (Connector.Publisher):
     
     def add_entry (self, * arg):
         pass
+
     
     def edit_entry (self, * arg):
         entries = self.index.selection ()
-        l = len (entries)
+        l       = len (entries)
+        
         if l == 0: return
         
         if l > 5:
@@ -393,13 +395,20 @@ class Document (Connector.Publisher):
                 return
 
         for entry in entries:
-            edit = Editor.Editor (copy.deepcopy (entry), self.w)
+            edit = Editor.Editor (self.data, entry, self.w)
             edit.Subscribe ('commit-edition', self.commit_edition)
 
         return
 
     def commit_edition (self, old, new):
-        print old, new
+        ''' updates the database and the display '''
+
+        new = self.data.add (new)
+        
+        if old.key != new.key:
+            del self.data [old.key]
+        
+        self.redisplay_index (1)
         return
     
     
@@ -490,7 +499,8 @@ class Document (Connector.Publisher):
                             _("Gnome interface to the Pybliographer system."),
                             'pybliographic-logo.png')
         
-        link = GnomeHRef ('http://www.gnome.org/pybliographer', _("Pybliographer Home Page"))
+        link = GnomeHRef ('http://www.gnome.org/pybliographer',
+                          _("Pybliographer Home Page"))
         link.show ()
         about.vbox.pack_start (link)
         about.show()

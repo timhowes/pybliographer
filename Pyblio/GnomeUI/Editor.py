@@ -23,18 +23,16 @@ import string, re
 from gnome.ui import *
 from gtk import *
 
-import gettext
+import gettext, copy
 _ = gettext.gettext
 
-from Pyblio import Fields, Config, Base, Types, Connector
+from Pyblio import Fields, Config, Base, Types, Connector, Exceptions
 
 from Pyblio.GnomeUI import FieldsInfo, Utils
 
 
-Fields.Text.ui = EntryField
 
-
-class EditionFieldBase (Connector.Publisher):
+class BaseField (Connector.Publisher):
     ''' common class to each specialized field editor '''
     
     def __init__ (self, entry, field):
@@ -46,11 +44,8 @@ class EditionFieldBase (Connector.Publisher):
             self.value = None
         return
 
-    def update (self, entry):
-        return
 
-
-class EntryField (EditionFieldBase):
+class EntryField (BaseField):
 
     def __init__ (self, entry, field):
         EditionFieldBase.__init__ (self, field, value)
@@ -67,6 +62,7 @@ class EntryField (EditionFieldBase):
         self.w.show ()
         return
 
+
     def update (self, entry):
         ''' updates the entry according to the current field value '''
         
@@ -78,12 +74,40 @@ class EntryField (EditionFieldBase):
         else:
             del entry [self.field]
             
+        return 1
+
+
+class NativeEditor:
+    def __init__ (self, database, entry):
+        ''' Composit widget to edit an entry in its native format '''
+
+        self.entry    = entry
+        self.database = database
+        self.original = database.get_native (entry.key)
+
+        self.w = GtkText ()
+        self.w.set_editable (TRUE)
+
+        self.w.insert_defaults (self.original)
         return
-    
+
+
+    def update (self):
+        ''' updates and returns the new entry '''
+        new  = None
+
+        try:
+            new = self.database.create_native (self.w.get_chars (0, -1))
+        except Exceptions.ParserError, error:
+            Utils.error_dialog (_("Error in native string parsing"),
+                                str (error))
+        
+        return new
+
     
 class Editor (Connector.Publisher):
     
-    def __init__ (self, entry, parent = None):
+    def __init__ (self, database, entry, parent = None):
 
         self.w = GtkDialog ()
         
@@ -91,7 +115,7 @@ class Editor (Connector.Publisher):
         self.w.set_title ('Edit')
         self.w.connect ('delete_event', self.close_dialog)
 
-        if parent: self.w.set_parent (parent)
+        if parent: self.w.set_transient_for (parent)
 
         apply_b = GnomeStockButton (STOCK_BUTTON_APPLY)
         apply_b.connect ('clicked', self.apply_changes)
@@ -116,21 +140,29 @@ class Editor (Connector.Publisher):
         next_b = GtkButton ()
         self.w.vbox.pack_start (next_b)
         next_b.connect ('clicked', self.next_item)
-        
-        self.entry = CompleteEntry (entry, (apply_b, next_b),
-                                    database.properties, database)
 
-        self.vbox.pack_start (self.entry)
-        self.entry.show ()
+        self.entry  = entry
+        self.editor = NativeEditor (database, copy.deepcopy (entry))
+
+        self.w.vbox.pack_start (self.editor.w)
+        self.editor.w.show ()
+        self.w.show ()
         return
+
+
+    def next_item (self, * arg):
+        pass
 
 
     def close_dialog (self, *arg):
-        self.destroy ()
+        self.w.destroy ()
         return
 
+
     def apply_changes (self, * arg):
-        
-        self.close_dialog ()
+        new = self.editor.update ()
+        if new:
+            self.issue ('commit-edition', self.entry, new)
+            self.close_dialog ()
         return
     
