@@ -21,6 +21,8 @@
 
 ''' Manage the generic query interface. '''
 
+from __future__ import nested_scopes
+
 from gtk import *
 from gnome.ui import *
 
@@ -40,6 +42,8 @@ if not os.path.exists (path):
 class QueryUI:
 
     def __init__ (self, parent = None):
+        ''' Create a generic Query interface '''
+        
         self.xml = GladeXML (path, 'query')
         self.xml.signal_autoconnect ({ 'search' : self.search,
                                        'cancel' : self.cancel,
@@ -62,6 +66,8 @@ class QueryUI:
         return
 
     def load (self):
+        ''' Load the list of known connections '''
+        
         if os.path.exists (self.file):
             self.cnx = pickle.load (open (self.file, 'r'))
         else:
@@ -69,10 +75,14 @@ class QueryUI:
         return
 
     def save (self):
+        ''' Save the list of known connections '''
+
         pickle.dump (self.cnx, open (self.file, 'w'))
         return
 
     def update (self):
+        ''' Update the optionmenu of available connections '''
+        
         # display in the dropdown menu
         option = self.xml.get_widget ('query_option')
         menu   = GtkMenu ()
@@ -90,25 +100,49 @@ class QueryUI:
 
         
     def search (self, * arg):
+        ''' Perform the actual search operation '''
+        
         menu = self.xml.get_widget ('query_option').get_menu ()
         cnx = menu.get_active ().get_data ('cnx')
 
         engine = cnx.engine ()
 
         # display a progress bar...
-        engine.Subscribe ('progress', self.search_progress)
+        xml = GladeXML (path, 'progress')
 
-        engine.search ({})
+        w = xml.get_widget ('progress')
+        w.set_parent (self.w_search)
+        w.show ()
+        
+        bar = xml.get_widget ('progressbar')
+        
+        def show_progress (progress):
+            bar.update (progress)
+            while events_pending (): mainiteration ()
+            return
+
+        def cancel_query (widget):
+            engine.cancel ()
+            return
+
+        xml.signal_autoconnect ({ 'cancel' : cancel_query })
+        
+        engine.Subscribe ('progress', show_progress)
+        show_progress (0.0)
+        
+        if not engine.search ({}):
+            # close the progress bar but do not destroy the search
+            w.destroy ()
+            return
+
+        # the song is over, turn off the lights
+        w.destroy ()
         
         if self.w_cnx:
             self.w_cnx.destroy ()
         self.w_search.destroy ()
         return
 
-    def search_progress (self, progress):
-        print "Progress: %d" % progress
-        return
-    
 
     def cancel (self, * arg):
         if self.w_cnx:
@@ -119,10 +153,11 @@ class QueryUI:
 
 
     def cnx_validate (self, * arg):
-        self.save ()
-        
         self.w_cnx.destroy ()
         self.w_cnx = None
+
+        self.save ()
+        self.update ()
         return
 
     def cnx_cancel (self, * arg):
@@ -139,10 +174,9 @@ class QueryUI:
         try:
             cnx = Connection (file)
         except Exceptions.SyntaxError, msg:
-            w = GnomeErrorDialog ("In the XML Connection '%s':\n%s" %
-                                  (os.path.basename (file), msg),
-                                  parent = self.w_cnx)
-            w.show_all ()
+            GnomeErrorDialog ("In the XML Connection '%s':\n%s" %
+                              (os.path.basename (file), msg),
+                              parent = self.w_cnx).show ()
 
         self.cnx.insert (0, cnx)
         self.cnx_update ()

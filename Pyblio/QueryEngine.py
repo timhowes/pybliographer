@@ -41,7 +41,9 @@ class Engine (Publisher):
     def search (self, args):
         pass
 
-
+    def cancel (self):
+        pass
+    
 
 def getString (element):
     s = ''

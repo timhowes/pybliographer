@@ -22,6 +22,8 @@
 from Pyblio.QueryEngine import Engine
 from Pyblio.Autoload import register
 
+import time
+
 
 class Medline (Engine):
 
@@ -30,9 +32,21 @@ class Medline (Engine):
         return
 
     def search (self, query):
-        print query
-        self.issue ('progress', 100)
-        return
-    
+        self.running = 1
 
+        p = 0.0
+        while p < 1.0 and self.running:
+            self.issue ('progress', p)
+            p = p + 0.1
+
+            time.sleep (1)
+        
+        return self.running
+
+    
+    def cancel (self):
+        self.running = 0
+        return
+
+    
 register ('query', 'Medline', Medline)
