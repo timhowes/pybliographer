@@ -144,6 +144,8 @@ btgroup_destroy (BTGroup * group) {
     g_chunk_free (group, chunk);
 }
 
+/* this function adds the comma separated blocks to the token list */
+
 static GList *
 split_spaces (GList * tokens,
 	      gchar * data,
@@ -307,13 +309,27 @@ extract_author (BibtexAuthorGroup * authors,
 	section [i]  = g_ptr_array_new ();
     }
     
+    /* count the , */
+    tmp   = aut_elem;
+    comas = 0;
+
+    while (tmp) {
+	group = (BTGroup *) tmp->data;
+	text = group->text;
+
+	tmp = tmp->next;
+
+	/* Check for , syntax */
+	if (strcmp (",", text) == 0) {
+	  comas ++;
+	}
+    }
+
     /* Parse the list into several groups */
-    tmp = aut_elem;
 
-    sections = 0;
-    comas    = 0;
-
+    tmp      = aut_elem;
     array    = section [0];
+    sections = 0;
 
     lastname_section = -1;
 
@@ -330,19 +346,19 @@ extract_author (BibtexAuthorGroup * authors,
 	    if (array->len) {
 		sections ++;
 
-		/* count the new coma */
-		comas ++;
-		
 		/* only consider the 3 first sections */
 		if (sections < SECTION_LENGTH)
 		    array = section [sections];
 	    }
 
+	    lastname_section = -1;
 	    continue;
 	}
 
 	/* If we have the particule in lowercase */
-	if (group->level == 1 && islower (text [0]) && 
+	if (group->level == 1  &&
+	    comas == 0         &&
+	    islower (text [0]) && 
 	    lastname_section == -1) {
 
 	    if (array->len) {
