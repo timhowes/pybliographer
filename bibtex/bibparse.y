@@ -243,6 +243,14 @@ entry:	  '@' L_NAME '{' values '}'
 	| '@' L_NAME '(' error ')'
 /* -------------------------------------------------- */
 {
+    if (strcasecmp ($2, "comment") == 0) {
+	entry->type = g_strdup ($2);
+	g_strdown (entry->type);
+
+	yyclearin;
+	YYACCEPT;
+    }
+
     if (current_source->strict) {
 	bibtex_parser_start_error ("perhaps a missing coma");
 	YYABORT;
@@ -261,6 +269,14 @@ entry:	  '@' L_NAME '{' values '}'
 	| '@' L_NAME '{' error '}'
 /* -------------------------------------------------- */
 {
+    if (strcasecmp ($2, "comment") == 0) {
+	entry->type = g_strdup ($2);
+	g_strdown (entry->type);
+
+	yyclearin;
+	YYACCEPT;
+    }
+
     if (current_source->strict) {
 	bibtex_parser_start_error ("perhaps a missing coma");
 	YYABORT;
