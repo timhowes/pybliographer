@@ -654,10 +654,10 @@ __dialog_object = None
 def run (w):
     global __dialog_object
 
-    if __dialog_object:
-        __dialog_object.show()
-    else:
+    if not __dialog_object:
         __dialog_object = ConfigDialog(w)
+
+    __dialog_object.show()
 
     
 # Local Variables:
