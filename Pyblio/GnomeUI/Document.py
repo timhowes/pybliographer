@@ -40,6 +40,12 @@ import gettext, os, string, copy, types, sys, traceback, stat
 
 _ = gettext.gettext
 
+import cPickle
+
+pickle = cPickle
+del cPickle
+
+
 class Document (Connector.Publisher):
     
     def __init__ (self, database):
@@ -173,7 +179,11 @@ class Document (Connector.Publisher):
 
         self.modification_date = None
 
-        self.redisplay_index ()
+        # set the default sort method
+        default = config.get_string ('Pybliographic/Sort/Default')
+        if default is not None: default = pickle.loads (default)
+
+        self.sort_view (default)
         return
 
 
