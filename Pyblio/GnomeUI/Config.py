@@ -57,6 +57,7 @@ class ConfigDialog:
         self.dialog = self.xml.get_widget ('config1')
         self.dialog_vbox = self.xml.get_widget ('dialog-vbox1')
         self.w = gtk.Notebook ()
+        # originally: self.w = GnomePropertyBox ()
         self.dialog_vbox.pack_start(self.w)
 
         tooltips = gtk.Tooltips ()
@@ -88,8 +89,13 @@ class ConfigDialog:
                     continue
 
                 nice  = string.capitalize (string.split (item, '/') [1])
-                label = gtk.Frame (nice)
-                label.set_border_width (5)
+##                 label = gtk.Frame (nice)
+##                 label.set_border_width (5)
+                label = gtk.Label()
+                label.set_use_markup(gtk.TRUE)
+                label.set_markup('   <b>%s</b>' % (nice))
+                label.set_alignment(xalign=0.5, yalign=0.5)
+                table.pack_start (label,False)
                 
                 desc  = data.description
                 desc  = string.translate (desc, _map)
@@ -114,8 +120,8 @@ class ConfigDialog:
                 hbox.pack_start (button, False, False)
                 tooltips.set_tip (button, desc)
 
-                label.add (hbox)
-                table.pack_start (label,
+                #label.add (hbox)
+                table.pack_start (hbox,
                                   expand = edit.resize,
                                   fill   = edit.resize)
 
@@ -213,7 +219,7 @@ class BaseConfig:
     def changed (self, * arg):
         if self.frozen: return
         
-        self.prop.changed ()
+        #self.prop.changed () XXX
         self._state = 1
         return
 
