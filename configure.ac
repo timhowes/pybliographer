@@ -267,7 +267,7 @@ AC_CONFIG_FILES(
 	scripts/Makefile
 	tests/Makefile
 	glade/Makefile
-	compiled/Setup.tmp:compiled/Setup.in
+	compiled/setup.py
 	bibtex/Makefile 
 	Pyblio/Makefile
 	Pyblio/GnomeUI/Makefile
@@ -283,27 +283,6 @@ AC_CONFIG_FILES(
 	Styles/Makefile
 )
 
-AC_CONFIG_COMMANDS([bootstrap],
-[
-
-/bin/sh ./etc/installer < compiled/Setup.tmp > compiled/Setup
-
-if echo ${srcdir} | grep '^/' > /dev/null ; then
-	source=${srcdir}
-else
-	source="`pwd`/${srcdir}"
-fi
-
-(
-echo
-echo "---------- python bootstrap ----------"
-echo
-cd compiled && \
-	make -f ${source}/compiled/Makefile.pre.in boot \
-	VPATH=${source}/compiled srcdir=${source}/compiled
-) >> config.log 2>&1
-
-])
 
 AC_OUTPUT
 
