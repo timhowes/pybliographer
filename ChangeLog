@@ -1,3 +1,13 @@
+2001-10-17  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/Fields.py: remove white space around URLs
+
+2001-06-29  Karl Eichwalder  <ke@suse.de>
+
+	* compiled/Setup.in: Don't try to link non-pic objects in shared
+	lib.  From Andreas Schwab.
+	* compiled/Makefile.pre.in (Setup): Ditto.
+
 2001-06-26  Frédéric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/Format/BibTeX.py: fixed order of referenced/referencing entries
