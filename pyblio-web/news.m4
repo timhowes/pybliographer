@@ -1,12 +1,17 @@
 m4_dnl -*- html -*-
 m4_dnl
 m4_dnl --------------------------------------------------
-m4_define(pyblio_last,  [[1.0.7]])m4_dnl
+m4_define(pyblio_last,  [[1.0.8]])m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
 m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
+
+news_item([[22/01/2001]], [[I've released pybliographer 1.0.8, which
+finally fixes the search button problem. In this release you'll find a
+few new translations and an updated version of the italian
+documentation.]]),
 
 news_item([[7/12/2000]],  [[pybliographer is now officially available
 for Debian (Woody)&nbsp;! Please check your favorite mirror...]]),
