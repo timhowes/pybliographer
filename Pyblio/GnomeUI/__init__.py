@@ -26,9 +26,19 @@ import sys
 
 sys.argv = sys.argv [:2] + ['--'] + sys.argv [2:]
 
+# correctly identify the program
+import gnome
+from Pyblio import version
+
+gnome.app_id      = 'Pybliographic'
+gnome.app_version = version.version
+
+# import the GUI
 import gnome.ui
 
+# clean up our garbage
 sys.argv = sys.argv [:2] + sys.argv [3:]
 
+del sys, gnome
 
 
