@@ -1,3 +1,73 @@
+2003-05-06  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/Base.py (Entry, Entry2): minor changes, has now DBObject
+	as superclass
+	(DataBase): subclasses Recordset, has separate Iterator, interface
+	changes
+	(EnumIterator): new, separate iterator for Database
+
+	* Pyblio/Fields.py (AuthorGroup.__getslice__): added
+
+	* Pyblio/Iterator.py (Iterator): Rewritten as base class,
+	(DBIterator): now used for old style database
+	(RecordSet): new base class
+
+	* Pyblio/Storage.py (VERSION): in transition (many oddities))
+	(temporary_db, DBObjectT): added
+	(Database): Database oriented storage, now derived from RecordSet 
+	(DBIndexI): associated Index class
+	(ConfigT): stores configuration data 
+	(CounterI): a simple counter implementation
+	(DBIterator): associated Iterator 
+
+	* Pyblio/Utils.py (generate_key): modified (mainly using key.key
+	as key)
+
+	* Pyblio/db3base.py (DBase): some additions, 
+	(DBase.connectx): data format extended
+	(DBase.mk_index): creates an index
+	(DBase.store): cleans the data with str() (problem with BibTeX)
+	(Index.remove): added 
+
+	* Pyblio/Format/BibTeX.py (Entry): base class is now Entry2.
+	(__parsefile__): uses add interface to database;  some problem
+	with formatting the error message solved by replacing str() by
+	repr() 
+
+	* Pyblio/Format/TaggedReader.py (TaggedReader.read_iso2709):
+	edited 
+
+	* Pyblio/GnomeUI/Document.py (Document.add_entry): adds an element
+	to new entry to control choice of add vs. update methods later
+	(Document.commit_edition): uses new element.  Problem of bibtex
+	keys not fully solved.  
+
+	* Pyblio/GnomeUI/Editor.py (Date.setup): added try clause because
+	of problem in database (generalise, if possible)
+
+2003-05-05  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/GnomeUI/Editor.py (RealEditor.update): test reduced to
+	key.key because of db problems
+
+2003-04-30  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/Format/BibTeX.py (DataBase.__parsefile__):
+	self.dict[entry.key] = entry replaced by self.add(entry)
+
+	* Pyblio/GnomeUI/Utils.py (error_dialog): (wondering) replaced str
+	by repr (cf. Exceptions) 
+
+2003-04-29  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/Format/BibTeX.py (Entry.__init__): calls now
+	Entry2.__init__ 
+
+2003-04-27  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/Coco.py (RecoordSet, DataBase, InputFile): added cl.
+	dictionary interface added
+
 2003-04-11  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
 	* Pyblio/GnomeUI/Document.py (Document.__init__): added notebook
