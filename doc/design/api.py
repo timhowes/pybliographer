@@ -4,7 +4,7 @@ class Database (object):
     ''' A complete pybliographer database. Every entry manipulated by
     the system is connected to such a database. '''
     
-    def __init__ (self, uri):
+    def __init__ (self, uri, create = 0):
         pass
 
     def save (self):
@@ -48,10 +48,6 @@ class Record (object):
 
     def register (self, db):
         ''' Register the record in the database '''
-        return self
-    
-    def unregister (self):
-        ''' Unregister the record from the database '''
         return self
 
 
@@ -121,10 +117,6 @@ class Role (object):
         ''' Register the role in the database '''
         pass
 
-    def unregister (self):
-        ''' Unregister the role from the database '''
-        pass
-
 
 class Attribute (object):
 
@@ -141,10 +133,6 @@ class Attribute (object):
 
     def register (self, db):
         ''' Register the attribute in the database '''
-        return self
-
-    def unregister (self):
-        ''' Unregister the attribute from the database '''
         return self
 
 
