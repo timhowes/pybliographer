@@ -1,0 +1,59 @@
+% $Id$
+% $Id$
+
+\section{Searching, Selecting, and Formatting Data}
+\label{sec:processing}
+
+
+A \textit{search} is an operation that is performed against one or
+more \textit{databases} -- usually locally represented by
+Pybliographer and remotely by database servers known as
+\textit{connections} -- and that results uniformly in a \textit{result
+  set}.
+
+As a rule, such a result set is if necessary \textit{imported} as such
+into the Pybliographer database, and sooner or later \textit{selected}
+from.
+
+A \textit{selection} is any subset of the database, usually the result
+of manually inspecting (\textit{scanning}) some result set, that is
+presented to a processing option: either to be set apart for further
+processing at a later time, or to be processed by the output routines
+in order to be presented or exported.
+
+[XXX Are there other uses? ]
+
+
+
+\subsection{A general query service}
+\label{sec:genquery}
+
+The exact possibilities that a database provides for searching are as
+manifold as are the data. Paradoxically this makes it more easy to
+provide one integrated query service -- any attempt to equip every
+database and every service with its own query interface cannot but
+falter in view of the enormeous programming investment that would be
+needed.
+
+It's not clear, perhaps, how the individual services can communicate
+their capabilities upwards towards the query service, but it should be
+evident that \textit{some} communication would be helpful -- even if
+one fully acknowledges that the assessment of a database service must
+usually include information that is not available to the
+program. (Example: cataloguing rules -- RAK, AACR, \dots)
+
+
+\subsection{Integration with editors and wordprocessors}
+\label{sec:wpintegr}
+\task{wpintegration}
+
+
+\subsection{Formatting references  and bibliographies}
+\label{sec:formatting}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "todo"
+%%% End: 

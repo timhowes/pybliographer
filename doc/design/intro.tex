@@ -1,0 +1,139 @@
+\setcounter{secnumdepth}{3}
+\cleardoublepage
+
+
+\section{Introduction and Generalities}
+\label{sec:intro}
+
+
+\subsection{An overview of user requirements}
+\label{sec:requ}
+
+As a bibliographic database manager, \textit{Pybliographer} places
+itself at the intersection of various expectations, traditions, and
+requirements, each of which developped originally independent, and
+often in ignorance of the other, and which are still shaping the field
+according to their own peculiarities, although they are getting in
+closer contact recently.
+
+It should prove useful to start with a view of these ancestral
+developments:
+
+\begin{itemize}
+\item The oldest stems from the librarian's duty to keep inventories
+  of his collection in form of \textit{catalogues} -- and the
+  associated application software.
+\item Very early the scholarly (and technical) document preparation
+  has been supported with programs to augment document sources with
+  correctly formatted references (\textit{Refer} and \textit{BibTeX}
+  are two similar programs for the major document processing
+  environments).
+\item These programs concerning themselves, however, only with this
+  last step, other tools developed over time to help with orgenising
+  and searching the databases these programs require. Such
+  \textit{reference managers} also aided in the odious task of
+  actually creating (i.e., typing) the needed entries.
+\item With the growth of Internet usage, it became possible and more
+  or less usual to access databases of bibliographical interest
+  directly. Both the nature of the data (format, extent, correctness,
+  completeness) and of the means of access (protocols, navigation,
+  access restrictions, formatting)  vary enormously. Nevertheless, it
+  has become desirable to easily integrate the results of these
+  searches into one database -- adding a new complexity to the tasks.
+\item In addition, more and more the exchange of documents needs to be
+  integrated, too. 
+\item The World Wide Web may also serve as an imperfect but easily usable
+  and ubiquitous way of providing \textit{access} to a database.
+\item Finally, the traditional library catalogues have also added
+  support for additional administrative functions (both on the
+  acqusitions as on the lending side), many of which are quite
+  natural extensions of their primary function.
+\end{itemize}
+
+In the following some of these strands are more fully discussed.
+
+
+\subsubsection{Library Catalogues}
+
+
+
+\subsubsection{BibTeX}
+
+
+\subsubsection{Reference Managers}
+
+
+\subsubsection{Database Access}
+
+
+
+
+
+
+
+\subsubsection{Other lists of requirements}
+\label{sec:otherreq}
+
+
+
+The following is a list of user requirements as given in a talk in the
+technical university of Chemnitz\footnote{\url{%
+    http://archiv.tu-chemnitz.de/pub/2001/0013/data/anforderungen.htm}} 
+\begin{itemize}
+
+\item Flexible acces via various categories, viz. author, title,
+  publication year, journal, and combinations thereof.
+
+\item Import and export in various formats, viz. BibTeX, Medline,
+  Refer, RFC1807, [MARC, MAB, ...]
+
+\item Supports working groups, allows combinations of databases.
+
+\item Allows to merge data from various sources, and to normalise it
+  (e.g., with respect to doffering ways to abbeviate a journal title ...)
+
+\item Adapts to the various formatting requiremants of different
+  journals, easy development of new styles.
+
+\item Extensible by local fields, to hold notes, order information,
+  annotations, excerpts, summaries, etc.
+
+\item Simple use during document preparation: allows to search the
+  references from the editor/wordprocessor (by author, title, e.g.),
+  thus eschews the use of labels -- the latter are to be used and
+  provided only internally. \seet{wpintegration}
+
+\item Allow confidential data in shared databases (e.g., annotations
+  of theses).
+
+\item N.B.: These requiremants transcend BibTeX's abililties; thus it
+  should be used only as an export format.
+\end{itemize}
+
+Other points that were mentioned on the mailing list:
+\begin{itemize}
+\item Pybliographer starts too slow; with larger databases one has no
+  indication of progress, and must wait for a long time. 
+\item Pybliographer holds the whole databse in memory, and uses a lot
+  of it! (For comparision: Allegro claims about 600 B (of secondary
+  storage) per entry.)
+
+\end{itemize}
+
+
+
+
+\subsection{Highlights of Pybliographer Release 2}
+\label{sec:highr2}
+
+\begin{itemize}
+\item The Index(-view) has been reworked, it now consumes less ressources,
+  starts and redraws much faster.
+\item ...
+\end{itemize}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "todo"
+%%% End: 
