@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.6\n"
-"POT-Creation-Date: 2000-03-24 11:13+0100\n"
+"POT-Creation-Date: 2000-03-24 16:44+0100\n"
 "PO-Revision-Date: 2000-01-08 21:40+0100\n"
 "Last-Translator: Yuri Bongiorno <yurix@tiscalinet.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -18,6 +18,54 @@ msgstr ""
 #, c-format
 msgid "warning: can't import %s: %s"
 msgstr "attenzione: impossibile importare %s: %s"
+
+#: Pyblio/Config.py:49
+#, c-format
+msgid "value of `%s' should be %s"
+msgstr ""
+
+#: Pyblio/Config.py:195 Pyblio/Config.py:204
+msgid "a String"
+msgstr ""
+
+#: Pyblio/Config.py:223
+msgid "an Integer"
+msgstr ""
+
+#: Pyblio/Config.py:225
+#, c-format
+msgid "an Integer under %d"
+msgstr ""
+
+#: Pyblio/Config.py:227
+#, c-format
+msgid "an Integer over %d"
+msgstr ""
+
+#: Pyblio/Config.py:229
+#, c-format
+msgid "an Integer between %d and %d"
+msgstr ""
+
+#: Pyblio/Config.py:241
+#, fuzzy, c-format
+msgid "an Instance of `%s'"
+msgstr "Impossibile salvare il file: %s"
+
+#: Pyblio/Config.py:261
+#, c-format
+msgid "a Tuple ([%s])"
+msgstr ""
+
+#: Pyblio/Config.py:282
+#, c-format
+msgid "a List (%s)"
+msgstr ""
+
+#: Pyblio/Config.py:306
+#, c-format
+msgid "a Dictionnary (%s, %s)"
+msgstr ""
 
 #: Pyblio/Fields.py:265
 msgid "Illegal year value"
@@ -183,8 +231,8 @@ msgstr "Modifica del campo `%s' nel formato nativo"
 msgid "Standard Editing"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:89 Pyblio/GnomeUI/Document.py:165
-#: Pyblio/GnomeUI/Document.py:177 Pyblio/GnomeUI/FileSelector.py:41
+#: Pyblio/GnomeUI/Document.py:94 Pyblio/GnomeUI/Document.py:176
+#: Pyblio/GnomeUI/Document.py:188 Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
 msgstr "File"
 
@@ -192,16 +240,16 @@ msgstr "File"
 msgid "Bibliography type:"
 msgstr "Tipo di bibliografia:"
 
-#: Pyblio/GnomeUI/Document.py:75 Pyblio/GnomeUI/Index.py:64
+#: Pyblio/GnomeUI/Document.py:76 Pyblio/GnomeUI/Index.py:64
 #, fuzzy
 msgid "Add..."
 msgstr "Modifica..."
 
-#: Pyblio/GnomeUI/Document.py:76 Pyblio/GnomeUI/Index.py:65
+#: Pyblio/GnomeUI/Document.py:77 Pyblio/GnomeUI/Index.py:65
 msgid "Edit..."
 msgstr "Modifica..."
 
-#: Pyblio/GnomeUI/Document.py:77 Pyblio/GnomeUI/Index.py:66
+#: Pyblio/GnomeUI/Document.py:78 Pyblio/GnomeUI/Index.py:66
 #: Pyblio/GnomeUI/Search.py:175
 msgid "Delete"
 msgstr "Cancella"
@@ -287,144 +335,148 @@ msgstr ""
 "Sono avvenuti i seguenti errori:\n"
 "\n"
 
-#: Pyblio/GnomeUI/Document.py:49
+#: Pyblio/GnomeUI/Document.py:50
 msgid "New"
 msgstr "Nuovo"
 
-#: Pyblio/GnomeUI/Document.py:51
+#: Pyblio/GnomeUI/Document.py:52
 msgid "Merge..."
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:55 Pyblio/GnomeUI/Document.py:165
-#: Pyblio/GnomeUI/Document.py:177
+#: Pyblio/GnomeUI/Document.py:56 Pyblio/GnomeUI/Document.py:176
+#: Pyblio/GnomeUI/Document.py:188
 msgid "Previous Documents"
 msgstr "Documenti precedenti"
 
-#: Pyblio/GnomeUI/Document.py:62
+#: Pyblio/GnomeUI/Document.py:63
 msgid "About..."
 msgstr "Informazioni su..."
 
-#: Pyblio/GnomeUI/Document.py:63
+#: Pyblio/GnomeUI/Document.py:64
 msgid "Submit a Bug Report"
 msgstr "Invia un Bug Report"
 
-#: Pyblio/GnomeUI/Document.py:80
+#: Pyblio/GnomeUI/Document.py:81
 #, fuzzy
 msgid "Sort..."
 msgstr "Informazioni su..."
 
-#: Pyblio/GnomeUI/Document.py:84 Pyblio/GnomeUI/Document.py:91
-#: Pyblio/GnomeUI/Document.py:100
+#: Pyblio/GnomeUI/Document.py:85 Pyblio/GnomeUI/Document.py:96
+#: Pyblio/GnomeUI/Document.py:106
 msgid "Cite"
 msgstr "Cita"
 
-#: Pyblio/GnomeUI/Document.py:85
+#: Pyblio/GnomeUI/Document.py:86
 #, fuzzy
 msgid "Format..."
 msgstr "Formatta come..."
 
-#: Pyblio/GnomeUI/Document.py:90
+#: Pyblio/GnomeUI/Document.py:95
 msgid "Edit"
 msgstr "Modifica"
 
-#: Pyblio/GnomeUI/Document.py:92
+#: Pyblio/GnomeUI/Document.py:97
+msgid "Settings"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:98
 msgid "Help"
 msgstr "Aiuto"
 
-#: Pyblio/GnomeUI/Document.py:96
+#: Pyblio/GnomeUI/Document.py:102
 msgid "Open"
 msgstr "Apri"
 
-#: Pyblio/GnomeUI/Document.py:97
+#: Pyblio/GnomeUI/Document.py:103
 msgid "Save"
 msgstr "Salva"
 
-#: Pyblio/GnomeUI/Document.py:99
+#: Pyblio/GnomeUI/Document.py:105
 #, fuzzy
 msgid "Find"
 msgstr "Campo"
 
-#: Pyblio/GnomeUI/Document.py:102
+#: Pyblio/GnomeUI/Document.py:108
 msgid "Close"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:198
+#: Pyblio/GnomeUI/Document.py:209
 #, c-format
 msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:227
+#: Pyblio/GnomeUI/Document.py:238
 #, fuzzy
 msgid "New database"
 msgstr "Database completo"
 
-#: Pyblio/GnomeUI/Document.py:235 Pyblio/GnomeUI/Document.py:239
+#: Pyblio/GnomeUI/Document.py:246 Pyblio/GnomeUI/Document.py:250
 msgid "[no entry]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:236
+#: Pyblio/GnomeUI/Document.py:247
 msgid "[1 entry]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:237
+#: Pyblio/GnomeUI/Document.py:248
 #, c-format
 msgid "[%d entries]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:240
+#: Pyblio/GnomeUI/Document.py:251
 #, c-format
 msgid "[%d/1 entry]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:241
+#: Pyblio/GnomeUI/Document.py:252
 #, c-format
 msgid "[%d/%d entries]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:246
+#: Pyblio/GnomeUI/Document.py:257
 msgid "[modified]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:256
+#: Pyblio/GnomeUI/Document.py:267
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:272
+#: Pyblio/GnomeUI/Document.py:283
 #, fuzzy
 msgid "Merge file"
 msgstr "Nuovo file"
 
-#: Pyblio/GnomeUI/Document.py:284 Pyblio/GnomeUI/Document.py:339
+#: Pyblio/GnomeUI/Document.py:295 Pyblio/GnomeUI/Document.py:350
 msgid "Open error"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:308
+#: Pyblio/GnomeUI/Document.py:319
 msgid "Merge status"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:379
+#: Pyblio/GnomeUI/Document.py:330 Pyblio/GnomeUI/Document.py:390
 #, fuzzy
 msgid "Open file"
 msgstr "Nuovo file"
 
-#: Pyblio/GnomeUI/Document.py:363
+#: Pyblio/GnomeUI/Document.py:374
 #, c-format
 msgid ""
 "Unable to save `%s':\n"
 "%s"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:368
+#: Pyblio/GnomeUI/Document.py:379
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:385
+#: Pyblio/GnomeUI/Document.py:396
 #, fuzzy, c-format
 msgid ""
 "The file `%s' already exists.\n"
@@ -433,41 +485,41 @@ msgstr ""
 "Il file `%s' esiste.\n"
 "Lo sovrascrivo ?"
 
-#: Pyblio/GnomeUI/Document.py:392
+#: Pyblio/GnomeUI/Document.py:403
 #, c-format
 msgid ""
 "During opening:\n"
 "%s"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:427
+#: Pyblio/GnomeUI/Document.py:438
 #, c-format
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:458
+#: Pyblio/GnomeUI/Document.py:469
 #, fuzzy
 msgid "Really remove all the entries ?"
 msgstr "Rimuovo veramente la voce %s ?"
 
-#: Pyblio/GnomeUI/Document.py:492
+#: Pyblio/GnomeUI/Document.py:503
 #, fuzzy, c-format
 msgid "Really edit %d entries ?"
 msgstr "Rimuovo veramente la voce %s ?"
 
-#: Pyblio/GnomeUI/Document.py:526
+#: Pyblio/GnomeUI/Document.py:537
 #, c-format
 msgid "Remove all the %d entries ?"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:528
+#: Pyblio/GnomeUI/Document.py:539
 #, fuzzy, c-format
 msgid "Remove entry `%s' ?"
 msgstr "Rimuovo veramente la voce %s ?"
 
-#: Pyblio/GnomeUI/Document.py:586 Pyblio/GnomeUI/Document.py:593
+#: Pyblio/GnomeUI/Document.py:597 Pyblio/GnomeUI/Document.py:604
 #, c-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -476,7 +528,7 @@ msgstr ""
 "Impossibile connettersi a LyX:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:634
+#: Pyblio/GnomeUI/Document.py:645
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -484,15 +536,15 @@ msgstr ""
 "Per favore installa bug-buddy\n"
 "per usare questa funzione"
 
-#: Pyblio/GnomeUI/Document.py:645
+#: Pyblio/GnomeUI/Document.py:656
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Questo programma è coperto dalla licenza GNU GPL"
 
-#: Pyblio/GnomeUI/Document.py:647
+#: Pyblio/GnomeUI/Document.py:658
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Interfaccia Gnome a Pybliographer"
 
-#: Pyblio/GnomeUI/Document.py:651
+#: Pyblio/GnomeUI/Document.py:662
 msgid "Pybliographer Home Page"
 msgstr "Home Page di Pybliographer"
 
