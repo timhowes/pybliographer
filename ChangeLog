@@ -1,3 +1,10 @@
+2000-08-03  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/GnomeUI/Editor.py, Pyblio/GnomeUI/Search.py: make typed
+	words history in GnomeEntry permanent.
+
+	* bibtex/accents.c: added some missing special characters.
+
 2000-07-27  Fred  <fred@lithpc10.epfl.ch>
 
 	* Pyblio/GnomeUI/__init__.py: explicitely import gtk with modified
