@@ -14,6 +14,7 @@ Autoload.preregister ('format', 'BibTeX',  'Pyblio.Format.BibTeX',  '.*\.bib')
 Autoload.preregister ('format', 'Ovid',    'Pyblio.Format.Ovid',    '.*\.ovid')
 Autoload.preregister ('format', 'Medline', 'Pyblio.Format.Medline', '.*\.med')
 Autoload.preregister ('format', 'Refer',   'Pyblio.Format.Refer',   '.*\.refer')
+Autoload.preregister ('format', 'ISIFile', 'Pyblio.Format.isifile', '.*\.isi')
 
 
 # define styles and outputs

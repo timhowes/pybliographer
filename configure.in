@@ -137,9 +137,10 @@ AC_CHECK_HEADER(recode.h,, [
   ]
   AC_MSG_ERROR([unable to use GNU Recode library]))
 
+
 CPPFLAGS=${old_CPPFLAGS}
 LIBS=${old_LIBS}
-  
+
 AC_DEFINE(USE_RECODE)
 
 AC_SUBST(RECODELIB)

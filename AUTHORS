@@ -8,3 +8,7 @@
 	
 - Travis Oliphant <Oliphant.Travis@mayo.edu>
 	* original Ovid parser
+
+- Peter Schulte-Stracke <Peter.Schulte-Stracke@t-online.de>
+	* ISIFile format parser
+
