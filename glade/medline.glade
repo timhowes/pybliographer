@@ -5,7 +5,6 @@
 <requires lib="gnome"/>
 
 <widget class="GtkDialog" id="_w_medline">
-  <property name="visible">True</property>
   <property name="title" translatable="yes">Medline Query</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -114,13 +113,13 @@ PubMed for:</property>
 	      </child>
 
 	      <child>
-		<widget class="GnomeEntry" id="entrycombo1">
+		<widget class="GnomeEntry" id="_w_keyword">
 		  <property name="visible">True</property>
 		  <property name="history_id">medline</property>
 		  <property name="max_saved">10</property>
 
 		  <child internal-child="entry">
-		    <widget class="GtkEntry" id="_w_keyword">
+		    <widget class="GtkEntry" id="keyword1">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="editable">True</property>
@@ -163,7 +162,7 @@ of results:</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkSpinButton" id="spinbutton1">
+		<widget class="GtkSpinButton" id="_w_max_results">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="climb_rate">1</property>
@@ -171,8 +170,8 @@ of results:</property>
 		  <property name="numeric">False</property>
 		  <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		  <property name="snap_to_ticks">False</property>
-		  <property name="wrap">False</property>
-		  <property name="adjustment">100 1 100 1 10 10</property>
+		  <property name="wrap">True</property>
+		  <property name="adjustment">100 1 1000 1 10 10</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -204,7 +203,7 @@ result number:</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkSpinButton" id="spinbutton2">
+		<widget class="GtkSpinButton" id="_w_start_results">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="climb_rate">1</property>
@@ -250,7 +249,7 @@ result number:</property>
 		      <property name="spacing">5</property>
 
 		      <child>
-			<widget class="GnomeEntry" id="entry12">
+			<widget class="GnomeEntry" id="_w_field">
 			  <property name="visible">True</property>
 			  <property name="max_saved">10</property>
 
@@ -258,7 +257,7 @@ result number:</property>
 			    <widget class="GtkEntry" id="combo-entry10">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="editable">True</property>
+			      <property name="editable">False</property>
 			      <property name="visibility">True</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
@@ -276,7 +275,7 @@ result number:</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkCheckButton" id="checkbutton1">
+			<widget class="GtkCheckButton" id="_w_abstracts">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="label" translatable="yes">Only items 
@@ -295,7 +294,7 @@ with abstracts</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkCheckButton" id="checkbutton2">
+			<widget class="GtkCheckButton" id="_w_ahead">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="label" translatable="yes">Only items 
@@ -330,7 +329,7 @@ ahead of print</property>
 		      <property name="column_spacing">5</property>
 
 		      <child>
-			<widget class="GnomeEntry" id="entry2">
+			<widget class="GnomeEntry" id="_w_pub_type">
 			  <property name="visible">True</property>
 			  <property name="max_saved">10</property>
 
@@ -338,7 +337,7 @@ ahead of print</property>
 			    <widget class="GtkEntry" id="combo-entry2">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="editable">True</property>
+			      <property name="editable">False</property>
 			      <property name="visibility">True</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
@@ -358,7 +357,7 @@ ahead of print</property>
 		      </child>
 
 		      <child>
-			<widget class="GnomeEntry" id="entry3">
+			<widget class="GnomeEntry" id="_w_language">
 			  <property name="visible">True</property>
 			  <property name="max_saved">10</property>
 
@@ -366,7 +365,7 @@ ahead of print</property>
 			    <widget class="GtkEntry" id="combo-entry3">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="editable">True</property>
+			      <property name="editable">False</property>
 			      <property name="visibility">True</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
@@ -386,7 +385,7 @@ ahead of print</property>
 		      </child>
 
 		      <child>
-			<widget class="GnomeEntry" id="entry4">
+			<widget class="GnomeEntry" id="_w_subset">
 			  <property name="visible">True</property>
 			  <property name="max_saved">10</property>
 
@@ -394,7 +393,7 @@ ahead of print</property>
 			    <widget class="GtkEntry" id="combo-entry4">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="editable">True</property>
+			      <property name="editable">False</property>
 			      <property name="visibility">True</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
@@ -414,7 +413,7 @@ ahead of print</property>
 		      </child>
 
 		      <child>
-			<widget class="GnomeEntry" id="entry5">
+			<widget class="GnomeEntry" id="_w_age">
 			  <property name="visible">True</property>
 			  <property name="max_saved">10</property>
 
@@ -422,7 +421,7 @@ ahead of print</property>
 			    <widget class="GtkEntry" id="combo-entry5">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="editable">True</property>
+			      <property name="editable">False</property>
 			      <property name="visibility">True</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
@@ -442,7 +441,7 @@ ahead of print</property>
 		      </child>
 
 		      <child>
-			<widget class="GnomeEntry" id="entry6">
+			<widget class="GnomeEntry" id="_w_human">
 			  <property name="visible">True</property>
 			  <property name="max_saved">10</property>
 
@@ -450,7 +449,7 @@ ahead of print</property>
 			    <widget class="GtkEntry" id="combo-entry6">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="editable">True</property>
+			      <property name="editable">False</property>
 			      <property name="visibility">True</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
@@ -470,7 +469,7 @@ ahead of print</property>
 		      </child>
 
 		      <child>
-			<widget class="GnomeEntry" id="entry7">
+			<widget class="GnomeEntry" id="_w_gender">
 			  <property name="visible">True</property>
 			  <property name="max_saved">10</property>
 
@@ -478,7 +477,7 @@ ahead of print</property>
 			    <widget class="GtkEntry" id="combo-entry7">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="editable">True</property>
+			      <property name="editable">False</property>
 			      <property name="visibility">True</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
@@ -505,7 +504,7 @@ ahead of print</property>
 		  </child>
 
 		  <child>
-		    <widget class="GnomeEntry" id="entry8">
+		    <widget class="GnomeEntry" id="_w_entrez_date">
 		      <property name="visible">True</property>
 		      <property name="max_saved">10</property>
 
@@ -513,7 +512,7 @@ ahead of print</property>
 			<widget class="GtkEntry" id="combo-entry8">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="editable">True</property>
+			  <property name="editable">False</property>
 			  <property name="visibility">True</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
@@ -537,7 +536,7 @@ ahead of print</property>
 		      <property name="spacing">5</property>
 
 		      <child>
-			<widget class="GnomeEntry" id="entry9">
+			<widget class="GnomeEntry" id="_w_pub_date">
 			  <property name="visible">True</property>
 			  <property name="max_saved">10</property>
 
@@ -545,7 +544,7 @@ ahead of print</property>
 			    <widget class="GtkEntry" id="combo-entry9">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="editable">True</property>
+			      <property name="editable">False</property>
 			      <property name="visibility">True</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
@@ -584,7 +583,7 @@ ahead of print</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkEntry" id="entry10">
+			<widget class="GtkEntry" id="_w_from_date">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="editable">True</property>
@@ -624,7 +623,7 @@ ahead of print</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkEntry" id="entry11">
+			<widget class="GtkEntry" id="_w_to_date">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="editable">True</property>
