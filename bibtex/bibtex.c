@@ -155,17 +155,25 @@ bibtex_source_next_entry (BibtexSource * file,
 
 			/* normal case; convert preamble into entry name */
 			if (ent->preamble) {
-			    if (ent->preamble->type == BIBTEX_STRUCT_REF) {
+			    switch (ent->preamble->type) {
+			    case BIBTEX_STRUCT_REF:
+				/* alphanumeric identifiers */
 				ent->name = 
 				    g_strdup (ent->preamble->value.ref);
-			    }
-			    else {
+				break;
+			    case BIBTEX_STRUCT_TEXT:
+				/* numeric identifiers */
+				ent->name = 
+				    g_strdup (ent->preamble->value.text);
+				break;
+
+			    default:
 				if (file->strict) {
 				    bibtex_error ("%s:%d: entry has a weird name", 
 						  file->name, file->line);
 				    bibtex_entry_destroy (ent, TRUE);
 				    file->error = TRUE;
-				
+				    
 				    return NULL;
 				}
 				else {
@@ -175,6 +183,7 @@ bibtex_source_next_entry (BibtexSource * file,
 				    ent->preamble = NULL;
 				    ent->name = NULL;
 				}
+				break;
 			    }
 			}
 			else {

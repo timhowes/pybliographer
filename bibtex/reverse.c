@@ -29,6 +29,8 @@
 #include <stdbool.h>
 #else /* ! HAVE_STDBOOL_H */
 
+#include <string.h>
+
 /* stdbool.h for GNU.  */
 
 /* The type `bool' must promote to `int' or `unsigned int'.  The constants
@@ -86,7 +88,8 @@ text_to_struct (gchar * string) {
 }
 
 BibtexField * 
-bibtex_reverse_field (BibtexField * field) {
+bibtex_reverse_field (BibtexField * field,
+		      gboolean use_braces) {
 #ifdef USE_RECODE
     BibtexStruct * s;
     gchar * string, * tmp, c;
@@ -130,11 +133,29 @@ bibtex_reverse_field (BibtexField * field) {
 
 	tmp = recode_string (request, field->text);
 
-	g_string_append (st, "@preamble{{");
+	if (! use_braces) {
+	    if (strchr (tmp, '"')) {
+	        use_braces = TRUE;
+	    }
+	}
+
+	if (use_braces) {
+	    g_string_append (st, "@preamble{{");
+	}
+	else {
+	    g_string_append (st, "@preamble{\"");
+	}
+
 	g_string_append (st, tmp);
 	g_free (tmp);
-	g_string_append (st, "}}");
-	
+
+	if (use_braces) {
+	    g_string_append (st, "}}");
+	}
+	else {
+	    g_string_append (st, "\"}");
+	}
+
 	s = text_to_struct (st->str);
 	break;
 
@@ -145,7 +166,18 @@ bibtex_reverse_field (BibtexField * field) {
 	
 	tmp = recode_string (request, field->text);
 
-	g_string_append (st, "@preamble{{");
+	if (! use_braces) {
+	    if (strchr (tmp, '"')) {
+	        use_braces = TRUE;
+	    }
+	}
+
+	if (use_braces) {
+	    g_string_append (st, "@preamble{{");
+	}
+	else {
+	    g_string_append (st, "@preamble{\"");
+	}
 
 	/* Put the upper cases or the first lower cases between {} */
 	string = tmp;
@@ -181,7 +213,13 @@ bibtex_reverse_field (BibtexField * field) {
 	    is_upper = false;
 	}
 	g_free (string);
-	g_string_append (st, "}}");
+
+	if (use_braces) {
+	    g_string_append (st, "}}");
+	}
+	else {
+	    g_string_append (st, "\"}");
+	}
 	
 	s = text_to_struct (st->str);
 	break;
