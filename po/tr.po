@@ -1,0 +1,1263 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# Kemal YILMAZ <kyilmaz@uekae.tubitak.gov.tr>, 2001.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pybliographer 1.1.0\n"
+"POT-Creation-Date: 2000-11-22 20:51+0100\n"
+"PO-Revision-Date: 2001-01-06 13:00+0200\n"
+"Last-Translator: Kemal YILMAZ <kyilmaz@uekae.tubitak.gov.tr>\n"
+"Language-Team: Turkish <tr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-9\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: Pyblio/ConfDir/BibTeX.py:9
+msgid "BibTeX"
+msgstr "BibTex"
+
+#: Pyblio/ConfDir/BibTeX.py:10
+msgid "BibTeX parser configuration"
+msgstr "BibTex yorumlayýcý ayarlarý"
+
+#: Pyblio/ConfDir/BibTeX.py:13
+msgid "Strict Parsing"
+msgstr "Kesin Yorumlayýcý"
+
+#: Pyblio/ConfDir/BibTeX.py:14
+msgid "Turn warnings into errors"
+msgstr "Uyarýlarý hatalara dönüþtürür"
+
+#: Pyblio/ConfDir/BibTeX.py:18
+msgid "Macros"
+msgstr "Makrolar"
+
+#: Pyblio/ConfDir/BibTeX.py:19
+msgid "BibTeX @String{} macros"
+msgstr "BibTex @String() makrolarý"
+
+#: Pyblio/ConfDir/BibTeX.py:24
+msgid "Date Fields"
+msgstr "Gün Alanlarý"
+
+#: Pyblio/ConfDir/BibTeX.py:25
+msgid "Links from `real' date field to the two bibtex"
+msgstr "Gerçek zaman alanýndan iki bibtex'e baðlantýlar"
+
+#: Pyblio/ConfDir/BibTeX.py:26 Pyblio/ConfDir/BibTeX.py:31
+#: Pyblio/ConfDir/Ovid.py:17
+msgid "))"
+msgstr "))"
+
+#: Pyblio/ConfDir/BibTeX.py:29
+msgid "Month values"
+msgstr "Ay deðerleri"
+
+#: Pyblio/ConfDir/BibTeX.py:30
+msgid " A hash table linking month names to their"
+msgstr "Ay isimlerini kendilerine baðlayan bir özet tablosu"
+
+#: Pyblio/ConfDir/Base.py:15
+msgid "Base"
+msgstr "Temel"
+
+#: Pyblio/ConfDir/Base.py:16
+msgid "Elementary configuration"
+msgstr "Baþlangýç ayarlarý"
+
+#: Pyblio/ConfDir/Base.py:19
+msgid "Advertise"
+msgstr "Reklam"
+
+#: Pyblio/ConfDir/Base.py:20
+msgid "Specify wether or not the program should add a message"
+msgstr "Programýn bir mesaj ekleyip eklememesi gerektiðini belirle"
+
+#: Pyblio/ConfDir/Base.py:21
+msgid "),"
+msgstr "),"
+
+#: Pyblio/ConfDir/Base.py:25
+msgid "Fields"
+msgstr "Alanlar"
+
+#: Pyblio/ConfDir/Base.py:26
+msgid "Existing fields"
+msgstr "Varolan alanlar"
+
+#: Pyblio/ConfDir/Base.py:30
+msgid "Entries"
+msgstr "Giriþler"
+
+#: Pyblio/ConfDir/Base.py:31
+msgid "Existing entries"
+msgstr "Varolan giriþler"
+
+#: Pyblio/ConfDir/Base.py:34
+msgid "Default Type"
+msgstr "Hazýr olan tipler"
+
+#: Pyblio/ConfDir/Base.py:35
+msgid "Default type for a newly created entry"
+msgstr "Yeni yaratýlan giriþ için hazýr olan tip"
+
+#: Pyblio/ConfDir/Base.py:39
+msgid "LyX Path"
+msgstr "LyX yolu"
+
+#: Pyblio/ConfDir/Base.py:40
+msgid "Path to the LyX server"
+msgstr "Lyx sunucuya yol"
+
+#: Pyblio/ConfDir/Base.py:41
+msgid "Path"
+msgstr "Yol"
+
+#: Pyblio/ConfDir/Base.py:48
+msgid "Cross Reference"
+msgstr "Çapraz Referans"
+
+#: Pyblio/ConfDir/Base.py:48 Pyblio/ConfDir/Base.py:49
+#: Pyblio/ConfDir/Base.py:50 Pyblio/ConfDir/Base.py:51
+#: Pyblio/ConfDir/Base.py:52 Pyblio/ConfDir/Base.py:53
+#: Pyblio/ConfDir/Base.py:54 Pyblio/ConfDir/Base.py:55
+#: Pyblio/ConfDir/Base.py:56 Pyblio/ConfDir/Base.py:57
+#: Pyblio/ConfDir/Base.py:58 Pyblio/ConfDir/Base.py:59
+#: Pyblio/ConfDir/Base.py:60 Pyblio/ConfDir/Base.py:61
+#: Pyblio/ConfDir/Base.py:62 Pyblio/ConfDir/Base.py:63
+#: Pyblio/ConfDir/Base.py:64 Pyblio/ConfDir/Base.py:65
+#: Pyblio/ConfDir/Base.py:66 Pyblio/ConfDir/Base.py:67
+#: Pyblio/ConfDir/Base.py:68 Pyblio/ConfDir/Base.py:69
+#: Pyblio/ConfDir/Base.py:70 Pyblio/ConfDir/Base.py:71
+#: Pyblio/ConfDir/Base.py:72 Pyblio/ConfDir/Base.py:73
+#: Pyblio/ConfDir/Base.py:74 Pyblio/ConfDir/Base.py:75
+#: Pyblio/ConfDir/Base.py:76 Pyblio/ConfDir/Base.py:77
+#: Pyblio/ConfDir/Base.py:78 Pyblio/ConfDir/Base.py:79
+#: Pyblio/ConfDir/Base.py:80 Pyblio/ConfDir/Base.py:81
+#: Pyblio/ConfDir/Base.py:82 Pyblio/ConfDir/Base.py:83
+#: Pyblio/ConfDir/Base.py:84 Pyblio/ConfDir/Base.py:85
+#: Pyblio/ConfDir/Base.py:86 Pyblio/ConfDir/Base.py:87
+#: Pyblio/ConfDir/Base.py:88 Pyblio/ConfDir/Base.py:89
+#: Pyblio/ConfDir/Base.py:90 Pyblio/ConfDir/Base.py:91
+#: Pyblio/ConfDir/Base.py:92 Pyblio/ConfDir/Base.py:93
+#: Pyblio/ConfDir/Base.py:94
+msgid "Description"
+msgstr "Tanýmlama"
+
+#: Pyblio/ConfDir/Base.py:49 Pyblio/GnomeUI/Config.py:524
+#: Pyblio/GnomeUI/Editor.py:428
+msgid "Key"
+msgstr "Anahtar"
+
+#: Pyblio/ConfDir/Base.py:50
+msgid "Author"
+msgstr "Yazar"
+
+#: Pyblio/ConfDir/Base.py:51
+msgid "Address 1"
+msgstr "Adres 1"
+
+#: Pyblio/ConfDir/Base.py:52
+msgid "Address 2"
+msgstr "Adres 2"
+
+#: Pyblio/ConfDir/Base.py:53
+msgid "Title"
+msgstr "Baþlýk"
+
+#: Pyblio/ConfDir/Base.py:54
+msgid "Specific Title"
+msgstr "Özel Baþlýk"
+
+#: Pyblio/ConfDir/Base.py:55
+msgid "Journal"
+msgstr "Sürekli Yayýn"
+
+#: Pyblio/ConfDir/Base.py:56
+msgid "Special"
+msgstr "Özel"
+
+#: Pyblio/ConfDir/Base.py:57 Pyblio/GnomeUI/Fields.py:58
+msgid "Type"
+msgstr "Tip"
+
+#: Pyblio/ConfDir/Base.py:58
+msgid "Book Title"
+msgstr "Kitap Baþlýðý"
+
+#: Pyblio/ConfDir/Base.py:59
+msgid "Subject"
+msgstr "Konu"
+
+#: Pyblio/ConfDir/Base.py:60
+msgid "Ownership"
+msgstr "Sahibi"
+
+#: Pyblio/ConfDir/Base.py:61
+msgid "Series"
+msgstr "Seriler"
+
+#: Pyblio/ConfDir/Base.py:62
+msgid "Editor"
+msgstr "Editör"
+
+#: Pyblio/ConfDir/Base.py:63
+msgid "Edition"
+msgstr "Baský"
+
+#: Pyblio/ConfDir/Base.py:64
+msgid "Volume"
+msgstr "Cilt"
+
+#: Pyblio/ConfDir/Base.py:65
+msgid "Number"
+msgstr "Numara"
+
+#: Pyblio/ConfDir/Base.py:66
+msgid "Chapter"
+msgstr "Bölüm"
+
+#: Pyblio/ConfDir/Base.py:67
+msgid "Pages"
+msgstr "Sayfalar"
+
+#: Pyblio/ConfDir/Base.py:68
+msgid "School"
+msgstr "Okul"
+
+#: Pyblio/ConfDir/Base.py:69
+msgid "Organization"
+msgstr "Organizasyon"
+
+#: Pyblio/ConfDir/Base.py:70
+msgid "Location"
+msgstr "Yer"
+
+#: Pyblio/ConfDir/Base.py:71
+msgid "Dates"
+msgstr "Günler"
+
+#: Pyblio/ConfDir/Base.py:72
+msgid "Institution"
+msgstr "Kurum"
+
+#: Pyblio/ConfDir/Base.py:73
+msgid "Publisher"
+msgstr "Yayýnlayan"
+
+#: Pyblio/ConfDir/Base.py:74
+msgid "Address"
+msgstr "Adres"
+
+#: Pyblio/ConfDir/Base.py:75
+msgid "Format"
+msgstr "Biçim"
+
+#: Pyblio/ConfDir/Base.py:76
+msgid "Date"
+msgstr "Tarih"
+
+#: Pyblio/ConfDir/Base.py:77
+msgid "# Series"
+msgstr "Seri No"
+
+#: Pyblio/ConfDir/Base.py:78
+msgid "Conference Place"
+msgstr "Konferans Yeri"
+
+#: Pyblio/ConfDir/Base.py:79
+msgid "Cote"
+msgstr "Alýntý"
+
+#: Pyblio/ConfDir/Base.py:80
+msgid "IEEECN"
+msgstr "IEEECN"
+
+#: Pyblio/ConfDir/Base.py:81
+msgid "LoCN"
+msgstr "LoCN"
+
+#: Pyblio/ConfDir/Base.py:82
+msgid "ISBN"
+msgstr "ISBN"
+
+#: Pyblio/ConfDir/Base.py:83
+msgid "ISSN"
+msgstr "ISSN"
+
+#: Pyblio/ConfDir/Base.py:84
+msgid "Note"
+msgstr "Not"
+
+#: Pyblio/ConfDir/Base.py:85
+msgid "Language"
+msgstr "Dil"
+
+#: Pyblio/ConfDir/Base.py:86
+msgid "How Published"
+msgstr "Nasýl Yayýnlandý"
+
+#: Pyblio/ConfDir/Base.py:87
+msgid "To Appear"
+msgstr "Görünecek"
+
+#: Pyblio/ConfDir/Base.py:88
+msgid "From"
+msgstr "Kimden"
+
+#: Pyblio/ConfDir/Base.py:89
+msgid "Received"
+msgstr "Alýndý"
+
+#: Pyblio/ConfDir/Base.py:90
+msgid "Owner"
+msgstr "Sahibi"
+
+#: Pyblio/ConfDir/Base.py:91
+msgid "Keywords"
+msgstr "Anahtar Kelimeler"
+
+#: Pyblio/ConfDir/Base.py:92
+msgid "Abstract"
+msgstr "Özet"
+
+#: Pyblio/ConfDir/Base.py:93
+msgid "Remarks"
+msgstr "Uyarýlar"
+
+#: Pyblio/ConfDir/Base.py:94
+msgid "URL"
+msgstr "URL"
+
+#: Pyblio/ConfDir/Base.py:98
+msgid "Article"
+msgstr "Makale"
+
+#: Pyblio/ConfDir/Base.py:98 Pyblio/ConfDir/Base.py:102
+#: Pyblio/ConfDir/Base.py:106 Pyblio/ConfDir/Base.py:110
+#: Pyblio/ConfDir/Base.py:114 Pyblio/ConfDir/Base.py:119
+#: Pyblio/ConfDir/Base.py:125 Pyblio/ConfDir/Base.py:129
+#: Pyblio/ConfDir/Base.py:133 Pyblio/ConfDir/Base.py:137
+#: Pyblio/ConfDir/Base.py:141 Pyblio/ConfDir/Base.py:147
+#: Pyblio/ConfDir/Base.py:151
+msgid " "
+msgstr " "
+
+#: Pyblio/ConfDir/Base.py:102
+msgid "Book"
+msgstr "Kitap"
+
+#: Pyblio/ConfDir/Base.py:106
+msgid "Booklet"
+msgstr "Kitapçik"
+
+#: Pyblio/ConfDir/Base.py:110
+msgid "In Book"
+msgstr "Kitapta"
+
+#: Pyblio/ConfDir/Base.py:114
+msgid "In Collection"
+msgstr "Seride"
+
+#: Pyblio/ConfDir/Base.py:119
+msgid "In Proceedings"
+msgstr "Üzerine Çalýþýlýlanlar"
+
+#: Pyblio/ConfDir/Base.py:125
+msgid "Manual"
+msgstr "El kitabý"
+
+#: Pyblio/ConfDir/Base.py:129
+msgid "Masters Thesis"
+msgstr "Yüksek Lisans Tezi"
+
+#: Pyblio/ConfDir/Base.py:133
+msgid "Miscellanous"
+msgstr "Çeþitli"
+
+#: Pyblio/ConfDir/Base.py:137
+msgid "PhD Thesis"
+msgstr "Doktora Tezi"
+
+#: Pyblio/ConfDir/Base.py:141
+msgid "Proceedings"
+msgstr "Üzerine Çalýþýlýlanlar"
+
+#: Pyblio/ConfDir/Base.py:147
+msgid "Technical Report"
+msgstr "Teknik Raporlar"
+
+#: Pyblio/ConfDir/Base.py:151
+msgid "Unpublished"
+msgstr "Yayýnlanmamýþ"
+
+#: Pyblio/ConfDir/Ovid.py:9
+msgid "Default type"
+msgstr "Hazýr olan tip"
+
+#: Pyblio/ConfDir/Ovid.py:10
+msgid "Default type for an Ovid entry"
+msgstr "Ovid giriþi için hazýr olan tip"
+
+#: Pyblio/ConfDir/Ovid.py:15 Pyblio/ConfDir/Refer.py:7
+msgid "Mapping"
+msgstr "Karþýlaþtýrmak"
+
+#: Pyblio/ConfDir/Ovid.py:16
+msgid "A mapping between the Ovid field name and the"
+msgstr "Ovid alaný ismi ile birlikte karþýlaþtýrma"
+
+#: Pyblio/ConfDir/Refer.py:8
+msgid "Field names correspondances"
+msgstr "Alan adlarýnýn karþýlýklarý"
+
+#: Pyblio/ConfDir/Gnome.py:7
+msgid "Gnome"
+msgstr "Gnome"
+
+#: Pyblio/ConfDir/Gnome.py:8
+msgid "Gnome interface configuration"
+msgstr "Gnome arayüz ayarlarý"
+
+#: Pyblio/ConfDir/Gnome.py:11
+msgid "Columns"
+msgstr "Sütünlar"
+
+#: Pyblio/ConfDir/Gnome.py:12
+msgid "Fields displayed on the main screen of the interface"
+msgstr "Arayüzün ana ekranýnda görünecek alanlar"
+
+#: Pyblio/ConfDir/Gnome.py:16
+msgid "Tooltips"
+msgstr "Araç ipuçlarý"
+
+#: Pyblio/ConfDir/Gnome.py:17
+msgid "Enable tooltips ?"
+msgstr "Ýpuçlarýný kullanmak istiyor musunuz?"
+
+#: Pyblio/ConfDir/Gnome.py:21
+msgid "Native Edit"
+msgstr "Doðal Düzeltme"
+
+#: Pyblio/ConfDir/Gnome.py:22
+msgid "Edit the entries in their native format by default ?"
+msgstr "Giriþleri doðal biçimlerinde düzeltmek istiyor musunuz ?"
+
+#: Pyblio/ConfDir/Gnome.py:23
+msgid "Use native edit by default ?"
+msgstr "Doðal biçimlendirmeyi hazýr olarak kullanmak istiyor musunuz?"
+
+#: Pyblio/ConfDir/Gnome.py:26
+msgid "Searchable"
+msgstr "Araþtýrýlabilir"
+
+#: Pyblio/ConfDir/Gnome.py:27
+msgid "Searchable fields"
+msgstr "Araþtýrýlabilir Alanlar"
+
+#: Pyblio/ConfDir/Gnome.py:31
+msgid "History Size"
+msgstr "Geçmiþin Büyüklüðü"
+
+#: Pyblio/ConfDir/Gnome.py:32
+msgid "Size of the history file"
+msgstr "Geçmiþ dosyasýnýn büyüklüðü"
+
+#: Pyblio/ConfDir/Gnome.py:33
+msgid "Number of items"
+msgstr "Eleman sayýsý"
+
+#: Pyblio/ConfDir/Medline.py:7
+msgid "Medline Mapping"
+msgstr "Medline Karþýlaþtýrma"
+
+#: Pyblio/ConfDir/Medline.py:8
+msgid "Medline field names correspondances"
+msgstr "Medline alan adlarýnýn karþýlýklarý"
+
+#: Pyblio/Autoload.py:57
+#, c-format
+msgid "warning: can't import %s: %s"
+msgstr "uyarý : getirilemiyor %s: %s"
+
+#: Pyblio/Config.py:53
+#, c-format
+msgid "value of `%s' should be of type %s"
+msgstr "'%s' deðeri %s tipinde olmalýdýr"
+
+#: Pyblio/Config.py:200
+msgid "String"
+msgstr "String"
+
+#: Pyblio/Config.py:210
+msgid "Boolean"
+msgstr "Boolean"
+
+#: Pyblio/Config.py:230
+msgid "Integer"
+msgstr "Integer"
+
+#: Pyblio/Config.py:232
+#, c-format
+msgid "Integer under %d"
+msgstr "%d altinda Integer"
+
+#: Pyblio/Config.py:234
+#, c-format
+msgid "Integer over %d"
+msgstr "%d üstünde Integer"
+
+#: Pyblio/Config.py:236
+#, c-format
+msgid "Integer between %d and %d"
+msgstr "%d ile %d arasýnda Integer"
+
+#: Pyblio/Config.py:249
+#, c-format
+msgid "Element in `%s'"
+msgstr "'%s' içinde eleman"
+
+#: Pyblio/Config.py:270
+#, c-format
+msgid "Tuple (%s)"
+msgstr "Tuple (%s)"
+
+#: Pyblio/Config.py:292
+#, c-format
+msgid "List (%s)"
+msgstr "(%s)'i listele"
+
+#: Pyblio/Config.py:318
+#, c-format
+msgid "Dictionary (%s, %s)"
+msgstr "Sözlük (%s, %s)"
+
+#: Pyblio/Fields.py:265
+msgid "Illegal year value"
+msgstr "Geçersiz yýl deðeri"
+
+#: Pyblio/Fields.py:269
+msgid "Illegal month value"
+msgstr "Geçersiz ay deðeri"
+
+#: Pyblio/Fields.py:273
+msgid "Illegal day value"
+msgstr "Geçersiz gün deðeri"
+
+#: Pyblio/Fields.py:438
+#, c-format
+msgid "in %s"
+msgstr "%s içinde"
+
+#: Pyblio/LyX.py:39
+#, c-format
+msgid "no input pipe `%s'"
+msgstr "giriþ yok `%s'"
+
+#: Pyblio/LyX.py:45
+#, c-format
+msgid "no output pipe `%s'"
+msgstr "çýkýþ yok `%s'"
+
+#: Pyblio/Open.py:97
+#, c-format
+msgid "method `%s' provides no opener"
+msgstr "`%s' metodu açmamayi destekler"
+
+#: Pyblio/Open.py:105 Pyblio/Open.py:151
+#, c-format
+msgid "File `%s' does not exist"
+msgstr "`%s' dosyasý yok"
+
+#: Pyblio/Open.py:116 Pyblio/Open.py:162
+#, c-format
+msgid "don't know how to open `%s'"
+msgstr "`%s' dosyasýnýn nasýl açýlacaðý bilinmiyor"
+
+#: Pyblio/Open.py:143
+#, c-format
+msgid "method `%s' provides no iterator"
+msgstr "`%s' metodu iterasyonu desteklemiyor"
+
+#: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
+#, c-format
+msgid "key `%s' is malformed"
+msgstr "`%s' anahtarý hatalý düzenlenmis"
+
+#: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
+#, c-format
+msgid "%s:%d: key `%s' already defined"
+msgstr "%s:%d: `%s' anahtarý zaten tanýmlý"
+
+#: Pyblio/GnomeUI/Editor.py:38
+msgid "Last Name, First Name"
+msgstr "Soyadý, Adý"
+
+#: Pyblio/GnomeUI/Editor.py:39
+msgid "Text"
+msgstr "Yazý"
+
+#: Pyblio/GnomeUI/Editor.py:42
+msgid "Reference"
+msgstr "Referans"
+
+#: Pyblio/GnomeUI/Editor.py:258
+msgid "Day"
+msgstr "Gün"
+
+#: Pyblio/GnomeUI/Editor.py:267
+msgid "Month"
+msgstr "Ay"
+
+#: Pyblio/GnomeUI/Editor.py:276
+msgid "Year"
+msgstr "Yil"
+
+#: Pyblio/GnomeUI/Editor.py:301
+msgid "Invalid day field in date"
+msgstr "Tarihteki gün alaný geçersiz"
+
+#: Pyblio/GnomeUI/Editor.py:309
+msgid "Invalid month field in date"
+msgstr "Tarihteki ay alaný geçersiz"
+
+#: Pyblio/GnomeUI/Editor.py:317
+msgid "Invalid year field in date"
+msgstr "Tarihteki yil alaný geçersiz"
+
+#: Pyblio/GnomeUI/Editor.py:426
+msgid "Entry type"
+msgstr "Giriþ tipi"
+
+#: Pyblio/GnomeUI/Editor.py:469
+msgid "Create Field"
+msgstr "Alan yarat"
+
+#: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:178
+msgid "Mandatory"
+msgstr "Zorunlu"
+
+#: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:179
+msgid "Optional"
+msgstr "Opsiyonel"
+
+#: Pyblio/GnomeUI/Editor.py:534
+msgid "Extra"
+msgstr "Ekstra"
+
+#: Pyblio/GnomeUI/Editor.py:596
+msgid "Invalid key format"
+msgstr "Geçersiz anahtar biçimi"
+
+#: Pyblio/GnomeUI/Editor.py:604
+#, c-format
+msgid "Key `%s' already exists"
+msgstr "`%s' anahtari zaten var"
+
+#: Pyblio/GnomeUI/Editor.py:671
+msgid "Error in native string parsing"
+msgstr "Doðal kelime yorumlama hatasý"
+
+#: Pyblio/GnomeUI/Editor.py:684
+msgid "Edit entry"
+msgstr "Giriþ düzenle"
+
+#: Pyblio/GnomeUI/Editor.py:698 Pyblio/GnomeUI/Editor.py:739
+msgid "Native Editing"
+msgstr "Doðal Düzenleme"
+
+#: Pyblio/GnomeUI/Editor.py:751
+msgid "Standard Editing"
+msgstr "Standart Düzenleme"
+
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+#: Pyblio/GnomeUI/FileSelector.py:41
+msgid "File"
+msgstr "Dosya"
+
+#: Pyblio/GnomeUI/FileSelector.py:74
+msgid "Bibliography type:"
+msgstr "Bibliografya Tipi"
+
+#: Pyblio/GnomeUI/Index.py:66
+msgid "Add..."
+msgstr "Ekle..."
+
+#: Pyblio/GnomeUI/Index.py:67
+msgid "Edit..."
+msgstr "Düzenle..."
+
+#: Pyblio/GnomeUI/Index.py:68 Pyblio/GnomeUI/Search.py:176
+msgid "Delete"
+msgstr "Sil"
+
+#: Pyblio/GnomeUI/Search.py:109
+msgid "Search"
+msgstr "Araþtýr"
+
+#: Pyblio/GnomeUI/Fields.py:211 Pyblio/GnomeUI/Search.py:133
+msgid "Field"
+msgstr "Alan"
+
+#: Pyblio/GnomeUI/Search.py:134
+msgid "Pattern"
+msgstr "Aranacak"
+
+#: Pyblio/GnomeUI/Search.py:149
+msgid "Simple Search"
+msgstr "Basit Araþtýrma"
+
+#: Pyblio/GnomeUI/Search.py:153
+msgid "Search command:"
+msgstr "Araþtýr Komutu:"
+
+#: Pyblio/GnomeUI/Search.py:159
+msgid "Expert Search"
+msgstr "Uzman Araþtýrma"
+
+#: Pyblio/GnomeUI/Search.py:194
+msgid "Full database"
+msgstr "Bütün veritabaný"
+
+#: Pyblio/GnomeUI/Search.py:229
+msgid "internal error during evaluation"
+msgstr "Geliþtirme sýrasýnda iç hata oluþtu"
+
+#: Pyblio/GnomeUI/Search.py:278
+#, c-format
+msgid ""
+"while compiling %s\n"
+"error: %s"
+msgstr ""
+"%s 'in derlenmesi sýrasýnda\n"
+"hata: %s"
+
+#: Pyblio/GnomeUI/Sort.py:42
+msgid "Select sort criterions"
+msgstr "Sýralama kriterlerini seç"
+
+#: Pyblio/GnomeUI/Sort.py:53
+msgid "Sort direction"
+msgstr "Sýralams yönü"
+
+#: Pyblio/GnomeUI/Sort.py:53
+msgid "Sort criterions"
+msgstr "Sýralama kriterleri"
+
+#: Pyblio/GnomeUI/Sort.py:66
+msgid "[Entry Type]"
+msgstr "[Giriþ Tipi]"
+
+#: Pyblio/GnomeUI/Sort.py:67
+msgid "[Key Value]"
+msgstr "[Giriþ Deðeri]"
+
+#: Pyblio/GnomeUI/Sort.py:92
+msgid "Reorder"
+msgstr "Yeniden Sýrala"
+
+#: Pyblio/GnomeUI/Sort.py:93
+msgid "Groups the active fields on the top of the list"
+msgstr "Aktif alanlar listenin baþýnda olan guruplar"
+
+#: Pyblio/GnomeUI/Sort.py:97
+msgid "Unselect all"
+msgstr "Hiçbirisini seçme"
+
+#: Pyblio/GnomeUI/Sort.py:98
+msgid "Removes all the sort criterions"
+msgstr "Bütün sýralama kriterlerini kaldýr"
+
+#: Pyblio/GnomeUI/Utils.py:163
+msgid ""
+"The following errors occured:\n"
+"\n"
+msgstr ""
+"Aþaðýdaki hatalar oluþtu:\n"
+"\n"
+
+#: Pyblio/GnomeUI/__init__.py:36
+msgid "Internal Error"
+msgstr "Ýç Hata"
+
+#: Pyblio/GnomeUI/Document.py:52
+msgid "_New"
+msgstr "_Yeni"
+
+#: Pyblio/GnomeUI/Document.py:54
+msgid "_Merge with..."
+msgstr "Ý_le Birleþtir..."
+
+#: Pyblio/GnomeUI/Document.py:58
+msgid "_Previous Documents"
+msgstr "Ö_nceki Dökümanlar"
+
+#: Pyblio/GnomeUI/Document.py:65
+msgid "About..."
+msgstr "Hakkýnda..."
+
+#: Pyblio/GnomeUI/Document.py:66
+msgid "Submit a Bug Report"
+msgstr "Hata Raporu Gönder"
+
+#: Pyblio/GnomeUI/Document.py:78
+msgid "_Add..."
+msgstr "_Ekle..."
+
+#: Pyblio/GnomeUI/Document.py:79
+msgid "_Edit..."
+msgstr "_Düzenle..."
+
+#: Pyblio/GnomeUI/Document.py:80
+msgid "_Delete"
+msgstr "_Sil"
+
+#: Pyblio/GnomeUI/Document.py:83
+msgid "S_ort..."
+msgstr "S_irala..."
+
+#: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
+msgid "_Cite"
+msgstr "_Alýntý"
+
+#: Pyblio/GnomeUI/Document.py:88
+msgid "_Format..."
+msgstr "_Biçimle..."
+
+#: Pyblio/GnomeUI/Document.py:92
+msgid "_Fields..."
+msgstr "A_lanlar..."
+
+#: Pyblio/GnomeUI/Document.py:93
+msgid "_Entries..."
+msgstr "_Giriþler..."
+
+#: Pyblio/GnomeUI/Document.py:99
+msgid "_File"
+msgstr "_Dosya"
+
+#: Pyblio/GnomeUI/Document.py:100
+msgid "_Edit"
+msgstr "Dü_zenle..."
+
+#: Pyblio/GnomeUI/Document.py:102
+msgid "_Settings"
+msgstr "A_yarlar"
+
+#: Pyblio/GnomeUI/Document.py:103
+msgid "_Help"
+msgstr "Ya_rdým"
+
+#: Pyblio/GnomeUI/Document.py:107
+msgid "Open"
+msgstr "Aç"
+
+#: Pyblio/GnomeUI/Document.py:108
+msgid "Save"
+msgstr "Kaydet"
+
+#: Pyblio/GnomeUI/Document.py:110
+msgid "Find"
+msgstr "Bul"
+
+#: Pyblio/GnomeUI/Document.py:111
+msgid "Cite"
+msgstr "Alýntý"
+
+#: Pyblio/GnomeUI/Document.py:113
+msgid "Close"
+msgstr "Kapat"
+
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+msgid "Previous Documents"
+msgstr "Önceki Dökümanlar"
+
+#: Pyblio/GnomeUI/Document.py:228
+#, c-format
+msgid ""
+"can't open file `%s' for writing:\n"
+"%s"
+msgstr ""
+"`%s' dosyasini yazmak için açamadi:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:243
+#, c-format
+msgid ""
+"Error while parsing `%s':\n"
+"%s"
+msgstr ""
+"`%s' yorumlanýrken hata oluþtu:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:262
+msgid "New database"
+msgstr "Yeni veritabaný"
+
+#: Pyblio/GnomeUI/Document.py:270 Pyblio/GnomeUI/Document.py:274
+msgid "[no entry]"
+msgstr "[giriþ yok]"
+
+#: Pyblio/GnomeUI/Document.py:271
+msgid "[1 entry]"
+msgstr "[1 giriþ]"
+
+#: Pyblio/GnomeUI/Document.py:272
+#, c-format
+msgid "[%d entries]"
+msgstr "[%d giriþ]"
+
+#: Pyblio/GnomeUI/Document.py:275
+#, c-format
+msgid "[%d/1 entry]"
+msgstr "[%d/1 giriþ]"
+
+#: Pyblio/GnomeUI/Document.py:276
+#, c-format
+msgid "[%d/%d entries]"
+msgstr "[%d/%d giriþ]"
+
+#: Pyblio/GnomeUI/Document.py:281
+msgid "[modified]"
+msgstr "[deðiþtirildi]"
+
+#: Pyblio/GnomeUI/Document.py:291
+msgid ""
+"The database has been modified.\n"
+"Discard changes ?"
+msgstr ""
+"Veritabani degistirildi.\n"
+"Deðiþiklikleri atmak istiyor musunuz ?"
+
+#: Pyblio/GnomeUI/Document.py:307
+msgid "Merge file"
+msgstr "Dosyayý birleþtir"
+
+#: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:379
+msgid "Open error"
+msgstr "Açýk hata"
+
+#: Pyblio/GnomeUI/Document.py:343
+msgid "Merge status"
+msgstr "Durumu birleþtir"
+
+#: Pyblio/GnomeUI/Document.py:354
+msgid "Open file"
+msgstr "Açýk dosya"
+
+#: Pyblio/GnomeUI/Document.py:403
+#, c-format
+msgid ""
+"Unable to save `%s':\n"
+"%s"
+msgstr ""
+"`%s' kaydedilemiyor:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:411
+msgid ""
+"An internal error occured during saving\n"
+"Try to Save As..."
+msgstr ""
+"Kaydetme sýrasýnda bir iç hata oluþtu\n"
+"Farklý Kaydetmeyi Dene..."
+
+#: Pyblio/GnomeUI/Document.py:422
+msgid "Save As..."
+msgstr "Farklý Kaydet..."
+
+#: Pyblio/GnomeUI/Document.py:428
+#, c-format
+msgid ""
+"The file `%s' already exists.\n"
+"Overwrite it ?"
+msgstr ""
+"`%s' dosyasi zaten var.\n"
+"Üzerine yazmak istiyor musunuz ?"
+
+#: Pyblio/GnomeUI/Document.py:435
+#, c-format
+msgid ""
+"During opening:\n"
+"%s"
+msgstr ""
+"Açýlma sýrasýnda:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:455
+msgid "Reopen error"
+msgstr "Yeniden açma hatasý"
+
+#: Pyblio/GnomeUI/Document.py:496
+#, c-format
+msgid ""
+"An entry called `%s' already exists.\n"
+"Rename and add it anyway ?"
+msgstr ""
+"`%s' giriþi zaten var.\n"
+"Yeniden adlandýrýp eklemek istiyor musunuz ?"
+
+#: Pyblio/GnomeUI/Document.py:532
+msgid "Really remove all the entries ?"
+msgstr "Bütün giriþleri kaldýrmak istediðinizden emin misiniz ?"
+
+#: Pyblio/GnomeUI/Document.py:552
+msgid "Create new entry"
+msgstr "Yeni giriþ yarat"
+
+#: Pyblio/GnomeUI/Document.py:566
+#, c-format
+msgid "Really edit %d entries ?"
+msgstr "%d giriþi düzenlemek istediðinizden emin misiniz ?"
+
+#: Pyblio/GnomeUI/Document.py:601
+#, c-format
+msgid "Remove all the %d entries ?"
+msgstr "%d giriþi kaldýrmak istiyor musunuz ?"
+
+#: Pyblio/GnomeUI/Document.py:603
+#, c-format
+msgid "Remove entry `%s' ?"
+msgstr "`%s' giriþini kaldýrmak istiyor musunuz ?"
+
+#: Pyblio/GnomeUI/Document.py:661 Pyblio/GnomeUI/Document.py:668
+#, c-format
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr "" 
+"LyX'e baðlanýlamýyor:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:709
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+"Bu arayüzü kullanabilmek için\n"
+"bug-buddy'i yükleyin"
+
+#: Pyblio/GnomeUI/Document.py:720
+msgid "This program is copyrighted under the GNU GPL"
+msgstr "Bu program GNU GPL telif haklarýna sahiptir"
+
+#: Pyblio/GnomeUI/Document.py:722
+msgid "Gnome interface to the Pybliographer system."
+msgstr "Pybiographer sistemine Gnome arayüzü"
+
+#: Pyblio/GnomeUI/Document.py:727
+msgid "Pybliographer Home Page"
+msgstr "Pybliographer Internet Adresi"
+
+#: Pyblio/GnomeUI/Format.py:37
+msgid "Format entries"
+msgstr "Giriþleri biçimlendir"
+
+#: Pyblio/GnomeUI/Format.py:51
+msgid "Bibliography style:"
+msgstr "Bibliografya stili:"
+
+#: Pyblio/GnomeUI/Format.py:52
+msgid "Select style"
+msgstr "Stili seç"
+
+#: Pyblio/GnomeUI/Format.py:58
+msgid "Output format:"
+msgstr "Çýktý biçimi:"
+
+#: Pyblio/GnomeUI/Format.py:75
+msgid "Output File:"
+msgstr "Çýktý Dosyasi:"
+
+#: Pyblio/GnomeUI/Format.py:76
+msgid "Select output file"
+msgstr "Çýktý dosyasýný seç"
+
+#: Pyblio/GnomeUI/Config.py:46
+msgid "Choose your preferences"
+msgstr "Tercihlerinizi seçiniz"
+
+#: Pyblio/GnomeUI/Config.py:111
+#, c-format
+msgid ""
+"Item `%s':\n"
+"\n"
+"%s"
+msgstr ""
+"Parça `%s'\n"
+"\n"
+"%s"
+
+#: Pyblio/GnomeUI/Config.py:146
+msgid ""
+"Some changes require to restart Pybliographic\n"
+"to be correctly taken into account"
+msgstr ""
+"Bazý deðiþikliler  doðru çalýþabilmesi\n"
+"Pybliographic programýnýn yeniden baþlamasýný gerektirmektedir"
+
+#: Pyblio/GnomeUI/Config.py:291
+msgid "True"
+msgstr "Doðru"
+
+#: Pyblio/GnomeUI/Config.py:292
+msgid "False"
+msgstr "Yanlýþ"
+
+#: Pyblio/GnomeUI/Config.py:432
+msgid "Add"
+msgstr "Ekle"
+
+#: Pyblio/GnomeUI/Config.py:435
+msgid "Update"
+msgstr "Güncelle"
+
+#: Pyblio/GnomeUI/Config.py:438 Pyblio/GnomeUI/Config.py:536
+#: Pyblio/GnomeUI/Fields.py:95 Pyblio/GnomeUI/Fields.py:225
+msgid "Remove"
+msgstr "Kaldýr"
+
+#: Pyblio/GnomeUI/Config.py:524
+msgid "Value"
+msgstr "Deðer"
+
+#: Pyblio/GnomeUI/Config.py:533 Pyblio/GnomeUI/Fields.py:92
+#: Pyblio/GnomeUI/Fields.py:222
+msgid "Set"
+msgstr "Ata"
+
+#: Pyblio/GnomeUI/Config.py:549
+msgid "Key:"
+msgstr "Anahtar:"
+
+#: Pyblio/GnomeUI/Config.py:551
+msgid "Value:"
+msgstr "Deðer:"
+
+#: Pyblio/GnomeUI/Fields.py:45
+msgid "Fields configuration"
+msgstr "Alan ayarlarý"
+
+#: Pyblio/GnomeUI/Fields.py:58
+msgid "Name"
+msgstr "Ad"
+
+#: Pyblio/GnomeUI/Fields.py:69
+msgid "Name:"
+msgstr "Ad:"
+
+#: Pyblio/GnomeUI/Fields.py:71
+msgid "Type:"
+msgstr "Tip:"
+
+#: Pyblio/GnomeUI/Fields.py:185
+msgid "Entries configuration"
+msgstr "Giriþ ayarlarý"
+
+#: Pyblio/GnomeUI/Fields.py:195
+msgid "Entry"
+msgstr "Giriþ"
+
+#: Pyblio/GnomeUI/Fields.py:206
+msgid "Entry Name:"
+msgstr "Giriþ Adý:"
+
+#: Pyblio/GnomeUI/Fields.py:211
+msgid "Status"
+msgstr "Durum"
+
+#: pybliographer.py:38
+#, c-format
+msgid "This is %s, version %s"
+msgstr "%s, sürüm %s"
+
+#: pybliographer.py:42 pybliographer.py:49
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr "Bu bedava yazýlýmýn KESÝNLÝKLE GARANTÝSÝ YOKTUR."
+
+#: pybliographer.py:43
+msgid "For details, type `warranty'."
+msgstr "Detaylý bilgi için, `warranty' yazýnýz"
+
+#: pybliographer.py:110 pybliographer.py:158
+#, c-format
+msgid "%s: error: can't open file `%s'"
+msgstr "%s: hata: dosya `%s' açilamiyor"
+
+#: pybliographer.py:123
+#, c-format
+msgid "For help, run %s and type `help' at the prompt"
+msgstr "Yardým için, %s 'i çalýþtýrýn ve `help' yazýn"
+
+#: pybliographer.py:132
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+"Kullanýþlý komutlar:\n"
+"\thelp    biraz yardým almak için\n"
+"\tquit    çýkmak için\n"
+
+#: scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr "kullaným: pybcompact <latexdosyasý> <bibtexdosyalarý...>"
+
+#: scripts/pybcompact.py:34
+#, c-format
+msgid "pybcompact: error: %s\n"
+msgstr "pybcompact: hata: %s\n"
+
+#: scripts/pybcompact.py:97
+msgid "no entry"
+msgstr "giriþ yok"
+
+#: scripts/pybcompact.py:142
+#, c-format
+msgid "can't find the following entries: %s"
+msgstr "yandaki giriþ bulunamadý: %s"
+
+#: scripts/pybconvert.py:29
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr "kullaným: pybconvert <kaynak>..<hedef> <girdi> [çýktý]"
+
+#: scripts/pybconvert.py:38
+msgid "pybconvert: bad conversion format"
+msgstr "pybconvert: kötü çevirme biçimi"
+
+#: scripts/pybformat.py:34
+msgid "usage: pybformat [bibtexfiles...]\n"
+msgstr "kullaným: pybformat [bibtexdosyalarý...]\n"
+
+#: scripts/pybformat.py:38
+#, c-format
+msgid "pybformat: error: %s\n"
+msgstr "pybformat: hata: %s\n"
+
+#: scripts/pybformat.py:44
+#, c-format
+msgid "pybformat: warning: %s\n"
+msgstr "pybformat: uyarý: %s\n"
+
+#: scripts/pybformat.py:141 scripts/pybtex.py:84
+#, c-format
+msgid "can't find style `%s'"
+msgstr "stil `%s' bulunamadý"
+
+#: scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr "kullaným: pybtex <latexdosyasý> [bibtexdosyalarý...]"
+
+#: scripts/pybtex.py:38
+#, c-format
+msgid "pybtex: error: %s\n"
+msgstr "pybtex: hata: %s\n"
+
+#: scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr "pybtex: uyarý: aþaðýdaki anahtarlar çözümlenemedi"
+
+#: scripts/pybtex.py:64
+msgid "no style defined"
+msgstr "stil belirtilmemiþ"
