@@ -81,6 +81,11 @@ dnl Checks for programs.
 AM_PROG_LEX
 AC_PROG_YACC
 
+dnl NLS
+ALL_LINGUAS="fr it de hu"
+AM_GNU_GETTEXT
+
+
 AC_ARG_WITH(recode_prefix,
 [  --with-recode-prefix=dir   Prefix where GNU Recode is installed],,
             with_recode_prefix=no)
@@ -92,7 +97,7 @@ AC_ARG_WITH(recode_exec_prefix,
 dnl Check in the standard paths
 if test "x${with_recode_prefix}" = "xno" ; then
   AC_MSG_CHECKING([for GNU Recode])
-  RECODELIB='-lrecode'
+  RECODELIB="-lrecode"
   RECODEINC=''
 else
   dnl Check in the specified path
@@ -111,16 +116,20 @@ dnl Checks for library functions.
 old_LIBS=${LIBS}
 LIBS=${RECODELIB}
 
-AC_TRY_LINK([
+if test "x${USE_INCLUDED_LIBINTL}" = "xyes" ; then
+  AC_MSG_RESULT(not tested because of i18n dependancy)
+else
+  AC_TRY_LINK([
   	char recode_new_request();
    	char * program_name;
-], [  
+  ], [  
   	recode_new_request(); 
   ],,
     AC_MSG_RESULT(no)
     AC_MSG_ERROR([please install GNU Recode (version >= 3.5) first]), [/bin/false])
   
-AC_MSG_RESULT([found])
+  AC_MSG_RESULT([found])
+fi
 
 old_CPPFLAGS=${CPPFLAGS}
 CPPFLAGS="${CPPFLAGS} ${RECODEINC}"
@@ -183,10 +192,6 @@ else
   AC_MSG_RESULT([not found])
   AC_MSG_WARN([install gnome-python if you want the graphical interface])
 fi
-
-dnl NLS
-ALL_LINGUAS="fr it de hu"
-AM_GNU_GETTEXT
 
 
 AC_OUTPUT(	

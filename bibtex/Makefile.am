@@ -58,6 +58,6 @@ libbibtex_la_LIBADD  = $(GLIB_LIBS) $(RECODELIB)
 
 noinst_PROGRAMS    = testparser 
 testparser_SOURCES = testparser.c
-testparser_LDADD   = libbibtex.la 
+testparser_LDADD   = libbibtex.la @INTLLIBS@
 testparser_LDFLAGS = -static 
 

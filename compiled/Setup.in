@@ -37,5 +37,5 @@ _bibtex	-I$(srcdir)/../bibtex 				\
        	bibtexmodule.c ../bibtex/.libs/libbibtex.a 	\
 	@GLIB_LIBS@ @RECODELIB@ @INTLLIBS@
 
-_recode	@RECODEINC@ recodemodule.c @RECODELIB@
+_recode	@RECODEINC@ recodemodule.c @RECODELIB@ @INTLLIBS@
 
