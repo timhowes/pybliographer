@@ -28,6 +28,7 @@ import os, sys, traceback, tempfile, string
 from Pyblio import Base, Help, Search, Types, Autoload, Fields
 from Pyblio.Selection import Selection
 from Pyblio.Open import bibopen, bibwrite
+from Pyblio.Style import Utils
 
 # ----- Create elementary Test -----
 
@@ -249,10 +250,17 @@ Example:
 
 def format (database, style, output, file = sys.stdout, id = 'Bibliography'):
 	
-	style  = Autoload.get_by_name ("style",  style)
-	output = Autoload.get_by_name ("output", output)
+	output = Autoload.get_by_name ("output", output).data
+	
+	url = None
+	style = os.path.splitext (style) [0]
+	if os.path.exists (style + '.xml'):
+		url = Fields.URL (style + '.xml')
+	else:
+		from Pyblio import version
+		full = os.path.join (version.prefix, 'Styles', style)
+		full = full + '.xml'
+		if os.path.exists (full): url = Fields.URL (full)
 
-	formatter = output.data (file)
-	style.data (id, formatter, database)
-
+	Utils.generate (url, output, database, database.keys (), file)
 	return

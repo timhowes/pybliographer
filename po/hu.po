@@ -2,12 +2,11 @@
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.9\n"
-"POT-Creation-Date: 2000-04-14 10:06+ZONE\n"
-"PO-Revision-Date: 2000-04-14 08:00+0200\n"
+"POT-Creation-Date: 2000-04-17 16:17+ZONE\n"
+"PO-Revision-Date: 2000-04-14 14:35+0200\n"
 "Last-Translator: Zoltán Kóta <kota@szbk.u-szeged.hu>\n"
 "Language-Team: hu <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -59,20 +58,21 @@ msgid "List (%s)"
 msgstr "Lista (%s)"
 
 #: .././Pyblio/Config.py:308
-msgid "Dictionnary (%s, %s)"
+#, fuzzy
+msgid "Dictionary (%s, %s)"
 msgstr "Szótár (%s, %s)"
 
 #: .././Pyblio/Fields.py:265
 msgid "Illegal year value"
-msgstr "Illegális év"
+msgstr "Érvénytelen év"
 
 #: .././Pyblio/Fields.py:269
 msgid "Illegal month value"
-msgstr "Illegális hónap"
+msgstr "Érvénytelen hónap"
 
 #: .././Pyblio/Fields.py:273
 msgid "Illegal day value"
-msgstr "Illegális nap"
+msgstr "Érvénytelen nap"
 
 #: .././Pyblio/Fields.py:438
 msgid "in %s"
@@ -102,11 +102,11 @@ msgstr "Nem tudom hogy nyissam meg `%s'-t"
 msgid "method `%s' provides no iterator"
 msgstr "`%s' módszer nem biztosít iterátort"
 
-#: .././Pyblio/Format/BibTeX.py:326
+#: .././Pyblio/Format/BibTeX.py:345
 msgid "key `%s' is malformed"
 msgstr "kulcs `%s' helytelen"
 
-#: .././Pyblio/Format/BibTeX.py:345
+#: .././Pyblio/Format/BibTeX.py:365
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: kulcs `%s' már definiálva van"
 
@@ -150,7 +150,7 @@ msgstr "Érvénytelen év a dátumban"
 msgid "Entry type"
 msgstr "Bejegyzés típusa"
 
-#: .././Pyblio/GnomeUI/Config.py:445 .././Pyblio/GnomeUI/Editor.py:417
+#: .././Pyblio/GnomeUI/Config.py:485 .././Pyblio/GnomeUI/Editor.py:417
 msgid "Key"
 msgstr "Kulcs"
 
@@ -259,9 +259,8 @@ msgid "Select sort criterions"
 msgstr "Rendezési kritérium választása"
 
 #: .././Pyblio/GnomeUI/Sort.py:53
-#, fuzzy
 msgid "Sort direction"
-msgstr "Rendezési kritériumok"
+msgstr "Rendezés módja"
 
 #: .././Pyblio/GnomeUI/Sort.py:53
 msgid "Sort criterions"
@@ -281,16 +280,15 @@ msgstr "Újrarendez"
 
 #: .././Pyblio/GnomeUI/Sort.py:93
 msgid "Groups the active fields on the top of the list"
-msgstr ""
+msgstr "Aktív mezõk csoportosítása a lista elején"
 
 #: .././Pyblio/GnomeUI/Sort.py:97
 msgid "Unselect all"
 msgstr "Szelektálás megszüntetése"
 
 #: .././Pyblio/GnomeUI/Sort.py:98
-#, fuzzy
 msgid "Removes all the sort criterions"
-msgstr "Rendezési kritérium választása"
+msgstr "Rendezési kritériumok törlése"
 
 #: .././Pyblio/GnomeUI/Utils.py:163
 msgid ""
@@ -301,19 +299,16 @@ msgstr ""
 "\n"
 
 #: .././Pyblio/GnomeUI/Document.py:52
-#, fuzzy
 msgid "_New"
-msgstr "Új"
+msgstr "_Új"
 
 #: .././Pyblio/GnomeUI/Document.py:54
-#, fuzzy
 msgid "_Merge with..."
-msgstr "Hozzáfûz..."
+msgstr "_Hozzáfûz..."
 
 #: .././Pyblio/GnomeUI/Document.py:58
-#, fuzzy
 msgid "_Previous Documents"
-msgstr "Elõzõ dokumentumok"
+msgstr "_Elõzõ dokumentumok"
 
 #: .././Pyblio/GnomeUI/Document.py:65
 msgid "About..."
@@ -324,64 +319,52 @@ msgid "Submit a Bug Report"
 msgstr "Bug Report küldése"
 
 #: .././Pyblio/GnomeUI/Document.py:78
-#, fuzzy
 msgid "_Add..."
-msgstr "Hozzáad..."
+msgstr "_Hozzáad..."
 
 #: .././Pyblio/GnomeUI/Document.py:79
-#, fuzzy
 msgid "_Edit..."
-msgstr "Módosít..."
+msgstr "_Szerkeszt..."
 
 #: .././Pyblio/GnomeUI/Document.py:80
-#, fuzzy
 msgid "_Delete"
-msgstr "Töröl"
+msgstr "_Töröl"
 
 #: .././Pyblio/GnomeUI/Document.py:83
-#, fuzzy
 msgid "S_ort..."
-msgstr "Rendez..."
+msgstr "_Rendez..."
 
 #: .././Pyblio/GnomeUI/Document.py:87
-#, fuzzy
 msgid "_Cite"
-msgstr "Idéz"
+msgstr "_Idéz"
 
 #: .././Pyblio/GnomeUI/Document.py:88
-#, fuzzy
 msgid "_Format..."
-msgstr "Formátum..."
+msgstr "_Formátum..."
 
 #: .././Pyblio/GnomeUI/Document.py:92
-#, fuzzy
 msgid "_Fields..."
-msgstr "Mezõk..."
+msgstr "_Mezõk..."
 
 #: .././Pyblio/GnomeUI/Document.py:93
-#, fuzzy
 msgid "_Entries..."
-msgstr "Bejegyzések..."
+msgstr "_Bejegyzések..."
 
 #: .././Pyblio/GnomeUI/Document.py:99
-#, fuzzy
 msgid "_File"
-msgstr "Fájl"
+msgstr "_Fájl"
 
 #: .././Pyblio/GnomeUI/Document.py:100
-#, fuzzy
 msgid "_Edit"
-msgstr "Szerkesztés"
+msgstr "_Szerkeszt"
 
 #: .././Pyblio/GnomeUI/Document.py:102
-#, fuzzy
 msgid "_Settings"
-msgstr "Beállítások"
+msgstr "_Beállítások"
 
 #: .././Pyblio/GnomeUI/Document.py:103
-#, fuzzy
 msgid "_Help"
-msgstr "Súgó"
+msgstr "_Súgó"
 
 #: .././Pyblio/GnomeUI/Document.py:107
 msgid "Open"
@@ -475,7 +458,7 @@ msgstr ""
 "Nem tudom `%s'-t menteni:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:398
+#: .././Pyblio/GnomeUI/Document.py:401
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -483,7 +466,7 @@ msgstr ""
 "Belsõ hiba történt a mentés során\n"
 "Próbálja: Mentés másként..."
 
-#: .././Pyblio/GnomeUI/Document.py:415
+#: .././Pyblio/GnomeUI/Document.py:418
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
@@ -491,7 +474,7 @@ msgstr ""
 "A `%s' állomány már létezik.\n"
 "Felülírja ?"
 
-#: .././Pyblio/GnomeUI/Document.py:422
+#: .././Pyblio/GnomeUI/Document.py:425
 msgid ""
 "During opening:\n"
 "%s"
@@ -499,35 +482,35 @@ msgstr ""
 "A megnyitás során:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:471
+#: .././Pyblio/GnomeUI/Document.py:476
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
 msgstr ""
 "`%s' néven már létezik egy bejegyzés.\n"
-"Ennek ellenére akarja átnevezni és hozzáadni ?"
+"Ennek ellenére akarja, hogy átnevezzük és hozzáadjuk ?"
 
-#: .././Pyblio/GnomeUI/Document.py:507
+#: .././Pyblio/GnomeUI/Document.py:512
 msgid "Really remove all the entries ?"
 msgstr "Valóban törölni akarja az összes bejegyzést ?"
 
-#: .././Pyblio/GnomeUI/Document.py:527
+#: .././Pyblio/GnomeUI/Document.py:532
 msgid "Create new entry"
-msgstr ""
+msgstr "Új bejegyzés"
 
-#: .././Pyblio/GnomeUI/Document.py:541
+#: .././Pyblio/GnomeUI/Document.py:546
 msgid "Really edit %d entries ?"
 msgstr "Valóban szerkeszteni akarja a %d bejegyzéseket ?"
 
-#: .././Pyblio/GnomeUI/Document.py:576
+#: .././Pyblio/GnomeUI/Document.py:581
 msgid "Remove all the %d entries ?"
 msgstr "%d bejegyzések törlése ?"
 
-#: .././Pyblio/GnomeUI/Document.py:578
+#: .././Pyblio/GnomeUI/Document.py:583
 msgid "Remove entry `%s' ?"
 msgstr "A `%s' bejegyzés törlése ?"
 
-#: .././Pyblio/GnomeUI/Document.py:636
+#: .././Pyblio/GnomeUI/Document.py:641
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
@@ -535,7 +518,7 @@ msgstr ""
 "Nem tudok kapcsolódni LyX-hez:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:684
+#: .././Pyblio/GnomeUI/Document.py:689
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -543,15 +526,15 @@ msgstr ""
 "Kérem telepítse bug-buddy-t\n"
 "ezen funkció használatához"
 
-#: .././Pyblio/GnomeUI/Document.py:695
+#: .././Pyblio/GnomeUI/Document.py:700
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Ez a program a GNU GPL-nek megfelelõ szerzõi joggal védett"
 
-#: .././Pyblio/GnomeUI/Document.py:697
+#: .././Pyblio/GnomeUI/Document.py:702
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Gnome felület a Pybliographer-hez."
 
-#: .././Pyblio/GnomeUI/Document.py:702
+#: .././Pyblio/GnomeUI/Document.py:707
 msgid "Pybliographer Home Page"
 msgstr "Pybliographer Home Page"
 
@@ -583,7 +566,7 @@ msgstr "Kimeneti állomány választása"
 msgid "Choose you preferences"
 msgstr "Preferenciák választása"
 
-#: .././Pyblio/GnomeUI/Config.py:90
+#: .././Pyblio/GnomeUI/Config.py:93
 msgid ""
 "Item `%s':\n"
 "\n"
@@ -593,33 +576,49 @@ msgstr ""
 "\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Config.py:233
+#: .././Pyblio/GnomeUI/Config.py:129
+msgid ""
+"Some changes require to restart Pybliographic\n"
+"to be correctly taken into account"
+msgstr ""
+
+#: .././Pyblio/GnomeUI/Config.py:252
 msgid "True"
 msgstr "Igaz"
 
-#: .././Pyblio/GnomeUI/Config.py:234
+#: .././Pyblio/GnomeUI/Config.py:253
 msgid "False"
 msgstr "Hamis"
 
-#: .././Pyblio/GnomeUI/Config.py:358
+#: .././Pyblio/GnomeUI/Config.py:393
 msgid "Add"
 msgstr "Hozzáad"
 
-#: .././Pyblio/GnomeUI/Config.py:361
+#: .././Pyblio/GnomeUI/Config.py:396
 msgid "Update"
 msgstr "Frissít"
 
-#: .././Pyblio/GnomeUI/Config.py:364
+#: .././Pyblio/GnomeUI/Config.py:399
 msgid "Remove"
 msgstr "Eltávolít"
 
-#: .././Pyblio/GnomeUI/Config.py:445
+#: .././Pyblio/GnomeUI/Config.py:485
 msgid "Value"
 msgstr "Érték"
 
-#: .././Pyblio/GnomeUI/Config.py:454 .././Pyblio/GnomeUI/Fields.py:92
+#: .././Pyblio/GnomeUI/Config.py:494 .././Pyblio/GnomeUI/Fields.py:92
 msgid "Set"
 msgstr "Beállít"
+
+#: .././Pyblio/GnomeUI/Config.py:510
+#, fuzzy
+msgid "Key:"
+msgstr "Kulcs"
+
+#: .././Pyblio/GnomeUI/Config.py:512
+#, fuzzy
+msgid "Value:"
+msgstr "Érték"
 
 #: .././Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"

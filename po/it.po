@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.9\n"
-"POT-Creation-Date: 2000-04-13 10:22+ZONE\n"
+"POT-Creation-Date: 2000-04-17 16:17+ZONE\n"
 "PO-Revision-Date: 2000-04-08 21:40+0100\n"
 "Last-Translator: Yuri Bongiorno <yurix@tiscalinet.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -59,7 +59,8 @@ msgid "List (%s)"
 msgstr "Lista (%s)"
 
 #: .././Pyblio/Config.py:308
-msgid "Dictionnary (%s, %s)"
+#, fuzzy
+msgid "Dictionary (%s, %s)"
 msgstr "Dizionario (%s, %s)"
 
 #: .././Pyblio/Fields.py:265
@@ -102,11 +103,11 @@ msgstr "non so come aprire `%s'"
 msgid "method `%s' provides no iterator"
 msgstr "il metodo `%s' non fornisce un iteratore"
 
-#: .././Pyblio/Format/BibTeX.py:326
+#: .././Pyblio/Format/BibTeX.py:345
 msgid "key `%s' is malformed"
 msgstr "la chiave `%s' è malformata"
 
-#: .././Pyblio/Format/BibTeX.py:345
+#: .././Pyblio/Format/BibTeX.py:365
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: la chiave `%s' esiste già"
 
@@ -150,7 +151,7 @@ msgstr "Campo dell'anno non valido nella data"
 msgid "Entry type"
 msgstr "Tipo di voce"
 
-#: .././Pyblio/GnomeUI/Config.py:445 .././Pyblio/GnomeUI/Editor.py:417
+#: .././Pyblio/GnomeUI/Config.py:485 .././Pyblio/GnomeUI/Editor.py:417
 msgid "Key"
 msgstr "Chiave"
 
@@ -475,7 +476,7 @@ msgstr ""
 "Impossibile salvare `%s':\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:398
+#: .././Pyblio/GnomeUI/Document.py:401
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -483,7 +484,7 @@ msgstr ""
 "E` avvenuto un errore interno durante il salvataggio\n"
 "Prova  Salva come..."
 
-#: .././Pyblio/GnomeUI/Document.py:415
+#: .././Pyblio/GnomeUI/Document.py:418
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
@@ -491,7 +492,7 @@ msgstr ""
 "Il file `%s' esiste già.\n"
 "Lo sovrascrivo ?"
 
-#: .././Pyblio/GnomeUI/Document.py:422
+#: .././Pyblio/GnomeUI/Document.py:425
 msgid ""
 "During opening:\n"
 "%s"
@@ -499,7 +500,7 @@ msgstr ""
 "Durante l'apertura:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:471
+#: .././Pyblio/GnomeUI/Document.py:476
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
@@ -507,27 +508,27 @@ msgstr ""
 "Una voce chiamata `%s' esiste già.\n"
 "La rinomino e la aggiungo comunque ?"
 
-#: .././Pyblio/GnomeUI/Document.py:507
+#: .././Pyblio/GnomeUI/Document.py:512
 msgid "Really remove all the entries ?"
 msgstr "Rimuovo veramente tutte le voci ?"
 
-#: .././Pyblio/GnomeUI/Document.py:528
+#: .././Pyblio/GnomeUI/Document.py:532
 msgid "Create new entry"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Document.py:542
+#: .././Pyblio/GnomeUI/Document.py:546
 msgid "Really edit %d entries ?"
 msgstr "Modifico veramente le %d voci ?"
 
-#: .././Pyblio/GnomeUI/Document.py:577
+#: .././Pyblio/GnomeUI/Document.py:581
 msgid "Remove all the %d entries ?"
 msgstr "Rimuovo tutte le %d voci ?"
 
-#: .././Pyblio/GnomeUI/Document.py:579
+#: .././Pyblio/GnomeUI/Document.py:583
 msgid "Remove entry `%s' ?"
 msgstr "Rimuovo la voce `%s' ?"
 
-#: .././Pyblio/GnomeUI/Document.py:637
+#: .././Pyblio/GnomeUI/Document.py:641
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
@@ -535,7 +536,7 @@ msgstr ""
 "Impossibile connettersi a LyX:\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:685
+#: .././Pyblio/GnomeUI/Document.py:689
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -543,15 +544,15 @@ msgstr ""
 "Per favore installa bug-buddy\n"
 "per usare questa funzione"
 
-#: .././Pyblio/GnomeUI/Document.py:696
+#: .././Pyblio/GnomeUI/Document.py:700
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Questo programma è coperto dalla licenza GNU GPL"
 
-#: .././Pyblio/GnomeUI/Document.py:698
+#: .././Pyblio/GnomeUI/Document.py:702
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Interfaccia Gnome a Pybliographer"
 
-#: .././Pyblio/GnomeUI/Document.py:703
+#: .././Pyblio/GnomeUI/Document.py:707
 msgid "Pybliographer Home Page"
 msgstr "Home Page di Pybliographer"
 
@@ -583,7 +584,7 @@ msgstr "Seleziona il file di output"
 msgid "Choose you preferences"
 msgstr "Scegli le preferenze"
 
-#: .././Pyblio/GnomeUI/Config.py:90
+#: .././Pyblio/GnomeUI/Config.py:93
 msgid ""
 "Item `%s':\n"
 "\n"
@@ -593,33 +594,49 @@ msgstr ""
 "\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Config.py:233
+#: .././Pyblio/GnomeUI/Config.py:129
+msgid ""
+"Some changes require to restart Pybliographic\n"
+"to be correctly taken into account"
+msgstr ""
+
+#: .././Pyblio/GnomeUI/Config.py:252
 msgid "True"
 msgstr "Vero"
 
-#: .././Pyblio/GnomeUI/Config.py:234
+#: .././Pyblio/GnomeUI/Config.py:253
 msgid "False"
 msgstr "Falso"
 
-#: .././Pyblio/GnomeUI/Config.py:358
+#: .././Pyblio/GnomeUI/Config.py:393
 msgid "Add"
 msgstr "Aggiungi"
 
-#: .././Pyblio/GnomeUI/Config.py:361
+#: .././Pyblio/GnomeUI/Config.py:396
 msgid "Update"
 msgstr "Aggiorna"
 
-#: .././Pyblio/GnomeUI/Config.py:364
+#: .././Pyblio/GnomeUI/Config.py:399
 msgid "Remove"
 msgstr "Rimuove"
 
-#: .././Pyblio/GnomeUI/Config.py:445
+#: .././Pyblio/GnomeUI/Config.py:485
 msgid "Value"
 msgstr "Valore"
 
-#: .././Pyblio/GnomeUI/Config.py:454 .././Pyblio/GnomeUI/Fields.py:92
+#: .././Pyblio/GnomeUI/Config.py:494 .././Pyblio/GnomeUI/Fields.py:92
 msgid "Set"
 msgstr "Imposta"
+
+#: .././Pyblio/GnomeUI/Config.py:510
+#, fuzzy
+msgid "Key:"
+msgstr "Chiave"
+
+#: .././Pyblio/GnomeUI/Config.py:512
+#, fuzzy
+msgid "Value:"
+msgstr "Valore"
 
 #: .././Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"

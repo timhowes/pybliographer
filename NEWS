@@ -1,3 +1,11 @@
+New in 0.9.10 - 2000-04-17
+
+	* improved bibtex parsing for endnote databases
+	* additional configurable items for bibtex
+	* cosmetic fixes (menu shortcuts,...)
+	* should compile without Gnome
+
+
 New in 0.9.9 - 2000-04-07
 
 	* use of GnomeDialogs

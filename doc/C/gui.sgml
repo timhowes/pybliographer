@@ -185,7 +185,45 @@
     </sect2>
     
   </sect1>
-  
+
+  <sect1>
+    <title>Sorting</title>
+
+    <para>Clicking on the title of each column in the main index
+    provides some rudimentary way of sorting a database. A much
+    powerful method is to open the sort dialog (in <menuchoice>
+    <guimenu>Edit</guimenu> <guimenuitem>Sort</guimenuitem>
+    </menuchoice>). This menu, displayed in <xref linkend="figsort">,
+    gives a list of fields which can be used as sort criterions, plus
+    a flag indicating how they are currently used. By clicking on the
+    left column, it is possible to choose how the field will be used:
+      <itemizedlist>
+	<listitem>
+	  <para>Nothing means the field is not in use.</para>
+	</listitem>
+	<listitem>
+	  <para>A <symbol>&gt;</symbol> symbol means sort in
+	    <emphasis>ascending order</emphasis>.</para>
+	</listitem>
+	<listitem>
+	  <para>A <symbol>&lt;</symbol> symbol means sort in
+	    <emphasis>descending order</emphasis>.</para>
+	</listitem>
+      </itemizedlist>
+    </para>
+    <para>By clicking on the <guibutton>Reorder</guibutton> button, it
+    is possible to group the activated fields on the top of the list,
+    for a more convenient access.</para>
+    <para>The order in which the sorting is performed depends on the
+    order in the list. To modify this order, simply drag and drop an
+    item to change its position.</para>
+
+      <Figure id="figsort">
+	<Title>The Sort dialog</Title> 
+	<Graphic FileRef="sort"></Graphic>
+      </Figure>
+  </sect1>
+
   <sect1 id="gui-edit">
     <title>Editing</title>
 
@@ -228,7 +266,7 @@
       <listitem>
 	<para><keysym>Ctrl-TAB</keysym> to jump to the next field</para>
       </listitem>
-      <listitem>
+	<listitem>
 	<para><keysym>Shift-TAB</keysym> to jump to the previous
 	  field</para>
       </listitem>
