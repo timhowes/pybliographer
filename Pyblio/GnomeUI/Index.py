@@ -146,7 +146,15 @@ class Index (Connector.Publisher):
         if info == Mime.ENTRY:
             text = pickle.dumps (self.selection_buffer)
         else:
-            text = join (map (str, self.selection_buffer), '\n\n')
+            if Config.get ('gnome/paste-key').data:
+                # if we want the keys, return the keys !
+                keys = []
+                for e in self.selection_buffer:
+                    keys.append (str (e.key.key))
+                text = join (keys, ',')
+            else:
+                # else, return the full entries
+                text = join (map (str, self.selection_buffer), '\n\n')
         
         selection.set (1, 8, text)
         return
