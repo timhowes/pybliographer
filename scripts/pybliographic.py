@@ -21,24 +21,12 @@
 # 
 # $Id$
 
-
-from Pyblio.GnomeUI import Pybliographic
 from gtk import *
-from Pyblio import Base, Config
+from Pyblio.GnomeUI.Pybliographic import Pybliographic
 
-import os
+main = Pybliographic (version)
 
-main = Pybliographic.Pybliographic (version)
-main.show ()
+main.new_document ()
 
-if len (sys.argv) > 1:
-    try:
-        full = os.path.abspath (sys.argv [1])
-    except AttributeError:
-        full = sys.argv [1]
-        
-    main.open (full)
-    
 mainloop ()
-
 
