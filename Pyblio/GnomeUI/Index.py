@@ -21,7 +21,7 @@
 
 ''' Main index containing the columned view of the entries '''
 
-from Pyblio import Fields, Config, Connector, Types
+from Pyblio import Fields, Config, Connector, Types, Sort
 
 from gnome.ui import *
 from gnome import config
@@ -289,6 +289,37 @@ class Index (Connector.Publisher):
         Utils.set_cursor (self.w, 'normal')
         return
 
+
+    def go_to_first (self, query, field):
+        ''' Go to the first entry that matches a key '''
+        if not isinstance (field, Sort.FieldSort): return 0
+
+        f = field.field
+        q = lower (query)
+        l = len (q)
+        i = 0
+        
+        for e in self.access:
+            if not e.has_key (f): continue
+
+            c = cmp (lower (str (e [f])) [0:l], q)
+
+            if c == 0:
+                # matching !
+                self.set_scroll (i)
+                return 1
+
+            if c > 0:
+                # we must be after the entry...
+                self.set_scroll (i)
+                return 0
+            
+            i = i + 1
+
+        # well, show the user its entry must be after the bounds
+        self.set_scroll (i)
+        return  0
+        
     
     def click_column (self, clist, column, * data):
         ''' handler for column title selection '''

@@ -193,7 +193,7 @@ class SortDialog (Connector.Publisher):
             result.append (d [1])
 
         if result == []: result = None
-        
+
         return result
 
 

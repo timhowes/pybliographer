@@ -45,6 +45,8 @@ import cPickle
 pickle = cPickle
 del cPickle
 
+printable = string.lowercase + string.uppercase + string.digits
+
 
 class Document (Connector.Publisher):
     
@@ -52,7 +54,10 @@ class Document (Connector.Publisher):
         
         self.w = GnomeApp ('Pybliographic', 'Pybliographic')
 
+        self.w.add_events (GDK.KEY_PRESS_MASK)
+        
         self.w.connect ('delete_event', self.close_document)
+        self.w.connect ('key_press_event', self.key_pressed)
         
         file_menu = [
             UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
@@ -177,6 +182,9 @@ class Document (Connector.Publisher):
         self.changed   = 0
         self.directory = None
 
+        self.incremental_start  = None
+        self.incremental_search = ''
+        
         self.modification_date = None
 
         # set the default sort method
@@ -712,7 +720,11 @@ class Document (Connector.Publisher):
 
 
     def sort_view (self, sort):
-        self.selection.sort = Sort.Sort (sort)
+        if sort is None:
+            self.selection.sort = None
+        else:
+            self.selection.sort = Sort.Sort (sort)
+        
         self.redisplay_index ()
         return
     
@@ -759,6 +771,37 @@ class Document (Connector.Publisher):
     def freeze_display (self, entry):
         self.display.clear ()
         return
+
+
+    def key_pressed (self, app, event):
+        if event.string == '': return 1
+
+        if self.selection.sort is None:
+            app.flash ("Select a column to search in first.")
+            return 1
+        
+        if event.string in printable:
+            # the user searches the first entry in its ordering that starts with this letter
+            if self.incremental_search == '':
+                self.incremental_search = event.string
+                self.incremental_start  = event.time
+            else:
+                if event.time - self.incremental_start > 1000:
+                    self.incremental_search = event.string
+                else:
+                    # two keys in a same shot: we search for the composition of the words
+                    self.incremental_search = self.incremental_search + event.string
+                
+                self.incremental_start  = event.time
+
+            # search first occurence
+            if self.index.go_to_first (self.incremental_search,
+                                       self.selection.sort.fields [0]):
+                app.flash ("Searching for '%s...'" % self.incremental_search)
+            else:
+                app.flash ("Cannot find '%s...'" % self.incremental_search)
+                
+        return 1
 
 
     def update_configuration (self):
