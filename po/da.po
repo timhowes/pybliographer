@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
 "POT-Creation-Date: 2000-11-20 18:19+ZONE\n"
-"PO-Revision-Date: 2000-11-29 02:33+0200\n"
+"PO-Revision-Date: 2000-11-29 12:33+0200\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -770,7 +770,7 @@ msgstr "Fravælg alt"
 
 #: Pyblio/GnomeUI/Sort.py:98
 msgid "Removes all the sort criterions"
-msgstr "Fjerner alle sorteringskriterier"
+msgstr "Fjerner alle sorteringskriterierne"
 
 #: Pyblio/GnomeUI/Utils.py:163
 msgid ""
@@ -827,7 +827,7 @@ msgstr "_Citér"
 
 #: Pyblio/GnomeUI/Document.py:88
 msgid "_Format..."
-msgstr "_Format..."
+msgstr "_Formatér..."
 
 #: Pyblio/GnomeUI/Document.py:92
 msgid "_Fields..."
@@ -1139,7 +1139,7 @@ msgstr "Sæt"
 
 #: Pyblio/GnomeUI/Config.py:549
 msgid "Key:"
-msgstr "Tast:"
+msgstr "Nøgle:"
 
 #: Pyblio/GnomeUI/Config.py:551
 msgid "Value:"
