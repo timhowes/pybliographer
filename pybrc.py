@@ -1,8 +1,5 @@
 # Site configuration
 
-from Pyblio.Types  import *
-from Pyblio.Fields import *
-
 from Pyblio import Autoload, Config, version
 
 from Pyblio.TextUI import *
@@ -39,11 +36,4 @@ if not os.path.isdir (rootconfig):
 if os.path.isdir (rootconfig):
     Config.parse_directory (rootconfig)
 
-
-# ==================================================
-
-
-# ==================================================
-
-
-    
+Config.load_user ()
