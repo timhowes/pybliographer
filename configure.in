@@ -70,7 +70,7 @@ AM_PROG_LEX
 AC_PROG_YACC
 
 dnl NLS
-ALL_LINGUAS="az ca da de fi fr hr hu it ja nl no pt pt_BR ru sk sr sr@Latn sv tr uk zh_CN"
+ALL_LINGUAS="az ca da de fi fr hr hu it ja nl no pa pt pt_BR ru sk sr sr@Latn sv tr uk zh_CN"
 
 dnl Manually unset LINGUAS so that all the packages get installed
 unset LINGUAS
