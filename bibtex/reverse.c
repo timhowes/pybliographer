@@ -152,16 +152,14 @@ bibtex_reverse_field (BibtexField * field) {
 	if (* tmp >= 'a' && * tmp <= 'z') {
 	    /* Put the beginning in lower cases */
 	    g_string_append_c (st, '{');
-	    while (* tmp >= 'a' && * tmp <= 'z') {
-		g_string_append_c (st, * tmp);
-		tmp ++;
-	    }
+	    g_string_append_c (st, * tmp);
 	    g_string_append_c (st, '}');
+	    tmp ++;
 	}
 
 	is_upper = false;
 	while (* tmp) {
-	    if (* tmp >= 'A' && * tmp <= 'Z') {
+	    if (* tmp >= 'A' && * tmp <= 'Z' && (tmp > string)) {
 		if (! is_upper) {
 		    g_string_append_c (st, '{');
 		    is_upper = true;
