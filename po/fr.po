@@ -873,7 +873,7 @@ msgstr "Valeur :"
 
 #: Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"
-msgstr "Configuration des Champs"
+msgstr "Configuration des champs"
 
 #: Pyblio/GnomeUI/Fields.py:59
 msgid "Name"
@@ -893,7 +893,7 @@ msgstr "Type :"
 
 #: Pyblio/GnomeUI/Fields.py:198
 msgid "Entries configuration"
-msgstr "Configuration des Entrées"
+msgstr "Configuration des entrées"
 
 #: Pyblio/GnomeUI/Fields.py:209
 msgid "Entry"
@@ -983,7 +983,7 @@ msgstr "pybformat : attention: %s\n"
 #: scripts/pybformat.py:140 scripts/pybtex.py:85
 #, python-format
 msgid "can't find style `%s'"
-msgstr "Impossible de trouver le style `%s'"
+msgstr "impossible de trouver le style « %s »"
 
 #: scripts/pybtex.py:33
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
@@ -1020,7 +1020,7 @@ msgstr "pas de style défini"
 #~ msgstr "Nouveau texte"
 
 #~ msgid "an Instance of `%s'"
-#~ msgstr "un Instance de `%s'"
+#~ msgstr "une instance de « %s »"
 
 #~ msgid "Error"
 #~ msgstr "Erreur"
@@ -1032,7 +1032,7 @@ msgstr "pas de style défini"
 #~ msgstr "Style de format:"
 
 #~ msgid "entry has no key `%s'"
-#~ msgstr "L'entrée n'a pas de clé `%s'"
+#~ msgstr "l'entrée n'a pas de clé « %s »"
 
 #~ msgid "error: field `%s' appears more than once in the definition of `%s'"
 #~ msgstr ""
@@ -1063,10 +1063,10 @@ msgstr "pas de style défini"
 #~ msgstr "La référence croisée `%s' n'existe pas dans cette base"
 
 #~ msgid "Invalid identifier `%s'"
-#~ msgstr "L'identificateur `%s' est incorrect"
+#~ msgstr "L'identificateur « %s » n'est pas correct"
 
 #~ msgid "Identifier `%s' already exists"
-#~ msgstr "L'identificateur `%s' existe déjà"
+#~ msgstr "L'identificateur « %s » existe déjà"
 
 #~ msgid "Quit"
 #~ msgstr "Quitter"
@@ -1078,16 +1078,16 @@ msgstr "pas de style défini"
 #~ msgstr "Couper"
 
 #~ msgid "Paste"
-#~ msgstr "Valeur"
+#~ msgstr "Coller"
 
 #~ msgid "New..."
 #~ msgstr "Nouveau..."
 
 #~ msgid "Search..."
-#~ msgstr "Chercher"
+#~ msgstr "Rechercher..."
 
 #~ msgid "Sort by Type"
-#~ msgstr "Trier par Type"
+#~ msgstr "Trier par type"
 
 #~ msgid "Cite in LyX"
 #~ msgstr "Citer dans LyX"
@@ -1105,7 +1105,7 @@ msgstr "pas de style défini"
 #~ msgstr "Base de données modifiée `%s' [%s, %s]"
 
 #~ msgid "Database `%s' [%s, %s]"
-#~ msgstr "Base de données `%s' [%s, %s]"
+#~ msgstr "Base de données « %s » [%s, %s]"
 
 #~ msgid "Database is modified.\n"
 #~ msgstr "Base de données modifiée\n"
@@ -1117,7 +1117,7 @@ msgstr "pas de style défini"
 #~ msgstr "Quitter sans enregistrer ?"
 
 #~ msgid "Save As"
-#~ msgstr "Sauver comme"
+#~ msgstr "Enregistrer sous"
 
 #~ msgid ""
 #~ "Can't save file:\n"
@@ -1153,7 +1153,7 @@ msgstr "pas de style défini"
 #~ msgstr "Bibliographie"
 
 #~ msgid "Ready to search !"
-#~ msgstr "Prêt à chercher !"
+#~ msgstr "Prêt à rechercher !"
 
 #~ msgid "found %d matches"
 #~ msgstr "%d entrées trouvées"
