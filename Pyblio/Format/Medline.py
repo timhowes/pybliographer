@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -21,54 +21,12 @@
 
 # Extension module for Medline files
 
-from Pyblio import Base, Fields, Types, Autoload
+from Pyblio import Base, Fields, Types, Autoload, Open, Iterator
 
 import re, string,sys
 
 header = re.compile ('^(\w\w[\w ][\w ])- (.*)$')
 contin = re.compile ('^      (.*)$')
-
-
-def parse_one (fh):
-    current = None
-    data    = ''
-
-    table = {}
-
-    # Skip whitespace
-    while 1:
-        line = fh.readline ()
-        if line == '': return table
-        
-        line = string.rstrip (line)
-        if line != '': break
-
-    while 1:
-        head = header.match (line)
-        if head:
-            if current:
-                if table.has_key (current):
-                    table [current].append (data)
-                else:
-                    table [current] = [data]
-                        
-            current = string.strip (head.group (1))
-            data    = head.group (2)
-        else:
-            cont = contin.match (line)
-            if cont:
-                data = data + ' ' + cont.group (1)
-        
-        line = fh.readline ()
-        if line == '': break
-
-        line = string.rstrip (line)
-        if line == '': break
-        
-    if current:
-        table [current] = data
-        
-    return table
 
 one_to_one = {
     'TI' : 'title',
@@ -76,13 +34,96 @@ one_to_one = {
     'MH' : 'keywords',
     'AD' : 'affiliation',
     'AB' : 'abstract',
-    'AD' : 'authorAddress',
+    'AD' : 'authoraddress',
     'TA' : 'journal',
     'CY' : 'country',
     'PG' : 'pages',
     'IP' : 'number',
     'VI' : 'volume',
     }
+
+class MedlineIterator (Iterator.Iterator):
+
+    def __init__ (self, file):
+        self.file = file
+        return
+    
+    
+    def first (self):
+        # rewind the file
+        self.file.seek (0)
+
+        return self.next ()
+
+    def next (self):
+        current = None
+        data    = ''
+        
+        table = {}
+
+        # Skip whitespace
+        while 1:
+            line = self.file.readline ()
+            if line == '': return table
+            
+            line = string.rstrip (line)
+            if line != '': break
+
+        while 1:
+            head = header.match (line)
+            if head:
+                if current:
+                    if table.has_key (current):
+                        table [current].append (data)
+                    else:
+                        table [current] = [data]
+                        
+                current = string.strip (head.group (1))
+                data    = head.group (2)
+            else:
+                cont = contin.match (line)
+                if cont:
+                    data = data + ' ' + cont.group (1)
+        
+            line = self.file.readline ()
+            if line == '': break
+
+            line = string.rstrip (line)
+            if line == '': break
+        
+        if current:
+            table [current] = data
+
+        # create the entry
+        norm = {}
+        type = Types.get_entry ('article')
+    
+        if table.has_key ('UI'):
+            norm ['medlineref'] = Fields.Text (table ['UI'] [0])
+
+        if table.has_key ('AU'):
+            group = Fields.AuthorGroup ()
+            
+            for au in table ['AU']:
+                author = Fields.Author (au)
+                if author.first is not None:
+                    author.first, author.last = author.last, author.first
+                    
+                group.append (author)
+                
+            norm ['author'] = group
+
+        if table.has_key ('DP'):
+            fields = string.split (table ['DP'][0], ' ')
+            norm ['pubdate'] = Fields.Date (fields [0])
+            
+        # The simple fields...
+        for f in one_to_one.keys ():
+            if table.has_key (f):
+                norm [one_to_one [f]] = Fields.Text (string.join (table [f], " "))
+
+        return Base.Entry (None, type, norm)
+
 
 # UI identifiant unique
 # AU auteurs *
@@ -120,70 +161,38 @@ class Medline (Base.DataBase):
     
     properties = {}
 
-    def __init__ (self, name, type = 'refer'):
-        Base.DataBase.__init__ (self, name)
+    def __init__ (self, url):
+        Base.DataBase.__init__ (self, url)
 
-        fh = open (name, 'r')
+        iter = iterator (url)
 
-        while 1:
-            table = parse_one (fh)
-            if not table.keys ():
-                break
-
-            (key, type, table) = self.__normalize (table)
-            self [key] = Base.Entry (key, type, table)
+        entry = iter.first ()
+        while entry:
+            self.add (entry)
+            entry = iter.next ()
 
         return
 
 
-    def __normalize (self, table):
-        norm = {}
-        key  = None
-        type = Types.getentry ('article')
-    
-        if table.has_key ('UI'):
-            key = Base.Key (self.key, 'medline-' + table ['UI'] [0])
-
-        if table.has_key ('AU'):
-            group = Fields.AuthorGroup ()
-            
-            for au in table ['AU']:
-                author = Fields.Author (au)
-                if author.first is not None:
-                    author.first, author.last = author.last, author.first
-                    
-                group.append (author)
-                
-            norm ['author'] = group
-
-        if table.has_key ('DP'):
-            fields = string.split (table ['DP'][0], ' ')
-            norm ['year'] = Fields.Date (fields [0])
-            
-        # The simple fields...
-        for f in one_to_one.keys ():
-            if table.has_key (f):
-                norm [one_to_one [f]] = Fields.Text (string.join (table [f], " "))
-
-        return key, type, norm
-
-    def __repr__ (self):
-        return "<Medline database (%d entries)>" % len (self)
-
-
 # --------------------------------------------------
-# Register a method to open BibTeX files
+# Register a method to open Medline files
 # --------------------------------------------------
 
-def my_open (entity, check):
+def opener (url, check):
 	
-	method, address, file, p, q, f = entity
 	base = None
 
-	if (not check) or (method == 'file' and file [-4:] == '.med'):
-		base = Medline (file)
+	if (not check) or (url.url [2] [-4:] == '.med'):
+		base = Medline (url)
 		
 	return base
 
+def iterator (url):
+	''' This methods returns an iterator that will parse the
+	database on the fly (useful for merging or to parse broken
+	databases '''
 
-Autoload.register ('format', 'Medline', {'open'  : my_open})
+        return MedlineIterator (open (Open.url_to_local (url), 'r'))
+
+
+Autoload.register ('format', 'Medline', {'open'  : opener})
