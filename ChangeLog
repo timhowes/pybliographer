@@ -1,3 +1,7 @@
+2001-01-15  Fatih Demir	<kabalak@gmx.net>
+
+	* configure.in Added tr to ALL_LINGUAS.
+
 2000-11-29  Pauli Virtanen  <pauli.virtanen@saunalahti.fi>
 
 	* pybliographic.desktop: Added Finnish description.
