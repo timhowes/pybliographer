@@ -104,7 +104,7 @@ class Database (api.Database):
              role   TEXT REFERENCES role (id),
              data   INT  REFERENCES info (id),
              index  INT  NOT NULL,
-             CONSTRAINT index_role UNIQUE (role, index)
+             CONSTRAINT index_role UNIQUE (record, role, index)
         )''',
 
         )
@@ -166,7 +166,7 @@ class Database (api.Database):
     def query (self, query = None, order = None):
 
         q = "SELECT id, type FROM record"
-        return ResultSet (self._db, q, [])
+        return ResultSet (self, q, [])
 
 
 
@@ -246,20 +246,20 @@ class Record (object):
         return
 
 
-    def related (self):
+    def related (self, role = None):
         ''' Return a ResultSet of all the related records '''
         
-        q = ("SELECT l.role, l.id, r.type FROM record_link l, record r "
-             "WHERE r.id = l.rec_b AND l._rec_a = %s")
+        q = ("SELECT l.role, l.rec_b, r.type FROM record_link l, record r "
+             "WHERE r.id = l.rec_b AND l.rec_a = %s")
         args = [ self.id ]
         
-        return RelatedResultSet (self.db._db, q, args)
+        return RelatedResultSet (self.db, q, args)
 
 
     def attributes (self):
         ret = []
         
-        op = self.db.cursor ()
+        op = self.db._db.cursor ()
         op.execute ("SELECT a.role, a.index, t.* FROM text_t t, attribute a"
                     " WHERE t.id = a.data AND a.record = %s", self.id)
 
@@ -316,7 +316,7 @@ class ResultSet (api.ResultSet):
     
     def __init__ (self, db, q, args):
         self._db = db
-        self._op = db.cursor ()
+        self._op = db._db.cursor ()
 
         self._op.execute (q, args)
         return
@@ -344,7 +344,7 @@ class RelatedResultSet (api.ResultSet):
     
     def __init__ (self, db, q, args):
         self._db = db
-        self._op = db.cursor ()
+        self._op = db._db.cursor ()
 
         self._op.execute (q, args)
         return

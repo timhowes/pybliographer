@@ -85,7 +85,7 @@ class Record (object):
         ''' Return a list of all the attributes of a Record '''
         return []
     
-    def related (self):
+    def related (self, role = None):
         ''' Return a ResultSet of all the related records '''
         pass
 
