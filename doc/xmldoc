@@ -1,0 +1,482 @@
+#!/usr/bin/env python
+# -*- python -*-
+
+import sys, os, traceback, parser, symbol, token, string, re
+from types import *
+
+_debug = 0
+
+def message (text):
+    sys.stderr.write ("xmldoc: " + text + "\n")
+    return
+
+def debug (text):
+    if _debug:
+        message ("debug: " + text)
+    return
+
+def quote (text):
+    text = string.replace (text, '&', '&amp;')
+    text = string.replace (text, '<', '&lt;')
+    return text
+
+def match (pattern, data, vars = None):
+
+    if vars is None: vars = {}
+
+    debug ("match data = %s\npattern = %s\nvars = %s" % (data, pattern, vars))
+    
+    if type (pattern) is ListType:
+        if data [0] == pattern [0]:
+            debug ("matching key `%s'" % pattern [1])
+            vars [pattern [1]] = data
+            return 1, vars
+        return 0, vars
+    
+    if type (pattern) is not TupleType:
+        return (data [0] == pattern), vars
+
+    same = 0
+    if pattern [0] == data [0]:
+        for pattern, data in map (None, pattern [1:], data [1:]):
+            if pattern is None: break
+            
+            same, vars = match (pattern, data, vars)
+            if not same: break
+    
+    return same, vars
+
+
+def write (out, indent, text):
+    out.write (' ' * indent)
+    out.write (text)
+    return
+
+
+_function_definition = (symbol.stmt,
+                        (symbol.compound_stmt,
+                         [symbol.funcdef, 'function']))
+
+_class_definition = (symbol.stmt,
+                     (symbol.compound_stmt,
+                      [symbol.classdef, 'class']))
+    
+_doc_string = (symbol.stmt,
+               (symbol.simple_stmt,
+                (symbol.small_stmt,
+                 (symbol.expr_stmt,
+                  (symbol.testlist,
+                   (symbol.test,
+                    (symbol.and_test,
+                     (symbol.not_test,
+                      (symbol.comparison,
+                       (symbol.expr,
+                        (symbol.xor_expr,
+                         (symbol.and_expr,
+                          (symbol.shift_expr,
+                           (symbol.arith_expr,
+                            (symbol.term,
+                             (symbol.factor,
+                              (symbol.power,
+                               (symbol.atom,
+                                [token.STRING, 'docstring']))))))))))))))))))
+
+_affectation = (symbol.stmt,
+                (symbol.simple_stmt,
+                 (symbol.small_stmt,
+                  (symbol.expr_stmt,
+                   (symbol.testlist,
+                    (symbol.test,
+                     (symbol.and_test,
+                      (symbol.not_test,
+                       (symbol.comparison,
+                        (symbol.expr,
+                         (symbol.xor_expr,
+                          (symbol.and_expr,
+                           (symbol.shift_expr,
+                            (symbol.arith_expr,
+                             (symbol.term,
+                              (symbol.factor,
+                               (symbol.power,
+                                (symbol.atom, [token.NAME, 'name']))))))))))))))))))
+
+def is_function (stmt):
+    return match (_function_definition, stmt)
+
+
+def is_class (stmt):
+    return match (_class_definition, stmt)
+
+
+def is_affectation (stmt):
+    return match (_affectation, stmt)
+
+
+def get_docstring (stmt):
+    
+    ok, res = match (_doc_string, stmt)
+    if not ok: return None
+    
+    text = res ['docstring'] [1]
+    
+    if (text [:3] == "'''" and text [-3:] == "'''") or \
+       (text [:3] == '"""' and text [-3:] == '"""'):
+        return string.strip (text [3:-3])
+    elif (text [:1] == '"' and text [-1:] == '"') or \
+         (text [:1] == "'" and text [-1:] == "'"):
+        return quote (string.strip (text [1:-1]))
+
+    return None
+
+def as_tokens (stmt):
+    if stmt [0] < 256:
+        text = stmt [1]
+    else:
+        text = ''
+        for item in stmt [1:]:
+            text = text + ' ' + as_tokens (item)
+    return text
+
+_private_name = re.compile (r'^_[a-zA-Z]')
+_simple_space = re.compile (r'\s+')
+
+def is_private (name):
+    if name == '_': return 1
+    
+    return _private_name.match (name)
+
+
+class Variable:
+    def __init__ (self, tree):
+        self.tree = tree
+        self.parse ()
+        return
+
+    def parse (self):
+        self.name = self.tree [1]
+        return
+
+    def dump (self, out, indent = 0):
+        write (out, indent, '<variable id="%s"/>\n' % self.name)
+        return
+    
+class Class:
+    simple_class = (symbol.classdef,
+                    token.NAME, [token.NAME, 'name'],
+                    token.COLON, [symbol.suite, 'body'])
+    
+    class_heritage = (symbol.classdef,
+                      token.NAME, [token.NAME, 'name'], token.LPAR, 
+                      [symbol.testlist, 'parents'],
+                      token.RPAR, token.COLON, [symbol.suite, 'body'])
+    
+    parent_class = (symbol.test,
+                    (symbol.and_test,
+                     (symbol.not_test,
+                      (symbol.comparison,
+                       (symbol.expr,
+                        (symbol.xor_expr,
+                         (symbol.and_expr,
+                          (symbol.shift_expr,
+                           (symbol.arith_expr,
+                            (symbol.term,
+                             (symbol.factor,
+                              (symbol.power,
+                               (symbol.atom,
+                                [token.NAME, 'name'])))))))))))))
+    
+    def __init__ (self, tree):
+        self.tree = tree
+        self.parse ()
+        return
+
+    def parse (self):
+        ok, res = match (self.class_heritage, self.tree)
+        if ok:
+            parents = res ['parents'] [1:]
+        else:
+            ok, res = match (self.simple_class, self.tree)
+            parents = []
+            
+        self.name = res ['name'] [1]
+        body      = res ['body'] [1:]
+
+        self.documentation = None
+        self.methods   = []
+        self.variables = []
+        self.parents   = []
+
+        for stmt in parents:
+            ok, res = match (self.parent_class, stmt)
+            if ok:
+                self.parents.append (res ['name'] [1])
+        
+        for stmt in body:
+            if not self.documentation:
+                self.documentation = get_docstring (stmt)
+                
+            ok, res = is_function (stmt)
+            if ok:
+                func = Function (res ['function'])
+                if not is_private (func.name):
+                    self.methods.append (func)
+                continue
+
+            ok, res = is_affectation (stmt)
+            if ok:
+                var = Variable (res ['name'])
+                if not is_private (var.name):
+                    self.variables.append (var)
+        return
+
+    def dump (self, out, indent = 0):
+        write (out, indent, '<class id="%s">\n' % self.name)
+        for p in self.parents:
+            write (out, indent + 2, '<parent id="%s"/>\n' % p)
+            
+        if self.documentation:
+            write (out, indent + 2,
+                   '<documentation>%s</documentation>\n' % self.documentation)
+        for var in self.variables:
+            var.dump (out, indent + 2)
+            
+        for meth in self.methods:
+            meth.dump (out, indent + 2)
+            
+        write (out, indent, '</class>\n')
+        return
+
+
+class Parameter:
+    argument_name = (symbol.fpdef, [token.NAME, 'name'])
+
+    def __init__ (self):
+        self.name = None
+        self.vararg = 0
+        self.dictionary = 0
+        self.default = None
+        return
+
+    def parse (self, arguments):
+        stmt = arguments.pop (0)
+        if stmt [0] == token.COMMA:
+            stmt = arguments.pop (0)
+            
+        ok, res = match (self.argument_name, stmt)
+        if ok: 
+            self.name = res ['name'] [1]
+            if not arguments or arguments [0] [0] != token.EQUAL:
+                return arguments
+
+            # parse default value
+            stmt = arguments.pop (0)
+            stmt = arguments.pop (0)
+            
+            # just merge the tokens
+            text = as_tokens (stmt)
+            text = _simple_space.sub (' ', text)
+            self.default = string.strip (text)
+            return arguments
+        
+        if stmt [0] == token.STAR:
+            stmt = arguments.pop (0)
+            
+            if stmt [0] == token.NAME:
+                self.name   = stmt [1]
+                self.vararg = 1
+                return arguments
+            
+        if stmt [0] == token.DOUBLESTAR:
+            stmt = arguments.pop (0)
+            
+            if stmt [0] == token.NAME:
+                self.name   = stmt [1]
+                self.vararg = 1
+                self.dictionary = 1
+                return arguments
+
+        # skip to comma
+        while arguments:
+            stmt = arguments.pop (0)
+            if stmt [0] == token.COMMA: break
+        
+        return arguments
+
+    def dump (self, out, indent):
+        write (out, indent, '<argument id="%s"' % self.name)
+        if self.vararg: out.write (' vararg')
+        if self.dictionary: out.write (' dict')
+        if self.default:
+            out.write ('>%s</>\n' % quote (self.default))
+        else:
+            out.write ('/>\n')
+            
+        return
+    
+class Function:
+    function_name = (symbol.funcdef,
+                     token.NAME, [token.NAME, 'name'],
+                     (symbol.parameters, token.LPAR, [symbol.varargslist, 'args']),
+                     token.COLON, [symbol.suite, 'body'])
+    
+    function_noarg = (symbol.funcdef,
+                      token.NAME, [token.NAME, 'name'],
+                      (symbol.parameters, token.LPAR, token.RPAR),
+                      token.COLON, [symbol.suite, 'body'])
+
+    def __init__ (self, tree):
+        self.tree = tree
+        self.name = None
+        
+        self.parse ()
+        return
+
+    def parse (self):
+        debug ("matching function...")
+        ok, res = match (self.function_name, self.tree)
+        if ok:
+            arguments = list (res ['args'] [1:])
+        else:
+            ok, res   = match (self.function_noarg, self.tree)
+            arguments = []
+            
+        self.name = res ['name'] [1]
+        body      = res ['body'] [1:]
+
+        self.args = []
+        self.documentation = None
+        
+        # analyse des arguments
+        while arguments:
+            p = Parameter ()
+            arguments = p.parse (arguments)
+            if p.name: self.args.append (p)
+
+        # recherche de la doc
+        for stmt in body:
+            doc = get_docstring (stmt)
+            if doc:
+                self.documentation = doc
+                break
+            
+        return
+
+    def dump (self, out, indent = 0):
+        write (out, indent, '<function id="%s">\n' % self.name)
+        for arg in self.args:
+            arg.dump (out, indent + 2)
+            
+        if self.documentation:
+            write (out, indent + 2,
+                   '<documentation>%s</documentation>\n' % self.documentation)
+        write (out, indent, '</function>\n')
+        return
+
+    
+class Module:
+    
+    def __init__ (self, file, tree):
+        self.file = file
+        self.tree = tree
+
+        self.functions = []
+        self.classes   = []
+        self.variables = []
+        
+        self.documentation = None
+        
+        self.parse ()
+        return
+
+    def parse (self):
+        # search top-level functions
+        for stmt in self.tree [1:]:
+            if not self.documentation:
+                self.documentation = get_docstring (stmt)
+
+            ok, tree = is_function (stmt)
+            if ok:
+                function = Function (tree ['function'])
+                if not is_private (function.name):
+                    self.functions.append (function)
+                continue
+            
+            ok, tree = is_class (stmt)
+            if ok:
+                cls = Class (tree ['class'])
+                if not is_private (cls.name):
+                    self.classes.append (cls)
+                continue
+
+            ok, res = is_affectation (stmt)
+            if ok:
+                var = Variable (res ['name'])
+                if not is_private (var.name):
+                    self.variables.append (var)
+        return
+
+    def dump (self, out, indent = 0):
+        write (out, indent, '<module id="%s">\n' % self.file)
+        if self.documentation:
+            write (out, indent + 2,
+                   '<documentation>%s</documentation>\n' % self.documentation)
+        for var in self.variables:
+            var.dump (out, indent + 2)
+
+        for fcn in self.classes:
+            fcn.dump (out, indent = indent + 2)
+            
+        for fcn in self.functions:
+            fcn.dump (out, indent = indent + 2)
+        write (out, indent, '</module>\n')
+        return
+
+
+def usage ():
+    print """usage: xmldoc [options] <files...>
+
+where options are:
+
+	--root=<directory> : specify root directory for files
+"""
+    return
+
+import getopt
+
+root = '.'
+
+try:
+    argv, files = getopt.getopt (sys.argv [1:],
+                                 'r:do:',
+                                 ['root=', 'debug', 'output='])
+except getopt.error, msg:
+    message ("error: " + msg)
+    usage ()
+    sys.exit (1)
+
+output = sys.stdout
+
+for opt in argv:
+    if   opt [0] in ('-r', '--root'):
+        root = opt [1]
+
+    elif opt [0] in ('-d', '--debug'):
+        global _debug
+        _debug = 1
+        
+    elif opt [0] in ('-o', '--output'):
+        output = open (opt [1], 'w')
+
+    
+for name in files:
+    file = os.path.join (root, name)
+    tree = parser.suite (open (file).read ()).totuple ()
+
+    message ("parsing file `%s'" % file)
+    
+    module = string.replace (os.path.normpath (os.path.splitext (name) [0]), '/', '.')
+
+    #print tree
+    
+    tree = Module (module, tree)
+    tree.dump (output)
