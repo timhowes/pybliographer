@@ -1,3 +1,8 @@
+2001-02-08  Szabolcs Ban <shooby@gnome.hu>
+
+	* pybliographic.desktop: Added Hungarian translations
+          from Zoltán Kóta
+
 2001-01-15  Fatih Demir	<kabalak@gmx.net>
 
 	* configure.in Added tr to ALL_LINGUAS.
