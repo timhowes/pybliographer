@@ -100,6 +100,10 @@ class Attribute (object):
         pass
 
 
+    def insert (self, db):
+        pass
+    
+
 class Actor (Attribute):
     ''' A Person or Corporate Entity '''
     pass
