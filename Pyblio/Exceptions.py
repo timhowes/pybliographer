@@ -26,7 +26,7 @@ import string
 def format (prefix, lines):
     return prefix + string.join (lines, '\n' + prefix)
     
-class ParserError:
+class ParserError (Exception):
 
     def __init__ (self, errors, file = None):
         if file:
@@ -41,25 +41,23 @@ class ParserError:
         return format (self.file, self.errors)
 
 
-class SimpleError:
-    def __init__ (self, message):
-        self.message = message
-        return
-
-    def __repr__ (self):
-        return self.message
-    
-    
-class FormatError (SimpleError):
+class MissingFeature (Exception):
     pass
 
-class SyntaxError (SimpleError):
+class Internal (Exception):
     pass
 
 
-class FileError (SimpleError):
+class FormatError (Exception):
+    pass
+
+class SyntaxError (Exception):
     pass
 
 
-class DateError (SimpleError):
+class FileError (Exception):
+    pass
+
+
+class DateError (Exception):
     pass
