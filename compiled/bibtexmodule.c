@@ -557,9 +557,9 @@ bib_reverse (PyObject * self, PyObject * args)
     BibtexFieldType type;
     BibtexAuthor * auth;
 
-    gint length, i, brace;
+    gint length, i, brace, quote;
 
-    if (! PyArg_ParseTuple(args, "iiO:reverse", & type, & brace, & tuple))
+    if (! PyArg_ParseTuple(args, "iiOi:reverse", & type, & brace, & tuple, &quote))
 	return NULL;
 
     field = bibtex_field_new (type);
@@ -647,7 +647,7 @@ bib_reverse (PyObject * self, PyObject * args)
 	}
     }
 
-    bibtex_reverse_field (field, brace);
+    bibtex_reverse_field (field, brace, quote);
 
     tmp = (PyObject *) PyObject_NEW (PyBibtexField_Object, & PyBibtexField_Type);
     ((PyBibtexField_Object *) tmp)->obj = field;
