@@ -94,7 +94,7 @@ class Pybliographic:
             doc.update_history (self.opened)
 
         # get the modification date...
-        if doc.data.key.url [0] == 'file':
+        if doc.data.key and doc.data.key.url [0] == 'file':
             file = doc.data.key.url [2]
             doc.modification_date = os.stat (file) [stat.ST_MTIME]
         

@@ -52,7 +52,7 @@ class Document (Connector.Publisher):
             UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
             UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
-            UIINFO_ITEM              (_("Medline _Query..."),None, self.query_database),
+            UIINFO_ITEM              (_("Medline Query..."),None, self.query_database),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -341,7 +341,7 @@ class Document (Connector.Publisher):
         
         url = Query.medline_query (keyword, maxcount)
         
-        self.open_document (url, 'medline')
+        self.open_document (url, 'medline', no_name = TRUE)
         return
 
 
@@ -408,7 +408,7 @@ class Document (Connector.Publisher):
         return
 
     
-    def open_document (self, url, how = None):
+    def open_document (self, url, how = None, no_name = FALSE):
         
         Utils.set_cursor (self.w, 'clock')
         
@@ -425,6 +425,8 @@ class Document (Connector.Publisher):
             return
 
         Utils.set_cursor (self.w, 'normal')
+
+        if no_name: data.key = None
         
         self.data    = data
         self.redisplay_index (0)
