@@ -46,8 +46,9 @@ fields = [ 'CrossRef', 'Key', 'Author', 'Address_1', 'Address_2',
            'Number', 'Chapter', 'Pages', 'School', 'Organization', 'Location',
            'Dates', 'Institution', 'Publisher', 'Address', 'Format',
            'Date', 'NoSeries', 'ConfPlace', 'Cote', 'IEEECN',
-           'LoCN', 'ISBN', 'ISSN', 'Note', 'Language', 'HowPublished', 'To_Appear',
-           'From', 'Received', 'Owner', 'Keywords', 'Abstract', 'Remarks', 'URL' ]
+           'LoCN', 'ISBN', 'ISSN', 'Note', 'Language', 'HowPublished',
+           'To_Appear', 'From', 'Received', 'Owner', 'Keywords', 'Abstract',
+           'Remarks', 'URL', '-mark-', '-combined-' ]
 
 entries = {
     'Article' : (('author', 'title', 'journal', 'date'),

@@ -1,3 +1,27 @@
+2002-07-01  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/userformat.py: New file 
+
+2002-06-30  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/ConfDir/Gnome.py: -mark-, -combined-, Date are new
+	defaults for the Index view.
+
+	* Pyblio/ConfDir/GnomeUI.py (h): Fields -mark- and -combined- added.
+
+	* Pyblio/GnomeUI/Document.py (Document.__init__): corrected
+	BIBPATH handling. Calls to redisplay(Index) now provide for
+	selective redisplay. 
+
+	* Pyblio/GnomeUI/Index.py: Imports userformat. 
+	(class C_Index): new BaseClass, from which Index is derived.
+	Methods display, redisplay_entry,  __len__, get_item_position,
+	select_item  moved.
+	(class Index): now based on C_Index. Methods get_columns, set_row
+	added to allow selective redisplay. In addition,  combined field
+	support .
+	(is_marked, set_mark, toggle_mark): added. 
+
 2002-06-02  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
 	* Pyblio/ConfDir/Base.py (_get_keytypes): added base/bibpath 

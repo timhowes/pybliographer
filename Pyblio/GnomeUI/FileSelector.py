@@ -83,7 +83,6 @@ class URLFileSelection (GtkFileSelection):
             if path:
                 for i in path:
                     sel = os.path.isdir(os.path.expanduser(i))
-                    print i , sel
                     Utils.popup_add(menu, i, self.path_select, i,
                                     sensitive=sel)
                     start_at = start_at or (sel and i)

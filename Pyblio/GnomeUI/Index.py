@@ -21,7 +21,16 @@
 
 ''' Main index containing the columned view of the entries '''
 
-from Pyblio import Fields, Config, Connector, Types, Sort
+### TODO:
+
+# 1. combined fields
+# 2. new base class C_Index
+# 3. separate routines to set columns and rows
+# 4. GTK 2.0 ?
+
+
+
+from Pyblio import Fields, Config, Connector, Types, Sort, userformat
 
 from gnome.ui import *
 from gnome import config
@@ -39,51 +48,46 @@ del cPickle
 
 _ = gettext.gettext
 
+class C_Index (Connector.Publisher):
 
-class Index (Connector.Publisher):
-    ''' Graphical index of an iterator '''
-    
-    def __init__ (self, fields = None):
-        ''' Creates a new list of entries '''
+    """ A listing view of a database or subset thereof.
+    """
 
-        fields = fields or Config.get ('gnome/columns').data
-        self.fields = map (lower, fields)
+    def __init__ (self, mark = 1):
 
-        self.clist = GtkCList (len (fields), map (lambda x: ' ' + x + ' ', fields))
+        self.columns, self.column_width = self.get_columns()
+        self.clist = GtkCList (len (self.columns), self.columns)
         self.clist.set_selection_mode (GTK.SELECTION_EXTENDED)
+        self.column_origin = not mark
         
         self.w = GtkScrolledWindow ()
         self.w.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
         self.w.add (self.clist)
 
         self.access = []
-
+        self.backref = {}
         self.menu_position = {
             'add'    : 0,
             'edit'   : 1,
             'delete' : 2,
+            'toggle' : 3,
             }
         
         self.menu = GnomePopupMenu ([
             UIINFO_ITEM_STOCK(_("Add..."), None, self.entry_new,    STOCK_MENU_NEW),
             UIINFO_ITEM      (_("Edit..."),None, self.entry_edit),
             UIINFO_ITEM_STOCK(_("Delete"), None, self.entry_delete, STOCK_MENU_TRASH),
+            UIINFO_ITEM      (_("Toggle..."),None, self.entry_toggle),
             ])
         
         self.menu.show ()
-
-        self.field_width = []
+        
         # resize the columns
-        for c in range (len (self.fields)):
-            width = config.get_int ('Pybliographic/Columns/%s=-1' % self.fields [c])
-            if width == -1:
-                width = FieldsInfo.width (self.fields [c])
+        for c in range (len (self.columns)):
+            self.clist.set_column_width (c, self.column_width[c])
+            self.clist.set_column_justification (
+                c, FieldsInfo.justification (self.columns [c]))
 
-            self.field_width.append (width)
-            
-            self.clist.set_column_width (c, width)
-            self.clist.set_column_justification (c, FieldsInfo.justification (self.fields [c]))
-            
         # some events we want to react to...
         self.clist.connect ('click_column',       self.click_column)
         self.clist.connect ('resize_column',      self.resize_column)
@@ -126,7 +130,133 @@ class Index (Connector.Publisher):
                                          Mime.ENTRY)
         return
 
+    def display (self, iterator):
 
+        # clear the access table
+        self.access = []
+
+        Utils.set_cursor (self.w, 'clock')
+        
+        self.clist.freeze ()
+        self.clist.clear ()
+
+        rowindex = 0
+        entry = iterator.first ()
+        while entry:
+            
+            row = self.set_row(entry)
+            self.clist.append  (row)
+            self.access.append (entry)
+            self.clist.set_row_data(rowindex, entry)
+            self.backref [entry.key.key] = rowindex
+            if self.column_origin:
+                if is_marked(entry):
+                    self.clist.set_text(rowindex, 0,' ')
+                else:
+                    self.clist.set_text(rowindex, 0, 'X')
+
+            entry = iterator.next ()
+            rowindex = rowindex + 1
+            
+        self.clist.thaw ()
+        Utils.set_cursor (self.w, 'normal')
+        return
+
+    def redisplay_entry(self, entry):
+        """Change one row of displayed list."""
+
+        if self.backref.has_key(entry.key.key):
+
+            rowindex = self.backref[entry.key.key]
+            row = self.set_row(entry)
+            for i in range (self.column_origin, len(row)):
+                self.clist.set_text(
+                    rowindex, i, row[i])
+        else:
+            print 'redisplay failed'
+        self.access[rowindex] = entry 
+        self.select_item(entry)
+        return
+
+    
+    def __len__ (self):
+        ''' returns the number of lines in the current index '''
+
+        return len (self.access)
+
+
+    def get_item_position (self, item):
+        try:
+            return self.access.index (item)
+        except ValueError:
+            return -1
+
+        
+    def select_item (self, item):
+        if type (item) is not type (1):
+            item = self.get_item_position (item)
+
+        if item == -1 or item >= len (self.access): return
+        
+        self.clist.select_row (item, 0)
+        self.set_scroll (item)
+        self.issue ('select-entry', self.access[item])
+        return
+                                    
+class Index (C_Index):
+    
+    ''' Graphical index of an iterator '''
+    
+    def __init__ (self, fields = None):
+        ''' Creates a new list of entries '''
+        self.fields = fields or Config.get ('gnome/columns').data
+        if self.fields[0] != '-mark-':
+            self.fields.insert(-1,'-mark-')
+        self.fieldnames = ['X'] + map (lambda x: ' %s ' %(lower(x)), self.fields[1:])
+
+        C_Index.__init__(self)
+
+        return
+
+    def get_columns (self):
+        widths = []
+        for c in range (len (self.fieldnames)):
+            width = config.get_int ('Pybliographic/Columns/%s=-1'
+                                    % self.fields [c])
+
+            if width == -1:
+                width = FieldsInfo.width (self.fields [c])
+            widths.append(width)
+        return self.fieldnames, widths
+
+    def set_row (self, entry):
+        if is_marked(entry):
+            row = ['X']
+        else:
+            row =['']
+        for f in self.fields[1:]:
+            if f == '-key-':
+                row.append (str (entry.key.key))
+                    
+            elif f == '-type-':
+                row.append (str (entry.type.name))
+
+            elif f == '-combined-':
+                row.append (userformat.simple_combined_format(entry))
+
+            elif entry.has_key (f):
+                
+                if Types.get_field (f).type == Fields.AuthorGroup:
+                    text = join (map (lambda a: str (a.last), entry [f]), ', ')
+                else:
+                    text = str (entry [f])
+                        
+                row.append (text)
+            else:
+                row.append ('')
+
+        return row
+    
     def selection_clear (self, * arg):
         self.selection_buffer = None
         return
@@ -152,10 +282,12 @@ class Index (Connector.Publisher):
                 for e in self.selection_buffer:
                     keys.append (str (e.key.key))
                 text = join (keys, ',')
+            elif Config.get('gnome/paste-sutr').data:
+                text = userformat.simple_untagged_format(item, width=50)
             else:
                 # else, return the full entries
                 text = join (map (str, self.selection_buffer), '\n\n')
-        
+
         selection.set (1, 8, text)
         return
 
@@ -212,30 +344,6 @@ class Index (Connector.Publisher):
     
     # --------------------------------------------------
 
-    def __len__ (self):
-        ''' returns the number of lines in the current index '''
-
-        return len (self.access)
-
-
-    def get_item_position (self, item):
-        try:
-            return self.access.index (item)
-        except ValueError:
-            return -1
-
-        
-    def select_item (self, item):
-        if type (item) is not type (1):
-            item = self.get_item_position (item)
-
-        if item == -1 or item >= len (self.access): return
-        
-        self.clist.select_row (item, 0)
-        self.set_scroll (item)
-
-        self.issue ('select-entry', self.access [item])
-        return
     
         
     def set_scroll (self, item):
@@ -248,46 +356,6 @@ class Index (Connector.Publisher):
         return
 
     
-    def display (self, iterator):
-
-        # clear the access table
-        self.access = []
-
-        Utils.set_cursor (self.w, 'clock')
-        
-        self.clist.freeze ()
-        self.clist.clear ()
-
-        entry = iterator.first ()
-        while entry:
-            row = []
-            
-            for f in self.fields:
-                if f == '-key-':
-                    row.append (str (entry.key.key))
-                    
-                elif f == '-type-':
-                    row.append (str (entry.type.name))
-                    
-                elif entry.has_key (f):
-                    
-                    if Types.get_field (f).type == Fields.AuthorGroup:
-                        text = join (map (lambda a: str (a.last), entry [f]), ', ')
-                    else:
-                        text = str (entry [f])
-                        
-                    row.append (text)
-                else:
-                    row.append ('')
-
-            self.clist.append  (row)
-            self.access.append (entry)
-
-            entry = iterator.next ()
-            
-        self.clist.thaw ()
-        Utils.set_cursor (self.w, 'normal')
-        return
 
 
     def go_to_first (self, query, field):
@@ -324,12 +392,12 @@ class Index (Connector.Publisher):
     def click_column (self, clist, column, * data):
         ''' handler for column title selection '''
         
-        self.issue ('click-on-field', self.fields [column])
+        self.issue ('click-on-field', self.columns [column])
         return
 
 
     def resize_column (self, clist, column, width):
-        self.field_width [column] = width
+        self.column_width [column] = width
         return
 
     
@@ -420,9 +488,45 @@ class Index (Connector.Publisher):
         return
 
 
+    def entry_toggle (self, * arg):
+        if not self.clist.selection: return
+        
+        #self.issue ('toggle-entry', map (lambda x, self=self: self.access [x],
+        #             self.clist.selection))
+        for i in self.clist.selection:
+            if is_marked(self.access[i]):
+                self.clist.set_text(i,0,' ')
+                del self.access[i]['_attrib']
+            else:
+                self.clist.set_text(i,0,'X')
+                self.access[i]['_attrib'] = 'marked'
+
+        return
+
+
     def update_configuration (self):
 
         for i in range (len (self.fields)):
+
             config.set_int ('Pybliographic/Columns/%s' % self.fields [i],
-                            self.field_width [i])
+                            self.column_width [i])
+        
         return
+
+######################################################################
+def is_marked (entry):
+
+    return entry.has_key('_attrib') and entry['_attrib'] == 'marked'
+
+def set_marked(entry):
+    entry['_attrib'] = 'marked'
+    return
+
+def toggle_mark(entry):
+    if is_marked(entry):
+        del entry['_attrib']
+        
+    else:
+        entry['_attrib'] = 'marked'
+    return
+    

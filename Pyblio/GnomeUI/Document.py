@@ -169,6 +169,11 @@ class Document (Connector.Publisher):
         self.lyx       = None
         self.changed   = 0
         self.directory = None
+        self.path =  string.split(Config.get('base/bibpath').data,':')
+        if os.environ.has_key('BIBPATH'):
+            self.bibpath = string.split(os.environ['BIBPATH'], ':')
+        else:
+            self.bibpath = None
 
         self.modification_date = None
 
@@ -213,15 +218,17 @@ class Document (Connector.Publisher):
         return
 
     
-    def redisplay_index (self, changed = -1):
+    def redisplay_index (self, entry = None, changed = -1):
         ''' redisplays the index. If changed is specified, set the
         self.changed status to the given value '''
         
         if changed != -1:
             self.changed = changed
-
-        self.index.display (self.selection.iterator (self.data.iterator ()))
-        
+        if entry :
+            self.index.redisplay_entry(entry)
+        else:
+            self.index.display (
+                self.selection.iterator (self.data.iterator ()))
         self.update_status ()
         return
 
@@ -637,8 +644,9 @@ class Document (Connector.Publisher):
     def merge_database (self, * arg):
         ''' add all the entries of another database to the current one '''
         # get a new file name
-        (url, how) = FileSelector.URLFileSelection (_("Merge file"),
-                                                    url = TRUE, has_auto = TRUE).run ()
+        (url, how) = FileSelector.URLFileSelection (
+            _("Merge file"), bibpath=self.bibpath, path=self.path,  url = TRUE,
+            has_auto = TRUE).run ()
 
         if url is None: return
         
@@ -684,8 +692,9 @@ class Document (Connector.Publisher):
         if not self.confirm (): return
 
         # get a new file name
-        (url, how) = FileSelector.URLFileSelection (_("Open file"),
-                                                    directory = self.directory).run ()
+        (url, how) = FileSelector.URLFileSelection (
+            _("Open file"), directory = self.directory,
+            bibpath=self.bibpath, path=self.path).run ()
 
         if url is None: return
         self.open_document (url, how)
@@ -768,8 +777,9 @@ class Document (Connector.Publisher):
     
     def save_document_as (self, * arg):
         # get a new file name
-        (url, how) = FileSelector.URLFileSelection (_("Save As..."),
-                                                    url = FALSE, has_auto = FALSE).run ()
+        (url, how) = FileSelector.URLFileSelection (
+            _("Save As..."), bibpath=self.bibpath, path=self.path,
+            url = FALSE,  has_auto = FALSE).run ()
 
         if url is None: return
             
@@ -934,8 +944,12 @@ class Document (Connector.Publisher):
             self.data.add (new)
 
         self.freeze_display (None)
-
-        self.redisplay_index (1)
+        if old.key == new.key:
+            entry = new
+        else:
+            entry = None
+        self.redisplay_index (entry = entry, changed = 1)
+        #print 'index select item', new
         self.index.select_item (new)
         return
     
@@ -1047,7 +1061,7 @@ class Document (Connector.Publisher):
         config.set_int ('Pybliographic/UI/Width',  alloc [2])
         config.set_int ('Pybliographic/UI/Height', alloc [3])
 
-        # 2.- Proportion betzeen list and text
+        # 2.- Proportion between list and text
         height = self.paned.children () [0].get_allocation () [3]
         config.set_int ('Pybliographic/UI/Paned', height)
 
