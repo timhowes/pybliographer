@@ -20,11 +20,12 @@
 # $Id$
 
 from string import *
-import re, copy, os
+import copy, os, re, struct
 import Pyblio.Help
 from types import *
 
-from Pyblio import Config, Open, Utils, Key, Iterator, Selection, Autoload
+from Pyblio import Autoload, Coco, Config, Fields,\
+     Iterator, Key, Numerus,  Open, Selection, Storage, Types, Utils
 
 import gettext
 _ = gettext.gettext
@@ -34,7 +35,7 @@ _ = gettext.gettext
 from in order to provide a new database format '''
 
 
-class Entry:
+class Entry(Storage.DBObjectT):
     '''
     A database entry. It behaves like a dictionnary, which
     returns an instance of Description for each key. For example,
@@ -51,45 +52,55 @@ class Entry:
     links the field names with their type.
     '''
 
-    id = 'VirtualEntry'
+    id_x = 'VirtualEntry'
 
     def __init__ (self, key = None, type = None, dict = None):
+
 	self.type = type
 	self.dict = dict or {}
 	self.key  = key
 	return
 
-
     def keys (self):
 	''' returns all the keys for this entry '''
 	return self.dict.keys ()
-
 
     def has_key (self, key):
 	if self.dict.has_key (key): return 1
 	return 0
 
 
+    def set_bibtex (self, key, typ):
+        """Sets the bibtex attributes key and type.
+        Used by database routines."""
+        
+        if type(type) == StringType:
+            self.type = Types.get_entry(lower(typ))
+        else:
+            self.type = typ
+            self.type = Types.get_entry(lower(typ))
+        
+        if type(key) ==  StringType:
+            self.key = Key.Key('DB', key)
+        else:
+            self.key = key, 
+
     def field_and_loss (self, key):
 	''' return field with indication of convertion loss '''
 	return self.dict [key], 0
-
 
     def __getitem__ (self, key):
 	''' return text representation of a field '''
 
 	return self.field_and_loss (key) [0]
 
-
     def __setitem__ (self, name, value):
 	self.dict [name] = value
 	return
-
 	
     def __delitem__ (self, name):
 	del self.dict [name]
 	return
-
 
     def __add__ (self, other):
 	''' Merges two entries, key by key '''
@@ -107,7 +118,6 @@ class Entry:
 
 	return ret
 
-
     def __repr__ (self):
 	''' Internal representation '''
 
@@ -120,7 +130,10 @@ class Entry:
 	tp = self.type.name
 	fields = self.type.fields
 
-	text = '%s [%s]\n' % (tp, self.key.key)
+        try:
+            text = '%s [%s]\n' % (tp, self.key.key)
+        except AttributeError:
+            text = '%s [...]\n' % (tp)
 	text = text + ('-' * 70) + '\n'
 
 	dico = self.keys ()
@@ -152,58 +165,130 @@ class Entry:
 	return text
 
 
-class DataBase:
+class Entry2 (Entry):
 
-    ''' This class represents a full bibliographic database.  It
+    """ad interim -- Entry with additions."""
+
+    id_x = 'VirtualEntry2'
+
+    def __init__ (self, key=None, type = None, dict = None,
+                  *args, **argh):
+
+        self.flags = [32, 0, 0, 0, 0]
+        Entry.__init__(self, key=key, type=type, dict=dict,
+                       *args, **argh)
+
+    def get (self, name, default=''):
+        return self.dict.get(name, default)
+
+    def add_person (self, name=None, role=None, econtrol=None):
+        self.add_simple('author', name)
+        return
+    
+    def add_title (self, string, econtrol=None):
+        self.add_simple_nr('title', string)
+        return
+
+    def add_simple (self, name, value, join=' '):
+        if self.dict.has_key(name):
+            self.dict[name] = Fields.Text(
+                str(self.dict[name]) + join + value)
+        else:
+            self.dict[name] = Fields.Text(value)
+        return
+    
+    def add_simple_nr (self, name, value):
+        if self.dict.has_key(name):
+            print 'WARNING: attempt to add %s to field %s = %s' % (
+                value, name, self.dict[name])
+        else:
+            self.dict[name] = Fields.Text(value)
+        return
+    # deprecated:
+    def add_journal (self, *args, **argh): pass
+
+
+class DataBase (Iterator.RecordSet):
+
+    """
+    Changes:   Now interfaces to (temporary) database.  New code will
+    use the interface that Storage provides directly.
+
+
+
+
+    This class represents a full bibliographic database.  It
     also looks like a dictionnary, each key being an instance of
-    class Key. '''
+    class Key.
 
-    properties = {}
+    Ad iterim we use this to interface to the in-core version of
+    Storage.Database.
 
+    We don't use the path on initialisation, opening a file is done
+    outside  of this code.
+
+    """
     id = 'VirtualDB'
+    
 
     def __init__ (self, url):
-	''' Open the database referenced by the URL '''
-	self.key = url
+        """ UNTRUE: Open the database referenced by the URL """
 
-	self.dict = {}
+        print 'creating a DATABASE: url=%s' %(url)
+        self.base = Storage.temporary_db()
+        self.data = Storage.DBListSet(db=self.base)
+        self.control = Coco.InputFile(
+            title='Pyblio (Input): %s' %(url), file=url)
+        Iterator.RecordSet.__init__(
+            self, base=self.base, control=self.control,
+            path=url, input=self.data, temporary=1)
+
+        self.url = url
+        self.key = self.url ## ad interim
+        self.dict = {} ## ad interim
+        self._ITEMS = []
+        
+        
 	return
 
+    # Old style interface
+    #--------------------------------------------------
+    
+    def add (self, item):
+	''' Adds an (eventually) anonymous entry
+        '''
 
-    def has_property (self, prop):
-	''' indicates if the database has a given property '''
+        # create BibTeX key:
+        item.key = self.create_bibtex_key(item, self.dict,
+                                          self.url)
 
-	if self.properties.has_key (prop):
-	    return self.properties [prop]
+        item.DB_ID = len(self._ITEMS)
+        self._ITEMS.append(item)
+        self.dict[item.key] = item.DB_ID
 
-	return 1
+	return item
 
+    def update_item (self, new, old=None):
+        """ad interim, nothing specila to this class in fact"""
+        db_id = item.DB_ID
+        if old == None:
+            old = self._ITEMS[db_id]
+        # we have only one index
+        del self.dict[old.key.key]
+        new.key = self.create_bibtex_key(item, self.dict, self.url)
+        self.dict[new.key.key] = new.DB_ID
+        self._ITEMS[new.DB_ID] = new
+        del old
+        return item
 
-    def add (self, entry):
-	''' Adds an (eventually) anonymous entry '''
-
-        if entry.key is None:
-            # call a key generator
-            keytype   = Config.get ('base/keyformat').data
-            entry.key = Autoload.get_by_name ('key', keytype).data (entry, self)
+    def delete (self, item, purge=0):
+        if isinstance(item, DBObjectT):
+            db_id = item.DB_ID
         else:
-            entry.key.base = self.key
-            
-            if self.has_key (entry.key):
-                prefix = entry.key.key
-                suffix = ord ('a')
+            db_id = item
+            item = self._ITEMS[db_id]
 
-                while 1:
-                    key = Key.Key (self, prefix + '-' + chr (suffix))
-                    if not self.has_key (key): break
-                    
-                    suffix = suffix + 1
-
-                entry.key = key
-            
-	self [entry.key] = entry
-	return entry
-
+        self.__delitem__(item.key.key)
 
     def new_entry (self, type):
         ''' Creates a new entry of the native type of the database '''
@@ -235,24 +320,24 @@ class DataBase:
 
 
     def __setitem__ (self, key, value):
-	''' Sets a key Entry '''
-
+	''' Sets a key Entry Old style interface'''
+        print 'DATABASE SET ITEM:', key, value
         key.base  = self.key
         value.key = key
-	self.dict [key] = value
+        if not value.DB_ID:
+            self.add(value)
+        else:
+            self.dict [key] = value
 	return
 
 
     def __delitem__ (self, key):
 	''' Removes an Entry from the database, by its key '''
-
+        del self._ITEMS[self.dict[key]]
 	del self.dict [key]
-	return
-
 
     def __len__ (self):
 	''' Number of entries in the database '''
-
 	return len (self.keys ())
 
     def __str__ (self):
@@ -269,13 +354,13 @@ class DataBase:
 
 
     def iterator (self):
-	''' Returns an iterator for that database '''
-	return Iterator.DBIterator (self)
+	""" Returns an iterator for that database """
+        return EnumIterator(self)
 
 
     def update (self, sorting = None):
 	''' Updates the Entries stored in the database '''
-	
+	#print 'UPDATE DATABASE', `self`
 	if self.key.url [0] != 'file':
 	    raise IOError, "can't update the remote database `%s'" % self.key
 
@@ -298,3 +383,56 @@ class DataBase:
         os.rename (tmp, name)
         return
 
+    # Utilities
+    #--------------------------------------------------
+
+class EnumIterator(Iterator.Iterator):
+
+    _typ = 'enum'
+        
+    def first_id(self):
+
+        self.filter = self.filter or self.rs.default_filter
+        self.sorting = self.sorting or self.rs.default_sorting
+
+        if self.filter:
+            self._items = [item.DB_ID for item in self.rs._ITEMS
+                           if self.filter.test(item)]
+        else:
+            self._items = range(len(self.rs._ITEMS))
+
+
+        if self.sorting:
+            pass
+        else:
+            pass
+        self.items = self._items
+        self.position = 0
+        print 'ITEMS:', self.items
+        return self.next_id()
+
+    def first (self):
+        item_id = self.first_id()
+        
+        print 'ITERATOR FIRST', self, item_id, self.rs
+        if item_id != None:
+            return self.rs._ITEMS [item_id]
+
+    def next_id (self):
+        position = self.position
+        self.position += 1
+        if position < len(self.items):
+            print 'ITEM:', self.items[position]
+            return self.items[position]
+
+    def next (self):
+        item_id = self.next_id()
+        if item_id != None:
+            return self.rs._ITEMS[item_id]
+
+
+# for unit testing, the master file is tBase.py:
+
+# Local Variables:
+# py-master-file: "tBase.py"
+# End:
