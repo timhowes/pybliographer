@@ -203,19 +203,25 @@ bibtex_reverse_field (BibtexField * field) {
 
 	    g_string_append_c (st, '{');
 	    if (author->last) {
-		g_string_append (st, author->last);
+		tmp = recode_string (request, author->last);
+		g_string_append (st, tmp);
+		g_free (tmp);
 	    }
 
 	    if (author->lineage) {
 		g_string_append (st, "}, {");
-		g_string_append (st, author->lineage);
+		tmp = recode_string (request, author->lineage);
+		g_string_append (st, tmp);
+		g_free (tmp);
 	    }
 	    g_string_append_c (st, '}');
 
 	    if (author->first) {
 		g_string_append (st, ", ");
 		g_string_append_c (st, '{');
-		g_string_append (st, author->first);
+		tmp = recode_string (request, author->first);
+		g_string_append (st, tmp);
+		g_free (tmp);
 		g_string_append_c (st, '}');
 	    }
 	}
