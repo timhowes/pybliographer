@@ -215,8 +215,9 @@ class Document (Connector.Publisher):
         
         if changed != -1:
             self.changed = changed
-        
+
         self.index.display (self.selection.iterator (self.data.iterator ()))
+        
         self.update_status ()
         return
 
@@ -501,6 +502,7 @@ class Document (Connector.Publisher):
             self.data.add (entry)
 
         self.redisplay_index ()
+        self.index.set_scroll (entries [-1])
         return
 
                 
@@ -586,6 +588,8 @@ class Document (Connector.Publisher):
             self.data.add (new)
 
         self.redisplay_index (1)
+        self.index.select_item (new)
+        
         self.freeze_display (None)
         return
     
@@ -593,10 +597,11 @@ class Document (Connector.Publisher):
     def delete_entry (self, * arg):
         ''' removes the selected list of items after confirmation '''
         entries = self.index.selection ()
-
         l = len (entries)
         if l == 0: return
-        
+
+        offset = self.index.get_item_position (entries [-1])
+
         if l > 1:
             question = _("Remove all the %d entries ?") % len (entries)
         else:
@@ -610,6 +615,7 @@ class Document (Connector.Publisher):
             del self.data [entry.key]
             
         self.redisplay_index (1)
+        self.index.select_item (offset)
         return
     
     

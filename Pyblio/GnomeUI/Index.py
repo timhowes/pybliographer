@@ -198,6 +198,34 @@ class Index (Connector.Publisher):
 
         return len (self.access)
 
+
+    def get_item_position (self, item):
+        try:
+            return self.access.index (item)
+        except ValueError:
+            return -1
+
+        
+    def select_item (self, item):
+        if type (item) is not type (1):
+            item = self.get_item_position (item)
+
+        if item == -1: return
+        
+        self.clist.select_row (item, 0)
+        self.set_scroll (item)
+        return
+    
+        
+    def set_scroll (self, item):
+        if type (item) is not type (1):
+            item = self.get_item_position (item)
+
+        if item == -1: return
+            
+        self.clist.moveto (item, 0, .5, 0)
+        return
+
     
     def display (self, iterator):
 
