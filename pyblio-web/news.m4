@@ -8,6 +8,12 @@ m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
 
+news_item([[23/01/2002]], [[Starting from this release, the happy
+pybliographer rpm-izers will provide specific releases for RedHat-6.x
+and RedHat-7.x. Let's hope this will limit installation problems. For
+people using other RPM-based distributions, the source RPM is of
+course available.]]),
+
 news_item([[20/01/2002]], [[Here comes pybliographer 1.0.11. The
 medline query interface has been much improved, an incremental search
 has been added, and some bugs were fixed (in the UI, in BibTeX and in

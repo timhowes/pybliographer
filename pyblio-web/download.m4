@@ -53,15 +53,13 @@ m4_define(rpm_src, 1)
 
     <ul>
 
-      <li>from <a href="http://sourceforge.net/project/showfiles.php?group_id=4825">SourceForge</a>
+      <li>from <a
+      href="http://sourceforge.net/project/showfiles.php?group_id=4825">SourceForge</a>,
+      as source and binary RPMs.
 
-      <li>from any <a href="ftp://ftp.gnome.org/pub/GNOME/MIRRORS.html">Gnome mirror</a>, as a
-
-<a href="pyblio_stable/pybliographer-pyblio_last-rpm_bin.i386.rpm">RPM</a>
-
-or a
-
-<a href="pyblio_stable/pybliographer-pyblio_last-rpm_src.src.rpm">source RPM</a>
+      <li>from any <a
+      href="ftp://ftp.gnome.org/pub/GNOME/MIRRORS.html">Gnome
+      mirror</a>, in the <b>stable/sources/pyblio</b> directory, as a <a href="pyblio_stable/pybliographer-pyblio_last-rpm_src.src.rpm">source RPM</a>
    </ul>
   </dd>
 
@@ -85,8 +83,8 @@ archive
 
 <hr>
 
-<p>The RPM files are kindly provided by <a
-href="mailto:hinsen@cnrs-orleans.fr">Konrad Hinsen</a>.
+<p>The RPM source files are kindly provided by Konrad Hinsen. Binary RPMs
+are built by Zoltan Kota and Matt Thompson.
 
 <p>Pybliographer is available on <a
 href="http://www.debian.org">Debian</a>, thanks to Paul Seelig, Tobias
