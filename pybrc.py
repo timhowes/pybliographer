@@ -25,6 +25,9 @@ Autoload.preregister ('output', 'Raw',   'Pyblio.Output.raw')
 Autoload.preregister ('output', 'HTML',  'Pyblio.Output.html')
 Autoload.preregister ('output', 'LaTeX', 'Pyblio.Output.LaTeX')
 
+# define key formats
+
+Autoload.preregister ('key', 'Short', 'Pyblio.Utils')
 
 # Parse the configuration directory
 
@@ -36,4 +39,3 @@ if not os.path.isdir (rootconfig):
 if os.path.isdir (rootconfig):
     Config.parse_directory (rootconfig)
 
-Config.load_user ()

@@ -94,6 +94,7 @@ except os.error: sources = [ os.path.join (data_pybdir, "pybrc.py") ]
 else:  	         sources = [ "pybrc.py" ]
 
 sources.append (os.path.expanduser('~/.pybrc.py'))
+load_config = 1
 
 for opt, value in optlist:
 	if opt == '-q' or opt == '--quiet':
@@ -102,6 +103,7 @@ for opt, value in optlist:
 	
 	if opt == '-n':
 		sources = []
+		load_config = 0
 		continue
 
 	if opt == '-f' or opt == '--file':
@@ -149,7 +151,11 @@ for filename in sources:
 		pass
 	else:
 		execfile (filename, user_global)
-		
+
+if load_config:
+	from Pyblio import Config
+	Config.load_user ()
+
 # Fichiers passes en argument au programme
 if len (args) > 0 :
 	filename = args [0]

@@ -24,7 +24,7 @@ import re, copy, os
 import Pyblio.Help
 from types import *
 
-from Pyblio import Config, Open, Utils, Key, Iterator, Selection
+from Pyblio import Config, Open, Utils, Key, Iterator, Selection, Autoload
 
 import gettext
 _ = gettext.gettext
@@ -183,7 +183,9 @@ class DataBase:
 	''' Adds an (eventually) anonymous entry '''
 
         if entry.key is None:
-            entry.key = Utils.generate_key (entry, self)
+            # call a key generator
+            keytype = Config.get ('base/keyformat').data
+            entry.key = Autoload.get_by_name ('key', keytype).data (entry, self)
         else:
             entry.key.base = self.key
             

@@ -21,7 +21,7 @@
 
 from string import *
 
-from Pyblio import Key
+from Pyblio import Key, Autoload
 
 def format (string, width, first, next):
     ''' Format a string on a given width '''
@@ -58,7 +58,7 @@ __entry = 0
 
 
 def generate_key (entry, table):
-        
+    
     if   entry.has_key ('author'): aut = entry ['author']
     elif entry.has_key ('editor'): aut = entry ['editor']
     else:                          aut = ()
@@ -110,6 +110,8 @@ def generate_key (entry, table):
             key  = Key.Key (table, base + chr (suff))
 	            
     return Key.Key (table, key)
+
+Autoload.register ('keys', 'Short', generate_key)
 
 
 class StringStream:
