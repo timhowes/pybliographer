@@ -1,0 +1,68 @@
+\documentclass[12pt,a4paper,DIV8]{scrbook}
+\usepackage{pyblio,graphicx,xr}
+% add font styles  like: ,galliard,gillsans, if you like
+\hyphenation{data-base}
+%\rcsInfo $Id$
+\externaldocument[DG.]{DG}
+\externaldocument[UG.]{UG}
+\begin{document}
+\frontmatter
+\title{Pybliographer Design Handbook}
+\author{Frédéric Gobry and Peter Schulte-Stracke}
+\maketitle{}\pagestyle{headings}
+
+\newcommand{\txglossbuchstb}[1]{\medskip}
+
+\makeatletter
+
+\newcommand{\txglossentry}[2][]{%
+\noindent\textbf{#2\ifx#1\@empty\else\hfill [#1]\fi}\nopagebreak}
+
+\newenvironment{usecaselist}{\begin{itemize}}{\end{itemize}}
+
+\newcommand{\listitem}[3]{\item \textbf{(#1)} {\itshape #2} #3}
+
+\newenvironment{usecase}
+{\begin{description}}{\end{description}}
+
+\newcommand{\ucitem}[3]{\textbf{\sffamily #1}\quad
+  #2\dotfill\pageref{sec:uc#1}}
+
+\makeatother
+
+
+\bibliographystyle{acm}
+% \begin{abstract}
+%    A collection of diagrams and tables detailing the analysis and
+%    design of Pybliographer version 2.
+% \end{abstract}
+
+\tableofcontents
+\reversemarginpar
+\mainmatter
+
+
+\chapter{Use cases}
+\label{cha:usecases}
+
+\input{tx-use.ltx}
+
+
+\chapter{Glossary}
+\label{cha:td9gloss}
+
+
+\input{tx-gloss.lst}
+
+
+\include{zzuc-all}
+
+
+
+
+\appendix
+\cleardoublepage
+\backmatter
+\bibliography{pyblio}
+
+\end{document}

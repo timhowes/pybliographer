@@ -69,11 +69,11 @@ important principles, and may serve as benchmarks for our endeavour.
 \subsection{Reference Managers}
 \label{sec:introdocrm}
 
-Very early the scholarly (and technical) document preparation has been
+Very early the scholarly and technical document preparation has been
 supported with programs to augment document sources with correctly
 formatted references, of which \textit{BibTeX} may be regarded as
 prime example.  Those early applications are slanted towards the
-production of reference lists, almost at the exclusion of other uses:
+production of reference lists, almost at the exclusion of other uses,
 their storage formats are implicitly defined and easy to extend, and
 the building and maintaining of its data base is left to other means.
 
@@ -90,7 +90,7 @@ the fore. While the majority of the scientific\slash technical writers
 the new users were mostly attracted to the perceived simplicity of the
 word processors, and eschewed the command line and simple editors of
 Unix.  Almost by necessity, the new applications stressed those
-aspects of the job, that the older tradition neglected; word processor
+aspects of the job that the older tradition neglected. Word processor
 users didn't care for the typographical refinements of \TeX, nor the
 frugality and intellectual self restriction of the command line.  They
 wanted simplicity and ease of use, \dots\ and over the time, they
@@ -99,28 +99,29 @@ afterthought, it is at the centre of the development effort (often to
 the detriment of the application proper).
 
 The features of \textit{Biblioscape}, a commercial product are given
-in appendix \ref{sec:commfeat}.
-For us it is important to pay attention to the \textit{organising} of
-the references, by providing suitable instruments, e.g., the
-\textit{virtual folders} of Biblioscape.
+in appendix \ref{sec:biblioscapefeat}.  For us it is important to
+stress \cbstart the \textit{database} aspects and \cbend pay attention
+to the \textit{organising} of the references, by providing suitable
+instruments, e.g., the \textit{virtual folders} of Biblioscape.
 
 
 \subsection{Library Catalogues}
 \label{sec:introlibs}
+\cbstart
 
+In the beginning library catalogues were nothing but simple
+\textit{inventories} and they and their counterparts in archives serve
+this purpose to this day.  After they became accessible to the public,
+though, a number of problems arose that are still important, as are
+some of the solutions.  Required by the inter-library loan services
+and other fields of cooperation, \textit{cataloguing rules} were
+developed, culminating in the ISBD, which set a widely accepted
+standard.  
+%The rules and the services never ceased to influence each other; 
+The actual rules have always aimed at a compromise between precision
+and cost.
 
-It comes to no surprise that in the beginning library catalogues were
-nothing but simple \textit{inventories}, and that they and their
-counterparts in archives, serve this purpose to this day.  After they
-became accessible to the public, though, and now it is getting
-interesting, a number of problems arose, that are still important, as
-are some of the solutions, too.  At about the same time, required by
-the inter-library loan services, among others, rules for the
-bibliographical description were developed, culminating in the ISBD,
-which set a widely accepted standard.  Both developments never ceased
-to influence each other.
-
-
+\cbend
 
 
 
@@ -149,12 +150,12 @@ to influence each other.
 % and to enable a catalogue to be build and used \textit{compatibly}
 % without annoyance by many people (which is a form of sharing, too).
 
-The actual rules used have always been a compromise between precision
-and cost. % oscillating between the ideal of capturing the whole title
+% oscillating between the ideal of capturing the whole title
 % page (of course, only the title page\footnote{see Robert Musil's
 %   \textit{Mann ohne Eigenschaften} and the talk between General Stumm
 %   von Borgwehr and the director of the Royal Library \dots}) and the
 % need of coping (manually) with all this. 
+
 Over time, the descriptions tended to grow in size. There are several
 reasons for this: (i) the more items exist, the more difficult it is
 to distinguish between them, the more details are thus needed, (ii) if
@@ -204,8 +205,6 @@ of \textit{entry points}: try to establish for everything that you
 catalogue well-defined and precise enough attributes and make the
 database search-able for them. 
 
-
-
 For a card catalogue this implies defining not only under which
 \textit{form} an author is filed, but in addition under which author a
 book is filed (if there is a choice).  The first class of
@@ -240,19 +239,20 @@ adequate.
 Extending the database schema to enable the description of
 \textit{administrative records, personal papers,} and
 \textit{manuscripts}, and collections thereof, should be taken into
-consideration. 
+consideration.
 
 
-\subsection{The spell of the Internet -- Database \& Document Access}
+\subsection{Internet Database \& Document Access}
 \label{sec:internet-access}
 
 Although the Internet precedes the personal computer by some
-years,\footnote{Of course, it all depends.  Arguably the first
-  personal computer was the \textsf{Alto} at \textit{Xerox Parc} from
-  the early 1970, while the switch to the \textit{IP/TCP} protocol
-  family did not occur but a couple of years later.}  the impact of
-the Internet was but slowly felt. We can at this time distinguish the
-following issues:
+years,
+% \footnote{Of course, it all depends.  Arguably the first
+%   personal computer was the \textsf{Alto} at \textit{Xerox Parc} from
+%   the early 1970, while the switch to the \textit{IP/TCP} protocol
+%   family did not occur but a couple of years later.}  
+the impact of the Internet was but slowly felt. We can at this time
+distinguish the following issues:
 \begin{description*}
 \item[Database access] in particular with the intent of adding the
   results at least partially to one's database.
@@ -265,8 +265,36 @@ following issues:
   the card-bound structure of \textsf{MARC} to the limits, ever
   changing, they challenged the concepts of bibliographical unit, of
   work, and edition (see chapter \ref{cha:bibdata}).
+
+  \cbstart It is still not clear how great the impact of electronic
+  documents and collections will be.  Recent developments include the
+  Library of Congress' \textsf{MODS} projects, following the lead of
+  the \textsf{Dublin Core} so-called \textit{Metadata} standard. The
+  idea is often to replace traditional cataloguing with less expensive
+  alternatives, in the first place by placing information in the
+  documents (in a deplorable concession to liguistic vanity) called
+  \textit{meta data}, from where it can then be \textit{harvested}
+  automatically.  Unfortunately this is not easily accomplished and
+  perhaps even paradixical.
+  \cbend
 \end{description*}
 
+
+
+\subsection{Integration with Document Preparation}
+\label{sec:introinteg}
+
+\begin{dnote}
+\item Usability issues and the changed workflow  
+\end{dnote}
+
+\subsection{Summary of current trends}
+\label{sec:introtrend}
+
+\begin{dnote}
+  \item Where are the current projects heading?
+  \item What is felt to be the most pressing development today?
+\end{dnote}
 
 
 \section{Reference Documents}
@@ -275,54 +303,71 @@ following issues:
 The following gives a list of articles and other reference sources
 that are helpful in understanding the issues.
 
+\begin{dnote}
+\item A more comprehensive list could perhaps be drawn up, in another
+  place.
+\end{dnote}
 
-\subsection{General}
 \label{sec:introrefgen}
-\begin{description}
-\item [Research] Dagmar Knorr examines in her thesis \citep{knorr98}
-  practical processes of academic writing with a particular regard
-  towards the use of bibliographical information and reference manager
-  tools.  While she finds a very inhomogeneous landscape, she is
-  correct in my view, in stressing the importance of adequate tools,
-  and of activities antecedent to and supportive of actual writing,
-  such as note taking, including task related notes, and tracing,
-  e.g., of quoted literature. She documents an earlier period (early
-  1990s) where often very basic Bib\TeX\ features were not available,
-  so this would be even relatively more important today.
+
+\begin{description*}
+\cbstart
+
+\item[Introduction] Elaine Svenonius  \citeyear{sve00} gives a broad
+  overview of the problems of bibliographic description, starting from
+  objectives and principles and aiming at giving the field a  sound
+  foundation. Klaus Haller \citeyear{Hal98}, in a more limited way,
+  does the same for a German professional public. These authors are
+  only concerned with library catalogues, with Svenonius being more
+  profound.  In addition, she has a lot of references.
+
+\item[Requirements] Dagmar Knorr examines in her thesis
+  \citeyear{knorr98} practical processes of academic writing with a
+  particular regard towards the use of bibliographical information and
+  reference manager tools.  While she finds a very inhomogeneous
+  landscape, she is correct in my view, in stressing the importance of
+  adequate tools, and of activities antecedent to and supportive of
+  actual writing, such as note taking, including task related notes,
+  and tracing, e.g., of quoted literature. She documents an earlier
+  period (early 1990s) where often very basic Bib\TeX\ features were
+  not available, so this would be \textit{relatively} even more
+  important today.  Another study of actual user needs has been done
+  for the \textit{Open Office} project \citet{JHZ03a}.
   
 \item [Reviews] Of the many overviews of existing reference manager
-  systems, the following have been particular helpful: \dots
-\end{description}
+  systems, the following have been particular helpful: \citet{ors:bfs02}
 
 
-\subsection{Cataloguing Rules and Library Applications}
-\label{sec:introrefrule}
+  
+\item [Cataloguing rules] \label{sec:introrefrule} All newer
+  cataloguing rules are influenced by the work of the
+  \textit{International Federattion of Library Associatons}, which has
+  at its website \url {www.ifla.org} a number of \textit{International
+    Standards for Bibliographical Description} \textsf{ISBD}
+  available. In addition there can be found the important report on
+  \textit{Functional Requirements for Bibliographical Description}
+  \textsf{FRBR} \citeyear{IFLA98}. % Discussion?
+  The Anglo-American rules, \textsf{AACR}, are explained in Maxwell's
+  Handbook \citeyear{MM97}. See also the \textsf{Cataloguer's bookshelf}
+  web site and the also the following for \textsf{MARC}: a good
+  official site is \url{www.loc.gov/...} including a lot of discussion
+  papers; very good material also at the \textsf{OCLC} site, in
+  particular \dots \textsf{RAK} The German rules are explained at 
 
-\begin{description}
-\item[ISBD] The influential international standards, available (mostly) at
-  \url {www.ifla.org}
-\item[FRBR] An important report at \url{}, for discussion papers see \dots
-\item[AACR2R] The Anglo-American rules are explained in Maxwell's
-  Handbook \cite{MM97}. See also the \dots web site and the following:
-\item[MARC] Good official site is \url{www.loc.gov/...} including a lot
-  of discussion papers; very good material also at the \textsf{OCLC}
-  site, in particular \dots
-\item[RAK] The German rules are explained at \dots
-\item[Allegro] is a small library system developed at the Technische
-  Universität in Braunschweig by Eversberg, its documentation \url{}
-  comprises an outstanding comparison and discussion of library
-  formats.
-\end{description}
+  
+\item [Applications] \textit{Allegro} is a small library system
+  developed at the Technische Universität in Braunschweig by Bernhard
+  Eversberg, its documentation \url{} comprises also an outstanding
+  comparison and discussion of library data formats.
 
+\item[Records Management and Archives] Management of living (current)
+  administrative records has evolved, of course, independent of
+  bibliographic considerations. For a recent standard see
+  \citep{DOD:5015.2std}. The German practice before the advent of
+  Electronic documents is detailed in  \citet*{Hof93}
+\cbend
+\end{description*}
 
-\subsection{Records Management and Archives}
-\label{sec:introrefrecords}
-\begin{description}
-\item Management of living (current) administrative records has
-  evolved, of course, independent of bibliographic considerations. For
-  a recent standard see \cite{DOD:5015.2std}.
-\item 
-\end{description}
 
 
 
