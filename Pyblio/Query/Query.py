@@ -28,8 +28,8 @@ This code has been contributed by: John Vu <jvu001@umaryland.edu>
 
 # The time module is added for querying date ranges of publications
 import urllib, sys, re, string, time
-import z3950
-import asn1
+from Pyblio import z3950
+from Pyblio import asn1
 
 query_url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi'
 fetch_url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi'

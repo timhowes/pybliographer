@@ -22,6 +22,8 @@
 
 ''' This module defines a Document class '''
 
+from __future__ import  nested_scopes
+
 from gnome.ui import *
 from gtk import *
 from gnome import config
@@ -34,7 +36,8 @@ from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
 from Pyblio.GnomeUI.Query import QueryUI
 
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
-from Pyblio import version, Fields, Types, Query
+from Pyblio import version, Fields, Types
+from Pyblio.Query import Query
 
 import Pyblio.Style.Utils
 
