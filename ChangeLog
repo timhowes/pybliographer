@@ -1,3 +1,8 @@
+1999-12-30  Christopher R. Gabriel  <cgabriel@linux.it>
+
+	* doc/it/: added italian translation from Yuri Bongiorno 
+	<yurix@tiscalinet.it>
+
 1999-11-22  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* bibtex/struct.c: Small improvement that produces a speedup of 10x ;-)
