@@ -224,11 +224,11 @@ class BasicEditor (GtkHBox):
         text = n.run_and_close ()
         
         if text is not None:
-            self.modified = 1
-            self.native   = n.native
-
             # display the modified text
             self.fill (text)
+
+            self.modified = 1
+            self.native   = n.native
         return
     
     
@@ -255,12 +255,12 @@ class BasicEditor (GtkHBox):
         # entry not editable -> nothing to update
         if not self.editable: return 0
         
-        new = self.get ()
-
         # entry has been natively modified
         if self.modified:
             self.entry.set_native (self.field, self.native)
             return 1
+
+        new = self.get ()
 
         if (new is None and self.value is not None) or \
            (new is not None and self.value is None) or \
