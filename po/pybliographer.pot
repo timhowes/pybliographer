@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-05-22 13:41+ZONE\n"
+"POT-Creation-Date: 2000-05-30 10:24+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -679,11 +679,11 @@ msgstr ""
 msgid "can't find the following entries: %s"
 msgstr ""
 
-#: .././scripts/pybconvert.py:27
+#: .././scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
 msgstr ""
 
-#: .././scripts/pybconvert.py:36
+#: .././scripts/pybconvert.py:38
 msgid "pybconvert: bad conversion format"
 msgstr ""
 
