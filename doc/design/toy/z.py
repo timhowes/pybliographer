@@ -191,6 +191,10 @@ class Text (api.Text):
 
     def words (self):
         return string.split (self.v)
+
+    def __repr__ (self):
+        return 'Text (%s)' % `self.v`
+
     
 
 class Manifestation (Persistent, Indexed, api.Manifestation):

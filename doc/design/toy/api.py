@@ -101,7 +101,6 @@ class Text:
     def words (self):
         pass
     
-
 class Manifestation:
 
     '''  Holder for bibliographic information '''
@@ -119,7 +118,7 @@ class Manifestation:
         pass
 
     def set (self, info):
-        ''' Set all the info on a manifestation '''
+        ''' Update info on a manifestation '''
         pass
     
     def __repr__ (self):
