@@ -75,7 +75,8 @@ def any_has (value):
 	return Search.AnyTester (value)
 
 def has_type (value):
-	the_type = Types.get_entry (value, 0)
+	the_type = Types.get_entry (string.lower (value), 0)
+	
 	if the_type is None:
 		raise TypeError, "no such entry type"
 	

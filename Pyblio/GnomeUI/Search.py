@@ -263,7 +263,7 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
 
             elif field == ' - type - ':
                 # get the type description
-                the_type = Types.getentry (match, 0)
+                the_type = Types.get_entry (string.lower (match), 0)
 
                 if the_type is None:
                     err = ['No such Entry type']
