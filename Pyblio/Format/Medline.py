@@ -122,7 +122,7 @@ class MedlineIterator (Iterator.Iterator):
                     first = first [0:1]
 
                 if len (first) > 0:
-                    first = string.join (first [0], '. ') + '.'
+                    first = string.join (first [0], '.') + '.'
                 else:
                     first = None
 

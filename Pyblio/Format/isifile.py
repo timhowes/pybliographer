@@ -159,7 +159,7 @@ class IsifileIterator(Iterator.Iterator):
                     name, firstn = string.split (item, ',')
                     auth = name + ', '
                     for i in string.strip(firstn):
-                        auth = auth + i +'. '
+                        auth = auth + i +'.'
                 group.append (Fields.Author(auth))
             in_table['author'] = group
             del lines[key]                  
