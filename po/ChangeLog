@@ -1,3 +1,7 @@
+2003-10-08   Vincent van Adrighem  <adrighem@gnome.org>
+
+	* nl.po:  translation added by Elros Cyriatan.
+
 2003-09-08  Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>
 
 	* sk.po: Updated Slovak translation by Zdenko Podobny <zdpo@mailbox.sk>.
@@ -33,7 +37,7 @@
 
 2001-05-22  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokm�l) translation.
+	* no.po: Updated Norwegian (bokmål) translation.
 	
 2001-03-28  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
@@ -49,7 +53,7 @@
 
 2001-01-18  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokm�l) translation.
+	* no.po: Updated Norwegian (bokmål) translation.
 	
 2001-01-15  Fatih Demir	<kabalak@gmx.net>
 
@@ -60,7 +64,7 @@
 
 	* fi.po: Added Finnish translation.
 
-2000-11-29  Martin Norbäck  <d95mback@dtek.chalmers.se>
+2000-11-29  Martin NorbÃ€ck  <d95mback@dtek.chalmers.se>
 
 	* sv.po: Imported from HEAD
 
