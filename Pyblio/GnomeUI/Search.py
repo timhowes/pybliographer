@@ -113,7 +113,7 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         
         if parent: self.set_parent (parent)
 
-        self.button_connect (0, self.apply_cb)
+        self.button_connect (0, self.apply_button_cb)
         self.button_connect (1, self.close_cb)
         self.set_default (0)
         self.close_hides (1)
@@ -206,6 +206,15 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         self.close ()
         return
     
+
+    def apply_button_cb (self, widget):
+        if self.notebook.get_current_page () == 0:
+            self.text.append_history (TRUE,
+                                      self.text.gtk_entry ().get_text ())
+            return
+
+        self.apply_cb (self, widget)
+        return
     
     def apply_cb (self, widget):
         page = self.notebook.get_current_page ()
