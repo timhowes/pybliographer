@@ -12,8 +12,10 @@ AC_MSG_CHECKING([python version is at least $1])
 changequote(|,|)
 
 cat > conftest.py <<EOF
-import sys, string
+import sys, string, re
 base_version = string.split (sys.version) [0]
+base_version = re.match ('[\d\.]+', base_version).group (0)
+
 version = map (int, string.split (base_version, '.'))
 if len (version) < 3: version.append (0)
 fd = open ('conftest.out', 'w')
