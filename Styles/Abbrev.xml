@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<!DOCTYPE bibstyle PUBLIC "-//Pybliographer//DTD Bibliographic Style Format//EN" "">
+
+<bibstyle>
+  
+  <module name="generic">
+    <define field="author">initials_authors</define>
+    <define field="editor">initials_authors</define>
+    <define field="date">european_date</define>
+    <define method="keys">string_keys</define>
+  </module>
+
+<!-- Start with the author, except for proceedings -->
+<notinentry name="proceedings">
+<content name="author"></content>
+</notinentry>
+<inentry name="proceedings">
+<infield name="editor">
+<content></content>, <singular>editor</singular><plural>editors</plural>
+</infield>
+</inentry>
+<separator>.</separator>
+
+<!-- PROCEEDINGS -->
+<inentry name="proceedings">
+<style name="emph"><content name="title"></content></style>
+<infield name="series">
+, <infield name="volume">volume <content></content> of </infield>
+<notinfield name="volume">
+<infield name="number">number <content></content> in</infield>
+</notinfield>
+<style name="emph"><content></content></style>
+</infield>
+<infield name="address">, <content></content></infield>
+<infield name="date">, <content></content></infield>
+<separator>.</separator>
+
+<infield name="organization">
+<content></content><infield name="publisher">, </infield>
+</infield>
+<content name="publisher"></content>
+<separator>.</separator>
+</inentry>
+
+<!-- ARTICLE -->
+<inentry name="article">
+<content name="title"></content><separator>.</separator>
+
+<infield name="journal">
+<style name="emph"><content></content></style>
+<infield name="volume">, <content></content></infield>
+<infield name="number">(<content></content>)</infield>
+<infield name="pages">:<content></content></infield>
+</infield>
+<infield name="date">, <content></content></infield>
+<separator>.</separator>
+</inentry>
+
+<!-- BOOK -->
+<inentry name="book">
+<style name="emph"><content name="title"></content></style>
+<infield name="series">
+, <infield name="volume">volume <content></content> of </infield>
+<notinfield name="volume">
+<infield name="number">number <content></content> in </infield>
+</notinfield>
+<style name="emph"><content></content></style>
+</infield>
+<infield name="address">, <content></content></infield>
+<infield name="date">, <content></content></infield>
+<infield name="chapter">
+, type <content></content>
+</infield>
+<infield name="pages">, <singular>page</singular><plural>pages</plural> 
+<content></content></infield>
+<separator>.</separator>
+
+<infield name="publisher">
+<content></content>
+<infield name="address">, <content></content></infield>
+<infield name="edition">, <content></content> edition</infield>
+<infield name="date">, <content></content></infield>
+</infield>
+<separator>.</separator>
+</inentry>
+
+<!-- INBOOK -->
+<inentry name="inbook">
+<style name="emph"><content name="title"></content></style>
+<infield name="series">
+, <infield name="volume">volume <content></content> of </infield>
+<notinfield name="volume">
+<infield name="number">number <content></content> in </infield>
+</notinfield>
+<style name="emph"><content></content></style>
+</infield>
+<infield name="address">, <content></content></infield>
+<infield name="date">, <content></content></infield>
+<infield name="chapter">
+, type <content></content>
+</infield>
+<infield name="pages">, <singular>page</singular><plural>pages</plural> 
+<content></content></infield>
+<separator>.</separator>
+
+<infield name="publisher">
+<content></content>
+<infield name="address">, <content></content></infield>
+<infield name="edition">, <content></content> edition</infield>
+<infield name="date">, <content></content></infield>
+</infield>
+<separator>.</separator>
+</inentry>
+
+<!-- BOOKLET -->
+<inentry name="booklet">
+<content name="title"></content>
+<separator>.</separator>
+
+<infield name="howpublished">
+<content></content>
+<infield name="address">, <content></content></infield>
+<infield name="date">, <content></content></infield>
+</infield>
+<separator>.</separator>
+</inentry>
+
+<!-- INCOLLECTION -->
+<inentry name="incollection">
+<content name="title"></content>
+<separator>.</separator>
+
+<infield name="editor">
+In <content></content>, <singular>editor</singular><plural>editors</plural>
+</infield>
+<infield name="booktitle">
+, <style name="emph"><content name="booktitle"></content></style>
+<infield name="series">
+, <infield name="volume">volume <content></content> of </infield>
+<notinfield name="volume">
+<infield name="number">number <content></content> in </infield>
+</notinfield>
+<style name="emph"><content></content></style>
+</infield>
+</infield>
+<separator>.</separator>
+
+<infield name="publisher">
+<content></content>
+<infield name="address">, <content></content></infield>
+<infield name="edition">, <content></content> edition</infield>
+<infield name="date">, <content></content></infield>
+</infield>
+<separator>.</separator>
+</inentry>
+
+<!-- INPROCEEDINGS -->
+<inentry name="inproceedings">
+<content name="title"></content>
+<separator>.</separator>
+
+<infield name="editor">
+In <content></content>, <singular>editor</singular><plural>editors</plural>
+<infield name="booktitle">, </infield>
+</infield>
+<infield name="booktitle">
+<style name="emph"><content name="booktitle"></content></style>
+<infield name="series">
+, <infield name="volume">volume <content></content> of </infield>
+<notinfield name="volume">
+<infield name="number">number <content></content> in </infield>
+</notinfield>
+<style name="emph"><content></content></style>
+</infield>
+<infield name="chapter">
+, type <content></content>
+</infield>
+<infield name="pages">, <singular>page</singular><plural>pages</plural> 
+<content></content></infield>
+</infield>
+<separator>.</separator>
+
+<infield name="address">
+<content></content><infield name="date">, </infield>
+</infield>
+<content name="date"></content>
+<separator>.</separator>
+
+<infield name="organization">
+<content></content><infield name="publisher">, </infield>
+</infield>
+<content name="publisher"></content>
+<separator>.</separator>
+</inentry>
+
+<!-- ...others... -->
+<inentry name="manual">
+<style name="emph"><content name="title"></content></style>
+</inentry>
+<inentry name="phdthesis">
+<style name="emph"><content name="title"></content></style>
+</inentry>
+<inentry name="masterthesis"><content name="title"></content></inentry>
+<inentry name="techreport"><content name="title"></content></inentry>
+<inentry name="misc"><content name="title"></content></inentry>
+<separator>.</separator>
+
+<inentry name="masterthesis">
+<infield name="type">
+<content></content>
+<infield name="school">, <content></content></infield>
+<infield name="address">, <content></content></infield>
+</infield>
+<infield name="date">, <content></content></infield>
+<separator>.</separator>
+</inentry>
+
+<inentry name="phdthesis">
+<infield name="type">
+<content></content>
+<infield name="school">, <content></content></infield>
+<infield name="address">, <content></content></infield>
+</infield>
+<infield name="date">, <content></content></infield>
+<separator>.</separator>
+</inentry>
+
+<inentry name="manual">
+<infield name="oganization">
+<content></content>
+<infield name="address">, <content></content></infield>
+<infield name="edition">, <content></content></infield>
+</infield>
+<infield name="date">, <content></content></infield>
+<separator>.</separator>
+</inentry>
+
+<inentry name="techreport">
+<content name="type"></content>
+<notinfield name="type">Technical report</notinfield>
+<infield name="number">, <content></content></infield>
+<infield name="institution">, <content></content></infield>
+<infield name="address">, <content></content></infield>
+<infield name="date">, <content></content></infield>
+<separator>.</separator>
+</inentry>
+
+<inentry name="misc">
+<content name="howpublished"></content>
+<infield name="date">, <content></content></infield>
+<separator>.</separator>
+</inentry>
+</bibstyle>
