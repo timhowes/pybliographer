@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # This file is part of pybliographer
 # 
 # Copyright (C) 1998,1999,2000 Frederic GOBRY
@@ -972,14 +974,24 @@ class Document (Connector.Publisher):
 
     
     def about (self, *arg):
-        about = ui.About ('Pybliographic', version.version,
-                            _("This program is copyrighted under the GNU GPL"),
-                            ['Fr�d�ric Gobry'],
-                            _("Gnome interface to the Pybliographer system."),
-                            'pybliographic-logo.png')
-        about.set_parent (self.w)
         
-        link = ui.HRef ('http://www.gnome.org/pybliographer',
+        about = ui.About ('Pybliographic',
+                          version.version,
+                          _("This program is copyrighted under the GNU GPL"),
+                          _("Gnome interface to the Pybliographer system."),
+                          ['Hervé Dréau',
+                           'Frédéric Gobry',
+                           'Travis Oliphant',
+                           'Darrell Rudmann',
+                           'Peter Schulte-Stracke',
+                           'John Vu'],
+                          ['Yuri Bongiorno',
+                           'Frédéric Gobry'],
+                          _('Gnome Translation Team'))
+
+        about.set_transient_for (self.w)
+        
+        link = ui.HRef ('http://www.pybliographer.org/',
                         _("Pybliographer Home Page"))
         link.show ()
         about.vbox.pack_start (link)

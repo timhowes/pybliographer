@@ -24,7 +24,6 @@
 #
 #  - DnD with the world
 #  - Copy/Paste with the world
-#  - contextual popup menu
 #  - column width storage
 
 
@@ -82,12 +81,24 @@ class Index (Connector.Publisher):
         self.w.add (self.list)
 
         self.access = []
-            
+
+        # contextual popup menu
+        self.menu = gtk.Menu ()
+        
+        Utils.popup_add (self.menu, _('Add...'),
+                         self.entry_new)
+        Utils.popup_add (self.menu, _('Edit...'),
+                         self.entry_edit)
+        Utils.popup_add (self.menu, _('Delete...'),
+                         self.entry_delete)
+        
         # some events we want to react to...
         self.selinfo.connect ('changed', self.select_row)
-        self.list.connect ('row-activated', self.entry_edit)
 
-        # ---------- DnD configuration
+        self.list.connect ('row-activated', self.entry_edit)
+        self.list.connect ('button-press-event', self.button_press)
+
+        # DnD configuration
  
         targets = (
             (Mime.KEY_TYPE,   0, Mime.KEY),
@@ -110,7 +121,7 @@ class Index (Connector.Publisher):
                                    targets, gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
         self.list.connect ('drag_data_get', self.dnd_drag_data_get)
  
-        # ---------- Copy/Paste configuration
+        # Copy/Paste configuration
  
         self.selection_buffer = None
          
@@ -177,13 +188,6 @@ class Index (Connector.Publisher):
         return
 
         
-    def set_menu_active (self, item, value):
-        ''' This method sets the sensitivity of each popup menu item '''
-
-        self.menu.children () [self.menu_position [item]].set_sensitive (value)
-        return
-    
-
     def drag_received (self, * arg):
         selection = arg [4]
         info      = arg [5]
@@ -387,48 +391,30 @@ class Index (Connector.Publisher):
     def button_press (self, clist, event, *arg):
         ''' handler for double-click and right mouse button '''
 
-        if (event.type == GDK._2BUTTON_PRESS and event.button == 1):
-            # select the item below the cursor
-            couple = self.clist.get_selection_info (event.x, event.y)
-            if couple:
-                self.clist.select_row (couple [0], couple [1])
-                self.issue ('edit-entry', [self.access [couple [0]]])
-            return
+        if not (event.type == gtk.gdk.BUTTON_PRESS and
+                event.button == 3): return
         
-        if (event.type == GDK.BUTTON_PRESS and event.button == 3):
-            if not self.clist.selection:
-                # select the item below the cursor
-                couple = self.clist.get_selection_info (event.x, event.y)
-                if couple:
-                    self.clist.select_row (couple [0], couple [1])
+        # what menu items are accessible ?
+        sel = self.selection ()
+            
+        if len (sel) == 0: mask = (1, 0, 0)
+        else:              mask = (1, 1, 1)
 
-            # what menu items are accessible ?
-
-            if len (self.clist.selection) == 0:
-                mask = (1, 0, 0)
-            else:
-                mask = (1, 1, 1)
-
-            items = ('add', 'edit', 'delete')
-            for i in range (3):
-                self.set_menu_active (items [i], mask [i])
-
-            self.menu.popup (None, None, None, event.button, event.time)
-            return
-
+        child = self.menu.get_children ()
+        for i in range (3):
+            child [i].set_sensitive (mask [i])
+            
+        self.menu.popup (None, None, None, event.button, event.time)
         return
 
 
     def entry_new (self, * arg):
-        self.set_menu_active ('add', 0)
-        
-        self.issue ('new-entry', map (lambda x, self=self: self.access [x],
-                                       self.clist.selection))
+        self.issue ('new-entry')
         return
 
     
     def entry_edit (self, * arg):
-        sel = self.selection
+        sel = self.selection ()
         if not sel: return
 
         self.issue ('edit-entry', sel)
@@ -436,10 +422,10 @@ class Index (Connector.Publisher):
 
         
     def entry_delete (self, * arg):
-        if not self.clist.selection: return
+        sel = self.selection ()
+        if not sel: return
         
-        self.issue ('delete-entry', map (lambda x, self=self: self.access [x],
-                                       self.clist.selection))
+        self.issue ('delete-entry', sel)
         return
 
 
