@@ -21,12 +21,21 @@
 # 
 # $Id$
 
+import sys
+
 from gtk import *
 from Pyblio.GnomeUI.Pybliographic import Pybliographic
+from Pyblio.Fields import URL
 
 main = Pybliographic (version)
 
-main.new_document ()
+if len (sys.argv) > 1:
+    for file in sys.argv [1:]:
+        url = URL (file)
+        
+        main.open_document (str (url))
+else:
+    main.new_document ()
 
 mainloop ()
 
