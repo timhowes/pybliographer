@@ -19,33 +19,52 @@
 # 
 # $Id$
 
-from gtk import *
-from gnome.ui import *
+# TO DO:
+# Pixmap instaed of text label for help buton
+# Parent for dialogue
+# Button semantics -- check against HIG
 
-import string, gettext, re, copy
+
+import pygtk
+pygtk.require("2.0")
+
+import gtk, gtk.glade
+import gnome.ui 
+
+import copy, gettext, os.path, re, string   
 
 _ = gettext.gettext
 
 from Pyblio.GnomeUI import Utils
-from Pyblio import Config
+from Pyblio import Config, version
 from Pyblio.Utils import format
 
 _map = string.maketrans ('\t\n', '  ')
 _cpt = re.compile ('\s+')
 
+
+
 class ConfigDialog:
 
     def __init__ (self, parent = None):
 
-        tooltips = GtkTooltips ()
+
+        gp = os.path.join (version.prefix, 'glade', 'config1.glade')
+        
+        self.xml = gtk.glade.XML (gp, 'config1')
+        self.xml.signal_autoconnect (self)
+
+        self.dialog = self.xml.get_widget ('config1')
+        self.dialog_vbox = self.xml.get_widget ('dialog-vbox1')
+        self.w = gtk.Notebook ()
+        self.dialog_vbox.pack_start(self.w)
+
+        tooltips = gtk.Tooltips ()
         tooltips.enable ()
         
-        self.w = GnomePropertyBox ()
-        self.w.set_parent (parent)
-        self.w.set_title (_("Choose your preferences"))
-        self.w.connect ('apply', self.apply)
-        self.w.set_policy (TRUE, TRUE, FALSE)
-
+        #self.dialog.set_parent (parent) ####
+        self.dialog.set_title (_("Choose your preferences"))
+        # default: self.dialog.set_resizable(True)
         self.warning = 0
         self.parent = parent
         
@@ -60,8 +79,8 @@ class ConfigDialog:
             cw    = {}
             keys  = Config.keys_in_domain (string.lower (dom))
             keys.sort ()
-            
-            table = GtkVBox ()
+
+            table = gtk.VBox ()
             
             for item in keys:
                 data  = Config.get (item)
@@ -69,14 +88,14 @@ class ConfigDialog:
                     continue
 
                 nice  = string.capitalize (string.split (item, '/') [1])
-                label = GtkFrame (nice)
+                label = gtk.Frame (nice)
                 label.set_border_width (5)
                 
                 desc  = data.description
                 desc  = string.translate (desc, _map)
                 desc  = string.strip (_cpt.sub (' ', desc))
-
-                hbox = GtkHBox (spacing = 5)
+                
+                hbox = gtk.HBox (spacing = 5)
                 hbox.set_border_width (5)
                 
                 # Create the edition widget...
@@ -85,13 +104,14 @@ class ConfigDialog:
                 hbox.pack_start (edit.w)
 
                 # helper button
-                help = GnomeStock (STOCK_PIXMAP_HELP)
-                button = GtkButton ()
+                #help = gnome.ui.Pixmap (gtk.STOCK_HELP) XXX
+                help = gtk.Label('HELP!')
+                button = gtk.Button ()
                 button.add (help)
-                button.set_relief (RELIEF_NONE)
+                button.set_relief (gtk.RELIEF_NONE)
                 button.connect ('clicked', self.display_help,
                                 (self.w, _("Item `%s':\n\n%s") % (item, desc)))
-                hbox.pack_start (button, FALSE, FALSE)
+                hbox.pack_start (button, False, False)
                 tooltips.set_tip (button, desc)
 
                 label.add (hbox)
@@ -100,19 +120,65 @@ class ConfigDialog:
                                   fill   = edit.resize)
 
             if cw:
-                self.w.append_page (table, GtkLabel (dom))
+                self.w.append_page (table, gtk.Label (dom))
                 self.page.append (cw)
             
-        self.w.show_all ()
+        self.dialog.show_all ()
         return
 
+    def on_applybutton1_clicked(self, w):
+        print 'ON_APPLY_BUTTON_CLICKED:', self, w
+        page = self.w.get_current_page()
+        
+        if page == -1: return
+        changed = {}
+
+        cw = self.page [page]
+        for item in cw.keys ():
+            print 'ITEM:', item,
+            if cw [item].update ():
+                print 'UPDATE:', Config.get (item).data
+                changed [item] = Config.get (item).data
+            print changed.get(item, '*unchanged*')
+        Config.save_user (changed)
+
+        if not self.warning:
+            self.warning = 1
+            self.parent.warning (
+                _("Some changes require to restart Pybliographic\n"
+                  "to be correctly taken into account"))
+        self.dialog.response(gtk.RESPONSE_APPLY)
+        self.dialog.destroy()
+        return
+        
+    def on_okbutton1_clicked(self, w, *data):
+        print 'ON_OK_BUTTON_CLICKED:', self, w, data
+        #self.apply (w, page)
+        self.dialog.response(gtk.RESPONSE_OK)
+        self.dialog.hide()
+       
+    def on_helpbutton1_clicked(self, w, *data):
+        print 'ON_HELP_BUTTON_CLICKED:',self, w, data
+
+        self.dialog.response(gtk.RESPONSE_HELP)
+        self.dialog.destroy()
+        
+    def on_cancelbutton1_clicked(self, w, *data):
+        print 'ON_CANCEL_BUTTON_CLICKED:',self, w, data
+        self.dialog.response(gtk.RESPONSE_CANCEL)
+        self.dialog.destroy()
+       
+       
     def display_help (self, w, data):
         (w, help) = data
-        d = GnomeOkDialog (format (help, 40, 0, 0), w)
+        d = gnome.ui.OkDialog (format (help, 40, 0, 0), w)
         d.show_all ()
+        
         return
 
     def apply (self, w, page):
+        page = self.w.get_current_page()
+        
         if page == -1: return
 
         changed = {}
@@ -125,13 +191,15 @@ class ConfigDialog:
 
         if not self.warning:
             self.warning = 1
-            self.parent.warning (_("Some changes require to restart Pybliographic\n"
-                                   "to be correctly taken into account"))
+            self.parent.warning (
+                _("Some changes require to restart Pybliographic\n"
+                  "to be correctly taken into account"))
         return
 
 
 class BaseConfig:
     def __init__ (self, dtype, props, key):
+        print 'INIT CONFIG:', self, dtype, props, key
         self.type    = dtype
         self.key     = key
         self.prop    = props
@@ -167,12 +235,12 @@ class BaseConfig:
 
 class StringConfig (BaseConfig):
 
-    resize = FALSE
+    resize = False
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
         
-        self.w = GtkEntry ()
+        self.w = gtk.Entry ()
         
         if self.key:
             text = Config.get (key).data
@@ -196,7 +264,7 @@ class StringConfig (BaseConfig):
 
 class IntegerConfig (StringConfig):
 
-    resize = FALSE
+    resize = False
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
@@ -210,8 +278,8 @@ class IntegerConfig (StringConfig):
             vmin = 0
             vmax = +100
             
-        adj = GtkAdjustment (0, vmin, vmax, 1, 10, 1)
-        self.w = GtkSpinButton (adj, 1, 0)
+        adj = gtk.Adjustment (0, vmin, vmax, 1, 10, 1)
+        self.w = gtk.SpinButton (adj, 1, 0)
         
         if self.key:
             value = Config.get (key).data
@@ -240,14 +308,14 @@ class IntegerConfig (StringConfig):
 
 class BooleanConfig (BaseConfig):
 
-    resize = FALSE
+    resize = False
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
-        self.w = GtkHBox ()
-        self.true  = GtkRadioButton (label = _("True"))
-        self.false = GtkRadioButton (group = self.true, label = _("False"))
+        self.w = gtk.HBox ()
+        self.true  = gtk.RadioButton (label = _("True"))
+        self.false = gtk.RadioButton (group = self.true, label = _("False"))
         
         self.w.pack_start (self.true)
         self.w.pack_start (self.false)
@@ -255,8 +323,8 @@ class BooleanConfig (BaseConfig):
         if self.key:
             value = Config.get (key).data
             
-            if value: self.true.set_active (TRUE)
-            else:     self.false.set_active (TRUE)
+            if value: self.true.set_active (True)
+            else:     self.false.set_active (True)
         
         self.true.connect  ('clicked', self.changed)
         self.false.connect ('clicked', self.changed)
@@ -269,22 +337,22 @@ class BooleanConfig (BaseConfig):
 
     def set (self, value):
         self.freeze ()
-        if value: self.true.set_active (TRUE)
-        else:     self.false.set_active (TRUE)
+        if value: self.true.set_active (True)
+        else:     self.false.set_active (True)
         self.thaw ()
         return
     
 
 class ElementConfig (BaseConfig):
     
-    resize = TRUE
+    resize = True
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
-        self.w = GtkScrolledWindow ()
-        self.w.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
-        self.list = GtkCList (1)
+        self.w = gtk.ScrolledWindow ()
+        self.w.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.list = gtk.CList (1)
         self.w.add (self.list)
         
         self.items = dtype.get ()
@@ -318,17 +386,17 @@ class TupleConfig (BaseConfig):
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
-        self.w = GtkVBox (spacing = 5)
+        self.w = gtk.VBox (spacing = 5)
         self.sub = []
 
-        self.resize = FALSE
+        self.resize = False
 
         for sub in dtype.subtypes:
             w = sub.w (sub, props)
             self.sub.append (w)
             
             if w.resize:
-                self.resize = TRUE
+                self.resize = True
 
         for w in self.sub:
             self.w.pack_start (w.w,
@@ -368,36 +436,36 @@ class TupleConfig (BaseConfig):
 
 class ListConfig (BaseConfig):
 
-    resize = TRUE
+    resize = True
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
-        self.w = GtkVBox (spacing = 5)
-        h = GtkHBox (spacing = 5)
-        scroll = GtkScrolledWindow ()
-        scroll.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
+        self.w = gtk.VBox (spacing = 5)
+        h = gtk.HBox (spacing = 5)
+        scroll = gtk.ScrolledWindow ()
+        scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 
-        self.list = GtkCList (1)
+        self.list = gtk.CList (1)
         self.list.connect ('select-row', self.select_cb)
-        self.list.set_reorderable (TRUE)
+        self.list.set_reorderable (True)
         self.list.connect ('row_move', self.changed)
         scroll.add (self.list)
         h.pack_start (scroll)
 
-        bbox = GtkVButtonBox ()
+        bbox = gtk.VButtonBox ()
 
-        button = GtkButton (_("Add"))
+        button = gtk.Button (_("Add"))
         bbox.pack_start (button)
         button.connect ('clicked', self.add_cb)
-        button = GtkButton (_("Update"))
+        button = gtk.Button (_("Update"))
         bbox.pack_start (button)
         button.connect ('clicked', self.update_cb)
-        button = GtkButton (_("Remove"))
+        button = gtk.Button (_("Remove"))
         bbox.pack_start (button)
         button.connect ('clicked', self.remove_cb)
 
-        h.pack_start (bbox, FALSE, FALSE)
+        h.pack_start (bbox, False, False)
         self.w.pack_start (h)
 
         # Bottom
@@ -469,44 +537,44 @@ class ListConfig (BaseConfig):
     
 class DictConfig (BaseConfig):
 
-    resize = TRUE
+    resize = True
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
-        self.w = GtkVBox (spacing = 5)
-        h = GtkHBox (spacing = 5)
-        scroll = GtkScrolledWindow ()
-        scroll.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
+        self.w = gtk.VBox (spacing = 5)
+        h = gtk.HBox (spacing = 5)
+        scroll = gtk.ScrolledWindow ()
+        scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 
-        self.list = GtkCList (2, (_("Key"), _("Value")))
+        self.list = gtk.CList (2, (_("Key"), _("Value")))
         self.list.connect ('select-row', self.select_cb)
-        self.list.set_column_auto_resize (0, TRUE)
+        self.list.set_column_auto_resize (0, True)
         
         scroll.add (self.list)
         h.pack_start (scroll)
 
-        bbox = GtkVButtonBox ()
+        bbox = gtk.VButtonBox ()
 
-        button = GtkButton (_("Set"))
+        button = gtk.Button (_("Set"))
         bbox.pack_start (button)
         button.connect ('clicked', self.update_cb)
-        button = GtkButton (_("Remove"))
+        button = gtk.Button (_("Remove"))
         bbox.pack_start (button)
         button.connect ('clicked', self.remove_cb)
 
-        h.pack_start (bbox, FALSE, FALSE)
+        h.pack_start (bbox, False, False)
         self.w.pack_start (h)
 
-        self.w.pack_start (GtkHSeparator (), expand = FALSE, fill = FALSE)
+        self.w.pack_start (gtk.HSeparator (), expand = False, fill = False)
         
         # Bottom
-        table = GtkTable (2, 2, homogeneous = FALSE)
+        table = gtk.Table (2, 2, homogeneous = False)
         table.set_row_spacings (5)
         table.set_col_spacings (5)
-        table.attach (GtkLabel (_("Key:")), 0, 1, 0, 1,
+        table.attach (gtk.Label (_("Key:")), 0, 1, 0, 1,
                       xoptions = 0, yoptions = 0)
-        table.attach (GtkLabel (_("Value:")), 0, 1, 1, 2,
+        table.attach (gtk.Label (_("Value:")), 0, 1, 1, 2,
                       xoptions = 0, yoptions = 0)
 
         self.keyw   = dtype.key.w (dtype.key, props)
@@ -589,3 +657,9 @@ Config.Element.w = ElementConfig
 Config.Tuple.w   = TupleConfig
 Config.List.w    = ListConfig
 Config.Dict.w    = DictConfig
+
+
+# Local Variables:
+# py-master-file: "tConfig.py"
+# End:
+
