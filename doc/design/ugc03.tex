@@ -1,0 +1,169 @@
+
+\chapter{Preparing to Use Pybliographer}
+\label{cha:rgprep}
+
+This chapter discusses how to install and configure \Pyb.
+
+
+It  describes how to do the following:
+
+\begin{enumerate*}
+\item Install \Pyb.
+\item Set up the required database structure
+  \begin{itemize}
+  \item Determine which databases to use
+  \item Define the directory structure or access path
+  \item Define additional data that you might need
+  \end{itemize}
+\item Set up \Pyb\ for easier operation
+\item Load needed data
+\item Write local processing routines
+\end{enumerate*}
+
+Ir also discusses how much detail you will need to record, and which
+standards you should consider.
+
+
+
+
+\section{Installing Pybliographer}
+\label{sec:rginstall}
+
+\textbf{Note:} Before using the information in this section, you
+should check the latest \texttt{Readme} file from the distribution for
+any changes and additions.
+
+As a rule, \Pyb\ installs like any other Linux program under control
+of your package manager. Only in exceptional cases you will have to
+consider manual installation. 
+
+On a Debian system you use the package name \texttt{pybliographer}.So
+you only need to enter
+\begin{verbatim}
+sudo apt-get install pybliographer
+\end{verbatim}
+
+Note that the libdb3 package will be installed, too. If you want to use
+\Pyb\ together with a relational database, you must install it in
+addtion to \Pyb, for more information on  using a relational
+database see below. 
+
+The following table gives the dependencies of \Pyb. [Is this a good
+idea, after all?] \dots
+
+Intructions for manually installing \Pyb.\dots
+
+
+\subsection{Using a Relational Database with Pybliographer}
+\label{sec:rginstdb}
+
+When yo use \Pyb\ with a RDMS, you are in fact using a server process
+in conjunction with \Pyb, which is independantly installed, configured
+and started. As a rule, this server runs under a separate user
+identity. Please, consult the RDMS documentation for more detailed
+instructions. 
+
+\textbf{Note:} You may want to check the considerations below in this
+chapter before continuing with initialising the database.
+
+
+\begin{enumerate*}
+\item assure that the RDMS server is up and running, and that you have
+  any necessary authorisations and informations for its use.
+\item Determine the connection to the RBDS 
+\item Determine the user id 
+\item Start \Pyb. Open the \textsf{Application\slash Preferences} dialogue.
+\item \textit{or ?} Open the \textsf{Application\slash Database} window and
+  then the \textsf{Database/New} dialogue.
+\item Enter the connection data, and tick the \textsf{Default
+    Database} Check box.
+\item \Pyb\ checks for an  existing infrastructure in the database, as
+  it finds none, it alerts you that the database must be initialised.
+\item Click the \textsf{OK} button on the message box.
+\item The database is initialised.
+\end{enumerate*}
+
+\textbf{Note:} You may want to check the considerations in this
+chapter before initialising  the database. 
+
+ 
+\section{Before Using Pybliographer}
+\label{sec:rginstprep}
+
+\begin{dnote}
+\item Give a task oriented overview here --
+\item Refer to chapers one and two for introduction, 
+\item refer to Part II for details
+\end{dnote}
+
+
+
+\section{Customisation: Codes, Lists, and Schemes}
+\label{sec:rginstcodes}
+
+\Pyb\ makes use of various lists and data bases of so called
+\textit{authority data}.  See section \ref{sec:introdesc} and chapter
+\ref{cha:bibl} for a discusion of authority data and the need for it.
+
+In this section we do not address the great authority files for
+persons, corporate names and the like, but the smaller  and lesser
+ones that deal with codes for languages, genres, realtors et., as
+follows.
+
+
+
+
+
+\section{Customisation: Workforms, Data Entry}
+\label{sec:rginstinput}
+
+With \Pyb\ comes a standard list of \textit{work forms} that guide you
+through the data entry for new records, and that are also used to
+display records according to their needs. 
+
+
+
+\section{Customisation: Import Filters}
+\label{sec:rginstimport}
+
+\Pyb\ comes with a standard set of import filters.  See
+\ref{cha:uimport} for a list and discussion.   This list will suffice
+in most cases for the purpose of occasional import and even when
+migrating from another system. 
+
+When the exporting system has more than one export option available,
+that can be  imported by \Pyb, the results may not be equal; so you
+may want to try some tests before settling for one method.
+
+The filters provided are written so as to allow easy customisation,
+extending or modifying exiting behaviour,  by subclassing them. You
+may profit from this facility in the following situations:
+\begin{itemize*}
+\item You want to use a new format, that is a variation of an existing
+  format (have a look at the examples in chapter \ref{cha:uimport}).
+\item You want to use an extension of an existing format; you may want
+  to make use of the additional information.
+\item You want to make use of an existing format, but change the
+  processing.
+\item You want to make use of an existing format, and extend the
+  treatment of the import data.  One such situation is given when the
+  standard filter refrains from using some information because it is
+  difficult to map it to the database.  You may be in able to improve
+  on this situation, e.g., because you know the context.
+\end{itemize*}
+
+
+
+\section{Customisation: Output Formats}
+\label{sec:rginstformat}
+
+
+\section{Customisation: External Processors}
+\label{sec:rginstexternal}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "UG"
+%%% End: 
