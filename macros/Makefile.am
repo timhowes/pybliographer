@@ -1,5 +1,6 @@
 ## Please update this variable if any new macros are created
 MACROS=						\
+  python.m4					\
   aclocal-include.m4				\
   compiler-flags.m4				\
   curses.m4					\
