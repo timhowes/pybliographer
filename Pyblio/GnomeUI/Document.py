@@ -32,7 +32,7 @@ from Pyblio.GnomeUI.Config import ConfigDialog
 from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
 
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
-from Pyblio import version, Fields, Types
+from Pyblio import version, Fields, Types, Query
 
 import Pyblio.Style.Utils
 
@@ -52,6 +52,7 @@ class Document (Connector.Publisher):
             UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
             UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
+            UIINFO_ITEM              (_("Medline _Query..."),None, self.query_database),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -307,6 +308,40 @@ class Document (Connector.Publisher):
         ''' callback corresponding to the "New Document" button '''
         
         self.issue ('new-document', self)
+        return
+
+
+    def query_database (self, * arg):
+        ''' callback corresponding to the "Query..." button '''
+
+        if not self.confirm (): return
+
+        def dlg_cb_2 (dummy): return
+        
+        dlg = GnomeOkCancelDialog ("Enter Medline Query", dlg_cb_2, self.w)
+        
+        key_w = GtkEntry()
+        adj   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
+        max_w = GtkSpinButton (adj=adj, digits=0)
+
+        dlg.vbox.pack_start (GtkLabel ("Search String:"))
+        dlg.vbox.pack_start (key_w)
+        key_w.set_editable (TRUE)
+        
+        dlg.vbox.pack_start (GtkLabel("Max Display Number:"))
+        dlg.vbox.pack_start (max_w)
+        
+        dlg.show_all ()
+        dlg.run_and_close ()
+        
+        keyword  = string.strip (key_w.get_text ())
+        maxcount = max_w.get_value_as_int ()
+        
+        if keyword == "": return
+        
+        url = Query.medline_query (keyword, maxcount)
+        
+        self.open_document (url, 'medline')
         return
 
 
