@@ -1,3 +1,10 @@
+2001-06-25  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/Format: added isifile from Peter Schulte-Stracke
+	* bibtex/reverse.c: better analyze of author output
+	* Pyblio/Base.py: update files by creating a temporary buffer
+	* Pyblio/GnomeUI/Entry.py: use of GtkHTML when available
+
 2001-03-28  Frédéric Gobry  <frederic.gobry@smartdata.ch>
 
 	* configure.in: handled the case where no DISPLAY is available
