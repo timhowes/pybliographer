@@ -120,6 +120,8 @@ class Document (Connector.Publisher):
         
         Utils.init_colors (self.paned.get_colormap ())
 
+        print sys.version
+
         # The Index list
         self.index = Index.Index ()
         self.paned.add1 (self.index.w)
@@ -169,7 +171,11 @@ class Document (Connector.Publisher):
         self.lyx       = None
         self.changed   = 0
         self.directory = None
-        self.path =  string.split(Config.get('base/bibpath').data,':')
+        configpath = Config.get('base/bibpath').data
+        if configpath: 
+            self.path =  string.split(configpath), ':')
+        else:
+            self.path = None
         if os.environ.has_key('BIBPATH'):
             self.bibpath = string.split(os.environ['BIBPATH'], ':')
         else:
