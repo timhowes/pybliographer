@@ -490,3 +490,62 @@ RN  - EC 2.3.2.2 (gamma-Glutamyltransferase) ; EC 2.6.1.2 (Alanine Transaminase)
       (Hepatitis C Antibodies)
 SB  - A ; M
 SO  - Gut 1999 Sep;45(3):435-41
+
+UI  - 90220871
+AU  - Byrn RA
+AU  - Mordenti J
+AU  - Lucas C
+AU  - Smith D
+AU  - Marsters SA
+AU  - Johnson JS
+AU  - Cossum P
+AU  - Chamow SM
+AU  - Wurm FM
+AU  - Gregory T
+AU  - et al.
+DP  - 1990
+TA  - Nature
+VI  - 344
+TI  - Biological properties of a CD4 immunoadhesin.
+PG  - 667-70
+CY  - ENGLAND
+MH  - Acquired Immunodeficiency Syndrome/congenital/immunology ; Animal ;
+      Antibodies, Anti-Idiotypic/*immunology ; Antibody-Dependent Cell
+      Cytotoxicity/immunology ; Antigens, CD/*immunology ; CD4
+      Immunoadhesins ; CD4-Positive T-Lymphocytes/immunology/microbiology
+      ; Female ; HIV/*immunology ; HIV Envelope Protein gp120/immunology ;
+      Human ; IgG/*immunology ; Immunity, Maternally-Acquired ; Macaca
+      mulatta ; Pregnancy ; Recombinant Proteins ; Support, Non-U.S. Gov't
+      ; Support, U.S. Gov't, P.H.S.
+IP  - 6267
+LA  - eng
+AD  - Genentech Inc., South San Francisco, California 94080.
+AB  - Molecular fusions of CD4, the receptor for human immunodeficiency virus
+      (HIV), with immunoglobulin (termed CD4 immunoadhesins) possess both
+      the gp120-binding and HIV-blocking properties of recombinant soluble
+      CD4, and certain properties of IgG, notably long plasma half-life
+      and Fc receptor binding. Here we show that a CD4 immunoadhesin can
+      mediate antibody-dependent cell-mediated cytotoxicity (ADCC) towards
+      HIV-infected cells, although, unlike natural anti-gp120 antibodies,
+      it does not allow ADCC towards uninfected CD4-expressing cells that
+      have bound soluble gp120 to the CD4 on their surface. In addition,
+      CD4 immunoadhesin, like natural IgG molecules, is efficiently
+      transferred across the placenta of a primate. These observations
+      have implications for the therapeutic application of CD4
+      immunoadhesins, particularly in the area of perinatal transmission
+      of HIV infection.
+DA  - 19900521
+DCOM- 19900521
+EDAT- 1990/04/12
+IS  - 0028-0836
+JC  - NSC
+JID - 0410462
+LR  - 20001218
+MHDA- 1990/04/12
+PMID- 1970124
+PST - ppublish
+PT  - Journal Article
+RN  - 0 (Antibodies, Anti-Idiotypic) ; 0 (Antigens, CD) ; 0 (CD4 Immunoadhesins)
+      ; 0 (HIV Envelope Protein gp120) ; 0 (IgG) ; 0 (Recombinant Proteins)
+SB  - IM
+SO  - Nature 1990 Apr 12;344(6267):667-70.
