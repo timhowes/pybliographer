@@ -21,7 +21,7 @@
 
 # Extension module for Medline files
 
-from Pyblio import Base, Fields, Types, Autoload, Open, Iterator
+from Pyblio import Base, Fields, Types, Autoload, Open, Iterator, Utils
 
 import re, string,sys
 
@@ -90,11 +90,15 @@ class MedlineIterator (Iterator.Iterator):
 
             line = string.rstrip (line)
             if line == '': break
-        
-        if current:
-            table [current] = data
 
-        # create the entry
+        # don't forget the last item
+        if current:
+            if table.has_key (current):
+                table [current].append (data)
+            else:
+                table [current] = [data]
+
+        # create the entry with the actual fields
         norm = {}
         type = Types.get_entry ('article')
     
@@ -120,7 +124,7 @@ class MedlineIterator (Iterator.Iterator):
         # The simple fields...
         for f in one_to_one.keys ():
             if table.has_key (f):
-                norm [one_to_one [f]] = Fields.Text (string.join (table [f], " "))
+                norm [one_to_one [f]] = Fields.Text (string.join (table [f], " ; "))
 
         return Base.Entry (None, type, norm)
 
@@ -174,10 +178,39 @@ class Medline (Base.DataBase):
         return
 
 
-# --------------------------------------------------
-# Register a method to open Medline files
-# --------------------------------------------------
+def writer (iter, output):
 
+    entry = iter.first ()
+    while entry:
+
+        if entry.has_key ('medlineref'):
+            ui = str (entry ['medlineref'])
+        else:
+            ui = 0
+            print "warning: entry has no medline reference"
+            
+        output.write ('%-4.4s- %s\n' % ('UI', ui))
+
+        if entry.has_key ('author'):
+            for auth in entry ['author']:
+                text = '%s %s' % (auth.last or '', auth.first or '')
+                output.write ('%-4.4s- %s\n' % ('AU', text))
+                
+        if entry.has_key ('pubdate'):
+            output.write ('%-4.4s- %s\n' % ('DP', str (entry ['pubdate'])))
+
+        for key in one_to_one.keys ():
+            field = one_to_one [key]
+
+            if not entry.has_key (field): continue
+
+            output.write ('%-4.4s- %s\n' % (key, Utils.format (str (entry [field]),
+                                                              75, 0, 6)))
+
+        
+        entry = iter.next ()
+        if entry: output.write ('\n')
+        
 def opener (url, check):
 	
 	base = None
@@ -195,4 +228,6 @@ def iterator (url):
         return MedlineIterator (open (Open.url_to_local (url), 'r'))
 
 
-Autoload.register ('format', 'Medline', {'open'  : opener})
+Autoload.register ('format', 'Medline', {'open'  : opener,
+                                         'write' : writer,
+                                         'iter'  : iterator})
