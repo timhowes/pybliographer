@@ -29,15 +29,15 @@ class TextFormat (Formatter.Formatter):
 
     coding = 'Latin1'
     
-    def start_group (self, id, table = None):
+    def begin_biblio (self, id, table = None):
         self.out.write ("Bibliography\n\n")
         pass
 
-    def end_group (self):
+    def end_biblio (self):
         self.out.write ("\n")
         pass
 
-    def start (self, key, entry):
+    def begin_entry (self, key, entry):
         if key is None: key = self.next_key ()
 
         text = ('[%s] ' % key)
@@ -55,7 +55,7 @@ class TextFormat (Formatter.Formatter):
         self.write (" ")
         return
     
-    def end (self):
+    def end_entry (self):
         self.write ("\n")
         return
     

@@ -25,6 +25,11 @@ import string
 from Pyblio.GnomeUI import Utils
 from Pyblio import Config
 
+_length = {}
+for field in Config.get ('base/fields').data.values ():
+    _length [field.name] = len (field.real)
+
+
 class Entry:
     ''' Displays a bibliographic entry as simple text '''
 
@@ -57,7 +62,7 @@ class Entry:
         
         self.text.insert (Config.get ('gnomeui/monospaced').data,
                           Utils.color['blue'], None,
-                          entry.type.name)
+                          entry.type.real)
         self.text.insert_defaults (' ['+ str (entry.key.key) + ']\n\n')
         
         dico = entry.keys ()
@@ -65,19 +70,17 @@ class Entry:
         # Search the longest field
         mlen = 0
         for f in dico:
-            mlen = max (mlen, len (f))
+            mlen = max (mlen, _length [f])
 
         for f in entry.type.fields:
             
-            field = string.lower (f.name)
-            
-            if entry.has_key (field):
-                sp = ' ' * (mlen - len (f.name))
+            if entry.has_key (f.name):
+                sp = ' ' * (mlen - len (f.real))
                 self.text.insert (Config.get ('gnomeui/monospaced').data,
                                   Utils.color ['red'], None,
-                                  f.name + ': ' + sp)
-                self.text.insert_defaults (str (entry [field]) + '\n')
-                dico.remove (field)
+                                  f.real + ': ' + sp)
+                self.text.insert_defaults (str (entry [f.name]) + '\n')
+                dico.remove (f.name)
 
 
         self.text.insert_defaults ('\n')

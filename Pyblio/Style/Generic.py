@@ -156,6 +156,9 @@ def create_numeric_key (database, keys, fmt):
         s = numeric_key (database [key], fmt, table)
         table [s] = key
    
+    skeys = table.keys ()
+    skeys.sort ()
+
     return table, skeys
 
 

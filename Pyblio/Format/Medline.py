@@ -25,7 +25,7 @@ from Pyblio import Base, Fields, Types, Autoload, Open, Iterator, Utils, Config
 
 import re, string,sys
 
-header = re.compile ('^(\w\w[\w ][\w ])- (.*)$')
+header = re.compile ('^(\w\w[\w ][\w ])-\s+(.*)$')
 contin = re.compile ('^      (.*)$')
 
 one_to_one = Config.get ('medline/mapping').data

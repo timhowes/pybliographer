@@ -195,6 +195,7 @@ def bibwrite (iter, out = None, how = None):
     writer (iter, out)
     return
 
+
 Help.register ('bibnew', """
 Syntax: bib = bibnew (name, type)
 

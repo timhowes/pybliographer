@@ -363,7 +363,7 @@ class Document (Connector.Publisher):
     def open_document (self, url, how = None):
         
         Utils.set_cursor (self.w, 'clock')
-        
+
         try:
             data = Open.bibopen (url, how = how)
             

@@ -26,7 +26,7 @@ from Pyblio import Config, Fields
 def get_entry (entry, has_default = 1):
     ''' Returns an entry description given its name '''
 
-    entries = Config.get ("base/entries").data
+    entries = Config.get ('base/entries').data
 
     if entries.has_key (entry):
 	return entries [entry]
@@ -40,7 +40,7 @@ def get_entry (entry, has_default = 1):
 def get_field (field):
     ''' return a field description given its name '''
     
-    fields = Config.get ("base/fields").data
+    fields = Config.get ('base/fields').data
 
     if fields.has_key (field):
         return fields [field]
@@ -51,9 +51,16 @@ def get_field (field):
 class FieldDescription:
     ''' Available informations for a given field type '''
 
-    def __init__ (self, name, type = Fields.Text):
+    def __init__ (self,
+                  name,
+                  type = Fields.Text,
+                  real = None,
+                  desc = ''):
+        
 	self.name = name
 	self.type = type
+        self.real = real or name
+        self.desc = desc
 	return
 
     def __deepcopy__ (self, memo):
@@ -71,9 +78,15 @@ class FieldDescription:
 class EntryDescription:
     ''' Informations on a given entry '''
 
-    def __init__ (self, name):
-	self.name       = name
-
+    def __init__ (self,
+                  name,
+                  real = None,
+                  desc = ''):
+        
+	self.name = name
+        self.real = real or name
+        self.desc = desc
+        
 	self.__dict__ ['mandatory'] = []
 	self.__dict__ ['optional']  = []
 	return

@@ -30,10 +30,10 @@ def generate (style_url, format, database, keys, output):
 
     (table, keys) = p.methods ['keys'] (database, keys, fmt.coding)
 
-    fmt.start_group ('')
+    fmt.begin_biblio ('')
     for key in keys:
         entry = database [table [key]]
         p.format.output (entry, fmt, key)
     
-    fmt.end_group ()
+    fmt.end_biblio ()
     return

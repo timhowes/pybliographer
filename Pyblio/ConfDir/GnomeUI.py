@@ -1,12 +1,23 @@
+import gettext
+
+_ = gettext.gettext
+
 import gtk
 
 from Pyblio import Config, Fields
 from Pyblio.GnomeUI import Utils, Editor
 
-Config.define ('gnomeui/default', """ Graphical description of the
-default field. """)
+Config.define ('gnomeui',
+               "Gnome UI",
+               "Internal Gnome Configuration")
 
-Config.define ('gnomeui/monospaced', """ A monospaced font, for native edition """)
+Config.define ('gnomeui/default',
+               "Default Field",
+               "Graphical description of the default field")
+
+Config.define ('gnomeui/monospaced',
+               "Monospaced font",
+               "A monospaced font, for native edition")
 
 # --------------------------------------------------
 

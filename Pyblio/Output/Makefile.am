@@ -26,6 +26,7 @@ EXTRA_DIST = 	__init__.py	\
 		LaTeX.py	\
 		text.py		\
 		raw.py		\
+		abiword.py	\
 		html.py
 
 pyb_DATA = $(EXTRA_DIST)

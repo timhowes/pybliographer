@@ -464,7 +464,8 @@ def entry_write (entry, output):
     tp = entry.type
 
     # write the type and key
-    output.write ('@%s{%s,\n' % (tp.name, entry.key.key))
+    output.write ('@%s{%s,\n' % (string.capitalize (tp.name),
+                                 entry.key.key))
 
     # create a hash containing all the keys, to keep track
     # of those who have been already written
@@ -533,7 +534,7 @@ def entry_write (entry, output):
 	field = string.lower (f.name)
 	if not dico.has_key (field): continue
 
-	output.write ('  %-14s = ' % f.name)
+	output.write ('  %-14s = ' % string.capitalize (f.name))
 	output.write (Utils.format (dico [field],
 				    75, 19, 19) [19:] + ',\n')
 	del dico [field]

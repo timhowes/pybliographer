@@ -28,7 +28,8 @@ import sys
 from Pyblio import Autoload, Base
 
 class Formatter:
-
+    """ Base class for each file format writer """
+    
     coding = 'Latin1'
     
     def __init__ (self, stdout = sys.stdout):
@@ -36,22 +37,36 @@ class Formatter:
         self.counter = 1
         return
 
-    def start_group (self, id, table = None):
+    def begin_document (self, name):
+        """ Write a document header in the output flow """
         pass
 
-    def end_group (self):
+    def end_document (self, name):
+        """ Write a document footer in the output flow """
+        pass
+    
+    def begin_biblio (self, id, table = None):
+        """ Start a bibliography """
+        pass
+
+    def end_biblio (self):
+        """ Finish a bibliography """
         pass
 
     def next_key (self):
+        """ Ask for a numerical key """
+        
         key = str (self.counter)
         self.counter = self.counter + 1
 
         return key
-    
-    def start (self, key, entry):
-        return
+
+    def begin_entry (self, key, entry):
+        """ Start a new bibliographic entry """
+        pass
     
     def write (self, text, style = None):
+        """ Sends a certain text with a given style to the output flow """
         self.out.write (text)
         return
 
@@ -59,10 +74,12 @@ class Formatter:
         self.write (" ")
         return
     
-    def end (self):
+    def end_entry (self):
+        """ Finish a bibliographic entry """
         self.write ("\n")
         return
     
+
 
 def format (fields,
             text,
