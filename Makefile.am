@@ -24,6 +24,7 @@ appdir  = $(datadir)/gnome/apps/Applications
 
 SUBDIRS = 	Pyblio 		\
 		intl		\
+		extras		\
 		bibtex 		\
 		compiled 	\
 		po		\

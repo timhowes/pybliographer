@@ -37,6 +37,9 @@ if test "$python" = "no" ; then
   AC_MSG_ERROR([please install python first])
 fi
 
+dnl extra files for the current version of Python
+PY_EXTRAS=''
+
 dnl Python version
 AC_MSG_CHECKING([python version])
 
@@ -46,8 +49,8 @@ changequote([,])
 
 AC_MSG_RESULT(${Py_Version})
 
-if test "x${Py_Version}" != 'x1.5' ; then
-  AC_MSG_ERROR([you need python 1.5.x to run pybliographer])
+if test "x${Py_Version}" != 'x1.5' -a "x${Py_Version}" != "x1.6" ; then
+  AC_MSG_ERROR([you need python >= 1.5.2 to run pybliographer])
 fi
 
 AC_MSG_CHECKING([python devel])
@@ -194,12 +197,15 @@ if ${python} -c 'import gnome' > /dev/null 2>&1 ; then
 else
   AC_MSG_RESULT([not found])
   AC_MSG_WARN([install gnome-python if you want the graphical interface])
+  PY_EXTRAS="${PY_EXTRAS} gettext.py"
 fi
 
+AC_SUBST(PY_EXTRAS)
 
 AC_OUTPUT(	
 	Makefile 
 	etc/installer
+	extras/Makefile
 	scripts/Makefile
 	tests/Makefile
 	compiled/Setup.tmp:compiled/Setup.in

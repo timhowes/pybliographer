@@ -35,7 +35,7 @@ Please  check  that  python  and  recode  have  their  devel  packages
 installed. For *Debian*, this means that the following packages should
 be present :
 
-   librecode
+   librecode0
    librecode-dev
    python-base
    python-dev
