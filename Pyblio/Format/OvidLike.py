@@ -33,7 +33,7 @@ SourceField = 2
 
 
 separator_re = re.compile ('<\d+>$')
-source_re    = re.compile ('(\w+)\(([^\)]+)\):(\d+-\d+)')
+source_re    = re.compile ('(\w+)?\(([^\)]+)\):(\d+-\d+)')
 
 long_month = {
     'Jan': 1,  'Feb': 2,  'Mar': 3,
@@ -165,12 +165,11 @@ class OvidLike (Iterator.Iterator):
                 fields = string.split (fields [1], ',')
 
                 source = source_re.match (string.strip (fields [0]))
-
+                
                 if source:
                     for i in range (1, 4):
-                        entry [name [i]] = Fields.Text (source.group (i))
-                        entry [name [i]] = Fields.Text (source.group (i))
-                        entry [name [i]] = Fields.Text (source.group (i))
+                        if source.group (i):
+                            entry [name [i]] = Fields.Text (source.group (i))
 
                 if len (fields) == 1: continue
                 
