@@ -21,11 +21,6 @@
 # 
 # $Id$
 
-# TO FIX
-#
-#  - handle the list of previous documents
-
-
 ''' This module defines a Document class '''
 
 from gnome import ui
@@ -142,22 +137,25 @@ class Document (Connector.Publisher):
     def update_history (self, history):
         ''' fill the " Previous Documents " menu with the specified list of documents '''
 
-#        self.w.remove_menus (_("File") + '/' + _("Previous Documents") + '/',
-#                             100)
-#
-#        menuinfo = []
-#        for item in history:
-#            def callback (widget, self = self, file = item [0], how = item [1]):
-#                if not self.confirm (): return
-#                self.open_document (file, how)
-#                return
-#
-#            filename = item [0]
-#            
-#            menuinfo.append (UIINFO_ITEM_STOCK (filename, None, callback, STOCK_MENU_OPEN))
-#
-#        self.w.insert_menus (_("File") + '/' + _("Previous Documents") + '/',
-#                             menuinfo)
+        sub = self.xml.get_widget ('previous_documents')
+        factory = gtk.ItemFactory (gtk.Menu, '<main>', None)
+        
+        menuinfo = []
+        for item in history:
+            def callback (* args):
+                if not self.confirm (): return
+
+                file, how = item
+                self.open_document (file, how)
+                return
+
+            filename = string.replace (item [0], '/', '\/')
+            
+            menuinfo.append (('/' + filename, None, callback, 0, None))
+
+        factory.create_items (menuinfo)
+        
+        sub.set_submenu (factory.get_widget ('<main>'))
         return
 
     

@@ -1,7 +1,9 @@
 2003-08-05  Frederic Gobry  <gobry@puck.ch>
 
 	* Pyblio/GnomeUI/Index.py: fixed the contextual popup menu
-	* Pyblio/GnomeUI/Document.py: fixed the About window
+
+	* Pyblio/GnomeUI/Document.py: fixed the About window and Previous
+	documents menu.
 
 2003-08-01  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
