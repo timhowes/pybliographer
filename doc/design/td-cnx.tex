@@ -1,0 +1,297 @@
+% $Id$
+
+\section{Interfacing to  External Ressources}
+\label{sec:external}
+
+
+
+
+
+\subsection{Connecting to external databases}
+\label{sec:extconn}
+
+Pybliographer uses \textit{connections} to external ressources for the
+following purposes:
+\begin{itemize}
+\item To look up a catalogue (for immediate consumption, so to say),
+  i.e., as a client program.
+\item To obtain, as a result of a query, additional data for import.
+\item To obtain additional documents that are referred to from the
+  data base, i.e., via an \textit{URL} or an \textit{Eprints} link.
+\item To perform operations on the remote system, i.e., to request
+  books or copies by means of an \textit{OPAC}. 
+\item \Think To cooperate with other Pybliographers, sharing and
+  updating data.
+
+\end{itemize}
+
+% Query processing
+
+
+% * Configuration
+
+%   A list of available connections (databases) is built during start-up
+%   (from pyblio.xml) Note that this precludes specialised parsing. 
+
+%   It would be nice to have a configuration dialogue. 
+
+% * Query dialogue
+
+%   Presents a dropdown list of such servers (but allows local search as
+%   well). 
+
+%   Determines and loads extension module. (Using 'type' atttribute.)
+
+%   Builds Query object.
+
+% * Extension module
+
+%   Reads and sets parameters (stored during start-up). 
+
+%   Customises query:
+%   - marks fields available for search
+%   - add-on options for query dialogue (in preference to:)
+%   - expert search dialogue
+
+%   Builds request (object) -> Query.request.
+  
+% * Query requestor
+
+%   Sends request and receives result.  Error processing.
+   
+%   Determines and loads Importer module. 
+%   Builds an Import object. Feeds result data to import module.
+
+
+
+\subsection{Writing Import Filters}
+\label{sec:importfilter}
+
+Import filters are used not only when a \textit{file} is imported, in
+a narrow sense, but also when opening a file, and, perhaps more
+importantly, when processing the results of a \textit{query}.
+
+An \textit{Import Module} provides the needed support. Typically, there
+is one such module for every major data format, say MARC or Bib\TeX.
+
+A major part of such a module is a Reader class, which subclasses (is
+derived from, and specialises) the class \texttt{ImportReader} in the
+module \texttt{Pyblio.Import}. 
+
+In fact, most Reader modules do not derive directly from
+\texttt{InportReader}, but from an intermediary, as
+\texttt{TaggedReader} for data structured as a sequence of tagged
+fields, like in the MARC format, \texttt{TextReader} for data that
+comes as `unstructured' text, like taken from the references of an
+article, \texttt{XmlReader} for XML formatted text.
+
+In this way, we have a \textit{framework} for import modules, one that
+makes writing or modifying an import reader much more simple. This is
+important, because requirements and interface continue to evolve. 
+
+The format specific modules are not the end of the story, yet. For
+one, a format like MARC is in fact so vast that it will probably never
+be completely implemented and used, neither by a library, nor by
+Pybliographer. It is, however, to be expected that one time or the
+other, someone would be better off if he could make use of that exotic
+feature, and would be happy to add support. In addition, one may
+encounter a situation in which the standard processing is inadequate
+and better be modified.  Thus it is useful to be able to have an easy
+way of adapting to one's very special needs, be it in terms of adding
+or of overriding standard behaviour, i.e., methods.
+
+There is yet another point to be made. A framework is also a way of
+sharing the implementation effort. That means that adding code to the
+common base is more attractive  and this in turn makes the use of
+Pybliographer more attractive. So  everone profits. 
+
+
+
+\subsubsection{Framework Services}
+
+
+
+
+The base and intermediate classes, the framework, provide the
+following services and features: 
+\begin{description}
+\item[Input] The source data is accepted by various means: files,
+  iterators, in-core objects, and made available in a standardised way
+  to the processing. 
+\item[User interfacing] The user interface, always requiring a big
+  programming effort, is structured by the base classes (togerther, of
+  course, with the Gui Component), thus sharing a lot of work.
+\item[Data handling] In the past, the handling of the input data was
+  almost completely left to the format specific code, resulting in an
+  enormous duplication of code and often poor exploitation of the
+  source data. With the new design, most of the semantic data handling
+  will be done by functions in specialised modules, sharply
+  distinguishing between the parsing (syntactic) and database aspects
+  of the task.
+\item[Duplication checking] Like the user interface, the duplication
+  check is an example of a pragramming task, that is not easily
+  undertaken within the confines of one particular application, but
+  only if it can be done wholesale. 
+\item[On- and offline correction] It is highly desirable to be able to
+  correct imported data in a systematic way, the framework will provide
+  for that, both during inital processing, dubbed on-line, as well as
+  at a later time.
+\item[Customisation] There are ways to adapt the import processing
+  which can be done easily in a generic way.  It is, e.g., simple to
+  exclude all data from certain categories (tags) from further
+  processing and therefore \texttt{TaggedReader} provides a parameter
+  to specify such tags -- it can even be done interactively from an
+  options dialogue. No programming needed.
+\item[Data management aspects] The data imported will be kept
+  logically identified as long as it is desired, without the need to
+  keep separate files for it. That remedies a major problem with the
+  work organisation in the past and it is necessary in any way for a
+  data base oriented Pybliographer.
+\end{description}
+
+
+
+\subsubsection{Class hierarchy}
+
+The fundamental class is \texttt{ImportReader} in Module
+\texttt{Import.py}. It implements an \texttt{Iterator} interface,
+viz.\ \texttt{first()} and  \texttt{next()} methods. 
+
+\begin{verbatim}
+class ImportReader (Iterator.Iterator):
+
+    """Base class for all import reader classes.
+
+    Support for input methods, encodings, database and GUI connections, 
+    """
+
+### The following need no change as a rule:
+    def first (self):
+        return self.next()
+
+    def next (self, entry=None, data=None):
+        """Process the next entry from the input source.
+        entry and data argument are provided for easy testing."""
+
+        e = entry or self.next_entry()
+        x = data or self.read_next()
+        if self.options.has_key('preserve_input'):
+            e.lines = x
+        self.entry = e
+        return self.parse(x)
+
+\end{verbatim}
+
+Subclasses will need to provide, among others, implementations of
+\texttt{read\_next} and \texttt{parse}.
+
+A typical implementation of \texttt{parse} from \texttt{TaggedReader}
+follows: 
+\begin{verbatim}
+    def parse (x):
+
+        self.begin_record(x)
+       
+## it may be convenient, if the read_next routine already assembles
+## continuation lines. Let's assume this
+
+        for i in x:
+            tag = i[0:self.tagcol]
+            data = i[tagcol:]
+
+            if discardrx and discardrx.match(tag):
+                continue
+                      
+            if _cache.has_key(tag):
+                _cache[tag] (self, tag, data)
+            else:
+                methname = 'do_'+str(tag)
+
+                if hasattr(self, methname):
+                    method = getattr(self, methname)
+                else :
+                    method = self.do_tag
+                    
+                method(self, tag, data)
+                _cache[tag] = method
+
+        self.end_record(x)
+        return self.entry
+
+\end{verbatim}
+
+So in this case, for a tag `XYZ', a subclass implemented method
+`do\_XYZ (self, tag, data)' would be called, if it exists. If not,
+`do\_tag' would be called and as a rule, distinguish according to the
+tag, as directed by parameters of the class, whether to ignore, or to
+store (in a generic way) the data. 
+
+
+\subsubsection{Class parameters}
+
+
+\paragraph{Control objects}
+
+\begin{description}
+\item[control=None] specifies the associated control object.
+\end{description}
+
+
+\paragraph{Input} Three possibilities are provided for. The data
+parameter is particularly useful for testing. \textit{One and only one
+must be selected from the following}
+
+\begin{description}
+\item[file=\textit{filename}] if input is from a file,
+\item[data=\textit{data object}] if input is from an incore object,
+\item[iter=\textit{iterator}] if an iterator is specified.
+\end{description}
+
+
+% * Import module
+
+%   Parses result data. Builds result set -> Import.set
+
+%   Special processing:
+
+%   - On-/Off-line correction.
+%   - Checking for duplicates.
+%   - Checking against author, journals, etc. database.
+%   - Flexible handling of input data (store it, ignore it, ...)
+  
+%   Marks (and displays) the import set as a whole for reference.
+
+% * Control objects
+
+%   Saved in configuration file.
+  
+%   Static: Connection
+%   Dynamic: Query, Import 
+
+  
+
+% $Id$
+
+
+
+\subsection{Writing Export Filters}
+\label{sec:exportfilter}
+
+
+\subsection{Pybliographer as Web Server }
+\label{sec:pybweb}
+
+
+\subsection{Requesting remote operations}
+\label{sec:remotereq}
+
+
+\subsection{Requesting documents}
+\label{sec:docrequest}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "todo"
+%%% End: 
