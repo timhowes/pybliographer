@@ -1,9 +1,13 @@
 M4    = m4 -P
 M4INC = template.m4 defines.m4 news.m4 
-WEB   = /usr/local/www/www.gnome.org/pybliographer
 
-#WEB   = /home/groups/pybliographer/htdocs
+#WEB   = /usr/local/www/www.gnome.org/pybliographer
 
+WEB   = /home/groups/p/py/pybliographer/htdocs
+
+LOGIN = gobry@ssh.sf.net
+HOME  = $(LOGIN):~/html
+ 
 HTML =	index.html 		\
 	download.html 		\
 	screenshots.html 	\
@@ -27,8 +31,8 @@ clean:
 	test -z "$(HTML)" || rm -f $(HTML)
 
 remote:
-	rsync *.m4 $(EXTRA) list-documents.sh Makefile frederic@canvas.gnome.org:/home/frederic/html
-	ssh frederic@canvas.gnome.org 'cd html && make install'
+	rsync *.m4 $(EXTRA) list-documents.sh Makefile $(HOME)
+	ssh $(LOGIN) 'cd html && make install'
 
 .SUFFIXES: .html .m4
 
