@@ -95,7 +95,13 @@ if rebuild ('biblex.l', ['biblex.c']):
 
 # Actual compilation
 
-setup (name = "bibtex", version = "1.0",
+setup (name = "bibtex",
+       version = "1.0",
+
+       description = "A Python extension to parse BibTeX files",
+       author = "Frederic Gobry",
+       author_email = 'gobry@pybliographer.org',
+       url = 'http://pybliographer.org/',
 
        ext_modules = [
 

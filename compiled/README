@@ -1,0 +1,5 @@
+-*- outline -*-
+
+This python extension contains a BibTeX parser and a simple binding to
+the GNU Recode library. They are intended to be used with pybliographer.
+
