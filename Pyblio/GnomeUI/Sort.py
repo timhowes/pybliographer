@@ -23,7 +23,6 @@
 
 from gtk import *
 from gnome.ui import *
-from gnome import config
 
 import gettext, string
 _ = gettext.gettext
@@ -198,9 +197,8 @@ class SortDialog (Connector.Publisher):
 
 
     def set_as_default (self, * arg):
-        config.set_string ('Pybliographic/Sort/Default',
-                           pickle.dumps (self.get_result ()))
-        config.sync ()
+        Utils.config.set_string ('/apps/pybliographic/sort/default',
+                                 pickle.dumps (self.get_result ()))
         return
     
     

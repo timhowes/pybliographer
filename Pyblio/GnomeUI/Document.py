@@ -21,9 +21,9 @@
 
 ''' This module defines a Document class '''
 
-from gnome.ui import *
-from gtk import *
-from gnome import config
+from gnome import ui
+import gtk
+import gtk.glade
 
 from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor
 from Pyblio.GnomeUI import Search, Format
@@ -47,93 +47,20 @@ del cPickle
 
 printable = string.lowercase + string.uppercase + string.digits
 
-
 class Document (Connector.Publisher):
     
     def __init__ (self, database):
-        
-        self.w = GnomeApp ('Pybliographic', 'Pybliographic')
 
-        self.w.add_events (GDK.KEY_PRESS_MASK)
-        
-        self.w.connect ('delete_event', self.close_document)
-        self.w.connect ('key_press_event', self.key_pressed)
-        
-        file_menu = [
-            UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
-            UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
-            UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
-            UIINFO_ITEM              (_("Medline Query..."),None, self.query_database),
-            UIINFO_MENU_SAVE_ITEM    (self.save_document),
-            UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
-            UIINFO_SEPARATOR,
-            UIINFO_SUBTREE           (_("_Previous Documents"), []),
-            UIINFO_SEPARATOR,
-            UIINFO_MENU_CLOSE_ITEM   (self.close_document),
-            UIINFO_MENU_EXIT_ITEM    (self.exit_application)
-            ]
-        
-        help_menu = [
-            UIINFO_ITEM_STOCK (_("About..."), None, self.about, STOCK_MENU_ABOUT),
-            UIINFO_HELP ('pybliographic')
-            ]
+        self.xml = gtk.glade.XML ('glade/pyblio.glade', 'main')
+        self.xml.signal_autoconnect (self)
 
-        edit_menu = [
-            UIINFO_MENU_CUT_ITEM        (self.cut_entry),
-            UIINFO_MENU_COPY_ITEM       (self.copy_entry),
-            UIINFO_MENU_PASTE_ITEM      (self.paste_entry),
-            UIINFO_MENU_CLEAR_ITEM      (self.clear_entries),
-            UIINFO_MENU_SELECT_ALL_ITEM (self.select_all_entries),
-            UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK(_("_Add..."), None, self.add_entry,    STOCK_MENU_NEW),
-            UIINFO_ITEM      (_("_Edit..."),None, self.edit_entry),
-            UIINFO_ITEM_STOCK(_("_Delete"), None, self.delete_entry, STOCK_MENU_TRASH),
-            UIINFO_SEPARATOR,
-            UIINFO_MENU_FIND_ITEM (self.find_entries),
-            UIINFO_ITEM           (_("S_ort..."),None, self.sort_entries),
-            ]
-
-        cite_menu = [
-            UIINFO_ITEM_STOCK(_("_Cite"), None, self.lyx_cite,            STOCK_MENU_CONVERT),
-            UIINFO_ITEM_STOCK(_("_Format..."), None, self.format_entries, STOCK_MENU_REFRESH),
-            ]
-
-        settings_menu = [
-            UIINFO_ITEM      (_("_Fields..."),  None, self.set_fields),
-            UIINFO_ITEM      (_("_Entries..."), None, self.set_entries),
-            UIINFO_SEPARATOR,
-            UIINFO_MENU_PREFERENCES_ITEM   (self.set_preferences),
-            ]
-            
-        menus = [
-            UIINFO_SUBTREE (_("_File"),     file_menu),
-            UIINFO_SUBTREE (_("_Edit"),     edit_menu),
-            UIINFO_SUBTREE (_("_Cite"),     cite_menu),
-            UIINFO_SUBTREE (_("_Settings"), settings_menu),
-            UIINFO_SUBTREE (_("_Help"),     help_menu)
-            ]
-        
-        toolbar = [
-            UIINFO_ITEM_STOCK(_("Open"),  None, self.ui_open_document, STOCK_PIXMAP_OPEN),
-            UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,    STOCK_PIXMAP_SAVE),
-            UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK(_("Add"),   None, self.add_entry,        STOCK_PIXMAP_NEW),
-            UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,     STOCK_PIXMAP_SEARCH),
-            UIINFO_ITEM_STOCK(_("Cite"),  None, self.lyx_cite,          STOCK_MENU_CONVERT),
-            UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK(_("Close"), None, self.close_document,   STOCK_PIXMAP_CLOSE),
-            ]
-
-        # Put information in Paned windows
-        self.paned = GtkVPaned ()
-        
-        Utils.init_colors (self.paned.get_colormap ())
+        self.w = self.xml.get_widget ('main')
+        self.paned = self.xml.get_widget ('main_pane')
 
         # The Index list
         self.index = Index.Index ()
         self.paned.add1 (self.index.w)
-
+        
         self.index.Subscribe ('new-entry',      self.add_entry)
         self.index.Subscribe ('edit-entry',     self.edit_entry)
         self.index.Subscribe ('delete-entry',   self.delete_entry)
@@ -143,29 +70,24 @@ class Document (Connector.Publisher):
         self.index.Subscribe ('drag-moved',     self.drag_moved)
         self.index.Subscribe ('click-on-field', self.sort_by_field)
 
-        # The text area
+        self.paned.show_all ()
+
+#        # The text area
         self.display = Entry.Entry ()
         self.paned.add2 (self.display.w)
 
         # Status bar
-        self.statusbar = GnomeAppBar (FALSE, TRUE)
+        self.statusbar = self.xml.get_widget ('statusbar')
         
-        # fill the main app
-        self.w.create_menus   (menus)
-        self.w.create_toolbar (toolbar)
-        
-        self.w.set_contents   (self.paned)
-        self.w.set_statusbar  (self.statusbar)
-
         # set window size
-        ui_width  = config.get_int ('Pybliographic/UI/Width=-1')
-        ui_height = config.get_int ('Pybliographic/UI/Height=-1')
+        ui_width  = Utils.config.get_int ('/apps/pybliographic/ui/width') or -1
+        ui_height = Utils.config.get_int ('/apps/pybliographic/ui/height') or -1
 
         if ui_width != -1 and ui_height != -1:
             self.w.set_default_size (ui_width, ui_height)
 
         # set paned size
-        paned_height = config.get_int ('Pybliographic/UI/Paned=-1')
+        paned_height = Utils.config.get_int ('/apps/pybliographic/ui/paned') or -1
         self.paned.set_position (paned_height)
         
         self.w.show_all ()
@@ -186,7 +108,7 @@ class Document (Connector.Publisher):
         self.modification_date = None
 
         # set the default sort method
-        default = config.get_string ('Pybliographic/Sort/Default')
+        default = Utils.config.get_string ('/apps/pybliographic/sort/default')
         if default is not None: default = pickle.loads (default)
 
         self.sort_view (default)
@@ -210,23 +132,23 @@ class Document (Connector.Publisher):
 
     def update_history (self, history):
         ''' fill the " Previous Documents " menu with the specified list of documents '''
-        
-        self.w.remove_menus (_("File") + '/' + _("Previous Documents") + '/',
-                             100)
 
-        menuinfo = []
-        for item in history:
-            def callback (widget, self = self, file = item [0], how = item [1]):
-                if not self.confirm (): return
-                self.open_document (file, how)
-                return
-
-            filename = item [0]
-            
-            menuinfo.append (UIINFO_ITEM_STOCK (filename, None, callback, STOCK_MENU_OPEN))
-
-        self.w.insert_menus (_("File") + '/' + _("Previous Documents") + '/',
-                             menuinfo)
+#        self.w.remove_menus (_("File") + '/' + _("Previous Documents") + '/',
+#                             100)
+#
+#        menuinfo = []
+#        for item in history:
+#            def callback (widget, self = self, file = item [0], how = item [1]):
+#                if not self.confirm (): return
+#                self.open_document (file, how)
+#                return
+#
+#            filename = item [0]
+#            
+#            menuinfo.append (UIINFO_ITEM_STOCK (filename, None, callback, STOCK_MENU_OPEN))
+#
+#        self.w.insert_menus (_("File") + '/' + _("Previous Documents") + '/',
+#                             menuinfo)
         return
 
     
@@ -340,7 +262,9 @@ class Document (Connector.Publisher):
         # Changes to Document.py by John Vu starts here #
         #################################################
         
-        # Load up the past search queries by reading the file .pybsearchhis in the user's home directory; otherwise, the list will be empty via the searchhistory = [''] command
+        # Load up the past search queries by reading the file
+        # .pybsearchhis in the user's home directory; otherwise, the
+        # list will be empty via the searchhistory = [''] command
         try:
             pybsearchhis = open(os.path.expanduser('~')+'/.pybsearchhis', 'r')
             searchhistory = pybsearchhis.readlines()
@@ -348,20 +272,32 @@ class Document (Connector.Publisher):
         except IOError:
             searchhistory = ['']
         
-        # get rid of newline character so that search history is displayed correctly in the combobox
+        # get rid of newline character so that search history is
+        # displayed correctly in the combobox
         for x in range(0,len(searchhistory)):
             searchhistory[x] = string.replace(searchhistory[x],'\n','') 
 
-        dlg = GnomeOkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
-        key_w_combo = GtkCombo() # make it a combo box so that past search entries can be viewed
+        dlg = ui.OkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
+        key_w_combo = GtkCombo()
+        # make it a combo box so that past search entries can be
+        # viewed
         key_w_combo.set_popdown_strings(searchhistory)
-        key_w = key_w_combo.entry # the query string will be loaded onto key_w assigned here
-        key_w.set_text ('') # the entry should be empty; if this option is not set, the first list item will show instead
-        key_w.set_editable (TRUE)
+        key_w = key_w_combo.entry
+        # the query string will be loaded onto key_w assigned here
+        key_w.set_text ('')
+        # the entry should be empty; if this option is not set, the
+        # first list item will show instead
+        key_w.set_editable (True)
         adj1   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
         adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
-        max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
-        disp_s = GtkSpinButton (adj=adj2, digits=0) # disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
+        max_w = GtkSpinButton (adj=adj1, digits=0)
+        # max_w is the max number of returns the user wants
+        disp_s = GtkSpinButton (adj=adj2, digits=0)
+        # disp_s is the starting number of the entry to begin
+        # displaying; e.g. if for a certain query there is a total of
+        # 550 results, if the max_w is set to 100 and the disp_s is
+        # set to 400, there will be 100 results shown starting from
+        # result number 400 and ending at 499
 
         hbox1 = GtkHBox()
         hbox1.pack_start (GtkLabel (_("Search PubMed for: ")))
@@ -386,13 +322,15 @@ class Document (Connector.Publisher):
         dlg.vbox.pack_start (hseparator2)
         dlg.vbox.pack_start (GtkLabel (_("Limited to:")))
 
-        # Below are all the limits allowable. All entries are not editable, except for the date entries.
+        # Below are all the limits allowable. All entries are not
+        # editable, except for the date entries.
         hbox3 = GtkHBox()
         field_combo = GtkCombo()
         field_combo.set_popdown_strings (['All Fields', 'Affiliation', 'Author Name', 'EC/RN Number', 'Entrez Date', 'Filter', 'Issue', 'Journal Name', 'Language', 'MeSH Date', 'MeSH Major Topic', 'MeSH Subheading', 'MeSH Terms', 'Pagination', 'Publication Date', 'Publication Type', 'Secondary Source ID', 'Substance Name', 'Text Word', 'Title', 'Title/Abstract', 'UID', 'Volume'])
         field_combo_entry = field_combo.entry
         field_combo_entry.set_text ('All Fields')
-        GtkEditable.set_editable(field_combo_entry,0) # command to prevent the user from editing the limit
+        GtkEditable.set_editable(field_combo_entry,0)
+        # command to prevent the user from editing the limit
         hbox3.pack_start (field_combo)
         checkbutton1 = GtkCheckButton (label='Only items\nwith abstracts')
         hbox3.pack_start (checkbutton1)
@@ -492,32 +430,54 @@ class Document (Connector.Publisher):
         fromdate = from_date_entry.get_text ()
         todate = to_date_entry.get_text ()
 
-        # Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
+        # Add an ending newline character to each query listed in the
+        # search history. This makes sure that when each item is
+        # written to the file, a separator is also written so that
+        # when read again later in another query (by readlines()), it
+        # is properly separated into the searchhistory list
+        
         for x in range(0,len(searchhistory)):
             searchhistory[x] = searchhistory[x] + '\n'
 
         if keyword == "": return
         else: # save keyword to medline search history if it's a valid keyword
-            if len(searchhistory) < 10: # I only want a maximum of the 10 most recent keywords
-                searchhistory.insert(0,keyword+'\n') # I don't want to append to the list, I want to add the most recent search term at the top of the list
+            
+            if len(searchhistory) < 10:
+                # I only want a maximum of the 10 most recent keywords
+                
+                searchhistory.insert(0,keyword+'\n')
+                # I don't want to append to the list, I want to add
+                # the most recent search term at the top of the list
+                
             else:
-                searchhistory[9] = '' # essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
+                searchhistory[9] = ''
+                # essentially remove the 10th item before adding the
+                # most recent search query, I just want the 10 past
+                # search histories saved
+                
                 searchhistory.insert(0,keyword+'\n')
             try:
-                pybsearchhis = open(os.path.expanduser('~')+'/.pybsearchhis','w') # save the search history to the .pybsearchhis file in the user's home dir
+                pybsearchhis = open(os.path.expanduser('~')+'/.pybsearchhis','w')
+                # save the search history to the .pybsearchhis file in
+                # the user's home dir
                 pybsearchhis.writelines(searchhistory)
                 pybsearchhis.close()
             except IOError:
                 print "Can't save search history."
 
-        # Call the actual function to do the search and then return the results into url: 16 parameters passed altogether
-        url = Query.medline_query (keyword,maxcount,displaystart,field,abstract,epubahead,pubtype,language,subset,agerange,humananimal,gender,entrezdate,pubdate,fromdate,todate)
+        # Call the actual function to do the search and then return
+        # the results into url: 16 parameters passed altogether
+
+        url = Query.medline_query (keyword,maxcount,displaystart,field,
+                                   abstract,epubahead,pubtype,language,
+                                   subset,agerange,humananimal,gender,
+                                   entrezdate,pubdate,fromdate,todate)
 
         ###############################################
         # Changes to Document.py by John Vu ends here #
         ###############################################
         
-        self.open_document (url, 'medline', no_name = TRUE)
+        self.open_document (url, 'medline', no_name = True)
         return
 
 
@@ -525,7 +485,7 @@ class Document (Connector.Publisher):
         ''' add all the entries of another database to the current one '''
         # get a new file name
         (url, how) = FileSelector.URLFileSelection (_("Merge file"),
-                                                    url = TRUE, has_auto = TRUE).run ()
+                                                    url = True, has_auto = True).run ()
 
         if url is None: return
         
@@ -584,7 +544,7 @@ class Document (Connector.Publisher):
         return
 
     
-    def open_document (self, url, how = None, no_name = FALSE):
+    def open_document (self, url, how = None, no_name = False):
         
         Utils.set_cursor (self.w, 'clock')
         
@@ -656,7 +616,7 @@ class Document (Connector.Publisher):
     def save_document_as (self, * arg):
         # get a new file name
         (url, how) = FileSelector.URLFileSelection (_("Save As..."),
-                                                    url = FALSE, has_auto = FALSE).run ()
+                                                    url = False, has_auto = False).run ()
 
         if url is None: return
             
@@ -698,7 +658,7 @@ class Document (Connector.Publisher):
         self.update_status (0)
         return
 
-                                      
+    
     def close_document (self, * arg):
         self.issue ('close-document', self)
         return 1
@@ -968,12 +928,12 @@ class Document (Connector.Publisher):
         # Save the graphical aspect of the interface
         # 1.- Window size
         alloc = self.w.get_allocation ()
-        config.set_int ('Pybliographic/UI/Width',  alloc [2])
-        config.set_int ('Pybliographic/UI/Height', alloc [3])
+        Utils.config.set_int ('/apps/pybliographic/ui/width',  alloc [2])
+        Utils.config.set_int ('/apps/pybliographic/ui/height', alloc [3])
 
         # 2.- Proportion betzeen list and text
-        height = self.paned.children () [0].get_allocation () [3]
-        config.set_int ('Pybliographic/UI/Paned', height)
+        height = self.paned.get_position ()
+        Utils.config.set_int ('/apps/pybliographic/ui/paned', height)
 
         # updates the index's config
         self.index.update_configuration ()
@@ -1005,15 +965,15 @@ class Document (Connector.Publisher):
 
     
     def about (self, *arg):
-        about = GnomeAbout ('Pybliographic', version.version,
+        about = ui.About ('Pybliographic', version.version,
                             _("This program is copyrighted under the GNU GPL"),
                             ['Frédéric Gobry'],
                             _("Gnome interface to the Pybliographer system."),
                             'pybliographic-logo.png')
         about.set_parent (self.w)
         
-        link = GnomeHRef ('http://www.gnome.org/pybliographer',
-                          _("Pybliographer Home Page"))
+        link = ui.HRef ('http://www.gnome.org/pybliographer',
+                        _("Pybliographer Home Page"))
         link.show ()
         about.vbox.pack_start (link)
         about.show()

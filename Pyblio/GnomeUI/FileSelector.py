@@ -24,17 +24,15 @@ import string, os, urlparse, gettext
 _ = gettext.gettext
 
 from gnome.ui import *
-from gnome import config
 
 from gtk import *
-import GtkExtra, GDK, GTK
 
 from Pyblio import Open, Types, Base, Fields, Config, Autoload
 
 from Pyblio.GnomeUI import Utils
 
 
-class URLFileSelection (GtkFileSelection):
+class URLFileSelection (FileSelection):
     ''' Extended file selection dialog, with an URL field and a type
     selector. '''
     
@@ -42,7 +40,7 @@ class URLFileSelection (GtkFileSelection):
                  url=TRUE, modal=TRUE, has_auto=TRUE,
                  directory = None):
         
-        GtkFileSelection.__init__(self)
+        FileSelection.__init__(self)
         self.set_title (title)
         self.hide_fileop_buttons ()
         
@@ -52,7 +50,6 @@ class URLFileSelection (GtkFileSelection):
         self.ok_button.connect('clicked', self.ok_cb)
 
         if directory: self.set_filename (directory)
-        if modal:     grab_add (self)
 
         self.ret = None
         self.url = None
@@ -61,24 +58,24 @@ class URLFileSelection (GtkFileSelection):
         
         # url handler
         if url:
-            hbox = GtkHBox ()
+            hbox = HBox ()
             hbox.set_spacing (5)
-            hbox.pack_start (GtkLabel ('URL:'), expand = FALSE, fill = FALSE)
-            self.url = GtkEntry ()
+            hbox.pack_start (Label ('URL:'), expand = FALSE, fill = FALSE)
+            self.url = Entry ()
             hbox.pack_start (self.url)
             vbox.pack_start (hbox, expand = FALSE, fill = FALSE)
 
         # type selector
-        hbox = GtkHBox ()
+        hbox = HBox ()
         hbox.set_spacing (5)
-        hbox.pack_start (GtkLabel (_("Bibliography type:")),
+        hbox.pack_start (Label (_("Bibliography type:")),
                          expand = FALSE, fill = FALSE)
-        self.menu = GtkOptionMenu ()
+        self.menu = OptionMenu ()
         hbox.pack_start (self.menu)
         vbox.pack_start (hbox, expand = FALSE, fill = FALSE)
 
         # menu content
-        menu = GtkMenu ()
+        menu = Menu ()
         self.menu.set_menu (menu)
         
         liste = Autoload.available ('format')
@@ -86,9 +83,9 @@ class URLFileSelection (GtkFileSelection):
         
         if has_auto:
             Utils.popup_add (menu, ' - Auto - ', self.menu_select, None)
-            self.type = None
+            self.ftype = None
         else:
-            self.type = liste [0]
+            self.ftype = liste [0]
             
         for avail in liste:
             Utils.popup_add (menu, avail, self.menu_select, avail)
@@ -97,7 +94,7 @@ class URLFileSelection (GtkFileSelection):
         return
 
     def menu_select (self, widget, selection):
-        self.type = selection
+        self.ftype = selection
         return
         
     def quit (self, *args):
@@ -137,5 +134,5 @@ class URLFileSelection (GtkFileSelection):
         self.show_all ()
         mainloop ()
 
-        return (self.ret, self.type)
+        return (self.ret, self.ftype)
 

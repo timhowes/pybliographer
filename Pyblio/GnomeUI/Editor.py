@@ -20,10 +20,8 @@
 # $Id$
 
 import string, re
-from gnome.ui import *
-from gnome import config
-from gtk import *
-import GTK
+from gnome import ui
+import gtk
 
 import gettext, copy, re
 _ = gettext.gettext
@@ -48,10 +46,10 @@ class BaseField (Connector.Publisher):
     
     def __init__ (self, entry, field, content, j):
 
-        self.w = GtkVBox ()
+        self.w = gtk.VBox ()
 
-        h = GtkHBox (spacing = 5)
-        self.w.pack_start (GtkLabel (field), FALSE, FALSE)
+        h = gtk.HBox (spacing = 5)
+        self.w.pack_start (gtk.Label (field), False, False)
 
         field = string.lower (field)
         self.field = field
@@ -64,10 +62,10 @@ class BaseField (Connector.Publisher):
         if self.edit:
             self.edit.connect ('key_press_event', self.key_handler)
         
-        if self.loss: h.pack_start (GnomeStock (STOCK_BUTTON_NO),
-                                    FALSE, FALSE)
-        else:         h.pack_start (GnomeStock (STOCK_BUTTON_YES),
-                                    FALSE, FALSE)
+        if self.loss: h.pack_start (gtk.Button (stock = gtk.STOCK_NO),
+                                    False, False)
+        else:         h.pack_start (gtk.Button (stock = gtk.STOCK_YES),
+                                    False, False)
 
         self.w.pack_start (h, expand, expand)
         self.w.show_all ()
@@ -152,20 +150,20 @@ class Entry (TextBase):
 
     def create_widget (self, h):
         if len (self.string) < 50:
-            self.edit = GtkEntry ()
+            self.edit = gtk.Entry ()
             self.edit.set_text (self.string)
-            self.edit.set_editable (TRUE)
+            self.edit.set_editable (True)
             self.edit.show ()
             
             h.pack_start (self.edit)
             return 0
 
-        w = GtkScrolledWindow ()
-        w.set_policy (GTK.POLICY_NEVER, GTK.POLICY_AUTOMATIC)
-        self.edit = GtkText ()
-        self.edit.set_editable (TRUE)
+        w = gtk.ScrolledWindow ()
+        w.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
+        self.edit = gtk.Text ()
+        self.edit.set_editable (True)
         self.edit.insert_defaults (self.string)
-        self.edit.set_word_wrap (TRUE)
+        self.edit.set_word_wrap (True)
         self.edit.show ()
         
         w.add (self.edit)
@@ -178,12 +176,12 @@ class Entry (TextBase):
 class Text (TextBase):
     
     def create_widget (self, h):
-        w = GtkScrolledWindow ()
-        w.set_policy (GTK.POLICY_NEVER, GTK.POLICY_AUTOMATIC)
-        self.edit = GtkText ()
-        self.edit.set_editable (TRUE)
+        w = gtk.ScrolledWindow ()
+        w.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
+        self.edit = gtk.Text ()
+        self.edit.set_editable (True)
         self.edit.insert_defaults (self.string)
-        self.edit.set_word_wrap (TRUE)
+        self.edit.set_word_wrap (True)
         self.edit.show ()
         w.add (self.edit)
         w.show ()
@@ -195,11 +193,11 @@ class Text (TextBase):
 class AuthorGroup (BaseField):
     
     def create_widget (self, h):
-        w = GtkScrolledWindow ()
-        w.set_policy (GTK.POLICY_NEVER, GTK.POLICY_AUTOMATIC)
-        self.edit = GtkText ()
-        self.edit.set_editable (TRUE)
-        self.edit.set_word_wrap (TRUE)
+        w = gtk.ScrolledWindow ()
+        w.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.edit = gtk.Text ()
+        self.edit.set_editable (True)
+        self.edit.set_word_wrap (True)
         self.edit.insert_defaults (self.string)
         self.edit.show ()
         w.add (self.edit)
@@ -245,35 +243,35 @@ class AuthorGroup (BaseField):
 class Date (BaseField):
     
     def create_widget (self, h):
-        hbox = GtkHBox (FALSE, 5)
+        hbox = gtk.HBox (False, 5)
 
-        self.day = GtkEntry ()
+        self.day = gtk.Entry ()
         (width, height) = self.day.size_request ()
-        self.day.set_usize (width / 4, height)
+        self.day.set_size_request (width / 4, height)
         self.day.set_max_length (2)
         self.day.connect ('key_press_event', self.key_handler)
         if self.initial [0]:
             self.day.set_text (str (self.initial [0]))
         hbox.pack_start (self.day)
-        hbox.pack_start (GtkLabel (_("Day")), FALSE, FALSE)
+        hbox.pack_start (gtk.Label (_("Day")), False, False)
         
-        self.month = GtkEntry ()
-        self.month.set_usize (width / 4, height)
+        self.month = gtk.Entry ()
+        self.month.set_size_request (width / 4, height)
         self.month.set_max_length (2)
         self.month.connect ('key_press_event', self.key_handler)
         if self.initial [1]:
             self.month.set_text (str (self.initial [1]))
         hbox.pack_start (self.month)
-        hbox.pack_start (GtkLabel (_("Month")), FALSE, FALSE)
+        hbox.pack_start (gtk.Label (_("Month")), False, False)
         
-        self.year = GtkEntry ()
+        self.year = gtk.Entry ()
         self.year.set_max_length (4)
-        self.year.set_usize (width / 3, height)
+        self.year.set_size_request (width / 3, height)
         self.year.connect ('key_press_event', self.key_handler)
         if self.initial [2]:
             self.year.set_text (str (self.initial [2]))
         hbox.pack_start (self.year)
-        hbox.pack_start (GtkLabel (_("Year")), FALSE, FALSE)
+        hbox.pack_start (gtk.Label (_("Year")), False, False)
 
         hbox.show_all ()
         h.pack_start (hbox)
@@ -340,8 +338,8 @@ class Reference (BaseField):
             (Mime.KEY_TYPE,   0, Mime.KEY),
             )
 
-        self.edit = GtkEntry ()
-        self.edit.set_editable (FALSE)
+        self.edit = gtk.Entry ()
+        self.edit.set_editable (False)
         self.edit.set_text (self.string)
         self.edit.show ()
         self.edit.drag_dest_set (DEST_DEFAULT_MOTION |
@@ -393,8 +391,8 @@ class Reference (BaseField):
 class URL (BaseField):
     
     def create_widget (self, h):
-        self.edit = GtkEntry ()
-        self.edit.set_editable (TRUE)
+        self.edit = gtk.Entry ()
+        self.edit.set_editable (True)
         self.edit.set_text (self.string)
         self.edit.show ()
 
@@ -418,18 +416,18 @@ class RealEditor (Connector.Publisher):
 
         self.fields.sort ()
         
-        self.w = GtkVBox ()
-        table  = GtkTable (2, 2)
+        self.w = gtk.VBox ()
+        table  = gtk.Table (2, 2)
         table.set_border_width (5)
         table.set_col_spacings (5)
         
-        table.attach (GtkLabel (_("Entry type")),
+        table.attach (gtk.Label (_("Entry type")),
                       0, 1, 0, 1, yoptions = 0)
-        table.attach (GtkLabel (_("Key")),
+        table.attach (gtk.Label (_("Key")),
                       1, 2, 0, 1, yoptions = 0)
 
-        self.key = GtkEntry ()
-        self.key.set_editable (TRUE)
+        self.key = gtk.Entry ()
+        self.key.set_editable (True)
         self.key.connect ('key_press_event', self.key_handler)
         
         if self.entry.key:
@@ -438,8 +436,8 @@ class RealEditor (Connector.Publisher):
         table.attach (self.key,
                       1, 2, 1, 2, yoptions = 0)
 
-        self.menu = GtkOptionMenu ()
-        menu = GtkMenu ()
+        self.menu = gtk.OptionMenu ()
+        menu = gtk.Menu ()
         self.menu.set_menu (menu)
 
         table.attach (self.menu,
@@ -459,26 +457,25 @@ class RealEditor (Connector.Publisher):
         self.menu.set_history (history)
         
         table.show_all ()
-        self.w.pack_start (table, FALSE, FALSE)
+        self.w.pack_start (table, False, False)
 
-        self.newfield_area = GtkHBox (spacing = 5)
+        self.newfield_area = gtk.HBox (spacing = 5)
         self.newfield_area.set_border_width (5)
-        self.newfield = GnomeEntry ('newfield')
-        self.newfield.load_history ()
+        self.newfield = ui.Entry ('newfield')
         
         self.newfield_area.pack_start (self.newfield)
 
-        b = GtkButton (_("Create Field"))
+        b = gtk.Button (_("Create Field"))
         b.connect ('clicked', self.create_field)
         self.newfield_area.pack_start (b)
         self.newfield_area.show_all ()
         
-        self.w.pack_start (self.newfield_area, FALSE, FALSE)
+        self.w.pack_start (self.newfield_area, False, False)
         
         # Notebook
-        # scroll = GtkScrolledWindow ()
+        # scroll = gtk.ScrolledWindow ()
         # scroll.set_policy (GTK.POLICY_AUTOMATIC, GTK.POLICY_AUTOMATIC)
-        self.notebook = GtkNotebook ()
+        self.notebook = gtk.Notebook ()
         self.notebook.show ()
 
         #scroll.add_with_viewport (self.notebook)
@@ -486,7 +483,7 @@ class RealEditor (Connector.Publisher):
         self.w.pack_start (self.notebook)
         self.w.show_all ()
         
-        self.notebook_init = FALSE
+        self.notebook_init = False
         self.update_notebook ()
         return
 
@@ -535,14 +532,14 @@ class RealEditor (Connector.Publisher):
             for i in range (0, 3):
                 self.notebook.remove_page (0)
         
-        self.notebook_init = TRUE
+        self.notebook_init = True
 
         names  = (_("Mandatory"), _("Optional"), _("Extra"))
         fields = map (string.lower, self.entry.keys ())
         
         self.content = []
         for i in range (0, 3):
-            label   = GtkLabel (names [i])
+            label   = gtk.Label (names [i])
 
             if   i == 0: table = map (lambda x: x.name, self.entry.type.mandatory)
             elif i == 1: table = map (lambda x: x.name, self.entry.type.optional)
@@ -550,10 +547,11 @@ class RealEditor (Connector.Publisher):
 
             if len (table) == 0: continue
 
-            scroll = GtkScrolledWindow ()
-            scroll.set_policy (GTK.POLICY_AUTOMATIC, GTK.POLICY_AUTOMATIC)
+            scroll = gtk.ScrolledWindow ()
+            scroll.set_policy (gtk.POLICY_AUTOMATIC,
+                               gtk.POLICY_AUTOMATIC)
 
-            content = GtkTable (1, len (table))
+            content = gtk.Table (1, len (table))
             
             scroll.add_with_viewport (content)
 
@@ -597,12 +595,12 @@ class RealEditor (Connector.Publisher):
     
 
     def update (self, database, entry):
-        modified = FALSE
+        modified = False
         
         key = string.strip (self.key.get_text ())
         if key == '':
             self.entry.key = None
-            modified = TRUE
+            modified = True
         else:
             if not key_re.match (key):
                 GnomeErrorDialog (_("Invalid key format"),
@@ -618,7 +616,7 @@ class RealEditor (Connector.Publisher):
                     return None
                 
                 self.entry.key = key
-                modified = TRUE
+                modified = True
                 
         modified = self.type != self.entry.type or modified
         
@@ -651,8 +649,8 @@ class NativeEditor (Connector.Publisher):
         else:
             self.original = ''
         
-        self.w = GtkText ()
-        self.w.set_editable (TRUE)
+        self.w = gtk.Text ()
+        self.w.set_editable (True)
         self.w.connect ('key_press_event', self.key_handler)
         
         self.w.insert (Config.get ('gnomeui/monospaced').data,
@@ -688,9 +686,9 @@ class NativeEditor (Connector.Publisher):
 class Editor (Connector.Publisher):
     
     def __init__ (self, database, entry, parent = None, title = None):
-        self.w = GtkDialog ()
+        self.w = gtk.Dialog ()
         
-        self.w.set_policy (TRUE, TRUE, FALSE)
+        self.w.set_resizable (True)
         
         if title: self.w.set_title (title)
         else:     self.w.set_title (_("Edit entry") + ' [%s]' % str (entry.key) )
@@ -699,7 +697,7 @@ class Editor (Connector.Publisher):
 
         if parent: self.w.set_transient_for (parent)
 
-        self.apply_b = GnomeStockButton (STOCK_BUTTON_APPLY)
+        self.apply_b = gtk.Button (gtk.STOCK_APPLY)
         self.apply_b.connect ('clicked', self.apply_changes)
         self.apply_b.show ()
 
@@ -707,21 +705,20 @@ class Editor (Connector.Publisher):
         self.has_native = hasattr (database, 'get_native')
 
         if self.has_native:
-            self.native_b = GtkButton (_("Native Editing"))
+            self.native_b = gtk.Button (_("Native Editing"))
             self.native_b.connect ('clicked', self.toggle_native)
             self.native_b.show ()
         
-        self.close_b = GnomeStockButton (STOCK_BUTTON_CANCEL)
+        self.close_b = gtk.Button (gtk.STOCK_CANCEL)
         self.close_b.connect ('clicked', self.close_dialog)
         self.close_b.show ()
 
         # Use Escape to abort, Ctrl-Return to accept
-        accelerator = GtkAccelGroup ()
+        accelerator = gtk.AccelGroup ()
         self.w.add_accel_group (accelerator)
 
-        self.close_b.add_accelerator ('clicked', accelerator, GDK.Escape, 0, 0)
-        self.apply_b.add_accelerator ('clicked', accelerator, GDK.Return, GDK.CONTROL_MASK,
-                                 0)
+        #self.close_b.add_accelerator ('clicked', accelerator, GDK.Escape, 0, 0)
+        #self.apply_b.add_accelerator ('clicked', accelerator, GDK.Return, GDK.CONTROL_MASK, 0)
 
         self.w.action_area.add (self.apply_b)
         if self.has_native: self.w.action_area.add (self.native_b)
@@ -746,19 +743,19 @@ class Editor (Connector.Publisher):
         
         if self.native_mode:
             # real edition
-            self.native_mode = FALSE
+            self.native_mode = False
             if self.has_native:
-                self.native_b.children () [0].set_text (_("Native Editing"))
+                self.native_b.get_children () [0].set_text (_("Native Editing"))
 
             if self.editor: self.editor.w.destroy ()
             self.editor = RealEditor (self.database,
                                       copy.deepcopy (self.entry))
             
-            ui_width  = config.get_int ('Pybliographic/Editor/Width=-1')
-            ui_height = config.get_int ('Pybliographic/Editor/Height=-1')
+            ui_width  = Utils.config.get_int ('/apps/pybliographic/editor/width') or -1
+            ui_height = Utils.config.get_int ('/apps/pybliographic/editor/height') or -1
         else:
             # native edition
-            self.native_mode = TRUE
+            self.native_mode = True
             if self.has_native:
                 self.native_b.children () [0].set_text (_("Standard Editing"))
             
@@ -766,8 +763,8 @@ class Editor (Connector.Publisher):
             self.editor = NativeEditor (self.database,
                                         copy.deepcopy (self.entry))
 
-            ui_width  = config.get_int ('Pybliographic/Native/Width=-1')
-            ui_height = config.get_int ('Pybliographic/Native/Height=-1')
+            ui_width  = Utils.config.get_int ('/apps/pybliographic/native/width') or -1
+            ui_height = Utils.config.get_int ('/apps/pybliographic/native/height') or -1
 
 
         self.editor.Subscribe ('apply', self.apply_changes)
@@ -789,7 +786,7 @@ class Editor (Connector.Publisher):
         n = self.editor.notebook
         box = n.get_nth_page (n.get_current_page ())
         
-        box.focus (GTK.DIR_DOWN)
+        box.focus (DIR_DOWN)
         pass
 
 
@@ -800,9 +797,8 @@ class Editor (Connector.Publisher):
         if self.native_mode: field = 'Native'
         else:                field = 'Editor'
         
-        config.set_int ('Pybliographic/%s/Width' % field,  alloc [2])
-        config.set_int ('Pybliographic/%s/Height' % field, alloc [3])
-        config.sync ()
+        Utils.config.set_int ('/apps/pybliographic/%s/width' % field,  alloc [2])
+        Utils.config.set_int ('/apps/pybliographic/%s/height' % field, alloc [3])
         return
 
     

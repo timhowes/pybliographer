@@ -25,11 +25,10 @@ import gettext, copy, os, stat
 
 _ = gettext.gettext
 
-from Pyblio.GnomeUI import Document
+from Pyblio.GnomeUI import Document, Utils
 from Pyblio import Base, Config
 
 from gtk import *
-from gnome import config, history
 
 class Pybliographic:
     ''' Main class holding all the documents and performing
@@ -42,19 +41,14 @@ class Pybliographic:
         histsize = Config.get ('gnome/history').data
 
         for i in range (1, histsize + 1):
-            file = config.get_string  ('Pybliographic/History/File%d=' % i)
-            fmat = config.get_string  ('Pybliographic/History/Type%d=' % i)
+            file = Utils.config.get_string  ('/apps/pybliographic/history/file%d' % i) or ''
+            fmat = Utils.config.get_string  ('/apps/pybliographic/history/type%d' % i) or ''
 
             if not file: continue
             
             if not fmat: fmat = None
             self.opened.append ((file, fmat))
 
-        if not self.opened:
-            # get the old format of history
-            self.opened = map (lambda x: (x, None),
-                               filter (lambda x: x,
-                                       list (config.get_vector ('Pybliographic/Base/History='))))
         return
 
 
@@ -79,8 +73,9 @@ class Pybliographic:
         file = str (doc.data.key)
         fmat = doc.data.id
         
-        history.recently_used (file, 'application/x-bibtex',
-                               'pybliographic', 'Bibliography')
+        #FIXME.
+        #history.recently_used (file, 'application/x-bibtex',
+        #                      'pybliographic', 'Bibliography')
                               
         try:
             self.opened.remove ((file, fmat))
@@ -131,12 +126,10 @@ class Pybliographic:
             name = file [0]
             fmat = file [1] or ''
             
-            config.set_string ('Pybliographic/History/File%d' % i, name)
-            config.set_string ('Pybliographic/History/Type%d' % i, fmat)
+            Utils.config.set_string ('/apps/pybliographic/history/file%d' % i, name)
+            Utils.config.set_string ('/apps/pybliographic/history/type%d' % i, fmat)
             i = i + 1
         
-        config.sync ()
-
         doclist = copy.copy (self.documents)
         
         for doc in doclist:

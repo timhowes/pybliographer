@@ -19,9 +19,9 @@
 # 
 # $Id$
 
-from gnome.ui import *
-from gtk import *
-import GTK
+from gnome import ui
+
+import gtk
 
 import string, re, sys, traceback, copy
 
@@ -33,12 +33,13 @@ import gettext
 _ = gettext.gettext
 
 
-class ItemStorage (GtkTreeItem):
+class ItemStorage (gtk.TreeModel):
+
     ''' Extension to TreeItem that stores additional information about
     the search nodes '''
     
     def __init__ (self, name, data):
-        GtkTreeItem.__init__ (self, name)
+        TreeItem.__init__ (self, name)
 
         self.data   = data
         self.parent = None
@@ -101,14 +102,14 @@ class ItemStorage (GtkTreeItem):
         return None
 
     
-class SearchDialog (GnomeDialog, Connector.Publisher):
+class SearchDialog (ui.Dialog, Connector.Publisher):
     ''' Search Dialog '''
     
     def __init__ (self, parent = None):
 
-        GnomeDialog.__init__ (self, _("Search"),
-                              STOCK_PIXMAP_SEARCH,
-                              STOCK_BUTTON_CLOSE)
+        ui.Dialog.__init__ (self, _("Search"),
+                            ui.STOCK_PIXMAP_SEARCH,
+                            ui.STOCK_BUTTON_CLOSE)
         self.set_policy (TRUE, TRUE, FALSE)
         
         if parent: self.set_parent (parent)
@@ -122,7 +123,7 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         self.pairs   = []
         
         # user levels
-        self.notebook = GtkNotebook ()
+        self.notebook = gtk.Notebook ()
         self.vbox.pack_start (self.notebook, expand = FALSE, fill = FALSE)
 
         # Simple search

@@ -29,12 +29,18 @@ from Pyblio import Config
 import gettext
 _ = gettext.gettext
 
+import gconf
 
-cursor = {}
-cursor ['clock']  = cursor_new (150)
-cursor ['normal'] = cursor_new (68)
+config = gconf.client_get_default ()
+
+
+#cursor = {}
+#cursor ['clock']  = cursor_new (150)
+#cursor ['normal'] = cursor_new (68)
 
 def set_cursor (self, name):
+
+    return
 
     window = self.get_window ()
     if not window: return
@@ -46,7 +52,7 @@ def set_cursor (self, name):
     return
 
 
-_tooltips = GtkTooltips ()
+_tooltips = Tooltips ()
 
 
 def set_tip (w, text):
@@ -63,7 +69,7 @@ else:
 def popup_add (menu, item, action = None, argument = None):
     ''' Helper to add a new menu entry '''
     
-    tmp = GtkMenuItem (item)
+    tmp = MenuItem (item)
     if action:
         tmp.connect ('activate', action, argument)
     
@@ -73,12 +79,12 @@ def popup_add (menu, item, action = None, argument = None):
     return tmp
 
 
-class TmpGnomeDialog (GtkDialog):
+class TmpGnomeDialog (Dialog):
 
     def __init__ (self, title='', b1=None, b2=None, b3=None, b4=None,
                   b5=None, b6=None, b7=None, b8=None, b9=None, b10=None):
 
-        self._o = GtkDialog ()._o
+        self._o = Dialog ()._o
         
         self.set_title (title)
         self.vbox.set_spacing (5)
@@ -159,11 +165,11 @@ def error_dialog (title, err, parent = None):
     if parent:
         dialog.set_parent (parent)
         
-    text = GtkText ()
+    text = Text ()
     text.insert_defaults (_("The following errors occured:\n\n"))
     text.insert (None, color ['red'], None, str (err))
     
-    holder = GtkScrolledWindow ()
+    holder = ScrolledWindow ()
     holder.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
     holder.add (text)
     

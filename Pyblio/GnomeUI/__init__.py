@@ -27,18 +27,19 @@ import sys
 sys.argv = sys.argv [:2] + ['--'] + sys.argv [2:]
 
 # correctly identify the program
+import pygtk
+pygtk.require ('2.0')
+
 import gnome
+import gnome.ui
+
 from Pyblio import version
 
-gnome.app_id      = 'Pybliographic'
-gnome.app_version = version.version
-
-# import the GUI
-import gnome.ui
+gnome.init ('Pybliographer', version.version)
 
 # clean up our garbage
 sys.argv = sys.argv [:2] + sys.argv [3:]
 
-del sys, gnome
+del sys
 
 

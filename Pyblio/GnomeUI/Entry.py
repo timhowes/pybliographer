@@ -20,123 +20,47 @@
 # $Id$
 
 from gtk import *
+from gnome import ui
+
+import pango
+
 import string
 
 from Pyblio.GnomeUI import Utils
 from Pyblio import Config, recode, Fields
 
-from gnome import url
 
-has_gtkhtml = 1
-
-try:    from gtkhtml import *
-except: has_gtkhtml = 0
-
-
-# This is the new HTML-based entry
-
-class HTMLEntry:
-    ''' Displays a bibliographic entry as simple text '''
-
-    header = '<html><body bgcolor="#ffffff">'
-    
-    def __init__ (self):
-        ''' Create the graphical widget '''
-        
-        self.text = GtkHTML ()
-        self.text.load_empty ()
-        self.text.connect('link_clicked', self.link_clicked)
-        
-        self.w = GtkScrolledWindow ()
-        
-        self.w.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
-        self.w.add (self.text)
-
-        self.text.show ()
-        
-        # currently, nothing to display
-        self.entry = None
-        return
-
-    def link_clicked (self, html, link):
-        url.show (link)
-        return
-
-    
-    def display (self, entry):
-        self.entry = entry
-
-        # Display this entry
-        content = self.text.begin ()
-
-        self.text.write (content, self.header)
-        
-        self.text.write (content, ('<font color="#0000ff"><h1>%s [' % entry.type.name) +
-                         html (str (entry.key.key)) + '] </h1></font>')
-        
-        dico = entry.keys ()
-
-        self.text.write (content, '<table>')
-        
-        for f in entry.type.fields:
-            
-            field = string.lower (f.name)
-            
-            if entry.has_key (field):
-                self.text.write (content, '<tr><td><font color="#ff0000">' +
-                                 html (f.name) + '</font>&nbsp;</td>')
-
-                data = entry [field]
-                if isinstance (data, Fields.URL):
-                    print "url: %s" % str (data)
-                    data = '<a href="%s">%s</a>' % (str (data), html (str (data)))
-                else:
-                    data = html (str (data))
-                    
-                self.text.write (content, '<td>' + data + '</td></tr>')
-                dico.remove (field)
-
-        self.text.write (content, '</table><hr><table>')
-
-        for f in dico:
-            self.text.write (content, '<tr><td><font color="#ff0000">' +
-                             html (f) + '</font>&nbsp;</td>')
-
-            data = entry [f]
-            if isinstance (data, Fields.URL):
-                data = '<a href="%s">%s</a>' % (str (data), html (str (data)))
-            else:
-                data = html (str (data))
-                
-            self.text.write (content, '<td>' + data + '</td></tr>')
-
-        self.text.write (content, '</table>')
-        
-        self.text.end (content, HTML_STREAM_OK)
-        return
-
-    def clear (self):
-        self.text.load_from_string (self.header)
-        return
-
-
-# This is the old GtkText-based entry
-
-class ClassicEntry:
+class Entry:
     ''' Displays a bibliographic entry as simple text '''
 
     def __init__ (self):
         ''' Create the graphical widget '''
         
-        self.text = GtkText ()
-        self.text.set_word_wrap (1)
+        self.text = TextView ()
+        self.buff = self.text.get_buffer ()
+
+        self.tag = {}
         
-        self.w = GtkScrolledWindow ()
+        self.tag ['title'] = \
+                 self.buff.create_tag ('title',
+                                       weight = pango.WEIGHT_BOLD)
+        self.tag ['field'] = \
+                 self.buff.create_tag ('field',
+                                       indent = -20,
+                                       style = pango.STYLE_OBLIQUE)
+        self.tag ['body'] = \
+                 self.buff.create_tag ('body',
+                                       left_margin = 20)
+
+        self.w = ScrolledWindow ()
         self.w.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
         self.w.add (self.text)
 
-        self.text.show ()
-
+        self.text.set_editable (False)
+        self.text.set_wrap_mode (WRAP_WORD)
+        self.text.set_left_margin (5)
+        self.text.set_right_margin (5)
+        
         # currently, nothing to display
         self.entry = None
         return
@@ -145,59 +69,76 @@ class ClassicEntry:
         self.entry = entry
 
         if not self.entry:
-            self.text.delete_text (0, -1)
+            self.buff.set_text ('')
             return
         
         # Display this entry
-        self.text.freeze ()
-        self.text.delete_text (0, -1)
+        self.buff.delete (self.buff.get_start_iter (),
+                          self.buff.get_end_iter ())
         
-        self.text.insert (Config.get ('gnomeui/monospaced').data,
-                          Utils.color['blue'], None,
-                          entry.type.name)
-        self.text.insert_defaults (' ['+ str (entry.key.key) + ']\n\n')
+        iter = self.buff.get_start_iter ()
         
+        self.buff.insert_with_tags (iter, entry.type.name,
+                                    self.tag ['title'])
+        self.buff.insert_with_tags (iter, ' ['+ str (entry.key.key) + ']\n\n',
+                                    self.tag ['title'])
+
         dico = entry.keys ()
         
-        # Search the longest field
-        mlen = 0
-        for f in dico:
-            mlen = max (mlen, len (f))
-
         for f in entry.type.fields:
             
             field = string.lower (f.name)
             
             if entry.has_key (field):
-                sp = ' ' * (mlen - len (f.name))
-                self.text.insert (Config.get ('gnomeui/monospaced').data,
-                                  Utils.color ['red'], None,
-                                  f.name + ': ' + sp)
-                self.text.insert_defaults (str (entry [field]) + '\n')
+
+                n = f.name + ': '
+                t = str (entry [field]) + '\n'
+                
+                si = iter.get_offset ()
+
+                self.buff.insert (iter, n)
+                mi = iter.get_offset ()
+                
+                self.buff.insert (iter, t)
+
+                si = self.buff.get_iter_at_offset (si)
+                mi = self.buff.get_iter_at_offset (mi)
+                
+                self.buff.apply_tag (self.tag ['body'],
+                                     si, iter)
+                self.buff.apply_tag (self.tag ['field'],
+                                     si, mi)
+
                 dico.remove (field)
 
 
-        self.text.insert_defaults ('\n')
+        self.buff.insert (iter, '\n')
             
         for f in dico:
-            sp = ' ' * (mlen - len (f))
-            self.text.insert (Config.get ('gnomeui/monospaced').data,
-                              Utils.color['red'], None,
-                              f + ': ' + sp)
-            self.text.insert_defaults (str (entry [f]) + '\n')
+            n = f + ': '
+            t = str (entry [f]) + '\n'
+            
+            si = iter.get_offset ()
+            
+            self.buff.insert (iter, n)
+            mi = iter.get_offset ()
+            
+            self.buff.insert (iter, t)
+                
+            si = self.buff.get_iter_at_offset (si)
+            mi = self.buff.get_iter_at_offset (mi)
+                
+            self.buff.apply_tag (self.tag ['body'],
+                                 si, iter)
+            self.buff.apply_tag (self.tag ['field'],
+                                 si, mi)
 
-        self.text.thaw ()
+
         return
 
     def clear (self):
-        self.text.delete_text (0, -1)
+        self.buff.set_text ('')
         return
-
-if has_gtkhtml:
-    html = recode.recode ("latin1..html")
-    Entry = HTMLEntry
-else:
-    Entry = ClassicEntry
 
 
         

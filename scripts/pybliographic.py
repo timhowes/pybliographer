@@ -22,7 +22,6 @@
 
 import sys
 
-from gtk import *
 from Pyblio.GnomeUI.Pybliographic import Pybliographic
 from Pyblio.Fields import URL
 
@@ -36,5 +35,7 @@ if len (sys.argv) > 2:
 else:
     main.new_document ()
 
-mainloop ()
+import gtk
+
+gtk.main ()
 

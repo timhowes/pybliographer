@@ -30,5 +30,5 @@ ENTRY_TYPE = 'application/x-pybliography'
 
 atom = {}
 
-atom ['STRING'] = atom_intern ("STRING")
-atom [ENTRY_TYPE] = atom_intern (ENTRY_TYPE)
+#atom ['STRING'] = atom_intern ("STRING")
+#atom [ENTRY_TYPE] = atom_intern (ENTRY_TYPE)

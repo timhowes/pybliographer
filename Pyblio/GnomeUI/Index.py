@@ -23,12 +23,10 @@
 
 from Pyblio import Fields, Config, Connector, Types, Sort
 
-from gnome.ui import *
-from gnome import config
+from gnome import ui
+import gtk, gobject
 
 from Pyblio.GnomeUI import FieldsInfo, Utils, Mime
-from gtk import *
-import GTK, GDK
 
 from string import *
 
@@ -45,85 +43,40 @@ class Index (Connector.Publisher):
     
     def __init__ (self, fields = None):
         ''' Creates a new list of entries '''
-
+        
         fields = fields or Config.get ('gnome/columns').data
         self.fields = map (lower, fields)
 
-        self.clist = GtkCList (len (fields), map (lambda x: ' ' + x + ' ', fields))
-        self.clist.set_selection_mode (GTK.SELECTION_EXTENDED)
+        self.model = apply (gtk.ListStore,
+                            (gobject.TYPE_STRING,) * len (fields))
+
+        self.list = gtk.TreeView ()
+        self.list.set_model (self.model)
         
-        self.w = GtkScrolledWindow ()
-        self.w.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
-        self.w.add (self.clist)
+        self.selinfo = self.list.get_selection ()
+        
+        i = 0
+        for f in fields:
+            col = gtk.TreeViewColumn (f, gtk.CellRendererText (),
+                                      text = i)
+            col.set_resizable (True)
+            col.set_clickable (True)
+
+            col.connect ('clicked', self.click_column, i)
+            
+            self.list.append_column (col)
+            i = i + 1
+        
+        self.w = gtk.ScrolledWindow ()
+
+        self.w.set_policy (gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.w.add (self.list)
 
         self.access = []
-
-        self.menu_position = {
-            'add'    : 0,
-            'edit'   : 1,
-            'delete' : 2,
-            }
-        
-        self.menu = GnomePopupMenu ([
-            UIINFO_ITEM_STOCK(_("Add..."), None, self.entry_new,    STOCK_MENU_NEW),
-            UIINFO_ITEM      (_("Edit..."),None, self.entry_edit),
-            UIINFO_ITEM_STOCK(_("Delete"), None, self.entry_delete, STOCK_MENU_TRASH),
-            ])
-        
-        self.menu.show ()
-
-        self.field_width = []
-        # resize the columns
-        for c in range (len (self.fields)):
-            width = config.get_int ('Pybliographic/Columns/%s=-1' % self.fields [c])
-            if width == -1:
-                width = FieldsInfo.width (self.fields [c])
-
-            self.field_width.append (width)
-            
-            self.clist.set_column_width (c, width)
-            self.clist.set_column_justification (c, FieldsInfo.justification (self.fields [c]))
             
         # some events we want to react to...
-        self.clist.connect ('click_column',       self.click_column)
-        self.clist.connect ('resize_column',      self.resize_column)
-        self.clist.connect ('select_row',         self.select_row)
-        self.clist.connect ('button_press_event', self.button_press)
-
-        # ---------- DnD configuration
-
-        targets = (
-            (Mime.KEY_TYPE,   0, Mime.KEY),
-            (Mime.ENTRY_TYPE, 0, Mime.ENTRY),
-            )
-
-        accept = (
-            (Mime.ENTRY_TYPE, 0, Mime.ENTRY),
-            )
-
-        self.clist.drag_dest_set (DEST_DEFAULT_MOTION |
-                                  DEST_DEFAULT_HIGHLIGHT |
-                                  DEST_DEFAULT_DROP,
-                                  accept,
-                                  GDK.ACTION_COPY | GDK.ACTION_MOVE)
-        self.clist.connect ("drag_data_received", self.drag_received)
-
-
-        self.clist.drag_source_set (GDK.BUTTON1_MASK | GDK.BUTTON3_MASK,
-                                    targets, GDK.ACTION_COPY | GDK.ACTION_MOVE)
-        self.clist.connect ('drag_data_get', self.dnd_drag_data_get)
-
-        # ---------- Copy/Paste configuration
-
-        self.selection_buffer = None
-        
-        self.clist.connect ('selection_received', self.selection_received)
-        self.clist.connect ('selection_get', self.selection_get)
-        self.clist.connect ('selection_clear_event', self.selection_clear)
-
-        self.clist.selection_add_target (1, Mime.atom ['STRING'], 0)
-        self.clist.selection_add_target (1, Mime.atom [Mime.ENTRY_TYPE],
-                                         Mime.ENTRY)
+        self.selinfo.connect ('changed', self.select_row)
+        self.list.connect ('row-activated', self.entry_edit)
         return
 
 
@@ -255,14 +208,17 @@ class Index (Connector.Publisher):
 
         Utils.set_cursor (self.w, 'clock')
         
-        self.clist.freeze ()
-        self.clist.clear ()
+        self.model.clear ()
 
         entry = iterator.first ()
         while entry:
             row = []
-            
+
+            i = 0
             for f in self.fields:
+                row.append (i)
+                i = i + 1
+                
                 if f == '-key-':
                     row.append (str (entry.key.key))
                     
@@ -280,12 +236,13 @@ class Index (Connector.Publisher):
                 else:
                     row.append ('')
 
-            self.clist.append  (row)
+            iter = self.model.append  ()
+            apply (self.model.set, [iter] + row)
+            
             self.access.append (entry)
 
             entry = iterator.next ()
             
-        self.clist.thaw ()
         Utils.set_cursor (self.w, 'normal')
         return
 
@@ -321,7 +278,7 @@ class Index (Connector.Publisher):
         return  0
         
     
-    def click_column (self, clist, column, * data):
+    def click_column (self, listcol, column):
         ''' handler for column title selection '''
         
         self.issue ('click-on-field', self.fields [column])
@@ -333,25 +290,32 @@ class Index (Connector.Publisher):
         return
 
     
-    def select_row (self, clist, row, column, * data):
+    def select_row (self, sel, * data):
         ''' handler for row selection '''
+
+        entries = self.selection ()
         
-        # multiple selections are not handled like single selections
-        if len (self.clist.selection) > 1:
-            self.issue ('select-entries',
-                        map (lambda x, self=self: self.access [x],
-                             self.clist.selection))
+        if len (entries) > 1:
+            self.issue ('select-entries', entries)
             return
-        
-        self.issue ('select-entry', self.access [row])
+
+        if len (entries) == 1:
+            self.issue ('select-entry', entries [0])
+            return
         return
 
 
     def selection (self):
         ''' returns the current selection '''
         
-        return map (lambda x, self=self: self.access [x],
-                    self.clist.selection)
+        entries = []
+
+        def retrieve (model, path, iter):
+            entries.append (self.access [path [0]])
+
+        self.selinfo.selected_foreach (retrieve)
+
+        return entries
 
 
     def select_all (self):
@@ -405,10 +369,10 @@ class Index (Connector.Publisher):
 
     
     def entry_edit (self, * arg):
-        if not self.clist.selection: return
+        sel = self.selection
+        if not sel: return
 
-        self.issue ('edit-entry', map (lambda x, self=self: self.access [x],
-                                       self.clist.selection))
+        self.issue ('edit-entry', sel)
         return
 
         
@@ -422,7 +386,7 @@ class Index (Connector.Publisher):
 
     def update_configuration (self):
 
-        for i in range (len (self.fields)):
-            config.set_int ('Pybliographic/Columns/%s' % self.fields [i],
-                            self.field_width [i])
+#        for i in range (len (self.fields)):
+#            Utils.config.set_int ('/apps/pybliographic/columns/%s' % self.fields [i],
+#                                  self.field_width [i])
         return
