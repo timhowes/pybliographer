@@ -1,0 +1,38 @@
+<!DocType Book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+
+<!Entity pyb "pybliographer">
+<!Entity pyc "pybliographic">
+
+<!Entity gui    System "gui.sgml">
+<!Entity script System "script.sgml"> 
+]>
+
+<Book>
+  <bookinfo>
+    <title>Pybliographer</title>
+    
+    <author>
+      <firstname>Frédéric</firstname> <surname>Gobry</surname>
+    </author>
+    <abstract>
+      <para>Pybliographer è uno strumento per lavorare con database
+    bibliografici. Fornisce una generica cornice di lavoro che può essere usata
+    per manipolare questi database con una semplice interfaccia grafica, ma
+    può anche essere facilmente esteso con un linguaggio di scripting
+    per adattarsi a una vasta gamma di necessita`.</para>
+    </abstract>
+  </bookinfo>
+
+
+    &gui;
+
+  <chapter>
+    <title>Il linguaggio di scripting</title>
+    &script;
+  </chapter>
+
+  <chapter>
+    <title>Aggiungere nuovi formati</title>
+    <para>deve essere scritto...</para>
+  </chapter>
+</book>

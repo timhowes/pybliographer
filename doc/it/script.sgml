@@ -1,0 +1,154 @@
+<para>&pyb; è infatti un semplice set di classi e funzioni scritte
+in python, e fornisce un accesso semplice e omogeneo a database
+bibliografici. Perciò, è possibile scrivere script in python che
+fanno uso di queste funzioni specializzate. L'interfaccia grafica,
+&pyc;, è essa stessa un semplice script al di sopra di &pyb;.</para>
+
+<para>Per eseguire uno script scritto per &pyb;, semplicemente digita </para>
+
+<screen>
+<prompt>></prompt> <command>pybliographer</command> <filename>mioscript.py</filename>
+</screen>
+
+<para>Alternativamente puoi usare i tuoi script con 
+<programlisting>
+#!/percorso/a/pybliographer
+
+...il resto del tuo script...
+</programlisting>
+e rendilo eseguibile.
+</para>
+
+<sect1>
+  <title>Script esistenti</title>
+
+  <para>Alcuni script sono forniti con pybliographer, sia come esempio
+  sia come strumenti utili. Sono abbastanza corti e dovrebbero essere leggibili
+  con una conoscenza basilare di <productname>python</productname>.</para>
+
+  <sect2>
+    <title>pybcheck</title>
+
+    <synopsis> Questo strumento prende una lista di file o directory, e controlla
+    se sono validi (sintassi, nessuna voce con la stessa chiave,...)
+    </synopsis>
+
+    <para>E` possibile utilizzare il suo output direttamente nel buffer di
+    compilazione di Emacs, al fine di saltare direttamente agli errori incontrati.
+    Per fare ciò, digita <keysym>M-x compile</keysym>, poi il comando 
+    <command>pybcheck
+    <filename>tuofile</filename></command>, e usa il bottone centrale del
+    mouse per saltare nel file difettoso.</para>
+  </sect2>
+
+  <sect2>
+    <title>pybcompact</title>
+    
+    <synopsis>Questo strumento estrae le citazioni fatte in un documento 
+    LaTeX e genera un file BibTeX che li contiene.</synopsis>
+
+    <para>Di solito, uno immagazzina le sue bibliografie in uno o più
+    grandi file BibTeX, e lascia che <command>bibtex</command> estragga le
+    voci usate in un documento LaTeX. Ma qualche volta è conveniente 
+    creare un pacchetto autocontenuto (per esempio per condividerlo nella forma
+    nativa con qualcun altro, o per metterlo da parte), con un file BibTeX 
+    minimo contenente esattamente le voci usate in LaTeX. Questo strumento
+    fa esattamente questo: legge un file LaTeX <filename>.aux</filename>
+    ed estrae da uno specifico database BibTeX le voci corrispondenti.</para>
+  </sect2>
+
+  <sect2>
+    <title>pybconvert</title>
+    
+    <synopsis>Questo strumento effettua conversioni da un formato bibliografico
+    a un altro.</synopsis>
+
+    <para>La sintassi generale è abbastanza semplice. Per convertire da Refer
+    a BibTeX per esempio, digita appena: </para>
+
+    <screen>
+<prompt>&gt; </prompt><command>pybconvert</command> refer..bibtex <filename>toto.refer</filename> <filename>toto.bib</filename>
+</screen>
+  </sect2>
+
+  <sect2>
+    <title>pybformat</title>
+
+    <synopsis>Questo script genera una bibliografia conforme a uno stile
+    bibliografico, e la restituisce in uno specifico formato (per esempio
+    HTML, LaTeX,...) come dovrebbe apparire in un documento.</synopsis>
+    
+    <para>La forma generale del comando è</para>
+    <screen>
+<prompt>&gt; </prompt><command>pybformat</command> [optioni] &lt;style&gt;:&lt;format&gt; <filename>database...</filename>
+</screen>
+
+    <para>Questo comando userà un formato chiamato
+    <emphasis>alpha</emphasis>    per creare una bibliografia  in
+    <emphasis>LaTeX</emphasis>.  Numerose opzioni sono disponibili per
+    creare questi documenti:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para><option>--output=... o -o ...</option>:    specifica il nome del
+	file di output. STDOUT è il predefinito</para>
+      </listitem>
+      <listitem>
+	<para><option>--header=... o -H ...</option>: definisce un file che sarà
+	anteposto al file di output.</para>
+      </listitem>
+      <listitem>
+	<para><option>--footer=... o -F ...</option>: definisce un file che sarà
+	accodato al file di output.</para>
+      </listitem>
+      <listitem>
+	<para><option>--list=styles o -l styles</option>: elenca gli stili
+	disponibili</para>
+      </listitem>
+      <listitem>
+	<para><option>--list=output o -l output</option>: elenca i formati di
+	output disponibili</para>
+      </listitem>
+    </itemizedlist>
+
+  </sect2>
+</sect1>
+
+<sect1>
+  <title>Scrivere i propri script</title>
+
+  <para>Nel seguente,  tutti i moduli a cui ci si riferirà apparterranno
+  al dominio <symbol>Pyblio</symbol>. Perciò,  per accedere ai membri
+  del modulo <symbol>Open</symbol>, dovrai scrivere all'inizio del tuo
+  script qualcosa come</para>
+
+  <programlisting>from Pyblio import Open</programlisting>
+
+  <para>Il modulo <symbol>Base</symbol> contiene alcune delle più basilari
+  classi usate nell'applicazione:</para>
+
+  <itemizedlist>
+    <listitem>
+      <para><symbol>Base.Entry</symbol>    rappresenta una specifica
+      voce bibliografica, con tutti i suoi campi. Si comporta come una tabella
+      hash che restituisce il contenuto di un campo dato il suo nome</para>
+    </listitem>
+    <listitem>
+      <para><symbol>Base.Key</symbol>  è l'oggetto che identifica unicamente
+      una voce.  Questo oggetto deve essere unico nell'intera
+      applicazione, ed è composto da una parte del database e da una parte
+      della voce.</para>
+    </listitem>
+    <listitem>
+      <para><symbol>Base.DataBase</symbol>  è la classe dalla quale eredita
+      ogni tipo di database. Si comporta come una tabella hash che restituisce
+      una Base.Entry data una Base.Key</para>
+    </listitem>
+  </itemizedlist>
+
+  <para>Questo modulo definisce anche uno speciale database, chiamato
+  <symbol>Base.Reference</symbol>, che può tenere parecchi database o
+  sottoinsiemi di database.  Questo database  è restituito anche da parecchie
+  operazioni, come la ricerca e l'ordinamento.</para>
+
+</sect1>
