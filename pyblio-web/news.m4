@@ -8,6 +8,10 @@ m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
 
+news_item([[24/01/2001]], [[Johann Visagie has ported pybliographer to the
+FreeBSD ports tree. Thanks a lot for making installation seamless for
+FreeBSD people.]]),
+
 news_item([[22/01/2001]], [[I've released pybliographer 1.0.8, which
 finally fixes the search button problem. In this release you'll find a
 few new translations and an updated version of the italian

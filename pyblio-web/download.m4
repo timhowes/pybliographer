@@ -36,14 +36,16 @@ href="http://www.daa.com.au/~james/pygtk">Gnome-Python</a></b> version
 <h2>Download pybliographer, version pyblio_last</h2>
 
 <p>The latest release (<b>pyblio_last</b>) is available more or less
- simultaneously in the following formats:
+ simultaneously in the following formats and for the following systems:
 
 m4_define(rpm_bin, 1)
 m4_define(rpm_src, 1)
 
 
 <dl>
-  <dt><i>Debian</i><dd> from any <a href="http://packages.debian.org/unstable/text/pybliographer.html">debian</a> mirror.</dd>
+  <dt><i>Debian</i><dd> from any <a href="http://packages.debian.org/unstable/text/pybliographer.html">Debian</a> mirror.</dd>
+
+  <dt><i>FreeBSD</i><dd>from any <a href="http://www.freebsd.org/cgi/cvsweb.cgi/ports/misc/pybliographer/">FreeBSD</a> mirror.
 
   <dt><i>RPM</i><dd>
 
