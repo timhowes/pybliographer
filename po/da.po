@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
 "POT-Creation-Date: 2000-08-26 14:43+0200\n"
-"PO-Revision-Date: 2000-09-07 02:33+0200\n"
+"PO-Revision-Date: 2000-11-24 02:33+0200\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -20,15 +20,15 @@ msgstr "BibTex"
 
 #: Pyblio/ConfDir/BibTeX.py:10
 msgid "BibTeX parser configuration"
-msgstr ""
+msgstr "BibTex konfiguration af fortolker"
 
 #: Pyblio/ConfDir/BibTeX.py:13
 msgid "Strict Parsing"
-msgstr ""
+msgstr "Streng fortolkning"
 
 #: Pyblio/ConfDir/BibTeX.py:14
 msgid "Turn warnings into errors"
-msgstr ""
+msgstr "Lav advarsler om til fejl"
 
 #: Pyblio/ConfDir/BibTeX.py:18
 msgid "Macros"
@@ -36,7 +36,7 @@ msgstr "Makroer"
 
 #: Pyblio/ConfDir/BibTeX.py:19
 msgid "BibTeX @String{} macros"
-msgstr ""
+msgstr "BibTeX @String{} makroer"
 
 #: Pyblio/ConfDir/BibTeX.py:24
 msgid "Date Fields"
@@ -44,7 +44,7 @@ msgstr "Datofelter"
 
 #: Pyblio/ConfDir/BibTeX.py:25
 msgid "Links from `real' date field to the two bibtex"
-msgstr ""
+msgstr "Lænker fra 'rigtig' datofelt til to bibtex"
 
 #: Pyblio/ConfDir/BibTeX.py:29
 msgid "Month values"
@@ -52,7 +52,7 @@ msgstr "Månedsværdier"
 
 #: Pyblio/ConfDir/BibTeX.py:30
 msgid " A hash table linking month names to their"
-msgstr ""
+msgstr " EN hash-tabel der lænker månedsnavne til deres"
 
 #: Pyblio/ConfDir/Base.py:15
 msgid "Base"
@@ -60,15 +60,15 @@ msgstr "Base"
 
 #: Pyblio/ConfDir/Base.py:16
 msgid "Elementary configuration"
-msgstr "Elementær konfiguration"
+msgstr "Elementære konfiguration"
 
 #: Pyblio/ConfDir/Base.py:19
 msgid "Advertise"
-msgstr ""
+msgstr "Offentliggør"
 
 #: Pyblio/ConfDir/Base.py:20
 msgid "Specify wether or not the program should add a message"
-msgstr ""
+msgstr "Angiv om programmet bør tilføje en besked"
 
 #: Pyblio/ConfDir/Base.py:25
 msgid "Fields"
@@ -263,7 +263,7 @@ msgstr "Konference-sted"
 
 #: Pyblio/ConfDir/Base.py:79
 msgid "Cote"
-msgstr ""
+msgstr "Cote"
 
 #: Pyblio/ConfDir/Base.py:80
 msgid "IEEECN"
@@ -295,7 +295,7 @@ msgstr "Publiceringsmåde"
 
 #: Pyblio/ConfDir/Base.py:87
 msgid "To Appear"
-msgstr ""
+msgstr "Kommer"
 
 #: Pyblio/ConfDir/Base.py:88
 msgid "From"
@@ -347,7 +347,7 @@ msgstr "Bog"
 
 #: Pyblio/ConfDir/Base.py:106
 msgid "Booklet"
-msgstr ""
+msgstr "Pjece"
 
 #: Pyblio/ConfDir/Base.py:110
 msgid "In Book"
@@ -359,7 +359,7 @@ msgstr "I samling"
 
 #: Pyblio/ConfDir/Base.py:119
 msgid "In Proceedings"
-msgstr ""
+msgstr "I proceedings"
 
 #: Pyblio/ConfDir/Base.py:125
 msgid "Manual"
@@ -379,7 +379,7 @@ msgstr "Phd afhandling"
 
 #: Pyblio/ConfDir/Base.py:141
 msgid "Proceedings"
-msgstr ""
+msgstr "Proceedings"
 
 #: Pyblio/ConfDir/Base.py:147
 msgid "Technical Report"
@@ -399,15 +399,15 @@ msgstr "Standard type for en Ovid indgang"
 
 #: Pyblio/ConfDir/Ovid.py:15 Pyblio/ConfDir/Refer.py:7
 msgid "Mapping"
-msgstr ""
+msgstr "Mapning"
 
 #: Pyblio/ConfDir/Ovid.py:16
 msgid "A mapping between the Ovid field name and the"
-msgstr ""
+msgstr "En mapning mellem Ovid feltnavn og"
 
 #: Pyblio/ConfDir/Refer.py:8
 msgid "Field names correspondances"
-msgstr ""
+msgstr "Tilsvarende feltnavne"
 
 #: Pyblio/ConfDir/Gnome.py:7
 msgid "Gnome"
@@ -423,7 +423,7 @@ msgstr "Kolonner"
 
 #: Pyblio/ConfDir/Gnome.py:12
 msgid "Fields displayed on the main screen of the interface"
-msgstr ""
+msgstr "Felter vist på hovedskærmen for brugerfladen"
 
 #: Pyblio/ConfDir/Gnome.py:16
 msgid "Tooltips"
@@ -435,7 +435,7 @@ msgstr "Aktiver værktøjstips?"
 
 #: Pyblio/ConfDir/Gnome.py:21
 msgid "Native Edit"
-msgstr "Almindelig regigering"
+msgstr "Egen redigering"
 
 #: Pyblio/ConfDir/Gnome.py:22
 msgid "Edit the entries in their native format by default ?"
@@ -467,11 +467,11 @@ msgstr "Antal indgange"
 
 #: Pyblio/ConfDir/Medline.py:7
 msgid "Medline Mapping"
-msgstr ""
+msgstr "Medline mapning"
 
 #: Pyblio/ConfDir/Medline.py:8
 msgid "Medline field names correspondances"
-msgstr ""
+msgstr "Tilsvarende Medline feltnavne"
 
 #: Pyblio/Autoload.py:57
 #, c-format
@@ -528,7 +528,7 @@ msgstr "Liste (%s)"
 #: Pyblio/Config.py:318
 #, c-format
 msgid "Dictionary (%s, %s)"
-msgstr ""
+msgstr "Ordbog (%s, %s)"
 
 #: Pyblio/Fields.py:265
 msgid "Illegal year value"
@@ -560,13 +560,13 @@ msgstr "intet uddata rør '%s'"
 #: Pyblio/Open.py:97
 #, c-format
 msgid "method `%s' provides no opener"
-msgstr ""
+msgstr "metode '%s' indeholder ingen åbner"
 
 # .././Pyblio/Open.py:105 :151
 #: Pyblio/Open.py:105 Pyblio/Open.py:151
 #, c-format
 msgid "File `%s' does not exist"
-msgstr ""
+msgstr "Fil '%s' eksisterer ikke"
 
 # .././Pyblio/Open.py:116 :162
 #: Pyblio/Open.py:116 Pyblio/Open.py:162
@@ -577,7 +577,7 @@ msgstr "Véd ikke hvordan '%s' skal åbnes"
 #: Pyblio/Open.py:143
 #, c-format
 msgid "method `%s' provides no iterator"
-msgstr ""
+msgstr "metode '%s' indeholder ingen iterator"
 
 # .././Pyblio/Format/BibTeX.py:345 :403
 #: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
@@ -617,11 +617,11 @@ msgstr "År"
 
 #: Pyblio/GnomeUI/Editor.py:301
 msgid "Invalid day field in date"
-msgstr ""
+msgstr "Ugyldigt felt for dag i dato"
 
 #: Pyblio/GnomeUI/Editor.py:309
 msgid "Invalid month field in date"
-msgstr ""
+msgstr "Ugyldigt felt for måned i dato"
 
 #: Pyblio/GnomeUI/Editor.py:317
 msgid "Invalid year field in date"
@@ -629,7 +629,7 @@ msgstr "Ugyldigt felt for år i dato"
 
 #: Pyblio/GnomeUI/Editor.py:426
 msgid "Entry type"
-msgstr ""
+msgstr "Indgangstype"
 
 #: Pyblio/GnomeUI/Editor.py:469
 msgid "Create Field"
@@ -654,11 +654,11 @@ msgstr "Ugyldigt nøgleformat"
 #: Pyblio/GnomeUI/Editor.py:604
 #, c-format
 msgid "Key `%s' already exists"
-msgstr ""
+msgstr "Nøgle '%s' eksisteret allerede"
 
 #: Pyblio/GnomeUI/Editor.py:671
 msgid "Error in native string parsing"
-msgstr ""
+msgstr "Fejl ved egen streng-fortolkning"
 
 #: Pyblio/GnomeUI/Editor.py:684
 msgid "Edit entry"
@@ -667,11 +667,11 @@ msgstr "Redigér indgang"
 # .././Pyblio/GnomeUI/Editor.py:698 :739
 #: Pyblio/GnomeUI/Editor.py:698 Pyblio/GnomeUI/Editor.py:739
 msgid "Native Editing"
-msgstr ""
+msgstr "Egen redigering"
 
 #: Pyblio/GnomeUI/Editor.py:751
 msgid "Standard Editing"
-msgstr ""
+msgstr "Almindelig redigering"
 
 # :207
 #: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
@@ -681,7 +681,7 @@ msgstr "Fil"
 
 #: Pyblio/GnomeUI/FileSelector.py:74
 msgid "Bibliography type:"
-msgstr ""
+msgstr "Bibliografi-type:"
 
 #: Pyblio/GnomeUI/Index.py:66
 msgid "Add..."
@@ -733,6 +733,8 @@ msgid ""
 "while compiling %s\n"
 "error: %s"
 msgstr ""
+"Ved oversættelse af %s\n"
+"fejl: %s"
 
 #: Pyblio/GnomeUI/Sort.py:42
 msgid "Select sort criterions"
@@ -748,19 +750,19 @@ msgstr "Sorteringskriterier"
 
 #: Pyblio/GnomeUI/Sort.py:66
 msgid "[Entry Type]"
-msgstr ""
+msgstr "[Indgangstype]"
 
 #: Pyblio/GnomeUI/Sort.py:67
 msgid "[Key Value]"
-msgstr ""
+msgstr "[nøgleværdi]"
 
 #: Pyblio/GnomeUI/Sort.py:92
 msgid "Reorder"
-msgstr ""
+msgstr "Sortér igen"
 
 #: Pyblio/GnomeUI/Sort.py:93
 msgid "Groups the active fields on the top of the list"
-msgstr ""
+msgstr "Grupperer de aktive felter på toppen af listen"
 
 #: Pyblio/GnomeUI/Sort.py:97
 msgid "Unselect all"
@@ -775,6 +777,8 @@ msgid ""
 "The following errors occured:\n"
 "\n"
 msgstr ""
+"De følgende fejl indtraf:\n"
+"\n"
 
 #: Pyblio/GnomeUI/__init__.py:36
 msgid "Internal Error"
@@ -880,6 +884,8 @@ msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
 msgstr ""
+"kan ikke åbne fil `%s' for skrivning:\n"
+"%s"
 
 #: Pyblio/GnomeUI/Document.py:243
 #, c-format
@@ -887,6 +893,8 @@ msgid ""
 "Error while parsing `%s':\n"
 "%s"
 msgstr ""
+"Fejl ved fortolkning `%s':\n"
+"%s"
 
 #: Pyblio/GnomeUI/Document.py:262
 msgid "New database"
@@ -895,40 +903,42 @@ msgstr "Ny database"
 # .././Pyblio/GnomeUI/Document.py:270 :274
 #: Pyblio/GnomeUI/Document.py:270 Pyblio/GnomeUI/Document.py:274
 msgid "[no entry]"
-msgstr ""
+msgstr "[ingen indgang]"
 
 #: Pyblio/GnomeUI/Document.py:271
 msgid "[1 entry]"
-msgstr ""
+msgstr "[1 indgang]"
 
 #: Pyblio/GnomeUI/Document.py:272
 #, c-format
 msgid "[%d entries]"
-msgstr ""
+msgstr "[%d indgange]"
 
 #: Pyblio/GnomeUI/Document.py:275
 #, c-format
 msgid "[%d/1 entry]"
-msgstr ""
+msgstr "[%d/1 indgange]"
 
 #: Pyblio/GnomeUI/Document.py:276
 #, c-format
 msgid "[%d/%d entries]"
-msgstr ""
+msgstr "[%d/%d indgange]"
 
 #: Pyblio/GnomeUI/Document.py:281
 msgid "[modified]"
-msgstr ""
+msgstr "[ændret]"
 
 #: Pyblio/GnomeUI/Document.py:291
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
 msgstr ""
+"Databasen er blevet ændret.\n"
+"Fortryd ændringer ?"
 
 #: Pyblio/GnomeUI/Document.py:307
 msgid "Merge file"
-msgstr ""
+msgstr "Flettefil"
 
 # .././Pyblio/GnomeUI/Document.py:319 :379
 #: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:379
@@ -949,12 +959,16 @@ msgid ""
 "Unable to save `%s':\n"
 "%s"
 msgstr ""
+"Kan ikke gemme `%s':\n"
+"%s"
 
 #: Pyblio/GnomeUI/Document.py:411
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
 msgstr ""
+"En intern fejl hændte ved gemning\n"
+"Prøv Gem som..."
 
 #: Pyblio/GnomeUI/Document.py:422
 msgid "Save As..."
@@ -966,6 +980,8 @@ msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
 msgstr ""
+"Filen `%s' eksisterer allerede.\n"
+"Skal den overskrives ?"
 
 #: Pyblio/GnomeUI/Document.py:435
 #, c-format
@@ -973,10 +989,12 @@ msgid ""
 "During opening:\n"
 "%s"
 msgstr ""
+"Ved åbning:\n"
+"%s"
 
 #: Pyblio/GnomeUI/Document.py:455
 msgid "Reopen error"
-msgstr ""
+msgstr "Genåbningsfejl"
 
 #: Pyblio/GnomeUI/Document.py:496
 #, c-format
@@ -984,29 +1002,31 @@ msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
 msgstr ""
+"En indgang kaldet '%s' eksisterer allerede.\n"
+"Skal den omdøbes, og tilføjes alligevel?"
 
 #: Pyblio/GnomeUI/Document.py:532
 msgid "Really remove all the entries ?"
-msgstr ""
+msgstr "Skal alle indgange virkelig fjernes?"
 
 #: Pyblio/GnomeUI/Document.py:552
 msgid "Create new entry"
-msgstr ""
+msgstr "Opret ny indgang"
 
 #: Pyblio/GnomeUI/Document.py:566
 #, c-format
 msgid "Really edit %d entries ?"
-msgstr ""
+msgstr "Skal %d indgange virkelig redigeres?"
 
 #: Pyblio/GnomeUI/Document.py:601
 #, c-format
 msgid "Remove all the %d entries ?"
-msgstr ""
+msgstr "Fjern alle %d indgange?"
 
 #: Pyblio/GnomeUI/Document.py:603
 #, c-format
 msgid "Remove entry `%s' ?"
-msgstr ""
+msgstr "Fjern indgang '%s'?"
 
 # .././Pyblio/GnomeUI/Document.py:661 :668
 #: Pyblio/GnomeUI/Document.py:661 Pyblio/GnomeUI/Document.py:668
@@ -1015,52 +1035,56 @@ msgid ""
 "Can't connect to LyX:\n"
 "%s"
 msgstr ""
+"Kan ikke forbinde til LyX:\n"
+"%s"
 
 #: Pyblio/GnomeUI/Document.py:709
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
 msgstr ""
+"Installér venligst bug-buddy\n"
+"for at bruge denne facilitet"
 
 #: Pyblio/GnomeUI/Document.py:720
 msgid "This program is copyrighted under the GNU GPL"
-msgstr ""
+msgstr "Dette program er ophavsretligt beskyttet under GNU GPL"
 
 #: Pyblio/GnomeUI/Document.py:722
 msgid "Gnome interface to the Pybliographer system."
-msgstr ""
+msgstr "Gnome brugerflade til Pybliographer-systemet."
 
 #: Pyblio/GnomeUI/Document.py:727
 msgid "Pybliographer Home Page"
-msgstr ""
+msgstr "Pybliographers hjemmeside"
 
 #: Pyblio/GnomeUI/Format.py:37
 msgid "Format entries"
-msgstr ""
+msgstr "Formatér indgange"
 
 #: Pyblio/GnomeUI/Format.py:51
 msgid "Bibliography style:"
-msgstr ""
+msgstr "Bibliografistil:"
 
 #: Pyblio/GnomeUI/Format.py:52
 msgid "Select style"
-msgstr ""
+msgstr "Vælg stil"
 
 #: Pyblio/GnomeUI/Format.py:58
 msgid "Output format:"
-msgstr ""
+msgstr "Uddata-format:"
 
 #: Pyblio/GnomeUI/Format.py:75
 msgid "Output File:"
-msgstr ""
+msgstr "Uddatafil:"
 
 #: Pyblio/GnomeUI/Format.py:76
 msgid "Select output file"
-msgstr ""
+msgstr "Vælg uddatafil"
 
 #: Pyblio/GnomeUI/Config.py:46
 msgid "Choose your preferences"
-msgstr ""
+msgstr "Vælg dine indstillinger"
 
 #: Pyblio/GnomeUI/Config.py:111
 #, c-format
@@ -1069,109 +1093,114 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Element `%s':\n"
+"\n"
+"%s"
 
 #: Pyblio/GnomeUI/Config.py:146
 msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
+"Nogle ændringer kræver at Pybliographic genstartes\n"
+"for at de korrekt kan blive taget hensyn til"
 
 #: Pyblio/GnomeUI/Config.py:291
 msgid "True"
-msgstr ""
+msgstr "Sand"
 
 #: Pyblio/GnomeUI/Config.py:292
 msgid "False"
-msgstr ""
+msgstr "Falsk"
 
 #: Pyblio/GnomeUI/Config.py:432
 msgid "Add"
-msgstr ""
+msgstr "Tilføj"
 
 #: Pyblio/GnomeUI/Config.py:435
 msgid "Update"
-msgstr ""
+msgstr "Opdatér"
 
 # .././Pyblio/GnomeUI/Config.py:438 :536 .././Pyblio/GnomeUI/Fields.py:95 :225
 #: Pyblio/GnomeUI/Config.py:438 Pyblio/GnomeUI/Config.py:536
 #: Pyblio/GnomeUI/Fields.py:95 Pyblio/GnomeUI/Fields.py:225
 msgid "Remove"
-msgstr ""
+msgstr "Fjern"
 
 #: Pyblio/GnomeUI/Config.py:524
 msgid "Value"
-msgstr ""
+msgstr "Værdi"
 
 # .././Pyblio/GnomeUI/Config.py:533 .././Pyblio/GnomeUI/Fields.py:92 :222
 #: Pyblio/GnomeUI/Config.py:533 Pyblio/GnomeUI/Fields.py:92
 #: Pyblio/GnomeUI/Fields.py:222
 msgid "Set"
-msgstr ""
+msgstr "Sæt"
 
 #: Pyblio/GnomeUI/Config.py:549
 msgid "Key:"
-msgstr ""
+msgstr "Nøgle:"
 
 #: Pyblio/GnomeUI/Config.py:551
 msgid "Value:"
-msgstr ""
+msgstr "Værdi:"
 
 #: Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"
-msgstr ""
+msgstr "Konfiguration af felter"
 
 #: Pyblio/GnomeUI/Fields.py:58
 msgid "Name"
-msgstr ""
+msgstr "Navn"
 
 #: Pyblio/GnomeUI/Fields.py:69
 msgid "Name:"
-msgstr ""
+msgstr "Navn:"
 
 #: Pyblio/GnomeUI/Fields.py:71
 msgid "Type:"
-msgstr ""
+msgstr "Type:"
 
 #: Pyblio/GnomeUI/Fields.py:185
 msgid "Entries configuration"
-msgstr ""
+msgstr "Konfiguration af indgange"
 
 #: Pyblio/GnomeUI/Fields.py:195
 msgid "Entry"
-msgstr ""
+msgstr "Indgang"
 
 #: Pyblio/GnomeUI/Fields.py:206
 msgid "Entry Name:"
-msgstr ""
+msgstr "Indgangsnavn:"
 
 #: Pyblio/GnomeUI/Fields.py:211
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: pybliographer.py:38
 #, c-format
 msgid "This is %s, version %s"
-msgstr ""
+msgstr "Dette er %s, version %s"
 
 # .././pybliographer.py:42 :49
 #: pybliographer.py:42 pybliographer.py:49
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
-msgstr ""
+msgstr "Dette er frit programmel med ABSOLUT INGEN GARANTIER."
 
 #: pybliographer.py:43
 msgid "For details, type `warranty'."
-msgstr ""
+msgstr "For detaljer, indtast 'warranty'."
 
 # .././pybliographer.py:110 :158
 #: pybliographer.py:110 pybliographer.py:158
 #, c-format
 msgid "%s: error: can't open file `%s'"
-msgstr ""
+msgstr "%s: fejl: kan ikke åbne fil '%s'"
 
 #: pybliographer.py:123
 #, c-format
 msgid "For help, run %s and type `help' at the prompt"
-msgstr ""
+msgstr "For hjælp, kør %s og indtast 'help' ved prompten"
 
 #: pybliographer.py:132
 msgid ""
@@ -1179,65 +1208,68 @@ msgid ""
 "\thelp     to get some help\n"
 "\tquit     to quit\n"
 msgstr ""
+"Nyttige kommandoer:\n"
+"\thelp     for at få lidt hjælp\n"
+"\tquit     for at afslutte\n"
 
 #: scripts/pybcompact.py:30
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
-msgstr ""
+msgstr "brug: pybcompact <latexfil> <bibtexfiler...>"
 
 #: scripts/pybcompact.py:34
 #, c-format
 msgid "pybcompact: error: %s\n"
-msgstr ""
+msgstr "pybcompact: fejl: %s\n"
 
 #: scripts/pybcompact.py:97
 msgid "no entry"
-msgstr ""
+msgstr "ingen indgang"
 
 #: scripts/pybcompact.py:142
 #, c-format
 msgid "can't find the following entries: %s"
-msgstr ""
+msgstr "Kan ikke finde de følgende indgange: %s"
 
 #: scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
-msgstr ""
+msgstr "brug: pybconvert <kilde>..<mål> <inddata> [uddata]"
 
 #: scripts/pybconvert.py:38
 msgid "pybconvert: bad conversion format"
-msgstr ""
+msgstr "pybconvert: dårligt konverteringsformat"
 
 #: scripts/pybformat.py:34
 msgid "usage: pybformat [bibtexfiles...]\n"
-msgstr ""
+msgstr "brug: pybformat [bibtexfiler...]\n"
 
 #: scripts/pybformat.py:38
 #, c-format
 msgid "pybformat: error: %s\n"
-msgstr ""
+msgstr "pybformat: fejl: %s\n"
 
 #: scripts/pybformat.py:44
 #, c-format
 msgid "pybformat: warning: %s\n"
-msgstr ""
+msgstr "pybformat: advarsel: %s\n"
 
 #: scripts/pybformat.py:141 scripts/pybtex.py:84
 #, c-format
 msgid "can't find style `%s'"
-msgstr ""
+msgstr "kan ikke finde stil '%s'"
 
 #: scripts/pybtex.py:34
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
-msgstr ""
+msgstr "brug: pybtex <latexfil> [bibtexfiler...]"
 
 #: scripts/pybtex.py:38
 #, c-format
 msgid "pybtex: error: %s\n"
-msgstr ""
+msgstr "pybtex: fejl: %s\n"
 
 #: scripts/pybtex.py:59
 msgid "pybtex: warning: the following keys were not resolved"
-msgstr ""
+msgstr "pybtex: advarsel: de følgende nøgler blev ikke løst"
 
 #: scripts/pybtex.py:64
 msgid "no style defined"
-msgstr ""
+msgstr "ingen stil defineret"
