@@ -2,15 +2,19 @@
 # Copyright (C) 1999, 2000 Free Software Foundation, Inc.
 # Christian Meyer <linux@chrisime.de>, 2000.
 #
+#
+# Da stehen noch ein paar Strings aus, bei denen ich mir absolut
+# nicht sicher bin! -cm-
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.4\n"
-"POT-Creation-Date: 2000-08-12 15:21+0200\n"
-"PO-Revision-Date: 2000-08-12 14:27+0200\n"
+"POT-Creation-Date: 2000-08-14 22:57+0200\n"
+"PO-Revision-Date: 2000-08-14 22:51+0200\n"
 "Last-Translator: Christian Meyer <linux@chrisime.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=ISO 8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: Pyblio/ConfDir/BibTeX.py:9
@@ -43,7 +47,7 @@ msgstr "Datumsfelder"
 
 #: Pyblio/ConfDir/BibTeX.py:25
 msgid "Links from `real' date field to the two bibtex"
-msgstr "Verweise von dem `realen' Datumsfled zu den zwei bibtex"
+msgstr "Verweise von dem `realen' Datumsfeld zu den zwei bibtex"
 
 #: Pyblio/ConfDir/BibTeX.py:29
 msgid "Month values"
@@ -187,7 +191,7 @@ msgstr "Gegenstand"
 
 #: Pyblio/ConfDir/Base.py:60
 msgid "Ownership"
-msgstr "Besitz"
+msgstr "Besitztum"
 
 #: Pyblio/ConfDir/Base.py:61
 msgid "Series"
@@ -398,7 +402,6 @@ msgid "Default type for an Ovid entry"
 msgstr "Standardtyp für einen `Ovid'-Eintrag"
 
 #: Pyblio/ConfDir/Ovid.py:15 Pyblio/ConfDir/Refer.py:7
-#, fuzzy
 msgid "Mapping"
 msgstr "Mapping"
 
@@ -416,7 +419,7 @@ msgstr "Gnome"
 
 #: Pyblio/ConfDir/Gnome.py:8
 msgid "Gnome interface configuration"
-msgstr "Gnome Interface-Konfiguration"
+msgstr "Gnome Schnittstellen-Konfiguration"
 
 #: Pyblio/ConfDir/Gnome.py:11
 msgid "Columns"
@@ -424,7 +427,7 @@ msgstr "Spalten"
 
 #: Pyblio/ConfDir/Gnome.py:12
 msgid "Fields displayed on the main screen of the interface"
-msgstr "Felder, die im Hauptbildschirm des Interfaces angezeigt werden"
+msgstr "Felder, die im Hauptbildschirm der Schnittstelle angezeigt werden"
 
 #: Pyblio/ConfDir/Gnome.py:16
 msgid "Tooltips"
@@ -436,7 +439,7 @@ msgstr "Minihilfen aktivieren ?"
 
 #: Pyblio/ConfDir/Gnome.py:21
 msgid "Native Edit"
-msgstr "Ursprung bearbeiten"
+msgstr "Native bearbeiten"
 
 #: Pyblio/ConfDir/Gnome.py:22
 msgid "Edit the entries in their native format by default ?"
@@ -444,15 +447,15 @@ msgstr "Die Einträge standardmäßig in ihrem Ursprungsformat bearbeiten ?"
 
 #: Pyblio/ConfDir/Gnome.py:23
 msgid "Use native edit by default ?"
-msgstr "Standardmäßig Ursprungsbearbeitung verwenden ?"
+msgstr "Standardmäßig Native-Bearbeitung verwenden ?"
 
 #: Pyblio/ConfDir/Gnome.py:26
 msgid "Searchable"
-msgstr "Suchbar"
+msgstr "Suchfähig"
 
 #: Pyblio/ConfDir/Gnome.py:27
 msgid "Searchable fields"
-msgstr "Suchbare Felder"
+msgstr "Suchfähige Felder"
 
 #: Pyblio/ConfDir/Gnome.py:31
 msgid "History Size"
@@ -656,14 +659,13 @@ msgstr "Schlüssel `%s' existiert bereits"
 
 #: Pyblio/GnomeUI/Editor.py:671
 msgid "Error in native string parsing"
-msgstr "Fehler beim \"Stringparsen\""
+msgstr "Fehler beim `Stringparsen'"
 
 #: Pyblio/GnomeUI/Editor.py:684
 msgid "Edit entry"
 msgstr "Eintrag bearbeiten"
 
 #: Pyblio/GnomeUI/Editor.py:698 Pyblio/GnomeUI/Editor.py:739
-#, fuzzy
 msgid "Native Editing"
 msgstr "Bearbeitung von Native"
 
@@ -783,7 +785,7 @@ msgstr "Interner Fehler"
 
 #: Pyblio/GnomeUI/Document.py:52
 msgid "_New"
-msgstr "_Neu..."
+msgstr "_Neu"
 
 #: Pyblio/GnomeUI/Document.py:54
 msgid "_Merge with..."
@@ -974,7 +976,7 @@ msgid ""
 "Overwrite it ?"
 msgstr ""
 "Die Datei `%s' existiert bereits.\n"
-"Überschreiben?"
+"Überschreiben ?"
 
 #: Pyblio/GnomeUI/Document.py:435
 #, c-format
@@ -996,11 +998,11 @@ msgid ""
 "Rename and add it anyway ?"
 msgstr ""
 "Ein Eintrag mit dem Namen `%s' existiert bereits.\n"
-"Trotzdem umbenennen und hinzufügen?"
+"Trotzdem umbenennen und hinzufügen ?"
 
 #: Pyblio/GnomeUI/Document.py:532
 msgid "Really remove all the entries ?"
-msgstr "Wirklich alle Einträge entfernen?"
+msgstr "Wirklich alle Einträge entfernen ?"
 
 #: Pyblio/GnomeUI/Document.py:552
 msgid "Create new entry"
@@ -1094,7 +1096,7 @@ msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
-"Einige Änderungen erfordern den Neustart von Pybliographic\n"
+"Einige Änderungen erfordern den Neustart von `Pybliographic'\n"
 "um korrekt übernommen zu werden"
 
 #: Pyblio/GnomeUI/Config.py:291
