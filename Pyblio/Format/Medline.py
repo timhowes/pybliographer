@@ -236,7 +236,7 @@ def writer (iter, output):
                 first = auth.first or ''
                 compact = []
                 for seq in string.split (first, ' '):
-                    compact.append (seq [0])
+                    if len (seq) > 0: compact.append (seq [0])
 
                 first = string.join (compact, '')
                 text = string.join ((auth.last or '', first, auth.lineage or ''), ' ')
