@@ -25,6 +25,8 @@
 #  - DnD
 #  - Copy/Paste
 #  - contextual popup menu
+#  - column width storage
+
 
 ''' Main index containing the columned view of the entries '''
 
@@ -84,6 +86,41 @@ class Index (Connector.Publisher):
         # some events we want to react to...
         self.selinfo.connect ('changed', self.select_row)
         self.list.connect ('row-activated', self.entry_edit)
+
+        # ---------- DnD configuration
+ 
+        targets = (
+            (Mime.KEY_TYPE,   0, Mime.KEY),
+            (Mime.ENTRY_TYPE, 0, Mime.ENTRY),
+            )
+ 
+        accept = (
+            (Mime.ENTRY_TYPE, 0, Mime.ENTRY),
+            )
+ 
+        self.list.drag_dest_set (gtk.DEST_DEFAULT_MOTION |
+                                 gtk.DEST_DEFAULT_HIGHLIGHT |
+                                 gtk.DEST_DEFAULT_DROP,
+                                 accept,
+                                 gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
+        self.list.connect ("drag_data_received", self.drag_received)
+ 
+ 
+        self.list.drag_source_set (gtk.gdk.BUTTON1_MASK | gtk.gdk.BUTTON3_MASK,
+                                   targets, gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
+        self.list.connect ('drag_data_get', self.dnd_drag_data_get)
+ 
+        # ---------- Copy/Paste configuration
+ 
+        self.selection_buffer = None
+         
+        self.list.connect ('selection_received', self.selection_received)
+        self.list.connect ('selection_get', self.selection_get)
+        self.list.connect ('selection_clear_event', self.selection_clear)
+ 
+        self.list.selection_add_target (Mime.atom ['self'], Mime.atom ['STRING'], 0)
+        self.list.selection_add_target (Mime.atom ['self'], Mime.atom [Mime.ENTRY_TYPE],
+                                        Mime.ENTRY)
         return
 
 
@@ -93,9 +130,11 @@ class Index (Connector.Publisher):
 
     
     def selection_received (self, widget, selection, info):
-        if selection.length < 0: return
+        data = selection.data
+        
+        if not data: return
  
-        entries = pickle.loads (selection.data)
+        entries = pickle.loads (data)
         self.issue ('drag-received', entries)
         return
 
@@ -116,18 +155,19 @@ class Index (Connector.Publisher):
                 # else, return the full entries
                 text = join (map (str, self.selection_buffer), '\n\n')
         
-        selection.set (1, 8, text)
+        selection.set (Mime.atom ['self'], 8, text)
         return
 
 
     def selection_copy (self, entries):
-        self.clist.selection_owner_set (1, 0)
+        self.list.selection_owner_set (Mime.atom ['self'])
         self.selection_buffer = entries
         return
 
 
     def selection_paste (self):
-        self.clist.selection_convert (1, Mime.atom [Mime.ENTRY_TYPE], 0)
+        self.list.selection_convert (Mime.atom ['self'],
+                                     Mime.atom [Mime.ENTRY_TYPE])
         return
 
         

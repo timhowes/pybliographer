@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-from gtk import *
+import gtk
 
 STRING = 0
 KEY    = 1
@@ -28,7 +28,8 @@ ENTRY  = 2
 KEY_TYPE   = 'application/x-pybliokey'
 ENTRY_TYPE = 'application/x-pybliography'
 
-atom = {}
-
-#atom ['STRING'] = atom_intern ("STRING")
-#atom [ENTRY_TYPE] = atom_intern (ENTRY_TYPE)
+atom = {
+    'STRING': gtk.gdk.atom_intern ("STRING"),
+    'self'  : gtk.gdk.atom_intern ('pybliographic'),
+    ENTRY_TYPE: gtk.gdk.atom_intern (ENTRY_TYPE),
+}
