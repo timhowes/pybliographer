@@ -28,7 +28,8 @@ h ['editor'].width     = 150
 h ['title'].width      = 200
 h ['booktitle'].width  = 200
 h ['date'].width       = 50
-
+h ['-mark-'].width     = 10
+h ['-combined-'].width = 600
 h ['abstract'].widget  = Editor.Text
 
 Config.set ('gnomeui/default',  (150, gtk.JUSTIFY_LEFT, Editor.Entry))
