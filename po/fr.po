@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.4\n"
-"POT-Creation-Date: 2000-06-13 11:10+ZONE\n"
+"POT-Creation-Date: 2000-08-22 00:21+0200\n"
 "PO-Revision-Date: 1999-11-30\n"
 "Last-Translator: Frédéric Gobry <frederic.gobry@epfl.ch>\n"
 "Language-Team: fr <fr@li.org>\n"
@@ -13,239 +13,260 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-latin-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .././Pyblio/Autoload.py:57
+#: Pyblio/Autoload.py:57
+#, c-format
 msgid "warning: can't import %s: %s"
 msgstr "attention: impossible d'importer %s : %s"
 
-#: .././Pyblio/Config.py:53
+#: Pyblio/Config.py:53
+#, c-format
 msgid "value of `%s' should be of type %s"
 msgstr "La valeur de `%s' devrait être de type %s"
 
-#: .././Pyblio/Config.py:196
+#: Pyblio/Config.py:196
 msgid "String"
 msgstr "Chaîne"
 
-#: .././Pyblio/Config.py:205
+#: Pyblio/Config.py:205
 msgid "Boolean"
 msgstr "Booléen"
 
-#: .././Pyblio/Config.py:224
+#: Pyblio/Config.py:224
 msgid "Integer"
 msgstr "Entier"
 
-#: .././Pyblio/Config.py:226
+#: Pyblio/Config.py:226
+#, c-format
 msgid "Integer under %d"
 msgstr "Entier plus petit que %d"
 
-#: .././Pyblio/Config.py:228
+#: Pyblio/Config.py:228
+#, c-format
 msgid "Integer over %d"
 msgstr "Entier plus grand que %d"
 
-#: .././Pyblio/Config.py:230
+#: Pyblio/Config.py:230
+#, c-format
 msgid "Integer between %d and %d"
 msgstr "Entier entre %d et %d"
 
-#: .././Pyblio/Config.py:242
+#: Pyblio/Config.py:242
+#, c-format
 msgid "Element in `%s'"
 msgstr "Élément dans `%s'"
 
-#: .././Pyblio/Config.py:262
+#: Pyblio/Config.py:262
+#, c-format
 msgid "Tuple (%s)"
 msgstr "Séquence (%s)"
 
-#: .././Pyblio/Config.py:283
+#: Pyblio/Config.py:283
+#, c-format
 msgid "List (%s)"
 msgstr "Liste (%s)"
 
-#: .././Pyblio/Config.py:308
+#: Pyblio/Config.py:308
+#, c-format
 msgid "Dictionary (%s, %s)"
 msgstr "Dictionnaire (%s, %s)"
 
-#: .././Pyblio/Fields.py:265
+#: Pyblio/Fields.py:265
 msgid "Illegal year value"
 msgstr "Mauvaise valeur d'année"
 
-#: .././Pyblio/Fields.py:269
+#: Pyblio/Fields.py:269
 msgid "Illegal month value"
 msgstr "Mauvaise valeur de mois"
 
-#: .././Pyblio/Fields.py:273
+#: Pyblio/Fields.py:273
 msgid "Illegal day value"
 msgstr "Mauvaise valeur de jour"
 
-#: .././Pyblio/Fields.py:438
+#: Pyblio/Fields.py:438
+#, c-format
 msgid "in %s"
 msgstr "dans %s"
 
-#: .././Pyblio/LyX.py:39
+#: Pyblio/LyX.py:39
+#, c-format
 msgid "no input pipe `%s'"
 msgstr "pas de pipe d'entrée `%s'"
 
-#: .././Pyblio/LyX.py:45
+#: Pyblio/LyX.py:45
+#, c-format
 msgid "no output pipe `%s'"
 msgstr "pas de pipe de sortie `%s'"
 
-#: .././Pyblio/Open.py:97
+#: Pyblio/Open.py:97
+#, c-format
 msgid "method `%s' provides no opener"
 msgstr "pas de fonction d'ouverture dans `%s'"
 
-#: .././Pyblio/Open.py:105
+#: Pyblio/Open.py:105 Pyblio/Open.py:151
+#, c-format
 msgid "File `%s' does not exist"
 msgstr "Le fichier `%s' n'existe pas"
 
-#: .././Pyblio/Open.py:116
+#: Pyblio/Open.py:116 Pyblio/Open.py:162
+#, c-format
 msgid "don't know how to open `%s'"
 msgstr "je ne sais pas comment ouvrir `%s'"
 
-#: .././Pyblio/Open.py:143
+#: Pyblio/Open.py:143
+#, c-format
 msgid "method `%s' provides no iterator"
 msgstr "pas d'itérateur dans la méthode `%s'"
 
-#: .././Pyblio/Format/BibTeX.py:345
+#: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
+#, c-format
 msgid "key `%s' is malformed"
 msgstr "la clé `%s' est mal formée"
 
-#: .././Pyblio/Format/BibTeX.py:366
+#: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
+#, c-format
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: La clé `%s' existe déjà"
 
-#: .././Pyblio/GnomeUI/Editor.py:38
+#: Pyblio/GnomeUI/Editor.py:38
 msgid "Last Name, First Name"
 msgstr "Nom de famille, Prénom"
 
-#: .././Pyblio/GnomeUI/Editor.py:39
+#: Pyblio/GnomeUI/Editor.py:39
 msgid "Text"
 msgstr "Texte"
 
-#: .././Pyblio/GnomeUI/Editor.py:42
+#: Pyblio/GnomeUI/Editor.py:42
 msgid "Reference"
 msgstr "Références..."
 
-#: .././Pyblio/GnomeUI/Editor.py:258
+#: Pyblio/GnomeUI/Editor.py:258
 msgid "Day"
 msgstr "Jour"
 
-#: .././Pyblio/GnomeUI/Editor.py:267
+#: Pyblio/GnomeUI/Editor.py:267
 msgid "Month"
 msgstr "Mois"
 
-#: .././Pyblio/GnomeUI/Editor.py:276
+#: Pyblio/GnomeUI/Editor.py:276
 msgid "Year"
 msgstr "Année"
 
-#: .././Pyblio/GnomeUI/Editor.py:301
+#: Pyblio/GnomeUI/Editor.py:301
 msgid "Invalid day field in date"
 msgstr "Le champ du jour est incorrect"
 
-#: .././Pyblio/GnomeUI/Editor.py:309
+#: Pyblio/GnomeUI/Editor.py:309
 msgid "Invalid month field in date"
 msgstr "Le champ du mois est incorrect"
 
-#: .././Pyblio/GnomeUI/Editor.py:317
+#: Pyblio/GnomeUI/Editor.py:317
 msgid "Invalid year field in date"
 msgstr "Le champ de l'année est incorrect"
 
-#: .././Pyblio/GnomeUI/Editor.py:426
+#: Pyblio/GnomeUI/Editor.py:426
 msgid "Entry type"
 msgstr "Type d'entrée"
 
-#: .././Pyblio/GnomeUI/Config.py:482 .././Pyblio/GnomeUI/Editor.py:428
+#: Pyblio/GnomeUI/Config.py:482 Pyblio/GnomeUI/Editor.py:428
 msgid "Key"
 msgstr "Clé"
 
-#: .././Pyblio/GnomeUI/Editor.py:469
+#: Pyblio/GnomeUI/Editor.py:471
 msgid "Create Field"
 msgstr "Créer le champ"
 
-#: .././Pyblio/GnomeUI/Editor.py:534 .././Pyblio/GnomeUI/Fields.py:178
+#: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:191
 msgid "Mandatory"
 msgstr "Obligatoire"
 
-#: .././Pyblio/GnomeUI/Editor.py:534 .././Pyblio/GnomeUI/Fields.py:179
+#: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:192
 msgid "Optional"
 msgstr "Facultatif"
 
-#: .././Pyblio/GnomeUI/Editor.py:534
+#: Pyblio/GnomeUI/Editor.py:539
 msgid "Extra"
 msgstr "Supplément"
 
-#: .././Pyblio/GnomeUI/Editor.py:596
+#: Pyblio/GnomeUI/Editor.py:601
 msgid "Invalid key format"
 msgstr "Format de clé incorrecte"
 
-#: .././Pyblio/GnomeUI/Editor.py:604
+#: Pyblio/GnomeUI/Editor.py:609
+#, c-format
 msgid "Key `%s' already exists"
 msgstr "La clé `%s' existe déjà"
 
-#: .././Pyblio/GnomeUI/Editor.py:671
+#: Pyblio/GnomeUI/Editor.py:676
 msgid "Error in native string parsing"
 msgstr "Erreur lors de l'analyse du texte natif"
 
-#: .././Pyblio/GnomeUI/Editor.py:684
+#: Pyblio/GnomeUI/Editor.py:689
 msgid "Edit entry"
 msgstr "Édition d'une entrée"
 
-#: .././Pyblio/GnomeUI/Editor.py:698
+#: Pyblio/GnomeUI/Editor.py:703 Pyblio/GnomeUI/Editor.py:744
 msgid "Native Editing"
 msgstr "Édition native"
 
-#: .././Pyblio/GnomeUI/Editor.py:751
+#: Pyblio/GnomeUI/Editor.py:756
 msgid "Standard Editing"
 msgstr "Édition standard"
 
-#: .././Pyblio/GnomeUI/Document.py:193 .././Pyblio/GnomeUI/FileSelector.py:41
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+#: Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
 msgstr "Fichier"
 
-#: .././Pyblio/GnomeUI/FileSelector.py:74
+#: Pyblio/GnomeUI/FileSelector.py:74
 msgid "Bibliography type:"
 msgstr "Type de bibliographie :"
 
-#: .././Pyblio/GnomeUI/Index.py:66
+#: Pyblio/GnomeUI/Index.py:68
 msgid "Add..."
 msgstr "Ajouter..."
 
-#: .././Pyblio/GnomeUI/Index.py:67
+#: Pyblio/GnomeUI/Index.py:69
 msgid "Edit..."
 msgstr "Éditer..."
 
-#: .././Pyblio/GnomeUI/Index.py:68 .././Pyblio/GnomeUI/Search.py:176
+#: Pyblio/GnomeUI/Index.py:70 Pyblio/GnomeUI/Search.py:178
 msgid "Delete"
 msgstr "Effacer"
 
-#: .././Pyblio/GnomeUI/Search.py:109
+#: Pyblio/GnomeUI/Search.py:109
 msgid "Search"
 msgstr "Chercher"
 
-#: .././Pyblio/GnomeUI/Fields.py:211 .././Pyblio/GnomeUI/Search.py:133
+#: Pyblio/GnomeUI/Fields.py:225 Pyblio/GnomeUI/Search.py:133
 msgid "Field"
 msgstr "Champ"
 
-#: .././Pyblio/GnomeUI/Search.py:134
+#: Pyblio/GnomeUI/Search.py:134
 msgid "Pattern"
 msgstr "Valeur"
 
-#: .././Pyblio/GnomeUI/Search.py:149
+#: Pyblio/GnomeUI/Search.py:151
 msgid "Simple Search"
 msgstr "Recherche simple"
 
-#: .././Pyblio/GnomeUI/Search.py:153
+#: Pyblio/GnomeUI/Search.py:155
 msgid "Search command:"
 msgstr "Commande de recherche :"
 
-#: .././Pyblio/GnomeUI/Search.py:159
+#: Pyblio/GnomeUI/Search.py:161
 msgid "Expert Search"
 msgstr "Recherche avancée"
 
-#: .././Pyblio/GnomeUI/Search.py:194
+#: Pyblio/GnomeUI/Search.py:199
 msgid "Full database"
 msgstr "Base de donnée complète"
 
-#: .././Pyblio/GnomeUI/Search.py:229
+#: Pyblio/GnomeUI/Search.py:234
 msgid "internal error during evaluation"
 msgstr "Erreur interne durant l'évaluation"
 
-#: .././Pyblio/GnomeUI/Search.py:278
+#: Pyblio/GnomeUI/Search.py:283
+#, c-format
 msgid ""
 "while compiling %s\n"
 "error: %s"
@@ -253,43 +274,43 @@ msgstr ""
 "Pendant la compilation de `%s'\n"
 "erreur : %s"
 
-#: .././Pyblio/GnomeUI/Sort.py:42
+#: Pyblio/GnomeUI/Sort.py:42
 msgid "Select sort criterions"
 msgstr "Choisir les critères de tri"
 
-#: .././Pyblio/GnomeUI/Sort.py:53
+#: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort direction"
 msgstr "Sens du tri"
 
-#: .././Pyblio/GnomeUI/Sort.py:53
+#: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort criterions"
 msgstr "Critères de tri"
 
-#: .././Pyblio/GnomeUI/Sort.py:66
+#: Pyblio/GnomeUI/Sort.py:66
 msgid "[Entry Type]"
 msgstr "[Type d'entrée]"
 
-#: .././Pyblio/GnomeUI/Sort.py:67
+#: Pyblio/GnomeUI/Sort.py:67
 msgid "[Key Value]"
 msgstr "[Valeur de la Clé]"
 
-#: .././Pyblio/GnomeUI/Sort.py:92
+#: Pyblio/GnomeUI/Sort.py:92
 msgid "Reorder"
 msgstr "Reclasser"
 
-#: .././Pyblio/GnomeUI/Sort.py:93
+#: Pyblio/GnomeUI/Sort.py:93
 msgid "Groups the active fields on the top of the list"
 msgstr "Regroupe les champs actifs en haut de la list"
 
-#: .././Pyblio/GnomeUI/Sort.py:97
+#: Pyblio/GnomeUI/Sort.py:97
 msgid "Unselect all"
 msgstr "Tout déselectionner"
 
-#: .././Pyblio/GnomeUI/Sort.py:98
+#: Pyblio/GnomeUI/Sort.py:98
 msgid "Removes all the sort criterions"
 msgstr "Supprime tous les critères de tri"
 
-#: .././Pyblio/GnomeUI/Utils.py:163
+#: Pyblio/GnomeUI/Utils.py:163
 msgid ""
 "The following errors occured:\n"
 "\n"
@@ -297,99 +318,100 @@ msgstr ""
 "Les erreurs suivantes se sont produites :\n"
 "\n"
 
-#: .././Pyblio/GnomeUI/Document.py:52
+#: Pyblio/GnomeUI/Document.py:52
 msgid "_New"
 msgstr "_Nouveau..."
 
-#: .././Pyblio/GnomeUI/Document.py:54
+#: Pyblio/GnomeUI/Document.py:54
 msgid "_Merge with..."
 msgstr "_Fusionner avec..."
 
-#: .././Pyblio/GnomeUI/Document.py:58
+#: Pyblio/GnomeUI/Document.py:58
 msgid "_Previous Documents"
 msgstr "_Documents précédents"
 
-#: .././Pyblio/GnomeUI/Document.py:65
+#: Pyblio/GnomeUI/Document.py:65
 msgid "About..."
 msgstr "À propos..."
 
-#: .././Pyblio/GnomeUI/Document.py:66
+#: Pyblio/GnomeUI/Document.py:66
 msgid "Submit a Bug Report"
 msgstr "Envoyer un rapport de Bug"
 
-#: .././Pyblio/GnomeUI/Document.py:78
+#: Pyblio/GnomeUI/Document.py:78
 msgid "_Add..."
 msgstr "_Ajouter..."
 
-#: .././Pyblio/GnomeUI/Document.py:79
+#: Pyblio/GnomeUI/Document.py:79
 msgid "_Edit..."
 msgstr "_Editer..."
 
-#: .././Pyblio/GnomeUI/Document.py:80
+#: Pyblio/GnomeUI/Document.py:80
 msgid "_Delete"
 msgstr "E_ffacer"
 
-#: .././Pyblio/GnomeUI/Document.py:83
+#: Pyblio/GnomeUI/Document.py:83
 msgid "S_ort..."
 msgstr "_Trier..."
 
-#: .././Pyblio/GnomeUI/Document.py:87
+#: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
 msgid "_Cite"
 msgstr "_Citer"
 
-#: .././Pyblio/GnomeUI/Document.py:88
+#: Pyblio/GnomeUI/Document.py:88
 msgid "_Format..."
 msgstr "_Formatter..."
 
-#: .././Pyblio/GnomeUI/Document.py:92
+#: Pyblio/GnomeUI/Document.py:92
 msgid "_Fields..."
 msgstr "_Champs..."
 
-#: .././Pyblio/GnomeUI/Document.py:93
+#: Pyblio/GnomeUI/Document.py:93
 msgid "_Entries..."
 msgstr "_Entrées..."
 
-#: .././Pyblio/GnomeUI/Document.py:99
+#: Pyblio/GnomeUI/Document.py:99
 msgid "_File"
 msgstr "_Fichier"
 
-#: .././Pyblio/GnomeUI/Document.py:100
+#: Pyblio/GnomeUI/Document.py:100
 msgid "_Edit"
 msgstr "_Editer"
 
-#: .././Pyblio/GnomeUI/Document.py:102
+#: Pyblio/GnomeUI/Document.py:102
 msgid "_Settings"
 msgstr "_Paramètres"
 
-#: .././Pyblio/GnomeUI/Document.py:103
+#: Pyblio/GnomeUI/Document.py:103
 msgid "_Help"
 msgstr "_Aide"
 
-#: .././Pyblio/GnomeUI/Document.py:107
+#: Pyblio/GnomeUI/Document.py:107
 msgid "Open"
 msgstr "Ouvrir"
 
-#: .././Pyblio/GnomeUI/Document.py:108
+#: Pyblio/GnomeUI/Document.py:108
 msgid "Save"
 msgstr "Sauver"
 
-#: .././Pyblio/GnomeUI/Document.py:110
+#: Pyblio/GnomeUI/Document.py:110
 msgid "Find"
 msgstr "Trouver"
 
-#: .././Pyblio/GnomeUI/Document.py:111
+#: Pyblio/GnomeUI/Document.py:111
 msgid "Cite"
 msgstr "Citer"
 
-#: .././Pyblio/GnomeUI/Document.py:113
+#: Pyblio/GnomeUI/Document.py:113
 msgid "Close"
 msgstr "Fermer"
 
-#: .././Pyblio/GnomeUI/Document.py:193
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
 msgid "Previous Documents"
 msgstr "Documents précédents"
 
-#: .././Pyblio/GnomeUI/Document.py:228
+#: Pyblio/GnomeUI/Document.py:229
+#, c-format
 msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
@@ -397,7 +419,8 @@ msgstr ""
 "Impossible d'ouvrir `%s' en écriture :\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:243
+#: Pyblio/GnomeUI/Document.py:244
+#, c-format
 msgid ""
 "Error while parsing `%s':\n"
 "%s"
@@ -405,35 +428,38 @@ msgstr ""
 "Erreur pendant la lecture de `%s':\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:262
+#: Pyblio/GnomeUI/Document.py:263
 msgid "New database"
 msgstr "Nouvelle base de données"
 
-#: .././Pyblio/GnomeUI/Document.py:270
+#: Pyblio/GnomeUI/Document.py:271 Pyblio/GnomeUI/Document.py:275
 msgid "[no entry]"
 msgstr "[pas d'entrée]"
 
-#: .././Pyblio/GnomeUI/Document.py:271
+#: Pyblio/GnomeUI/Document.py:272
 msgid "[1 entry]"
 msgstr "[1 entrée]"
 
-#: .././Pyblio/GnomeUI/Document.py:272
+#: Pyblio/GnomeUI/Document.py:273
+#, c-format
 msgid "[%d entries]"
 msgstr "[%d entrées]"
 
-#: .././Pyblio/GnomeUI/Document.py:275
+#: Pyblio/GnomeUI/Document.py:276
+#, c-format
 msgid "[%d/1 entry]"
 msgstr "[%d/1 entrée]"
 
-#: .././Pyblio/GnomeUI/Document.py:276
+#: Pyblio/GnomeUI/Document.py:277
+#, c-format
 msgid "[%d/%d entries]"
 msgstr "[%d/%d entrées]"
 
-#: .././Pyblio/GnomeUI/Document.py:281
+#: Pyblio/GnomeUI/Document.py:282
 msgid "[modified]"
 msgstr "[modifiée]"
 
-#: .././Pyblio/GnomeUI/Document.py:291
+#: Pyblio/GnomeUI/Document.py:292
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -441,23 +467,24 @@ msgstr ""
 "Cette base de données a été changée.\n"
 "Abandonner les changements ?"
 
-#: .././Pyblio/GnomeUI/Document.py:307
+#: Pyblio/GnomeUI/Document.py:308
 msgid "Merge file"
 msgstr "Fusionner le fichier"
 
-#: .././Pyblio/GnomeUI/Document.py:319
+#: Pyblio/GnomeUI/Document.py:320 Pyblio/GnomeUI/Document.py:380
 msgid "Open error"
 msgstr "Erreur à l'ouverture"
 
-#: .././Pyblio/GnomeUI/Document.py:343
+#: Pyblio/GnomeUI/Document.py:344
 msgid "Merge status"
 msgstr "Résultat de la fusion"
 
-#: .././Pyblio/GnomeUI/Document.py:354
+#: Pyblio/GnomeUI/Document.py:355
 msgid "Open file"
 msgstr "Ouvrir fichier"
 
-#: .././Pyblio/GnomeUI/Document.py:403
+#: Pyblio/GnomeUI/Document.py:404
+#, c-format
 msgid ""
 "Unable to save `%s':\n"
 "%s"
@@ -465,7 +492,7 @@ msgstr ""
 "Impossible de sauver `%s' :\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:411
+#: Pyblio/GnomeUI/Document.py:412
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -473,11 +500,12 @@ msgstr ""
 "Une erreur interne s'est produite\n"
 "Essayez d'Enregistrer Sous..."
 
-#: .././Pyblio/GnomeUI/Document.py:422
+#: Pyblio/GnomeUI/Document.py:423
 msgid "Save As..."
 msgstr "Enregistrer Sous..."
 
-#: .././Pyblio/GnomeUI/Document.py:428
+#: Pyblio/GnomeUI/Document.py:429
+#, c-format
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
@@ -485,7 +513,8 @@ msgstr ""
 "Le fichier `%s' existe.\n"
 "Faut-il l'écraser ?"
 
-#: .././Pyblio/GnomeUI/Document.py:435
+#: Pyblio/GnomeUI/Document.py:436
+#, c-format
 msgid ""
 "During opening:\n"
 "%s"
@@ -493,11 +522,12 @@ msgstr ""
 "Lors de l'ouverture :\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:455
+#: Pyblio/GnomeUI/Document.py:456
 msgid "Reopen error"
 msgstr "Erreur à la réouverture"
 
-#: .././Pyblio/GnomeUI/Document.py:496
+#: Pyblio/GnomeUI/Document.py:497
+#, c-format
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
@@ -505,27 +535,31 @@ msgstr ""
 "Une entrée appelée `%s' existe déjà.\n"
 "Renommer et ajouter quand même ?"
 
-#: .././Pyblio/GnomeUI/Document.py:532
+#: Pyblio/GnomeUI/Document.py:534
 msgid "Really remove all the entries ?"
 msgstr "Voulez-vous supprimer toutes les entrées ?"
 
-#: .././Pyblio/GnomeUI/Document.py:552
+#: Pyblio/GnomeUI/Document.py:554
 msgid "Create new entry"
 msgstr "Créer une nouvelle entrée"
 
-#: .././Pyblio/GnomeUI/Document.py:566
+#: Pyblio/GnomeUI/Document.py:568
+#, c-format
 msgid "Really edit %d entries ?"
 msgstr "Voulez-vous éditer %d entrées ?"
 
-#: .././Pyblio/GnomeUI/Document.py:601
+#: Pyblio/GnomeUI/Document.py:606
+#, c-format
 msgid "Remove all the %d entries ?"
 msgstr "Supprimer toutes les %d entrées ?"
 
-#: .././Pyblio/GnomeUI/Document.py:603
+#: Pyblio/GnomeUI/Document.py:608
+#, c-format
 msgid "Remove entry `%s' ?"
 msgstr "Voulez-vous supprimer l'entrée `%s' ?"
 
-#: .././Pyblio/GnomeUI/Document.py:661
+#: Pyblio/GnomeUI/Document.py:667 Pyblio/GnomeUI/Document.py:674
+#, c-format
 msgid ""
 "Can't connect to LyX:\n"
 "%s"
@@ -533,7 +567,7 @@ msgstr ""
 "Impossible de se connecter à LyX :\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Document.py:709
+#: Pyblio/GnomeUI/Document.py:721
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -541,47 +575,48 @@ msgstr ""
 "Veuillez installer `bug-buddy'\n"
 "pour utiliser cette fonction"
 
-#: .././Pyblio/GnomeUI/Document.py:720
+#: Pyblio/GnomeUI/Document.py:732
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Ce programme est placé sous la licence GNU GPL"
 
-#: .././Pyblio/GnomeUI/Document.py:722
+#: Pyblio/GnomeUI/Document.py:734
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Une interface graphique pour Pybliographer"
 
-#: .././Pyblio/GnomeUI/Document.py:727
+#: Pyblio/GnomeUI/Document.py:739
 msgid "Pybliographer Home Page"
 msgstr "Page principale de Pybliographer"
 
-#: .././Pyblio/GnomeUI/Format.py:37
+#: Pyblio/GnomeUI/Format.py:37
 msgid "Format entries"
 msgstr "Formatter les entrées"
 
-#: .././Pyblio/GnomeUI/Format.py:51
+#: Pyblio/GnomeUI/Format.py:51
 msgid "Bibliography style:"
 msgstr "Type de bibliographie :"
 
-#: .././Pyblio/GnomeUI/Format.py:52
+#: Pyblio/GnomeUI/Format.py:52
 msgid "Select style"
 msgstr "Choix du style"
 
-#: .././Pyblio/GnomeUI/Format.py:58
+#: Pyblio/GnomeUI/Format.py:58
 msgid "Output format:"
 msgstr "Format de sortie :"
 
-#: .././Pyblio/GnomeUI/Format.py:75
+#: Pyblio/GnomeUI/Format.py:75
 msgid "Output File:"
 msgstr "Fichier de sortie :"
 
-#: .././Pyblio/GnomeUI/Format.py:76
+#: Pyblio/GnomeUI/Format.py:76
 msgid "Select output file"
 msgstr "Choisir le fichier de sortie"
 
-#: .././Pyblio/GnomeUI/Config.py:45
+#: Pyblio/GnomeUI/Config.py:45
 msgid "Choose your preferences"
 msgstr "Choisissez vos préférences"
 
-#: .././Pyblio/GnomeUI/Config.py:93
+#: Pyblio/GnomeUI/Config.py:93
+#, c-format
 msgid ""
 "Item `%s':\n"
 "\n"
@@ -591,7 +626,8 @@ msgstr ""
 "\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Config.py:128
+#: Pyblio/GnomeUI/Config.py:128 Pyblio/GnomeUI/Fields.py:157
+#: Pyblio/GnomeUI/Fields.py:339
 msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
@@ -599,99 +635,104 @@ msgstr ""
 "Certains changements nécessite de redémarrer Pybliographic\n"
 "pour être correctement pris en compte"
 
-#: .././Pyblio/GnomeUI/Config.py:249
+#: Pyblio/GnomeUI/Config.py:249
 msgid "True"
 msgstr "Vrai"
 
-#: .././Pyblio/GnomeUI/Config.py:250
+#: Pyblio/GnomeUI/Config.py:250
 msgid "False"
 msgstr "Faux"
 
-#: .././Pyblio/GnomeUI/Config.py:390
+#: Pyblio/GnomeUI/Config.py:390
 msgid "Add"
 msgstr "Ajouter"
 
-#: .././Pyblio/GnomeUI/Config.py:393
+#: Pyblio/GnomeUI/Config.py:393
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: .././Pyblio/GnomeUI/Config.py:396
+#: Pyblio/GnomeUI/Config.py:396 Pyblio/GnomeUI/Config.py:494
+#: Pyblio/GnomeUI/Fields.py:96 Pyblio/GnomeUI/Fields.py:239
 msgid "Remove"
 msgstr "Supprimer"
 
-#: .././Pyblio/GnomeUI/Config.py:482
+#: Pyblio/GnomeUI/Config.py:482
 msgid "Value"
 msgstr "Valeur"
 
-#: .././Pyblio/GnomeUI/Config.py:491 .././Pyblio/GnomeUI/Fields.py:92
+#: Pyblio/GnomeUI/Config.py:491 Pyblio/GnomeUI/Fields.py:93
+#: Pyblio/GnomeUI/Fields.py:236
 msgid "Set"
 msgstr "Appliquer"
 
-#: .././Pyblio/GnomeUI/Config.py:507
+#: Pyblio/GnomeUI/Config.py:507
 msgid "Key:"
 msgstr "Clé :"
 
-#: .././Pyblio/GnomeUI/Config.py:509
+#: Pyblio/GnomeUI/Config.py:509
 msgid "Value:"
 msgstr "Valeur :"
 
-#: .././Pyblio/GnomeUI/Fields.py:45
+#: Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"
 msgstr "Configuration des Champs"
 
-#: .././Pyblio/GnomeUI/Fields.py:58
+#: Pyblio/GnomeUI/Fields.py:59
 msgid "Name"
 msgstr "Nom"
 
-#: .././Pyblio/GnomeUI/Fields.py:58
+#: Pyblio/GnomeUI/Fields.py:59
 msgid "Type"
 msgstr "Type"
 
-#: .././Pyblio/GnomeUI/Fields.py:69
+#: Pyblio/GnomeUI/Fields.py:70
 msgid "Name:"
 msgstr "Nom :"
 
-#: .././Pyblio/GnomeUI/Fields.py:71
+#: Pyblio/GnomeUI/Fields.py:72
 msgid "Type:"
 msgstr "Type :"
 
-#: .././Pyblio/GnomeUI/Fields.py:185
+#: Pyblio/GnomeUI/Fields.py:198
 msgid "Entries configuration"
 msgstr "Configuration des Entrées"
 
-#: .././Pyblio/GnomeUI/Fields.py:195
+#: Pyblio/GnomeUI/Fields.py:209
 msgid "Entry"
 msgstr "Entrée"
 
-#: .././Pyblio/GnomeUI/Fields.py:206
+#: Pyblio/GnomeUI/Fields.py:220
 msgid "Entry Name:"
 msgstr "Nom de l'entrée :"
 
-#: .././Pyblio/GnomeUI/Fields.py:211
+#: Pyblio/GnomeUI/Fields.py:225
 msgid "Status"
 msgstr "État"
 
-#: .././pybliographer.py:38
+#: pybliographer.py:38
+#, c-format
 msgid "This is %s, version %s"
 msgstr "Bienvenue dans %s, version %s"
 
-#: .././pybliographer.py:42
+#: pybliographer.py:42 pybliographer.py:49
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
 msgstr "Ceci est un logiciel libre, sans AUCUNE GARANTIE"
 
-#: .././pybliographer.py:43
+#: pybliographer.py:43
 msgid "For details, type `warranty'."
 msgstr "Pour plus de détails, tapez `warranty'."
 
-#: .././pybliographer.py:110
+#: pybliographer.py:110 pybliographer.py:158
+#, c-format
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: erreur : impossible d'ouvrir le fichier `%s'"
 
-#: .././pybliographer.py:123
+#: pybliographer.py:123
+#, c-format
 msgid "For help, run %s and type `help' at the prompt"
 msgstr "Pour de l'aide, tapez %s puis le mot `help' à l'invite"
 
-#: .././pybliographer.py:132
+#: pybliographer.py:132
 msgid ""
 "Useful commands:\n"
 "\thelp     to get some help\n"
@@ -701,59 +742,65 @@ msgstr ""
 "\thelp\tpour obtenir de l'aide\n"
 "\tquit\tpour quitter le programme\n"
 
-#: .././scripts/pybcompact.py:30
+#: scripts/pybcompact.py:30
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
 msgstr "usage : pybcompact <fichier latex> <fichiers bibtex...>"
 
-#: .././scripts/pybcompact.py:34
+#: scripts/pybcompact.py:34
+#, c-format
 msgid "pybcompact: error: %s\n"
 msgstr "pybcompact : erreur: %s\n"
 
-#: .././scripts/pybcompact.py:97
+#: scripts/pybcompact.py:97
 msgid "no entry"
 msgstr "pas d'entrée"
 
-#: .././scripts/pybcompact.py:142
+#: scripts/pybcompact.py:142
+#, c-format
 msgid "can't find the following entries: %s"
 msgstr "impossible de trouver les entrées suivantes : %s"
 
-#: .././scripts/pybconvert.py:29
+#: scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
 msgstr "usage : pybconvert <source>..<cible> <entrée> [<sortie>]"
 
-#: .././scripts/pybconvert.py:38
+#: scripts/pybconvert.py:38
 msgid "pybconvert: bad conversion format"
 msgstr "pybconvert : mauvaise spécification de format"
 
-#: .././scripts/pybformat.py:34
+#: scripts/pybformat.py:34
 msgid "usage: pybformat [bibtexfiles...]\n"
 msgstr "usage : pybformat [fichiers bibtex...]\n"
 
-#: .././scripts/pybformat.py:38
+#: scripts/pybformat.py:38
+#, c-format
 msgid "pybformat: error: %s\n"
 msgstr "pybformat : erreur: %s\n"
 
-#: .././scripts/pybformat.py:44
+#: scripts/pybformat.py:44
+#, c-format
 msgid "pybformat: warning: %s\n"
 msgstr "pybformat : attention: %s\n"
 
-#: .././scripts/pybformat.py:141 .././scripts/pybtex.py:84
+#: scripts/pybformat.py:141 scripts/pybtex.py:84
+#, c-format
 msgid "can't find style `%s'"
 msgstr "Impossible de trouver le style `%s'"
 
-#: .././scripts/pybtex.py:34
+#: scripts/pybtex.py:34
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
 msgstr "usage : pybtex <fichier latex> [fichiers bibtex...]"
 
-#: .././scripts/pybtex.py:38
+#: scripts/pybtex.py:38
+#, c-format
 msgid "pybtex: error: %s\n"
 msgstr "pybtex : erreur: %s\n"
 
-#: .././scripts/pybtex.py:59
+#: scripts/pybtex.py:59
 msgid "pybtex: warning: the following keys were not resolved"
 msgstr "pybtex : attention : les clés suivantes n'ont pas été trouvées"
 
-#: .././scripts/pybtex.py:64
+#: scripts/pybtex.py:64
 msgid "no style defined"
 msgstr "pas de style défini"
 
