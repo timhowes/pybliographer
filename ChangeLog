@@ -1,3 +1,11 @@
+2000-04-17  Fred  <fred@pium.home.org>
+
+	* Pyblio/ConfDir/BibTeX.py:
+	splitted bibtex config in 2 files
+
+	* Pyblio/GnomeUI/Config.py:
+	improved GUI for fixed-length config items
+
 2000-04-14  Fred  <fred@pium.home.org>
 
 	* bibtex/bibtex.c:
