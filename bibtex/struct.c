@@ -358,6 +358,8 @@ bibtex_real_string (BibtexStruct * s,
 	    text = g_strdup (s->value.ref);
 	}
 	else {
+	    if (loss) * loss = TRUE;
+
 	    if (dico) {
 		tmp_s = (BibtexStruct *) 
 		    g_hash_table_lookup (dico, s->value.ref);
@@ -370,13 +372,11 @@ bibtex_real_string (BibtexStruct * s,
 					       strip_first_layer, as_latex);
 		}
 		else {
-		    if (loss) * loss = TRUE;
 		    bibtex_warning ("reference `%s' undefined", s->value.text);
 		    text = g_strdup ("<undefined>");
 		}
 	    }
 	    else {
-		if (loss) * loss = TRUE;
 		text = g_strdup ("<undefined>");
 	    }
 	}
