@@ -56,7 +56,7 @@
 ./Pyblio/Style/__init__.py
 ./Pyblio/Style/Parser.py
 ./Pyblio/Style/Generic.py
-./Pyblio/version.py
+./Pyblio/version.py.in
 ./pybliographer.py
 ./pybrc.py
 ./scripts/pybcheck.py
