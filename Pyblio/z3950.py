@@ -489,6 +489,7 @@ class parse_marc2bibtex:  # added code by John Vu to parse MARC data for a singl
                 for subfield in subfields:
                     if subfield[0] == 'a':
                         subfield = string.replace (subfield, '/', '') #some titles have a weird frontslash at the end, this removes it
+                        subfield = string.replace (subfield, ' :', ': ') #colon placement in the title is not visually aesthetic, this corrects it
                         subfield = string.strip (subfield)
                         #subfield = string.capwords (subfield) #capitalizes the first letter of each word. I like to see my titles capitalized; however pyblio doesn't show the titles as such
                         parsedresults = parsedresults + '  TITLE = {' + subfield[1:] + '},\n'
@@ -543,6 +544,7 @@ class parse_marc2bibtex:  # added code by John Vu to parse MARC data for a singl
                 if uniformtitle: parsedresults = parsedresults + '  DESCRIPTION = {' + fulltitle + '},\n'
                 else:
                     fulltitle = string.replace (fulltitle, '/', '')
+                    fulltitle = string.replace (fulltitle, ' :', ': ')
                     fulltitle = string.strip (fulltitle)
                     #fulltitle = string.capwords (fulltitle) #capitalizes the first letter of each word. However pyblio doesn't show the titles as such
                     parsedresults = parsedresults + '  TITLE = {' + fulltitle + '},\n' # sometimes the title is split into two subfields, a title and then a subtitle, fulltitle is the join of the two
@@ -847,7 +849,7 @@ class Client (Conn):
         try:
             self.sock.connect ((addr, port))
         except socket.error, (errtype, errmessage):
-            raise NameError, errmessage
+            raise "Error type: %d\nError message: %s" % (errtype, errmessage), NameError #this is NOT a NameError, I'm just using it for error control at the moment until a new class of error codes is written for this module
         InitReq = make_initreq ()
         resp = self.transact (('initRequest', InitReq), 'initResponse')
         # required to support search and present, and that's all we asked for.
@@ -883,7 +885,10 @@ class Client (Conn):
         sreq = make_sreq (query, self.dbnames, rsn)
         recv = self.transact (('searchRequest', sreq), 'searchResponse')
         self.search_results [rsn] = recv
-        assert (recv.numberOfRecordsReturned == 0) # we ask for no records in search,
+        try:
+            assert (recv.numberOfRecordsReturned == 0) # we ask for no records in search,
+        except AssertionError:
+            raise AssertionError, "Search field not accepted by this server." 
         # see make_sreq for explanation
         return recv.searchStatus
     # If searchStatus is failure, check result-set-status - 
