@@ -42,7 +42,7 @@ class ConfigDialog:
         
         self.w = GnomePropertyBox ()
         self.w.set_parent (parent)
-        self.w.set_title (_("Choose you preferences"))
+        self.w.set_title (_("Choose your preferences"))
         self.w.connect ('apply', self.apply)
         self.w.set_policy (TRUE, TRUE, FALSE)
 
