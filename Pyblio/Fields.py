@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-import string, types, re, string, recode
+import string, types, re, string, recode, urlparse, os
 
 year_match = re.compile ('(\d\d\d\d)')
 
@@ -34,41 +34,13 @@ def get_formatter (format):
     if formatter_cache.has_key (format):
         ft = formatter_cache [format]
     else:
-        ft = recode.recode ("latin1.." + format)
+        ft = recode.recode ('latin1..' + format)
         formatter_cache [format] = ft
 
     return ft
 
 
-class Access:
-    ''' virtual class used to check if instance attributes have been
-    modified '''
-    
-    def __init__ (self):
-        self.clean ()
-        return
-
-    def __setattr__ (self, attr, value):
-        if attr == '_modified_':
-            raise AttributeError, "can't modify _modified_"
-        
-        self.__dict__ [attr] = value
-        self.touch ()
-        return
-
-    def modified (self):
-        return self._modified_
-
-    def clean (self):
-        self.__dict__ ['_modified_'] = 0
-        return
-
-    def touch (self):
-        self.__dict__ ['_modified_'] = 1
-        return
-
-
-class Author (Access):
+class Author:
     ''' Fine description of an author '''
     
     def __init__ (self, copy = None, strict = 0):
@@ -137,8 +109,6 @@ class Author (Access):
                 self.lineage   = None
 
         self.text = None
-
-        Access.__init__ (self)
         return
 
 
@@ -154,21 +124,19 @@ class Author (Access):
     def __str__ (self):
         ''' Returns textual representation '''
 
-        changed = self.modified ()
-        if changed or not self.text:
-            text = ""
-            if self.honorific: text = text + " " + self.honorific
-            if self.first:     text = text + " " + self.first
-            if self.last:      text = text + " " + self.last
-            if self.lineage:   text = text + ", " + self.lineage
+        if not self.text:
+            text = ''
+            if self.honorific: text = text + ' ' + self.honorific
+            if self.first:     text = text + ' ' + self.first
+            if self.last:      text = text + ' ' + self.last
+            if self.lineage:   text = text + ', ' + self.lineage
             self.text = text [1:]
-            if not changed: self.clean ()
             
         return self.text
 
 
     def __repr__ (self):
-        return "Author ((%s, %s, %s, %s))" % (`self.honorific`, `self.first`,
+        return 'Author ((%s, %s, %s, %s))' % (`self.honorific`, `self.first`,
                                               `self.last`, `self.lineage`)
 
 
@@ -217,12 +185,11 @@ class Author (Access):
         return 0
 
 
-class AuthorGroup (Access):
+class AuthorGroup:
     ''' A group of Authors '''
 
     def __init__ (self):
         self.authors = []
-        Access.__init__ (self)
         return
 
     def __getitem__ (self, pos):
@@ -236,27 +203,17 @@ class AuthorGroup (Access):
     def __len__ (self):
         return len (self.authors)
 
-    def modified (self):
-        for a in self.authors:
-            if a.modified (): return 1
-        return 0
-
-    def clean (self):
-        for a in self.authors:
-            a.clean ()
-        return
-    
     def append (self, value):
         self.authors.append (value)
         
     def __str__ (self):
-        return string.join (map (str, self.authors), ", ")
+        return string.join (map (str, self.authors), ', ')
 
     def __repr__ (self):
         return `self.authors`
 
     def match (self, regex):
-        return regex.search (string.join (map (str, self.authors), " "))
+        return regex.search (string.join (map (str, self.authors), ' '))
 
     def __cmp__ (self, other):
         i = 0
@@ -278,9 +235,9 @@ class AuthorGroup (Access):
 
         return 0
             
-RangeError = "RangeError"
+RangeError = 'RangeError'
 
-class Date (Access):
+class Date:
     ''' Fine description of a date '''
 
     def __init__ (self, arg = (None, None, None)):
@@ -293,7 +250,7 @@ class Date (Access):
                 if g:
                     year = int (g.group (1))
                 else:
-                    raise ValueError, "can't parse `%s' as a date" % arg
+                    raise ValueError, 'can\'t parse `%s\' as a date' % arg
                 
             month = None
             day   = None
@@ -301,19 +258,18 @@ class Date (Access):
             year, month, day = arg
         
         if year and year < 0:
-            raise RangeError, "wrong year"
+            raise RangeError, 'wrong year'
         self.year = year
         
         if month and (month < 1 or month > 12):
-            raise RangeError, "wrong month"
+            raise RangeError, 'wrong month'
         self.month = month
         
         if day and (day < 1 or day > 31):
-            raise RangeError, "wrong day"
+            raise RangeError, 'wrong day'
         self.day = day
 
         self.text = None
-        Access.__init__ (self)
         return
 
     def __cmp__ (self, other):
@@ -337,17 +293,15 @@ class Date (Access):
 
     def __str__ (self):
         ''' Returns textual representation '''
-        changed = self.modified ()
 
-        if changed or not self.text:
+        if not self.text:
             if self.year and self.month and self.day:
-                self.text = "%d/%d/%d" % (self.day, self.month, self.year)
+                self.text = '%d/%d/%d' % (self.day, self.month, self.year)
 
-            if self.year and self.month:
-                self.text = "%d/%d" % (self.month, self.year)
+            elif self.year and self.month:
+                self.text = '%d/%d' % (self.month, self.year)
             
-            self.text = str (self.year)
-            if not changed: self.clean ()
+            else: self.text = str (self.year)
             
         return self.text
 
@@ -379,15 +333,11 @@ class Date (Access):
         return regex.search (str (self))
         
 
-class Text (Access):
-    '''
-    This class holds all the other fields (not an Author or a Date)
-    '''
+class Text:
+    ''' This class holds all the other fields (not an Author or a Date) '''
     
     def __init__ (self, text):
         self.text = text
-
-        Access.__init__ (self)
         return
 
 
@@ -396,7 +346,7 @@ class Text (Access):
 
 
     def __repr__ (self):
-        return "Text (%s)" % `self.text`
+        return 'Text (%s)' % `self.text`
 
 
     def match (self, regex):
@@ -413,3 +363,71 @@ class Text (Access):
         ft = get_formatter (fmt)
 
         return ft (self.text)
+
+
+class URL:
+    ''' Holder for URL data (for example, the location of a database) '''
+
+    def __init__ (self, url):
+        if type (url) is types.StringType:
+            url = list (urlparse.urlparse (url))
+
+        if url [0] == '':
+            # Consider we handle a local file
+            url [0] = 'file'
+            url [2] = os.path.expanduser (url [2])
+            
+            if not os.path.isabs (url [2]):
+                url [2] = os.path.normpath (os.path.join (os.getcwd(), url [2]))
+
+        self.url = tuple (url)
+        return
+
+    def __cmp__ (self, other):
+        return cmp (self.url, other.url)
+
+    def __hash__ (self):
+        return hash (str (self))
+
+    def __str__ (self):
+        return urlparse.urlunparse (self.url)
+    
+
+    def __repr__ (self):
+        return 'URL (%s)' % `urlparse.urlunparse (self.url)`
+    
+
+class Reference:
+    ''' Holder for a reference to a bibliographic entry (which can be
+    a crossref, a link to related entries, ... '''
+
+    def __init__ (self, keylist = None):
+        self.list = keylist or []
+        return
+    
+    def __str__ (self):
+        return 'Reference on %s' % str (self.list)
+
+
+    def __repr__ (self):
+        return 'Reference (%s)' % `self.text`
+
+
+    def match (self, regex):
+        '''   '''
+        for key in self.list:
+            ret = regex.search (self.text)
+            if ret: return ret
+        return None
+
+
+    def __cmp__ (self, other):
+        return cmp (self.list, other.list)
+
+
+    def format (self, fmt):
+        ''' Returns the fields in a given format '''
+        ft = get_formatter (fmt)
+
+        return map (ft, self.list)
+

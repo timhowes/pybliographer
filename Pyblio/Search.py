@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -18,6 +18,9 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 # 
 # $Id$
+
+''' In this module are defined the search operators that can be applied
+in a Selection '''
 
 from string import *
 import re
@@ -97,9 +100,9 @@ class KeyTester (Bool):
 	def match (self, entry):
 		if self.neg:
 			# Negative test
-			ret = self.__test.match (entry.key.name) is None
+			ret = self.__test.match (entry.key.key) is None
 		else:
-			ret = self.__test.match (entry.key.name) is not None
+			ret = self.__test.match (entry.key.key) is not None
 
 		return ret
 

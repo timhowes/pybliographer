@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -19,7 +19,9 @@
 # 
 # $Id$
 
-import os, string
+import os, string, gettext
+
+_ = gettext.gettext
 
 from Pyblio import Config
 
@@ -34,13 +36,13 @@ class LyXclient:
         try:
             ans = os.stat (pin)
         except os.error:
-            raise IOError, (-1, "no input pipe %s" % pin)
+            raise IOError, (-1, _("no input pipe `%s'") % pin)
         
         pout = os.path.expanduser (base + '.out')
         try:
             ans = os.stat (pout)
         except os.error:
-            raise IOError, (-1, "no output pipe %s" % pout)
+            raise IOError, (-1, _("no output pipe `%s'") % pout)
         
         self.pout = open (pout, 'r')
         self.pin = open (pin, 'w')

@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -27,37 +27,22 @@ TypeText   = 0
 TypeAuthor = 1
 TypeTitle  = 2
 TypeDate   = 3
+TypeURL    = 4
+TypeRef    = 5
 
-
-def getentry (entry, has_default = 1):
+def get_entry (entry, has_default = 1):
 	''' Returns an entry description given its name '''
+	
 	entries = Config.get ("base/entries").data
 
-	l = string.lower (entry)
-	
-	if entries.has_key (l):
-		return entries [l]
+	if entries.has_key (entry):
+		return entries [entry]
 
 	if has_default:
 		return EntryDescription (entry)
 
 	return None
 
-def gettype (entry, field):
-	''' Return a field type given its name and the entry it
-	belongs to '''
-	
-	fields = Config.get ("base/fields").data
-
-	if entry and entry.has_key (field):
-		return entry [field].type
-	
-	if fields.has_key (field):
-		return fields [field].type
-	
-	return TypeText
-
-	
 
 class Description:
 	''' Generic Holder for information related to Field/Entry
@@ -100,7 +85,7 @@ class FieldDescription (Description):
 
     
 class EntryDescription (Description):
-	''' Informations on a given entry type '''
+	''' Informations on a given entry '''
     
 	def __init__ (self, name):
 		Description.__init__ (self, name)
@@ -133,13 +118,28 @@ class EntryDescription (Description):
 			
 		return
 	
+	def __call__ (entry, field):
+		''' Return a field type given its name and the entry it
+		belongs to '''
+	
+		fields = Config.get ("base/fields").data
+
+		if entry and entry.has_key (field):
+			return entry [field].type
+	
+		if fields.has_key (field):
+			return fields [field].type
+	
+		return TypeText
+
+
 	def __getitem__ (self, item):
-		return self.__dict__ ['lcfields'] [string.lower (item)]
+		return self.__dict__ ['lcfields'] [item]
 
 	def __setitem__ (self, item, value):
-		self.__dict__ ['lcfields'] [string.lower (item)] = value
+		self.__dict__ ['lcfields'] [item] = value
 		return
 	
 	def has_key (self, field):
-		return self.__dict__ ['lcfields'].has_key (string.lower (field))
+		return self.__dict__ ['lcfields'].has_key (field)
 

@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -21,16 +21,18 @@
 
 
 from types import *
-import Pyblio.Base, Pyblio.Help
-from Pyblio import Autoload
+from Pyblio import Autoload, Fields, Help
 
 import urlparse, urllib, traceback, os, sys, tempfile, string
 
 
-__urlhandles = []
+def url_to_local (url):
+	
+	(file, headers) = urllib.urlretrieve (str (url))
+	return file
 
 
-Pyblio.Help.register ('bibopen', """
+Help.register ('bibopen', """
 Syntax: database = bibopen (source)
 
 bibopen  tries several  method  to open  `source'  as a  bibliographic
@@ -69,7 +71,7 @@ def get_by_regexp (entity, method):
 
 
 def bibopen (entity, how = None):
-	"Generic function to open a bibliographic database"
+	''' Generic function to open a bibliographic database '''
 
 	def simple_try (url, how):
 		base = None
@@ -96,44 +98,23 @@ def bibopen (entity, how = None):
 		return base
 	
 	# Consider the reference as an URL
-	url = list (urlparse.urlparse (entity))
-
-	if url [0] == '':
-		# Consider we handle a local file
-		url [0] = 'file'
-		url [2] = os.path.expanduser (url [2])
+	url = Fields.URL (entity)
 
 	# eventually load a new module
 	if how is None:
-		handler = Autoload.get_by_regexp ("format", urlparse.urlunparse (url))
+		handler = Autoload.get_by_regexp ("format", str (url))
 		if handler:
 			how = handler.name
 	
 	base = simple_try (url, how)
-	
-	# If one don't know how to retrieve a remote file, do it
-	if base is None and (url [0] == 'http' or url [0] == 'ftp'):
 
-		class myopener (urllib.FancyURLopener):
-			def http_error_default(self, url, fp, errcode, errmsg, headers):
-				raise IOError, "%d: %s" % (errcode, errmsg)
-
-		urlhandle = myopener ()
-		file, header = urlhandle.retrieve (entity, None, None)
-
-		__urlhandles.append (urlhandle)
-		
-		url = ['file', '', file, '', '', '']
-
-		base = simple_try (url, how)
-		
 	if base is None:
 		raise IOError, "don't know how to open `" + entity + "'"
-    
+
 	return base
 
 
-Pyblio.Help.register ('bibwrite', """
+Help.register ('bibwrite', """
 Syntax: bibwrite (entity, output, how)
 
 This function sends an entry description to the specified output
@@ -165,10 +146,10 @@ def bibwrite (entity, out = None, how = None):
 	writer (entity, out)
 	return
 
-Pyblio.Help.register ('bibnew', """
+Help.register ('bibnew', """
 Syntax: bib = bibnew (name, type)
 
-Creates a new bibliographic database of a given type
+Creates a new bibliographic database of a given type.
 """)
 
 def bibnew (name, type = None):

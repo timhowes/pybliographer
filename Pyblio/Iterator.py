@@ -19,22 +19,26 @@
 # 
 # $Id$
 
-pybdir = $(datadir)/$(PACKAGE)/Pyblio
+class Iterator:
+    ''' This class defines a database iterator '''
+    
+    def __init__ (self, database):
+        self.keys     = database.keys ()
+        self.database = database
+        return
 
-EXTRA_DIST = 	__init__.py	\
-		Autoload.py	\
-		Base.py 	\
-		Fields.py	\
-		Help.py		\
-		Open.py		\
-		Search.py	\
-		Types.py	\
-		Config.py	\
-		Formatter.py	\
-		recode.py	\
-		LyX.py		\
-		TextUI.py	
+    def first (self):
+        self.count = 0
+        return self.next ()
 
-SUBDIRS = GnomeUI Output Format ConfDir Style
+    def next (self):
+        try:
+            entry = self.database [self.keys [self.count]]
+        except IndexError:
+            entry = None
+        
+        self.count = self.count + 1
+        return entry
 
-pyb_DATA = $(EXTRA_DIST)
+
+
