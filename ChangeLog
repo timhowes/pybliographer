@@ -1,3 +1,7 @@
+2001-06-26  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/Format/BibTeX.py: fixed order of referenced/referencing entries
+
 2001-06-25  Frédéric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/Format: added isifile from Peter Schulte-Stracke
