@@ -1,4 +1,5 @@
-import sys, string, re
+import sys, string, re, traceback
+
 base_version = string.split (sys.version) [0]
 base_version = re.match ('[\d\.]+', base_version).group (0)
 
@@ -55,6 +56,10 @@ try:
 except ImportError, msg:
 
     error ('missing dependency: %s' % msg)
+
+except AssertionError, msg:
+
+    error ('gtk problem: %s' % msg)
 
 except:
     etype, value, tb = sys.exc_info ()
