@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2001-11-30 02:50+0100\n"
-"PO-Revision-Date: 2001-11-30 02:50+0100\n"
+"POT-Creation-Date: 2001-12-07 04:23+0100\n"
+"PO-Revision-Date: 2001-12-07 04:23+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Ogiltig månad"
 msgid "Illegal day value"
 msgstr "Ogiltig dag"
 
-#: Pyblio/Fields.py:439
+#: Pyblio/Fields.py:443
 #, c-format
 msgid "in %s"
 msgstr "i %s"
@@ -121,12 +121,12 @@ msgid "method `%s' provides no iterator"
 msgstr "metoden \"%s\" tillhandahåller ingen iterator"
 
 # .././Pyblio/Format/BibTeX.py:345 :403
-#: Pyblio/Format/BibTeX.py:347 Pyblio/Format/BibTeX.py:405
+#: Pyblio/Format/BibTeX.py:350 Pyblio/Format/BibTeX.py:408
 #, c-format
 msgid "key `%s' is malformed"
 msgstr "nyckeln \"%s\" har felaktigt format"
 
-#: Pyblio/Format/BibTeX.py:368 Pyblio/Format/BibTeX.py:389
+#: Pyblio/Format/BibTeX.py:371 Pyblio/Format/BibTeX.py:392
 #, c-format
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d nyckeln \"%s\" är redan definierad"
@@ -216,7 +216,7 @@ msgstr "Ursprungsredigering"
 msgid "Standard Editing"
 msgstr "Standardredigering"
 
-#: Pyblio/GnomeUI/Document.py:196 Pyblio/GnomeUI/Document.py:210
+#: Pyblio/GnomeUI/Document.py:208 Pyblio/GnomeUI/Document.py:222
 #: Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
 msgstr "Fil"
@@ -278,41 +278,49 @@ msgstr ""
 "vid kompilering av %s\n"
 "fel: %s"
 
-#: Pyblio/GnomeUI/Sort.py:42
+#: Pyblio/GnomeUI/Sort.py:49
 msgid "Select sort criterions"
 msgstr "Välj sorteringsvilkor"
 
-#: Pyblio/GnomeUI/Sort.py:53
+#: Pyblio/GnomeUI/Sort.py:60
 msgid "Sort direction"
 msgstr "Sorteringsordning"
 
-#: Pyblio/GnomeUI/Sort.py:53
+#: Pyblio/GnomeUI/Sort.py:60
 msgid "Sort criterions"
 msgstr "Sorteringsvillkor"
 
-#: Pyblio/GnomeUI/Sort.py:66
+#: Pyblio/GnomeUI/Sort.py:73
 msgid "[Entry Type]"
 msgstr "[Inmatningstyp]"
 
-#: Pyblio/GnomeUI/Sort.py:67
+#: Pyblio/GnomeUI/Sort.py:74
 msgid "[Key Value]"
 msgstr "[Nyckelvärde]"
 
-#: Pyblio/GnomeUI/Sort.py:92
+#: Pyblio/GnomeUI/Sort.py:99
 msgid "Reorder"
 msgstr "Ordna om"
 
-#: Pyblio/GnomeUI/Sort.py:93
+#: Pyblio/GnomeUI/Sort.py:100
 msgid "Groups the active fields on the top of the list"
 msgstr "Gruppera aktiva fält i början av listan"
 
-#: Pyblio/GnomeUI/Sort.py:97
+#: Pyblio/GnomeUI/Sort.py:104
 msgid "Unselect all"
 msgstr "Avmarkera alla"
 
-#: Pyblio/GnomeUI/Sort.py:98
+#: Pyblio/GnomeUI/Sort.py:105
 msgid "Removes all the sort criterions"
 msgstr "Tar bort alla sorteringsvillkor"
+
+#: Pyblio/GnomeUI/Sort.py:109
+msgid "Set as default"
+msgstr "Ställ in som standard"
+
+#: Pyblio/GnomeUI/Sort.py:110
+msgid "Use this sort criterion as the default for new files"
+msgstr "Använd detta sorteringskriterium som standard för nya filer"
 
 #: Pyblio/GnomeUI/Utils.py:163
 msgid ""
@@ -322,103 +330,107 @@ msgstr ""
 "Följande fel inträffade:\n"
 "\n"
 
-#: Pyblio/GnomeUI/Document.py:52
+#: Pyblio/GnomeUI/Document.py:58
 msgid "_New"
 msgstr "_Nytt"
 
-#: Pyblio/GnomeUI/Document.py:54
+#: Pyblio/GnomeUI/Document.py:60
 msgid "_Merge with..."
 msgstr "Slå _ihop med..."
 
-#: Pyblio/GnomeUI/Document.py:55
+#: Pyblio/GnomeUI/Document.py:61
 msgid "Medline Query..."
 msgstr "Medline-fråga..."
 
-#: Pyblio/GnomeUI/Document.py:59
+#: Pyblio/GnomeUI/Document.py:65
 msgid "_Previous Documents"
 msgstr "_Föregående dokument"
 
-#: Pyblio/GnomeUI/Document.py:66
+#: Pyblio/GnomeUI/Document.py:72
 msgid "About..."
 msgstr "Om..."
 
-#: Pyblio/GnomeUI/Document.py:67
+#: Pyblio/GnomeUI/Document.py:73
 msgid "Submit a Bug Report"
 msgstr "Skicka felrapport"
 
-#: Pyblio/GnomeUI/Document.py:79
+#: Pyblio/GnomeUI/Document.py:85
 msgid "_Add..."
 msgstr "_Lägg till..."
 
-#: Pyblio/GnomeUI/Document.py:80
+#: Pyblio/GnomeUI/Document.py:86
 msgid "_Edit..."
 msgstr "R_edigera..."
 
-#: Pyblio/GnomeUI/Document.py:81
+#: Pyblio/GnomeUI/Document.py:87
 msgid "_Delete"
 msgstr "Ta _bort"
 
-#: Pyblio/GnomeUI/Document.py:84
+#: Pyblio/GnomeUI/Document.py:90
 msgid "S_ort..."
 msgstr "S_ortera..."
 
-#: Pyblio/GnomeUI/Document.py:88 Pyblio/GnomeUI/Document.py:102
+#: Pyblio/GnomeUI/Document.py:94 Pyblio/GnomeUI/Document.py:108
 msgid "_Cite"
 msgstr "_Citera"
 
-#: Pyblio/GnomeUI/Document.py:89
+#: Pyblio/GnomeUI/Document.py:95
 msgid "_Format..."
 msgstr "_Format..."
 
-#: Pyblio/GnomeUI/Document.py:93
+#: Pyblio/GnomeUI/Document.py:99
 msgid "_Fields..."
 msgstr "_Fält..."
 
-#: Pyblio/GnomeUI/Document.py:94
+#: Pyblio/GnomeUI/Document.py:100
 msgid "_Entries..."
 msgstr "_Poster..."
 
-#: Pyblio/GnomeUI/Document.py:100
+#: Pyblio/GnomeUI/Document.py:106
 msgid "_File"
 msgstr "_Arkiv"
 
-#: Pyblio/GnomeUI/Document.py:101
+#: Pyblio/GnomeUI/Document.py:107
 msgid "_Edit"
 msgstr "R_edigera"
 
-#: Pyblio/GnomeUI/Document.py:103
+#: Pyblio/GnomeUI/Document.py:109
 msgid "_Settings"
 msgstr "_Inställningar"
 
-#: Pyblio/GnomeUI/Document.py:104
+#: Pyblio/GnomeUI/Document.py:110
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: Pyblio/GnomeUI/Document.py:108
+#: Pyblio/GnomeUI/Document.py:114
 msgid "Open"
 msgstr "Öppna"
 
-#: Pyblio/GnomeUI/Document.py:109
+#: Pyblio/GnomeUI/Document.py:115
 msgid "Save"
 msgstr "Spara"
 
-#: Pyblio/GnomeUI/Document.py:111
+#: Pyblio/GnomeUI/Config.py:390 Pyblio/GnomeUI/Document.py:117
+msgid "Add"
+msgstr "Lägg till"
+
+#: Pyblio/GnomeUI/Document.py:119
 msgid "Find"
 msgstr "Sök"
 
-#: Pyblio/GnomeUI/Document.py:112
+#: Pyblio/GnomeUI/Document.py:120
 msgid "Cite"
 msgstr "Citera"
 
-#: Pyblio/GnomeUI/Document.py:114
+#: Pyblio/GnomeUI/Document.py:122
 msgid "Close"
 msgstr "Stäng"
 
-#: Pyblio/GnomeUI/Document.py:196 Pyblio/GnomeUI/Document.py:210
+#: Pyblio/GnomeUI/Document.py:208 Pyblio/GnomeUI/Document.py:222
 msgid "Previous Documents"
 msgstr "Föregående dokument"
 
-#: Pyblio/GnomeUI/Document.py:232
+#: Pyblio/GnomeUI/Document.py:244
 #, c-format
 msgid ""
 "can't open file `%s' for writing:\n"
@@ -427,7 +439,7 @@ msgstr ""
 "Kan inte öppna filen \"%s\" för skrivning:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:253
+#: Pyblio/GnomeUI/Document.py:265
 #, c-format
 msgid ""
 "Error while parsing `%s':\n"
@@ -436,38 +448,38 @@ msgstr ""
 "Fel vid läsning av \"%s\":\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:272
+#: Pyblio/GnomeUI/Document.py:284
 msgid "New database"
 msgstr "Ny databas"
 
-#: Pyblio/GnomeUI/Document.py:280 Pyblio/GnomeUI/Document.py:284
+#: Pyblio/GnomeUI/Document.py:292 Pyblio/GnomeUI/Document.py:296
 msgid "[no entry]"
 msgstr "[ingen post]"
 
-#: Pyblio/GnomeUI/Document.py:281
+#: Pyblio/GnomeUI/Document.py:293
 msgid "[1 entry]"
 msgstr "[1 post]"
 
-#: Pyblio/GnomeUI/Document.py:282
+#: Pyblio/GnomeUI/Document.py:294
 #, c-format
 msgid "[%d entries]"
 msgstr "[%d poster]"
 
-#: Pyblio/GnomeUI/Document.py:285
+#: Pyblio/GnomeUI/Document.py:297
 #, c-format
 msgid "[%d/1 entry]"
 msgstr "[%d/1 post]"
 
-#: Pyblio/GnomeUI/Document.py:286
+#: Pyblio/GnomeUI/Document.py:298
 #, c-format
 msgid "[%d/%d entries]"
 msgstr "[%d/%d poster]"
 
-#: Pyblio/GnomeUI/Document.py:291
+#: Pyblio/GnomeUI/Document.py:303
 msgid "[modified]"
 msgstr "[ändrad]"
 
-#: Pyblio/GnomeUI/Document.py:301
+#: Pyblio/GnomeUI/Document.py:313
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -475,35 +487,35 @@ msgstr ""
 "Databasen har ändrats.\n"
 "Släng bort ändringarna?"
 
-#: Pyblio/GnomeUI/Document.py:321
+#: Pyblio/GnomeUI/Document.py:333
 msgid "Enter your Medline query"
 msgstr "Ange din Medline-fråga"
 
-#: Pyblio/GnomeUI/Document.py:327
+#: Pyblio/GnomeUI/Document.py:339
 msgid "Search string"
 msgstr "Sök sträng"
 
-#: Pyblio/GnomeUI/Document.py:331
+#: Pyblio/GnomeUI/Document.py:343
 msgid "Maximum number of results"
 msgstr "Maximalt antal resultat"
 
-#: Pyblio/GnomeUI/Document.py:351
+#: Pyblio/GnomeUI/Document.py:363
 msgid "Merge file"
 msgstr "Lägg till filen"
 
-#: Pyblio/GnomeUI/Document.py:363 Pyblio/GnomeUI/Document.py:423
+#: Pyblio/GnomeUI/Document.py:375 Pyblio/GnomeUI/Document.py:435
 msgid "Open error"
 msgstr "Fel vid öppning"
 
-#: Pyblio/GnomeUI/Document.py:387
+#: Pyblio/GnomeUI/Document.py:399
 msgid "Merge status"
 msgstr "Ihopslagningsstatus"
 
-#: Pyblio/GnomeUI/Document.py:398
+#: Pyblio/GnomeUI/Document.py:410
 msgid "Open file"
 msgstr "Öppna fil"
 
-#: Pyblio/GnomeUI/Document.py:450
+#: Pyblio/GnomeUI/Document.py:462
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
@@ -511,7 +523,7 @@ msgstr ""
 "Databasen har ändrats från utanför programmet.\n"
 "Skriv över ändringarna?"
 
-#: Pyblio/GnomeUI/Document.py:460
+#: Pyblio/GnomeUI/Document.py:472
 #, c-format
 msgid ""
 "Unable to save `%s':\n"
@@ -520,7 +532,7 @@ msgstr ""
 "Kunde inte spara \"%s\":\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:468
+#: Pyblio/GnomeUI/Document.py:480
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -528,11 +540,11 @@ msgstr ""
 "Ett internt fel uppstod vid sparning\n"
 "Försöker spara som..."
 
-#: Pyblio/GnomeUI/Document.py:482
+#: Pyblio/GnomeUI/Document.py:494
 msgid "Save As..."
 msgstr "Spara som..."
 
-#: Pyblio/GnomeUI/Document.py:488
+#: Pyblio/GnomeUI/Document.py:500
 #, c-format
 msgid ""
 "The file `%s' already exists.\n"
@@ -541,7 +553,7 @@ msgstr ""
 "Filen \"%s\" finns redan redan.\n"
 "Vill du skriva över den?"
 
-#: Pyblio/GnomeUI/Document.py:495
+#: Pyblio/GnomeUI/Document.py:507
 #, c-format
 msgid ""
 "During opening:\n"
@@ -550,11 +562,11 @@ msgstr ""
 "Vid öppnande:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:513
+#: Pyblio/GnomeUI/Document.py:525
 msgid "Reopen error"
 msgstr "Återöppningsfel"
 
-#: Pyblio/GnomeUI/Document.py:554
+#: Pyblio/GnomeUI/Document.py:566
 #, c-format
 msgid ""
 "An entry called `%s' already exists.\n"
@@ -563,31 +575,31 @@ msgstr ""
 "En post som heter \"%s\" finns redan.\n"
 "Vill du döpa om och lägga till i alla fall?"
 
-#: Pyblio/GnomeUI/Document.py:591
+#: Pyblio/GnomeUI/Document.py:603
 msgid "Really remove all the entries ?"
 msgstr "Vill du verkligen ta bort alla poster?"
 
-#: Pyblio/GnomeUI/Document.py:611
+#: Pyblio/GnomeUI/Document.py:623
 msgid "Create new entry"
 msgstr "Skapa ny post"
 
-#: Pyblio/GnomeUI/Document.py:625
+#: Pyblio/GnomeUI/Document.py:637
 #, c-format
 msgid "Really edit %d entries ?"
 msgstr "Vill du verkligen ta bort %d poster?"
 
 # hoppas att ja fungerar som svar KONTROLLERA!
-#: Pyblio/GnomeUI/Document.py:663
+#: Pyblio/GnomeUI/Document.py:675
 #, c-format
 msgid "Remove all the %d entries ?"
 msgstr "Vill du verkligen ta bort alla %d poster?"
 
-#: Pyblio/GnomeUI/Document.py:665
+#: Pyblio/GnomeUI/Document.py:677
 #, c-format
 msgid "Remove entry `%s' ?"
 msgstr "Ta bort post \"%s\"?"
 
-#: Pyblio/GnomeUI/Document.py:731 Pyblio/GnomeUI/Document.py:738
+#: Pyblio/GnomeUI/Document.py:743 Pyblio/GnomeUI/Document.py:750
 #, c-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -596,7 +608,7 @@ msgstr ""
 "Kan inte ansluta till LyX:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:785
+#: Pyblio/GnomeUI/Document.py:797
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -604,15 +616,15 @@ msgstr ""
 "Du måste installera bug-buddy\n"
 "för att använda den här finessen"
 
-#: Pyblio/GnomeUI/Document.py:796
+#: Pyblio/GnomeUI/Document.py:808
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Detta program är copyrightskyddad under GNU GPL"
 
-#: Pyblio/GnomeUI/Document.py:798
+#: Pyblio/GnomeUI/Document.py:810
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Gnome-gränssnitt till Pybliographer-systemet."
 
-#: Pyblio/GnomeUI/Document.py:803
+#: Pyblio/GnomeUI/Document.py:815
 msgid "Pybliographer Home Page"
 msgstr "Pybliographers hemsida"
 
@@ -671,10 +683,6 @@ msgstr "Sant"
 #: Pyblio/GnomeUI/Config.py:250
 msgid "False"
 msgstr "Falskt"
-
-#: Pyblio/GnomeUI/Config.py:390
-msgid "Add"
-msgstr "Lägg till"
 
 #: Pyblio/GnomeUI/Config.py:393
 msgid "Update"
