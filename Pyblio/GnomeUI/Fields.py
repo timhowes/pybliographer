@@ -30,6 +30,7 @@ _ = gettext.gettext
 
 from Pyblio import Config, Fields, Types
 from Pyblio.GnomeUI import Utils
+from Pyblio.GnomeUI.Utils import TmpGnomeDialog
 
 _typename = {
     Fields.AuthorGroup : 'Authors',
@@ -42,9 +43,9 @@ _typename = {
 class FieldsDialog:
 
     def __init__ (self, parent = None):
-        self.w = GnomeDialog (_("Fields configuration"),
-                              STOCK_BUTTON_APPLY,
-                              STOCK_BUTTON_CANCEL)
+        self.w = TmpGnomeDialog (_("Fields configuration"),
+                                 STOCK_BUTTON_APPLY,
+                                 STOCK_BUTTON_CANCEL)
         if parent: self.w.set_parent (parent)
 
         self.w.button_connect (0, self.apply)
@@ -182,9 +183,9 @@ _status = (
 class EntriesDialog:
 
     def __init__ (self, parent = None):
-        self.w = GnomeDialog (_("Entries configuration"),
-                              STOCK_BUTTON_APPLY,
-                              STOCK_BUTTON_CANCEL)
+        self.w = TmpGnomeDialog (_("Entries configuration"),
+                                 STOCK_BUTTON_APPLY,
+                                 STOCK_BUTTON_CANCEL)
         if parent: self.w.set_parent (parent)
 
         self.w.button_connect (0, self.apply)
@@ -198,6 +199,8 @@ class EntriesDialog:
         self.main.set_usize (width, 4 * height)
         scroll.add (self.main)
         self.w.vbox.pack_start (scroll)
+
+        self.w.vbox.pack_start (GtkHSeparator ())
 
         self.name = GtkEntry ()
         h = GtkHBox (spacing = 5)

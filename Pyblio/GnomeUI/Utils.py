@@ -45,6 +45,7 @@ def set_cursor (self, name):
         mainiteration (FALSE)
     return
 
+
 def popup_add (menu, item, action = None, argument = None):
     ''' Helper to add a new menu entry '''
     
@@ -57,9 +58,88 @@ def popup_add (menu, item, action = None, argument = None):
     
     return tmp
 
+
+class TmpGnomeDialog (GtkDialog):
+
+    def __init__ (self, title='', b1=None, b2=None, b3=None, b4=None,
+                  b5=None, b6=None, b7=None, b8=None, b9=None, b10=None):
+
+        self._o = GtkDialog ()._o
+        
+        self.set_title (title)
+        self.vbox.set_spacing (5)
+        self.vbox.set_border_width (5)
+
+        self.connect ('delete_event', self._delete)
+        
+        self._b = []
+        self._close = 1
+        self._hides = 0
+        
+        self.append_buttons (b1,b2,b3,b4,b5,b6,b7,b8,b9,b10)
+        return
+
+    def _delete (self, * arg):
+        self.close ()
+        return 1
+
+    def _clicked (self, * arg):
+        if self._close: self.close ()
+        return
+    
+    def set_parent(self, parent):
+        self.set_transient_for (parent)
+        return
+        
+    def button_connect(self, button, callback):
+        b = self._b [button]
+        b.connect ('clicked', callback)
+        return
+        
+    def set_default(self, button):
+        return
+
+    def set_sensitive(self, button, setting):
+        self._b [button].set_sensitive (setting)
+        return
+    
+    def close (self):
+        if self._hides:
+            self.hide ()
+        else:
+            self.destroy ()
+        return
+
+    def close_hides (self, just_hide):
+        self._hides = just_hide
+        return
+    
+    def set_close (self, click_closes):
+        self._close = click_closes
+        return
+
+    def editable_enters (self, editable):
+        return
+
+    def append_buttons (self, b1=None, b2=None, b3=None, b4=None, b5=None,
+                        b6=None, b7=None, b8=None, b9=None, b10=None):
+        buttons = filter(lambda x: x, (b1,b2,b3,b4,b5,b6,b7,b8,b9,b10))
+        for b in buttons:
+            self.append_button (b)
+        return
+    
+    def append_button (self, name):
+        button = GnomeStockButton (name)
+        button.connect_after ('clicked', self._clicked)
+        
+        self._b.append (button)
+        self.action_area.pack_start (button)
+        return
+
+
 def error_dialog (title, err, parent = None):
-    dialog = GnomeDialog (title, STOCK_BUTTON_CLOSE)
-    dialog.button_connect (1, GnomeDialog.close)
+    dialog = TmpGnomeDialog (title, STOCK_BUTTON_CLOSE)
+    dialog.set_close (TRUE)
     dialog.set_usize (500, 300)
     
     if parent:
@@ -76,7 +156,6 @@ def error_dialog (title, err, parent = None):
     dialog.vbox.pack_start (holder)
     
     dialog.show_all ()
-    dialog.run_and_close ()
     return
 
 color = {}
@@ -107,3 +186,5 @@ class Callback:
         self.ans = button == 0
         mainquit ()
         return
+
+

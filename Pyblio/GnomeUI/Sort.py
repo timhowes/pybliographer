@@ -29,6 +29,7 @@ _ = gettext.gettext
 
 from Pyblio import Connector, Sort, Config
 
+from Pyblio.GnomeUI.Utils import TmpGnomeDialog
 
 class SortDialog (Connector.Publisher):
     
@@ -39,9 +40,9 @@ class SortDialog (Connector.Publisher):
         else:
             current_sort = []
         
-        self.window = GnomeDialog (_("Select sort criterions"),
-                                   STOCK_BUTTON_OK,
-                                   STOCK_BUTTON_CANCEL)
+        self.window = TmpGnomeDialog (_("Select sort criterions"),
+                                      STOCK_BUTTON_OK,
+                                      STOCK_BUTTON_CANCEL)
         
         if parent: self.window.set_parent (parent)
 
@@ -52,6 +53,7 @@ class SortDialog (Connector.Publisher):
         
         self.list = GtkCList (2, (_("In use"),_("Sort criterions")))
         self.list.column_titles_passive ()
+        self.list.set_column_justification (0, JUSTIFY_CENTER)
         self.list.set_reorderable (1)
         self.list.set_selection_mode (SELECTION_BROWSE)
         self.list.connect ('select_row', self.select_row)
@@ -104,9 +106,11 @@ class SortDialog (Connector.Publisher):
         if column != 0: return
 
         data = self.list.get_row_data (row)
-        data [0] = not data [0]
-        if data [0]:
-            self.list.set_text (row, 0, _("Yes"))
+        data [0] = ((data [0] + 2) % 3) - 1
+        if   data [0] == -1:
+            self.list.set_text (row, 0, '<')
+        elif data [0] == +1:
+            self.list.set_text (row, 0, '>')
         else:
             self.list.set_text (row, 0, '')
         return
@@ -127,8 +131,10 @@ class SortDialog (Connector.Publisher):
         i = 0
         for c in criterions:
             status = ''
-            if c [0]:
-                status = _("Yes")
+            if   c [0] == +1:
+                status = '>'
+            elif c [0] == -1:
+                status = '<'
             self.list.append ((status, c [1].name))
             self.list.set_row_data (i, c)
             i = i + 1
@@ -165,9 +171,13 @@ class SortDialog (Connector.Publisher):
 
     
     def apply (self, * arg):
-        data = map (lambda x: x [1],
-                    filter (lambda x: x [0], self.get_criterions ()))
-        self.issue ('sort-data', data)
+        data   = filter (lambda x: x [0], self.get_criterions ())
+        result = []
+        for d in data:
+            d [1].ascend = d [0]
+            result.append (d [1])
+            
+        self.issue ('sort-data', result)
         self.window.close ()
         return
     

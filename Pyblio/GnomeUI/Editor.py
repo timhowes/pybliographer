@@ -550,7 +550,6 @@ class RealEditor (Connector.Publisher):
         if text == '': return
 
         newtype = Types.get_field (text).type
-        print newtype
         self.entry [text] = newtype (_newcontent [newtype])
         self.update_notebook ()
         return
@@ -752,7 +751,8 @@ class Editor (Connector.Publisher):
         alloc = self.w.get_allocation ()
         config.set_int ('Pybliographic/Editor/Width',  alloc [2])
         config.set_int ('Pybliographic/Editor/Height', alloc [3])
-
+        config.sync ()
+        
         self.w.destroy ()
         return
 

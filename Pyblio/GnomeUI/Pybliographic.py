@@ -38,9 +38,8 @@ class Pybliographic:
     def __init__ (self):
         self.documents = []
 
-        self.opened = list (config.get_vector ('Pybliographic/Base/History='))
-        if len (self.opened) == 1 and self.opened [0] == '':
-            self.opened = []
+        self.opened = filter (lambda x: x,
+                              list (config.get_vector ('Pybliographic/Base/History=')))
         return
 
     def new_document (self, * arg):
