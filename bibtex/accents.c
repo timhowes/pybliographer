@@ -116,6 +116,20 @@ CharMapping tilda [] = {
 StringMapping commands [] = {
     {"backslash", "\\"},
     {"ss", "ß"},
+    {"DH", "Ð"},
+    {"dh", "ð"},
+    {"AE", "Æ"},
+    {"ae", "æ"},
+    {"O",  "Ø"},
+    {"o",  "ø"},
+    {"TH", "Þ"},
+    {"th", "þ"},
+    {"guillemotleft",    "«"},
+    {"guillemotright",   "»"},
+    {"guilsingleft",     "<"},
+    {"guilsingright",    ">"},
+    {"textquestiondown", "¿"},
+    {"textexclamdown",   "¡"},
     {NULL, NULL}
 };
 
@@ -275,13 +289,12 @@ bibtex_accent_string (BibtexStruct * s,
 	    }
 	}
     }
-    else {
-	/* long command, use dictionnary to eventually map */
-	text = g_hash_table_lookup (commands_table, s->value.com);
 
-	if (text) {
-	    return g_strdup (text);
-	}
+    /* if not found, use dictionnary to eventually map */
+    text = g_hash_table_lookup (commands_table, s->value.com);
+
+    if (text) {
+      return g_strdup (text);
     }
 
     if (loss) * loss = TRUE;
