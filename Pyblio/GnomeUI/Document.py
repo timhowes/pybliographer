@@ -75,8 +75,6 @@ class Document (Connector.Publisher):
         
         help_menu = [
             UIINFO_ITEM_STOCK (_("About..."), None, self.about, STOCK_MENU_ABOUT),
-            UIINFO_ITEM_STOCK (_("Submit a Bug Report"), None,
-                               self.exec_bug_buddy, STOCK_MENU_TRASH_FULL),
             UIINFO_HELP ('pybliographic')
             ]
 
