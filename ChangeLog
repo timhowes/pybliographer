@@ -1,9 +1,12 @@
+2003-08-14  Frederic Gobry  <gobry@pybliographer.org>
+
+	* Pyblio/GnomeUI/Search.py, glade/search.glade: both simple and
+	expert search now work.
+
 2003-08-13  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
 	* Pyblio/GnomeUI/Config.py (ConfigDialog.__init__): Now we are
 	using a bold label instead of a frame (Gnome2)
-
-
 
 2003-08-06  Frederic Gobry  <gobry@users.sourceforge.net>
 

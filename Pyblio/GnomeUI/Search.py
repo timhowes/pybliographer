@@ -185,6 +185,9 @@ class SearchTree (gtk.GenericTreeModel):
     
 class SearchDialog (Connector.Publisher):
     ''' Search Dialog '''
+
+    cfg = '/apps/pybliographic/search/'
+
     
     def __init__ (self, parent = None):
 
@@ -194,14 +197,21 @@ class SearchDialog (Connector.Publisher):
         self.xml.signal_autoconnect (self)
 
         for k in ('search', 'notebook', 'tree',
-                  'field', 'field_text', 'pattern_text'):
+                  'field', 'field_text', 'pattern_text',
+                  'expert_text'):
             w = self.xml.get_widget (k)
             assert (w is not None)
             
             setattr (self, '_w_' + k, w)
-        
-        if parent: self._w_search.set_transient_for (parent)
 
+        w = Utils.config.get_int (self.cfg + 'width')  or -1
+        h = Utils.config.get_int (self.cfg + 'height') or -1
+
+        if w != -1 and h != -1:
+            self._w_search.set_default_size (w, h)
+            self._w_search.resize (w, h)
+
+        if parent: self._w_search.set_transient_for (parent)
 
         col = gtk.TreeViewColumn ('field', gtk.CellRendererText (), text = 0)
         self._w_tree.append_column (col)
@@ -227,20 +237,27 @@ class SearchDialog (Connector.Publisher):
                                               self.search_delete)
         self.menu.show ()
 
-        self._w_search.show_all ()
+        # We are set up.
+        self.show ()
         return
 
 
     def show (self):
         ''' Invoked to show the interface again when it has been closed '''
-        
         self._w_search.show ()
         return
+
 
     def update_configuration (self):
         return
 
+
     def close_cb (self, widget):
+        w, h = self._w_search.get_size ()
+
+        Utils.config.set_int (self.cfg + 'width',  w)
+        Utils.config.set_int (self.cfg + 'height', h)
+
         self._w_search.hide ()
         return
     
@@ -263,14 +280,19 @@ class SearchDialog (Connector.Publisher):
                 'after' :    TextUI.after,
                 }
             
-            search = self.expert.gtk_entry ().get_text ()
+            search = self._w_expert_text.get_text ()
             try:
                 exec ('tester = ' + search, user_global)
             except:
                 etype, value, tb = sys.exc_info ()
 		traceback.print_exception (etype, value, tb)
-                dialog = GnomeErrorDialog (_("internal error during evaluation"),
-                                           parent = self)
+
+                d = gtk.MessageDialog (self._w_search,
+                                       gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
+                                       gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                                       _("internal error during evaluation"))
+                d.run ()
+                d.destroy ()
                 return
 
             test = user_global ['tester']
@@ -319,9 +341,13 @@ class SearchDialog (Connector.Publisher):
                     error = 1
                 
             if error:
-                dialog = GnomeErrorDialog (_("while compiling %s\nerror: %s") %
-                                           (match, err [0]))
-                dialog.run_and_close ()
+                d = gtk.MessageDialog (self._w_search,
+                                       gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
+                                       gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                                       _("while compiling %s\nerror: %s") %
+                                       (match, err [0]))
+                d.run ()
+                d.destroy ()
                 return
             
         # No search
