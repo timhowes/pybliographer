@@ -47,7 +47,10 @@ class Sort:
         while entry:
             item = []
             for field in self.fields:
-                item.append (field.get_field (entry))
+                f = field.get_field (entry)
+                a = field.ascend
+                
+                item.append ((f, a))
                 
             data [entry.key] = item
             keys.append (entry.key)
@@ -57,7 +60,15 @@ class Sort:
 
         # sort them
         def cmp_fcn (a, b, data = data):
-            return cmp (data [a], data [b])
+            da = data [a]
+            db = data [b]
+            for i in range (len (da)):
+                a = da [i]
+                b = db [i]
+                c = cmp (a [0], b [0]) * a [1]
+
+                if c: return c
+            return 0
 
         keys.sort (cmp_fcn)
         
@@ -70,6 +81,11 @@ class Sort:
     
 class TypeSort:
 
+    def __init__ (self, ascend = 1):
+        self.ascend = ascend
+        return
+
+    
     def get_field (self, entry):
         return entry.type
 
@@ -85,6 +101,11 @@ class TypeSort:
 
 class KeySort:
 
+    def __init__ (self, ascend = 1):
+        self.ascend = ascend
+        return
+
+    
     def get_field (self, entry):
         return entry.key
 
@@ -100,8 +121,9 @@ class KeySort:
 
 class FieldSort:
     
-    def __init__ (self, field):
-        self.field = field
+    def __init__ (self, field, ascend = 1):
+        self.field  = field
+        self.ascend = ascend
         return
 
     def get_field (self, entry):
