@@ -90,7 +90,7 @@ bibtex_reverse_field (BibtexField * field) {
 #ifdef USE_RECODE
     BibtexStruct * s;
     gchar * string, * tmp, c;
-    gboolean has_upper;
+    gboolean has_upper, is_upper;
     gint start, stop, last, i;
     BibtexAuthor * author;
 
@@ -124,7 +124,6 @@ bibtex_reverse_field (BibtexField * field) {
 
     switch (field->type) {
     case BIBTEX_OTHER:
-    case BIBTEX_TITLE:
 	g_return_val_if_fail (field->text != NULL, NULL);
 
 	g_string_truncate (st, 0);
@@ -134,6 +133,46 @@ bibtex_reverse_field (BibtexField * field) {
 	g_string_append (st, "@preamble{{");
 	g_string_append (st, tmp);
 	g_free (tmp);
+	g_string_append (st, "}}");
+	
+	s = text_to_struct (st->str);
+	break;
+
+    case BIBTEX_TITLE:
+	g_return_val_if_fail (field->text != NULL, NULL);
+
+	g_string_truncate (st, 0);
+	
+	tmp = recode_string (request, field->text);
+
+	g_string_append (st, "@preamble{{");
+
+	/* Put the upper cases between {} */
+	string   = tmp;
+	is_upper = false;
+	while (* tmp) {
+	    if (* tmp >= 'A' && * tmp <= 'Z') {
+		if (! is_upper) {
+		    g_string_append_c (st, '{');
+		    is_upper = true;
+		}
+		g_string_append_c (st, * tmp);
+	    }
+	    else {
+		if (is_upper) {
+		    g_string_append_c (st, '}');
+		    is_upper = false;
+		}
+
+		g_string_append_c (st, * tmp);
+	    }
+	    tmp ++;
+	}
+	if (is_upper) {
+	    g_string_append_c (st, '}');
+	    is_upper = false;
+	}
+	g_free (string);
 	g_string_append (st, "}}");
 	
 	s = text_to_struct (st->str);

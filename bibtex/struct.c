@@ -339,7 +339,7 @@ bibtex_real_string (BibtexStruct * s,
 	text = g_strdup (s->value.text);
 
 	if ((! as_bibtex || as_latex) && 
-	    level == 0 && 
+	    level == 1 && 
 	    type == BIBTEX_TITLE) {
 	    if (at_beginning) {
 		text [0] = toupper (text [0]);
@@ -427,9 +427,7 @@ bibtex_real_string (BibtexStruct * s,
 				      as_bibtex,
 				      /* climb one level if we are in pure
 					 bibtex, or if we are in latex and {} */
-				      level + 
-				      (! as_latex ||
-				       s->value.sub->encloser == BIBTEX_ENCLOSER_BRACE), 
+				      level + 1,
 				      loss, at_beginning, FALSE, as_latex);
 
 	    if (strip_first_layer) {
@@ -460,8 +458,7 @@ bibtex_real_string (BibtexStruct * s,
 	    text = bibtex_real_string (s->value.sub->content,
 				       type, dico,
 				       as_bibtex,
-				       level + (s->value.sub->encloser ==
-						BIBTEX_ENCLOSER_QUOTE ? 0 : 1),
+				       level + 1,
 				       loss, at_beginning, FALSE, as_latex);
 	}
 	break;
