@@ -19,6 +19,8 @@
 # 
 # $Id$
 
+from Pyblio import Key
+
 import string, types, re, string, recode, urlparse, os
 
 year_match = re.compile ('(\d\d\d\d)')
@@ -325,7 +327,7 @@ class Date:
 
     
     def __repr__ (self):
-        return str (self)
+        return 'Date (\'%s\')' % str (self)
 
 
     def match (self, regex):
@@ -369,6 +371,7 @@ class URL:
     ''' Holder for URL data (for example, the location of a database) '''
 
     def __init__ (self, url):
+
         if type (url) is types.StringType:
             url = list (urlparse.urlparse (url))
 
@@ -401,22 +404,28 @@ class Reference:
     ''' Holder for a reference to a bibliographic entry (which can be
     a crossref, a link to related entries, ... '''
 
-    def __init__ (self, keylist = None):
-        self.list = keylist or []
+    def __init__ (self, keylist, database):
+        
+        if type (keylist) is types.StringType:
+            self.list = map (lambda k, db = database: Key.Key (db, string.strip (k)),
+                             string.split (keylist, ','))
+        else:
+            self.list = keylist
         return
     
     def __str__ (self):
-        return 'Reference on %s' % str (self.list)
+        body = string.join (map (str, self.list), ', ')
+        return 'Reference on %s' % body
 
 
     def __repr__ (self):
-        return 'Reference (%s)' % `self.text`
+        return 'Reference (%s)' % `self.list`
 
 
     def match (self, regex):
         '''   '''
         for key in self.list:
-            ret = regex.search (self.text)
+            ret = regex.search (str (key))
             if ret: return ret
         return None
 
@@ -431,11 +440,3 @@ class Reference:
 
         return map (ft, self.list)
 
-
-# Warning: these values correspond to the bibtex module
-Text.id        = 0
-AuthorGroup.id = 1
-Date.id        = 3
-
-Reference.id   = 4
-URL.id         = 5
