@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.6\n"
-"POT-Creation-Date: 2000-03-23 14:53+0100\n"
+"POT-Creation-Date: 2000-03-24 11:13+0100\n"
 "PO-Revision-Date: 2000-01-08 21:40+0100\n"
 "Last-Translator: Yuri Bongiorno <yurix@tiscalinet.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -161,29 +161,25 @@ msgstr "Supplementare"
 msgid "New text"
 msgstr "Nuovo file"
 
-#: Pyblio/GnomeUI/Editor.py:557 Pyblio/GnomeUI/Editor.py:565
-msgid "Error"
-msgstr ""
-
 #: Pyblio/GnomeUI/Editor.py:557
 msgid "Invalid key format"
 msgstr ""
 
 #: Pyblio/GnomeUI/Editor.py:565
-#, fuzzy
-msgid "Key already exists"
+#, fuzzy, c-format
+msgid "Key `%s' already exists"
 msgstr "La chiave `%s' esiste già"
 
-#: Pyblio/GnomeUI/Editor.py:629
+#: Pyblio/GnomeUI/Editor.py:632
 msgid "Error in native string parsing"
 msgstr ""
 
-#: Pyblio/GnomeUI/Editor.py:653 Pyblio/GnomeUI/Editor.py:690
+#: Pyblio/GnomeUI/Editor.py:656 Pyblio/GnomeUI/Editor.py:693
 #, fuzzy
 msgid "Native Editing"
 msgstr "Modifica del campo `%s' nel formato nativo"
 
-#: Pyblio/GnomeUI/Editor.py:704
+#: Pyblio/GnomeUI/Editor.py:707
 msgid "Standard Editing"
 msgstr ""
 
@@ -410,18 +406,25 @@ msgstr ""
 msgid "Merge status"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:373
+#: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:379
 #, fuzzy
 msgid "Open file"
 msgstr "Nuovo file"
 
-#: Pyblio/GnomeUI/Document.py:362
+#: Pyblio/GnomeUI/Document.py:363
+#, c-format
+msgid ""
+"Unable to save `%s':\n"
+"%s"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:368
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:379
+#: Pyblio/GnomeUI/Document.py:385
 #, fuzzy, c-format
 msgid ""
 "The file `%s' already exists.\n"
@@ -430,41 +433,41 @@ msgstr ""
 "Il file `%s' esiste.\n"
 "Lo sovrascrivo ?"
 
-#: Pyblio/GnomeUI/Document.py:386
+#: Pyblio/GnomeUI/Document.py:392
 #, c-format
 msgid ""
 "During opening:\n"
 "%s"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:421
+#: Pyblio/GnomeUI/Document.py:427
 #, c-format
 msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:452
+#: Pyblio/GnomeUI/Document.py:458
 #, fuzzy
 msgid "Really remove all the entries ?"
 msgstr "Rimuovo veramente la voce %s ?"
 
-#: Pyblio/GnomeUI/Document.py:486
+#: Pyblio/GnomeUI/Document.py:492
 #, fuzzy, c-format
 msgid "Really edit %d entries ?"
 msgstr "Rimuovo veramente la voce %s ?"
 
-#: Pyblio/GnomeUI/Document.py:520
+#: Pyblio/GnomeUI/Document.py:526
 #, c-format
 msgid "Remove all the %d entries ?"
 msgstr ""
 
-#: Pyblio/GnomeUI/Document.py:522
+#: Pyblio/GnomeUI/Document.py:528
 #, fuzzy, c-format
 msgid "Remove entry `%s' ?"
 msgstr "Rimuovo veramente la voce %s ?"
 
-#: Pyblio/GnomeUI/Document.py:580 Pyblio/GnomeUI/Document.py:587
+#: Pyblio/GnomeUI/Document.py:586 Pyblio/GnomeUI/Document.py:593
 #, c-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -473,7 +476,7 @@ msgstr ""
 "Impossibile connettersi a LyX:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:628
+#: Pyblio/GnomeUI/Document.py:634
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -481,15 +484,15 @@ msgstr ""
 "Per favore installa bug-buddy\n"
 "per usare questa funzione"
 
-#: Pyblio/GnomeUI/Document.py:639
+#: Pyblio/GnomeUI/Document.py:645
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Questo programma è coperto dalla licenza GNU GPL"
 
-#: Pyblio/GnomeUI/Document.py:641
+#: Pyblio/GnomeUI/Document.py:647
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Interfaccia Gnome a Pybliographer"
 
-#: Pyblio/GnomeUI/Document.py:645
+#: Pyblio/GnomeUI/Document.py:651
 msgid "Pybliographer Home Page"
 msgstr "Home Page di Pybliographer"
 
@@ -526,6 +529,69 @@ msgstr ""
 "\thelp\t    per ottenere aiuto\n"
 "\tquit     per abbandonare\n"
 
+#: scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr ""
+
+#: scripts/pybcompact.py:34
+#, c-format
+msgid "pybcompact: error: %s\n"
+msgstr ""
+
+#: scripts/pybcompact.py:97
+msgid "no entry"
+msgstr ""
+
+#: scripts/pybcompact.py:142
+#, c-format
+msgid "can't find the following entries: %s"
+msgstr ""
+
+#: scripts/pybconvert.py:27
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr ""
+
+#: scripts/pybconvert.py:36
+msgid "pybconvert: bad conversion format"
+msgstr ""
+
+#: scripts/pybformat.py:34
+msgid "usage: pybformat [bibtexfiles...]\n"
+msgstr ""
+
+#: scripts/pybformat.py:38
+#, c-format
+msgid "pybformat: error: %s\n"
+msgstr ""
+
+#: scripts/pybformat.py:44
+#, c-format
+msgid "pybformat: warning: %s\n"
+msgstr ""
+
+#: scripts/pybformat.py:140 scripts/pybtex.py:84
+#, fuzzy, c-format
+msgid "can't find style `%s'"
+msgstr "Impossibile salvare il file: %s"
+
+#: scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr ""
+
+#: scripts/pybtex.py:38
+#, c-format
+msgid "pybtex: error: %s\n"
+msgstr ""
+
+#: scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr ""
+
+#: scripts/pybtex.py:64
+#, fuzzy
+msgid "no style defined"
+msgstr "nessun metodo di aggiornamento definito"
+
 #~ msgid "Format"
 #~ msgstr "Formato"
 
@@ -538,9 +604,6 @@ msgstr ""
 #~ msgid "error: field `%s' appears more than once in the definition of `%s'"
 #~ msgstr ""
 #~ "errore: il campo `%s' compare più di una volta nella definizione di `%s'"
-
-#~ msgid "no update method defined"
-#~ msgstr "nessun metodo di aggiornamento definito"
 
 #~ msgid "database `%s' is unknown in this Reference"
 #~ msgstr "il database `%s' è sconosciuto in questo Riferimento"
@@ -628,9 +691,6 @@ msgstr ""
 
 #~ msgid "Quit without saving ?"
 #~ msgstr "Uscire senza salvare ?"
-
-#~ msgid "can't save file: %s"
-#~ msgstr "Impossibile salvare il file: %s"
 
 #~ msgid "Save As"
 #~ msgstr "Salva come"
