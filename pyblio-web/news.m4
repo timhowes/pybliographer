@@ -4,9 +4,12 @@ m4_dnl --------------------------------------------------
 m4_define(pyblio_last,  [[1.0.11]])m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
-m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
+m4_define(news_item,[[[[<dt><i>$1</i></dt> <dd>$2</dd>]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
+
+news_item([[08/08/2003]], [[A Gnome 2 port of the stable version is on
+the way. If you would like to help, please join the mailing-list.]]),
 
 news_item([[27/05/2003]], [[Thomas Sonne Olesen has contributed a tool
 to help integrating Pybliographer with Open Office for instance. It is
