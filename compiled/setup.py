@@ -143,7 +143,7 @@ It requires the following libraries to be installed:
     Extension("_bibtexmodule", bibtex,
               include_dirs = includes,
               library_dirs = libdirs,
-              libraries = libs),
+              libraries = libs + ['recode']),
 
     Extension("_recodemodule", ["recodemodule.c"],
               include_dirs = includes,
