@@ -234,18 +234,6 @@ class DataBase:
 	return
 
 
-    def get_native (self, key):
-	''' returns the entry in its native form '''
-
-	raise RuntimeError, "method is deferred"
-
-
-    def create_native (self, value):
-	''' returns an entry, described in input in native form '''
-
-	raise RuntimeError, "method is deferred"
-
-
     def __delitem__ (self, key):
 	''' Removes an Entry from the database, by its key '''
 
