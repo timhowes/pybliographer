@@ -21,7 +21,10 @@
 
 import getpass, re, rfc822, string, time, types
 
-from Pyblio import Autoload, Base, Fields, Iterator, Open, Types, Utils
+from Pyblio import Autoload, Base, Coco, Fields, Iterator, Open, Types, Utils
+from Pyblio.Format.TaggedReader import TaggedReader
+from Pyblio.Import import add_simple_field, add_simple_field_nr
+
 login_name = getpass.getuser()
 
 key_map = {
@@ -40,7 +43,6 @@ key_map = {
     'TI' : ('title', ' '),
     'UT' : ('sourceid', ' ; '),
     'VL' : ('volume', ' ; ')}
-
 
 xheader  = re.compile('^(\w\w|\w\w+:)( (.*))$')
 header   = re.compile('^(\w\w)( (.*))$')
@@ -69,31 +71,35 @@ def output_write(key, text):
             str (text), 70, 0, 3)))
 pagenum  = re.compile('(\d) p\.')
 keywds   = re.compile('(.*)\[ISI:\] *(.*);;(.*)')
-class IsifileIterator(Iterator.Iterator):
+
+
+class IsifileIterator(TaggedReader):
     ''' This class exports two functions: first and next,
     each of which returns an bibliographic entry from the input file.
     In addition is saves extraneous text (pre- and postamble).'''
 
-    def __init__(self, file):
-        self.file = file
+    def __init__(self, file, control=None):
         self.extraneous = []
         self.isifileformat = None
         self.isifileinfo = None
-        
-    def first(self):
-        self.file.seek(0)
-        return self.next()
+        TaggedReader.__init__ (self,
+            file=file, control=control,
+            tagcol=5
+        )
+        self.current_line = ''
+        self.firstpg, self.lastpg, self.numberpg = [''], [''], ['']
 
-    def next (self):
+## the following could go into __init__ as well
         
-        lines = {}
-        in_table = {}
+    def start_file(self, *args, **argh):
+        self.source.seek(0)
+        self.current_line = self.source.readline()
+        print self.current_line
         file_notes, file_time, file_version, file_format = ('','','','')
+        while self.current_line:
 
-        while 1:
-            line = self.file.readline()
-            if line == '': return lines # what does that mean ??
-            head = xheader.match(line)
+            assert self.current_line != ''
+            head = xheader.match(self.current_line)
             if not head :
                 pass
             elif head.group(1) == 'Date:':
@@ -109,101 +115,123 @@ class IsifileIterator(Iterator.Iterator):
                 break
             else :
                 pass
-            self.extraneous.append(line)
+            self.extraneous.append(self.current_line)
+            self.current_line = self.source.readline()
+            print self.current_line
 
         self.isifileformat = self.isifileformat or "Isifile format %s(%s)" % (
             file_format, file_version)
         self.isifileinfo = self.isifileinfo or "ISI %s (%s) %s" %(
             file_time, file_notes, login_name)
+        return 
 
+    def read_next (self):
         
-        while 1:
-            if line == 'ER':break
+        lines = []
+        line = []
+        print 'READ NEXT FIRST:', self.current_line
+        while self.current_line == '\n':
+            self.current_line = self.source.readline()
+        if not self.current_line : return None
+
+        while self.current_line != '\n':
+            head = xheader.match(self.current_line)
+
             if head :
-                key = head.group(1)
-                if key == 'ER': break
-                val = head.group(3)
-                if lines.has_key(key):
-                    lines[key].append(val)
-                else:
-                    lines[key] = [val]
+                # tag available
+                tag = head.group(1)
+                if line: lines.append(line)
+                line  = [tag, head.group(3)]
+
             else:
-                cont = contin.match(line)
-                if cont :
+                # no tag
+                cont = contin.match(self.current_line)
+                if cont : 
                     val = cont.group(1)
-                    lines[key].append(val)
-                else: break
-            line = self.file.readline()
-            if line == '': break # error situation
-            head = header.match (line)
+                    line.append(val)
 
-        
-        key = 'PT'
-        if lines.has_key(key):
-            if string.strip(lines[key][0])[0] == 'J':
-                del lines [key]
-            else:
-                print 'Warning: Unknown type of entry (%s) -- may need editing.' %(
-                    lines[key])
-            type = Types.get_entry ('article')
-            
+            self.current_line = self.source.readline()
+        while self.current_line == '\n':
+            self.current_line = self.source.readline()
+        lines.append (line)
+        return lines
 
-        key = 'AU'
-        if lines.has_key(key):
-            field = Types.get_field('author')
-            group = Fields.AuthorGroup()
-            for item in lines[key]:
-                if string.strip(item) =='[Anon]' :
-                    auth = item
-                else:        
-                    name, firstn = string.split (item, ',')
-                    auth = name + ', '
-                    for i in string.strip(firstn):
-                        auth = auth + i +'. '
-                group.append (Fields.Author(auth))
-            in_table['author'] = group
-            del lines[key]                  
 
-        key, key1, key2 = 'PG', 'BP', 'EP'
-        if lines.has_key(key1) and lines.has_key(key2):
-            if len(lines[key1]) == len(lines[key2]):
-                pages = []
-                for i in range(len(lines[key1])):
-                    firstpg = lines[key1] [i]
-                    lastpg  = lines[key2] [i]                      
-                    pages.append(('%s -- %s' % (firstpg, lastpg)))
-                in_table['pages'] = string.join(pages, '; ')
-                del lines[key1]; del lines[key2]
-            else: print 'inconsistent BP, EP fields found'
-         
-        if lines.has_key(key):
-            in_table['size'] = '%s p.' %(lines[key][0])
-            del lines[key]
-            
+    def do_AU (self, tag, data):
+        #print 'DO_AU: ', tag, data
+        group = Fields.AuthorGroup()
+        for item in data:
+            if string.strip(item) =='[Anon]' :
+                auth = item ### this is dubious, isn't it?
+            else:        
+                name, firstn = string.split (item, ',')
+                auth = name + ', '
+                for i in string.strip(firstn):
+                    auth = auth + i +'. '
+                    group.append (Fields.Author(auth))
+        #print `group`
+        #print `self.entry.dict`
+        self.entry.dict['author'] = group
+        return
 
-        key = 'PY'
-        if lines.has_key(key):
-            val = lines[key][0]
-            in_table['date'] = Fields.Date(val)
-            del lines[key]
+    def do_BP (self, tag, data):
+        self.firstpg = data
+        return
 
-        key = 'ID'
-        if lines. has_key(key):
-            val = "[ISI:] %s ;;" %(string.lower(string.join(lines[key], ' ')))
-            if lines.has_key('DE'):
-                lines['DE'].append ('; ' + val)
-            else :
-                lines['DE'] = [val]
-            del lines[key]    
+    def do_EP (self, tag, data):
+        self.lastpg = data
+        return
 
-        for key in lines.keys():
-            if key_map.has_key(key):
-                in_table [key_map [key][0]] =  Fields.Text (
-                    string.join (lines[key], key_map[key][1]))
-            else:
-                in_table ['isifile-' + string.lower(key)] = Fields.Text (
-                    string.join (lines[key], " ; "))
-        return Base.Entry ( None, type, in_table)
+    def do_PG (self, tag, data):
+        self.numberpg = data
+        return
+
+    def do_PT (self, tag, data):
+        print 'PT:', data
+        if string.strip(data[0]) != 'J':
+            print
+            'Warning: Unknown type of entry (%s) -- may need editing.' %(
+                data)
+        return
+
+    def do_TI (self, tag, data):
+
+        add_simple_field_nr(self.entry, 'title', data)
+        return
+    
+    def do_tag (self, tag, data):
+
+        print 'DO_TAG:', tag, data
+        in_table = {}
+        type = Types.get_entry ('article')
+        self.entry.type = type    
+
+
+##         if tag == 'PY':
+##             val = lines[key][0]
+##             in_table['date'] = Fields.Date(val)
+##             del lines[key]
+
+##         if tag == 'ID':
+##             val = "[ISI:] %s ;;" %(string.lower(string.join(lines[key], ' ')))
+##             if lines.has_key('DE'):
+##                 lines['DE'].append ('; ' + val)
+##             else :
+##                 lines['DE'] = [val]
+##             del lines[key]    
+
+
+        if key_map.has_key(tag):
+            add_simple_field(self.entry, key_map[tag][0],
+                             data, key_map[tag][1])
+
+        return
+
+    def end_record (self, entry, lines, *args, **argh):
+        add_simple_field (entry, 'pages', ['%s-%s' % (
+            self.firstpg[0], self.lastpg[0])])
+        add_simple_field (entry, 'size', ['%s pp.' %(self.numberpg[0])])
+        return    
 
 class Isifile (Base.DataBase):
     '''Read a Isifile format database from an URL.'''
@@ -315,7 +343,7 @@ def writer (iter, output_stream, preamble=None, postamble = None):
         entry = iter.next()
         if entry: output.write('\n')
     if postamble: output.writelines(postamble)
-    
+    return entry
 
 def opener (url, check):
         
