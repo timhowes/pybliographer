@@ -133,15 +133,15 @@ class QueryUI (Connector.Publisher):
         if self.current_cnx == cnx: return
         self.current_cnx = cnx
 
-        box = self.xml.get_widget ('query_vbox')
+        for name, content in (('query_default', cnx.default),
+                              ('query_extended', cnx.extended)):
+            
+            box = self.xml.get_widget (name)
+            for child in box.children (): child.destroy ()
 
-        for child in box.children (): child.destroy ()
-        
-        cnx.default.display (box)
-        box.show_all ()
-
-        extra = self.xml.get_widget ('extra_query')
-        extra.set_sensitive (cnx.extended is not None)
+            if content:
+                content.display (box)
+                box.show_all ()
         return
     
         

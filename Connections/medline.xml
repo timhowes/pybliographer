@@ -39,7 +39,9 @@
         <field type="text" name="UID"><title>UID</title></field>
         <field type="text" name="VOL"><title>Volume</title></field>
       </fields>
+    </default>
 
+    <extended>
       <group>
         <selection name="pub_type">
 	  <title>Publication types</title>
@@ -215,6 +217,6 @@ ahead of print
         </toggle>
       </group>
 
-    </default>
+    </extended>
   </query>
 </connection>
