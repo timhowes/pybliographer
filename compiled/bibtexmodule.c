@@ -604,6 +604,9 @@ bib_reverse (PyObject * self, PyObject * args)
 
     case BIBTEX_AUTHOR:
 	length = PySequence_Length (tuple);
+
+	if (length < 0) return NULL;
+
 	field->field.author = bibtex_author_group_new ();
 
 	g_array_set_size (field->field.author, length);
