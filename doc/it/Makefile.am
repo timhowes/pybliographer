@@ -37,7 +37,7 @@ install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pybliographic_helpdir)
 	$(INSTALL_DATA)  $(srcdir)/topic.dat $(DESTDIR)$(pybliographic_helpdir)
 	@echo "installing HTML files"
-	@cp -rf $(srcdir)/pyblio/* $(DESTDIR)$(pybliographic_helpdir)
+	@if test -d pyblio ; then cp -rf $(srcdir)/pyblio/* $(DESTDIR)$(pybliographic_helpdir) ; fi
 	@echo "installing PNG files"
 	@for file in $(srcdir)/*.png ; do \
 		$(INSTALL_DATA) $$file $(DESTDIR)$(pybliographic_helpdir) ; \
