@@ -1,5 +1,11 @@
 -*- text -*-
 
+New in 1.0.3  - 2000-06-13
+
+        * Fixed bug when cancelling a close action initiated from the
+	window manager
+
+
 New in 1.0.2  - 2000-06-13
 
 	* Reading of Windows BibTeX files (with CRLF)
