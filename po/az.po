@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer 1.1.0\n"
-"POT-Creation-Date: 2001-03-22 02:42+0100\n"
-"PO-Revision-Date: 2001-03-19 00:50+0200\n"
+"POT-Creation-Date: 2001-03-28 11:26+0200\n"
+"PO-Revision-Date: 2001-03-22 00:50+0200\n"
 "Last-Translator: Vasif Ismailoglu MD <azerb_linux@hotmail.com>\n"
 "Language-Team: azerbaijani Turkish \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 #: Pyblio/Autoload.py:57
 #, c-format
 msgid "warning: can't import %s: %s"
-msgstr "dsiqqət: %s getirilə bilmir: %s"
+msgstr "diqqət: %s getirilə bilmir: %s"
 
 #: Pyblio/Config.py:53
 #, c-format
@@ -219,7 +219,7 @@ msgstr "Fayl"
 
 #: Pyblio/GnomeUI/FileSelector.py:74
 msgid "Bibliography type:"
-msgstr "Bibliografiya Növü"
+msgstr "Biblioqrafiya Növü"
 
 #: Pyblio/GnomeUI/Index.py:68
 msgid "Add..."
@@ -396,7 +396,7 @@ msgstr "Qeyd Et"
 
 #: Pyblio/GnomeUI/Document.py:110
 msgid "Find"
-msgstr "Tap"
+msgstr "Axtar"
 
 #: Pyblio/GnomeUI/Document.py:111
 msgid "Cite"
@@ -484,12 +484,11 @@ msgid "Open file"
 msgstr "Fayl aç"
 
 #: Pyblio/GnomeUI/Document.py:413
-#, fuzzy
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
 msgstr ""
-"Databeyz dəyişdirildi.\n"
+"Databeyz xaridən dəyişdirildi.\n"
 "Dəyişiklikləri atmaq istəyirsiniz ?"
 
 #: Pyblio/GnomeUI/Document.py:423
@@ -573,7 +572,7 @@ msgid ""
 "Can't connect to LyX:\n"
 "%s"
 msgstr ""
-"LyX'ə bağlana bilmirəm:\n"
+"\"LyX\"ə bağlana bilmirəm:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:750
@@ -602,7 +601,7 @@ msgstr "Girişləri şəkilləndir"
 
 #: Pyblio/GnomeUI/Format.py:51
 msgid "Bibliography style:"
-msgstr "Bibliografya tərzi:"
+msgstr "Biblioqrafya tərzi:"
 
 #: Pyblio/GnomeUI/Format.py:52
 msgid "Select style"
@@ -767,7 +766,7 @@ msgstr "giriş yoxdur"
 #: scripts/pybcompact.py:141
 #, c-format
 msgid "can't find the following entries: %s"
-msgstr "yandaki giriş bulunamadı: %s"
+msgstr "yandaki giriş tapılmadı: %s"
 
 #: scripts/pybconvert.py:28
 msgid "usage: pybconvert <source>..<target> <input> [output]"
@@ -779,7 +778,7 @@ msgstr "pybconvert: kötü çevirme şəkli"
 
 #: scripts/pybformat.py:33
 msgid "usage: pybformat [bibtexfiles...]\n"
-msgstr "kullanım: pybformat [bibtexdosyaları...]\n"
+msgstr "kullanım: pybformat [bibtexfaylları...]\n"
 
 #: scripts/pybformat.py:37
 #, c-format
@@ -789,16 +788,16 @@ msgstr "pybformat: xəta: %s\n"
 #: scripts/pybformat.py:43
 #, c-format
 msgid "pybformat: warning: %s\n"
-msgstr "pybformat: uyarı: %s\n"
+msgstr "pybformat: xəbərdarlıq: %s\n"
 
 #: scripts/pybformat.py:140 scripts/pybtex.py:85
 #, c-format
 msgid "can't find style `%s'"
-msgstr "stil `%s' bulunamadı"
+msgstr "tərz `%s' tapılmadı"
 
 #: scripts/pybtex.py:33
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
-msgstr "kullanım: pybtex <latexdosyası> [bibtexdosyaları...]"
+msgstr "kullanım: pybtex <latexfaylı> [bibtexfaylları...]"
 
 #: scripts/pybtex.py:37
 #, c-format
@@ -807,11 +806,11 @@ msgstr "pybtex: xəta: %s\n"
 
 #: scripts/pybtex.py:58
 msgid "pybtex: warning: the following keys were not resolved"
-msgstr "pybtex: uyarı: aşağıdaki anahtarlar çözümlenemedi"
+msgstr "pybtex: xəbərdarlıq: aşağıdakı açarlar həll edilə bilmədi"
 
 #: scripts/pybtex.py:63
 msgid "no style defined"
-msgstr "stil belirtilmemiş"
+msgstr "tərz bildirilməyib"
 
 #~ msgid "BibTeX"
 #~ msgstr "BibTex"
@@ -1126,4 +1125,3 @@ msgstr "stil belirtilmemiş"
 
 #~ msgid "Internal Error"
 #~ msgstr "Daxili Xəta"
-
