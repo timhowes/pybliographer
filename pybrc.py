@@ -1,6 +1,8 @@
 # Site configuration
 
-from Pyblio.Types import *
+from Pyblio.Types  import *
+from Pyblio.Fields import *
+
 from Pyblio import Autoload, Config
 
 from Pyblio.TextUI import *
@@ -11,15 +13,10 @@ import string, os
 
 # define autoloaded formats
 
-Autoload.preregister ('format', 'BibTeX',  'Pyblio.Format.BibTeX',  'file:.*\.bib')
-Autoload.preregister ('format', 'RefDB',   'Pyblio.Format.RefDB',   'file:.*\.brf')
-Autoload.preregister ('format', 'Ovid',    'Pyblio.Format.Ovid',    'file:.*\.ovid')
-Autoload.preregister ('format', 'Medline', 'Pyblio.Format.Medline', 'file:.*\.med')
-Autoload.preregister ('format', 'DocBook', 'Pyblio.Format.docbook', 'file:.*\.sgml')
-
-# these two are very close
-Autoload.preregister ('format', 'Refer',   'Pyblio.Format.Refer', 'file:.*\.refer')
-Autoload.preregister ('format', 'EndNote', 'Pyblio.Format.Refer', 'file:.*\.end')
+Autoload.preregister ('format', 'BibTeX',  'Pyblio.Format.BibTeX',  '.*\.bib')
+Autoload.preregister ('format', 'Ovid',    'Pyblio.Format.Ovid',    '.*\.ovid')
+Autoload.preregister ('format', 'Medline', 'Pyblio.Format.Medline', '.*\.med')
+Autoload.preregister ('format', 'Refer',   'Pyblio.Format.Refer',   '.*\.refer')
 
 
 # define styles and outputs
@@ -53,11 +50,10 @@ fields = [ 'CrossRef', 'Key', 'Author', 'Address_1', 'Address_2',
            'Title', 'SpecificTitle', 'Journal', 'Special', 'Type', 'BookTitle',
            'Subject', 'Ownership', 'Series', 'Editor', 'Edition', 'Volume',
            'Number', 'Chapter', 'Pages', 'School', 'Organization', 'Location',
-           'Dates', 'Institution', 'Publisher', 'Address', 'Format', 'Month',
-           'Year', 'NoSeries', 'ConfPlace', 'ConfDate', 'Cote', 'IEEECN',
-           'LoCN',
-           'ISBN', 'ISSN', 'Note', 'Language', 'HowPublished', 'To_Appear',
-           'From', 'Received', 'Owner', 'Keywords', 'Abstract', 'Remarks' ]
+           'Dates', 'Institution', 'Publisher', 'Address', 'Format',
+           'PubDate', 'Date', 'NoSeries', 'ConfPlace', 'ConfDate', 'Cote', 'IEEECN',
+           'LoCN', 'ISBN', 'ISSN', 'Note', 'Language', 'HowPublished', 'To_Appear',
+           'From', 'Received', 'Owner', 'Keywords', 'Abstract', 'Remarks', 'URL' ]
 
 desc = {}
 # create the hash table
@@ -66,68 +62,68 @@ for f in fields:
     
 # Special fields
 
-desc ['author'].type = TypeAuthor
-desc ['editor'].type = TypeAuthor
+desc ['author'].type = AuthorGroup.id
+desc ['editor'].type = AuthorGroup.id
 
-desc ['title'].type         = TypeTitle
-desc ['specifictitle'].type = TypeTitle
-desc ['booktitle'].type     = TypeTitle
-     
-desc ['year'].type     = TypeDate
-desc ['confdate'].type = TypeDate
+desc ['pubdate'].type  = Date.id
+desc ['confdate'].type = Date.id
+
+desc ['crossref'].type = Reference.id
+
+desc ['url'].type      = URL.id
 
 
 # Entry types
 
 entries = {
-    'Article' : (('author', 'title', 'journal', 'year'),
-                 ('volume', 'number', 'pages', 'month', 'note')),
+    'Article' : (('author', 'title', 'journal', 'pubdate'),
+                 ('volume', 'number', 'pages', 'note')),
     
-    'Book' : (('author', 'editor', 'title', 'publisher', 'year'),
+    'Book' : (('author', 'editor', 'title', 'publisher', 'pubdate'),
               ( 'volume', 'number', 'series', 'address', 'edition',
-                'month', 'note')),
+                'note')),
     
     'Booklet' : (('title',),
-                 ('author', 'howpublished', 'address', 'month', 'year',
+                 ('author', 'howpublished', 'address', 'pubdate',
                   'note')),
     
     'InBook' : (('author', 'editor', 'title', 'chapter', 'pages', 'publisher',
-                 'year'),
+                 'pubdate'),
                 ('volume', 'number', 'series', 'type', 'address', 'edition',
-                 'month', 'note')),
+                  'note')),
     
-    'InCollection' : (('author', 'title', 'booktitle', 'publisher', 'year', ),
+    'InCollection' : (('author', 'title', 'booktitle', 'publisher', 'pubdate', ),
                       ('editor', 'volume', 'number', 'series', 'type',
                       'chapter', 'pages', 'address', 'edition',)),
     
-    'InProceedings' : (('author', 'title', 'booktitle', 'year',),
+    'InProceedings' : (('author', 'title', 'booktitle', 'pubdate',),
                        ('editor', 'volume', 'number', 'series',
-                       'pages', 'address', 'month', 'organization',
+                       'pages', 'address', 'organization',
                        'publisher', 'note')),
     
     'Manual' : (('title',),
                 ('author', 'organization', 'address', 'edition',
-                'month', 'year', 'note',)),
+                 'pubdate', 'note',)),
     
-    'MastersThesis' : (('author', 'title', 'school', 'year',),
-                       ('type', 'address', 'month', 'note',)),
+    'MastersThesis' : (('author', 'title', 'school', 'pubdate',),
+                       ('type', 'address', 'note',)),
     
     'Misc' : ((),
-              ('author', 'title', 'howpublished', 'month', 'year', 'note',)),
+              ('author', 'title', 'howpublished', 'pubdate', 'note',)),
     
-    'PhdThesis' : (('author', 'title', 'school', 'year',),
-                       ('type', 'address', 'month', 'note',)),
+    'PhdThesis' : (('author', 'title', 'school', 'pubdate',),
+                       ('type', 'address', 'note',)),
     
-    'Proceedings' : (('title', 'year',),
+    'Proceedings' : (('title', 'pubdate',),
                      ('editor', 'volume', 'number', 'series',
-                     'address', 'publisher', 'note', 'month',
+                     'address', 'publisher', 'note',
                       'organization',)),
     
-    'TechReport' : (('author', 'title', 'institution', 'year',),
-                    ('type', 'number', 'address', 'month', 'note',)),
+    'TechReport' : (('author', 'title', 'institution', 'pubdate',),
+                    ('type', 'number', 'address', 'note',)),
     
     'Unpublished' : (('author', 'title', 'note',),
-                     ('month', 'year',)),
+                     ('date',)),
     }
 
 ent = {}
@@ -144,10 +140,6 @@ for e in entries.keys ():
 
 Config.set ('base/fields', desc)
 Config.set ('base/entries', ent)
-
-Config.set ('base/searched',
-            ('Author', 'Title', 'Abstract', 'Year', 'Note',))
-
 Config.set ('base/defaulttype', ent ['article'])
 
 
@@ -160,83 +152,16 @@ Config.set ('gnomeui/fields', {
     'editor'    : FieldsInfo.UIDescription (150, FieldsInfo.WidgetAuthor),
     'title'     : FieldsInfo.UIDescription (200, FieldsInfo.WidgetText),
     'booktitle' : FieldsInfo.UIDescription (200, FieldsInfo.WidgetText),
-    'year'      : FieldsInfo.UIDescription (50,  FieldsInfo.WidgetEntry),
     'comment'   : FieldsInfo.UIDescription (50,  FieldsInfo.WidgetText),
-    'year'      : FieldsInfo.UIDescription (50,  FieldsInfo.WidgetDate),
+    'date'      : FieldsInfo.UIDescription (50,  FieldsInfo.WidgetDate),
+    'pubdate'   : FieldsInfo.UIDescription (50,  FieldsInfo.WidgetDate),
     'confdate'  : FieldsInfo.UIDescription (50,  FieldsInfo.WidgetDate),
     })
 
 Config.set ('gnomeui/default',
             FieldsInfo.UIDescription (150, FieldsInfo.WidgetEntry))
 
-Config.set ('gnomeui/columns', ('Author', 'Year', 'Title'))
+Config.set ('gnomeui/columns', ('Author', 'Date', 'Title'))
 
-# ==================================================
-
-Config.set ('endnote/table', {
-    'U' : 'url',
-    'A' : 'author',
-    'Q' : 'author',
-    'T' : 'title',
-    'S' : 'series',
-    'J' : 'journal',
-    'B' : 'booktitle',
-    'R' : 'type',
-    'V' : 'volume',
-    'N' : 'number',
-    'E' : 'editor',
-    'D' : 'year',
-    'P' : 'pages',
-    'I' : 'publisher',
-    'C' : 'address',
-    'K' : 'keywords',
-    'X' : 'abstract',
-    'W' : 'location',
-    '0' : ' type ',
-    '7' : 'edition',
-    '8' : 'confdate',
-    '9' : 'howpublished',
-    'Y' : 'editor',
-    })
-
-Config.set ('refer/table', {
-    'U' : 'url',
-    'A' : 'author',
-    'Q' : 'author',
-    'T' : 'title',
-    'S' : 'series',
-    'J' : 'journal',
-    'B' : 'booktitle',
-    'R' : 'type',
-    'V' : 'volume',
-    'N' : 'number',
-    'E' : 'editor',
-    'D' : 'year',
-    'P' : 'pages',
-    'I' : 'publisher',
-    'C' : 'address',
-    'K' : 'keywords',
-    'X' : 'abstract',
-    'W' : 'location',
-    })
-
-Config.set ('endnote/types', {
-    'Artwork' : 'misc',
-    'Audiovisual Material' : 'misc',
-    'Book' : 'book',
-    'Book Section' : 'inbook',
-    'Computer Program' : 'manual',
-    'Conference Proceedings' : 'proceedings',
-    'Edited Book' : 'book',
-    'Generic' : 'misc',
-    'Journal Article' : 'article',
-    'Magazine Article' : 'article',
-    'Map' : 'misc',
-    'Newspaper Article' : 'article',
-    'Patent' : 'misc',
-    'Personal Communication' : 'misc',
-    'Report' : 'techreport',
-    'Thesis' : 'phdthesis',
-    })
 
     
