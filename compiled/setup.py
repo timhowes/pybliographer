@@ -1,6 +1,6 @@
 # -*- python -*-
 
-import os, stat
+import os, stat, sys
 
 from distutils.core import setup, Extension
 
@@ -21,11 +21,34 @@ bibtex = [
     ]
 
 
+def error (msg):
+    sys.stderr.write ('setup.py: error: %s\n' % msg)
+    return
+
+
 # Obtain path for Glib
 
 includes = []
-include = os.popen ('pkg-config glib-2.0 --cflags').read ()
+libs     = []
+libdirs  = []
 
+def pread (cmd):
+    fd = os.popen (cmd)
+    data = fd.read ()
+
+    return (data, fd.close ())
+
+include, ix = pread ('pkg-config glib-2.0 --cflags')
+library, lx = pread ('pkg-config glib-2.0 --libs')
+
+if ix or lx:
+    error ('cannot find Glib-2.0 installation parameters.')
+    error ('please check that your glib-2.0 development package')
+    error ('has been installed.')
+    sys.exit (1)
+
+
+# Split the path into pieces
 for inc in include.split (' '):
     inc = inc.strip ()
     if not inc: continue
@@ -33,9 +56,6 @@ for inc in include.split (' '):
     if inc [:2] == '-I':
         includes.append (inc [2:])
 
-libs    = []
-libdirs = []
-library = os.popen ('pkg-config glib-2.0 --libs').read ()
 
 for lib in library.split (' '):
     lib = lib.strip ()
@@ -49,16 +69,13 @@ for lib in library.split (' '):
 
 
 # Check the state of the generated lex and yacc files
-
 def rebuild (src, deps):
 
     st = os.stat (src) [stat.ST_MTIME]
 
     for dep in deps:
-        try:
-            dt = os.stat (dep) [stat.ST_MTIME]
-        except OSError:
-            return True
+        try:  dt = os.stat (dep) [stat.ST_MTIME]
+        except OSError: return True
 
         if st > dt: return True
 
