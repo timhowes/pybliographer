@@ -21,20 +21,29 @@
 # 
 # $Id$
 
-import string, os, re, copy
-from Pyblio import Base
+import string, os, re, copy, gettext, sys
+from Pyblio import Base, Key
+
+_ = gettext.gettext
 
 def usage ():
-    print """usage: pybcompact <latexfile> <bibtexfiles...>"""
+    print _("usage: pybcompact <latexfile> <bibtexfiles...>")
     return
 
+def error (msg):
+    sys.stderr.write (_("pybcompact: error: %s\n") % msg)
+    sys.exit (1)
+    return
+
+
 # test input arguments
-if len (sys.argv) < 3:
+if len (sys.argv) < 4:
     usage ()
     sys.exit (1)
-    
-latex  = sys.argv [1]
-bibtex = sys.argv [2:]
+
+
+latex  = sys.argv [2]
+bibtex = sys.argv [3:]
 
 # regular expression to match in the .aux file
 citation_re = re.compile ('\\citation\{([^\}]+)\}')
@@ -48,8 +57,7 @@ def list_entries (file):
     try:
         aux = open (auxfile, 'r')
     except IOError, err:
-        sys.stderr.write ("pybcompact:%s: %s\n" % (auxfile, err))
-        return []
+        error ('%s: %s' % (auxfile, err))
     
     citations = []
 
@@ -86,8 +94,8 @@ entries = h.keys ()
 
 # is there something to do ?
 if len (entries) == 0:
-    sys.stderr.write ("pybcompact: no entry\n")
-    sys.exit (0)
+    error (_("no entry"))
+
 
 # use the bibliographic databases in order of declaration
 # to solve the references
@@ -101,29 +109,29 @@ for bib in bibtex:
     # of it in order to avoir strange behaviors
     orig = copy.copy (entries)
 
-    # we have to create a Reference database to hold the entries contained in the
+    # we have to create a new database to hold the entries contained in the
     # current database.
     
-    r = Base.Reference ()
+    r = Base.DataBase (None)
     
     # loop over the expected entries
     for e in orig:
 
         # create a key in the current database
-        key = Base.Key (db, e)
+        key = Key.Key (db, e)
 
         # does the database provide the key ?
         if db.has_key (key):
             
             # yes, add it to the reference
-            r.add (db, key)
+            r [key] = db [key]
 
             # and remove it from the list
             entries.remove (e)
 
     # if we found some entries in the current database...
     if len (r) > 0:
-        bibwrite (r, how='BibTeX')
+        bibwrite (r.iterator (), how = 'BibTeX')
 
     # is it finished ?
     if len (entries) == 0: break
@@ -131,6 +139,6 @@ for bib in bibtex:
 
 # check if we were able to solve all the citations
 if len (entries) > 0:
-    sys.stderr.write ("pybcompact: can't find the following entries:\n\n " +
-                      string.join (entries, "\n ") + "\n")
-    sys.exit (1)
+    error (_("can't find the following entries: %s")
+           % string.join (entries, ", "))
+

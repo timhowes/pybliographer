@@ -24,7 +24,7 @@
 import os, sys, string
 
 if len (sys.argv) < 3 or len (sys.argv) > 4:
-    print "usage: pybconvert <source>..<target> <input> [output]"
+    print _("usage: pybconvert <source>..<target> <input> [output]")
     sys.exit (1)
 
 
@@ -33,7 +33,7 @@ format = sys.argv [1]
 try:
     source, target = string.split (format, '..')
 except:
-    print "pybconvert: bad conversion format"
+    print _("pybconvert: bad conversion format")
     sys.exit (1)
 
 

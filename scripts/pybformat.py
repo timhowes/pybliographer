@@ -21,41 +21,47 @@
 # 
 # $Id$
 
-import string, sys, os, getopt
+import string, sys, os, getopt, gettext
+
+_ = gettext.gettext
 
 from Pyblio.Output import latexutils
 
 from Pyblio import Base, Autoload
+from Pyblio.Style import Utils
 
 def usage ():
-    sys.stderr.write ("usage: pybformat <style>:<output> [bibtexfiles...]\n")
+    sys.stderr.write (_("usage: pybformat [bibtexfiles...]\n"))
     return
 
 def error (text, exit = 1):
-    sys.stderr.write ("pybformat: error: " + text + "\n")
+    sys.stderr.write (_("pybformat: error: %s\n") % text)
     if exit:
         sys.exit (1)
     return
 
 def warning (text, exit = 0):
-    sys.stderr.write ("pybformat: warning: " + text + "\n")
+    sys.stderr.write (_("pybformat: warning: %s\n") % text)
     if exit:
         sys.exit (1)
     return
 
-optlist, args = getopt.getopt (sys.argv [1:],
-			       'H:F:o:l:vh',
+optlist, args = getopt.getopt (sys.argv [2:],
+			       'H:F:o:l:vhs:f:',
 			       ['header=',
 				'footer=',
                                 'output=',
                                 'list=',
+                                'style=',
+                                'format='
 				'version',
 				'help'])
-
 
 header  = None
 footer  = None
 outfile = sys.stdout
+format  = 'text'
+style   = 'Alpha'
 
 for opt, value in optlist:
     if opt == '-H' or opt == '--header':
@@ -91,7 +97,17 @@ for opt, value in optlist:
         usage ()
         sys.exit (0)
         continue
+
+    if opt == '-s' or opt == '--style':
+        style = value
+        continue
+
     
+    if opt == '-f' or opt == '--format':
+        format = value
+        continue
+    
+
     if opt == '-v' or opt == '--version':
         usage ()
         sys.exit (0)
@@ -99,33 +115,35 @@ for opt, value in optlist:
 
 
 # test input arguments
-if len (args) < 2:
+if len (args) < 1:
     # user gave wrong arguments...
     usage ()
     error ("too few arguments")
 
-
-format = string.split (args [0], ":")
-files  = args [1:]
-
-if len (format) != 2:
-    usage ()
-    error ("illegal format specification")
+files  = args
 
 # get the specified style and the output
-style  = Autoload.get_by_name ("style",  format [0])
-output = Autoload.get_by_name ("output", format [1])
-
-if style is None:
-    error ("unknown style `%s'\n" % format [0])
-
+output = Autoload.get_by_name ('output', format)
 if output is None:
-    error ("unknown output format `%s'" % format [1])
+    error ("unknown output format `%s'" % format)
+
+url = None
+if os.path.exists (style + '.xml'):
+    url = Fields.URL (style + '.xml')
+else:
+    from Pyblio import version
+    full = os.path.join (version.prefix, 'Styles', style)
+    full = full + '.xml'
+    if os.path.exists (full): url = Fields.URL (full)
+
+if not url:
+    error (_("can't find style `%s'") % style)
+
 
 sys.stderr.write ("pybformat: using style `%s', format `%s'\n" \
-                  % (style.name, output.name))
+                  % (style, output.name))
 
-formatter = output.data (outfile)
+formatter = output.data
 
 # first, write the header
 if header:
@@ -140,7 +158,6 @@ if header:
     except IOError, err:
         error ("can't open header `%s': %s" % (header, err))
 
-
 # write the data
 for file in files:
 
@@ -149,7 +166,7 @@ for file in files:
     except IOError, err:
         error ("can't open database: %s" % file)
 
-    style.data ("Bibliography", formatter, db)
+    Utils.generate (url, formatter, db, db.keys (), outfile)
     
 # last, write the footer
 if footer:
