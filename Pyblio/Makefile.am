@@ -46,7 +46,9 @@ PYTHON = \
 	Utils.py 	\
 	__init__.py 	\
 	Query.py	\
-	recode.py
+	recode.py	\
+	asn1.py		\
+	z3950.py
 
 SUBDIRS = GnomeUI Output Format ConfDir Style
 
