@@ -1,0 +1,1369 @@
+# Swedish messages for pybliographer.
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Christian Rose <menthos@menthos.com>, 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pybliographer\n"
+"POT-Creation-Date: 2000-11-17 00:18+0100\n"
+"PO-Revision-Date: 2000-11-16 11:57+0100\n"
+"Last-Translator: Christian Rose <menthos@menthos.com>\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Pyblio/ConfDir/BibTeX.py:9
+msgid "BibTeX"
+msgstr ""
+
+#: Pyblio/ConfDir/BibTeX.py:10
+#, fuzzy
+msgid "BibTeX parser configuration"
+msgstr "Ställ in spelkonfiguration"
+
+#: Pyblio/ConfDir/BibTeX.py:13
+#, fuzzy
+msgid "Strict Parsing"
+msgstr "Starta profilering"
+
+#: Pyblio/ConfDir/BibTeX.py:14
+#, fuzzy
+msgid "Turn warnings into errors"
+msgstr "gs-varningar för %s"
+
+#: Pyblio/ConfDir/BibTeX.py:18
+msgid "Macros"
+msgstr "Makron"
+
+#: Pyblio/ConfDir/BibTeX.py:19
+#, fuzzy
+msgid "BibTeX @String{} macros"
+msgstr "TeX PSTricks-makron"
+
+#: Pyblio/ConfDir/BibTeX.py:24
+#, fuzzy
+msgid "Date Fields"
+msgstr "Ankomstdatum"
+
+#: Pyblio/ConfDir/BibTeX.py:25
+msgid "Links from `real' date field to the two bibtex"
+msgstr ""
+
+#: Pyblio/ConfDir/BibTeX.py:29
+#, fuzzy
+msgid "Month values"
+msgstr "Till värde:"
+
+#: Pyblio/ConfDir/BibTeX.py:30
+msgid " A hash table linking month names to their"
+msgstr ""
+
+#: Pyblio/ConfDir/Base.py:15
+#, fuzzy
+msgid "Base"
+msgstr "XBase"
+
+#: Pyblio/ConfDir/Base.py:16
+#, fuzzy
+msgid "Elementary configuration"
+msgstr "Ställ in spelkonfiguration"
+
+#: Pyblio/ConfDir/Base.py:19
+#, fuzzy
+msgid "Advertise"
+msgstr "Artist"
+
+#: Pyblio/ConfDir/Base.py:20
+msgid "Specify wether or not the program should add a message"
+msgstr ""
+
+#: Pyblio/ConfDir/Base.py:25
+#, fuzzy
+msgid "Fields"
+msgstr "_Fält..."
+
+#: Pyblio/ConfDir/Base.py:26
+#, fuzzy
+msgid "Existing fields"
+msgstr "Utskrift misslyckades"
+
+#: Pyblio/ConfDir/Base.py:30
+#, fuzzy
+msgid "Entries"
+msgstr "Poster är"
+
+#: Pyblio/ConfDir/Base.py:31
+#, fuzzy
+msgid "Existing entries"
+msgstr "Saknade kataloger"
+
+#: Pyblio/ConfDir/Base.py:34
+#, fuzzy
+msgid "Default Type"
+msgstr "Standardbildtyp:"
+
+#: Pyblio/ConfDir/Base.py:35
+msgid "Default type for a newly created entry"
+msgstr ""
+
+#: Pyblio/ConfDir/Base.py:39
+#, fuzzy
+msgid "LyX Path"
+msgstr "Ladda slinga"
+
+#: Pyblio/ConfDir/Base.py:40
+#, fuzzy
+msgid "Path to the LyX server"
+msgstr "Byt till länkvyn"
+
+#: Pyblio/ConfDir/Base.py:41
+msgid "Path"
+msgstr "Sökväg"
+
+#: Pyblio/ConfDir/Base.py:48
+#, fuzzy
+msgid "Cross Reference"
+msgstr "Inställningar"
+
+#: Pyblio/ConfDir/Base.py:48 Pyblio/ConfDir/Base.py:49
+#: Pyblio/ConfDir/Base.py:50 Pyblio/ConfDir/Base.py:51
+#: Pyblio/ConfDir/Base.py:52 Pyblio/ConfDir/Base.py:53
+#: Pyblio/ConfDir/Base.py:54 Pyblio/ConfDir/Base.py:55
+#: Pyblio/ConfDir/Base.py:56 Pyblio/ConfDir/Base.py:57
+#: Pyblio/ConfDir/Base.py:58 Pyblio/ConfDir/Base.py:59
+#: Pyblio/ConfDir/Base.py:60 Pyblio/ConfDir/Base.py:61
+#: Pyblio/ConfDir/Base.py:62 Pyblio/ConfDir/Base.py:63
+#: Pyblio/ConfDir/Base.py:64 Pyblio/ConfDir/Base.py:65
+#: Pyblio/ConfDir/Base.py:66 Pyblio/ConfDir/Base.py:67
+#: Pyblio/ConfDir/Base.py:68 Pyblio/ConfDir/Base.py:69
+#: Pyblio/ConfDir/Base.py:70 Pyblio/ConfDir/Base.py:71
+#: Pyblio/ConfDir/Base.py:72 Pyblio/ConfDir/Base.py:73
+#: Pyblio/ConfDir/Base.py:74 Pyblio/ConfDir/Base.py:75
+#: Pyblio/ConfDir/Base.py:76 Pyblio/ConfDir/Base.py:77
+#: Pyblio/ConfDir/Base.py:78 Pyblio/ConfDir/Base.py:79
+#: Pyblio/ConfDir/Base.py:80 Pyblio/ConfDir/Base.py:81
+#: Pyblio/ConfDir/Base.py:82 Pyblio/ConfDir/Base.py:83
+#: Pyblio/ConfDir/Base.py:84 Pyblio/ConfDir/Base.py:85
+#: Pyblio/ConfDir/Base.py:86 Pyblio/ConfDir/Base.py:87
+#: Pyblio/ConfDir/Base.py:88 Pyblio/ConfDir/Base.py:89
+#: Pyblio/ConfDir/Base.py:90 Pyblio/ConfDir/Base.py:91
+#: Pyblio/ConfDir/Base.py:92 Pyblio/ConfDir/Base.py:93
+#: Pyblio/ConfDir/Base.py:94
+msgid "Description"
+msgstr "Beskrivning"
+
+#: Pyblio/ConfDir/Base.py:49 Pyblio/GnomeUI/Config.py:524
+#: Pyblio/GnomeUI/Editor.py:428
+msgid "Key"
+msgstr "Nyckel"
+
+#: Pyblio/ConfDir/Base.py:50
+msgid "Author"
+msgstr "Författare"
+
+#: Pyblio/ConfDir/Base.py:51
+#, fuzzy
+msgid "Address 1"
+msgstr "Adress"
+
+#: Pyblio/ConfDir/Base.py:52
+#, fuzzy
+msgid "Address 2"
+msgstr "Adress _2:"
+
+#: Pyblio/ConfDir/Base.py:53
+msgid "Title"
+msgstr "Titel"
+
+#: Pyblio/ConfDir/Base.py:54
+#, fuzzy
+msgid "Specific Title"
+msgstr "Specifik storlek"
+
+#: Pyblio/ConfDir/Base.py:55
+#, fuzzy
+msgid "Journal"
+msgstr "Normal"
+
+# Exekvera är mer rätt men längre och nästan samma sak
+#: Pyblio/ConfDir/Base.py:56
+msgid "Special"
+msgstr "Special"
+
+#: Pyblio/ConfDir/Base.py:57 Pyblio/GnomeUI/Fields.py:58
+msgid "Type"
+msgstr "Typ"
+
+#: Pyblio/ConfDir/Base.py:58
+#, fuzzy
+msgid "Book Title"
+msgstr "Fil för bokmärken"
+
+#: Pyblio/ConfDir/Base.py:59
+msgid "Subject"
+msgstr "Ämne"
+
+#: Pyblio/ConfDir/Base.py:60
+#, fuzzy
+msgid "Ownership"
+msgstr "Filägarskap"
+
+#: Pyblio/ConfDir/Base.py:61
+#, fuzzy
+msgid "Series"
+msgstr "Tjänster"
+
+#: Pyblio/ConfDir/Base.py:62
+msgid "Editor"
+msgstr "Redigerare"
+
+#: Pyblio/ConfDir/Base.py:63
+#, fuzzy
+msgid "Edition"
+msgstr " Utgåva: "
+
+#: Pyblio/ConfDir/Base.py:64
+msgid "Volume"
+msgstr "Volym"
+
+#: Pyblio/ConfDir/Base.py:65
+msgid "Number"
+msgstr "Nummer"
+
+#: Pyblio/ConfDir/Base.py:66
+#, fuzzy
+msgid "Chapter"
+msgstr "tecken"
+
+#: Pyblio/ConfDir/Base.py:67
+msgid "Pages"
+msgstr "Sidor"
+
+#: Pyblio/ConfDir/Base.py:68
+#, fuzzy
+msgid "School"
+msgstr "Rulla"
+
+#: Pyblio/ConfDir/Base.py:69
+msgid "Organization"
+msgstr "Organisation"
+
+#: Pyblio/ConfDir/Base.py:70
+msgid "Location"
+msgstr "Plats"
+
+#: Pyblio/ConfDir/Base.py:71
+#, fuzzy
+msgid "Dates"
+msgstr "Datum"
+
+#: Pyblio/ConfDir/Base.py:72
+#, fuzzy
+msgid "Institution"
+msgstr "Distribution"
+
+#: Pyblio/ConfDir/Base.py:73
+#, fuzzy
+msgid "Publisher"
+msgstr "Publicera"
+
+#: Pyblio/ConfDir/Base.py:74
+msgid "Address"
+msgstr "Adress"
+
+#: Pyblio/ConfDir/Base.py:75
+msgid "Format"
+msgstr "Format"
+
+#: Pyblio/ConfDir/Base.py:76
+msgid "Date"
+msgstr "Datum"
+
+#: Pyblio/ConfDir/Base.py:77
+#, fuzzy
+msgid "# Series"
+msgstr "Tjänster"
+
+#: Pyblio/ConfDir/Base.py:78
+#, fuzzy
+msgid "Conference Place"
+msgstr "Konfidensnivå"
+
+#: Pyblio/ConfDir/Base.py:79
+#, fuzzy
+msgid "Cote"
+msgstr "Kostnad"
+
+#: Pyblio/ConfDir/Base.py:80
+msgid "IEEECN"
+msgstr ""
+
+#: Pyblio/ConfDir/Base.py:81
+msgid "LoCN"
+msgstr ""
+
+#: Pyblio/ConfDir/Base.py:82
+#, fuzzy
+msgid "ISBN"
+msgstr "ISDN"
+
+#: Pyblio/ConfDir/Base.py:83
+#, fuzzy
+msgid "ISSN"
+msgstr "ISDN"
+
+#: Pyblio/ConfDir/Base.py:84
+#, fuzzy
+msgid "Note"
+msgstr "Observera"
+
+#: Pyblio/ConfDir/Base.py:85
+msgid "Language"
+msgstr "Språk"
+
+#: Pyblio/ConfDir/Base.py:86
+#, fuzzy
+msgid "How Published"
+msgstr "Publicera"
+
+#: Pyblio/ConfDir/Base.py:87
+#, fuzzy
+msgid "To Appear"
+msgstr " Utseende "
+
+#: Pyblio/ConfDir/Base.py:88
+msgid "From"
+msgstr "Från"
+
+#: Pyblio/ConfDir/Base.py:89
+#, fuzzy
+msgid "Received"
+msgstr "Mottag data"
+
+#: Pyblio/ConfDir/Base.py:90
+msgid "Owner"
+msgstr "Ägare"
+
+#: Pyblio/ConfDir/Base.py:91
+msgid "Keywords"
+msgstr "Nyckelord"
+
+#: Pyblio/ConfDir/Base.py:92
+msgid "Abstract"
+msgstr "Abstrakt"
+
+#: Pyblio/ConfDir/Base.py:93
+#, fuzzy
+msgid "Remarks"
+msgstr "Danmark"
+
+#: Pyblio/ConfDir/Base.py:94
+msgid "URL"
+msgstr "URL"
+
+#: Pyblio/ConfDir/Base.py:98
+#, fuzzy
+msgid "Article"
+msgstr "Artiklar"
+
+#: Pyblio/ConfDir/Base.py:98 Pyblio/ConfDir/Base.py:102
+#: Pyblio/ConfDir/Base.py:106 Pyblio/ConfDir/Base.py:110
+#: Pyblio/ConfDir/Base.py:114 Pyblio/ConfDir/Base.py:119
+#: Pyblio/ConfDir/Base.py:125 Pyblio/ConfDir/Base.py:129
+#: Pyblio/ConfDir/Base.py:133 Pyblio/ConfDir/Base.py:137
+#: Pyblio/ConfDir/Base.py:141 Pyblio/ConfDir/Base.py:147
+#: Pyblio/ConfDir/Base.py:151
+msgid " "
+msgstr " "
+
+#: Pyblio/ConfDir/Base.py:102
+#, fuzzy
+msgid "Book"
+msgstr "Titta"
+
+#: Pyblio/ConfDir/Base.py:106
+#, fuzzy
+msgid "Booklet"
+msgstr "Boolesk variabel"
+
+#: Pyblio/ConfDir/Base.py:110
+#, fuzzy
+msgid "In Book"
+msgstr "Telefonbok"
+
+#: Pyblio/ConfDir/Base.py:114
+#, fuzzy
+msgid "In Collection"
+msgstr "Insamlare"
+
+#: Pyblio/ConfDir/Base.py:119
+#, fuzzy
+msgid "In Proceedings"
+msgstr "Pågår"
+
+#: Pyblio/ConfDir/Base.py:125
+msgid "Manual"
+msgstr "Manuell"
+
+#: Pyblio/ConfDir/Base.py:129
+#, fuzzy
+msgid "Masters Thesis"
+msgstr "Huvudbilden"
+
+#: Pyblio/ConfDir/Base.py:133
+#, fuzzy
+msgid "Miscellanous"
+msgstr "Diverse"
+
+#: Pyblio/ConfDir/Base.py:137
+msgid "PhD Thesis"
+msgstr ""
+
+#: Pyblio/ConfDir/Base.py:141
+#, fuzzy
+msgid "Proceedings"
+msgstr "Processer"
+
+#: Pyblio/ConfDir/Base.py:147
+#, fuzzy
+msgid "Technical Report"
+msgstr "Teleport:"
+
+#: Pyblio/ConfDir/Base.py:151
+#, fuzzy
+msgid "Unpublished"
+msgstr "Inte klar"
+
+#: Pyblio/ConfDir/Ovid.py:9
+#, fuzzy
+msgid "Default type"
+msgstr "Standardlista"
+
+#: Pyblio/ConfDir/Ovid.py:10
+msgid "Default type for an Ovid entry"
+msgstr ""
+
+#: Pyblio/ConfDir/Ovid.py:15 Pyblio/ConfDir/Refer.py:7
+msgid "Mapping"
+msgstr ""
+
+#: Pyblio/ConfDir/Ovid.py:16
+msgid "A mapping between the Ovid field name and the"
+msgstr ""
+
+#: Pyblio/ConfDir/Refer.py:8
+msgid "Field names correspondances"
+msgstr ""
+
+#: Pyblio/ConfDir/Gnome.py:7
+#, fuzzy
+msgid "Gnome"
+msgstr "GnomeICU"
+
+#: Pyblio/ConfDir/Gnome.py:8
+#, fuzzy
+msgid "Gnome interface configuration"
+msgstr "Anpassa sidhuvud"
+
+#: Pyblio/ConfDir/Gnome.py:11
+msgid "Columns"
+msgstr "Kolumner"
+
+#: Pyblio/ConfDir/Gnome.py:12
+#, fuzzy
+msgid "Fields displayed on the main screen of the interface"
+msgstr "visa tillstånd för de listade filerna"
+
+#: Pyblio/ConfDir/Gnome.py:16
+msgid "Tooltips"
+msgstr "Verktygstips"
+
+#: Pyblio/ConfDir/Gnome.py:17
+#, fuzzy
+msgid "Enable tooltips ?"
+msgstr "Slå på verktygstips"
+
+#: Pyblio/ConfDir/Gnome.py:21
+#, fuzzy
+msgid "Native Edit"
+msgstr "Nodredigering"
+
+#: Pyblio/ConfDir/Gnome.py:22
+msgid "Edit the entries in their native format by default ?"
+msgstr ""
+
+#: Pyblio/ConfDir/Gnome.py:23
+#, fuzzy
+msgid "Use native edit by default ?"
+msgstr "Använd \"punkt till punkt\" som standard"
+
+#: Pyblio/ConfDir/Gnome.py:26
+#, fuzzy
+msgid "Searchable"
+msgstr "Sök"
+
+#: Pyblio/ConfDir/Gnome.py:27
+#, fuzzy
+msgid "Searchable fields"
+msgstr "Tillgängliga fält"
+
+#: Pyblio/ConfDir/Gnome.py:31
+#, fuzzy
+msgid "History Size"
+msgstr "Storlek på historik"
+
+#: Pyblio/ConfDir/Gnome.py:32
+#, fuzzy
+msgid "Size of the history file"
+msgstr "Byt till redigerarvyn"
+
+#: Pyblio/ConfDir/Gnome.py:33
+#, fuzzy
+msgid "Number of items"
+msgstr "Antal minor"
+
+#: Pyblio/ConfDir/Medline.py:7
+#, fuzzy
+msgid "Medline Mapping"
+msgstr "Inutitaggning"
+
+#: Pyblio/ConfDir/Medline.py:8
+msgid "Medline field names correspondances"
+msgstr ""
+
+#: Pyblio/Autoload.py:57
+#, fuzzy, c-format
+msgid "warning: can't import %s: %s"
+msgstr "varning: %s skapades som %s"
+
+#: Pyblio/Config.py:53
+#, c-format
+msgid "value of `%s' should be of type %s"
+msgstr ""
+
+#: Pyblio/Config.py:200
+msgid "String"
+msgstr "Sträng"
+
+#: Pyblio/Config.py:210
+msgid "Boolean"
+msgstr "Boolesk variabel"
+
+#: Pyblio/Config.py:230
+#, fuzzy
+msgid "Integer"
+msgstr "Interlace"
+
+#: Pyblio/Config.py:232
+#, fuzzy, c-format
+msgid "Integer under %d"
+msgstr "Heltalssekvens"
+
+#: Pyblio/Config.py:234
+#, fuzzy, c-format
+msgid "Integer over %d"
+msgstr "Interlace"
+
+#: Pyblio/Config.py:236
+#, c-format
+msgid "Integer between %d and %d"
+msgstr ""
+
+#: Pyblio/Config.py:249
+#, fuzzy, c-format
+msgid "Element in `%s'"
+msgstr "Element"
+
+#: Pyblio/Config.py:270
+#, fuzzy, c-format
+msgid "Tuple (%s)"
+msgstr "Typ: %s\n"
+
+#: Pyblio/Config.py:292
+#, fuzzy, c-format
+msgid "List (%s)"
+msgstr "std(%s)"
+
+#: Pyblio/Config.py:318
+#, fuzzy, c-format
+msgid "Dictionary (%s, %s)"
+msgstr "Katalog "
+
+#: Pyblio/Fields.py:265
+#, fuzzy
+msgid "Illegal year value"
+msgstr "Ogiltig etikettlängd"
+
+#: Pyblio/Fields.py:269
+#, fuzzy
+msgid "Illegal month value"
+msgstr "Ogiltig parentes"
+
+#: Pyblio/Fields.py:273
+#, fuzzy
+msgid "Illegal day value"
+msgstr "Ogiltig etikettlängd"
+
+#: Pyblio/Fields.py:438
+#, fuzzy, c-format
+msgid "in %s"
+msgstr "rad: %s"
+
+#: Pyblio/LyX.py:39
+#, fuzzy, c-format
+msgid "no input pipe `%s'"
+msgstr "Kunde inte öppna \"%s\""
+
+#: Pyblio/LyX.py:45
+#, fuzzy, c-format
+msgid "no output pipe `%s'"
+msgstr "mata ut rader"
+
+#: Pyblio/Open.py:97
+#, c-format
+msgid "method `%s' provides no opener"
+msgstr ""
+
+#: Pyblio/Open.py:105 Pyblio/Open.py:151
+#, fuzzy, c-format
+msgid "File `%s' does not exist"
+msgstr "Filen \"%s\" finns inte"
+
+#: Pyblio/Open.py:116 Pyblio/Open.py:162
+#, fuzzy, c-format
+msgid "don't know how to open `%s'"
+msgstr "Vet inte hur man aktiverar \"%s\"\n"
+
+#: Pyblio/Open.py:143
+#, c-format
+msgid "method `%s' provides no iterator"
+msgstr ""
+
+# .././Pyblio/Format/BibTeX.py:345 :403
+#: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
+#, c-format
+msgid "key `%s' is malformed"
+msgstr ""
+
+#: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
+#, fuzzy, c-format
+msgid "%s:%d: key `%s' already defined"
+msgstr "%s version %s är redan installerat"
+
+#: Pyblio/GnomeUI/Editor.py:38
+#, fuzzy
+msgid "Last Name, First Name"
+msgstr "Förnamn"
+
+#: Pyblio/GnomeUI/Editor.py:39
+msgid "Text"
+msgstr "Text"
+
+#: Pyblio/GnomeUI/Editor.py:42
+#, fuzzy
+msgid "Reference"
+msgstr "Referenser: "
+
+#: Pyblio/GnomeUI/Editor.py:258
+msgid "Day"
+msgstr "Dag"
+
+#: Pyblio/GnomeUI/Editor.py:267
+msgid "Month"
+msgstr "Månad"
+
+#: Pyblio/GnomeUI/Editor.py:276
+msgid "Year"
+msgstr "År"
+
+#: Pyblio/GnomeUI/Editor.py:301
+#, fuzzy
+msgid "Invalid day field in date"
+msgstr "Ogiltigt verkligt namn"
+
+#: Pyblio/GnomeUI/Editor.py:309
+#, fuzzy
+msgid "Invalid month field in date"
+msgstr "Ogiltig månad eller år"
+
+#: Pyblio/GnomeUI/Editor.py:317
+#, fuzzy
+msgid "Invalid year field in date"
+msgstr "Ogiltigt verkligt namn"
+
+#: Pyblio/GnomeUI/Editor.py:426
+#, fuzzy
+msgid "Entry type"
+msgstr "Dither-typ"
+
+#: Pyblio/GnomeUI/Editor.py:469
+#, fuzzy
+msgid "Create Field"
+msgstr "Skapa linje"
+
+#: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:178
+msgid "Mandatory"
+msgstr "Nödvändigt"
+
+#: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:179
+msgid "Optional"
+msgstr "Valfri"
+
+#: Pyblio/GnomeUI/Editor.py:534
+#, fuzzy
+msgid "Extra"
+msgstr "Packa upp"
+
+#: Pyblio/GnomeUI/Editor.py:596
+#, fuzzy
+msgid "Invalid key format"
+msgstr "Ogiltig domän"
+
+#: Pyblio/GnomeUI/Editor.py:604
+#, fuzzy, c-format
+msgid "Key `%s' already exists"
+msgstr "Användaren %s finns redan."
+
+#: Pyblio/GnomeUI/Editor.py:671
+#, fuzzy
+msgid "Error in native string parsing"
+msgstr "GIF: fel vid läsning av magiska numren\n"
+
+#: Pyblio/GnomeUI/Editor.py:684
+#, fuzzy
+msgid "Edit entry"
+msgstr "Redigera identitet"
+
+#: Pyblio/GnomeUI/Editor.py:698 Pyblio/GnomeUI/Editor.py:739
+#, fuzzy
+msgid "Native Editing"
+msgstr "Nodredigering..."
+
+#: Pyblio/GnomeUI/Editor.py:751
+#, fuzzy
+msgid "Standard Editing"
+msgstr "_Standardavvikelse:"
+
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+#: Pyblio/GnomeUI/FileSelector.py:41
+msgid "File"
+msgstr "Fil"
+
+#: Pyblio/GnomeUI/FileSelector.py:74
+msgid "Bibliography type:"
+msgstr ""
+
+#: Pyblio/GnomeUI/Index.py:66
+msgid "Add..."
+msgstr "Lägg till..."
+
+#: Pyblio/GnomeUI/Index.py:67
+msgid "Edit..."
+msgstr "Redigera..."
+
+#: Pyblio/GnomeUI/Index.py:68 Pyblio/GnomeUI/Search.py:176
+msgid "Delete"
+msgstr "Ta bort"
+
+#: Pyblio/GnomeUI/Search.py:109
+msgid "Search"
+msgstr "Sök"
+
+#: Pyblio/GnomeUI/Fields.py:211 Pyblio/GnomeUI/Search.py:133
+#, fuzzy
+msgid "Field"
+msgstr "Misslyckande"
+
+#: Pyblio/GnomeUI/Search.py:134
+#, fuzzy
+msgid "Pattern"
+msgstr "Mönster"
+
+#: Pyblio/GnomeUI/Search.py:149
+#, fuzzy
+msgid "Simple Search"
+msgstr "Webbsökning"
+
+#: Pyblio/GnomeUI/Search.py:153
+#, fuzzy
+msgid "Search command:"
+msgstr "Sök domäner"
+
+#: Pyblio/GnomeUI/Search.py:159
+#, fuzzy
+msgid "Expert Search"
+msgstr "Webbsökning"
+
+#: Pyblio/GnomeUI/Search.py:194
+#, fuzzy
+msgid "Full database"
+msgstr " databas"
+
+#: Pyblio/GnomeUI/Search.py:229
+#, fuzzy
+msgid "internal error during evaluation"
+msgstr "internt fel (fel i rpm?): "
+
+#: Pyblio/GnomeUI/Search.py:278
+#, fuzzy, c-format
+msgid ""
+"while compiling %s\n"
+"error: %s"
+msgstr "Fel vid stängning av fil, fel: %s"
+
+#: Pyblio/GnomeUI/Sort.py:42
+#, fuzzy
+msgid "Select sort criterions"
+msgstr "Välj scenario:"
+
+#: Pyblio/GnomeUI/Sort.py:53
+#, fuzzy
+msgid "Sort direction"
+msgstr "Kort beskrivning"
+
+#: Pyblio/GnomeUI/Sort.py:53
+#, fuzzy
+msgid "Sort criterions"
+msgstr "Kort beskrivning"
+
+#: Pyblio/GnomeUI/Sort.py:66
+#, fuzzy
+msgid "[Entry Type]"
+msgstr "Efter typ"
+
+#: Pyblio/GnomeUI/Sort.py:67
+#, fuzzy
+msgid "[Key Value]"
+msgstr "Cellvärde"
+
+#: Pyblio/GnomeUI/Sort.py:92
+#, fuzzy
+msgid "Reorder"
+msgstr "Kant"
+
+#: Pyblio/GnomeUI/Sort.py:93
+msgid "Groups the active fields on the top of the list"
+msgstr ""
+
+#: Pyblio/GnomeUI/Sort.py:97
+#, fuzzy
+msgid "Unselect all"
+msgstr "Avmarkera alla"
+
+#: Pyblio/GnomeUI/Sort.py:98
+#, fuzzy
+msgid "Removes all the sort criterions"
+msgstr "Ta bort villkor"
+
+#: Pyblio/GnomeUI/Utils.py:163
+#, fuzzy
+msgid ""
+"The following errors occured:\n"
+"\n"
+msgstr "Följande beroendeproblem inträffade:"
+
+#: Pyblio/GnomeUI/__init__.py:36
+msgid "Internal Error"
+msgstr "Internt fel"
+
+#: Pyblio/GnomeUI/Document.py:52
+msgid "_New"
+msgstr "_Nytt"
+
+#: Pyblio/GnomeUI/Document.py:54
+#, fuzzy
+msgid "_Merge with..."
+msgstr "Öppna med..."
+
+#: Pyblio/GnomeUI/Document.py:58
+#, fuzzy
+msgid "_Previous Documents"
+msgstr "_Dokument"
+
+#: Pyblio/GnomeUI/Document.py:65
+msgid "About..."
+msgstr "Om..."
+
+#: Pyblio/GnomeUI/Document.py:66
+#, fuzzy
+msgid "Submit a Bug Report"
+msgstr "Skicka _felrapport"
+
+#: Pyblio/GnomeUI/Document.py:78
+msgid "_Add..."
+msgstr "_Lägg till..."
+
+#: Pyblio/GnomeUI/Document.py:79
+msgid "_Edit..."
+msgstr "R_edigera..."
+
+#: Pyblio/GnomeUI/Document.py:80
+msgid "_Delete"
+msgstr "Ta _bort"
+
+#: Pyblio/GnomeUI/Document.py:83
+#, fuzzy
+msgid "S_ort..."
+msgstr "Sortera..."
+
+#: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
+#, fuzzy
+msgid "_Cite"
+msgstr "_Ort:"
+
+#: Pyblio/GnomeUI/Document.py:88
+#, fuzzy
+msgid "_Format..."
+msgstr "Formulär..."
+
+#: Pyblio/GnomeUI/Document.py:92
+msgid "_Fields..."
+msgstr "_Fält..."
+
+#: Pyblio/GnomeUI/Document.py:93
+#, fuzzy
+msgid "_Entries..."
+msgstr "Ka_tegorier..."
+
+#: Pyblio/GnomeUI/Document.py:99
+msgid "_File"
+msgstr "_Arkiv"
+
+#: Pyblio/GnomeUI/Document.py:100
+msgid "_Edit"
+msgstr "R_edigera"
+
+#: Pyblio/GnomeUI/Document.py:102
+msgid "_Settings"
+msgstr "_Inställningar"
+
+#: Pyblio/GnomeUI/Document.py:103
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: Pyblio/GnomeUI/Document.py:107
+msgid "Open"
+msgstr "Öppna"
+
+#: Pyblio/GnomeUI/Document.py:108
+msgid "Save"
+msgstr "Spara"
+
+#: Pyblio/GnomeUI/Document.py:110
+msgid "Find"
+msgstr "Sök"
+
+#: Pyblio/GnomeUI/Document.py:111
+#, fuzzy
+msgid "Cite"
+msgstr "Webbplats"
+
+#: Pyblio/GnomeUI/Document.py:113
+msgid "Close"
+msgstr "Stäng"
+
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+#, fuzzy
+msgid "Previous Documents"
+msgstr "Dokument"
+
+#: Pyblio/GnomeUI/Document.py:228
+#, fuzzy, c-format
+msgid ""
+"can't open file `%s' for writing:\n"
+"%s"
+msgstr ""
+"Kan inte öppna filen %s för skrivning:\n"
+"%s\n"
+
+#: Pyblio/GnomeUI/Document.py:243
+#, fuzzy, c-format
+msgid ""
+"Error while parsing `%s':\n"
+"%s"
+msgstr ""
+"Fel vid förberedelse av %s:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:262
+#, fuzzy
+msgid "New database"
+msgstr " databas"
+
+#: Pyblio/GnomeUI/Document.py:270 Pyblio/GnomeUI/Document.py:274
+#, fuzzy
+msgid "[no entry]"
+msgstr "Loggpost"
+
+#: Pyblio/GnomeUI/Document.py:271
+msgid "[1 entry]"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:272
+#, fuzzy, c-format
+msgid "[%d entries]"
+msgstr ""
+" poster\n"
+"\n"
+
+#: Pyblio/GnomeUI/Document.py:275
+#, c-format
+msgid "[%d/1 entry]"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:276
+#, fuzzy, c-format
+msgid "[%d/%d entries]"
+msgstr "%s (%d försök)"
+
+#: Pyblio/GnomeUI/Document.py:281
+#, fuzzy
+msgid "[modified]"
+msgstr "(ändrad)"
+
+#: Pyblio/GnomeUI/Document.py:291
+msgid ""
+"The database has been modified.\n"
+"Discard changes ?"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:307
+#, fuzzy
+msgid "Merge file"
+msgstr "Flytta fil"
+
+#: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:379
+#, fuzzy
+msgid "Open error"
+msgstr "I/O-fel"
+
+#: Pyblio/GnomeUI/Document.py:343
+#, fuzzy
+msgid "Merge status"
+msgstr "Meddelande_status"
+
+#: Pyblio/GnomeUI/Document.py:354
+msgid "Open file"
+msgstr "Öppna fil"
+
+#: Pyblio/GnomeUI/Document.py:403
+#, fuzzy, c-format
+msgid ""
+"Unable to save `%s':\n"
+"%s"
+msgstr "Misslyckades med att ta status på \"%s\": %s"
+
+#: Pyblio/GnomeUI/Document.py:411
+#, fuzzy
+msgid ""
+"An internal error occured during saving\n"
+"Try to Save As..."
+msgstr ""
+"Ett fel uppstod under avkodning.\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:422
+msgid "Save As..."
+msgstr "Spara som..."
+
+#: Pyblio/GnomeUI/Document.py:428
+#, fuzzy, c-format
+msgid ""
+"The file `%s' already exists.\n"
+"Overwrite it ?"
+msgstr ""
+"Filen \"%s\" finns redan redan.\n"
+"Vill du skriva över den?"
+
+#: Pyblio/GnomeUI/Document.py:435
+#, fuzzy, c-format
+msgid ""
+"During opening:\n"
+"%s"
+msgstr "Sparar %s:"
+
+#: Pyblio/GnomeUI/Document.py:455
+#, fuzzy
+msgid "Reopen error"
+msgstr "Inga fel"
+
+#: Pyblio/GnomeUI/Document.py:496
+#, c-format
+msgid ""
+"An entry called `%s' already exists.\n"
+"Rename and add it anyway ?"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:532
+#, fuzzy
+msgid "Really remove all the entries ?"
+msgstr "Ta bort ett blad, oåterkalleligen"
+
+#: Pyblio/GnomeUI/Document.py:552
+#, fuzzy
+msgid "Create new entry"
+msgstr "Skapa en ny katalog"
+
+# hoppas att ja fungerar som svar KONTROLLERA!
+#: Pyblio/GnomeUI/Document.py:566
+#, fuzzy, c-format
+msgid "Really edit %d entries ?"
+msgstr "alla kataloger"
+
+# hoppas att ja fungerar som svar KONTROLLERA!
+#: Pyblio/GnomeUI/Document.py:601
+#, fuzzy, c-format
+msgid "Remove all the %d entries ?"
+msgstr "alla kataloger"
+
+#: Pyblio/GnomeUI/Document.py:603
+#, fuzzy, c-format
+msgid "Remove entry `%s' ?"
+msgstr "Ta bort "
+
+#: Pyblio/GnomeUI/Document.py:661 Pyblio/GnomeUI/Document.py:668
+#, fuzzy, c-format
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr "Kan inte ansluta till värd: %s"
+
+#: Pyblio/GnomeUI/Document.py:709
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:720
+msgid "This program is copyrighted under the GNU GPL"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:722
+msgid "Gnome interface to the Pybliographer system."
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:727
+#, fuzzy
+msgid "Pybliographer Home Page"
+msgstr "Gå till din hemsida"
+
+#: Pyblio/GnomeUI/Format.py:37
+#, fuzzy
+msgid "Format entries"
+msgstr "Formatera celler"
+
+#: Pyblio/GnomeUI/Format.py:51
+#, fuzzy
+msgid "Bibliography style:"
+msgstr "Markera stil."
+
+#: Pyblio/GnomeUI/Format.py:52
+#, fuzzy
+msgid "Select style"
+msgstr "vänsterstil"
+
+#: Pyblio/GnomeUI/Format.py:58
+#, fuzzy
+msgid "Output format:"
+msgstr "_Utdataområde:"
+
+#: Pyblio/GnomeUI/Format.py:75
+#, fuzzy
+msgid "Output File:"
+msgstr "Utdataområde:"
+
+#: Pyblio/GnomeUI/Format.py:76
+#, fuzzy
+msgid "Select output file"
+msgstr "Välj fil"
+
+#: Pyblio/GnomeUI/Config.py:46
+#, fuzzy
+msgid "Choose your preferences"
+msgstr "Konfigurera användarinställningar"
+
+#: Pyblio/GnomeUI/Config.py:111
+#, fuzzy, c-format
+msgid ""
+"Item `%s':\n"
+"\n"
+"%s"
+msgstr "Objekt %s%s"
+
+#: Pyblio/GnomeUI/Config.py:146
+msgid ""
+"Some changes require to restart Pybliographic\n"
+"to be correctly taken into account"
+msgstr ""
+
+#: Pyblio/GnomeUI/Config.py:291
+msgid "True"
+msgstr "Sant"
+
+#: Pyblio/GnomeUI/Config.py:292
+msgid "False"
+msgstr "Falskt"
+
+#: Pyblio/GnomeUI/Config.py:432
+msgid "Add"
+msgstr "Lägg till"
+
+#: Pyblio/GnomeUI/Config.py:435
+msgid "Update"
+msgstr "Uppdatera"
+
+#: Pyblio/GnomeUI/Config.py:438 Pyblio/GnomeUI/Config.py:536
+#: Pyblio/GnomeUI/Fields.py:95 Pyblio/GnomeUI/Fields.py:225
+msgid "Remove"
+msgstr "Ta bort"
+
+#: Pyblio/GnomeUI/Config.py:524
+msgid "Value"
+msgstr "Värde"
+
+#: Pyblio/GnomeUI/Config.py:533 Pyblio/GnomeUI/Fields.py:92
+#: Pyblio/GnomeUI/Fields.py:222
+msgid "Set"
+msgstr "Sätt"
+
+#: Pyblio/GnomeUI/Config.py:549
+#, fuzzy
+msgid "Key:"
+msgstr "Nyckel"
+
+#: Pyblio/GnomeUI/Config.py:551
+msgid "Value:"
+msgstr "Värde:"
+
+#: Pyblio/GnomeUI/Fields.py:45
+#, fuzzy
+msgid "Fields configuration"
+msgstr "E-postkonfiguration"
+
+#: Pyblio/GnomeUI/Fields.py:58
+msgid "Name"
+msgstr "Namn"
+
+#: Pyblio/GnomeUI/Fields.py:69
+#, fuzzy
+msgid "Name:"
+msgstr "Namn:"
+
+#: Pyblio/GnomeUI/Fields.py:71
+msgid "Type:"
+msgstr "Typ:"
+
+#: Pyblio/GnomeUI/Fields.py:185
+#, fuzzy
+msgid "Entries configuration"
+msgstr "Tjänstekonfiguration"
+
+#: Pyblio/GnomeUI/Fields.py:195
+#, fuzzy
+msgid "Entry"
+msgstr "Enhet"
+
+#: Pyblio/GnomeUI/Fields.py:206
+#, fuzzy
+msgid "Entry Name:"
+msgstr "Ange namn:"
+
+#: Pyblio/GnomeUI/Fields.py:211
+msgid "Status"
+msgstr "Status"
+
+#: pybliographer.py:38
+#, fuzzy, c-format
+msgid "This is %s, version %s"
+msgstr "%s version %s"
+
+# .././pybliographer.py:42 :49
+#: pybliographer.py:42 pybliographer.py:49
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr ""
+
+#: pybliographer.py:43
+msgid "For details, type `warranty'."
+msgstr ""
+
+#: pybliographer.py:110 pybliographer.py:158
+#, fuzzy, c-format
+msgid "%s: error: can't open file `%s'"
+msgstr "Fel: Kan inte öppna filen %s"
+
+#: pybliographer.py:123
+#, c-format
+msgid "For help, run %s and type `help' at the prompt"
+msgstr ""
+
+#: pybliographer.py:132
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+
+#: scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr ""
+
+#: scripts/pybcompact.py:34
+#, fuzzy, c-format
+msgid "pybcompact: error: %s\n"
+msgstr "Fatalt fel: %s\n"
+
+#: scripts/pybcompact.py:97
+#, fuzzy
+msgid "no entry"
+msgstr "Loggpost"
+
+#: scripts/pybcompact.py:142
+#, fuzzy, c-format
+msgid "can't find the following entries: %s"
+msgstr "Använd mina alternativ för att fylla i följande poster."
+
+#: scripts/pybconvert.py:29
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr ""
+
+#: scripts/pybconvert.py:38
+msgid "pybconvert: bad conversion format"
+msgstr ""
+
+#: scripts/pybformat.py:34
+msgid "usage: pybformat [bibtexfiles...]\n"
+msgstr ""
+
+#: scripts/pybformat.py:38
+#, fuzzy, c-format
+msgid "pybformat: error: %s\n"
+msgstr "Fatalt fel: %s\n"
+
+#: scripts/pybformat.py:44
+#, fuzzy, c-format
+msgid "pybformat: warning: %s\n"
+msgstr "kunde inte tolka: \"%s\"\n"
+
+#: scripts/pybformat.py:141 scripts/pybtex.py:84
+#, fuzzy, c-format
+msgid "can't find style `%s'"
+msgstr "Kan inte hitta filen \"%s\""
+
+#: scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr ""
+
+#: scripts/pybtex.py:38
+#, fuzzy, c-format
+msgid "pybtex: error: %s\n"
+msgstr "Fatalt fel: %s\n"
+
+#: scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr ""
+
+#: scripts/pybtex.py:64
+#, fuzzy
+msgid "no style defined"
+msgstr "ingen fil specifierad"
