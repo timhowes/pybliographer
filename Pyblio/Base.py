@@ -220,6 +220,12 @@ class DataBase:
 	return self.dict.has_key (key)
 
 
+    def would_have_key (self, key):
+        ''' Test for a key that would be set on the database '''
+
+        return self.has_key (Key.Key (self, key.key))
+
+    
     def __getitem__ (self, key):
 	''' Returns the Entry object associated with the key '''
 
@@ -229,6 +235,7 @@ class DataBase:
     def __setitem__ (self, key, value):
 	''' Sets a key Entry '''
 
+        key.base  = self.key
         value.key = key
 	self.dict [key] = value
 	return

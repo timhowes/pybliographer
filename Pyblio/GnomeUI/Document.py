@@ -236,6 +236,7 @@ class Document (Connector.Publisher):
         Pyblio.Style.Utils.generate (url, format, self.data, entries, file)
         return
 
+
     def format_entries (self, * arg):
         if self.format_dg is None:
             self.format_dg = Format.FormatDialog (self.w)
@@ -435,17 +436,21 @@ class Document (Connector.Publisher):
 
         self.update_status (0)
         return
+
                                       
     def close_document (self, * arg):
         self.issue ('close-document', self)
         return
 
+
     def close_document_request (self):
         return self.confirm ()
+
     
     def exit_application (self, * arg):
         self.issue ('exit-application', self)
         return
+
 
     def drag_moved (self, entries):
         if not entries: return
@@ -455,11 +460,12 @@ class Document (Connector.Publisher):
 
         self.redisplay_index (1)
         return
+
     
     def drag_received (self, entries):
         for entry in entries:
             
-            if self.data.has_key (entry.key):
+            if self.data.would_have_key (entry.key):
                 if not Utils.Callback (_("An entry called `%s' already exists.\nRename and add it anyway ?")
                                        % entry.key.key, parent = self.w).answer ():
                     continue
@@ -469,6 +475,7 @@ class Document (Connector.Publisher):
 
         self.redisplay_index ()
         return
+
                 
     def cut_entry (self, * arg):
         entries = self.index.selection ()
@@ -479,14 +486,17 @@ class Document (Connector.Publisher):
             
         self.redisplay_index (1)
         pass
+
     
     def copy_entry (self, * arg):
         self.index.selection_copy (self.index.selection ())
         return
+
     
     def paste_entry (self, * arg):
         self.index.selection_paste ()
         return
+
     
     def clear_entries (self, * arg):
         if len (self.data) == 0: return
@@ -533,6 +543,7 @@ class Document (Connector.Publisher):
             edit.Subscribe ('commit-edition', self.commit_edition)
 
         return
+
 
     def commit_edition (self, old, new):
         ''' updates the database and the display '''
