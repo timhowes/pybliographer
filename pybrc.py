@@ -20,10 +20,11 @@ Autoload.preregister ('format', 'Refer',   'Pyblio.Format.Refer',   '.*\.refer')
 
 Autoload.preregister ('style', 'Generic', 'Pyblio.Style.Generic')
 
-Autoload.preregister ('output', 'Text',  'Pyblio.Output.text')
-Autoload.preregister ('output', 'Raw',   'Pyblio.Output.raw')
-Autoload.preregister ('output', 'HTML',  'Pyblio.Output.html')
-Autoload.preregister ('output', 'LaTeX', 'Pyblio.Output.LaTeX')
+Autoload.preregister ('output', 'Text',    'Pyblio.Output.text')
+Autoload.preregister ('output', 'Raw',     'Pyblio.Output.raw')
+Autoload.preregister ('output', 'HTML',    'Pyblio.Output.html')
+Autoload.preregister ('output', 'LaTeX',   'Pyblio.Output.LaTeX')
+Autoload.preregister ('output', 'AbiWord', 'Pyblio.Output.abiword')
 
 
 # Parse the configuration directory

@@ -1,4 +1,12 @@
-New in 1.0.0  - 
+New in 1.0.1 - 
+
+	* fixed pybconvert and opening of empty bibtex file
+	* translation updates (de, it)
+	
+
+New in 1.0.0  - 2000-05-11
+
+	* fixed output order for bibtex entries with crossrefs
 
 
 New in 0.9.11 - 2000-04-18

@@ -21,6 +21,7 @@
 
 
 TESTS = \
+	$(srcdir)/convert	\
 	$(srcdir)/pybformat	\
 	$(srcdir)/pybtex	\
 	$(srcdir)/compact	\

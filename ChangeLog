@@ -1,3 +1,10 @@
+2000-05-29  Fred  <fred@icppriv7.epfl.ch>
+
+	* scripts/pybconvert, tests/convert: fixed conversion script and
+	added a test so that the problem does not occur anymore...
+
+	* Pyblio/Format/BibTeX.py: fixed bug occuring when bibtex file is empty.
+
 2000-05-11  Fred  <fred@lithpc10.epfl.ch>
 
 	* Pyblio/Format/BibTeX.py: save entries with crossrefs _after_ the
