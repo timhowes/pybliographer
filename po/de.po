@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.4\n"
-"POT-Creation-Date: 2000-08-11 00:34+0200\n"
-"PO-Revision-Date: 2000-08-09 18:04+0200\n"
+"POT-Creation-Date: 2000-08-12 15:21+0200\n"
+"PO-Revision-Date: 2000-08-12 14:27+0200\n"
 "Last-Translator: Christian Meyer <linux@chrisime.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,80 +15,72 @@ msgstr ""
 
 #: Pyblio/ConfDir/BibTeX.py:9
 msgid "BibTeX"
-msgstr ""
+msgstr "BibTeX"
 
 #: Pyblio/ConfDir/BibTeX.py:10
-#, fuzzy
 msgid "BibTeX parser configuration"
-msgstr "Felder-Konfiguration"
+msgstr "BibTeX-Parser Konfiguration"
 
 #: Pyblio/ConfDir/BibTeX.py:13
-#, fuzzy
 msgid "Strict Parsing"
-msgstr "String"
+msgstr "Strenges parsen"
 
 #: Pyblio/ConfDir/BibTeX.py:14
 msgid "Turn warnings into errors"
-msgstr ""
+msgstr "Leite Warnungen in Fehler um"
 
 #: Pyblio/ConfDir/BibTeX.py:18
 msgid "Macros"
-msgstr ""
+msgstr "Makros"
 
 #: Pyblio/ConfDir/BibTeX.py:19
 msgid "BibTeX @String{} macros"
-msgstr ""
+msgstr "BibTeX @String{} Makros"
 
 #: Pyblio/ConfDir/BibTeX.py:24
-#, fuzzy
 msgid "Date Fields"
-msgstr "Feld anlegen"
+msgstr "Datumsfelder"
 
 #: Pyblio/ConfDir/BibTeX.py:25
 msgid "Links from `real' date field to the two bibtex"
-msgstr ""
+msgstr "Verweise von dem `realen' Datumsfled zu den zwei bibtex"
 
 #: Pyblio/ConfDir/BibTeX.py:29
-#, fuzzy
 msgid "Month values"
-msgstr "Falscher Wert für Monat"
+msgstr "Monatswerte"
 
 #: Pyblio/ConfDir/BibTeX.py:30
 msgid " A hash table linking month names to their"
-msgstr ""
+msgstr " Eine `hash'-Tabelle verbindet Monatsnamen mit "
 
 #: Pyblio/ConfDir/Base.py:15
-#, fuzzy
 msgid "Base"
-msgstr "Falsch"
+msgstr "Basis"
 
 #: Pyblio/ConfDir/Base.py:16
-#, fuzzy
 msgid "Elementary configuration"
-msgstr "Konfiguration der Einträge"
+msgstr "Grundlegende Konfiguration"
 
 #: Pyblio/ConfDir/Base.py:19
-#, fuzzy
 msgid "Advertise"
-msgstr "Artikel"
+msgstr "Anzeige"
 
 #: Pyblio/ConfDir/Base.py:20
 msgid "Specify wether or not the program should add a message"
 msgstr ""
+"Geben Sie an, ob oder nicht das Programm eine Nachricht hinzufügen soll"
 
 #: Pyblio/ConfDir/Base.py:25
-#, fuzzy
 msgid "Fields"
-msgstr "Feld"
+msgstr "Felder"
 
 #: Pyblio/ConfDir/Base.py:26
 msgid "Existing fields"
 msgstr "Existierende Felder"
 
 #: Pyblio/ConfDir/Base.py:30
-#, fuzzy
 msgid "Entries"
-msgstr "_Einträge..."
+msgstr "Einträge"
 
 #: Pyblio/ConfDir/Base.py:31
 msgid "Existing entries"
@@ -96,7 +88,7 @@ msgstr "Existierende Enträge"
 
 #: Pyblio/ConfDir/Base.py:34
 msgid "Default Type"
-msgstr ""
+msgstr "Standardtyp"
 
 #: Pyblio/ConfDir/Base.py:35
 msgid "Default type for a newly created entry"
@@ -104,19 +96,19 @@ msgstr "Standardtyp für einen neu erstellten Eintrag"
 
 #: Pyblio/ConfDir/Base.py:39
 msgid "LyX Path"
-msgstr ""
+msgstr "LyX-Pfad"
 
 #: Pyblio/ConfDir/Base.py:40
 msgid "Path to the LyX server"
-msgstr "Pfad zum Lyx-Server"
+msgstr "Pfad zum LyX-Server"
 
 #: Pyblio/ConfDir/Base.py:41
 msgid "Path"
-msgstr ""
+msgstr "Pfad"
 
 #: Pyblio/ConfDir/Base.py:48
 msgid "Cross Reference"
-msgstr "Übergreifende Referenzen"
+msgstr "Übergreifende Referenz"
 
 # .././Pyblio/ConfDir/Base.py:38 :39 :40 :41 :42 :43 :44 :45 :46 :47 :48 :49
 # :50 :51 :52 :53 :54 :55 :56 :57 :58 :59 :60 :61 :62 :63 :64 :65 :66 :67 :68
@@ -211,7 +203,7 @@ msgstr "Ausgabe"
 
 #: Pyblio/ConfDir/Base.py:64
 msgid "Volume"
-msgstr "Ausgabe"
+msgstr "Band"
 
 #: Pyblio/ConfDir/Base.py:65
 msgid "Number"
@@ -270,7 +262,6 @@ msgid "Conference Place"
 msgstr "Konferenzort"
 
 #: Pyblio/ConfDir/Base.py:79
-#, fuzzy
 msgid "Cote"
 msgstr "Käfig"
 
@@ -323,7 +314,6 @@ msgid "Keywords"
 msgstr "Schlüsselwörter"
 
 #: Pyblio/ConfDir/Base.py:92
-#, fuzzy
 msgid "Abstract"
 msgstr "Abstrakt"
 
@@ -376,7 +366,6 @@ msgid "Manual"
 msgstr "Handbuch"
 
 #: Pyblio/ConfDir/Base.py:129
-#, fuzzy
 msgid "Masters Thesis"
 msgstr "Master These"
 
@@ -402,92 +391,88 @@ msgstr "Unveröffentlicht"
 
 #: Pyblio/ConfDir/Ovid.py:9
 msgid "Default type"
-msgstr ""
+msgstr "Standardtyp"
 
 #: Pyblio/ConfDir/Ovid.py:10
-#, fuzzy
 msgid "Default type for an Ovid entry"
-msgstr "Standardtyp für einen neu erstellten Eintrag"
+msgstr "Standardtyp für einen `Ovid'-Eintrag"
 
 #: Pyblio/ConfDir/Ovid.py:15 Pyblio/ConfDir/Refer.py:7
+#, fuzzy
 msgid "Mapping"
-msgstr ""
+msgstr "Mapping"
 
 #: Pyblio/ConfDir/Ovid.py:16
 msgid "A mapping between the Ovid field name and the"
-msgstr ""
+msgstr "Ein `Mapping' zwischen dem `Ovid'-Feldnamen und"
 
 #: Pyblio/ConfDir/Refer.py:8
 msgid "Field names correspondances"
-msgstr ""
+msgstr "Feldnamen-Korrespondenzen"
 
 #: Pyblio/ConfDir/Gnome.py:7
 msgid "Gnome"
-msgstr ""
+msgstr "Gnome"
 
 #: Pyblio/ConfDir/Gnome.py:8
-#, fuzzy
 msgid "Gnome interface configuration"
-msgstr "Konfiguration der Einträge"
+msgstr "Gnome Interface-Konfiguration"
 
 #: Pyblio/ConfDir/Gnome.py:11
-#, fuzzy
 msgid "Columns"
-msgstr "Ausgabe"
+msgstr "Spalten"
 
 #: Pyblio/ConfDir/Gnome.py:12
 msgid "Fields displayed on the main screen of the interface"
-msgstr ""
+msgstr "Felder, die im Hauptbildschirm des Interfaces angezeigt werden"
 
 #: Pyblio/ConfDir/Gnome.py:16
 msgid "Tooltips"
-msgstr ""
+msgstr "Minihilfen"
 
 #: Pyblio/ConfDir/Gnome.py:17
 msgid "Enable tooltips ?"
-msgstr ""
+msgstr "Minihilfen aktivieren ?"
 
 #: Pyblio/ConfDir/Gnome.py:21
-#, fuzzy
 msgid "Native Edit"
-msgstr "Bearbeitung von Native"
+msgstr "Ursprung bearbeiten"
 
 #: Pyblio/ConfDir/Gnome.py:22
 msgid "Edit the entries in their native format by default ?"
-msgstr ""
+msgstr "Die Einträge standardmäßig in ihrem Ursprungsformat bearbeiten ?"
 
 #: Pyblio/ConfDir/Gnome.py:23
 msgid "Use native edit by default ?"
-msgstr ""
+msgstr "Standardmäßig Ursprungsbearbeitung verwenden ?"
 
 #: Pyblio/ConfDir/Gnome.py:26
-#, fuzzy
 msgid "Searchable"
-msgstr "Suchen"
+msgstr "Suchbar"
 
 #: Pyblio/ConfDir/Gnome.py:27
 msgid "Searchable fields"
-msgstr ""
+msgstr "Suchbare Felder"
 
 #: Pyblio/ConfDir/Gnome.py:31
 msgid "History Size"
-msgstr ""
+msgstr "Verlaufsgröße"
 
 #: Pyblio/ConfDir/Gnome.py:32
 msgid "Size of the history file"
-msgstr ""
+msgstr "Größe der Verlaufsdatei"
 
 #: Pyblio/ConfDir/Gnome.py:33
 msgid "Number of items"
-msgstr ""
+msgstr "Anzahl von Elementen"
 
 #: Pyblio/ConfDir/Medline.py:7
 msgid "Medline Mapping"
-msgstr ""
+msgstr "`Medline Mapping'"
 
 #: Pyblio/ConfDir/Medline.py:8
 msgid "Medline field names correspondances"
-msgstr ""
+msgstr "`Medline' Feldnamen-Korrespondenzen"
 
 #: Pyblio/Autoload.py:57
 #, c-format
@@ -575,9 +560,9 @@ msgstr "keine Ausgabe-Pipe `%s'"
 
 # wie kann man "opener" richtig(!!) übersetzen?
 #: Pyblio/Open.py:97
-#, fuzzy, c-format
+#, c-format
 msgid "method `%s' provides no opener"
-msgstr "Methode `%s' unterstützt keinen Öffner (?)"
+msgstr "Methode `%s' stellt keinen Öffner bereit"
 
 #: Pyblio/Open.py:105 Pyblio/Open.py:151
 #, c-format
@@ -770,7 +755,7 @@ msgstr "[Schlüsselwert]"
 
 #: Pyblio/GnomeUI/Sort.py:92
 msgid "Reorder"
-msgstr "Ordnen"
+msgstr "Neu ordnen"
 
 #: Pyblio/GnomeUI/Sort.py:93
 msgid "Groups the active fields on the top of the list"
@@ -874,7 +859,7 @@ msgstr "Speichern"
 
 #: Pyblio/GnomeUI/Document.py:110
 msgid "Find"
-msgstr "Suchen"
+msgstr "Finden"
 
 #: Pyblio/GnomeUI/Document.py:111
 msgid "Cite"
@@ -976,11 +961,11 @@ msgid ""
 "Try to Save As..."
 msgstr ""
 "Ein interner Fehler trat während des Speicherns auf\n"
-"Probiere Sie 'Speichern als...'"
+"Probiere Sie `Speichern unter...'"
 
 #: Pyblio/GnomeUI/Document.py:422
 msgid "Save As..."
-msgstr "Speichern als..."
+msgstr "Speichern unter..."
 
 #: Pyblio/GnomeUI/Document.py:428
 #, c-format
@@ -1024,17 +1009,17 @@ msgstr "Neuen Eintrag erzeugen"
 #: Pyblio/GnomeUI/Document.py:566
 #, c-format
 msgid "Really edit %d entries ?"
-msgstr "Wirklich %d Einträge editieren?"
+msgstr "Wirklich %d Einträge bearbeiten ?"
 
 #: Pyblio/GnomeUI/Document.py:601
 #, c-format
 msgid "Remove all the %d entries ?"
-msgstr "Alle %d Einträge entfernen?"
+msgstr "Alle %d Einträge entfernen ?"
 
 #: Pyblio/GnomeUI/Document.py:603
 #, c-format
 msgid "Remove entry `%s' ?"
-msgstr "Eintrag `%s' entfernen?"
+msgstr "Eintrag `%s' entfernen ?"
 
 #: Pyblio/GnomeUI/Document.py:661 Pyblio/GnomeUI/Document.py:668
 #, c-format
@@ -1059,7 +1044,7 @@ msgstr "Dieses Programm steht unter der GNU GPL"
 
 #: Pyblio/GnomeUI/Document.py:722
 msgid "Gnome interface to the Pybliographer system."
-msgstr "Gnome Interface zu Pybliographer"
+msgstr "Gnome Interface zum Pybliographer System."
 
 #: Pyblio/GnomeUI/Document.py:727
 msgid "Pybliographer Home Page"
@@ -1091,7 +1076,7 @@ msgstr "Ausgabedatei auswählen"
 
 #: Pyblio/GnomeUI/Config.py:46
 msgid "Choose your preferences"
-msgstr "Voreinstellungen wählen"
+msgstr "Wählen Sie Ihre Einstellungen"
 
 #: Pyblio/GnomeUI/Config.py:111
 #, c-format
@@ -1189,11 +1174,11 @@ msgstr "Willkommen zu %s, Version %s"
 
 #: pybliographer.py:42 pybliographer.py:49
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
-msgstr "Dies ist freie Software OHNE JEDE GARANTIE"
+msgstr "Dies ist freie Software OHNE JEDE GARANTIE."
 
 #: pybliographer.py:43
 msgid "For details, type `warranty'."
-msgstr "Für Details, wählen Sie`warranty'."
+msgstr "Für Details, wählen Sie `warranty'."
 
 #: pybliographer.py:110 pybliographer.py:158
 #, c-format
@@ -1222,7 +1207,7 @@ msgstr "Benutzung: pybcompact <latex-Datei> <bibtex-Dateien...>"
 #: scripts/pybcompact.py:34
 #, c-format
 msgid "pybcompact: error: %s\n"
-msgstr "pybcompact: Fehler: %s\n"
+msgstr "pybcompact:-Fehler: %s\n"
 
 #: scripts/pybcompact.py:97
 msgid "no entry"
@@ -1276,15 +1261,3 @@ msgstr "pybtex: Warnung: die folgenden Schlüssel wurden nicht aufgelöst"
 #: scripts/pybtex.py:64
 msgid "no style defined"
 msgstr "kein Stil definiert"
-
-#
-# Es stehen immer noch 5 Strings aus: Cote, Abstract, Opener, 'Masters Thesis'
-# und 'Native Editing'. Hat irgendwer eine gute Uebersetzung dafuer?
-# Wenn ja, bitte Mail an <linux@chrisime.de>. -cm-
-#
-#~ msgid ""
-#~ "Specify wether or not the program should add a message\n"
-#~ "               saying that the output files are generated by pybliographer"
-#~ msgstr ""
-#~ "Geben Sie an, ob das Programm eine Nachricht hinzufügen soll\n"
-#~ "               wodurch die Ausgabedateien von pybliographer erstellen werden"
