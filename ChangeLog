@@ -1,3 +1,11 @@
+2003-09-11  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/GnomeUI/Config.py (ConfigDialog.changed,
+	BaseConfig.update): uses set_and_save, simplified
+
+	* Pyblio/Config.py (_changes, set_and_save): added, for use with
+	instant apply and termination routine 
+
 2003-09-07  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
 	* Pyblio/GnomeUI/Document.py (Document.set_preferences): delayed

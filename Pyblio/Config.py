@@ -154,6 +154,14 @@ def set (key, value):
         sys.stderr.write ("pybliographer: warning: configuration key `%s' is undefined\n" % key)
     return
 
+_changes = {}
+
+def set_and_save  (key, value):
+    set (key, value)
+    print 'SET AND SAVE:', key, value
+    global _changes
+    _changes [key] = value
+    
 
 def get (key):
     return ConfigItems [key]
@@ -336,22 +344,14 @@ def save_user (changed):
         file.close ()
     except IOError: previous = {}
     previous.update(changed)
-##     for item in changed.keys ():
-##         previous [item] = changed [item]
     
     file = open (os.path.expanduser ('~/.pybrc.conf'), 'w')
     pickle.dump (previous, file)
     file.close ()
     return
 
+
 #   TERMINATION ROUTINE
 
-_changes = {}
-
-def save_changes(changes):
-    global _changes
-    print 'ADD TO CHANGES:', changes
-    _changes.update(changes)
-    
 atexit.register(save_user, _changes)
 

@@ -21,8 +21,7 @@
 
 # TO DO:
 # Parent for dialogue
-# instantly apply changes
-# refactor to better adapt to instant apply 
+# List view troubles
 
 import pygtk
 pygtk.require("2.0")
@@ -139,17 +138,13 @@ class ConfigDialog:
         d.show_all ()
         return
         
-    def changed (self, key):
-        changed = {key: Config.get (key).data}
-        Config.save_changes (changed)
-        #print 'CHANGED:', changed
+    def changed (self):
         if not self.warning:
             self.warning = 1
             self.parent.warning (
                 _("Some changes require to restart Pybliographic\n"
                   "to be correctly taken into account"))
-        
-        #self.apply_changes (key)
+
 
 class BaseConfig:
     def __init__ (self, dtype, props, key, parent=None, help_text=''):
@@ -192,8 +187,8 @@ class BaseConfig:
         #print 'UPDATE:', self.key, self.get(), force
         if not (force or self.state ()): return 0
         if self.key:
-            Config.set (self.key, self.get ())
-            self.prop.changed(self.key)
+            Config.set_and_save (self.key, self.get ())
+            self.prop.changed()
         else:
             self.parent.update(force = force)
         return False
