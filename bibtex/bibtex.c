@@ -70,14 +70,17 @@ bibtex_set_default_handler (void) {
 
 static void 
 add_to_dico (gpointer key, gpointer value, gpointer user) {
-    gchar * val;
+    gchar * val = (gchar *) key;
     BibtexField * field;
+    BibtexStruct * structure;
 
-    if ((val = (gchar *) g_hash_table_lookup ((GHashTable *) user,
-					      value)) == NULL) {
+    if ((structure = g_hash_table_lookup ((GHashTable *) user, val)) == NULL) {
 	val = g_strdup ((char *) key);
     }
-    
+    else {
+	bibtex_struct_destroy (structure, TRUE);
+    }
+
     field = (BibtexField *) value;
     g_strdown (val);
 
