@@ -156,11 +156,20 @@ class Actor (Attribute):
 
 
 class Person (Actor):
-    pass
+    
+    def __init__ (self, role_name):
+        Actor.__init__ (self, role_name)
+
+        self.name = [ None, None, None ]
+        return
 
 
 class Corporate (Actor):
-    pass
+    def __init__ (self, role_name):
+        Actor.__init__ (self, role_name)
+
+        self.name = None
+        return
 
 
 class Text (Attribute):
@@ -177,10 +186,13 @@ class Text (Attribute):
 
 class Date (Attribute):
 
-    pass
+    def __init__ (self, role_name):
+        Actor.__init__ (self, role_name)
+
+        self.date = [ None, None, None ]
+        return
 
 
 class Concept (Attribute):
 
-    ''' A keyword '''
     pass
