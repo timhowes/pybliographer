@@ -25,7 +25,7 @@ import os, sys, string
 from Pyblio import Config, Exceptions
 
 # check the arguments
-if len (sys.argv) < 2:
+if len (sys.argv) < 3:
     print "usage: pybcheck <file | directory>..."
     sys.exit (1)
 
@@ -36,7 +36,7 @@ broken = []
 Config.set ("bibtex/strict", 1)
 
 # we go over all the specified files
-for dir in sys.argv [1:]:
+for dir in sys.argv [2:]:
 
     # eventually expand directories to their content
     if os.path.isdir (dir):

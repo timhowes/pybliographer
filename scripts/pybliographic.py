@@ -29,8 +29,8 @@ from Pyblio.Fields import URL
 
 main = Pybliographic (version)
 
-if len (sys.argv) > 1:
-    for file in sys.argv [1:]:
+if len (sys.argv) > 2:
+    for file in sys.argv [2:]:
         url = URL (file)
         
         main.open_document (str (url))
