@@ -112,6 +112,11 @@ class Entry (Base.Entry):
 	# First, set the cache for free
 	self.__text [key] = (value, 0)
 
+        # then, convert as bibtex.
+        if isinstance (value, Reference):
+            value = string.join (map (lambda item: item.key, value.list),
+                                 ', ')
+        
 	self.dict [key] = _bibtex.reverse (_fieldtype [self.type (key)],
                                            value)
 	return
@@ -157,7 +162,7 @@ class Entry (Base.Entry):
 
 	return _bibtex.get_latex (self.parser,
                                   self.dict [key],
-                                  _fieldtype[self.type (key)])
+                                  _fieldtype [self.type (key)])
 
 
     def field_and_loss (self, key):
@@ -190,7 +195,7 @@ class Entry (Base.Entry):
 
         elif fieldtype == Reference:
             # a reference on the same database
-            val = fieldtype (ret [2], self.key.base)
+            val = Reference (ret [2], self.key.base)
             
         else:
             # specific fields, like URL
@@ -399,7 +404,7 @@ def entry_write (entry, output):
     else:
 	for field in entry.keys ():
 	    # convert the field in a bibtex form
-	    fieldtype = tp (field).id
+	    fieldtype = _fieldtype [tp (field)]
 	    dico [field] = _nativify (entry [field], fieldtype)
 
 
