@@ -1,0 +1,26 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pyblio}[2002/08/09 Definitions for Pybliographer documents]
+\RequirePackage[T1]{fontenc}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage{hyperref,url}
+\RequirePackage{natbib}
+%\RequirePackage{rcsinfo,ragged2e,hyperref,url}
+% \RequirePackage[pdftex]{color}
+% \definecolor{brown}{rgb}{.5,.5, 0}
+% \definecolor{blue}{rgb}{0,1,0}
+% \definecolor{green}{rgb}{0,0,1}
+\newcommand{\wdalt}[1]{}%\textsf{\itshape #1}}
+\newcommand{\wdneu}[1]{\textbf{#1}}
+\newcommand{\wdpro}[1]{\textsf{\textbf{#1}}}
+%\renewcommand{\secshape}{}
+% \newcommand{\wdalt}[1]{\textcolor{red}{#1}}
+% \newcommand{\wdneu}[1]{\textcolor{green}{#1}}
+% \newcommand{\wdpro}[1]{\textcolor{blue}{#1}}
+\newcommand{\todoprio}[1]{\centerline{\textit{#1}}\bigskip}
+\newcommand{\assign}[1]{\quad{}[\textsc{#1}]}
+\newcommand{\filenm}[1]{\texttt{#1}}
+\newcommand{\Done}{$\Re$ }
+\newcommand{\Active}{$\ast$ }
+\newcommand{\Think}{$\wp$ }
+\newcommand{\task}[1]{\label{task:#1}}
+\newcommand{\seet}[1]{ $\mapsto$~\ref{task:#1}}
