@@ -24,6 +24,7 @@ pybdir = $(datadir)/$(PACKAGE)/Pyblio/Format
 EXTRA_DIST = \
 	__init__.py	\
 	BibTeX.py	\
+	isifile.py	\
 	Ovid.py		\
 	OvidLike.py	\
 	Refer.py	\
