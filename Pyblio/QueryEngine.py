@@ -89,6 +89,8 @@ class Connection:
 
             self.args [key] = val
 
+        # get the query model of the server
+        
         return
 
     def engine (self):

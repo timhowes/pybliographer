@@ -57,6 +57,8 @@ class QueryUI:
             self.w_search.set_parent (parent)
 
         # get the previous connection settings
+        self.current_cnx = None
+        
         self.file = os.path.expanduser ('~/.pybliographer/connections')
         self.load ()
         
@@ -91,21 +93,40 @@ class QueryUI:
         for cnx in self.cnx:
             item = GtkMenuItem (cnx.name)
             item.set_data ('cnx', cnx)
+            item.connect ('activate', self.activate_cnx_cb)
             item.show ()
             
             menu.append (item)
 
         option.set_menu (menu)
         option.set_history (0)
+
+        self.show_cnx_query (self.cnx [0])
         return
 
+
+    def activate_cnx_cb (self, menu):
+        ''' Invoked when another connection is selected by the user '''
+        
+        self.show_cnx_query (menu.get_data ('cnx'))
+        return
+
+    def show_cnx_query (self, cnx):
+        ''' Display the available query fields for the specified connection '''
+
+        if self.current_cnx == cnx: return
+        self.current_cnx = cnx
+        
+        print cnx
+        return
+    
         
     def search (self, * arg):
         ''' Perform the actual search operation '''
         
-        menu = self.xml.get_widget ('query_option').get_menu ()
-        cnx = menu.get_active ().get_data ('cnx')
-
+        cnx = self.current_cnx
+        if cnx is None: return
+        
         engine = cnx.engine ()
 
         # display a progress bar...
