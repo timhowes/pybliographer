@@ -16,6 +16,7 @@
 <!Entity ref-url    System "url.sgml"> 
 <!Entity ref-tester System "tester.sgml"> 
 <!Entity ref-sort   System "sort.sgml"> 
+<!Entity generated-refs   System "../reference.sgml"> 
 ]>
 
 <Book>
@@ -58,28 +59,8 @@ entry = Base.Entry (...)
 
 </programlisting></para>
     </partintro>
-
-    <!-- Base -->
-    &ref-db;
-    &ref-entry;
-
-    <!-- Fields -->
-    &ref-url;
-
-    <!-- Iterator -->
-    &ref-iter;
-
-    <!-- Key -->
-    &ref-key;
     
-    <!-- Search -->
-    &ref-tester;
-
-    <!-- Selection -->
-    &ref-sel;
-
-    <!-- Sort -->
-    &ref-sort;
+    &generated-refs;
 
   </reference>
 

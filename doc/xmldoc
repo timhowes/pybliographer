@@ -20,6 +20,13 @@ def quote (text):
     text = string.replace (text, '<', '&lt;')
     return text
 
+def create_id (base, id):
+    if base:
+        id = base + '.' + id
+
+    return string.replace (id, '_', '-')
+
+
 def match (pattern, data, vars = None):
 
     if vars is None: vars = {}
@@ -147,8 +154,9 @@ def is_private (name):
 
 
 class Variable:
-    def __init__ (self, tree):
+    def __init__ (self, tree, base):
         self.tree = tree
+        self.base = base
         self.parse ()
         return
 
@@ -157,7 +165,8 @@ class Variable:
         return
 
     def dump (self, out, indent = 0):
-        write (out, indent, '<variable id="%s"/>\n' % self.name)
+        write (out, indent, '<variable id="%s" name="%s"/>\n' % (create_id (self.base, self.name),
+                                                                 self.name))
         return
     
 class Class:
@@ -185,8 +194,9 @@ class Class:
                                (symbol.atom,
                                 [token.NAME, 'name'])))))))))))))
     
-    def __init__ (self, tree):
+    def __init__ (self, tree, base):
         self.tree = tree
+        self.base = base
         self.parse ()
         return
 
@@ -217,22 +227,23 @@ class Class:
                 
             ok, res = is_function (stmt)
             if ok:
-                func = Function (res ['function'])
+                func = Function (res ['function'], base = create_id (self.base, self.name))
                 if not is_private (func.name):
                     self.methods.append (func)
                 continue
 
             ok, res = is_affectation (stmt)
             if ok:
-                var = Variable (res ['name'])
+                var = Variable (res ['name'], base = create_id (self.base, self.name))
                 if not is_private (var.name):
                     self.variables.append (var)
         return
 
     def dump (self, out, indent = 0):
-        write (out, indent, '<class id="%s">\n' % self.name)
+        write (out, indent, '<class id="%s" name="%s">\n' % (create_id (self.base, self.name),
+                                                             self.name))
         for p in self.parents:
-            write (out, indent + 2, '<parent id="%s"/>\n' % p)
+            write (out, indent + 2, '<parent id="%s" name="%s"/>\n' % (create_id (self.base, p), p))
             
         if self.documentation:
             write (out, indent + 2,
@@ -303,11 +314,11 @@ class Parameter:
         return arguments
 
     def dump (self, out, indent):
-        write (out, indent, '<argument id="%s"' % self.name)
-        if self.vararg: out.write (' vararg')
-        if self.dictionary: out.write (' dict')
+        write (out, indent, '<argument name="%s"' % self.name)
+        if self.vararg: out.write (' vararg="yes"')
+        if self.dictionary: out.write (' dict="yes"')
         if self.default:
-            out.write ('>%s</>\n' % quote (self.default))
+            out.write ('>%s</argument>\n' % quote (self.default))
         else:
             out.write ('/>\n')
             
@@ -324,9 +335,10 @@ class Function:
                       (symbol.parameters, token.LPAR, token.RPAR),
                       token.COLON, [symbol.suite, 'body'])
 
-    def __init__ (self, tree):
+    def __init__ (self, tree, base):
         self.tree = tree
         self.name = None
+        self.base = base
         
         self.parse ()
         return
@@ -362,7 +374,7 @@ class Function:
         return
 
     def dump (self, out, indent = 0):
-        write (out, indent, '<function id="%s">\n' % self.name)
+        write (out, indent, '<function id="%s" name="%s">\n' % (create_id (self.base, self.name), self.name))
         for arg in self.args:
             arg.dump (out, indent + 2)
             
@@ -375,10 +387,11 @@ class Function:
     
 class Module:
     
-    def __init__ (self, file, tree):
-        self.file = file
+    def __init__ (self, file, tree, base):
+        self.id   = file
         self.tree = tree
-
+        self.base = base
+        
         self.functions = []
         self.classes   = []
         self.variables = []
@@ -396,27 +409,27 @@ class Module:
 
             ok, tree = is_function (stmt)
             if ok:
-                function = Function (tree ['function'])
+                function = Function (tree ['function'], base = self.id)
                 if not is_private (function.name):
                     self.functions.append (function)
                 continue
             
             ok, tree = is_class (stmt)
             if ok:
-                cls = Class (tree ['class'])
+                cls = Class (tree ['class'], base = self.id)
                 if not is_private (cls.name):
                     self.classes.append (cls)
                 continue
 
             ok, res = is_affectation (stmt)
             if ok:
-                var = Variable (res ['name'])
+                var = Variable (res ['name'], base = self.id)
                 if not is_private (var.name):
                     self.variables.append (var)
         return
 
     def dump (self, out, indent = 0):
-        write (out, indent, '<module id="%s">\n' % self.file)
+        write (out, indent, '<module id="%s" name="%s">\n' % (create_id (self.base, self.id), self.id))
         if self.documentation:
             write (out, indent + 2,
                    '<documentation>%s</documentation>\n' % self.documentation)
@@ -468,6 +481,9 @@ for opt in argv:
         output = open (opt [1], 'w')
 
     
+output.write ('''<?xml version="1.0"?>\n''')
+output.write ('<pythondoc>\n')
+
 for name in files:
     file = os.path.join (root, name)
     tree = parser.suite (open (file).read ()).totuple ()
@@ -478,5 +494,7 @@ for name in files:
 
     #print tree
     
-    tree = Module (module, tree)
+    tree = Module (module, tree, None)
     tree.dump (output)
+
+output.write ('</pythondoc>\n')

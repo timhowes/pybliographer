@@ -21,7 +21,7 @@
 
 SGML = 	gui.sgml pyblio.sgml script.sgml config.sgml \
 	iterator.sgml database.sgml selection.sgml key.sgml entry.sgml \
-	url.sgml
+	url.sgml styles.sgml ../reference.sgml
 
 EXTRA_DIST = \
 	topic.dat $(SGML)\
