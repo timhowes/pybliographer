@@ -57,6 +57,7 @@ class Entry:
         self.w.add (self.text)
 
         self.text.set_editable (False)
+        self.text.set_cursor_visible (False)
         self.text.set_wrap_mode (WRAP_WORD)
         self.text.set_left_margin (5)
         self.text.set_right_margin (5)
