@@ -13,7 +13,7 @@ HTML =	index.html 		\
 	faq.html		\
 	development.html
 
-EXTRA = pyblio.png sample.html anybrowser.png list-documents.sh
+EXTRA = pyblio.png sample.html anybrowser.png
 
 
 all: $(HTML)
@@ -21,13 +21,13 @@ all: $(HTML)
 *.html: summary.m4
 
 install: all
-	test -z "$(HTML) $(EXTRA)" || cp -f $(HTML) $(EXTRA) $(WEB)
+	test -z "$(HTML) $(EXTRA)" || cp -rf design $(HTML) $(EXTRA) $(WEB)
 
 clean:
 	test -z "$(HTML)" || rm -f $(HTML)
 
 remote:
-	rsync *.m4 $(EXTRA) Makefile frederic@canvas.gnome.org:/home/frederic/html
+	rsync *.m4 $(EXTRA) list-documents.sh Makefile frederic@canvas.gnome.org:/home/frederic/html
 	ssh frederic@canvas.gnome.org 'cd html && make install'
 
 .SUFFIXES: .html .m4
