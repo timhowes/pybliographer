@@ -21,6 +21,10 @@
 
 ''' Useful functions for Gnome Interface '''
 
+# TO FIX
+#
+#  - busy cursor
+
 import gtk
 from gnome import ui
 
@@ -194,18 +198,19 @@ def init_colors (colormap):
 class Callback:
     def __init__ (self, question, parent = None):
 
-        self.dialog = gtk.Dialog (_("Question"),
-                                  parent = parent,
-                                  flags = gtk.DIALOG_MODAL,
-                                  buttons =
-                                  (gtk.STOCK_YES, gtk.RESPONSE_ACCEPT,
-                                   gtk.STOCK_NO, gtk.RESPONSE_REJECT))
-
-        self.dialog.vbox.pack_start (gtk.Label (question))
+        self.dialog = \
+                    gtk.MessageDialog (parent,
+                                       gtk.DIALOG_MODAL |
+                                       gtk.DIALOG_DESTROY_WITH_PARENT,
+                                       gtk.MESSAGE_QUESTION,
+                                       gtk.BUTTONS_YES_NO,
+                                       question)
         return
 
     def answer (self):
-        return self.dialog.run () == gtk.RESPONSE_ACCEPT
+        res = self.dialog.run () == gtk.RESPONSE_YES
+        self.dialog.destroy ()
+        return res
 
 
 
