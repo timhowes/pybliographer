@@ -1,13 +1,13 @@
 # Pybliographer Italian Translation.
-# Copyright (C) 1999 Free Software Foundation, Inc.
-# Yuri Bongiorno <yurix@tiscalinet.it>, 1999.
+# Copyright (C) 1999, 2000 Free Software Foundation, Inc.
+# Yuri Bongiorno <yurix@tiscalinet.it>, 1999, 2000.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.6\n"
-"POT-Creation-Date: 1999-11-30 13:50+0100\n"
-"PO-Revision-Date: 1999-12-01 21:40+0100\n"
+"POT-Creation-Date: 2000-01-08 21:05+0100\n"
+"PO-Revision-Date: 2000-01-08 21:40+0100\n"
 "Last-Translator: Yuri Bongiorno <yurix@tiscalinet.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid "This is free software with ABSOLUTELY NO WARRANTY."
 msgstr "Questo è software libero SENZA NESSUNA GARANZIA."
 
 #: pybliographer.py:43
-msgid "For details, type `warranty'."	
+msgid "For details, type `warranty'."
 msgstr "Per i dettagli, digita `warranty'."
 
 #: pybliographer.py:108 pybliographer.py:160
@@ -44,7 +44,7 @@ msgid ""
 "\tquit     to quit\n"
 msgstr ""
 "Comandi utili:\n"
-"\thelp	    per ottenere aiuto\n"
+"\thelp\t    per ottenere aiuto\n"
 "\tquit     per abbandonare\n"
 
 #: Pyblio/Base.py:188
@@ -77,7 +77,7 @@ msgid "key `%s' is malformed"
 msgstr "la chiave `%s' è malformata"
 
 #: Pyblio/Format/BibTeX.py:399
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: la chiave `%s' esiste già"
 
@@ -87,7 +87,7 @@ msgid "in entry %s: nested crossrefs"
 msgstr "nella voce %s: riferimento incrociato nidificato"
 
 #: Pyblio/GnomeUI/Entry.py:55
-#, fuzzy, c-format
+#, c-format
 msgid "Native editing of field `%s'"
 msgstr "Modifica del campo `%s' nel formato nativo"
 
@@ -109,7 +109,7 @@ msgstr "Aggiunge un campo supplementare"
 
 #: Pyblio/GnomeUI/Entry.py:662 Pyblio/GnomeUI/Entry.py:704
 #: Pyblio/GnomeUI/Entry.py:994
-#, fuzzy, c-format
+#, c-format
 msgid "Cross-Reference `%s' is unexistent in the database"
 msgstr "Il riferimento incrociato `%s' non è presente nel database"
 
@@ -208,7 +208,6 @@ msgid "Cut"
 msgstr "Taglia"
 
 #: Pyblio/GnomeUI/Pybliographic.py:282
-#, fuzzy
 msgid "Paste"
 msgstr "Incolla"
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.6\n"
-"POT-Creation-Date: 1999-11-30 14:19+0100\n"
+"POT-Creation-Date: 1999-12-08 16:14+0100\n"
 "PO-Revision-Date: 1999-11-30\n"
 "Last-Translator: Frédéric Gobry <frederic.gobry@epfl.ch>\n"
 "Language-Team: fr <fr@li.org>\n"
@@ -85,6 +85,16 @@ msgstr "La clé `%s' existe déjà"
 msgid "in entry %s: nested crossrefs"
 msgstr "dans l'entrée `%s' : références croisées imbriquées"
 
+#: Pyblio/LyX.py:39
+#, c-format
+msgid "no input pipe `%s'"
+msgstr "pas de pipe d'entrée `%s'"
+
+#: Pyblio/LyX.py:45
+#, c-format
+msgid "no output pipe `%s'"
+msgstr "pas de pipe de sortie `%s'"
+
 #: Pyblio/GnomeUI/Entry.py:55
 #, c-format
 msgid "Native editing of field `%s'"
@@ -145,7 +155,7 @@ msgid "Identifier `%s' already exists"
 msgstr "L'identificateur `%s' existe déjà"
 
 #: Pyblio/GnomeUI/Pybliographic.py:45 Pyblio/GnomeUI/Pybliographic.py:313
-#: Pyblio/GnomeUI/Pybliographic.py:422
+#: Pyblio/GnomeUI/Pybliographic.py:423
 msgid "File"
 msgstr "Fichier"
 
@@ -170,7 +180,7 @@ msgid "New"
 msgstr "Nouveau..."
 
 #: Pyblio/GnomeUI/Pybliographic.py:261 Pyblio/GnomeUI/Pybliographic.py:321
-#: Pyblio/GnomeUI/Pybliographic.py:557
+#: Pyblio/GnomeUI/Pybliographic.py:560
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -180,9 +190,9 @@ msgstr "Sauver"
 
 #: Pyblio/GnomeUI/Pybliographic.py:263
 msgid "Save As..."
-msgstr "Sauver comme"
+msgstr "Sauver comme..."
 
-#: Pyblio/GnomeUI/Pybliographic.py:266 Pyblio/GnomeUI/Pybliographic.py:423
+#: Pyblio/GnomeUI/Pybliographic.py:266 Pyblio/GnomeUI/Pybliographic.py:424
 msgid "Previous Documents"
 msgstr "Documents précédents"
 
@@ -219,7 +229,7 @@ msgid "Edit..."
 msgstr "Éditer..."
 
 #: Pyblio/GnomeUI/Pybliographic.py:287 Pyblio/GnomeUI/Pybliographic.py:387
-#: Pyblio/GnomeUI/Search.py:201
+#: Pyblio/GnomeUI/Search.py:194
 msgid "Delete"
 msgstr "Effacer"
 
@@ -263,7 +273,7 @@ msgstr "Formatter"
 msgid "Help"
 msgstr "Aide"
 
-#: Pyblio/GnomeUI/Pybliographic.py:326 Pyblio/GnomeUI/Search.py:121
+#: Pyblio/GnomeUI/Pybliographic.py:326 Pyblio/GnomeUI/Search.py:114
 msgid "Search"
 msgstr "Chercher"
 
@@ -279,43 +289,43 @@ msgstr "Quitter"
 msgid "Welcome to Pybliographic"
 msgstr "Bienvenue dans Pybliographic"
 
-#: Pyblio/GnomeUI/Pybliographic.py:449
+#: Pyblio/GnomeUI/Pybliographic.py:455
 #, c-format
-msgid "Modified database `%s' [%s, %d]"
-msgstr "Base de données modifiée `%s' [%s, %d]"
+msgid "Modified database `%s' [%s, %s]"
+msgstr "Base de données modifiée `%s' [%s, %s]"
 
-#: Pyblio/GnomeUI/Pybliographic.py:453
+#: Pyblio/GnomeUI/Pybliographic.py:458
 #, c-format
-msgid "Database `%s' [%s, %d]"
-msgstr "Base de données `%s' [%s, %d]"
+msgid "Database `%s' [%s, %s]"
+msgstr "Base de données `%s' [%s, %s]"
 
-#: Pyblio/GnomeUI/Pybliographic.py:462
+#: Pyblio/GnomeUI/Pybliographic.py:465
 msgid "New file"
 msgstr "Nouveau fichier"
 
-#: Pyblio/GnomeUI/Pybliographic.py:480 Pyblio/GnomeUI/Pybliographic.py:520
-#: Pyblio/GnomeUI/Pybliographic.py:575
+#: Pyblio/GnomeUI/Pybliographic.py:483 Pyblio/GnomeUI/Pybliographic.py:523
+#: Pyblio/GnomeUI/Pybliographic.py:578
 msgid "Database is modified.\n"
 msgstr "Base de données modifiée\n"
 
-#: Pyblio/GnomeUI/Pybliographic.py:481 Pyblio/GnomeUI/Pybliographic.py:521
+#: Pyblio/GnomeUI/Pybliographic.py:484 Pyblio/GnomeUI/Pybliographic.py:524
 msgid "Discard changes ?"
 msgstr "Oublier les modifications ?"
 
-#: Pyblio/GnomeUI/Pybliographic.py:576
+#: Pyblio/GnomeUI/Pybliographic.py:579
 msgid "Quit without saving ?"
 msgstr "Quitter sans sauver ?"
 
-#: Pyblio/GnomeUI/Pybliographic.py:616
+#: Pyblio/GnomeUI/Pybliographic.py:619
 #, c-format
 msgid "can't save file: %s"
 msgstr "Impossible de sauver le fichier: %s"
 
-#: Pyblio/GnomeUI/Pybliographic.py:625
+#: Pyblio/GnomeUI/Pybliographic.py:627
 msgid "Save As"
 msgstr "Sauver comme"
 
-#: Pyblio/GnomeUI/Pybliographic.py:638 Pyblio/GnomeUI/Pybliographic.py:971
+#: Pyblio/GnomeUI/Pybliographic.py:640 Pyblio/GnomeUI/Pybliographic.py:980
 #, c-format
 msgid ""
 "File `%s' exists.\n"
@@ -324,7 +334,7 @@ msgstr ""
 "Le fichier `%s' existe.\n"
 "Faut-il l'écraser ?"
 
-#: Pyblio/GnomeUI/Pybliographic.py:651 Pyblio/GnomeUI/Pybliographic.py:938
+#: Pyblio/GnomeUI/Pybliographic.py:653 Pyblio/GnomeUI/Pybliographic.py:948
 #, c-format
 msgid ""
 "Can't save file:\n"
@@ -333,12 +343,12 @@ msgstr ""
 "Impossible de sauver le fichier:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Pybliographic.py:662 Pyblio/GnomeUI/Pybliographic.py:669
-#: Pyblio/GnomeUI/Pybliographic.py:676 Pyblio/GnomeUI/Pybliographic.py:807
+#: Pyblio/GnomeUI/Pybliographic.py:663 Pyblio/GnomeUI/Pybliographic.py:669
+#: Pyblio/GnomeUI/Pybliographic.py:675 Pyblio/GnomeUI/Pybliographic.py:816
 msgid "Not yet implemented..."
 msgstr "Pas encore implémenté..."
 
-#: Pyblio/GnomeUI/Pybliographic.py:693
+#: Pyblio/GnomeUI/Pybliographic.py:705
 msgid ""
 "Please, create a new database first.\n"
 "Use File/New for example"
@@ -346,15 +356,12 @@ msgstr ""
 "Veuillez créer une nouvelle base avant tout.\n"
 "Utilisez le menu Fichier/Nouveau pour cela"
 
-#: Pyblio/GnomeUI/Pybliographic.py:700
+#: Pyblio/GnomeUI/Pybliographic.py:712 Pyblio/GnomeUI/Pybliographic.py:743
+#: Pyblio/GnomeUI/Pybliographic.py:791
 msgid "editing is disabled in this database"
 msgstr "L'édition n'est pas autorisée dans cette base"
 
-#: Pyblio/GnomeUI/Pybliographic.py:732 Pyblio/GnomeUI/Pybliographic.py:781
-msgid "edition is disabled in this database"
-msgstr "L'édition n'est pas autorisée dans cette base"
-
-#: Pyblio/GnomeUI/Pybliographic.py:764 Pyblio/GnomeUI/Pybliographic.py:770
+#: Pyblio/GnomeUI/Pybliographic.py:774 Pyblio/GnomeUI/Pybliographic.py:780
 #, c-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -363,12 +370,12 @@ msgstr ""
 "Impossible de se connecter à LyX :\n"
 "%s"
 
-#: Pyblio/GnomeUI/Pybliographic.py:791
+#: Pyblio/GnomeUI/Pybliographic.py:800
 #, c-format
 msgid "Really remove entry %s ?"
 msgstr "Voulez-vous supprimer l'entrée `%s' ?"
 
-#: Pyblio/GnomeUI/Pybliographic.py:896
+#: Pyblio/GnomeUI/Pybliographic.py:905
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -376,15 +383,15 @@ msgstr ""
 "Veuillez installer `bug-buddy'\n"
 "pour utiliser cette fonction"
 
-#: Pyblio/GnomeUI/Pybliographic.py:902
+#: Pyblio/GnomeUI/Pybliographic.py:911
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Ce programme est placé sous la licence GNU GPL"
 
-#: Pyblio/GnomeUI/Pybliographic.py:904
+#: Pyblio/GnomeUI/Pybliographic.py:913
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Une interface graphique pour Pybliographer"
 
-#: Pyblio/GnomeUI/Pybliographic.py:908
+#: Pyblio/GnomeUI/Pybliographic.py:917
 msgid ""
 "Submit a bug report\n"
 " using bug-buddy"
@@ -392,51 +399,51 @@ msgstr ""
 "Envoyer un rapport de Bug\n"
 "en utilisant `bug-buddy'"
 
-#: Pyblio/GnomeUI/Pybliographic.py:911
+#: Pyblio/GnomeUI/Pybliographic.py:920
 msgid "Pybliographer Home Page"
 msgstr "Page principale de Pybliographer"
 
-#: Pyblio/GnomeUI/Pybliographic.py:927
+#: Pyblio/GnomeUI/Pybliographic.py:938
 msgid "Please open a database first"
 msgstr "Veuillez ouvrir une base de données"
 
-#: Pyblio/GnomeUI/Pybliographic.py:951
+#: Pyblio/GnomeUI/Pybliographic.py:960
 msgid "Bibliography"
 msgstr "Bibliographie"
 
-#: Pyblio/GnomeUI/Search.py:158
+#: Pyblio/GnomeUI/Search.py:151
 msgid "Field"
 msgstr "Champ"
 
-#: Pyblio/GnomeUI/Search.py:159
+#: Pyblio/GnomeUI/Search.py:152
 msgid "Pattern"
 msgstr "Valeur"
 
-#: Pyblio/GnomeUI/Search.py:174
+#: Pyblio/GnomeUI/Search.py:167
 msgid "Simple Search"
 msgstr "Recherche simple"
 
-#: Pyblio/GnomeUI/Search.py:178
+#: Pyblio/GnomeUI/Search.py:171
 msgid "Search command:"
 msgstr "Commande de recherche :"
 
-#: Pyblio/GnomeUI/Search.py:184
+#: Pyblio/GnomeUI/Search.py:177
 msgid "Expert Search"
 msgstr "Recherche avancée"
 
-#: Pyblio/GnomeUI/Search.py:216
+#: Pyblio/GnomeUI/Search.py:207
 msgid "Full database"
 msgstr "Base de donnée complète"
 
-#: Pyblio/GnomeUI/Search.py:221
+#: Pyblio/GnomeUI/Search.py:212
 msgid "Ready to search !"
 msgstr "Prêt à chercher !"
 
-#: Pyblio/GnomeUI/Search.py:250
+#: Pyblio/GnomeUI/Search.py:242
 msgid "internal error during evaluation"
 msgstr "Erreur interne durant l'évaluation"
 
-#: Pyblio/GnomeUI/Search.py:299
+#: Pyblio/GnomeUI/Search.py:291
 #, c-format
 msgid ""
 "while compiling %s\n"
@@ -445,17 +452,17 @@ msgstr ""
 "Pendant la compilation de `%s'\n"
 "erreur : %s"
 
-#: Pyblio/GnomeUI/Search.py:344
+#: Pyblio/GnomeUI/Search.py:336
 #, c-format
 msgid "found %d matches"
 msgstr "%d entrées trouvées"
 
-#: Pyblio/GnomeUI/Search.py:372
+#: Pyblio/GnomeUI/Search.py:366
 #, c-format
 msgid "%d matches in this node"
 msgstr "%d entrées dans ce noeud"
 
-#: Pyblio/GnomeUI/Utils.py:75
+#: Pyblio/GnomeUI/Utils.py:69
 msgid ""
 "The following errors occured:\n"
 "\n"
@@ -467,6 +474,9 @@ msgstr ""
 #, c-format
 msgid "warning: can't import %s: %s"
 msgstr "attention: impossible d'importer %s : %s"
+
+#~ msgid "edition is disabled in this database"
+#~ msgstr "L'édition n'est pas autorisée dans cette base"
 
 #~ msgid "Cross-Reference `%s' is unexistant in the database"
 #~ msgstr "La référence croisée `%s' n'existe pas dans cette base"

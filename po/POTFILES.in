@@ -1,9 +1,8 @@
 pybliographer.py
-pybrc.py
 Pyblio/Base.py
 Pyblio/Format/BibTeX.py
 Pyblio/Format/__init__.py
-Pyblio/Format/RefDB.py
+Pyblio/Format/OvidLike.py
 Pyblio/Format/Ovid.py
 Pyblio/Format/Refer.py
 Pyblio/Format/docbook.py
@@ -11,9 +10,9 @@ Pyblio/Fields.py
 Pyblio/Help.py
 Pyblio/Open.py
 Pyblio/TextUI.py
+Pyblio/LyX.py
 Pyblio/__init__.py
-Pyblio/GnomeUI/Config.py
-Pyblio/GnomeUI/Database.py
+Pyblio/GnomeUI/Index.py
 Pyblio/GnomeUI/Entry.py
 Pyblio/GnomeUI/Pybliographic.py
 Pyblio/GnomeUI/__init__.py
