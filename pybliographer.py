@@ -27,20 +27,27 @@ lib_pybdir  = "@libpyb@"
 data_pybdir = "@datapyb@"
 localedir   = "@localedir@"
 
+import gettext
+	
+gettext.bindtextdomain(progname, localedir)
+gettext.textdomain(progname)
+
+_ = gettext.gettext
 
 def print_version ():
-	print "This is %s, version %s" % (progname, version)
+	print _("This is %s, version %s") % (progname, version)
 
 def copyright ():
-	print """Copyright (C) 1998-1999 Frederic GOBRY
-This is free software with ABSOLUTELY NO WARRANTY.
-For details, type `warranty'."""
+	print 'Copyright (C) 1998-1999 Frederic GOBRY'
+	print _("This is free software with ABSOLUTELY NO WARRANTY.")
+	print _("For details, type `warranty'.")
 
 def warranty ():
 	print_version ()
-	print """Copyright (C) 1998-1999 Frederic GOBRY
-This is free software with ABSOLUTELY NO WARRANTY.
-
+	print 'Copyright (C) 1998-1999 Frederic GOBRY'
+	
+	print _("This is free software with ABSOLUTELY NO WARRANTY.")
+	print """
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -59,11 +66,6 @@ Foundation, 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 import sys
 import os
 import getopt, string
-
-import gettext
-	
-gettext.bindtextdomain(progname, localedir)
-gettext.textdomain(progname)
 
 sys.ps1 = 'python > '
 
@@ -103,7 +105,7 @@ for opt, value in optlist:
 		try:
 			os.stat (value)
 		except os.error:
-			print "%s: error: can't open file `%s'" \
+			print _("%s: error: can't open file `%s'") \
 			      % (progname, value)
 			sys.exit (1)
 		
@@ -116,7 +118,7 @@ for opt, value in optlist:
 
 	if opt == '-h' or opt == '--help':
 		print_version ()
-		print "For help, run %s and type `help' at the prompt" \
+		print _("For help, run %s and type `help' at the prompt") \
 		      % progname
 		sys.exit (0)
 		
@@ -125,7 +127,7 @@ for opt, value in optlist:
 if not quiet:
 	print_version ()
 	copyright ()
-	print "Useful commands:\n	help     to get some help\n	quit     to quit\n"
+	print _("Useful commands:\n	help     to get some help\n	quit     to quit\n")
 
 # ---------- Lire les fichiers de conf
 
@@ -155,7 +157,7 @@ if len (args) > 0 :
 	try:
 		os.stat (filename)
 	except os.error:
-		print "%s: error: can't open file `%s'" % (progname, filename)
+		print _("%s: error: can't open file `%s'") % (progname, filename)
 		sys.exit (1)
 	else:
 		execfile (filename, user_global)
