@@ -147,8 +147,19 @@ bibtex_reverse_field (BibtexField * field) {
 
 	g_string_append (st, "@preamble{{");
 
-	/* Put the upper cases between {} */
-	string   = tmp;
+	/* Put the upper cases or the first lower cases between {} */
+	string = tmp;
+	if (* tmp >= 'a' && * tmp <= 'z') {
+	    /* Put the beginning in lower cases */
+	    g_string_append_c (st, '{');
+	    tmp ++;
+	    while (* tmp >= 'a' && * tmp <= 'z') {
+		g_string_append_c (st, * tmp);
+		tmp ++;
+	    }
+	    g_string_append_c (st, '}');
+	}
+
 	is_upper = false;
 	while (* tmp) {
 	    if (* tmp >= 'A' && * tmp <= 'Z') {
