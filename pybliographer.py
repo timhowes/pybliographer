@@ -1,7 +1,7 @@
 #! @python_path@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998-2003 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -35,23 +35,19 @@ sys.path.insert (0, '.')
 sys.path.insert (0, './compiled')
 
 import gettext
-	
-gettext.bindtextdomain(progname, localedir)
-gettext.textdomain(progname)
-
-_ = gettext.gettext
+gettext.install (progname, localedir, unicode = True)
 
 def print_version ():
 	print _("This is %s, version %s") % (progname, version)
 
 def copyright ():
-	print 'Copyright (C) 1998-2000 Frederic GOBRY'
+	print 'Copyright (C) 1998-2003 Frederic GOBRY'
 	print _("This is free software with ABSOLUTELY NO WARRANTY.")
 	print _("For details, type `warranty'.")
 
 def warranty ():
 	print_version ()
-	print 'Copyright (C) 1998-2000 Frederic GOBRY'
+	print 'Copyright (C) 1998-2003 Frederic GOBRY'
 	
 	print _("This is free software with ABSOLUTELY NO WARRANTY.")
 	print """
