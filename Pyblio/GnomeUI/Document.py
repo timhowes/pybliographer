@@ -25,7 +25,7 @@ from gnome.ui import *
 from gtk import *
 from gnome import config
 
-from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor
+from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor, Search
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
 
 import gettext, os, string, copy, types
@@ -43,6 +43,7 @@ class Document (Connector.Publisher):
         file_menu = [
             UIINFO_MENU_NEW_ITEM     (_("New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
+            UIINFO_ITEM              (_("Merge..."),None, self.merge_database),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -74,9 +75,14 @@ class Document (Connector.Publisher):
             UIINFO_ITEM           (_("Sort..."),None, self.sort_entries),
             ]
 
+        cite_menu = [
+            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,    STOCK_MENU_CONVERT),
+            ]
+        
         menus = [
             UIINFO_SUBTREE (_("File"),     file_menu),
             UIINFO_SUBTREE (_("Edit"),     edit_menu),
+            UIINFO_SUBTREE (_("Cite"),     cite_menu),
             UIINFO_SUBTREE (_("Help"),     help_menu)
             ]
         
@@ -85,6 +91,7 @@ class Document (Connector.Publisher):
             UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,    STOCK_PIXMAP_SAVE),
             UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,     STOCK_PIXMAP_SEARCH),
+            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,    STOCK_MENU_CONVERT),
             UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Close"), None, self.close_document,   STOCK_PIXMAP_CLOSE),
             ]
@@ -137,8 +144,9 @@ class Document (Connector.Publisher):
         self.data      = database
         self.version   = version
         self.selection = Selection.Selection ()
-        
-        self.changed = 0
+        self.search_dg = None
+        self.lyx       = None
+        self.changed   = 0
 
         self.redisplay_index ()
         return
@@ -223,7 +231,51 @@ class Document (Connector.Publisher):
         self.issue ('new-document', self)
         return
 
-    
+
+    def merge_database (self, * arg):
+        ''' add all the entries of another database to the current one '''
+        # get a new file name
+        (url, how) = FileSelector.URLFileSelection (_("Merge file"),
+                                                    url = TRUE, has_auto = TRUE).run ()
+
+        if url is None: return
+        
+        try:
+            iterator = Open.bibiter (url, how = how)
+            
+        except (Exceptions.ParserError,
+                Exceptions.FormatError,
+                Exceptions.FileError), error:
+            
+            Utils.error_dialog (_("Open error"), error,
+                                parent = self.w)
+            return
+
+        # loop over the entries
+        errors = []
+        try:
+            entry = iterator.first ()
+        except Exceptions.ParserError, msg:
+            errors = errors + msg.errors
+        
+        while entry:
+            self.data.add (entry)
+            while 1:
+                try:
+                    entry = iterator.next ()
+                    break
+                except Exceptions.ParserError, msg:
+                    errors = errors + list (msg.errors)
+                    continue
+
+        self.redisplay_index (1)
+
+        if errors:
+            Utils.error_dialog (_("Merge status"), string.join (errors, '\n'),
+                                parent = self.w)
+        return
+
+        
     def ui_open_document (self, * arg):
         ''' callback corresponding to "Open" '''
         
@@ -269,12 +321,12 @@ class Document (Connector.Publisher):
             return
 
         Utils.set_cursor (self.w, 'clock')
-        #try:
-        self.data.update ()
-        #except:
-        #    Utils.set_cursor (self.w, 'normal')
-        #    self.w.error (_("An internal error occured during saving\nTry to Save As..."))
-        #    return
+        try:
+            self.data.update ()
+        except:
+            Utils.set_cursor (self.w, 'normal')
+            self.w.error (_("An internal error occured during saving\nTry to Save As..."))
+            return
 
         Utils.set_cursor (self.w, 'normal')
 
@@ -446,16 +498,52 @@ class Document (Connector.Publisher):
     
     
     def find_entries (self, * arg):
-        pass
+        if self.search_dg is None:
+            self.search_dg = Search.SearchDialog (self.w)
+            self.search_dg.Subscribe ('search-data', self.limit_view)
+        else:
+            self.search_dg.show ()
+        return
 
+
+    def limit_view (self, search):
+        self.selection.search = search
+        self.redisplay_index ()
+        return
+
+    
     def sort_entries (self, * arg):
-        pass
+        self.w.warning ("Not yet implemented")
+        return
+    
 
     def sort_by_field (self, field):
         self.selection.sort = Sort.Sort ([Sort.FieldSort (field)])
         self.redisplay_index ()
         return
+
+
+    def lyx_cite (self, * arg):
+        entries = self.index.selection ()
+        if not entries: return
         
+        if self.lyx is None:
+            from Pyblio import LyX
+
+            try:
+                self.lyx = LyX.LyXClient ()
+            except IOError, msg:
+                self.w.error (_("Can't connect to LyX:\n%s") % msg [1])
+                return
+
+        keys = string.join (map (lambda x: x.key.key, entries), ', ')
+        try:
+            self.lyx ('citation-insert', keys)
+        except IOError, msg:
+            self.w.error (_("Can't connect to LyX:\n%s") % msg [1])
+        return
+    
+
     def update_display (self, entry):
         self.display.display (entry)
         return

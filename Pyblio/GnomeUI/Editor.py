@@ -49,7 +49,11 @@ class BaseField (Connector.Publisher):
 
         self.setup (entry)
 
+        self.edit = None
         expand = self.create_widget (h)
+        
+        if self.edit:
+            self.edit.connect ('key_press_event', self.key_handler)
         
         if self.loss: h.pack_start (GnomeStock (STOCK_BUTTON_NO),
                                     FALSE, FALSE)
@@ -63,6 +67,20 @@ class BaseField (Connector.Publisher):
         if expand: flag = EXPAND | FILL
         content.attach (self.w, 0, 1, j, j + 1, yoptions = flag)
         return
+
+
+    def key_handler (self, widget, ev):
+        if ev.keyval == GDK.Return and \
+           ev.state  == GDK.CONTROL_MASK:
+            widget.emit_stop_by_name ('key_press_event')
+            self.issue ('apply')
+        
+        elif ev.keyval == GDK.Tab and \
+           ev.state  == GDK.CONTROL_MASK:
+            widget.emit_stop_by_name ('key_press_event')
+            self.issue ('next')
+
+        return 1
 
 
     def setup (self, entry):
@@ -108,6 +126,7 @@ class Entry (BaseField):
         self.edit.insert_defaults (self.string)
         self.edit.set_word_wrap (TRUE)
         self.edit.show ()
+        
         w.add (self.edit)
         w.show ()
         
@@ -193,6 +212,7 @@ class Date (BaseField):
         (width, height) = self.day.size_request ()
         self.day.set_usize (width / 4, height)
         self.day.set_max_length (2)
+        self.day.connect ('key_press_event', self.key_handler)
         if self.initial [0]:
             self.day.set_text (str (self.initial [0]))
         hbox.pack_start (self.day)
@@ -201,6 +221,7 @@ class Date (BaseField):
         self.month = GtkEntry ()
         self.month.set_usize (width / 4, height)
         self.month.set_max_length (2)
+        self.month.connect ('key_press_event', self.key_handler)
         if self.initial [1]:
             self.month.set_text (str (self.initial [1]))
         hbox.pack_start (self.month)
@@ -209,6 +230,7 @@ class Date (BaseField):
         self.year = GtkEntry ()
         self.year.set_max_length (4)
         self.year.set_usize (width / 3, height)
+        self.year.connect ('key_press_event', self.key_handler)
         if self.initial [2]:
             self.year.set_text (str (self.initial [2]))
         hbox.pack_start (self.year)
@@ -344,7 +366,7 @@ class URL (BaseField):
         return
 
 
-class RealEditor:
+class RealEditor (Connector.Publisher):
     ''' Edits in standard form '''
 
     def __init__ (self, database, entry):
@@ -419,8 +441,27 @@ class RealEditor:
 
 
     def menu_select (self, menu, entry):
-        self.entry.type = entry
+        # update the current entry
+        new = self.update (self.database, copy.deepcopy (self.entry))
+        if new is None:
+            entry_list = Config.get ("base/entries").data.values ()
+            entry_list.sort (lambda x, y: cmp (x.name, y.name))
+            self.menu.set_history (entry_list.index (self.entry.type))
+            return
+        else:
+            new.type = entry
+            
+        self.entry = new
         self.update_notebook ()
+        return
+
+
+    def apply_cb (self, * arg):
+        self.issue ('apply')
+        return
+        
+    def next_cb (self, * arg):
+        self.issue ('next')
         return
 
     
@@ -455,6 +496,10 @@ class RealEditor:
 
                 widget = FieldsInfo.widget (lcfield) (self.entry, field, content, j)
                 self.content.append (widget)
+
+                widget.Subscribe ('apply', self.apply_cb)
+                widget.Subscribe ('next', self.next_cb)
+                
                 j = j + 1
 
             label.show ()
@@ -518,7 +563,7 @@ class RealEditor:
         return entry
     
             
-class NativeEditor:
+class NativeEditor (Connector.Publisher):
     ''' Composit widget to edit an entry in its native format '''
 
     def __init__ (self, database, entry):
@@ -529,10 +574,25 @@ class NativeEditor:
 
         self.w = GtkText ()
         self.w.set_editable (TRUE)
-
+        self.w.connect ('key_press_event', self.key_handler)
+        
         self.w.insert (Config.get ('gnomeui/monospaced').data,
                        None, None, self.original)
         return
+
+
+    def key_handler (self, widget, ev):
+        if ev.keyval == GDK.Return and \
+           ev.state  == GDK.CONTROL_MASK:
+            widget.emit_stop_by_name ('key_press_event')
+            self.issue ('apply')
+        
+        elif ev.keyval == GDK.Tab and \
+           ev.state  == GDK.CONTROL_MASK:
+            widget.emit_stop_by_name ('key_press_event')
+            self.issue ('next')
+
+        return 1
 
 
     def update (self, database, entry):
@@ -557,42 +617,37 @@ class Editor (Connector.Publisher):
 
         if parent: self.w.set_transient_for (parent)
 
-        apply_b = GnomeStockButton (STOCK_BUTTON_APPLY)
-        apply_b.connect ('clicked', self.apply_changes)
-        apply_b.show ()
+        self.apply_b = GnomeStockButton (STOCK_BUTTON_APPLY)
+        self.apply_b.connect ('clicked', self.apply_changes)
+        self.apply_b.show ()
         
         self.native_b = GtkButton (_("Native Editing"))
         self.native_b.connect ('clicked', self.toggle_native)
         self.native_b.show ()
         
-        close_b = GnomeStockButton (STOCK_BUTTON_CANCEL)
-        close_b.connect ('clicked', self.close_dialog)
-        close_b.show ()
+        self.close_b = GnomeStockButton (STOCK_BUTTON_CANCEL)
+        self.close_b.connect ('clicked', self.close_dialog)
+        self.close_b.show ()
 
         # Use Escape to abort, Ctrl-Return to accept
         accelerator = GtkAccelGroup ()
         self.w.add_accel_group (accelerator)
 
-        close_b.add_accelerator ('clicked', accelerator, GDK.Escape, 0, 0)
-        apply_b.add_accelerator ('clicked', accelerator, GDK.Return, GDK.CONTROL_MASK,
+        self.close_b.add_accelerator ('clicked', accelerator, GDK.Escape, 0, 0)
+        self.apply_b.add_accelerator ('clicked', accelerator, GDK.Return, GDK.CONTROL_MASK,
                                  0)
 
-        self.w.action_area.add (apply_b)
+        self.w.action_area.add (self.apply_b)
         self.w.action_area.add (self.native_b)
-        self.w.action_area.add (close_b)
+        self.w.action_area.add (self.close_b)
 
-        # virtual button to jump to the next field
-        next_b = GtkButton ()
-        self.w.vbox.pack_start (next_b)
-        next_b.connect ('clicked', self.next_item)
-
-        self.native_mode = FALSE
         self.entry       = entry
         self.database    = database
-        self.editor      = RealEditor (database, copy.deepcopy (entry))
+        self.editor      = None
 
-        self.w.vbox.pack_start (self.editor.w)
-        self.editor.w.show ()
+        # put the negated value, so that we can call toggle to switch and create
+        self.native_mode = not Config.get ('gnomeui/native-as-default').data
+        self.toggle_native ()
         
         self.w.show ()
         return
@@ -603,10 +658,13 @@ class Editor (Connector.Publisher):
             # real edition
             self.native_mode = FALSE
             self.native_b.children () [0].set_text (_("Native Editing"))
-            
-            self.editor.w.destroy ()
+
+            if self.editor: self.editor.w.destroy ()
             self.editor = RealEditor (self.database,
                                       copy.deepcopy (self.entry))
+            self.editor.Subscribe ('apply', self.apply_changes)
+            self.editor.Subscribe ('next',  self.next_item)
+        
             self.w.vbox.pack_start (self.editor.w)
             self.editor.w.show ()
         else:
@@ -614,9 +672,12 @@ class Editor (Connector.Publisher):
             self.native_mode = TRUE
             self.native_b.children () [0].set_text (_("Standard Editing"))
             
-            self.editor.w.destroy ()
+            if self.editor: self.editor.w.destroy ()
             self.editor = NativeEditor (self.database,
                                         copy.deepcopy (self.entry))
+            self.editor.Subscribe ('apply', self.apply_changes)
+            self.editor.Subscribe ('next',  self.next_item)
+        
             self.w.vbox.pack_start (self.editor.w)
             self.editor.w.show ()
 
@@ -624,6 +685,12 @@ class Editor (Connector.Publisher):
 
     
     def next_item (self, * arg):
+        if self.native_mode: return
+        
+        n = self.editor.notebook
+        box = n.get_nth_page (n.get_current_page ())
+        
+        box.focus (GTK.DIR_DOWN)
         pass
 
 

@@ -25,13 +25,9 @@ import GTK
 
 import string, re, sys, traceback, copy
 
-from Pyblio import Types, Search, Config
+from Pyblio import Types, Search, Config, Connector, TextUI
 
 from Pyblio.GnomeUI import Utils
-from Pyblio.Connector import Publisher
-
-import Pyblio.GnomeUI.Database
-import Pyblio.TextUI
 
 import gettext
 _ = gettext.gettext
@@ -103,13 +99,16 @@ class ItemStorage (GtkTreeItem):
             if ret: return ret
             
         return None
+
     
-class SearchDialog (GtkDialog, Publisher):
+class SearchDialog (GtkDialog, Connector.Publisher):
     ''' Search Dialog '''
     
-    def __init__ (self, data):
+    def __init__ (self, parent = None):
 
         GtkDialog.__init__ (self)
+
+        if parent: self.set_transient_for (parent)
         
         self.set_title (_("Search"))
         self.set_usize (400, 500)        
@@ -137,12 +136,6 @@ class SearchDialog (GtkDialog, Publisher):
         self.notebook = GtkNotebook ()
         self.vbox.pack_start (self.notebook, expand = FALSE, fill = FALSE)
 
-        # status
-        self.status = GtkStatusbar ()
-        self.status.set_border_width (5)
-        
-        self.vbox.pack_start (self.status, expand = FALSE, fill = FALSE)
-        
         # Simple search
         table = GtkTable (2,2)
         table.set_border_width (5)
@@ -161,7 +154,7 @@ class SearchDialog (GtkDialog, Publisher):
         # fill the combo
         self.field.set_popdown_strings ([' - any field - '] +
                                         list (Config.get
-                                              ('base/searched').data) +
+                                              ('gnomeui/searched').data) +
                                         [' - type - ', ' - key - '])
 
         self.notebook.append_page (table, GtkLabel (_("Simple Search")))
@@ -195,8 +188,11 @@ class SearchDialog (GtkDialog, Publisher):
         self.menu.show ()
 
         self.root_item = None
-        self.create_root_item (data)
+        self.create_root_item (None)
+
+        self.show_all ()
         return
+
 
     def create_root_item (self, data):
         if self.root_item:
@@ -204,18 +200,13 @@ class SearchDialog (GtkDialog, Publisher):
             self.root_tree.remove (self.root_item)
             
         # initialize the tree with the full database
-        self.root_item = ItemStorage (_("Full database"), data)
+        self.root_item = ItemStorage (_("Full database"), None)
         self.root_tree.append (self.root_item)
         self.root_item.show ()
-
-        self.status.pop  (1)
-        self.status.push (1, _("Ready to search !"))
         return
     
     
     def apply (self, widget):
-        if self.root_item.data is None: return
-        
         page = self.notebook.get_current_page ()
 
         name = None
@@ -300,8 +291,6 @@ class SearchDialog (GtkDialog, Publisher):
         if name is None:
             name = str (test)
             
-        self.status.pop (1)
-
         # get selection
         selection = self.root_tree.get_selection ()
         
@@ -311,16 +300,10 @@ class SearchDialog (GtkDialog, Publisher):
             selection = selection [0]
 
         selection = self.root_item.search (selection)
-        data = selection.data
-        
-        # actual search
-        Utils.set_cursor (self, 'clock')
-            
-        r = data.where (test)
+        if selection.data:
+            test = selection.data & test
 
-        Utils.set_cursor (self, 'normal')
-
-        item = ItemStorage (name, r)
+        item = ItemStorage (name, test)
         item.show ()
         
         tree = selection.add (item)
@@ -331,11 +314,8 @@ class SearchDialog (GtkDialog, Publisher):
             selection.expand ()
 
         selection.tree.select_child (item)
-
-        self.status.pop (1)
-        self.status.push (1, _("found %d matches") % len (r))
-
         return
+
     
     def close (self, * arg):
         self.hide ()
@@ -353,17 +333,7 @@ class SearchDialog (GtkDialog, Publisher):
         
         data = self.root_item.search (selection).data
         
-        if data is None: return
-
-        if selection == self.root_item:
-            subset = -1
-        else:
-            subset = len (data)
-            
-        self.issue ('select-subset', data, subset)
-        
-        self.status.pop (1)
-        self.status.push (1, _("%d matches in this node") % len (data))
+        self.issue ('search-data', data)
         return
 
     
