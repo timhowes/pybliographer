@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-SGML = gui.sgml pyblio.sgml script.sgml
+SGML = gui.sgml pyblio.sgml script.sgml config.sgml
 
 EXTRA_DIST = \
 	topic.dat $(SGML)\
@@ -48,3 +48,9 @@ dist-hook:
 	for file in $(srcdir)/*.html ; do \
 		cp -p $$file $(distdir) ; \
 	done
+
+doc-pack:
+	mkdir documentation
+	cp *.html *.png documentation
+	tar zcvf doc-pack.tar.gz documentation
+	rm -rf documentation

@@ -101,7 +101,7 @@ the  arrow  keys  to  navigate   in  the  upper  list,  and  to  press
 	
 	<para>An advanced search is an expression that looks like:</para>
 	
-	<programlisting>has('author',name') | -has('title','test')</programlisting>
+	<programlisting>has('author','name') | -has('title','test')</programlisting>
 	
 	<para> Such an expression  means: select the entries where the
     field              <emphasis>author</emphasis>             matches

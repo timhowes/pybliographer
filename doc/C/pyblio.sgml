@@ -5,6 +5,7 @@
 
 <!Entity gui    System "gui.sgml">
 <!Entity script System "script.sgml"> 
+<!Entity config System "config.sgml"> 
 ]>
 
 <Book>
@@ -22,14 +23,12 @@
     language to fit a wide range of needs.</para>
     </abstract>
   </bookinfo>
-
-
-    &gui;
-
-  <chapter>
-    <title>The scripting language</title>
-    &script;
-  </chapter>
+  
+  &gui;
+  
+  &script;
+  
+  &config;
 
   <chapter>
     <title>Adding new formats</title>

@@ -1,3 +1,6 @@
+  <chapter>
+    <title>The scripting language</title>
+
 <para>&pyb; is in fact a simple set of classes and functions written
 in python, and that provides with a simple and homogenous access to
 bibliographic databases. Therefore, it is possible to write python
@@ -153,3 +156,4 @@ and make it executable.
   operations, like searching and sorting.</para>
 
 </sect1>
+  </chapter>
