@@ -351,8 +351,10 @@ class Picklable:
 
     
 
-class QEntry (QueryEngine.QEntry):
+class QEntry (QueryEngine.QEntry, Picklable):
     ''' Allowed operators for a field search '''
+
+    non_picklable = ('w', )
 
     def display (self, box):
         hbox = GtkHBox ()

@@ -68,6 +68,9 @@ class Connection:
         except xml.sax.SAXParseException, msg:
             raise Exceptions.SyntaxError ('Cannot parse the XML file\n%s' %
                                           msg)
+        except IOError, msg:
+            raise Exceptions.SyntaxError ('Cannot parse the XML file\n%s' %
+                                          msg)
         
         root = dom.documentElement
         
