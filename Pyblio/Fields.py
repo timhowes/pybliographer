@@ -396,6 +396,10 @@ class URL:
         self.url = tuple (url)
         return
 
+    def match (self, regex):
+        ''' '''
+        return regex.search (str (self))
+        
     def __cmp__ (self, other):
         return cmp (self.url, other.url)
 
