@@ -198,7 +198,7 @@ echo
 echo "Bootstrapping Python Makefile"
 echo
 
-/bin/sh ./etc/installer < ${srcdir}/compiled/Setup.tmp > compiled/Setup
+/bin/sh ./etc/installer < compiled/Setup.tmp > compiled/Setup
 
 if echo ${srcdir} | grep '^/' > /dev/null ; then
 	source=${srcdir}
