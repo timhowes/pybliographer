@@ -12,7 +12,7 @@ TEX = 						\
 	todolist.tex 				\
 	todo.tex
 
-REMOTE = frederic@canvas.gnome.org:/usr/local/www/www.gnome.org/pybliographer
+REMOTE = frederic@canvas.gnome.org:/home/frederic/html
 
 all: todo.pdf
 
@@ -22,3 +22,4 @@ todo.pdf: $(TEX)
 
 remote: all
 	rsync *.txt *.pdf $(REMOTE)/design
+	rsync list-documents.sh $(REMOTE)
