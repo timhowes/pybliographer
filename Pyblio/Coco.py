@@ -44,12 +44,33 @@ class Base:
 
 
     """
-    def __init__(self, window=None, title=None,
+    _typ = 'any'
+    
+    def __init__(self, title='unnamed', window=None, 
                  *args, **argh):
+        
 
-        self.window = window
-        self.progress = None
+        self.dict = argh
+
         self.title = title
+        self.window = window
+
+        self.progress = 0
+
+
+    def __getitem__ (self, key):
+	''' Returns the property named  key '''
+	return self.dict [key]
+
+    def __setitem__ (self, key, value):
+	''' Sets a proerty '''
+        self.dict [key] = value
+	return
+
+    def __delitem__ (self, key):
+	''' Removes a Property'''
+	del self.dict [key]
+    
 
     def start (self, *args, **argh): pass
     
@@ -67,6 +88,7 @@ class Base:
         if target:
             self.progress_max = target
         if add:
+            print add, type(add)
             self.progress = self.progress + add
         if position:
             self.progress = position
@@ -111,13 +133,31 @@ class Base:
 
 
 
-    
-class Importer (Base):
-    """Import class -- to be developped."""
+class RecordSet (Base):
+    _typ='rs'
 
+class DataBase (Base):
+    _type='DB'
+    
+class Importer (RecordSet):
+    """Import class -- to be developped."""
+    _typ='im'
+    
     def __init__(self, file=None, data=None, *args, **argh):
  
         Base.__init__(self, *args, **argh)
         return
 
+class InputFile(Importer):
+    _typ = 'in'
+
+
     
+def save_configuration():
+    
+    return
+
+def reset_configuration(db):
+    
+    return
+
