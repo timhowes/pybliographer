@@ -21,11 +21,14 @@
 
 pybdir = $(datadir)/$(PACKAGE)/Pyblio/ConfDir
 
-EXTRA_DIST = 	Base.py		\
-		BibTeX.py	\
-		Refer.py	\
-		Style.py	\
-		DocBook.py	\
-		GnomeUI.py	
+EXTRA_DIST = \
+	Base.py 	\
+	BibTeX.py 	\
+	DocBook.py 	\
+	GnomeUI.py 	\
+	Medline.py 	\
+	Ovid.py 	\
+	Refer.py 	\
+	Style.py
 
 pyb_DATA   = $(EXTRA_DIST)

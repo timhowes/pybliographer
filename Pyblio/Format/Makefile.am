@@ -21,13 +21,13 @@
 
 pybdir = $(datadir)/$(PACKAGE)/Pyblio/Format
 
-EXTRA_DIST = 	__init__.py	\
-		BibTeX.py	\
-		Ovid.py		\
-		OvidLike.py	\
-		Refer.py	\
-		docbook.py	\
-		Medline.py
+EXTRA_DIST = \
+	__init__.py	\
+	BibTeX.py	\
+	Ovid.py		\
+	OvidLike.py	\
+	Refer.py	\
+	Medline.py
 
 
 pyb_DATA = $(EXTRA_DIST)

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.7\n"
-"POT-Creation-Date: 2000-03-14 17:10+0100\n"
+"POT-Creation-Date: 2000-03-14 17:31+0100\n"
 "PO-Revision-Date: 1999-11-30\n"
 "Last-Translator: Frédéric Gobry <frederic.gobry@epfl.ch>\n"
 "Language-Team: fr <fr@li.org>\n"
@@ -13,48 +13,10 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-latin-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: pybliographer.py:38
+#: Pyblio/Autoload.py:57
 #, c-format
-msgid "This is %s, version %s"
-msgstr "Bienvenue dans %s, version %s"
-
-#: pybliographer.py:42 pybliographer.py:49
-msgid "This is free software with ABSOLUTELY NO WARRANTY."
-msgstr "Ceci est un logiciel libre, sans AUCUNE GARANTIE"
-
-#: pybliographer.py:43
-msgid "For details, type `warranty'."
-msgstr "Pour plus de détails, tapez `warranty'."
-
-#: pybliographer.py:108 pybliographer.py:160
-#, c-format
-msgid "%s: error: can't open file `%s'"
-msgstr "%s: erreur : impossible d'ouvrir le fichier `%s'"
-
-#: pybliographer.py:121
-#, c-format
-msgid "For help, run %s and type `help' at the prompt"
-msgstr "Pour de l'aide, tapez %s puis le mot `help' à l'invite"
-
-#: pybliographer.py:130
-msgid ""
-"Useful commands:\n"
-"\thelp     to get some help\n"
-"\tquit     to quit\n"
-msgstr ""
-"Commandes utiles :\n"
-"\thelp\tpour obtenir de l'aide\n"
-"\tquit\tpour quitter le programme\n"
-
-#: Pyblio/Format/BibTeX.py:306 Pyblio/Format/BibTeX.py:355
-#, c-format
-msgid "key `%s' is malformed"
-msgstr "la clé `%s' est mal formée"
-
-#: Pyblio/Format/BibTeX.py:330
-#, c-format
-msgid "%s:%d: key `%s' already defined"
-msgstr "%s:%d: La clé `%s' existe déjà"
+msgid "warning: can't import %s: %s"
+msgstr "attention: impossible d'importer %s : %s"
 
 #: Pyblio/Fields.py:265
 msgid "Illegal year value"
@@ -72,6 +34,16 @@ msgstr "Mauvaise valeur de jour"
 #, c-format
 msgid "in %s"
 msgstr "dans %s"
+
+#: Pyblio/LyX.py:39
+#, c-format
+msgid "no input pipe `%s'"
+msgstr "pas de pipe d'entrée `%s'"
+
+#: Pyblio/LyX.py:45
+#, c-format
+msgid "no output pipe `%s'"
+msgstr "pas de pipe de sortie `%s'"
 
 #: Pyblio/Open.py:97
 #, c-format
@@ -93,28 +65,323 @@ msgstr "je ne sais pas comment ouvrir `%s'"
 msgid "method `%s' provides no iterator"
 msgstr "pas d'itérateur dans la méthode `%s'"
 
-#: Pyblio/LyX.py:39
+#: Pyblio/Format/BibTeX.py:318 Pyblio/Format/BibTeX.py:367
 #, c-format
-msgid "no input pipe `%s'"
-msgstr "pas de pipe d'entrée `%s'"
+msgid "key `%s' is malformed"
+msgstr "la clé `%s' est mal formée"
 
-#: Pyblio/LyX.py:45
+#: Pyblio/Format/BibTeX.py:342
 #, c-format
-msgid "no output pipe `%s'"
-msgstr "pas de pipe de sortie `%s'"
+msgid "%s:%d: key `%s' already defined"
+msgstr "%s:%d: La clé `%s' existe déjà"
 
-#: Pyblio/GnomeUI/Index.py:64
+#: Pyblio/GnomeUI/Document.py:44
+msgid "New"
+msgstr "Nouveau..."
+
+#: Pyblio/GnomeUI/Document.py:46
+msgid "Merge..."
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:50 Pyblio/GnomeUI/Document.py:158
+#: Pyblio/GnomeUI/Document.py:170
+msgid "Previous Documents"
+msgstr "Documents précédents"
+
+#: Pyblio/GnomeUI/Document.py:57
+msgid "About..."
+msgstr "À propos..."
+
+#: Pyblio/GnomeUI/Document.py:58
+msgid "Submit a Bug Report"
+msgstr "Envoyer un rapport de Bug"
+
+#: Pyblio/GnomeUI/Document.py:70 Pyblio/GnomeUI/Index.py:64
 #, fuzzy
 msgid "Add..."
 msgstr "Ajouter..."
 
-#: Pyblio/GnomeUI/Index.py:65
+#: Pyblio/GnomeUI/Document.py:71 Pyblio/GnomeUI/Index.py:65
 msgid "Edit..."
 msgstr "Éditer..."
 
-#: Pyblio/GnomeUI/Index.py:66 Pyblio/GnomeUI/Search.py:187
+#: Pyblio/GnomeUI/Document.py:72 Pyblio/GnomeUI/Index.py:66
+#: Pyblio/GnomeUI/Search.py:187
 msgid "Delete"
 msgstr "Effacer"
+
+#: Pyblio/GnomeUI/Document.py:75
+#, fuzzy
+msgid "Sort..."
+msgstr "À propos..."
+
+#: Pyblio/GnomeUI/Document.py:79 Pyblio/GnomeUI/Document.py:85
+#: Pyblio/GnomeUI/Document.py:94
+msgid "Cite"
+msgstr "Citer"
+
+#: Pyblio/GnomeUI/Document.py:83 Pyblio/GnomeUI/Document.py:158
+#: Pyblio/GnomeUI/Document.py:170 Pyblio/GnomeUI/FileSelector.py:41
+msgid "File"
+msgstr "Fichier"
+
+#: Pyblio/GnomeUI/Document.py:84
+msgid "Edit"
+msgstr "Éditer"
+
+#: Pyblio/GnomeUI/Document.py:86
+msgid "Help"
+msgstr "Aide"
+
+#: Pyblio/GnomeUI/Document.py:90
+msgid "Open"
+msgstr "Ouvrir"
+
+#: Pyblio/GnomeUI/Document.py:91
+msgid "Save"
+msgstr "Sauver"
+
+#: Pyblio/GnomeUI/Document.py:93
+#, fuzzy
+msgid "Find"
+msgstr "Champ"
+
+#: Pyblio/GnomeUI/Document.py:96
+msgid "Close"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:193
+#, fuzzy
+msgid "New database"
+msgstr "Base de donnée complète"
+
+#: Pyblio/GnomeUI/Document.py:201 Pyblio/GnomeUI/Document.py:205
+msgid "[no entry]"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:202
+msgid "[1 entry]"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:203
+#, c-format
+msgid "[%d entries]"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:206
+#, c-format
+msgid "[%d/1 entry]"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:207
+#, c-format
+msgid "[%d/%d entries]"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:212
+msgid "[modified]"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:222
+msgid ""
+"The database has been modified.\n"
+"Discard changes ?"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:238
+#, fuzzy
+msgid "Merge file"
+msgstr "Nouveau fichier"
+
+#: Pyblio/GnomeUI/Document.py:250 Pyblio/GnomeUI/Document.py:305
+msgid "Open error"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:274
+msgid "Merge status"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:285 Pyblio/GnomeUI/Document.py:339
+#, fuzzy
+msgid "Open file"
+msgstr "Nouveau fichier"
+
+#: Pyblio/GnomeUI/Document.py:328
+msgid ""
+"An internal error occured during saving\n"
+"Try to Save As..."
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:345
+#, fuzzy, c-format
+msgid ""
+"The file `%s' already exists.\n"
+"Overwrite it ?"
+msgstr ""
+"Le fichier `%s' existe.\n"
+"Faut-il l'écraser ?"
+
+#: Pyblio/GnomeUI/Document.py:352
+#, c-format
+msgid ""
+"During opening:\n"
+"%s"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:387
+#, c-format
+msgid ""
+"An entry called `%s' already exists.\n"
+"Rename and add it anyway ?"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:418
+#, fuzzy
+msgid "Really remove all the entries ?"
+msgstr "Voulez-vous supprimer l'entrée `%s' ?"
+
+#: Pyblio/GnomeUI/Document.py:452
+#, fuzzy, c-format
+msgid "Really edit %d entries ?"
+msgstr "Voulez-vous supprimer l'entrée `%s' ?"
+
+#: Pyblio/GnomeUI/Document.py:485
+#, c-format
+msgid "Remove all the %d entries ?"
+msgstr ""
+
+#: Pyblio/GnomeUI/Document.py:487
+#, fuzzy, c-format
+msgid "Remove entry `%s' ?"
+msgstr "Voulez-vous supprimer l'entrée `%s' ?"
+
+#: Pyblio/GnomeUI/Document.py:536 Pyblio/GnomeUI/Document.py:543
+#, c-format
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr ""
+"Impossible de se connecter à LyX :\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:584
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+"Veuillez installer `bug-buddy'\n"
+"pour utiliser cette fonction"
+
+#: Pyblio/GnomeUI/Document.py:595
+msgid "This program is copyrighted under the GNU GPL"
+msgstr "Ce programme est placé sous la licence GNU GPL"
+
+#: Pyblio/GnomeUI/Document.py:597
+msgid "Gnome interface to the Pybliographer system."
+msgstr "Une interface graphique pour Pybliographer"
+
+#: Pyblio/GnomeUI/Document.py:601
+msgid "Pybliographer Home Page"
+msgstr "Page principale de Pybliographer"
+
+#: Pyblio/GnomeUI/Editor.py:227
+msgid "Day"
+msgstr ""
+
+#: Pyblio/GnomeUI/Editor.py:236
+msgid "Month"
+msgstr ""
+
+#: Pyblio/GnomeUI/Editor.py:245
+#, fuzzy
+msgid "Year"
+msgstr "Chercher"
+
+#: Pyblio/GnomeUI/Editor.py:270
+#, fuzzy
+msgid "Invalid day field in date"
+msgstr "Le nom de champ `%s' est incorrect"
+
+#: Pyblio/GnomeUI/Editor.py:278
+#, fuzzy
+msgid "Invalid month field in date"
+msgstr "Le nom de champ `%s' est incorrect"
+
+#: Pyblio/GnomeUI/Editor.py:286
+#, fuzzy
+msgid "Invalid year field in date"
+msgstr "Le nom de champ `%s' est incorrect"
+
+#: Pyblio/GnomeUI/Editor.py:391
+msgid "Entry type"
+msgstr ""
+
+#: Pyblio/GnomeUI/Editor.py:393
+msgid "Key"
+msgstr ""
+
+#: Pyblio/GnomeUI/Editor.py:432
+msgid "Create Field"
+msgstr ""
+
+#: Pyblio/GnomeUI/Editor.py:483
+msgid "Mandatory"
+msgstr "Obligatoire"
+
+#: Pyblio/GnomeUI/Editor.py:483
+msgid "Optional"
+msgstr "Facultatif"
+
+#: Pyblio/GnomeUI/Editor.py:483
+msgid "Extra"
+msgstr "Supplément"
+
+#: Pyblio/GnomeUI/Editor.py:526
+#, fuzzy
+msgid "New text"
+msgstr "Nouveau fichier"
+
+#: Pyblio/GnomeUI/Editor.py:540 Pyblio/GnomeUI/Editor.py:548
+msgid "Error"
+msgstr ""
+
+#: Pyblio/GnomeUI/Editor.py:540
+msgid "Invalid key format"
+msgstr ""
+
+#: Pyblio/GnomeUI/Editor.py:548
+#, fuzzy
+msgid "Key already exists"
+msgstr "La clé `%s' existe déjà"
+
+#: Pyblio/GnomeUI/Editor.py:612
+msgid "Error in native string parsing"
+msgstr ""
+
+#: Pyblio/GnomeUI/Editor.py:632 Pyblio/GnomeUI/Editor.py:668
+#, fuzzy
+msgid "Native Editing"
+msgstr "Édition du champ `%s' en format natif"
+
+#: Pyblio/GnomeUI/Editor.py:681
+msgid "Standard Editing"
+msgstr ""
+
+#: Pyblio/GnomeUI/FileSelector.py:71
+msgid "Bibliography type:"
+msgstr "Type de bibliographie :"
+
+#: Pyblio/GnomeUI/FileSelector.py:142
+msgid "Format"
+msgstr "Format"
+
+#: Pyblio/GnomeUI/FileSelector.py:161
+msgid "Formatting Style:"
+msgstr "Style de format:"
+
+#: Pyblio/GnomeUI/FileSelector.py:183
+msgid "Output type:"
+msgstr "Type de sortie:"
 
 #: Pyblio/GnomeUI/Search.py:113
 msgid "Search"
@@ -165,10 +432,38 @@ msgstr ""
 "Les erreurs suivantes se sont produites :\n"
 "\n"
 
-#: Pyblio/Autoload.py:57
+#: pybliographer.py:38
 #, c-format
-msgid "warning: can't import %s: %s"
-msgstr "attention: impossible d'importer %s : %s"
+msgid "This is %s, version %s"
+msgstr "Bienvenue dans %s, version %s"
+
+#: pybliographer.py:42 pybliographer.py:49
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr "Ceci est un logiciel libre, sans AUCUNE GARANTIE"
+
+#: pybliographer.py:43
+msgid "For details, type `warranty'."
+msgstr "Pour plus de détails, tapez `warranty'."
+
+#: pybliographer.py:108 pybliographer.py:160
+#, c-format
+msgid "%s: error: can't open file `%s'"
+msgstr "%s: erreur : impossible d'ouvrir le fichier `%s'"
+
+#: pybliographer.py:121
+#, c-format
+msgid "For help, run %s and type `help' at the prompt"
+msgstr "Pour de l'aide, tapez %s puis le mot `help' à l'invite"
+
+#: pybliographer.py:130
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+"Commandes utiles :\n"
+"\thelp\tpour obtenir de l'aide\n"
+"\tquit\tpour quitter le programme\n"
 
 #~ msgid "entry has no key `%s'"
 #~ msgstr "L'entrée n'a pas de clé `%s'"
@@ -189,9 +484,6 @@ msgstr "attention: impossible d'importer %s : %s"
 #~ msgid "in entry %s: nested crossrefs"
 #~ msgstr "dans l'entrée `%s' : références croisées imbriquées"
 
-#~ msgid "Native editing of field `%s'"
-#~ msgstr "Édition du champ `%s' en format natif"
-
 #~ msgid "Edit the field in its Native format"
 #~ msgstr "Éditer le champ dans son format natif"
 
@@ -207,65 +499,17 @@ msgstr "attention: impossible d'importer %s : %s"
 #~ msgid "Cross-Reference `%s' is unexistent in the database"
 #~ msgstr "La référence croisée `%s' n'existe pas dans cette base"
 
-#~ msgid "Mandatory"
-#~ msgstr "Obligatoire"
-
-#~ msgid "Optional"
-#~ msgstr "Facultatif"
-
-#~ msgid "Extra"
-#~ msgstr "Supplément"
-
-#~ msgid "Invalid field name `%s'"
-#~ msgstr "Le nom de champ `%s' est incorrect"
-
-#~ msgid "Key `%s' already defined"
-#~ msgstr "La clé `%s' existe déjà"
-
 #~ msgid "Invalid identifier `%s'"
 #~ msgstr "L'identificateur `%s' est incorrect"
 
 #~ msgid "Identifier `%s' already exists"
 #~ msgstr "L'identificateur `%s' existe déjà"
 
-#~ msgid "File"
-#~ msgstr "Fichier"
-
-#~ msgid "Bibliography type:"
-#~ msgstr "Type de bibliographie :"
-
-#~ msgid "Format"
-#~ msgstr "Format"
-
-#~ msgid "Formatting Style:"
-#~ msgstr "Style de format:"
-
-#~ msgid "Output type:"
-#~ msgstr "Type de sortie:"
-
-#~ msgid "New"
-#~ msgstr "Nouveau..."
-
-#~ msgid "Open"
-#~ msgstr "Ouvrir"
-
-#~ msgid "Save"
-#~ msgstr "Sauver"
-
 #~ msgid "Save As..."
 #~ msgstr "Sauver comme..."
 
-#~ msgid "Previous Documents"
-#~ msgstr "Documents précédents"
-
 #~ msgid "Quit"
 #~ msgstr "Quitter"
-
-#~ msgid "About..."
-#~ msgstr "À propos..."
-
-#~ msgid "Submit a Bug Report"
-#~ msgstr "Envoyer un rapport de Bug"
 
 #~ msgid "Copy"
 #~ msgstr "Copier"
@@ -297,20 +541,11 @@ msgstr "attention: impossible d'importer %s : %s"
 #~ msgid "Preferences..."
 #~ msgstr "Préférences..."
 
-#~ msgid "Edit"
-#~ msgstr "Éditer"
-
 #~ msgid "Configure"
 #~ msgstr "Configurer"
 
 #~ msgid "Formatting"
 #~ msgstr "Formatter"
-
-#~ msgid "Help"
-#~ msgstr "Aide"
-
-#~ msgid "Cite"
-#~ msgstr "Citer"
 
 #~ msgid "Exit"
 #~ msgstr "Quitter"
@@ -323,9 +558,6 @@ msgstr "attention: impossible d'importer %s : %s"
 
 #~ msgid "Database `%s' [%s, %s]"
 #~ msgstr "Base de données `%s' [%s, %s]"
-
-#~ msgid "New file"
-#~ msgstr "Nouveau fichier"
 
 #~ msgid "Database is modified.\n"
 #~ msgstr "Base de données modifiée\n"
@@ -341,13 +573,6 @@ msgstr "attention: impossible d'importer %s : %s"
 
 #~ msgid "Save As"
 #~ msgstr "Sauver comme"
-
-#~ msgid ""
-#~ "File `%s' exists.\n"
-#~ "Overwrite it ?"
-#~ msgstr ""
-#~ "Le fichier `%s' existe.\n"
-#~ "Faut-il l'écraser ?"
 
 #~ msgid ""
 #~ "Can't save file:\n"
@@ -370,37 +595,11 @@ msgstr "attention: impossible d'importer %s : %s"
 #~ msgstr "L'édition n'est pas autorisée dans cette base"
 
 #~ msgid ""
-#~ "Can't connect to LyX:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Impossible de se connecter à LyX :\n"
-#~ "%s"
-
-#~ msgid "Really remove entry %s ?"
-#~ msgstr "Voulez-vous supprimer l'entrée `%s' ?"
-
-#~ msgid ""
-#~ "Please install bug-buddy\n"
-#~ "to use this feature"
-#~ msgstr ""
-#~ "Veuillez installer `bug-buddy'\n"
-#~ "pour utiliser cette fonction"
-
-#~ msgid "This program is copyrighted under the GNU GPL"
-#~ msgstr "Ce programme est placé sous la licence GNU GPL"
-
-#~ msgid "Gnome interface to the Pybliographer system."
-#~ msgstr "Une interface graphique pour Pybliographer"
-
-#~ msgid ""
 #~ "Submit a bug report\n"
 #~ " using bug-buddy"
 #~ msgstr ""
 #~ "Envoyer un rapport de Bug\n"
 #~ "en utilisant `bug-buddy'"
-
-#~ msgid "Pybliographer Home Page"
-#~ msgstr "Page principale de Pybliographer"
 
 #~ msgid "Please open a database first"
 #~ msgstr "Veuillez ouvrir une base de données"

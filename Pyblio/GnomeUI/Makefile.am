@@ -21,14 +21,18 @@
 
 pybdir = $(datadir)/$(PACKAGE)/Pyblio/GnomeUI
 
-EXTRA_DIST = 	__init__.py	\
-		Document.py	\
-		FieldsInfo.py 	\
-		Index.py 	\
-		Editor.py	\
-		Entry.py 	\
-		Search.py	\
-		Utils.py	\
-		Pybliographic.py
+EXTRA_DIST = \
+	Document.py 		\
+	Editor.py 		\
+	Entry.py 		\
+	FieldsInfo.py 		\
+	FileSelector.py 	\
+	Index.py 		\
+	Mime.py 		\
+	Pybliographic.py 	\
+	Search.py 		\
+	Sort.py 		\
+	Utils.py 		\
+	__init__.py
 
 pyb_DATA = $(EXTRA_DIST)

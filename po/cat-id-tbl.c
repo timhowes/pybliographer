@@ -8,45 +8,121 @@
 
 const struct _msg_ent _msg_tbl[] = {
   {"", 1},
-  {"This is %s, version %s", 2},
-  {"This is free software with ABSOLUTELY NO WARRANTY.", 3},
-  {"For details, type `warranty'.", 4},
-  {"%s: error: can't open file `%s'", 5},
-  {"For help, run %s and type `help' at the prompt", 6},
-  {"\
-Useful commands:\n\
-\thelp     to get some help\n\
-\tquit     to quit\n", 7},
-  {"key `%s' is malformed", 8},
-  {"%s:%d: key `%s' already defined", 9},
-  {"Illegal year value", 10},
-  {"Illegal month value", 11},
-  {"Illegal day value", 12},
-  {"in %s", 13},
-  {"method `%s' provides no opener", 14},
-  {"File `%s' does not exist", 15},
-  {"don't know how to open `%s'", 16},
-  {"method `%s' provides no iterator", 17},
-  {"no input pipe `%s'", 18},
-  {"no output pipe `%s'", 19},
+  {"warning: can't import %s: %s", 2},
+  {"Illegal year value", 3},
+  {"Illegal month value", 4},
+  {"Illegal day value", 5},
+  {"in %s", 6},
+  {"no input pipe `%s'", 7},
+  {"no output pipe `%s'", 8},
+  {"method `%s' provides no opener", 9},
+  {"File `%s' does not exist", 10},
+  {"don't know how to open `%s'", 11},
+  {"method `%s' provides no iterator", 12},
+  {"key `%s' is malformed", 13},
+  {"%s:%d: key `%s' already defined", 14},
+  {"New", 15},
+  {"Merge...", 16},
+  {"Previous Documents", 17},
+  {"About...", 18},
+  {"Submit a Bug Report", 19},
   {"Add...", 20},
   {"Edit...", 21},
   {"Delete", 22},
-  {"Search", 23},
-  {"Field", 24},
-  {"Pattern", 25},
-  {"Simple Search", 26},
-  {"Search command:", 27},
-  {"Expert Search", 28},
-  {"Full database", 29},
-  {"internal error during evaluation", 30},
+  {"Sort...", 23},
+  {"Cite", 24},
+  {"File", 25},
+  {"Edit", 26},
+  {"Help", 27},
+  {"Open", 28},
+  {"Save", 29},
+  {"Find", 30},
+  {"Close", 31},
+  {"New database", 32},
+  {"[no entry]", 33},
+  {"[1 entry]", 34},
+  {"[%d entries]", 35},
+  {"[%d/1 entry]", 36},
+  {"[%d/%d entries]", 37},
+  {"[modified]", 38},
+  {"\
+The database has been modified.\n\
+Discard changes ?", 39},
+  {"Merge file", 40},
+  {"Open error", 41},
+  {"Merge status", 42},
+  {"Open file", 43},
+  {"\
+An internal error occured during saving\n\
+Try to Save As...", 44},
+  {"\
+The file `%s' already exists.\n\
+Overwrite it ?", 45},
+  {"\
+During opening:\n\
+%s", 46},
+  {"\
+An entry called `%s' already exists.\n\
+Rename and add it anyway ?", 47},
+  {"Really remove all the entries ?", 48},
+  {"Really edit %d entries ?", 49},
+  {"Remove all the %d entries ?", 50},
+  {"Remove entry `%s' ?", 51},
+  {"\
+Can't connect to LyX:\n\
+%s", 52},
+  {"\
+Please install bug-buddy\n\
+to use this feature", 53},
+  {"This program is copyrighted under the GNU GPL", 54},
+  {"Gnome interface to the Pybliographer system.", 55},
+  {"Pybliographer Home Page", 56},
+  {"Day", 57},
+  {"Month", 58},
+  {"Year", 59},
+  {"Invalid day field in date", 60},
+  {"Invalid month field in date", 61},
+  {"Invalid year field in date", 62},
+  {"Entry type", 63},
+  {"Key", 64},
+  {"Create Field", 65},
+  {"Mandatory", 66},
+  {"Optional", 67},
+  {"Extra", 68},
+  {"New text", 69},
+  {"Error", 70},
+  {"Invalid key format", 71},
+  {"Key already exists", 72},
+  {"Error in native string parsing", 73},
+  {"Native Editing", 74},
+  {"Standard Editing", 75},
+  {"Bibliography type:", 76},
+  {"Format", 77},
+  {"Formatting Style:", 78},
+  {"Output type:", 79},
+  {"Search", 80},
+  {"Field", 81},
+  {"Pattern", 82},
+  {"Simple Search", 83},
+  {"Search command:", 84},
+  {"Expert Search", 85},
+  {"Full database", 86},
+  {"internal error during evaluation", 87},
   {"\
 while compiling %s\n\
-error: %s", 31},
+error: %s", 88},
   {"\
 The following errors occured:\n\
-\n", 32},
-  {"warning: can't import %s: %s", 33},
+\n", 89},
+  {"This is %s, version %s", 90},
+  {"This is free software with ABSOLUTELY NO WARRANTY.", 91},
+  {"For details, type `warranty'.", 92},
+  {"%s: error: can't open file `%s'", 93},
+  {"For help, run %s and type `help' at the prompt", 94},
+  {"\
+Useful commands:\n\
+\thelp     to get some help\n\
+\tquit     to quit\n", 95},
 };
 
-int _msg_tbl_length = 33;
+int _msg_tbl_length = 95;

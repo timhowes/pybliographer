@@ -21,19 +21,27 @@
 
 pybdir = $(datadir)/$(PACKAGE)/Pyblio
 
-EXTRA_DIST = 	__init__.py	\
-		Autoload.py	\
-		Base.py 	\
-		Fields.py	\
-		Help.py		\
-		Open.py		\
-		Search.py	\
-		Types.py	\
-		Config.py	\
-		Formatter.py	\
-		recode.py	\
-		LyX.py		\
-		TextUI.py	
+EXTRA_DIST = \
+	Autoload.py 	\
+	Base.py 	\
+	Config.py 	\
+	Connector.py 	\
+	Exceptions.py 	\
+	Fields.py 	\
+	Formatter.py 	\
+	Help.py 	\
+	Iterator.py 	\
+	Key.py 		\
+	LyX.py 		\
+	Open.py 	\
+	Search.py 	\
+	Selection.py 	\
+	Sort.py 	\
+	TextUI.py 	\
+	Types.py 	\
+	Utils.py 	\
+	__init__.py 	\
+	recode.py
 
 SUBDIRS = GnomeUI Output Format ConfDir Style
 

@@ -1,4 +1,14 @@
-New in 0.9.6 
+New in 0.9.7 - 2000-03-15
+
+	* Multiple Document Interface
+	* copy/paste, drag and drop
+	* better date handling
+	* multiple selections for operations (cite in LyX for example)
+	* read and write for the supported formats
+	* heavy internal reorganizations
+	
+
+New in 0.9.6 - 1999-11-22
 
 	* internationalization
 	* Medline support
