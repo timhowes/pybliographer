@@ -118,6 +118,52 @@ def bibopen (entity, how = None):
     return base
 
 
+def bibiter (entity, how = None):
+    ''' Generic function to iterate on a bibliographic database '''
+
+    def simple_try (url, how):
+	base = None
+
+	if how == None:
+	    listedmethods = Autoload.available ('format')
+
+	    for method in listedmethods:
+		opener = get_by_name (method, 'iter')
+		if opener:
+		    base = opener (url, 1)
+		    if base is not None:
+			return base
+	    return None
+
+	opener = get_by_name (how, 'iter')
+
+	if opener:
+	    base = opener (url, 0)
+	else:
+	    raise Exceptions.FormatError (_("method `%s' provides no iterator") % how)
+
+	return base
+
+    # Consider the reference as an URL
+    url = Fields.URL (entity)
+
+    if url.url [0] == 'file' and not os.path.exists (url.url [2]):
+	raise Exceptions.FileError (_("File `%s' does not exist") % str (url))
+
+    # eventually load a new module
+    if how is None:
+	handler = Autoload.get_by_regexp ('format', str (url))
+	if handler:
+	    how = handler.name
+
+    base = simple_try (url, how)
+
+    if base is None:
+	raise Exceptions.FormatError (_("don't know how to open `%s'") % entity)
+
+    return base
+
+
 Help.register ('bibwrite', """
 Syntax: bibwrite (iterator, output, how)
 
