@@ -8,33 +8,46 @@ m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
 
-news_item([[21/11/2000]], [[Version 1.0.7 is out. I added a test so
-that a file won't be overwritten if it has been modified outside of
-pybliographic. In addition, Dominique Burget helped to improve the
-Ovid parser. Finally, the remaining problems for bibtex conversion
+news_item([[7/12/2000]],  [[pybliographer is now officially available
+for Debian (Woody)&nbsp;! Please check your favorite mirror...]]),
+
+news_item([[6/12/2000]],  [[Sourceforge is also up to date now.]]),
+
+news_item([[5/12/2000]],  [[As there are problems to upload files to
+SourceForge, the RPM files for pybliographer 1.0.7 are only available on the
+Gnome mirrors...]]),
+
+news_item([[30/11/2000]],  [[There  are   now  twelve  (12)  languages
+supported by  pybliographer. The latest ones  are japanese, portuguese
+(Brasil) and swedish.]]),
+
+news_item([[21/11/2000]], [[Version  1.0.7 is out.  I added a  test so
+that a  file won't be overwritten  if it has been  modified outside of
+pybliographic.  In addition,  Dominique Burget  helped to  improve the
+Ovid  parser. Finally,  the remaining  problems for  bibtex conversion
 should be now fixed.]]),
 
-news_item([[17/10/2000]], [[We are at 1.0.6. A few bug fixes (for
-Refer to BibTeX conversion), the ability to compile with Python 2.0,
+news_item([[17/10/2000]],  [[We are  at 1.0.6.  A few  bug  fixes (for
+Refer to BibTeX  conversion), the ability to compile  with Python 2.0,
 and a new feature: user defined key generators. It will be possible to
-generate emacs-like keys for your new entries (for more explanation,
+generate emacs-like  keys for your new entries  (for more explanation,
 have a look at the mailing-list...)]]),
 
-news_item([[01/10/2000]],[[1.0.5 is out. Now, the searched words are
-saved between sessions, it is possible to display the key and type of
-the entries in the index window (as explained in the <a
-href="faq.html">FAQ</a>), and formatted entries follow the order of the
-display when no specific ordering is specified. And for the Italian
-speaking people, a brand new version of the documentation, written by
-Yuri Bongiorno. ]]),
+news_item([[01/10/2000]],[[1.0.5 is  out. Now, the  searched words are
+saved between sessions, it is possible  to display the key and type of
+the   entries  in   the  index   window  (as   explained  in   the  <a
+href="faq.html">FAQ</a>),  and formatted entries  follow the  order of
+the  display when  no  specific  ordering is  specified.  And for  the
+Italian  speaking people, a  brand new  version of  the documentation,
+written by Yuri Bongiorno. ]]),
 
 news_item([[31/08/2000]], [[Two new translations, in Danish by Kenneth
-Christiansen and in Ukrainian by Yuri Syrota. Well, I guess I must
+Christiansen and  in Ukrainian  by Yuri Syrota.  Well, I guess  I must
 implement unicode support now ;^)]]),
 
-news_item([[22/08/2000]], [[Kjartan Maraas has worked out a norwegian
-translation of pybliographer, whereas in the same time Valek Filippov
-brought to you a russian version&nbsp;! These will be incorporated in
+news_item([[22/08/2000]], [[Kjartan Maraas  has worked out a norwegian
+translation of pybliographer, whereas  in the same time Valek Filippov
+brought to you a russian  version&nbsp;! These will be incorporated in
 the next version.]]),
 
 news_item([[27/07/2000]], [[1.0.4  is out. This  version improves some

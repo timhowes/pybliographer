@@ -28,8 +28,8 @@ provides  powerful editing  capabilities, a  nice  hierarchical search
 mechanism,  direct insertion  of references  into  <b>LyX</b> (version
 1.0.x), and more.
 
-<p>The project is also partially hosted on 
-<a href="http://sourceforge.net/projects/pybliographer">SourceForge</a>.
+<p>The     project    is     also    partially     hosted     on    <a
+href="http://sourceforge.net/projects/pybliographer">SourceForge</a>.
 
 <hr>
 
