@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-04-17 16:17+ZONE\n"
+"POT-Creation-Date: 2000-04-18 15:10+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,75 +122,75 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:249
+#: .././Pyblio/GnomeUI/Editor.py:258
 msgid "Day"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:258
+#: .././Pyblio/GnomeUI/Editor.py:267
 msgid "Month"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:267
+#: .././Pyblio/GnomeUI/Editor.py:276
 msgid "Year"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:292
+#: .././Pyblio/GnomeUI/Editor.py:301
 msgid "Invalid day field in date"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:300
+#: .././Pyblio/GnomeUI/Editor.py:309
 msgid "Invalid month field in date"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:308
+#: .././Pyblio/GnomeUI/Editor.py:317
 msgid "Invalid year field in date"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:415
+#: .././Pyblio/GnomeUI/Editor.py:424
 msgid "Entry type"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:417 .././Pyblio/GnomeUI/Config.py:485
+#: .././Pyblio/GnomeUI/Editor.py:426 .././Pyblio/GnomeUI/Config.py:482
 msgid "Key"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:458
+#: .././Pyblio/GnomeUI/Editor.py:467
 msgid "Create Field"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:523 .././Pyblio/GnomeUI/Fields.py:178
+#: .././Pyblio/GnomeUI/Editor.py:532 .././Pyblio/GnomeUI/Fields.py:178
 msgid "Mandatory"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:523 .././Pyblio/GnomeUI/Fields.py:179
+#: .././Pyblio/GnomeUI/Editor.py:532 .././Pyblio/GnomeUI/Fields.py:179
 msgid "Optional"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:523
+#: .././Pyblio/GnomeUI/Editor.py:532
 msgid "Extra"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:582
+#: .././Pyblio/GnomeUI/Editor.py:591
 msgid "Invalid key format"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:590
+#: .././Pyblio/GnomeUI/Editor.py:599
 msgid "Key `%s' already exists"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:657
+#: .././Pyblio/GnomeUI/Editor.py:666
 msgid "Error in native string parsing"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:670
+#: .././Pyblio/GnomeUI/Editor.py:679
 msgid "Edit entry"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:684 :725
+#: .././Pyblio/GnomeUI/Editor.py:693 :734
 msgid "Native Editing"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Editor.py:737
+#: .././Pyblio/GnomeUI/Editor.py:746
 msgid "Standard Editing"
 msgstr ""
 
@@ -550,45 +550,45 @@ msgid ""
 "%s"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:129
+#: .././Pyblio/GnomeUI/Config.py:128
 msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:252
+#: .././Pyblio/GnomeUI/Config.py:249
 msgid "True"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:253
+#: .././Pyblio/GnomeUI/Config.py:250
 msgid "False"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:393
+#: .././Pyblio/GnomeUI/Config.py:390
 msgid "Add"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:396
+#: .././Pyblio/GnomeUI/Config.py:393
 msgid "Update"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:399 :497 .././Pyblio/GnomeUI/Fields.py:95 :225
+#: .././Pyblio/GnomeUI/Config.py:396 :494 .././Pyblio/GnomeUI/Fields.py:95 :225
 msgid "Remove"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:485
+#: .././Pyblio/GnomeUI/Config.py:482
 msgid "Value"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:494 .././Pyblio/GnomeUI/Fields.py:92 :222
+#: .././Pyblio/GnomeUI/Config.py:491 .././Pyblio/GnomeUI/Fields.py:92 :222
 msgid "Set"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:510
+#: .././Pyblio/GnomeUI/Config.py:507
 msgid "Key:"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:512
+#: .././Pyblio/GnomeUI/Config.py:509
 msgid "Value:"
 msgstr ""
 

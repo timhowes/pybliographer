@@ -1,3 +1,11 @@
+2000-04-18  Fred  <fred@pium.home.org>
+
+	* bibtex/reverse.c, Pyblio/GnomeUI/Editor.py:
+	improved handling of authors
+
+	* configure.in, bibtex/Makefile.am, compiled/Setup.in:
+	fixed compilation with i18n
+
 2000-04-17  Fred  <fred@pium.home.org>
 
 	* Pyblio/ConfDir/BibTeX.py:

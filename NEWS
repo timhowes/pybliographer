@@ -1,3 +1,9 @@
+New in 0.9.11 - 2000-04-18
+
+	* continued bibtex improvements for authors
+	* fixed compilation with i18n
+
+
 New in 0.9.10 - 2000-04-17
 
 	* improved bibtex parsing for endnote databases

@@ -24,7 +24,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT(pybliographer.py)
 
-AM_INIT_AUTOMAKE(pybliographer, 0.9.10)
+AM_INIT_AUTOMAKE(pybliographer, 0.9.11)
 AM_CONFIG_HEADER(config.h)
 
 AC_PROG_CC
@@ -47,7 +47,7 @@ changequote([,])
 AC_MSG_RESULT(${Py_Version})
 
 if test "x${Py_Version}" != 'x1.5' ; then
-  AC_MSG_ERROR([need python from 1.5 family])
+  AC_MSG_ERROR([you need python 1.5.x to run pybliographer])
 fi
 
 AC_MSG_CHECKING([python devel])

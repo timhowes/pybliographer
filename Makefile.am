@@ -26,7 +26,6 @@ SUBDIRS = 	Pyblio 		\
 		intl		\
 		bibtex 		\
 		compiled 	\
-		intl		\
 		po		\
 		.		\
 		scripts		\

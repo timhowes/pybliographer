@@ -125,11 +125,8 @@ class ConfigDialog:
 
         if not self.warning:
             self.warning = 1
-
-            d = GnomeWarningDialog (_("Some changes require to restart Pybliographic\n"
-                                      "to be correctly taken into account"))
-            d.set_parent (self.parent)
-            d.show_all ()
+            self.parent.warning (_("Some changes require to restart Pybliographic\n"
+                                   "to be correctly taken into account"))
         return
 
 

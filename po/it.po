@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.9\n"
-"POT-Creation-Date: 2000-04-17 16:17+ZONE\n"
+"POT-Creation-Date: 2000-04-18 15:10+ZONE\n"
 "PO-Revision-Date: 2000-04-08 21:40+0100\n"
 "Last-Translator: Yuri Bongiorno <yurix@tiscalinet.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -123,75 +123,75 @@ msgstr "Testo"
 msgid "Reference"
 msgstr "Riferimento"
 
-#: .././Pyblio/GnomeUI/Editor.py:249
+#: .././Pyblio/GnomeUI/Editor.py:258
 msgid "Day"
 msgstr "Giorno"
 
-#: .././Pyblio/GnomeUI/Editor.py:258
+#: .././Pyblio/GnomeUI/Editor.py:267
 msgid "Month"
 msgstr "Mese"
 
-#: .././Pyblio/GnomeUI/Editor.py:267
+#: .././Pyblio/GnomeUI/Editor.py:276
 msgid "Year"
 msgstr "Anno"
 
-#: .././Pyblio/GnomeUI/Editor.py:292
+#: .././Pyblio/GnomeUI/Editor.py:301
 msgid "Invalid day field in date"
 msgstr "Campo del giorno non valido nella data"
 
-#: .././Pyblio/GnomeUI/Editor.py:300
+#: .././Pyblio/GnomeUI/Editor.py:309
 msgid "Invalid month field in date"
 msgstr "Campo del mese non valido nella data"
 
-#: .././Pyblio/GnomeUI/Editor.py:308
+#: .././Pyblio/GnomeUI/Editor.py:317
 msgid "Invalid year field in date"
 msgstr "Campo dell'anno non valido nella data"
 
-#: .././Pyblio/GnomeUI/Editor.py:415
+#: .././Pyblio/GnomeUI/Editor.py:424
 msgid "Entry type"
 msgstr "Tipo di voce"
 
-#: .././Pyblio/GnomeUI/Config.py:485 .././Pyblio/GnomeUI/Editor.py:417
+#: .././Pyblio/GnomeUI/Config.py:482 .././Pyblio/GnomeUI/Editor.py:426
 msgid "Key"
 msgstr "Chiave"
 
-#: .././Pyblio/GnomeUI/Editor.py:458
+#: .././Pyblio/GnomeUI/Editor.py:467
 msgid "Create Field"
 msgstr "Crea il campo"
 
-#: .././Pyblio/GnomeUI/Editor.py:523 .././Pyblio/GnomeUI/Fields.py:178
+#: .././Pyblio/GnomeUI/Editor.py:532 .././Pyblio/GnomeUI/Fields.py:178
 msgid "Mandatory"
 msgstr "Obbligatorio"
 
-#: .././Pyblio/GnomeUI/Editor.py:523 .././Pyblio/GnomeUI/Fields.py:179
+#: .././Pyblio/GnomeUI/Editor.py:532 .././Pyblio/GnomeUI/Fields.py:179
 msgid "Optional"
 msgstr "Facoltativo"
 
-#: .././Pyblio/GnomeUI/Editor.py:523
+#: .././Pyblio/GnomeUI/Editor.py:532
 msgid "Extra"
 msgstr "Supplementare"
 
-#: .././Pyblio/GnomeUI/Editor.py:582
+#: .././Pyblio/GnomeUI/Editor.py:591
 msgid "Invalid key format"
 msgstr "Formato della chiave non valido"
 
-#: .././Pyblio/GnomeUI/Editor.py:590
+#: .././Pyblio/GnomeUI/Editor.py:599
 msgid "Key `%s' already exists"
 msgstr "La chiave `%s' esiste già"
 
-#: .././Pyblio/GnomeUI/Editor.py:657
+#: .././Pyblio/GnomeUI/Editor.py:666
 msgid "Error in native string parsing"
 msgstr "Errore durante l'analisi nella stringa nativa"
 
-#: .././Pyblio/GnomeUI/Editor.py:670
+#: .././Pyblio/GnomeUI/Editor.py:679
 msgid "Edit entry"
 msgstr "Modifica la voce"
 
-#: .././Pyblio/GnomeUI/Editor.py:684
+#: .././Pyblio/GnomeUI/Editor.py:693
 msgid "Native Editing"
 msgstr "Editing nativo"
 
-#: .././Pyblio/GnomeUI/Editor.py:737
+#: .././Pyblio/GnomeUI/Editor.py:746
 msgid "Standard Editing"
 msgstr "Editing standard"
 
@@ -594,46 +594,46 @@ msgstr ""
 "\n"
 "%s"
 
-#: .././Pyblio/GnomeUI/Config.py:129
+#: .././Pyblio/GnomeUI/Config.py:128
 msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
 
-#: .././Pyblio/GnomeUI/Config.py:252
+#: .././Pyblio/GnomeUI/Config.py:249
 msgid "True"
 msgstr "Vero"
 
-#: .././Pyblio/GnomeUI/Config.py:253
+#: .././Pyblio/GnomeUI/Config.py:250
 msgid "False"
 msgstr "Falso"
 
-#: .././Pyblio/GnomeUI/Config.py:393
+#: .././Pyblio/GnomeUI/Config.py:390
 msgid "Add"
 msgstr "Aggiungi"
 
-#: .././Pyblio/GnomeUI/Config.py:396
+#: .././Pyblio/GnomeUI/Config.py:393
 msgid "Update"
 msgstr "Aggiorna"
 
-#: .././Pyblio/GnomeUI/Config.py:399
+#: .././Pyblio/GnomeUI/Config.py:396
 msgid "Remove"
 msgstr "Rimuove"
 
-#: .././Pyblio/GnomeUI/Config.py:485
+#: .././Pyblio/GnomeUI/Config.py:482
 msgid "Value"
 msgstr "Valore"
 
-#: .././Pyblio/GnomeUI/Config.py:494 .././Pyblio/GnomeUI/Fields.py:92
+#: .././Pyblio/GnomeUI/Config.py:491 .././Pyblio/GnomeUI/Fields.py:92
 msgid "Set"
 msgstr "Imposta"
 
-#: .././Pyblio/GnomeUI/Config.py:510
+#: .././Pyblio/GnomeUI/Config.py:507
 #, fuzzy
 msgid "Key:"
 msgstr "Chiave"
 
-#: .././Pyblio/GnomeUI/Config.py:512
+#: .././Pyblio/GnomeUI/Config.py:509
 #, fuzzy
 msgid "Value:"
 msgstr "Valore"
