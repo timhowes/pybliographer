@@ -21,7 +21,9 @@
 
 from string import *
 
-from Pyblio import Key, Autoload
+from Pyblio import Key, Autoload, recode
+
+_flat = recode.recode ('latin1..flat')
 
 def format (string, width, first, next):
     ''' Format a string on a given width '''
@@ -94,7 +96,7 @@ def generate_key (entry, table):
             if year: key = key + str (year) [2:]
 
 
-    base = key
+    base = _flat (key)
     key  = Key.Key (table, base)
     
     if table.has_key (key):
