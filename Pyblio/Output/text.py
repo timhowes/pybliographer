@@ -23,7 +23,7 @@
 
 import sys, string
 
-from Pyblio import Autoload, Base, Formatter
+from Pyblio import Autoload, Utils, Formatter
 
 class TextFormat (Formatter.Formatter):
 
@@ -69,7 +69,7 @@ class TextFormat (Formatter.Formatter):
     def end (self):
         self.data = string.strip (self.data)
         
-        text = Base.format (self.data, 79, self.length, self.length)
+        text = Utils.format (self.data, 79, self.length, self.length)
         self.out.write (self.key + text [self.length:] + '\n\n')
         return
     
