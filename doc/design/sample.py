@@ -1,19 +1,13 @@
-from api import *
+from db import *
 
-db = Database ('file:db.pbl')
+db = Database ('test', 1)
+
+author_r = Role ('base:author', 'An Author', None).register (db)
+title_r  = Role ('base:title', 'Title', None).register (db)
 
 work  = Work ().register (db)
-title = Text ().register (db)
+title = Text (text = u'Un titre accentué')
 
-title.text = u'Au bonheur des ogres'
+title.register (db)
 
-work.attribute ['core:title'].append (title)
-
-auth = Person ().register (db)
-
-auth.name [Person.LAST]  = u'Pennac'
-auth.name [Person.FIRST] = u'Daniel'
-
-work.attribute ['core:author'].append (auth)
-
-db.save ()
+work.attr_ins (title, title_r, 1)

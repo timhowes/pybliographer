@@ -90,13 +90,12 @@ class Role (object):
 
         The type indicates the classes that can be related by that role. '''
         
-        self.role = role
+        self.id   = role
         self.desc = description
         self.type = type
 
         # these are defined once the object has been registered in the db.
         self.db = None
-        self.id = None
         return
 
     def register (self, db):
@@ -134,14 +133,14 @@ class Actor (Type):
 
 class Person (Actor):
 
-    LAST   = 0
-    MIDDLE = 1
-    FIRST  = 2
+    __slots__ = ('first', 'middle', 'last')
     
-    def __init__ (self):
+    def __init__ (self, first = None, middle = None, last = None):
         Actor.__init__ (self)
 
-        self.name = [ None, None, None ]
+        if first:  self.first  = first
+        if middle: self.middle = middle
+        if last:   self.last   = last
         return
 
 
@@ -157,12 +156,14 @@ class Text (Type):
 
     ''' A non-constrained text attribute, with formatting and language
     properties. '''
+
+    __slots__ = ('text', 'lang')
     
-    def __init__ (self):
+    def __init__ (self, text = None, lang = None):
         Type.__init__ (self)
         
-        self.lang = None
-        self.text = None
+        if text: self.text = text
+        if lang: self.lang = lang
         return
 
 
