@@ -1,5 +1,15 @@
 -*- text -*-
 
+New in 1.0.4  - 2000-07-27
+
+	* fixed bugs in strict bibtex parsing
+	* reading of ß character from bibtex
+	* Refer now supports %F labels (Martin Wilck)
+	* better behavior of the index scroll list
+	* added scrollbar in entry edition window
+	* fixed bugs for script option handling
+
+
 New in 1.0.3  - 2000-06-13
 
         * Fixed bug when cancelling a close action initiated from the

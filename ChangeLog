@@ -1,3 +1,29 @@
+2000-07-27  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/GnomeUI/__init__.py: explicitely import gtk with modified
+	sys.argv, so that script options are not seen by gtk_init
+
+	* Pyblio/GnomeUI/Fields.py: added "restart now" dialog when
+	editing Fields/Entries.
+
+2000-07-24  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/GnomeUI: added scrollbar around notebook in edition
+	window, save column width in index, update default type when
+	changing entry description
+
+	* Pyblio/Format/Refer.py: merged patch from Martin Wilck
+	<martin@tropos.de> to support label saving/loading from Refer
+	databases.
+
+2000-07-18  Fred  <fred@lithpc10.epfl.ch>
+
+	* bibtex/accents.c, bibtex/bibparse.y: parsing of ß and of
+	@comment in strict mode
+
+	* Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Document.py: select an
+	entry after an edition operation
+
 2000-06-13  Fred  <fred@lithpc10.epfl.ch>
 
 	* Pyblio/GnomeUI/FileSelection.py: Removed fileops for file
