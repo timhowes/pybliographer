@@ -19,8 +19,9 @@
 # 
 # $Id$
 
-SGML = gui.sgml pyblio.sgml script.sgml
-PNG  = edit.png main.png open.png search.png
+SGML = 	config.sgml database.sgml entry.sgml gui.sgml iterator.sgml key.sgml \
+	pyblio.sgml script.sgml selection.sgml styles.sgml url.sgml
+PNG  = edit.png main.png open.png search.png sort.png
 
 EXTRA_DIST = \
 	topic.dat $(SGML) $(PNG)
@@ -47,6 +48,6 @@ dist-hook:
 
 doc-pack:
 	mkdir documentation
-	cp *.html *.png documentation
+	cp pyblio/*.html *.png documentation
 	tar zcvf doc-pack.tar.gz documentation
 	rm -rf documentation
