@@ -16,7 +16,7 @@ clean:
 	test -z "$(HTML)" || rm -f $(HTML)
 
 gnome:
-	rcp -r *.m4 $(EXTRA) Makefile frederic@www.gnome.org:/home/frederic/html
+	scp -r *.m4 $(EXTRA) Makefile frederic@www.gnome.org:/home/frederic/html
 
 .SUFFIXES: .html .m4
 

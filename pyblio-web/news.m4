@@ -1,10 +1,17 @@
 dnl -*- html -*-
 dnl
 dnl --------------------------------------------------
-define(pyblio_last,  [[0.9.11]])dnl
+define(pyblio_last,  [[1.0.0]])dnl
 dnl --------------------------------------------------
 dnl
 define(pyblio_news, [[
+
+[[ <b>12/05/2000</b>: pybliographer 1.0.0 is out ! A few fixes in this
+version (concerning the save order for entries with crossreferences).
+Now, let's start on the new developement tree ;-)]],
+
+[[ <b>11/05/2000</b>: back from holidays... The very last fixes are
+being made to pybliographer before 1.0.0]],
 
 [[ <b>20/04/2000</b>: I've created  a mailing-list at SourceForge, for
 general  discussions   about  pybliographer.  You   can  subscribe  <a
