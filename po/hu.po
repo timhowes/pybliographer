@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.3\n"
 "POT-Creation-Date: 2000-11-20 18:19+ZONE\n"
-"PO-Revision-Date: 2000-06-26 15:26+02:00\n"
+"PO-Revision-Date: 2000-12-04 15:19+01:00\n"
 "Last-Translator: Zoltán Kóta <kota@szbk.u-szeged.hu>\n"
 "Language-Team: hu <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -458,13 +458,12 @@ msgid "Open file"
 msgstr "Állomány megnyitása"
 
 #: .././Pyblio/GnomeUI/Document.py:413
-#, fuzzy
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
 msgstr ""
-"Az adatbázis módosítva lett.\n"
-"Változások eldobása ?"
+"Az adatbázis külsõleg módosítva lett.\n"
+"Változások felülírása ?"
 
 #: .././Pyblio/GnomeUI/Document.py:423
 msgid ""
