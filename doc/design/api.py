@@ -10,17 +10,17 @@ class Database (object):
     def save (self):
         pass
 
-    def record_get (self, query = None)
+    def record_get (self, query = None):
         ''' Returns an iterator to loop over some records of the
         database '''
         pass
 
-    def role_get (self, query = None)
+    def role_get (self, query = None):
         ''' Returns an iterator to loop over some roles of the
         database '''
         pass
     
-    def attribute_get (self, query = None)
+    def attribute_get (self, query = None):
         ''' Returns an iterator to loop over some attributes of the
         database '''
         pass
@@ -48,11 +48,11 @@ class Record (object):
 
     def register (self, db):
         ''' Register the record in the database '''
-        pass
+        return self
     
     def unregister (self):
         ''' Unregister the record from the database '''
-        pass
+        return self
 
 
 class Work (Record):
@@ -130,9 +130,7 @@ class Attribute (object):
 
     ''' The base class of all the attributes of a record '''
 
-    def __init__ (self, role_name):
-        self.role = role_name
-
+    def __init__ (self):
         # these are defined once the object has been registered in the db.
         self.db = None
         self.id = None
@@ -143,11 +141,11 @@ class Attribute (object):
 
     def register (self, db):
         ''' Register the attribute in the database '''
-        pass
+        return self
 
     def unregister (self):
         ''' Unregister the attribute from the database '''
-        pass
+        return self
 
 
 class Actor (Attribute):
@@ -156,17 +154,21 @@ class Actor (Attribute):
 
 
 class Person (Actor):
+
+    LAST   = 0
+    MIDDLE = 1
+    FIRST  = 2
     
-    def __init__ (self, role_name):
-        Actor.__init__ (self, role_name)
+    def __init__ (self):
+        Actor.__init__ (self)
 
         self.name = [ None, None, None ]
         return
 
 
 class Corporate (Actor):
-    def __init__ (self, role_name):
-        Actor.__init__ (self, role_name)
+    def __init__ (self):
+        Actor.__init__ (self)
 
         self.name = None
         return
@@ -177,8 +179,8 @@ class Text (Attribute):
     ''' A non-constrained text attribute, with formatting and language
     properties. '''
     
-    def __init__ (self, role_name, lang = None):
-        Attribute.__init__ (self, role_name)
+    def __init__ (self, lang = None):
+        Attribute.__init__ (self)
         
         self.lang = lang
         return
@@ -186,13 +188,22 @@ class Text (Attribute):
 
 class Date (Attribute):
 
-    def __init__ (self, role_name):
-        Actor.__init__ (self, role_name)
+    YEAR  = 0
+    MONTH = 1
+    DAY   = 2
+    
+    def __init__ (self):
+        Actor.__init__ (self)
 
         self.date = [ None, None, None ]
         return
 
 
 class Concept (Attribute):
+
+    pass
+
+
+class URI (Attribute):
 
     pass
