@@ -523,8 +523,8 @@ def entry_write (entry, output):
                     value = string.join (map (lambda item: item.key, value.list), ', ')
                     
                 fieldtype = _fieldtype (Types.get_field (field))
-                dico [field] = _nativify (value, fieldtype)
 
+                dico [field] = _nativify (value, fieldtype)
 
     # write according to the type order
     for f in tp.mandatory + tp.optional:
@@ -534,8 +534,8 @@ def entry_write (entry, output):
 	if not dico.has_key (field): continue
 
 	output.write ('  %-14s = ' % f.name)
-	output.write (Utils.format (dico [field],
-				    75, 19, 19) [19:] + ',\n')
+        output.write (Utils.format (dico [field],
+                                    75, 19, 19) [19:] + ',\n')
 	del dico [field]
 
     for f in dico.keys ():

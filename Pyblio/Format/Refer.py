@@ -138,7 +138,6 @@ class ReferIterator (Iterator.Iterator):
                         fields [f] = type (fields [f] [0])
                         
                 if label:
-                
                     key = Key.Key (None, label)
                     return Base.Entry (key, entry, fields)
                 else:
