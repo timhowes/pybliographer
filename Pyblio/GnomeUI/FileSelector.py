@@ -38,7 +38,9 @@ class URLFileSelection (GtkFileSelection):
     ''' Extended file selection dialog, with an URL field and a type
     selector. '''
     
-    def __init__(self, title = _("File"), url=TRUE, modal=TRUE, has_auto=TRUE):
+    def __init__(self, title = _("File"),
+                 url=TRUE, modal=TRUE, has_auto=TRUE,
+                 directory = None):
         
         GtkFileSelection.__init__(self)
         self.set_title (title)
@@ -48,8 +50,8 @@ class URLFileSelection (GtkFileSelection):
         self.cancel_button.connect('clicked', self.quit)
         self.ok_button.connect('clicked', self.ok_cb)
 
-        if modal:
-            grab_add (self)
+        if directory: self.set_filename (directory)
+        if modal:     grab_add (self)
 
         self.ret = None
         self.url = None
@@ -133,6 +135,6 @@ class URLFileSelection (GtkFileSelection):
     def run (self):
         self.show_all ()
         mainloop ()
-        
+
         return (self.ret, self.type)
 

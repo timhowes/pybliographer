@@ -166,7 +166,8 @@ class Document (Connector.Publisher):
         self.sort_dg   = None
         self.lyx       = None
         self.changed   = 0
-
+        self.directory = None
+        
         self.redisplay_index ()
         return
 
@@ -346,11 +347,16 @@ class Document (Connector.Publisher):
         if not self.confirm (): return
 
         # get a new file name
-        (url, how) = FileSelector.URLFileSelection (_("Open file")).run ()
+        (url, how) = FileSelector.URLFileSelection (_("Open file"),
+                                                    directory = self.directory).run ()
 
         if url is None: return
-
         self.open_document (url, how)
+
+        # memorize the current path in the case of a file
+        url = Fields.URL (url)
+        if url.url [0] == 'file':
+            self.directory = os.path.split (url.url [2]) [0] + '/'
         return
 
     
