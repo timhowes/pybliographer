@@ -1,3 +1,13 @@
+2002-01-20  Frederic Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/Formats/isifile.py: move the %% extra fields to the end
+	of the entry, so that they don't interfer too much.
+
+2002-01-13  Frederic Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/GnomeUI/Editor.py: put the scrollbars inside the
+	notebook, so that their title stay visible.
+
 2002-01-06  Frederic Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/Format: do not put spaces between initials

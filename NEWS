@@ -1,5 +1,13 @@
 -*- text -*-
 
+New in 1.0.11 -  2002-01-20
+
+        * Improved Medline Search engine
+	* Added incremental search capability
+	* Small UI improvements
+	* Small fixes in the BibTeX and ISI format
+
+
 New in 1.0.10 -  2001-11-29
 
         * Added a direct Medline Query Interface (John Vu)
