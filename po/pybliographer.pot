@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-03-24 16:44+0100\n"
+"POT-Creation-Date: 2000-03-29 14:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,52 +19,56 @@ msgstr ""
 msgid "warning: can't import %s: %s"
 msgstr ""
 
-#: Pyblio/Config.py:49
+#: Pyblio/Config.py:53
 #, c-format
-msgid "value of `%s' should be %s"
+msgid "value of `%s' should be of type %s"
 msgstr ""
 
-#: Pyblio/Config.py:195 Pyblio/Config.py:204
-msgid "a String"
+#: Pyblio/Config.py:196
+msgid "String"
 msgstr ""
 
-#: Pyblio/Config.py:223
-msgid "an Integer"
+#: Pyblio/Config.py:205
+msgid "Boolean"
 msgstr ""
 
-#: Pyblio/Config.py:225
+#: Pyblio/Config.py:224
+msgid "Integer"
+msgstr ""
+
+#: Pyblio/Config.py:226
 #, c-format
-msgid "an Integer under %d"
+msgid "Integer under %d"
 msgstr ""
 
-#: Pyblio/Config.py:227
+#: Pyblio/Config.py:228
 #, c-format
-msgid "an Integer over %d"
+msgid "Integer over %d"
 msgstr ""
 
-#: Pyblio/Config.py:229
+#: Pyblio/Config.py:230
 #, c-format
-msgid "an Integer between %d and %d"
+msgid "Integer between %d and %d"
 msgstr ""
 
-#: Pyblio/Config.py:241
+#: Pyblio/Config.py:242
 #, c-format
-msgid "an Instance of `%s'"
+msgid "Element in `%s'"
 msgstr ""
 
-#: Pyblio/Config.py:261
+#: Pyblio/Config.py:262
 #, c-format
-msgid "a Tuple ([%s])"
+msgid "Tuple (%s)"
 msgstr ""
 
-#: Pyblio/Config.py:282
+#: Pyblio/Config.py:283
 #, c-format
-msgid "a List (%s)"
+msgid "List (%s)"
 msgstr ""
 
-#: Pyblio/Config.py:306
+#: Pyblio/Config.py:308
 #, c-format
-msgid "a Dictionnary (%s, %s)"
+msgid "Dictionnary (%s, %s)"
 msgstr ""
 
 #: Pyblio/Fields.py:265
@@ -213,11 +217,11 @@ msgstr ""
 msgid "Error in native string parsing"
 msgstr ""
 
-#: Pyblio/GnomeUI/Editor.py:656 Pyblio/GnomeUI/Editor.py:693
+#: Pyblio/GnomeUI/Editor.py:656 Pyblio/GnomeUI/Editor.py:695
 msgid "Native Editing"
 msgstr ""
 
-#: Pyblio/GnomeUI/Editor.py:707
+#: Pyblio/GnomeUI/Editor.py:709
 msgid "Standard Editing"
 msgstr ""
 
@@ -282,35 +286,35 @@ msgid ""
 "error: %s"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:41
+#: Pyblio/GnomeUI/Sort.py:42
 msgid "Select sort criterions"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:52
+#: Pyblio/GnomeUI/Sort.py:53
 msgid "In use"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:52
+#: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort criterions"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:63
+#: Pyblio/GnomeUI/Sort.py:64
 msgid "[Entry Type]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:64
+#: Pyblio/GnomeUI/Sort.py:65
 msgid "[Key Value]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:88
+#: Pyblio/GnomeUI/Sort.py:89
 msgid "Reorder"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:91
+#: Pyblio/GnomeUI/Sort.py:92
 msgid "Unselect all"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:106 Pyblio/GnomeUI/Sort.py:128
+#: Pyblio/GnomeUI/Sort.py:107 Pyblio/GnomeUI/Sort.py:129
 msgid "Yes"
 msgstr ""
 
@@ -533,17 +537,17 @@ msgstr ""
 msgid "For details, type `warranty'."
 msgstr ""
 
-#: pybliographer.py:108 pybliographer.py:157
+#: pybliographer.py:110 pybliographer.py:158
 #, c-format
 msgid "%s: error: can't open file `%s'"
 msgstr ""
 
-#: pybliographer.py:121
+#: pybliographer.py:123
 #, c-format
 msgid "For help, run %s and type `help' at the prompt"
 msgstr ""
 
-#: pybliographer.py:130
+#: pybliographer.py:132
 msgid ""
 "Useful commands:\n"
 "\thelp     to get some help\n"

@@ -1,6 +1,5 @@
 Pyblio/ConfDir/BibTeX.py
 Pyblio/ConfDir/Base.py
-Pyblio/ConfDir/DocBook.py
 Pyblio/ConfDir/GnomeUI.py
 Pyblio/ConfDir/Ovid.py
 Pyblio/ConfDir/Refer.py

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.6\n"
-"POT-Creation-Date: 2000-03-24 16:44+0100\n"
-"PO-Revision-Date: 2000-01-08 21:40+0100\n"
+"POT-Creation-Date: 2000-03-29 14:37+0200\n"
+"PO-Revision-Date: 2000-03-18 21:40+0100\n"
 "Last-Translator: Yuri Bongiorno <yurix@tiscalinet.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,100 +19,104 @@ msgstr ""
 msgid "warning: can't import %s: %s"
 msgstr "attenzione: impossibile importare %s: %s"
 
-#: Pyblio/Config.py:49
+#: Pyblio/Config.py:53
 #, c-format
-msgid "value of `%s' should be %s"
+msgid "value of `%s' should be of type %s"
 msgstr ""
 
-#: Pyblio/Config.py:195 Pyblio/Config.py:204
-msgid "a String"
+#: Pyblio/Config.py:196
+msgid "String"
 msgstr ""
 
-#: Pyblio/Config.py:223
-msgid "an Integer"
+#: Pyblio/Config.py:205
+msgid "Boolean"
 msgstr ""
 
-#: Pyblio/Config.py:225
+#: Pyblio/Config.py:224
+msgid "Integer"
+msgstr ""
+
+#: Pyblio/Config.py:226
 #, c-format
-msgid "an Integer under %d"
+msgid "Integer under %d"
 msgstr ""
 
-#: Pyblio/Config.py:227
+#: Pyblio/Config.py:228
 #, c-format
-msgid "an Integer over %d"
+msgid "Integer over %d"
 msgstr ""
 
-#: Pyblio/Config.py:229
+#: Pyblio/Config.py:230
 #, c-format
-msgid "an Integer between %d and %d"
+msgid "Integer between %d and %d"
 msgstr ""
 
-#: Pyblio/Config.py:241
-#, fuzzy, c-format
-msgid "an Instance of `%s'"
-msgstr "Impossibile salvare il file: %s"
-
-#: Pyblio/Config.py:261
+#: Pyblio/Config.py:242
 #, c-format
-msgid "a Tuple ([%s])"
+msgid "Element in `%s'"
 msgstr ""
 
-#: Pyblio/Config.py:282
+#: Pyblio/Config.py:262
 #, c-format
-msgid "a List (%s)"
+msgid "Tuple (%s)"
 msgstr ""
 
-#: Pyblio/Config.py:306
+#: Pyblio/Config.py:283
 #, c-format
-msgid "a Dictionnary (%s, %s)"
+msgid "List (%s)"
+msgstr ""
+
+#: Pyblio/Config.py:308
+#, c-format
+msgid "Dictionnary (%s, %s)"
 msgstr ""
 
 #: Pyblio/Fields.py:265
 msgid "Illegal year value"
-msgstr ""
+msgstr "Valore dell'anno non lecito"
 
 #: Pyblio/Fields.py:269
 msgid "Illegal month value"
-msgstr ""
+msgstr "Valore del mese non lecito"
 
 #: Pyblio/Fields.py:273
 msgid "Illegal day value"
-msgstr ""
+msgstr "Valore del giorno non lecito"
 
 #: Pyblio/Fields.py:438
 #, c-format
 msgid "in %s"
-msgstr ""
+msgstr "in %s"
 
 #: Pyblio/LyX.py:39
 #, c-format
 msgid "no input pipe `%s'"
-msgstr ""
+msgstr "manca pipe `%s' di input"
 
 #: Pyblio/LyX.py:45
 #, c-format
 msgid "no output pipe `%s'"
-msgstr ""
+msgstr "manca pipe `%s' di output"
 
 #: Pyblio/Open.py:97
 #, c-format
 msgid "method `%s' provides no opener"
-msgstr ""
+msgstr "il metodo `%s' non fornisce un opener"
 
 #: Pyblio/Open.py:105 Pyblio/Open.py:151
 #, c-format
 msgid "File `%s' does not exist"
-msgstr ""
+msgstr "Il file `%s' non esiste"
 
 #: Pyblio/Open.py:116 Pyblio/Open.py:162
 #, c-format
 msgid "don't know how to open `%s'"
-msgstr ""
+msgstr "non so come aprire `%s'"
 
 #: Pyblio/Open.py:143
 #, c-format
 msgid "method `%s' provides no iterator"
-msgstr ""
+msgstr "il metodo `%s' non fornisce un iteratore"
 
 #: Pyblio/Format/BibTeX.py:321 Pyblio/Format/BibTeX.py:370
 #, c-format
@@ -127,7 +131,7 @@ msgstr "%s:%d: la chiave `%s' esiste già"
 #: Pyblio/GnomeUI/Format.py:37
 #, fuzzy
 msgid "Format entries"
-msgstr "Formato"
+msgstr "[%d voci]"
 
 #: Pyblio/GnomeUI/Format.py:51
 #, fuzzy
@@ -141,12 +145,12 @@ msgstr ""
 #: Pyblio/GnomeUI/Format.py:58
 #, fuzzy
 msgid "Output format:"
-msgstr "Tipo di Output:"
+msgstr "Tipo di output:"
 
 #: Pyblio/GnomeUI/Format.py:75
 #, fuzzy
 msgid "Output File:"
-msgstr "Tipo di Output:"
+msgstr "Tipo di output:"
 
 #: Pyblio/GnomeUI/Format.py:76
 msgid "Select output file"
@@ -154,43 +158,39 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Editor.py:241
 msgid "Day"
-msgstr ""
+msgstr "Giorno"
 
 #: Pyblio/GnomeUI/Editor.py:250
 msgid "Month"
-msgstr ""
+msgstr "Mese"
 
 #: Pyblio/GnomeUI/Editor.py:259
-#, fuzzy
 msgid "Year"
-msgstr "Ricerca"
+msgstr "Anno"
 
 #: Pyblio/GnomeUI/Editor.py:284
-#, fuzzy
 msgid "Invalid day field in date"
-msgstr "Il nome del campo `%s' non è valido"
+msgstr "Nella data campo del giorno non valido"
 
 #: Pyblio/GnomeUI/Editor.py:292
-#, fuzzy
 msgid "Invalid month field in date"
-msgstr "Il nome del campo `%s' non è valido"
+msgstr "Nella data campo del mese non valido"
 
 #: Pyblio/GnomeUI/Editor.py:300
-#, fuzzy
 msgid "Invalid year field in date"
-msgstr "Il nome del campo `%s' non è valido"
+msgstr "Nella data campo dell'anno non valido"
 
 #: Pyblio/GnomeUI/Editor.py:407
 msgid "Entry type"
-msgstr ""
+msgstr "Tipo di voce"
 
 #: Pyblio/GnomeUI/Editor.py:409
 msgid "Key"
-msgstr ""
+msgstr "Chiave"
 
 #: Pyblio/GnomeUI/Editor.py:448
 msgid "Create Field"
-msgstr ""
+msgstr "Crea il Campo"
 
 #: Pyblio/GnomeUI/Editor.py:499
 msgid "Mandatory"
@@ -205,31 +205,29 @@ msgid "Extra"
 msgstr "Supplementare"
 
 #: Pyblio/GnomeUI/Editor.py:543
-#, fuzzy
 msgid "New text"
-msgstr "Nuovo file"
+msgstr "Nuovo testo"
 
 #: Pyblio/GnomeUI/Editor.py:557
 msgid "Invalid key format"
-msgstr ""
+msgstr "Formato della chiave non valido"
 
 #: Pyblio/GnomeUI/Editor.py:565
 #, fuzzy, c-format
 msgid "Key `%s' already exists"
-msgstr "La chiave `%s' esiste già"
+msgstr "La chiave esiste già"
 
 #: Pyblio/GnomeUI/Editor.py:632
 msgid "Error in native string parsing"
-msgstr ""
+msgstr "Errore durante l'analisi nella stringa nativa"
 
-#: Pyblio/GnomeUI/Editor.py:656 Pyblio/GnomeUI/Editor.py:693
-#, fuzzy
+#: Pyblio/GnomeUI/Editor.py:656 Pyblio/GnomeUI/Editor.py:695
 msgid "Native Editing"
-msgstr "Modifica del campo `%s' nel formato nativo"
+msgstr "Editing nativo"
 
-#: Pyblio/GnomeUI/Editor.py:707
+#: Pyblio/GnomeUI/Editor.py:709
 msgid "Standard Editing"
-msgstr ""
+msgstr "Editing standard"
 
 #: Pyblio/GnomeUI/Document.py:94 Pyblio/GnomeUI/Document.py:176
 #: Pyblio/GnomeUI/Document.py:188 Pyblio/GnomeUI/FileSelector.py:41
@@ -241,9 +239,8 @@ msgid "Bibliography type:"
 msgstr "Tipo di bibliografia:"
 
 #: Pyblio/GnomeUI/Document.py:76 Pyblio/GnomeUI/Index.py:64
-#, fuzzy
 msgid "Add..."
-msgstr "Modifica..."
+msgstr "Aggiungi..."
 
 #: Pyblio/GnomeUI/Document.py:77 Pyblio/GnomeUI/Index.py:65
 msgid "Edit..."
@@ -295,35 +292,36 @@ msgstr ""
 "Durante la compilazione di `%s'\n"
 "errore: %s"
 
-#: Pyblio/GnomeUI/Sort.py:41
+#: Pyblio/GnomeUI/Sort.py:42
 msgid "Select sort criterions"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:52
+#: Pyblio/GnomeUI/Sort.py:53
 msgid "In use"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:52
+#: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort criterions"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:63
-msgid "[Entry Type]"
-msgstr ""
-
 #: Pyblio/GnomeUI/Sort.py:64
+#, fuzzy
+msgid "[Entry Type]"
+msgstr "Tipo di voce"
+
+#: Pyblio/GnomeUI/Sort.py:65
 msgid "[Key Value]"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:88
+#: Pyblio/GnomeUI/Sort.py:89
 msgid "Reorder"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:91
+#: Pyblio/GnomeUI/Sort.py:92
 msgid "Unselect all"
 msgstr ""
 
-#: Pyblio/GnomeUI/Sort.py:106 Pyblio/GnomeUI/Sort.py:128
+#: Pyblio/GnomeUI/Sort.py:107 Pyblio/GnomeUI/Sort.py:129
 msgid "Yes"
 msgstr ""
 
@@ -341,7 +339,7 @@ msgstr "Nuovo"
 
 #: Pyblio/GnomeUI/Document.py:52
 msgid "Merge..."
-msgstr ""
+msgstr "Incorpora..."
 
 #: Pyblio/GnomeUI/Document.py:56 Pyblio/GnomeUI/Document.py:176
 #: Pyblio/GnomeUI/Document.py:188
@@ -357,9 +355,8 @@ msgid "Submit a Bug Report"
 msgstr "Invia un Bug Report"
 
 #: Pyblio/GnomeUI/Document.py:81
-#, fuzzy
 msgid "Sort..."
-msgstr "Informazioni su..."
+msgstr "Ordina..."
 
 #: Pyblio/GnomeUI/Document.py:85 Pyblio/GnomeUI/Document.py:96
 #: Pyblio/GnomeUI/Document.py:106
@@ -369,7 +366,7 @@ msgstr "Cita"
 #: Pyblio/GnomeUI/Document.py:86
 #, fuzzy
 msgid "Format..."
-msgstr "Formatta come..."
+msgstr "Formato"
 
 #: Pyblio/GnomeUI/Document.py:95
 msgid "Edit"
@@ -392,13 +389,12 @@ msgid "Save"
 msgstr "Salva"
 
 #: Pyblio/GnomeUI/Document.py:105
-#, fuzzy
 msgid "Find"
-msgstr "Campo"
+msgstr "Trova"
 
 #: Pyblio/GnomeUI/Document.py:108
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: Pyblio/GnomeUI/Document.py:209
 #, c-format
@@ -408,60 +404,59 @@ msgid ""
 msgstr ""
 
 #: Pyblio/GnomeUI/Document.py:238
-#, fuzzy
 msgid "New database"
-msgstr "Database completo"
+msgstr "Nuovo database"
 
 #: Pyblio/GnomeUI/Document.py:246 Pyblio/GnomeUI/Document.py:250
 msgid "[no entry]"
-msgstr ""
+msgstr "[nessuna voce]"
 
 #: Pyblio/GnomeUI/Document.py:247
 msgid "[1 entry]"
-msgstr ""
+msgstr "[1 voce]"
 
 #: Pyblio/GnomeUI/Document.py:248
 #, c-format
 msgid "[%d entries]"
-msgstr ""
+msgstr "[%d voci]"
 
 #: Pyblio/GnomeUI/Document.py:251
 #, c-format
 msgid "[%d/1 entry]"
-msgstr ""
+msgstr "[%d/1 voce]"
 
 #: Pyblio/GnomeUI/Document.py:252
 #, c-format
 msgid "[%d/%d entries]"
-msgstr ""
+msgstr "[%d/%d voci]"
 
 #: Pyblio/GnomeUI/Document.py:257
 msgid "[modified]"
-msgstr ""
+msgstr "[modificato]"
 
 #: Pyblio/GnomeUI/Document.py:267
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
 msgstr ""
+"Il database è stato modificato.\n"
+"Scarto i cambiamenti?"
 
 #: Pyblio/GnomeUI/Document.py:283
-#, fuzzy
 msgid "Merge file"
-msgstr "Nuovo file"
+msgstr "Incorpora un file"
 
 #: Pyblio/GnomeUI/Document.py:295 Pyblio/GnomeUI/Document.py:350
 msgid "Open error"
-msgstr ""
+msgstr "Errore di apertura"
 
 #: Pyblio/GnomeUI/Document.py:319
 msgid "Merge status"
-msgstr ""
+msgstr "Stato di incorporamento"
 
 #: Pyblio/GnomeUI/Document.py:330 Pyblio/GnomeUI/Document.py:390
-#, fuzzy
 msgid "Open file"
-msgstr "Nuovo file"
+msgstr "Apri file"
 
 #: Pyblio/GnomeUI/Document.py:374
 #, c-format
@@ -475,14 +470,16 @@ msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
 msgstr ""
+"E` avvenuto un errore interno durante il salvataggio\n"
+"Prova  Salva come..."
 
 #: Pyblio/GnomeUI/Document.py:396
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
 msgstr ""
-"Il file `%s' esiste.\n"
+"Il file `%s' esiste già.\n"
 "Lo sovrascrivo ?"
 
 #: Pyblio/GnomeUI/Document.py:403
@@ -491,6 +488,8 @@ msgid ""
 "During opening:\n"
 "%s"
 msgstr ""
+"Durante l'apertura:\n"
+"%s"
 
 #: Pyblio/GnomeUI/Document.py:438
 #, c-format
@@ -498,26 +497,27 @@ msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
 msgstr ""
+"Una voce chiamata `%s' esiste già.\n"
+"La rinomino e la aggiungo comunque ?"
 
 #: Pyblio/GnomeUI/Document.py:469
-#, fuzzy
 msgid "Really remove all the entries ?"
-msgstr "Rimuovo veramente la voce %s ?"
+msgstr "Rimuovo veramente tutte le voci ?"
 
 #: Pyblio/GnomeUI/Document.py:503
-#, fuzzy, c-format
+#, c-format
 msgid "Really edit %d entries ?"
-msgstr "Rimuovo veramente la voce %s ?"
+msgstr "Modifico veramente le %d voci ?"
 
 #: Pyblio/GnomeUI/Document.py:537
 #, c-format
 msgid "Remove all the %d entries ?"
-msgstr ""
+msgstr "Rimuovo tutte le %d voci ?"
 
 #: Pyblio/GnomeUI/Document.py:539
-#, fuzzy, c-format
+#, c-format
 msgid "Remove entry `%s' ?"
-msgstr "Rimuovo veramente la voce %s ?"
+msgstr "Rimuovo la voce `%s' ?"
 
 #: Pyblio/GnomeUI/Document.py:597 Pyblio/GnomeUI/Document.py:604
 #, c-format
@@ -561,17 +561,17 @@ msgstr "Questo è software libero SENZA NESSUNA GARANZIA."
 msgid "For details, type `warranty'."
 msgstr "Per i dettagli, digita `warranty'."
 
-#: pybliographer.py:108 pybliographer.py:157
+#: pybliographer.py:110 pybliographer.py:158
 #, c-format
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: errore: impossibile aprire il file `%s'"
 
-#: pybliographer.py:121
+#: pybliographer.py:123
 #, c-format
 msgid "For help, run %s and type `help' at the prompt"
 msgstr "Per l'aiuto, esegui %s e digita `help' al prompt"
 
-#: pybliographer.py:130
+#: pybliographer.py:132
 msgid ""
 "Useful commands:\n"
 "\thelp     to get some help\n"
@@ -591,8 +591,9 @@ msgid "pybcompact: error: %s\n"
 msgstr ""
 
 #: scripts/pybcompact.py:97
+#, fuzzy
 msgid "no entry"
-msgstr ""
+msgstr "[nessuna voce]"
 
 #: scripts/pybcompact.py:142
 #, c-format
@@ -622,9 +623,9 @@ msgid "pybformat: warning: %s\n"
 msgstr ""
 
 #: scripts/pybformat.py:140 scripts/pybtex.py:84
-#, fuzzy, c-format
+#, c-format
 msgid "can't find style `%s'"
-msgstr "Impossibile salvare il file: %s"
+msgstr ""
 
 #: scripts/pybtex.py:34
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
@@ -640,154 +641,11 @@ msgid "pybtex: warning: the following keys were not resolved"
 msgstr ""
 
 #: scripts/pybtex.py:64
-#, fuzzy
 msgid "no style defined"
-msgstr "nessun metodo di aggiornamento definito"
+msgstr ""
 
-#~ msgid "Format"
-#~ msgstr "Formato"
+#~ msgid "Error"
+#~ msgstr "Errore"
 
 #~ msgid "Formatting Style:"
-#~ msgstr "Modo di formattazione:"
-
-#~ msgid "entry has no key `%s'"
-#~ msgstr "la voce non ha la chiave `%s'"
-
-#~ msgid "error: field `%s' appears more than once in the definition of `%s'"
-#~ msgstr ""
-#~ "errore: il campo `%s' compare più di una volta nella definizione di `%s'"
-
-#~ msgid "database `%s' is unknown in this Reference"
-#~ msgstr "il database `%s' è sconosciuto in questo Riferimento"
-
-#~ msgid "can't update a database of type Reference ()"
-#~ msgstr "impossibile aggiornare un database di tipo Riferimento ()"
-
-#~ msgid "in entry %s: nested crossrefs"
-#~ msgstr "nella voce %s: riferimento incrociato nidificato"
-
-#~ msgid "Edit the field in its Native format"
-#~ msgstr "Modifica il campo nel suo formato nativo"
-
-#~ msgid "Drag an Entry to define a Cross-Reference"
-#~ msgstr "Trascina una voce per definire un riferimento incrociato"
-
-#~ msgid "Remove the current Cross-Reference"
-#~ msgstr "Rimuove il riferimento incrociato attuale"
-
-#~ msgid "Add Extra Field"
-#~ msgstr "Aggiunge un campo supplementare"
-
-#~ msgid "Cross-Reference `%s' is unexistent in the database"
-#~ msgstr "Il riferimento incrociato `%s' non è presente nel database"
-
-#~ msgid "Invalid identifier `%s'"
-#~ msgstr "L'identificatore `%s' non è valido"
-
-#~ msgid "Identifier `%s' already exists"
-#~ msgstr "L'identificatore `%s' esiste già"
-
-#~ msgid "Save As..."
-#~ msgstr "Salva come..."
-
-#~ msgid "Quit"
-#~ msgstr "Abbandona"
-
-#~ msgid "Copy"
-#~ msgstr "Copia"
-
-#~ msgid "Cut"
-#~ msgstr "Taglia"
-
-#~ msgid "Paste"
-#~ msgstr "Incolla"
-
-#~ msgid "New..."
-#~ msgstr "Nuovo..."
-
-#~ msgid "Search..."
-#~ msgstr "Ricerca..."
-
-#~ msgid "Sort by Key"
-#~ msgstr "Ordina per Chiave"
-
-#~ msgid "Sort by Type"
-#~ msgstr "Ordina per Tipo"
-
-#~ msgid "Cite in LyX"
-#~ msgstr "Cita in LyX"
-
-#~ msgid "Preferences..."
-#~ msgstr "Preferenze..."
-
-#~ msgid "Configure"
-#~ msgstr "Configura"
-
-#~ msgid "Exit"
-#~ msgstr "Esci"
-
-#~ msgid "Welcome to Pybliographic"
-#~ msgstr "Benvenuto in Pybliographic"
-
-#~ msgid "Modified database `%s' [%s, %d]"
-#~ msgstr "Database modificato `%s' [%s, %d]"
-
-#~ msgid "Database `%s' [%s, %d]"
-#~ msgstr "Database `%s' [%s, %d]"
-
-#~ msgid "Database is modified.\n"
-#~ msgstr "Il database è stato modificato.\n"
-
-#~ msgid "Discard changes ?"
-#~ msgstr "Annullo i cambiamenti ?"
-
-#~ msgid "Quit without saving ?"
-#~ msgstr "Uscire senza salvare ?"
-
-#~ msgid "Save As"
-#~ msgstr "Salva come"
-
-#~ msgid ""
-#~ "Can't save file:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Impossibile salvare il file:\n"
-#~ "%s"
-
-#~ msgid "Not yet implemented..."
-#~ msgstr "Non ancora implementato..."
-
-#~ msgid ""
-#~ "Please, create a new database first.\n"
-#~ "Use File/New for example"
-#~ msgstr ""
-#~ "Per favore, prima crea un nuovo database.\n"
-#~ "Per esempio usa File/Nuovo"
-
-#~ msgid "editing is disabled in this database"
-#~ msgstr "La modifica in questo database è stata disabilitata"
-
-#~ msgid "edition is disabled in this database"
-#~ msgstr "La modifica in questo database è stata disabilitata"
-
-#~ msgid ""
-#~ "Submit a bug report\n"
-#~ " using bug-buddy"
-#~ msgstr ""
-#~ "Invia un bug report\n"
-#~ "usando bug-buddy"
-
-#~ msgid "Please open a database first"
-#~ msgstr "Per favore prima apri un database"
-
-#~ msgid "Bibliography"
-#~ msgstr "Bibliografia"
-
-#~ msgid "Ready to search !"
-#~ msgstr "Pronto per la ricerca !"
-
-#~ msgid "found %d matches"
-#~ msgstr "Trovate %d corrispondenze"
-
-#~ msgid "%d matches in this node"
-#~ msgstr "%d corrispondenze in questo nodo"
+#~ msgstr "Stile di formattazione:"

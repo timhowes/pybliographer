@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.7\n"
-"POT-Creation-Date: 2000-03-24 16:44+0100\n"
+"POT-Creation-Date: 2000-03-29 14:37+0200\n"
 "PO-Revision-Date: 1999-11-30\n"
 "Last-Translator: Frédéric Gobry <frederic.gobry@epfl.ch>\n"
 "Language-Team: fr <fr@li.org>\n"
@@ -18,53 +18,57 @@ msgstr ""
 msgid "warning: can't import %s: %s"
 msgstr "attention: impossible d'importer %s : %s"
 
-#: Pyblio/Config.py:49
+#: Pyblio/Config.py:53
 #, c-format
-msgid "value of `%s' should be %s"
-msgstr "La valeur de `%s' devrait être %s"
+msgid "value of `%s' should be of type %s"
+msgstr "La valeur de `%s' devrait être de type %s"
 
-#: Pyblio/Config.py:195 Pyblio/Config.py:204
-msgid "a String"
-msgstr "une Chaîne"
+#: Pyblio/Config.py:196
+msgid "String"
+msgstr "Chaîne"
 
-#: Pyblio/Config.py:223
-msgid "an Integer"
-msgstr "un Entier"
+#: Pyblio/Config.py:205
+msgid "Boolean"
+msgstr "Booléen"
 
-#: Pyblio/Config.py:225
+#: Pyblio/Config.py:224
+msgid "Integer"
+msgstr "Entier"
+
+#: Pyblio/Config.py:226
 #, c-format
-msgid "an Integer under %d"
-msgstr "un Entier plus petit que %d"
+msgid "Integer under %d"
+msgstr "Entier plus petit que %d"
 
-#: Pyblio/Config.py:227
+#: Pyblio/Config.py:228
 #, c-format
-msgid "an Integer over %d"
-msgstr "un Entier plus grand que %d"
+msgid "Integer over %d"
+msgstr "Entier plus grand que %d"
 
-#: Pyblio/Config.py:229
+#: Pyblio/Config.py:230
 #, c-format
-msgid "an Integer between %d and %d"
-msgstr "un Entier entre %d et %d"
+msgid "Integer between %d and %d"
+msgstr "Entier entre %d et %d"
 
-#: Pyblio/Config.py:241
+#: Pyblio/Config.py:242
 #, c-format
-msgid "an Instance of `%s'"
-msgstr "un Instance de `%s'"
+msgid "Element in `%s'"
+msgstr "Élément dans `%s'"
 
-#: Pyblio/Config.py:261
+#: Pyblio/Config.py:262
 #, c-format
-msgid "a Tuple ([%s])"
-msgstr "une Séquence ([%s])"
+msgid "Tuple (%s)"
+msgstr "Séquence (%s)"
 
-#: Pyblio/Config.py:282
+#: Pyblio/Config.py:283
 #, c-format
-msgid "a List (%s)"
-msgstr "une Liste (%s)"
+msgid "List (%s)"
+msgstr "Liste (%s)"
 
-#: Pyblio/Config.py:306
+#: Pyblio/Config.py:308
 #, c-format
-msgid "a Dictionnary (%s, %s)"
-msgstr "un Dictionnaire (%s, %s)"
+msgid "Dictionnary (%s, %s)"
+msgstr "Dictionnaire (%s, %s)"
 
 #: Pyblio/Fields.py:265
 msgid "Illegal year value"
@@ -212,11 +216,11 @@ msgstr "La clé `%s' existe déjà"
 msgid "Error in native string parsing"
 msgstr "Erreur lors de l'analyse du texte natif"
 
-#: Pyblio/GnomeUI/Editor.py:656 Pyblio/GnomeUI/Editor.py:693
+#: Pyblio/GnomeUI/Editor.py:656 Pyblio/GnomeUI/Editor.py:695
 msgid "Native Editing"
 msgstr "Édition native"
 
-#: Pyblio/GnomeUI/Editor.py:707
+#: Pyblio/GnomeUI/Editor.py:709
 msgid "Standard Editing"
 msgstr "Édition standard"
 
@@ -283,35 +287,35 @@ msgstr ""
 "Pendant la compilation de `%s'\n"
 "erreur : %s"
 
-#: Pyblio/GnomeUI/Sort.py:41
+#: Pyblio/GnomeUI/Sort.py:42
 msgid "Select sort criterions"
 msgstr "Choisir les critères de classement"
 
-#: Pyblio/GnomeUI/Sort.py:52
+#: Pyblio/GnomeUI/Sort.py:53
 msgid "In use"
 msgstr "Utilisé"
 
-#: Pyblio/GnomeUI/Sort.py:52
+#: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort criterions"
 msgstr "Critères de classement"
 
-#: Pyblio/GnomeUI/Sort.py:63
+#: Pyblio/GnomeUI/Sort.py:64
 msgid "[Entry Type]"
 msgstr "[Type d'entrée]"
 
-#: Pyblio/GnomeUI/Sort.py:64
+#: Pyblio/GnomeUI/Sort.py:65
 msgid "[Key Value]"
 msgstr "[Valeur de la Clé]"
 
-#: Pyblio/GnomeUI/Sort.py:88
+#: Pyblio/GnomeUI/Sort.py:89
 msgid "Reorder"
 msgstr "Reclasser"
 
-#: Pyblio/GnomeUI/Sort.py:91
+#: Pyblio/GnomeUI/Sort.py:92
 msgid "Unselect all"
 msgstr "Tout déselectionner"
 
-#: Pyblio/GnomeUI/Sort.py:106 Pyblio/GnomeUI/Sort.py:128
+#: Pyblio/GnomeUI/Sort.py:107 Pyblio/GnomeUI/Sort.py:129
 msgid "Yes"
 msgstr "Oui"
 
@@ -554,17 +558,17 @@ msgstr "Ceci est un logiciel libre, sans AUCUNE GARANTIE"
 msgid "For details, type `warranty'."
 msgstr "Pour plus de détails, tapez `warranty'."
 
-#: pybliographer.py:108 pybliographer.py:157
+#: pybliographer.py:110 pybliographer.py:158
 #, c-format
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: erreur : impossible d'ouvrir le fichier `%s'"
 
-#: pybliographer.py:121
+#: pybliographer.py:123
 #, c-format
 msgid "For help, run %s and type `help' at the prompt"
 msgstr "Pour de l'aide, tapez %s puis le mot `help' à l'invite"
 
-#: pybliographer.py:130
+#: pybliographer.py:132
 msgid ""
 "Useful commands:\n"
 "\thelp     to get some help\n"
@@ -635,6 +639,9 @@ msgstr "pybtex: attention: les clés suivantes n'ont pas été trouvées"
 #: scripts/pybtex.py:64
 msgid "no style defined"
 msgstr "pas de style défini"
+
+#~ msgid "an Instance of `%s'"
+#~ msgstr "un Instance de `%s'"
 
 #~ msgid "Error"
 #~ msgstr "Erreur"
