@@ -1,12 +1,18 @@
 m4_dnl -*- html -*-
 m4_dnl
 m4_dnl --------------------------------------------------
-m4_define(pyblio_last,  [[1.0.9]])m4_dnl
+m4_define(pyblio_last,  [[1.0.10]])m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
 m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
+
+news_item([[29/11/2001]], [[Pybliographer 1.0.10 is out. It provides a
+direct interface to query the medline database, can output keys of
+entries to an editor using copy/paste, is able to format for APA
+publications, and fixes some bugs. It does not brew coffee yet, see
+<a href="http://www.emacs.org">emacs</a> for that.]]),
 
 news_item([[13/09/2001]], [[RPMs for pybliographer 1.0.9 are available
 in the usual places.  They were built on a Redhat 7.1 with python

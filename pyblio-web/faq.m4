@@ -11,6 +11,11 @@ html_summary(faq, summary.m4, [[
 
 <ul> 
 
+faq_item([[When saving a database, pybliographer simply discards the
+content of the entries I just typed.]], [[Please check that you have
+recode 3.5, not 3.6, not 3.5a, b, c, or d. All these versions cause
+problems with pybliographer.]])
+
 faq_item([[I don't see the new display system which allows clicking on
 URLs...]], [[Your version of gnome-python is not compiled with support
 for GtkHTML. You may need to compile it from the sources.]])
