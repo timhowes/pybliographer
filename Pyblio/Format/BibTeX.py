@@ -545,7 +545,10 @@ def entry_write (entry, output):
                                     75, 19, 19) [19:])
 	del dico [field]
 
-    for f in dico.keys ():
+    keys = dico.keys ()
+    keys.sort ()
+    
+    for f in keys:
         if not first: output.write (',\n')
         else:         first = False
             

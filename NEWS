@@ -6,6 +6,7 @@ New in 1.1.93 -
           edit mode.
 	* Removed extra comma after the last field in BibTeX format
 	* Stay in the same directory for Open/Save As
+	* Brought back the global preference dialog
 
 
 New in 1.1.92 -  2003-09-18
