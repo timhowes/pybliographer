@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-import string, os
+import string, os, sys
 
 ''' System for Configuration handling '''
 
@@ -40,7 +40,7 @@ class ConfigItem:
 
         # eventually call the hook
         if self.hook:
-            if not self.hook (self, value):
+            if not self.hook (self, value, self.userdata):
                 raise ValueError, "value refused by hook"
 
         self.data = value
@@ -50,7 +50,82 @@ class ConfigItem:
         return self.data
     
 
-ConfigItems = {}
+class Storage:
+
+    def __init__ (self):
+        self.items = {}
+        self.sources = {}
+        return
+
+
+    def eventually_resolve (self, key):
+        if self.items.has_key (key): return
+        
+        domain = string.split (key, '/') [0]
+        
+        if self.sources.has_key (domain):
+            file = self.sources [domain]
+            del self.sources [domain]
+
+            execfile (file)
+
+        return
+
+
+    def domains (self):
+        # get all domains from the keys
+        doms = map (lambda key: string.split (key, '/') [0], keys ())
+        
+        # simplify the list
+        hsht = {}
+        def fill_hash (key, hsht = hsht): hsht [key] = 1
+        map (fill_hash, doms + self.sources.keys ())
+
+        return hsht.keys ()
+
+    def keys_in_domain (domain):
+        self.eventually_resolve (domain)
+
+        # simplify the list
+        def test_dom (key, dom = domain):
+            f = string.split (key, '/')
+            if f [0] == dom:
+                return 1
+            return 0
+    
+        return filter (test_dom, keys ())
+        
+    def keys (self):
+        return self.items.keys ()
+
+    
+    def has_key (self, key):
+        self.eventually_resolve (key)
+        return self.items.has_key (key)
+
+
+    def __getitem__ (self, key):
+        self.eventually_resolve (key)
+        return self.items [key]
+        
+
+    def __setitem__ (self, key, value):
+        self.items [key] = value
+        return
+
+    def parse_dir (self, dir):
+        files = map (lambda x, dir = dir: \
+                     os.path.join (dir, x), os.listdir (dir))
+
+        for filename in files:
+            if filename [-3:] == '.py':
+                domain = string.lower (os.path.split (filename [:-3]) [1])
+                self.sources [domain] = filename
+        return
+
+        
+ConfigItems = Storage ()
+
 
 def define (key, description, hook = None, user = None):
     if ConfigItems.has_key (key):
@@ -61,46 +136,34 @@ def define (key, description, hook = None, user = None):
 
 
 def set (key, value):
-    if ConfigItems.has_key (key):
+    try:
         ConfigItems [key].set (value)
-    else:
-        print "pybliographer: warning: configuration key `%s' is undefined" % key
+    except KeyError:
+        sys.stderr.write ("pybliographer: warning: configuration key `%s' is undefined\n" % key)
     return
+
 
 def get (key):
     return ConfigItems [key]
 
+
 def keys ():
     return ConfigItems.keys ()
+
 
 def has_key (key):
     return ConfigItems.has_key (key)
 
+
 def domains ():
-    # get all domains from the keys
-    doms = map (lambda key: string.split (key, '/') [0], keys ())
+    return ConfigItems.domains ()
 
-    # simplify the list
-    hsht = {}
-    def fill_hash (key, hsht = hsht): hsht [key] = 1
-    map (fill_hash, doms)
-
-    return hsht.keys ()
 
 def keys_in_domain (domain):
-    # simplify the list
-    def test_dom (key, dom = domain):
-        f = string.split (key, '/')
-        if f [0] == dom:
-            return 1
-        return 0
-    
-    return filter (test_dom, keys ())
+    return ConfigItems.keys_in_domain ()
+
 
 def parse_directory (dir):
-    files = map (lambda x, dir = dir: \
-                 os.path.join (dir, x), os.listdir (dir))
+    ConfigItems.parse_dir (dir)
+    return
 
-    for filename in files:
-        if filename [-3:] == '.py':
-            execfile (filename)
