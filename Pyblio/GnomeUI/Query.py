@@ -158,8 +158,12 @@ class QueryUI (Connector.Publisher):
             query = cnx.extended.query_get (query)
 
         # get the query engine
-        engine = cnx.engine ()
-
+        try:
+            engine = cnx.engine ()
+        except Exceptions.MissingFeature, msg:
+            GnomeErrorDialog ("%s" % msg).show ()
+            return
+        
         # display a progress bar...
         xml = GladeXML (path, 'progress')
 
@@ -273,7 +277,7 @@ class QueryUI (Connector.Publisher):
         for cnx in self.cnx:
             list.append ((cnx.name.encode ('latin-1'),
                           cnx.type.encode ('latin-1'),
-                          cnx.host.encode ('latin-1')))
+                          cnx.url.encode ('latin-1')))
 
         list.thaw ()
         return
@@ -339,6 +343,28 @@ class Picklable:
             
         return dict
 
+    
+
+class QEntry (QueryEngine.QEntry):
+    ''' Allowed operators for a field search '''
+
+    def display (self, box):
+        hbox = GtkHBox ()
+        hbox.set_spacing (5)
+
+        hbox.pack_start (GtkLabel (self.title.encode ('latin-1')),
+                         expand = FALSE, fill = FALSE)
+
+        self.w = GnomeEntry (self.name)
+        hbox.pack_start (self.w)
+
+        hbox.show_all ()
+        box.pack_start (hbox, fill = FALSE, expand = FALSE)
+        return
+
+    def query_get (self, query):
+        query [self.name] = self.w.gtk_entry ().get_text ()
+        return query
     
     
 class QOperator (QueryEngine.QOperator):
@@ -596,6 +622,7 @@ class QGroup (QueryEngine.QGroup):
         'QFields' : QFields,
         'QSelection' : QSelection,
         'QToggle' : QToggle,
+        'QEntry' : QEntry,
         }
 
     ''' Grouping of several query forms '''
@@ -636,6 +663,7 @@ class QForm (QueryEngine.QForm):
         'QSelection' : QSelection,
         'QOperator'  : QOperator,
         'QToggle'    : QToggle,
+        'QEntry'     : QEntry,
         }
 
 

@@ -4,7 +4,7 @@
   <name>Medline / PubMed</name>
   
   <server type="medline">
-    <host>www.ncbi.nlm.nih.gov</host>
+    <url>http://www.ncbi.nlm.nih.gov/</url>
 
     <parameter name="query">/entrez/eutils/esearch.fcgi</parameter>
     <parameter name="fetch">/entrez/eutils/efetch.fcgi</parameter>

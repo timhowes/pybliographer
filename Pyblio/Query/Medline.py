@@ -28,11 +28,11 @@ import time, string, urllib, urlparse
 
 class Medline (Engine):
 
-    def __init__ (self, host, param):
+    def __init__ (self, url, param):
         self.query_url = param ['query']
         self.fetch_url = param ['fetch']
 
-        self.host = host
+        self.host = urlparse.urlparse (url) [1]
         return
 
     def search (self, query):

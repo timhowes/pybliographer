@@ -41,6 +41,7 @@
 	<Toggle name="abstracts" default="true">Only with abstracts</Toggle>
       </Group>
 
+      <Entry name="entry" type="text">Entry content</Entry>
     </Default>
 
   </Query>

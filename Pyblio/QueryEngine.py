@@ -34,7 +34,7 @@ class Engine (Publisher):
     ''' A base query class that must be derived by each search
     connection family '''
 
-    def __init__ (self, host, parameters):
+    def __init__ (self, url, parameters):
         ''' Create a connection with a remote server  '''
         pass
 
@@ -96,7 +96,7 @@ class Connection:
 
         self.args = {}
         self.type = None
-        self.host = None
+        self.url  = None
         
         try:
             self.type = root.attributes ['type'].value
@@ -106,8 +106,8 @@ class Connection:
         for node in root.childNodes:
             tag = string.lower (node.nodeName)
 
-            if tag == 'host':
-                self.host = getString (node)
+            if tag == 'url':
+                self.url = getString (node)
                 continue
 
             if tag == 'parameter':
@@ -146,17 +146,35 @@ class Connection:
 
     def engine (self):
         
-        query = Autoload.get_by_name ('query', self.type).data
+        query = Autoload.get_by_name ('query', self.type)
         
         if query is None:
-            raise Exceptions.SyntaxError ('unknown query module: %s' %
-                                          cnx_type)
+            raise Exceptions.MissingFeature ('unknown query module: %s' %
+                                             self.type)
 
-        return query (self.host, self.args)
+        return query.data (self.url, self.args)
             
         
     
+class QEntry:
 
+    ''' A single entry of a value, with no operator '''
+
+    def parse (self, root):
+        try:
+            self.name = root.attributes ['name'].value
+        except KeyError:
+            raise Exceptions.SyntaxError ('missing name in operator')
+
+        try:
+            self.name = root.attributes ['type'].value
+        except KeyError:
+            self.type = u'text'
+
+        self.title = getString (root)
+        return
+
+        
 class QOperator:
     ''' Allowed operators for a field search '''
 
@@ -195,7 +213,7 @@ class QField:
         try:
             self.type = root.attributes ['type'].value
         except KeyError:
-            raise Exceptions.SyntaxError ('missing type in field')
+            self.type = u'text'
 
 
         for node in root.childNodes:
@@ -326,6 +344,7 @@ class QGroup:
         'QFields' : QFields,
         'QSelection' : QSelection,
         'QToggle' : QToggle,
+        'QEntry' : QEntry,
         }
 
     ''' Grouping of several query forms '''
@@ -344,7 +363,7 @@ class QGroup:
                 self.title = getString (node)
                 continue
 
-            if tag in ('fields', 'selection', 'toggle'):
+            if tag in ('fields', 'selection', 'toggle', 'entry'):
                 cls = 'Q' + string.capitalize (tag)
                 
                 fields = self.CL [cls] ()
@@ -364,6 +383,7 @@ class QForm:
         'QSelection' : QSelection,
         'QOperator'  : QOperator,
         'QToggle'    : QToggle,
+        'QEntry'     : QEntry,
         }
 
     def __init__ (self):
@@ -377,7 +397,7 @@ class QForm:
         for node in root.childNodes:
             tag = string.lower (node.nodeName)
 
-            if tag in ('fields', 'group', 'selection', 'toggle'):
+            if tag in ('fields', 'group', 'selection', 'toggle', 'entry'):
                 cls = 'Q' + string.capitalize (tag)
                 
                 fields = self.CL [cls] ()

@@ -33,6 +33,7 @@ Autoload.preregister ('key', 'Default', 'Pyblio.Utils')
 
 # define query engines
 Autoload.preregister ('query', 'Medline', 'Pyblio.Query.Medline')
+Autoload.preregister ('query', 'Spires',  'Pyblio.Query.Spires')
 
 # Parse the configuration directory
 
