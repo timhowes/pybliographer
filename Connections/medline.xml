@@ -4,7 +4,10 @@
   <name>Medline / PubMed</name>
   
   <server type="medline">
-    <host></host>
+    <host>www.ncbi.nlm.nih.gov</host>
+
+    <parameter name="query">/entrez/eutils/esearch.fcgi</parameter>
+    <parameter name="fetch">/entrez/eutils/efetch.fcgi</parameter>
   </server>
 
   <query>
@@ -12,98 +15,102 @@
       <fields name="query" max="1">
         <operator name="equal">Matches</operator>
 
-        <field type="text" name="all"><title>All Fields</title></field>
-        <field type="text" name="affiliation"><title>Affiliation</title></field>
-        <field type="text" name="author"><title>Author Name</title></field>
-        <field type="text" name="ecrn"><title>EC/RN Number</title></field>
-        <field type="text" name="entrez"><title>Entrez Date</title></field>
-        <field type="text" name="filter"><title>Filter</title></field>
-        <field type="text" name="issue"><title>Issue</title></field>
-        <field type="text" name="journal"><title>Journal Name</title></field>
-        <field type="text" name="language"><title>Language</title></field>
-        <field type="text" name="mesh_date"><title>MeSH Date</title></field>
-        <field type="text" name="mesh_major"><title>MeSH Major Topic</title></field>
-        <field type="text" name="mesh_subheading"><title>MeSH Subheading</title></field>
-        <field type="text" name="mesh_terms"><title>MeSH Terms</title></field>
-        <field type="text" name="pagination"><title>Pagination</title></field>
-        <field type="text" name="pub_date"><title>Publication Date</title></field>
-        <field type="text" name="pub_type"><title>Publication Type</title></field>
-        <field type="text" name="secondary_source"><title>Secondary Source ID</title></field>
-        <field type="text" name="substance"><title>Substance Name</title></field>
-        <field type="text" name="text_word"><title>Text Word</title></field>
-        <field type="text" name="title"><title>Title</title></field>
-        <field type="text" name="abstract"><title>Title/Abstract</title></field>
-        <field type="text" name="uid"><title>UID</title></field>
-        <field type="text" name="volume"><title>Volume</title></field>
+        <field type="text" name="ALL"><title>All Fields</title></field>
+        <field type="text" name="AFFL"><title>Affiliation</title></field>
+        <field type="text" name="AUTH"><title>Author Name</title></field>
+        <field type="text" name="ECNO"><title>EC/RN Number</title></field>
+        <field type="text" name="EDAT"><title>Entrez Date</title></field>
+        <field type="text" name="FLTR"><title>Filter</title></field>
+        <field type="text" name="ISS"><title>Issue</title></field>
+        <field type="text" name="JOUR"><title>Journal Name</title></field>
+        <field type="text" name="LANG"><title>Language</title></field>
+        <field type="text" name="MHDA"><title>MeSH Date</title></field>
+        <field type="text" name="MAJR"><title>MeSH Major Topic</title></field>
+        <field type="text" name="SUBH"><title>MeSH Subheading</title></field>
+        <field type="text" name="MESH"><title>MeSH Terms</title></field>
+        <field type="text" name="PAGE"><title>Pagination</title></field>
+        <field type="text" name="PDAT"><title>Publication Date</title></field>
+        <field type="text" name="PTYP"><title>Publication Type</title></field>
+        <field type="text" name="SI"><title>Secondary Source ID</title></field>
+        <field type="text" name="SUBS"><title>Substance Name</title></field>
+        <field type="text" name="WORD"><title>Text Word</title></field>
+        <field type="text" name="TITL"><title>Title</title></field>
+        <field type="text" name="TIAB"><title>Title/Abstract</title></field>
+        <field type="text" name="UID"><title>UID</title></field>
+        <field type="text" name="VOL"><title>Volume</title></field>
       </fields>
 
       <group>
         <selection name="pub_type">
 	  <title>Publication types</title>
 
-          <item name="">Addresses</item>
-          <item name="">Bibliography</item>
-          <item name="">Biography</item>
-          <item name="">Classical Article</item>
-          <item name="">Clinical Conference</item>
-          <item name="">Clinical Trial</item>
-          <item name="">Clinical Trial, Phase I</item>
-          <item name="">Clinical Trial, Phase II</item>
-          <item name="">Clinical Trial, Phase III</item>
-          <item name="">Clinical Trial, Phase IV</item>
-          <item name="">Comment</item>
-          <item name="">Congresses</item>
-          <item name="">Consensus Development Conference</item>
-          <item name="">Consensus Development Conference, NIH</item>
-          <item name="">Controlled Clinical Trial</item>
-          <item name="">Corrected and Republished Article</item>
-          <item name="">Dictionary</item>
-          <item name="">Directory</item>
-          <item name="">Duplicate Publication</item>
-          <item name="">Editorial</item>
-          <item name="">Evaluation Studies</item>
-          <item name="">Festschrift</item>
-          <item name="">Government Publications</item>
-          <item name="">Guideline</item>
-          <item name="">Historical Article</item>
-          <item name="">Interview</item>
-          <item name="">Journal Article</item>
-          <item name="">Lectures</item>
-          <item name="">Legal Cases</item>
-          <item name="">Legislation</item>
-          <item name="">Letter</item>
-          <item name="">Meta-Analysis</item>
-          <item name="">Multicenter Study</item>
-          <item name="">News</item>
-          <item name="">Newspaper Article</item>
-          <item name="">Overall</item>
-          <item name="">Periodical Index</item>
-          <item name="">Practice Guideline</item>
-          <item name="">Published Erratum</item>
-          <item name="">Randomized Controlled Trial</item>
-          <item name="">Retraction of Publication</item>
-          <item name="">Retracted Publication</item>
-          <item name="">Review</item>
-          <item name="">Review,Academic</item>
-          <item name="">Review Literature</item>
-          <item name="">Review, Multicase</item>
-          <item name="">Review of Reported Cases</item>
-          <item name="">Review, Tutorial</item>
-          <item name="">Scientific Integrity Review</item>
-          <item name="">Technical Report</item>
-          <item name="">Twin Study</item>
-          <item name="">Validation Studies</item>
+          <item name="">Any</item>
+
+          <item name="addresses[pt]">Addresses</item>
+          <item name="bibliography[pt]">Bibliography</item>
+          <item name="biography[pt]">Biography</item>
+          <item name="classical article[pt]">Classical Article</item>
+          <item name="clinical conference[pt]">Clinical Conference</item>
+          <item name="clinical trial[pt]">Clinical Trial</item>
+          <item name="clinical trial, phase I[pt]">Clinical Trial, Phase I</item>
+          <item name="clinical trial, phase II[pt]">Clinical Trial, Phase II</item>
+          <item name="clinical trial, phase III[pt]">Clinical Trial, Phase III</item>
+          <item name="clinical trial, phase IV[pt]">Clinical Trial, Phase IV</item>
+          <item name="comment[pt]">Comment</item>
+          <item name="congresses[pt]">Congresses</item>
+          <item name="consensus development conference[pt]">Consensus Development Conference</item>
+          <item name="consensus development conference, NIH[pt]">Consensus Development Conference, NIH</item>
+          <item name="controlled clinical trial[pt]">Controlled Clinical Trial</item>
+          <item name="corrected and republished article[pt]">Corrected and Republished Article</item>
+          <item name="dictionary[pt]">Dictionary</item>
+          <item name="directory[pt]">Directory</item>
+          <item name="duplicate publication[pt]">Duplicate Publication</item>
+          <item name="editorial[pt]">Editorial</item>
+          <item name="evaluation studies[pt]">Evaluation Studies</item>
+          <item name="festschrift[pt]">Festschrift</item>
+          <item name="government publications[pt]">Government Publications</item>
+          <item name="guideline[pt]">Guideline</item>
+          <item name="historical article[pt]">Historical Article</item>
+          <item name="interview[pt]">Interview</item>
+          <item name="journal article[pt]">Journal Article</item>
+          <item name="lectures[pt]">Lectures</item>
+          <item name="legal cases[pt]">Legal Cases</item>
+          <item name="legislation[pt]">Legislation</item>
+          <item name="letter[pt]">Letter</item>
+          <item name="meta-analysis[pt]">Meta-Analysis</item>
+          <item name="multicenter study[pt]">Multicenter Study</item>
+          <item name="news[pt]">News</item>
+          <item name="newspaper article[pt]">Newspaper Article</item>
+          <item name="overall[pt]">Overall</item>
+          <item name="periodical index[pt]">Periodical Index</item>
+          <item name="practice guideline[pt]">Practice Guideline</item>
+          <item name="published erratum[pt]">Published Erratum</item>
+          <item name="randomized controlled trial[pt]">Randomized Controlled Trial</item>
+          <item name="retraction of publication[pt]">Retraction of Publication</item>
+          <item name="retracted publication[pt]">Retracted Publication</item>
+          <item name="review[pt]">Review</item>
+          <item name="review, academic[pt]">Review, Academic</item>
+          <item name="review, literature[pt]">Review, Literature</item>
+          <item name="review, multicase[pt]">Review, Multicase</item>
+          <item name="review of reported cases[pt]">Review of Reported Cases</item>
+          <item name="review, tutorial[pt]">Review, Tutorial</item>
+          <item name="scientific integrity review[pt]">Scientific Integrity Review</item>
+          <item name="technical report[pt]">Technical Report</item>
+          <item name="twin study[pt]">Twin Study</item>
+          <item name="validation studies[pt]">Validation Studies</item>
 
         </selection>
 	<selection name="language">
 	  <title>Language</title>
-          <item name="">English</item>
-          <item name="">French</item>
-          <item name="">German</item>
-          <item name="">Italian</item>
-          <item name="">Japanese</item>
-          <item name="">Russian</item>
-          <item name="">Spanish</item>
+          <item name="">Any</item>
+
+          <item name="english[la]">English</item>
+          <item name="french[la]">French</item>
+          <item name="german[la]">German</item>
+          <item name="italian[la]">Italian</item>
+          <item name="japanese[la]">Japanese</item>
+          <item name="russian[la]">Russian</item>
+          <item name="spanish[la]">Spanish</item>
         </selection>
       </group>
 
@@ -138,34 +145,63 @@
 
         <selection name="ages">
           <title>Ages</title>
-          <item name="">All Infant: birth-23 month</item>
-          <item name="">All Child: 0-18 years</item>
-          <item name="">All Adult: 19+ years</item>
-          <item name="">Newborn: birth-1 month</item>
-          <item name="">Infant: 1-23 months</item>
-          <item name="">Preschool Child: 2-5 years</item>
-          <item name="">Child: 6-12 years</item>
-          <item name="">Adolescent: 13-18 years</item>
-          <item name="">Adult: 19-44 years</item>
-          <item name="">Middle Aged: 45-64 years</item>
-          <item name="">Aged: 65+ years</item>
-          <item name="">80 and over: 80+ years</item>
+          <item name="">Any</item>
+
+          <item name="infant[mh]">All Infant: birth-23 month</item>
+          <item name="child[mh]">All Child: 0-18 years</item>
+          <item name="adult[mh]">All Adult: 19+ years</item>
+          <item name="infant, newborn[mh]">Newborn: birth-1 month</item>
+          <item name="infant[mh]">Infant: 1-23 months</item>
+          <item name="child, preschool[mh]">Preschool Child: 2-5 years</item>
+          <item name="child[mh]">Child: 6-12 years</item>
+          <item name="adolescence[mh]">Adolescent: 13-18 years</item>
+          <item name="adult[mh]">Adult: 19-44 years</item>
+          <item name="middle age[mh]">Middle Aged: 45-64 years</item>
+          <item name="aged[mh]">Aged: 65+ years</item>
+          <item name="aged, 80 and over[mh]">80 and over: 80+ years</item>
         </selection>
       </group>
 
       <group>
         <selection name="kind">
           <title>Human / Animal</title>
-	  <item name="">Human</item>
-	  <item name="">Animal</item>
+          <item name="">Any</item>
+
+	  <item name="human[mh]">Human</item>
+	  <item name="animal[mh]">Animal</item>
         </selection>
 
         <selection name="gender">
           <title>Gender</title>
-	  <item name="">Male</item>
-	  <item name="">Female</item>
+          <item name="">Any</item>
+
+	  <item name="female[mh]">Male</item>
+	  <item name="male[mh]">Female</item>
         </selection>
       </group>
+
+      <selection name="entrez">
+        <title>Entrez Date</title>
+
+        <item name="">Any</item>
+
+        <item name="30">30 Days</item>
+        <item name="60">60 Days</item>
+        <item name="90">90 Days</item>
+        <item name="180">180 Days</item>
+        <item name="365">1 Year</item>
+        <item name="730">2 Years</item>
+        <item name="1825">5 Years</item>
+        <item name="3650">10 Years</item>
+      </selection>
+
+      <fields name="date">
+        <operator name="from">From</operator>
+        <operator name="to">To</operator>
+
+	<field type="date" name="dp"><title>Publication Date</title></field>
+	<field type="date" name="edat"><title>Entrez Date</title></field>
+      </fields>
 
       <group>
         <toggle name="abstracts">

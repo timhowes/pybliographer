@@ -211,7 +211,10 @@ class QField:
 
                 self.operators.append (p)
                 continue
-            
+
+        if self.title is None:
+            raise Exceptions.SyntaxError ('missing title in field')
+        
         return
 
 

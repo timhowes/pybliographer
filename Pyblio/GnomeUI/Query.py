@@ -34,7 +34,7 @@ from Pyblio import version, Exceptions
 from Pyblio.QueryEngine import Connection
 from Pyblio.GnomeUI import Utils
 
-from Pyblio import QueryEngine
+from Pyblio import QueryEngine, Connector
 
 import os, pickle, string, copy
 
@@ -44,7 +44,7 @@ if not os.path.exists (path):
     path = os.path.join (version.prefix, path)
 
 
-class QueryUI:
+class QueryUI (Connector.Publisher):
 
     def __init__ (self, parent = None):
         ''' Create a generic Query interface '''
@@ -182,8 +182,15 @@ class QueryUI:
         
         engine.Subscribe ('progress', show_progress)
         show_progress (0.0)
+
         
-        if not engine.search (query):
+        try:
+            retval = engine.search (query)
+        except Exceptions.SyntaxError, msg:
+            GnomeErrorDialog ("%s" % msg).show ()
+            retval = 0
+        
+        if not retval:
             # close the progress bar but do not destroy the search
             w.destroy ()
             return
@@ -194,6 +201,9 @@ class QueryUI:
         if self.w_cnx:
             self.w_cnx.destroy ()
         self.w_search.destroy ()
+
+        # warn the caller we got a result
+        self.issue ('result', retval)
         return
 
 
@@ -459,7 +469,7 @@ class QFields (QueryEngine.QFields, Picklable):
         for f, o, t in self.w_rows:
             fv = f.get_menu ().get_active ().get_data ('value')
             ov = o.get_menu ().get_active ().get_data ('value')
-            tv = string.strip (t.get_text ())
+            tv = string.strip (t.gtk_entry ().get_text ())
 
             if not tv: continue
             
@@ -496,7 +506,7 @@ class QFields (QueryEngine.QFields, Picklable):
         self.w_table.attach (holder, 0, 1, row, row + 1)
 
         # ...and attach the entry widget
-        text = GtkEntry ()
+        text = GnomeEntry (self.name)
         self.w_table.attach (text, 2, 3, row, row + 1)
 
         # display the first field by default

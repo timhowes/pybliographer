@@ -339,9 +339,17 @@ class Document (Connector.Publisher):
 
     def generic_query (self, * arg):
         ''' '''
-        QueryUI (self.w)
 
+        def do_open (res, self):
+            print res
+            self.open_document (res [0], res [1], no_name = TRUE)
+            return
+        
+        query = QueryUI (self.w)
+        query.Subscribe ('result', do_open, self)
+        return
 
+    
     def query_pubmed (self, * arg):
         ''' callback corresponding to the "Medline Query..." button '''
 

@@ -26,6 +26,7 @@ import string
 def format (prefix, lines):
     return prefix + string.join (lines, '\n' + prefix)
     
+
 class ParserError (Exception):
 
     def __init__ (self, errors, file = None):
