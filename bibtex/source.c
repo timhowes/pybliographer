@@ -88,6 +88,36 @@ freedata (gpointer key,
     }
 }
 
+BibtexStruct * 
+bibtex_source_get_string (BibtexSource * source,
+			  gchar * key) {
+    g_return_val_if_fail (source != NULL, NULL);
+    g_return_val_if_fail (key != NULL, NULL);
+
+    return g_hash_table_lookup (source->table, key);
+}
+
+void
+bibtex_source_set_string (BibtexSource * source,
+			  gchar * key,
+			  BibtexStruct * value) {
+    gchar * inskey = key;
+    BibtexStruct * oldstruct = NULL;
+
+    g_return_if_fail (source != NULL);
+    g_return_if_fail (key != NULL);
+
+    if ((oldstruct = g_hash_table_lookup (source->table, inskey)) == NULL) {
+	inskey = g_strdup (key);
+	g_strdown (inskey);
+    }
+    else {
+	bibtex_struct_destroy (oldstruct, TRUE);
+    }
+
+    g_hash_table_insert (source->table, inskey, value);
+}
+
 void           
 bibtex_source_destroy (BibtexSource * source,
 		       gboolean free_data) {

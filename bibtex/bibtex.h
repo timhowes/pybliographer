@@ -213,6 +213,15 @@ extern "C" {
 					 gchar * name,
 					 gchar * string);
 
+    /* Manipulate @string definitions in that source */
+    BibtexStruct * bibtex_source_get_string (BibtexSource * source,
+					     gchar * key);
+
+    void           bibtex_source_set_string (BibtexSource * source,
+					     gchar * key,
+					     BibtexStruct * value);
+
+
     BibtexEntry *  bibtex_source_next_entry (BibtexSource * file, gboolean filter);
 
     void           bibtex_source_rewind (BibtexSource * file);
