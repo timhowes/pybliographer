@@ -19,8 +19,8 @@
 # 
 # $Id$
 
-SGML = 
-PNG  = 
+SGML = gui.sgml pyblio.sgml script.sgml
+PNG  = edit.png main.png open.png search.png
 
 EXTRA_DIST = \
 	topic.dat $(SGML) $(PNG)

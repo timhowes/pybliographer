@@ -27,3 +27,5 @@ class Sort (Connector.Publisher):
     
     def __init__ (self):
         
+        pass
+    

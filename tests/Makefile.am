@@ -20,4 +20,13 @@
 # $Id$
 
 
-TESTS = test-pybcheck import-export 
+TESTS = $(srcdir)/test-pybcheck $(srcdir)/import-export 
+
+EXTRA_DIST =  \
+	bibtex.bib 		\
+	broken.bib 		\
+	import-export.py 	\
+	medline.med 		\
+	ovid.ovid 		\
+	refer.refer 		\
+	testing.sh
