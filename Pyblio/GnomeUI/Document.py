@@ -17,12 +17,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 # 
-# Id: Document.py,v 1.25 2002/07/03 10:52:52 PeterS Exp
 # $Id$
 
 ''' This module defines a Document class '''
 
-from __future__ import  nested_scopes
+
+from __future__ import nested_scopes
 
 from gnome.ui import *
 from gtk import *
@@ -35,7 +35,8 @@ from Pyblio.GnomeUI.Config import ConfigDialog
 from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
 from Pyblio.GnomeUI.Query import QueryUI
 
-from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
+from Pyblio import Base, Connector, Open, Exceptions, Selection, \
+     Sort, Storage, Config
 from Pyblio import version, Fields, Types
 from Pyblio.Query import Query
 
@@ -56,7 +57,10 @@ class Document (Connector.Publisher):
         file_menu = [
             UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
+            UIINFO_ITEM              (_("Open _Database..."),None,
+                                      self.ui_open_database),
             UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
+            UIINFO_ITEM              (_("_Import ..."),None, self.ui_import),
             UIINFO_SUBTREE           (_("Online Query"),
                                       [UIINFO_ITEM (_("PubMed/Medline..."),
                                                     None, self.query_pubmed),
@@ -108,10 +112,17 @@ class Document (Connector.Publisher):
             UIINFO_SEPARATOR,
             UIINFO_MENU_PREFERENCES_ITEM   (self.set_preferences),
             ]
-            
+
+        view_menu = [
+            UIINFO_ITEM      (_("_Old Style"),  None,
+                              self.toggle_old_layout),
+            UIINFO_SEPARATOR,
+            ]
+        
         menus = [
             UIINFO_SUBTREE (_("_File"),     file_menu),
             UIINFO_SUBTREE (_("_Edit"),     edit_menu),
+            UIINFO_SUBTREE (_("_View"),     view_menu),
             UIINFO_SUBTREE (_("_Cite"),     cite_menu),
             UIINFO_SUBTREE (_("_Settings"), settings_menu),
             UIINFO_SUBTREE (_("_Help"),     help_menu)
@@ -127,39 +138,22 @@ class Document (Connector.Publisher):
             UIINFO_ITEM_STOCK(_("Close"), None, self.close_document,   STOCK_PIXMAP_CLOSE),
             ]
 
-        # Put information in Paned windows
-        self.paned = GtkVPaned ()
-        
-        Utils.init_colors (self.paned.get_colormap ())
-
-        print sys.version
-
-        # The Index list
-        self.index = Index.Index ()
-        self.paned.add1 (self.index.w)
-
-        self.index.Subscribe ('new-entry',      self.add_entry)
-        self.index.Subscribe ('edit-entry',     self.edit_entry)
-        self.index.Subscribe ('delete-entry',   self.delete_entry)
-        self.index.Subscribe ('select-entry',   self.update_display)
-        self.index.Subscribe ('select-entries', self.freeze_display)
-        self.index.Subscribe ('drag-received',  self.drag_received)
-        self.index.Subscribe ('drag-moved',     self.drag_moved)
-        self.index.Subscribe ('click-on-field', self.sort_by_field)
-
-        # The text area
-        self.display = Entry.Entry ()
-        self.paned.add2 (self.display.w)
-
         # Status bar
-        self.statusbar = GnomeAppBar (FALSE, TRUE)
+        self.statusbar = GnomeAppBar (TRUE, TRUE)
+        self.Subscribe ('set-progress', self.set_progress)
         
         # fill the main app
         self.w.create_menus   (menus)
         self.w.create_toolbar (toolbar)
         
-        self.w.set_contents   (self.paned)
+        self._layouts = {}
+        self.main_box = GtkNotebook()
+        self.main_box.set_show_tabs(FALSE)
+        self.main_box.set_show_border(FALSE)
+        self.w.set_contents   (self.main_box)
+
         self.w.set_statusbar  (self.statusbar)
+        self.make_old_layout()
 
         # set window size
         ui_width  = config.get_int ('Pybliographic/UI/Width=-1')
@@ -195,10 +189,86 @@ class Document (Connector.Publisher):
 
         self.modification_date = None
 
-        self.redisplay_index ()
+        if self.data: self.redisplay_index ()
+
+        self.progress_max = None
+
         return
 
+    # Layouts               (Cave: GTK 1)
+    #--------------------------------------------------
+    
+    def add_layout (self, widget, label):
+        self._layouts [label] = widget
+        glabel = GtkLabel(label)
+        self.main_box.append_page(widget, glabel)
+        pos = self.main_box.page_num(widget)
+        widget.show()
 
+        return pos
+        
+    def switch_layout (self, widget):
+        pos = self.get_layout_pos(widget)
+        self.main_box.set_page(pos)
+        return pos
+    
+    def remove_layout (self, widget):
+        pos = self.get_layout_pos(widget)
+        self.main_box.remove_page(pos)
+        for i in self._layouts.keys():
+            if self._layouts[i] == pos:
+                del self._layouts[i]
+        return
+
+    def get_layout_pos (self, widget):
+        print `widget`
+        if type(widget) == type(' '):
+            pos = self._layouts[widget]
+        else:
+            pos = self.main_box.page_num(widget)
+        return pos
+
+    # Old Layout
+    #--------------------------------------------------
+
+    def toggle_old_layout (self, *args):
+        pass
+    
+    def make_old_layout (self):
+
+        # Put information in Paned windows
+        self.paned = GtkVPaned ()
+        
+        Utils.init_colors (self.paned.get_colormap ())
+
+        print sys.version
+
+        # The Index list
+        self.index = Index.Index ()
+        self.paned.add1 (self.index.w)
+
+        self.index.Subscribe ('new-entry',      self.add_entry)
+        self.index.Subscribe ('edit-entry',     self.edit_entry)
+        self.index.Subscribe ('delete-entry',   self.delete_entry)
+        self.index.Subscribe ('select-entry',   self.update_display)
+        self.index.Subscribe ('select-entries', self.freeze_display)
+        self.index.Subscribe ('drag-received',  self.drag_received)
+        self.index.Subscribe ('drag-moved',     self.drag_moved)
+        self.index.Subscribe ('click-on-field', self.sort_by_field)
+
+        # The text area
+        self.display = Entry.Entry ()
+        self.paned.add2 (self.display.w)
+
+        self.add_layout(self.paned, 'OLD')
+        self.switch_layout(self.paned)
+        print self._layouts
+
+        return
+
+    # Call backs
+    #--------------------------------------------------
+    
     def set_preferences (self, * arg):
         w = ConfigDialog (self.w)
         return
@@ -215,38 +285,44 @@ class Document (Connector.Publisher):
     
 
     def update_history (self, history):
-        ''' fill the " Previous Documents " menu with the specified list of documents '''
+        """ fill the " Previous Documents " menu with the
+        specified list of documents """
         
-        self.w.remove_menus (_("File") + '/' + _("Previous Documents") + '/',
-                             100)
+        self.w.remove_menus (_("File") + '/' + _(
+            "Previous Documents") + '/',  100)
 
         menuinfo = []
         for item in history:
-            def callback (widget, self = self, file = item [0], how = item [1]):
+            def callback (widget, self = self, file = item [0],
+                          how = item [1]):
                 if not self.confirm (): return
                 self.open_document (file, how)
                 return
 
             filename = item [0]
             
-            menuinfo.append (UIINFO_ITEM_STOCK (filename, None, callback, STOCK_MENU_OPEN))
+            menuinfo.append (
+                UIINFO_ITEM_STOCK (filename,
+                                   None, callback, STOCK_MENU_OPEN))
 
-        self.w.insert_menus (_("File") + '/' + _("Previous Documents") + '/',
-                             menuinfo)
+        self.w.insert_menus (_("File") + '/' + _(
+            "Previous Documents") + '/',    menuinfo)
         return
 
     
     def redisplay_index (self, entry = None, changed = -1):
         ''' redisplays the index. If changed is specified, set the
         self.changed status to the given value '''
-        
+
         if changed != -1:
             self.changed = changed
         if entry :
             self.index.redisplay_entry(entry)
         else:
-            self.index.display (
-                self.selection.iterator (self.data.iterator ()))
+##             self.index.display (
+##                 self.selection.iterator (self.data.iterator ()))
+            self.index.display (self.data.iterator())
+
         self.update_status ()
         return
 
@@ -273,7 +349,8 @@ class Document (Connector.Publisher):
         url = Fields.URL (style)
 
         try:
-            Pyblio.Style.Utils.generate (url, format, self.data, entries, file)
+            Pyblio.Style.Utils.generate (url, format,
+                                         self.data, entries, file)
         except RuntimeError, err:
             print err
             self.w.error (_("Error while parsing `%s':\n%s") % (style, err))
@@ -373,33 +450,71 @@ class Document (Connector.Publisher):
             fromdate = from_date_entry.get_text ()
             todate = to_date_entry.get_text ()
 
-            # Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
-            while searchhistory.count(keyword) > 0: searchhistory.remove(keyword)
-            for x in range(len(searchhistory)): searchhistory[x] = searchhistory[x] + '\n'
+            # Add an ending newline character to each query listed in
+            # the search history. This makes sure that when each item
+            # is written to the file, a separator is also written so
+            # that when read again later in another query (by
+            # readlines()), it is properly separated into the
+            # searchhistory list
+
+            while searchhistory.count(keyword) > 0:
+                searchhistory.remove(keyword)
+            for x in range(len(searchhistory)):
+                searchhistory[x] = searchhistory[x] + '\n'
         
             if keyword == "":
                 dlg.close ()
                 return
-            else: # save keyword to medline search history if it's a valid keyword
-                if len(searchhistory) < 10: # I only want a maximum of the 10 most recent keywords
-                    searchhistory.insert(0,keyword+'\n') # I don't want to append to the list, I want to add the most recent search term at the top of the list
+            else:
+
+                # save keyword to medline search history if it's a
+                # valid keyword
+
+                if len(searchhistory) < 10:
+                    # I only want a maximum of the 10 most recent keywords
+                    searchhistory.insert(0,keyword+'\n')
+
+                    # I don't want to append to the list, I want to
+                    # add the most recent search term at the top of
+                    # the list
+                    
                 else:
-                    del searchhistory[9] # essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
+                    del searchhistory[9]
+
+                    # essentially remove the 10th item before adding
+                    # the most recent search query, I just want the 10
+                    # past search histories saved
+
                     searchhistory.insert(0,keyword+'\n')
                 try:
-                    if not os.path.exists(os.path.expanduser('~')+'/.pybliographer'):
+                    if not os.path.exists(
+                        os.path.expanduser('~')+'/.pybliographer'):
                         os.mkdir(os.path.expanduser('~')+'/.pybliographer')
-                    pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches','w') # save the search history
+                    pybsearchhis = open(
+                        os.path.expanduser('~') +
+                        '/.pybliographer/medlinesearches','w')
+
+                    # save the search history
                     pybsearchhis.writelines(searchhistory)
                     pybsearchhis.close()
+
                 except IOError:
                     print "Can't save search history."
                 
-                # Call the actual function to do the search and then return the results into url: 16 parameters passed altogether
+                # Call the actual function to do the search and then
+                # return the results into url: 16 parameters passed
+                # altogether
+
                 Utils.set_cursor (self.w, 'clock')
-                url = Query.medline_query (keyword,maxcount,displaystart,field,abstract,epubahead,pubtype,language,subset,agerange,humananimal,gender,entrezdate,pubdate,fromdate,todate)
+
+                url = Query.medline_query (
+                    keyword, maxcount, displaystart, field, abstract,
+                    epubahead, pubtype, language, subset, agerange,
+                    humananimal, gender, entrezdate, pubdate, fromdate,
+                    todate)
                 Utils.set_cursor (self.w, 'normal')
-                self.open_document (url, 'medline', no_name = TRUE) #actual call to open doc
+                self.open_document (url, 'medline', no_name = TRUE)
+                #actual call to open doc
                 dlg.close ()
                 return
 
@@ -407,10 +522,14 @@ class Document (Connector.Publisher):
             dlg.close ()
             return
 
-        def help_cb (dummy):            # Print partial instructions on use of the limits
-            dlg_help = GnomeDialog (_("Medline/PubMed Online Search Help"), 'Ok')
+        def help_cb (dummy):
+            # Print partial instructions on use of the limits
+            dlg_help = GnomeDialog (_(
+                "Medline/PubMed Online Search Help"), 'Ok')
             hbox2 = GtkHBox ()
-            instructions = GtkLabel ("o   Leave options below unchanged if you do not want your search limited.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Boolean operators AND, OR, NOT must be in upper case.\no   If search fields tags are used, enclose in square brackets with no space\n     between the search term and the tag, e.g., rubella[ti].\no   Search limits may exclude \"in process\" and \"publisher supplied\" citations.\no   For more help goto: http://www.ncbi.nlm.nih.gov:80/entrez/query/static/help/pmhelp.html")
+            instructions = GtkLabel (
+                "o   Leave options below unchanged if you do not want your search limited.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Boolean operators AND, OR, NOT must be in upper case.\no   If search fields tags are used, enclose in square brackets with no space\n     between the search term and the tag, e.g., rubella[ti].\no   Search limits may exclude \"in process\" and \"publisher supplied\" citations.\no   For more help goto: http://www.ncbi.nlm.nih.gov:80/entrez/query/static/help/pmhelp.html")
+            
             instructions.set_justify (0) # LEFT justify the instructions
             hbox2.pack_start (instructions)
             dlg_help.vbox.pack_start (hbox2)
@@ -418,34 +537,55 @@ class Document (Connector.Publisher):
             dlg_help.run_and_close ()
             return
 
-        # Functions are defined above (callbacks for each button). The search interface is designed below and drawn.
-        # Load up the past search queries by reading the file .pybsearchhis in the user's home directory; otherwise, the list will be empty via the searchhistory = [''] command
+        # Functions are defined above (callbacks for each button). The
+        # search interface is designed below and drawn.  Load up the
+        # past search queries by reading the file .pybsearchhis in the
+        # user's home directory; otherwise, the list will be empty via
+        # the searchhistory = [''] command
+        
         try:
-            pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches', 'r')
+            pybsearchhis = open(os.path.expanduser('~')+
+                                '/.pybliographer/medlinesearches', 'r')
             searchhistory = pybsearchhis.readlines()
             pybsearchhis.close()
         except IOError:
             searchhistory = ['']
         
-        # get rid of newline character so that search history is displayed correctly in the combobox
+        # get rid of newline character so that search history is
+        # displayed correctly in the combobox
+        
         for x in range(0,len(searchhistory)):
             searchhistory[x] = string.replace(searchhistory[x],'\n','') 
 
-        dlg = GnomeDialog (_("Online PubMed/Medline Query"), 'Search', 'Cancel', 'Help')
+        dlg = GnomeDialog (_(
+            "Online PubMed/Medline Query"), 'Search', 'Cancel', 'Help')
         dlg.button_connect (0, search_cb)
         dlg.button_connect (1, cancel_cb)
         dlg.button_connect (2, help_cb)
         dlg.set_default (0)
         dlg.set_parent (self.w)
-        key_w_combo = GtkCombo () # make it a combo box so that past search entries can be viewed
+        key_w_combo = GtkCombo ()
+        # make it a combo box so that past search entries can be viewed
         key_w_combo.set_popdown_strings (searchhistory)
-        key_w = key_w_combo.entry # the query string will be loaded onto key_w assigned here
-        key_w.set_text ('') # the entry should be empty; if this option is not set, the first list item will show instead
+        key_w = key_w_combo.entry
+        # the query string will be loaded onto key_w assigned here
+        key_w.set_text ('')
+
+        # the entry should be empty; if this option is not set, the
+        # first list item will show instead
+        
         key_w.set_editable (TRUE)
         adj1   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
         adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
-        max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
-        disp_s = GtkSpinButton (adj=adj2, digits=0) # disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
+        max_w = GtkSpinButton (adj=adj1, digits=0)
+        # max_w is the max number of returns the user wants
+
+        disp_s = GtkSpinButton (adj=adj2, digits=0)
+        # disp_s is the starting number of the entry to begin
+        # displaying; e.g. if for a certain query there is a total of
+        # 550 results, if the max_w is set to 100 and the disp_s is
+        # set to 400, there will be 100 results shown starting from
+        # result number 400 and ending at 499
 
         hbox1 = GtkHBox ()
         hbox1.pack_start (GtkLabel (_("Search PubMed for: ")))
@@ -461,13 +601,24 @@ class Document (Connector.Publisher):
 
         dlg.vbox.pack_start (GtkLabel (_("Limited to:")))
 
-        # Below are all the limits allowable. All entries are not editable, except for the date entries.
+        # Below are all the limits allowable. All entries are not
+        # editable, except for the date entries.
+
         hbox3 = GtkHBox()
         field_combo = GtkCombo()
-        field_combo.set_popdown_strings (['All Fields', 'Affiliation', 'Author Name', 'EC/RN Number', 'Entrez Date', 'Filter', 'Issue', 'Journal Name', 'Language', 'MeSH Date', 'MeSH Major Topic', 'MeSH Subheading', 'MeSH Terms', 'Pagination', 'Publication Date', 'Publication Type', 'Secondary Source ID', 'Substance Name', 'Text Word', 'Title', 'Title/Abstract', 'UID', 'Volume'])
+        field_combo.set_popdown_strings ([
+            'All Fields', 'Affiliation', 'Author Name',
+            'EC/RN Number', 'Entrez Date', 'Filter', 'Issue',
+            'Journal Name', 'Language', 'MeSH Date',
+            'MeSH Major Topic', 'MeSH Subheading',
+            'MeSH Terms', 'Pagination', 'Publication Date',
+            'Publication Type', 'Secondary Source ID',
+            'Substance Name', 'Text Word', 'Title', 'Title/Abstract',
+            'UID', 'Volume'])
         field_combo_entry = field_combo.entry
         field_combo_entry.set_text ('All Fields')
-        GtkEditable.set_editable(field_combo_entry,0) # command to prevent the user from editing the limit
+        GtkEditable.set_editable(field_combo_entry,0)
+        # command to prevent the user from editing the limit
         hbox3.pack_start (field_combo)
         checkbutton1 = GtkCheckButton (label='Only items\nwith abstracts')
         hbox3.pack_start (checkbutton1)
@@ -477,19 +628,57 @@ class Document (Connector.Publisher):
 
         hbox4 = GtkHBox()
         pub_type_combo = GtkCombo()
-        pub_type_combo.set_popdown_strings (['Publication Types', 'Addresses', 'Bibliography', 'Biography', 'Classical Article', 'Clinical Conference', 'Clinical Trial', 'Clinical Trial, Phase I', 'Clinical Trial, Phase II', 'Clinical Trial, Phase III', 'Clinical Trial, Phase IV', 'Comment', 'Congresses', 'Consensus Development Conference', 'Consensus Development Conference, NIH', 'Controlled Clinical Trial', 'Corrected and Republished Article', 'Dictionary', 'Directory', 'Duplicate Publication', 'Editorial', 'Evaluation Studies', 'Festschrift', 'Government Publications', 'Guideline', 'Historical Article', 'Interview', 'Journal Article', 'Lectures', 'Legal Cases', 'Legislation', 'Letter', 'Meta-Analysis', 'Multicenter Study', 'News', 'Newspaper Article', 'Overall', 'Periodical Index', 'Practice Guideline', 'Published Erratum', 'Randomized Controlled Trial', 'Retraction of Publication', 'Retracted Publication', 'Review', 'Review, Academic', 'Review Literature', 'Review, Multicase', 'Review of Reported Cases', 'Review, Tutorial', 'Scientific Integrity Review', 'Technical Report', 'Twin Study', 'Validation Studies'])
+        pub_type_combo.set_popdown_strings ([
+            'Publication Types', 'Addresses', 'Bibliography',
+            'Biography', 'Classical Article', 'Clinical Conference',
+            'Clinical Trial', 'Clinical Trial, Phase I',
+            'Clinical Trial, Phase II', 'Clinical Trial, Phase III',
+            'Clinical Trial, Phase IV', 'Comment', 'Congresses',
+            'Consensus Development Conference',
+            'Consensus Development Conference, NIH',
+            'Controlled Clinical Trial',
+            'Corrected and Republished Article',
+            'Dictionary', 'Directory', 'Duplicate Publication',
+            'Editorial', 'Evaluation Studies', 'Festschrift',
+            'Government Publications', 'Guideline',
+            'Historical Article', 'Interview', 'Journal Article',
+            'Lectures', 'Legal Cases', 'Legislation', 'Letter',
+            'Meta-Analysis', 'Multicenter Study', 'News',
+            'Newspaper Article', 'Overall', 'Periodical Index',
+            'Practice Guideline', 'Published Erratum',
+            'Randomized Controlled Trial', 'Retraction of Publication',
+            'Retracted Publication', 'Review', 'Review, Academic',
+            'Review Literature', 'Review, Multicase',
+            'Review of Reported Cases', 'Review, Tutorial',
+            'Scientific Integrity Review', 'Technical Report',
+            'Twin Study', 'Validation Studies'])
         pub_type_combo_entry = pub_type_combo.entry
         pub_type_combo_entry.set_text ('Publication Types')
-        GtkEditable.set_editable (pub_type_combo_entry,0) # again, entry not editable, only selectable
+        GtkEditable.set_editable (pub_type_combo_entry,0)
+        # again, entry not editable, only selectable
         hbox4.pack_start (pub_type_combo)
         lang_combo = GtkCombo ()
-        lang_combo.set_popdown_strings (['Languages', 'English', 'French', 'German', 'Italian', 'Japanese', 'Russian', 'Spanish'])
+        lang_combo.set_popdown_strings ([
+            'Languages', 'English', 'French', 'German', 'Italian',
+            'Japanese', 'Russian', 'Spanish'])
         lang_combo_entry = lang_combo.entry
         lang_combo_entry.set_text ('Languages')
         GtkEditable.set_editable (lang_combo_entry,0)
         hbox4.pack_start (lang_combo)
         subset_combo = GtkCombo()
-        subset_combo.set_popdown_strings (['Subsets', 'AIDS', 'AIDS/HIV journals', 'Bioethics', 'Bioethics journals',  'Biotechnology journals', 'Communication disorders journals', 'Complementary and Alternative Medicine', 'Consumer health journals', 'Core clinical journals', 'Dental journals', 'Health administration journals', 'Health tech assessment journals', 'History of Medicine', 'History of Medicine journals', 'In process', 'Index Medicus journals', 'MEDLINE', 'NASA journals', 'Nursing journals', 'PubMed Central', 'Reproduction journals', 'Space Life Sciences', 'Supplied by Publisher', 'Toxicology'])
+        subset_combo.set_popdown_strings ([
+            'Subsets', 'AIDS', 'AIDS/HIV journals', 'Bioethics',
+            'Bioethics journals',  'Biotechnology journals',
+            'Communication disorders journals',
+            'Complementary and Alternative Medicine',
+            'Consumer health journals', 'Core clinical journals',
+            'Dental journals', 'Health administration journals',
+            'Health tech assessment journals', 'History of Medicine',
+            'History of Medicine journals', 'In process',
+            'Index Medicus journals', 'MEDLINE', 'NASA journals',
+            'Nursing journals', 'PubMed Central',
+            'Reproduction journals', 'Space Life Sciences',
+            'Supplied by Publisher', 'Toxicology'])
         subset_combo_entry = subset_combo.entry
         subset_combo_entry.set_text ('Subsets')
         GtkEditable.set_editable (subset_combo_entry,0)
@@ -498,13 +687,21 @@ class Document (Connector.Publisher):
 
         hbox5 = GtkHBox()
         age_range_combo = GtkCombo ()
-        age_range_combo.set_popdown_strings (['Ages', 'All Infant: birth-23 month', 'All Child: 0-18 years', 'All Adult: 19+ years', 'Newborn: birth-1 month', 'Infant: 1-23 months', 'Preschool Child: 2-5 years', 'Child: 6-12 years', 'Adolescent: 13-18 years', 'Adult: 19-44 years', 'Middle Aged: 45-64 years', 'Aged: 65+ years', '80 and over: 80+ years'])
+        age_range_combo.set_popdown_strings ([
+            'Ages', 'All Infant: birth-23 month',
+            'All Child: 0-18 years', 'All Adult: 19+ years',
+            'Newborn: birth-1 month', 'Infant: 1-23 months',
+            'Preschool Child: 2-5 years', 'Child: 6-12 years',
+            'Adolescent: 13-18 years', 'Adult: 19-44 years',
+            'Middle Aged: 45-64 years', 'Aged: 65+ years',
+            '80 and over: 80+ years'])
         age_range_combo_entry = age_range_combo.entry
         age_range_combo_entry.set_text ('Ages')
         GtkEditable.set_editable (age_range_combo_entry,0)
         hbox5.pack_start (age_range_combo)
         human_animal_combo = GtkCombo ()
-        human_animal_combo.set_popdown_strings (['Human or Animal', 'Human', 'Animal'])
+        human_animal_combo.set_popdown_strings ([
+            'Human or Animal', 'Human', 'Animal'])
         human_animal_combo_entry = human_animal_combo.entry
         human_animal_combo_entry.set_text ('Human or Animal')
         GtkEditable.set_editable (human_animal_combo_entry,0)
@@ -519,7 +716,9 @@ class Document (Connector.Publisher):
 
         hbox6 = GtkHBox ()
         entrez_date_combo = GtkCombo ()
-        entrez_date_combo.set_popdown_strings (['Entrez Date', '30 Days', '60 Days', '90 Days', '180 Days', '1 Year', '2 Years', '5 Years', '10 Years'])
+        entrez_date_combo.set_popdown_strings ([
+            'Entrez Date', '30 Days', '60 Days', '90 Days',
+            '180 Days', '1 Year', '2 Years', '5 Years', '10 Years'])
         entrez_date_combo_entry = entrez_date_combo.entry
         entrez_date_combo_entry.set_text ('Entrez Date')
         GtkEditable.set_editable (entrez_date_combo_entry,0)
@@ -528,7 +727,8 @@ class Document (Connector.Publisher):
 
         hbox7 = GtkHBox ()
         pub_date_combo = GtkCombo ()
-        pub_date_combo.set_popdown_strings (['Publication Date', 'Entrez Date'])
+        pub_date_combo.set_popdown_strings ([
+            'Publication Date', 'Entrez Date'])
         pub_date_combo_entry = pub_date_combo.entry
         pub_date_combo_entry.set_text ('Publication Date')
         GtkEditable.set_editable (pub_date_combo_entry,0)
@@ -542,14 +742,16 @@ class Document (Connector.Publisher):
         dlg.vbox.pack_start (hbox7)
 
         hbox8 = GtkHBox ()
-        hbox8.pack_start (GtkLabel (_("Use the format YYYY/MM/DD; month and day are optional.")))
+        hbox8.pack_start (GtkLabel (_(
+            "Use the format YYYY/MM/DD; month and day are optional.")))
         dlg.vbox.pack_start (hbox8)
         
         dlg.show_all ()
         dlg.run ()
 
     def query_z3950 (self, * arg):
-        ''' callback corresponding to the "Online Query -> Z39.50 Server" file menu button '''
+        """Callback corresponding to the
+        'Online Query -> Z39.50 Server' file menu button """
 
         if not self.confirm (): return
 
@@ -577,22 +779,30 @@ class Document (Connector.Publisher):
                 Utils.set_cursor (self.w, 'clock')
                 while connectcount < 5 and not accesscomplete:
                     try:
-                        query_result = Query.z3950_query (serveraddress,port,database,displaystart,maxresults,term1,term1attribute,term2,term2attribute,operator)
+                        query_result = Query.z3950_query (
+                            serveraddress,port,database,displaystart,
+                            maxresults,term1,term1attribute,
+                            term2,term2attribute,operator)
                         if query_result <> '':
                             pybzsearchfile = tempfile.mktemp('.bib')
                             pybzsearch = open(pybzsearchfile,'w')
                             pybzsearch.writelines(query_result)
                             pybzsearch.close()
-                            self.open_document (pybzsearchfile,'bibtex',no_name = TRUE)
+                            self.open_document (
+                                pybzsearchfile,'bibtex',no_name = TRUE)
                             accesscomplete = TRUE
                         else:
-                            Utils.error_dialog (_("No Results Found"), "No results matched your query", parent = self.w)
+                            Utils.error_dialog (
+                                _("No Results Found"),
+                                "No results matched your query",
+                                parent = self.w)
                             accesscomplete = TRUE
                     except (EOFError, NameError):
                         print "Can't connect to server " +serveraddress +". Attempt " + `connectcount+1` + "."  #debugging
                         connectcount = connectcount + 1
                     except AssertionError, errmessage:
-                        Utils.error_dialog (_("Search Error"), errmessage, parent = self.w)
+                        Utils.error_dialog (
+                            _("Search Error"), errmessage, parent = self.w)
                         accesscomplete = TRUE
                 Utils.set_cursor (self.w, 'normal')
                 dlg.close ()
@@ -605,7 +815,8 @@ class Document (Connector.Publisher):
         def help_cb (dummy):
             dlg_help = GnomeDialog (_("Z39.50 Server Query Help"), 'Ok')
             hbox7 = GtkHBox ()
-            instructions = GtkLabel ("o   Enter your search criteria in the editable boxes.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Leave the second editable region empty for singular searches.\no   Boolean operators AND, OR, NOT are available as buttons to further limit your searches.\no   Only servers that do not require login and password are accessible.\no   You may add more servers by editing the ~/.pybliographer/zservers text file.")
+            instructions = GtkLabel (
+                "o   Enter your search criteria in the editable boxes.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Leave the second editable region empty for singular searches.\no   Boolean operators AND, OR, NOT are available as buttons to further limit your searches.\no   Only servers that do not require login and password are accessible.\no   You may add more servers by editing the ~/.pybliographer/zservers text file.")
             instructions.set_justify (0) # LEFT justify the instructions
             hbox7.pack_start (instructions)
             dlg_help.vbox.pack_start (hbox7)
@@ -616,29 +827,71 @@ class Document (Connector.Publisher):
         try:
             if not os.path.exists(os.path.expanduser('~')+'/.pybliographer'):
                 os.mkdir(os.path.expanduser('~')+'/.pybliographer')
-                fd = open(os.path.expanduser('~')+'/.pybliographer/zservers','w')
-                fd.writelines(['Library of Congress|z3950.loc.gov|7090|Voyager\n', 'Aberdeen University|library.abdn.ac.uk|210|dynix\n', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS\n'])
+                fd = open(
+                    os.path.expanduser('~')+'/.pybliographer/zservers','w')
+                fd.writelines([
+                    'Library of Congress|z3950.loc.gov|7090|Voyager\n',
+                    'Aberdeen University|library.abdn.ac.uk|210|dynix\n',
+                    'Bibsys.no|z3950.bibsys.no|2100|BIBSYS\n'])
                 fd.close()
-            if not os.path.exists(os.path.expanduser('~')+'/.pybliographer/zservers'): # this isn't really the correct use of os.path.exists? since I'm actually seeing if the _file_ zserver exists 
-                fd = open(os.path.expanduser('~')+'/.pybliographer/zservers','w')
-                fd.writelines(['Library of Congress|z3950.loc.gov|7090|Voyager\n', 'Aberdeen University|library.abdn.ac.uk|210|dynix\n', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS\n'])
+            if not os.path.exists(
+                os.path.expanduser('~')+'/.pybliographer/zservers'):
+
+                # this isn't really the correct use of os.path.exists?
+                # since I'm actually seeing if the _file_ zserver
+                # exists
+
+                fd = open(
+                    os.path.expanduser('~')+'/.pybliographer/zservers','w')
+                fd.writelines([
+                    'Library of Congress|z3950.loc.gov|7090|Voyager\n',
+                    'Aberdeen University|library.abdn.ac.uk|210|dynix\n',
+                    'Bibsys.no|z3950.bibsys.no|2100|BIBSYS\n'])
                 fd.close()
-            fd = open(os.path.expanduser('~')+'/.pybliographer/zservers', 'r') #this is the file that lists all the available servers; the file can be edited and placed there by the user
+            fd = open(
+                os.path.expanduser('~')+'/.pybliographer/zservers', 'r')
+
+                #this is the file that lists all the available
+                #servers; the file can be edited and placed there by
+                #the user
+                
             serverlist = fd.readlines()
             fd.close()
         except IOError:
-            serverlist = ['Library of Congress|z3950.loc.gov|7090|Voyager', 'Aberdeen University|library.abdn.ac.uk|210|dynix', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS'] #default server list of working servers that I know
+            serverlist = [
+                'Library of Congress|z3950.loc.gov|7090|Voyager',
+                'Aberdeen University|library.abdn.ac.uk|210|dynix',
+                'Bibsys.no|z3950.bibsys.no|2100|BIBSYS']
 
-        while string.strip (serverlist[len(serverlist)-1]) == '': del serverlist[len(serverlist)-1]  # this is an error handling function; sometimes the user may add a whitespace or extra lines at the end of the file
+                #default server list of working servers that I know
+
+        while string.strip (serverlist[len(serverlist)-1]) == '':
+            del serverlist[len(serverlist)-1]
+
+            # this is an error handling function; sometimes the user
+            # may add a whitespace or extra lines at the end of the
+            # file
+
         server = {}
-        servernames = [] #list of just the names of the servers, to be used in the pulldown menu
+        servernames = []
+
+        # list of just the names of the servers, to be used in the
+        # pulldown menu
+
         serverdictionary = {}
         i = 0
         for serverentry in serverlist:
             linespl = re.split('\|',serverentry)
             server['Name'+`i`] = linespl[0]
-            servernames.append(linespl[0]) #append the name of the server to the servername list
-            serverdictionary[linespl[0]]=i #dictionary key is the name of the server, the value is it's index number i. The index number i, will be used to pull the address, port and database name for the particular server later for the actual query.
+            servernames.append(linespl[0])
+            # append the name of the server to the servername list
+            serverdictionary[linespl[0]]=i
+
+            # dictionary key is the name of the server, the value is
+            # it's index number i. The index number i, will be used to
+            # pull the address, port and database name for the
+            # particular server later for the actual query.
+
             server['Address'+`i`] = linespl[1]
             server['Port'+`i`] = string.atoi(linespl[2])
             server['Database'+`i`] = string.replace (linespl[3], '\n', '')
@@ -652,13 +905,26 @@ class Document (Connector.Publisher):
         dlg.set_parent (self.w)
         adj1   = GtkAdjustment (20, 0, 10000, 1.0, 100.0, 0.0)
         adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
-        max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
-        disp_s = GtkSpinButton (adj=adj2, digits=0) # disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
+        max_w = GtkSpinButton (adj=adj1, digits=0)
+        # max_w is the max number of returns the user wants
+
+        disp_s = GtkSpinButton (adj=adj2, digits=0)
+
+        # disp_s is the starting number of the entry to begin
+        # displaying; e.g. if for a certain query there is a total of
+        # 550 results, if the max_w is set to 100 and the disp_s is
+        # set to 400, there will be 100 results shown starting from
+        # result number 400 and ending at 499
         
         hbox1 = GtkHBox ()
         hbox1.pack_start (GtkLabel (_("Query server: ")))
         server_combo = GtkCombo ()
-        server_combo.set_popdown_strings (servernames) # This is so the user can choose which server to query, future releases will read either a file or directory of files which contain server info so that the user can add new servers
+        server_combo.set_popdown_strings (servernames)
+
+        # This is so the user can choose which server to query, future
+        # releases will read either a file or directory of files which
+        # contain server info so that the user can add new servers
+
         server_combo_entry = server_combo.entry
         server_combo_entry.set_text (server['Name0'])
         GtkEditable.set_editable (server_combo_entry,0)
@@ -671,16 +937,21 @@ class Document (Connector.Publisher):
 
         hbox2 = GtkHBox ()
         field_combo1 = GtkCombo ()
-        field_combo1.set_popdown_strings (['All Fields', 'Any Fields', 'Author', 'Personal Author (Last, First)', 'Title (Phrase)', 'Title (Word)', 'Keywords', 'Year', 'ISBN', 'ISSN'])
+        field_combo1.set_popdown_strings ([
+            'All Fields', 'Any Fields', 'Author',
+            'Personal Author (Last, First)', 'Title (Phrase)',
+            'Title (Word)', 'Keywords', 'Year', 'ISBN', 'ISSN'])
         field_combo1_entry = field_combo1.entry
         field_combo1_entry.set_text ('All Fields')
-        GtkEditable.set_editable(field_combo1_entry,0) # command to prevent the user from editing the limit
+        GtkEditable.set_editable(field_combo1_entry,0)
+        # command to prevent the user from editing the limit
         hbox2.pack_start (field_combo1)
         limit_combo1 = GtkCombo()
         limit_combo1.set_popdown_strings (['Contains'])
         limit_combo1_entry = limit_combo1.entry
         limit_combo1_entry.set_text ('Contains')
-        GtkEditable.set_editable(limit_combo1_entry,0) # command to prevent the user from editing the limit
+        GtkEditable.set_editable(limit_combo1_entry,0)
+        # command to prevent the user from editing the limit
         hbox2.pack_start (limit_combo1)
         dlg.vbox.pack_start (hbox2)
 
@@ -701,16 +972,21 @@ class Document (Connector.Publisher):
 
         hbox5 = GtkHBox()
         field_combo2 = GtkCombo()
-        field_combo2.set_popdown_strings (['All Fields', 'Any Fields', 'Author', 'Personal Author (Last, First)', 'Title (Phrase)', 'Title (Word)', 'Keywords', 'Year', 'ISBN', 'ISSN'])
+        field_combo2.set_popdown_strings ([
+            'All Fields', 'Any Fields', 'Author',
+            'Personal Author (Last, First)', 'Title (Phrase)',
+            'Title (Word)', 'Keywords', 'Year', 'ISBN', 'ISSN'])
         field_combo2_entry = field_combo2.entry
         field_combo2_entry.set_text ('All Fields')
-        GtkEditable.set_editable(field_combo2_entry,0) # command to prevent the user from editing the limit
+        GtkEditable.set_editable(field_combo2_entry,0)
+        # command to prevent the user from editing the limit
         hbox5.pack_start (field_combo2)
         limit_combo2 = GtkCombo()
         limit_combo2.set_popdown_strings (['Contains'])
         limit_combo2_entry = limit_combo2.entry
         limit_combo2_entry.set_text ('Contains')
-        GtkEditable.set_editable(limit_combo2_entry,0) # command to prevent the user from editing the limit
+        GtkEditable.set_editable(limit_combo2_entry,0)
+        # command to prevent the user from editing the limit
         hbox5.pack_start (limit_combo2)
         dlg.vbox.pack_start (hbox5)
 
@@ -748,7 +1024,11 @@ class Document (Connector.Publisher):
             sort = sort_combo_entry.get_text ()
                 
             Utils.set_cursor (self.w, 'clock')
-            docurl = Query.spires_query (server,author,title,citation,reportnum,affiliation,collaboration,keywords,country,eprint,eprint_num,topcit,url,journal,published,date,year,format,sort)
+            docurl = Query.spires_query (
+                server,author,title, citation,reportnum,
+                affiliation,collaboration,keywords,country,
+                eprint,eprint_num,topcit,url,journal,published,
+                date,year,format,sort)
             self.open_document (docurl, 'bibtex', no_name = TRUE)
             Utils.set_cursor (self.w, 'normal')
             dlg.close ()
@@ -759,10 +1039,12 @@ class Document (Connector.Publisher):
             return
 
         def help_cb (dummy):
-            dlg_help = GnomeDialog (_("Medline/PubMed Online Search Help"), 'Ok')
+            dlg_help = GnomeDialog (
+                _("Medline/PubMed Online Search Help"), 'Ok')
             dlg_help.set_parent (self.w)
             hbox16 = GtkHBox ()
-            instructions = GtkLabel ("o   Search more than 450,000 high-energy physics related articles,\n     including journal papers, preprints, e-prints, technical reports,\n     conference papers and theses, comprehensively indexed\n     by the SLAC and DESY libraries since 1974.")
+            instructions = GtkLabel (
+                "o   Search more than 450,000 high-energy physics related articles,\n     including journal papers, preprints, e-prints, technical reports,\n     conference papers and theses, comprehensively indexed\n     by the SLAC and DESY libraries since 1974.")
             instructions.set_justify (0) # LEFT justify the instructions
             hbox16.pack_start (instructions)
             dlg_help.vbox.pack_start (hbox16)
@@ -780,7 +1062,8 @@ class Document (Connector.Publisher):
         hbox1 = GtkHBox ()
         hbox1.pack_start (GtkLabel (_("Query server: "), 0))
         server_combo = GtkCombo ()
-        server_combo.set_popdown_strings (['UK','USA','Japan','Russia','Germany'])
+        server_combo.set_popdown_strings ([
+            'UK','USA','Japan','Russia','Germany'])
         server_combo_entry = server_combo.entry
         server_combo_entry.set_text ('UK')
         GtkEditable.set_editable (server_combo_entry,0)
@@ -846,7 +1129,10 @@ class Document (Connector.Publisher):
         hbox10 = GtkHBox ()
         hbox10.pack_start (GtkLabel (_("Eprint: "), 0))
         eprint_combo = GtkCombo ()
-        eprint_combo.set_popdown_strings (['Any Type','ACC-PHYS','ASTRO-PH','GR-QC','HEP-EX','HEP-LAT','HEP-PH','HEP-TH','NUCL-EX','NUCL-TH','PHYSICS','QUANT-PH'])
+        eprint_combo.set_popdown_strings ([
+            'Any Type','ACC-PHYS','ASTRO-PH','GR-QC','HEP-EX',
+            'HEP-LAT','HEP-PH','HEP-TH','NUCL-EX','NUCL-TH',
+            'PHYSICS','QUANT-PH'])
         eprint_combo_entry = eprint_combo.entry
         eprint_combo_entry.set_text ('Any Type')
         GtkEditable.set_editable (eprint_combo_entry,0)
@@ -860,7 +1146,8 @@ class Document (Connector.Publisher):
         hbox11 = GtkHBox ()
         hbox11.pack_start (GtkLabel (_("Topcite: "), 0))
         topcite_combo = GtkCombo ()
-        topcite_combo.set_popdown_strings (['Don\'t care','50+','100+','500+','1000+'])
+        topcite_combo.set_popdown_strings ([
+            'Don\'t care','50+','100+','500+','1000+'])
         topcite_combo_entry = topcite_combo.entry
         topcite_combo_entry.set_text ('Don\'t care')
         GtkEditable.set_editable (topcite_combo_entry,0)
@@ -877,7 +1164,32 @@ class Document (Connector.Publisher):
         hbox12 = GtkHBox ()
         hbox12.pack_start (GtkLabel (_("Journal: "), 0))
         journal_combo = GtkCombo ()
-        journal_combo.set_popdown_strings (['Any Journal','ACTA PHYS. AUSTR.','ACTA PHYS. POLON.','ANN. POINCARE','ANN. PHYS. (N.Y.)','ASTROPHYS. J.','CAN. J. PHYS.','CLASS. QUANT. GRAV.','COMM. NUCL. PART. PHYS.','COMMUN. MATH. PHYS.','COMMUN. THEOR. PHYS.','COMPUT. PHYS. COMMUN.','CZECH. J. PHYS.','EUROPHYS. LETT.','EUR. PHYS. J.','FIZ. ELEM. CHAST. AT. YADRA','FIZIKA','FORTSCHR. PHYS.','FOUND. PHYS.','GEN. REL. GRAV.','HADRONIC J.','HELV. PHYS. ACTA','HIGH ENERGY PHYS. NUCL. PHYS.','IEEE TRANS. MAGNETICS','IEEE TRANS. NUCL. SCI.','INSTRUM. EXP. TECH.','INT. J. MOD. PHYS.','INT. J. THEOR. PHYS.','JHEP','J. MATH. PHYS.','J. PHYS. - A -','J. PHYS. - G -','J. PHYS. SOC. JAP.','JETP LETT.','LETT. MATH. PHYS.','LETT. NUOVO CIM.','MOD. PHYS. LETT.','New J. Phys.','NUCL. INSTRUM. METH.','NUCL. PHYS.','NUOVO CIM.','PART. ACCEL.','PHYS. ATOM. NUCL.','PHYS. LETT.','PHYS. REPT.','PHYS. REV.','PHYS. REV. LETT.','PHYS. SCRIPTA','PHYSICA','PISMA ZH. EKSP. TEOR. FIZ.','PRAMANA','PROG. PART. NUCL. PHYS.','PROG. THEOR. PHYS.','REPT. MATH. PHYS.','REPT. PROG. PHYS.','REV. MOD. PHYS.','REV. SCI. INSTRUM.','RIV. NUOVO CIM.','RUSS. PHYS. J. (SOV. PHYS. J.)','SOV. J. NUCL. PHYS.','SOV. PHYS. JETP','TEOR. MAT. FIZ.','THEOR. MATH. PHYS.','YAD. FIZ.','Z. PHYS.','ZH. EKSP. TEOR. FIZ.'])
+        journal_combo.set_popdown_strings ([
+            'Any Journal','ACTA PHYS. AUSTR.','ACTA PHYS. POLON.',
+            'ANN. POINCARE','ANN. PHYS. (N.Y.)','ASTROPHYS. J.',
+            'CAN. J. PHYS.','CLASS. QUANT. GRAV.',
+            'COMM. NUCL. PART. PHYS.','COMMUN. MATH. PHYS.',
+            'COMMUN. THEOR. PHYS.','COMPUT. PHYS. COMMUN.',
+            'CZECH. J. PHYS.','EUROPHYS. LETT.','EUR. PHYS. J.',
+            'FIZ. ELEM. CHAST. AT. YADRA','FIZIKA',
+            'FORTSCHR. PHYS.','FOUND. PHYS.','GEN. REL. GRAV.',
+            'HADRONIC J.','HELV. PHYS. ACTA',
+            'HIGH ENERGY PHYS. NUCL. PHYS.','IEEE TRANS. MAGNETICS',
+            'IEEE TRANS. NUCL. SCI.','INSTRUM. EXP. TECH.',
+            'INT. J. MOD. PHYS.','INT. J. THEOR. PHYS.','JHEP',
+            'J. MATH. PHYS.','J. PHYS. - A -','J. PHYS. - G -',
+            'J. PHYS. SOC. JAP.','JETP LETT.','LETT. MATH. PHYS.',
+            'LETT. NUOVO CIM.','MOD. PHYS. LETT.','New J. Phys.',
+            'NUCL. INSTRUM. METH.','NUCL. PHYS.','NUOVO CIM.',
+            'PART. ACCEL.','PHYS. ATOM. NUCL.','PHYS. LETT.',
+            'PHYS. REPT.','PHYS. REV.','PHYS. REV. LETT.',
+            'PHYS. SCRIPTA','PHYSICA','PISMA ZH. EKSP. TEOR. FIZ.',
+            'PRAMANA','PROG. PART. NUCL. PHYS.','PROG. THEOR. PHYS.',
+            'REPT. MATH. PHYS.','REPT. PROG. PHYS.','REV. MOD. PHYS.',
+            'REV. SCI. INSTRUM.','RIV. NUOVO CIM.',
+            'RUSS. PHYS. J. (SOV. PHYS. J.)','SOV. J. NUCL. PHYS.',
+            'SOV. PHYS. JETP','TEOR. MAT. FIZ.','THEOR. MATH. PHYS.',
+            'YAD. FIZ.','Z. PHYS.','ZH. EKSP. TEOR. FIZ.'])
         journal_combo_entry = journal_combo.entry
         journal_combo_entry.set_text ('Any Journal')
         GtkEditable.set_editable (journal_combo_entry,0)
@@ -907,7 +1219,11 @@ class Document (Connector.Publisher):
         GtkEditable.set_editable (date_combo_entry,0)
         hbox14.pack_start (date_combo)
         year_combo = GtkCombo ()
-        year_combo.set_popdown_strings (['Any Year','2002','2001','2000','1999','1998','1997','1996','1995','1994','1993','1992','1991','1990','1989','1988','1987','1986','1985','1984','1983','1982','1981','1980','1975','1970','1965','1960'])
+        year_combo.set_popdown_strings ([
+            'Any Year','2002','2001','2000','1999','1998','1997',
+            '1996','1995','1994','1993','1992','1991','1990',
+            '1989','1988','1987','1986','1985','1984','1983',
+            '1982','1981','1980','1975','1970','1965','1960'])
         year_combo_entry = year_combo.entry
         year_combo_entry.set_text ('Any Year')
         GtkEditable.set_editable (year_combo_entry,0)
@@ -917,7 +1233,10 @@ class Document (Connector.Publisher):
         hbox15 = GtkHBox ()
         hbox15.pack_start (GtkLabel (_("Sort by: "), 0))
         sort_combo = GtkCombo ()
-        sort_combo.set_popdown_strings (['No Sort','Note: Sorting can be slow','Date Order - Descending','Date Order - Ascending','1st Author','Title','1st Author, Title'])
+        sort_combo.set_popdown_strings ([
+            'No Sort','Note: Sorting can be slow',
+            'Date Order - Descending','Date Order - Ascending',
+            '1st Author','Title','1st Author, Title'])
         sort_combo_entry = sort_combo.entry
         sort_combo_entry.set_text ('No Sort')
         GtkEditable.set_editable (sort_combo_entry,0)
@@ -964,11 +1283,64 @@ class Document (Connector.Publisher):
                     errors = errors + list (msg.errors)
                     continue
 
-        self.redisplay_index (1)
+        self.redisplay_index (changed=1)
 
         if errors:
             Utils.error_dialog (_("Merge status"), string.join (errors, '\n'),
                                 parent = self.w)
+        return
+
+    def ui_open_database (self, * arg):
+        ''' callback corresponding to "Open" '''
+        
+        if not self.confirm (): return
+
+        # get a new file name XXXX
+        
+        (url, how) = FileSelector.URLFileSelection (
+            _("Open database"), directory = self.directory,
+            bibpath=self.bibpath, path=self.path).run ()
+        url = Fields.URL (url)
+        path  = os.path.split (url.url [2]) [0] + '/'
+        if url is None: return
+        self.open_database (path)
+        # memorize the current path in the case of a file
+        if url.url [0] == 'file':
+            self.directory = os.path.split (url.url [2]) [0] + '/'
+        return
+
+    
+    def open_database (self, dir):
+        from  Pyblio import Coco, Iterator, Numerus, Storage, db3base
+        Utils.set_cursor (self.w, 'clock')
+        
+        try:
+            db = db3base.DBase(dir)
+            if not db.path:
+                print 'OPEN ERROR'
+                return 
+
+        except (Exceptions.ParserError,
+                Exceptions.FormatError,
+                Exceptions.FileError), error:
+            
+            Utils.set_cursor (self.w, 'normal')
+            Utils.error_dialog (_("Open error"), error,
+                                parent = self.w)
+            return
+
+        Utils.set_cursor (self.w, 'normal')
+        
+        self.data = Storage.Database(
+            base=db, control=Coco.Base(), entry=Base.Entry2)
+        
+        # eventually warn interested objects
+        self.issue ('open-database', self)
+
+        #Numerus.reset_counters(db)
+        #Coco.reset_configuration(db)
+        self.redisplay_index (changed=0)
+        
         return
 
         
@@ -991,12 +1363,12 @@ class Document (Connector.Publisher):
             self.directory = os.path.split (url.url [2]) [0] + '/'
         return
 
-    
     def open_document (self, url, how = None, no_name = FALSE):
         
         Utils.set_cursor (self.w, 'clock')
         
         try:
+
             data = Open.bibopen (url, how = how)
             
         except (Exceptions.ParserError,
@@ -1013,13 +1385,26 @@ class Document (Connector.Publisher):
         if no_name: data.key = None
         
         self.data    = data
-        self.redisplay_index (0)
+        self.redisplay_index (changed=0)
         
         # eventually warn interested objects
         self.issue ('open-document', self)
         return
 
+    def ui_import (self, *args):
+        """Callback from Import menu selection."""
+        from Pyblio.GnomeUI import ImportDlg
+        ImportDlg.run_dialog(boi=self)
+        return
     
+    def set_progress(amount, total=None):
+        '''Maintain the progressbar during Open processing.'''
+
+        if total:
+            self_progress_max = total
+        if self.progress_max > 0:
+            self.statusbar.set_progress (amount / self.progress_max)
+        
     def save_document (self, * arg):
         if self.data.key is None:
             self.save_document_as ()
@@ -1031,7 +1416,8 @@ class Document (Connector.Publisher):
             mod_date = os.stat (file) [stat.ST_MTIME]
             
             if mod_date > self.modification_date:
-                if not Utils.Callback (_("The database has been externally modified.\nOverwrite changes ?"),
+                if not Utils.Callback (_(
+                    "The database has been externally modified.\nOverwrite changes ?"),
                                        self.w).answer ():
                     return
         
@@ -1041,7 +1427,8 @@ class Document (Connector.Publisher):
                 self.data.update (self.selection.sort)
             except (OSError, IOError), error:
                 Utils.set_cursor (self.w, 'normal')
-                self.w.error (_("Unable to save `%s':\n%s") % (str (self.data.key),
+                self.w.error (_(
+                    "Unable to save `%s':\n%s") % (str (self.data.key),
                                                                str (error)))
                 return
         except:
@@ -1049,7 +1436,8 @@ class Document (Connector.Publisher):
             traceback.print_exception (etype, value, tb)
             
             Utils.set_cursor (self.w, 'normal')
-            self.w.error (_("An internal error occured during saving\nTry to Save As..."))
+            self.w.error (_(
+                "An internal error occured during saving\nTry to Save As..."))
             return
 
         Utils.set_cursor (self.w, 'normal')
@@ -1070,7 +1458,8 @@ class Document (Connector.Publisher):
         if url is None: return
             
         if os.path.exists (url):
-            if not Utils.Callback (_("The file `%s' already exists.\nOverwrite it ?")
+            if not Utils.Callback (_(
+                "The file `%s' already exists.\nOverwrite it ?")
                                    % url, parent = self.w).answer ():
                 return
 
@@ -1128,7 +1517,7 @@ class Document (Connector.Publisher):
         for e in entries:
             del self.data [e.key]
 
-        self.redisplay_index (1)
+        self.redisplay_index (changed=1)
         return
 
     
@@ -1136,8 +1525,9 @@ class Document (Connector.Publisher):
         for entry in entries:
             
             if self.data.would_have_key (entry.key):
-                if not Utils.Callback (_("An entry called `%s' already exists.\nRename and add it anyway ?")
-                                       % entry.key.key, parent = self.w).answer ():
+                if not Utils.Callback (_(
+       "An entry called `%s' already exists.\nRename and add it anyway ?")
+                       % entry.key.key, parent = self.w).answer ():
                     continue
                 
             self.changed = 1
@@ -1156,7 +1546,7 @@ class Document (Connector.Publisher):
         for entry in entries:
             del self.data [entry.key]
             
-        self.redisplay_index (1)
+        self.redisplay_index (changed=1)
         pass
 
     
@@ -1181,7 +1571,7 @@ class Document (Connector.Publisher):
         for key in keys:
             del self.data [key]
 
-        self.redisplay_index (1)
+        self.redisplay_index (changed=1)
         return
     
     
@@ -1235,7 +1625,6 @@ class Document (Connector.Publisher):
         else:
             entry = None
         self.redisplay_index (entry = entry, changed = 1)
-        #print 'index select item', new
         self.index.select_item (new)
         return
     
@@ -1260,7 +1649,7 @@ class Document (Connector.Publisher):
         for entry in entries:
             del self.data [entry.key]
             
-        self.redisplay_index (1)
+        self.redisplay_index (changed=1)
         self.index.select_item (offset)
         return
     
@@ -1360,6 +1749,27 @@ class Document (Connector.Publisher):
         return
 
     
+
+    def exec_bug_buddy (self, *args):
+        ''' run bug-buddy in background, with the minimal configuration data '''
+        
+        # search the program in the current path
+        exists = 0
+        for d in string.split (os.environ ['PATH'], ':'):
+            if os.path.exists (os.path.join (d, 'bug-buddy')):
+                exists = 1
+                break
+
+        if not exists:
+            self.w.error (_("Please install bug-buddy\nto use this feature"))
+            return
+        
+        command = 'bug-buddy --package=pybliographer --package-ver=%s  &' \
+                  % version.version
+        
+        os.system (command)
+        return
+
     def about (self, *arg):
         about = GnomeAbout ('Pybliographic', version.version,
                             _("This program is copyrighted under the GNU GPL"),
@@ -1375,3 +1785,5 @@ class Document (Connector.Publisher):
         about.show()
         return
 
+
+    
