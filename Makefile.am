@@ -24,9 +24,6 @@ appdir  = $(datadir)/gnome/apps/Applications
 
 SUBDIRS = 	Pyblio 		\
 		glade		\
-		intl		\
-		bibtex 		\
-		compiled 	\
 		po		\
 		.		\
 		scripts		\
