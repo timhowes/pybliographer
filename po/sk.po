@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2002-02-06 11:48-0500\n"
-"PO-Revision-Date: 2002-02-07 16:24+0100\n"
+"POT-Creation-Date: 2002-05-16 23:00+0200\n"
+"PO-Revision-Date: 2002-05-18 09:53+0100\n"
 "Last-Translator: Zdenko Podobný <zdpo@mailbox.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr "Neplatné pole rok v dátume"
 msgid "Entry type"
 msgstr "Typ polo¾ky"
 
-#: Pyblio/GnomeUI/Editor.py:428 Pyblio/GnomeUI/Config.py:482
+#: Pyblio/GnomeUI/Config.py:482 Pyblio/GnomeUI/Editor.py:428
 msgid "Key"
 msgstr "Klávesa"
 
@@ -176,45 +176,45 @@ msgstr "Klávesa"
 msgid "Create Field"
 msgstr "Vytvori» pole"
 
-#: Pyblio/GnomeUI/Editor.py:540 Pyblio/GnomeUI/Fields.py:191
+#: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:191
 msgid "Mandatory"
 msgstr "Povinné"
 
-#: Pyblio/GnomeUI/Editor.py:540 Pyblio/GnomeUI/Fields.py:192
+#: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:192
 msgid "Optional"
 msgstr "Nepovinné"
 
-#: Pyblio/GnomeUI/Editor.py:540
+#: Pyblio/GnomeUI/Editor.py:539
 msgid "Extra"
 msgstr "Extra"
 
-#: Pyblio/GnomeUI/Editor.py:608
+#: Pyblio/GnomeUI/Editor.py:601
 msgid "Invalid key format"
 msgstr "Neplatné formát kµúèa"
 
-#: Pyblio/GnomeUI/Editor.py:616
+#: Pyblio/GnomeUI/Editor.py:609
 #, c-format
 msgid "Key `%s' already exists"
 msgstr "Kµúè `%s' u¾ existuje"
 
-#: Pyblio/GnomeUI/Editor.py:683
+#: Pyblio/GnomeUI/Editor.py:676
 msgid "Error in native string parsing"
 msgstr "Chyba pri analýze pôvodného re»azca"
 
-#: Pyblio/GnomeUI/Editor.py:696
+#: Pyblio/GnomeUI/Editor.py:689
 msgid "Edit entry"
 msgstr "Upravi» polo¾ku"
 
-#: Pyblio/GnomeUI/Editor.py:710 Pyblio/GnomeUI/Editor.py:751
+#: Pyblio/GnomeUI/Editor.py:703 Pyblio/GnomeUI/Editor.py:744
 msgid "Native Editing"
 msgstr "Pôvodné úpravy"
 
-#: Pyblio/GnomeUI/Editor.py:763
+#: Pyblio/GnomeUI/Editor.py:756
 msgid "Standard Editing"
 msgstr "©tandardné úpravy"
 
-#: Pyblio/GnomeUI/FileSelector.py:41 Pyblio/GnomeUI/Document.py:214
-#: Pyblio/GnomeUI/Document.py:228
+#: Pyblio/GnomeUI/Document.py:216 Pyblio/GnomeUI/Document.py:230
+#: Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
 msgstr "Súbor"
 
@@ -238,7 +238,7 @@ msgstr "Zmaza»"
 msgid "Search"
 msgstr "Hµada»"
 
-#: Pyblio/GnomeUI/Search.py:133 Pyblio/GnomeUI/Fields.py:225
+#: Pyblio/GnomeUI/Fields.py:225 Pyblio/GnomeUI/Search.py:133
 msgid "Field"
 msgstr "Pole"
 
@@ -347,83 +347,87 @@ msgstr "_Predchádzajúce dokumenty"
 msgid "About..."
 msgstr "O programe..."
 
-#: Pyblio/GnomeUI/Document.py:88
+#: Pyblio/GnomeUI/Document.py:78
+msgid "Submit a Bug Report"
+msgstr "Vystavi» správu o chybe"
+
+#: Pyblio/GnomeUI/Document.py:90
 msgid "_Add..."
 msgstr "_Prida»..."
 
-#: Pyblio/GnomeUI/Document.py:89
+#: Pyblio/GnomeUI/Document.py:91
 msgid "_Edit..."
 msgstr "_Upravi»..."
 
-#: Pyblio/GnomeUI/Document.py:90
+#: Pyblio/GnomeUI/Document.py:92
 msgid "_Delete"
 msgstr "O_dstráni»"
 
-#: Pyblio/GnomeUI/Document.py:93
+#: Pyblio/GnomeUI/Document.py:95
 msgid "S_ort..."
 msgstr "_Triedenie..."
 
-#: Pyblio/GnomeUI/Document.py:97 Pyblio/GnomeUI/Document.py:111
+#: Pyblio/GnomeUI/Document.py:99 Pyblio/GnomeUI/Document.py:113
 msgid "_Cite"
 msgstr "_Citova»"
 
-#: Pyblio/GnomeUI/Document.py:98
+#: Pyblio/GnomeUI/Document.py:100
 msgid "_Format..."
 msgstr "_Formát..."
 
-#: Pyblio/GnomeUI/Document.py:102
+#: Pyblio/GnomeUI/Document.py:104
 msgid "_Fields..."
 msgstr "_Polia..."
 
-#: Pyblio/GnomeUI/Document.py:103
+#: Pyblio/GnomeUI/Document.py:105
 msgid "_Entries..."
 msgstr "_Polo¾ky..."
 
-#: Pyblio/GnomeUI/Document.py:109
+#: Pyblio/GnomeUI/Document.py:111
 msgid "_File"
 msgstr "_Súbor"
 
-#: Pyblio/GnomeUI/Document.py:110
+#: Pyblio/GnomeUI/Document.py:112
 msgid "_Edit"
 msgstr "_Upravi»"
 
-#: Pyblio/GnomeUI/Document.py:112
+#: Pyblio/GnomeUI/Document.py:114
 msgid "_Settings"
 msgstr "Nas_tavenie"
 
-#: Pyblio/GnomeUI/Document.py:113
+#: Pyblio/GnomeUI/Document.py:115
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: Pyblio/GnomeUI/Document.py:117
+#: Pyblio/GnomeUI/Document.py:119
 msgid "Open"
 msgstr "Otvori»"
 
-#: Pyblio/GnomeUI/Document.py:118
+#: Pyblio/GnomeUI/Document.py:120
 msgid "Save"
 msgstr "Ulo¾i»"
 
-#: Pyblio/GnomeUI/Document.py:120 Pyblio/GnomeUI/Config.py:390
+#: Pyblio/GnomeUI/Config.py:390 Pyblio/GnomeUI/Document.py:122
 msgid "Add"
 msgstr "Prida»"
 
-#: Pyblio/GnomeUI/Document.py:122
+#: Pyblio/GnomeUI/Document.py:124
 msgid "Find"
 msgstr "Nájs»"
 
-#: Pyblio/GnomeUI/Document.py:123
+#: Pyblio/GnomeUI/Document.py:125
 msgid "Cite"
 msgstr "Citova»"
 
-#: Pyblio/GnomeUI/Document.py:125
+#: Pyblio/GnomeUI/Document.py:127
 msgid "Close"
 msgstr "Zavrie»"
 
-#: Pyblio/GnomeUI/Document.py:214 Pyblio/GnomeUI/Document.py:228
+#: Pyblio/GnomeUI/Document.py:216 Pyblio/GnomeUI/Document.py:230
 msgid "Previous Documents"
 msgstr "Predchádzajúce dokumenty"
 
-#: Pyblio/GnomeUI/Document.py:250
+#: Pyblio/GnomeUI/Document.py:252
 #, c-format
 msgid ""
 "can't open file `%s' for writing:\n"
@@ -432,7 +436,7 @@ msgstr ""
 "nie je mo¾né otvori» súbor `%s' pre zápis:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:271
+#: Pyblio/GnomeUI/Document.py:273
 #, c-format
 msgid ""
 "Error while parsing `%s':\n"
@@ -441,38 +445,38 @@ msgstr ""
 "Chyba poèas analyzovania `%s':\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:290
+#: Pyblio/GnomeUI/Document.py:292
 msgid "New database"
 msgstr "Nová databáza"
 
-#: Pyblio/GnomeUI/Document.py:298 Pyblio/GnomeUI/Document.py:302
+#: Pyblio/GnomeUI/Document.py:300 Pyblio/GnomeUI/Document.py:304
 msgid "[no entry]"
 msgstr "[bez polo¾ky]"
 
-#: Pyblio/GnomeUI/Document.py:299
+#: Pyblio/GnomeUI/Document.py:301
 msgid "[1 entry]"
 msgstr "[1 polo¾ka]"
 
-#: Pyblio/GnomeUI/Document.py:300
+#: Pyblio/GnomeUI/Document.py:302
 #, c-format
 msgid "[%d entries]"
 msgstr "[%d polo¾iek]"
 
-#: Pyblio/GnomeUI/Document.py:303
+#: Pyblio/GnomeUI/Document.py:305
 #, c-format
 msgid "[%d/1 entry]"
 msgstr "[%d/1 polo¾ky]"
 
-#: Pyblio/GnomeUI/Document.py:304
+#: Pyblio/GnomeUI/Document.py:306
 #, c-format
 msgid "[%d/%d entries]"
 msgstr "[ %d/%d polo¾iek]"
 
-#: Pyblio/GnomeUI/Document.py:309
+#: Pyblio/GnomeUI/Document.py:311
 msgid "[modified]"
 msgstr "[zmenený]"
 
-#: Pyblio/GnomeUI/Document.py:319
+#: Pyblio/GnomeUI/Document.py:321
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -480,63 +484,35 @@ msgstr ""
 "Databáza bola zmenená.\n"
 "Odmietnu» zmeny?"
 
-#: Pyblio/GnomeUI/Document.py:355
+#: Pyblio/GnomeUI/Document.py:341
 msgid "Enter your Medline query"
 msgstr "Vlo¾te svoju Medline otázku"
 
-#: Pyblio/GnomeUI/Document.py:367
-msgid "Search PubMed for: "
-msgstr "Hµada» "
+#: Pyblio/GnomeUI/Document.py:347
+msgid "Search string"
+msgstr "Hµada» re»azec"
 
-#: Pyblio/GnomeUI/Document.py:369
-msgid ""
-"Maximum number\n"
-"of results: "
-msgstr ""
-"Maximálny poèet\n"
-"výsledkov:"
+#: Pyblio/GnomeUI/Document.py:351
+msgid "Maximum number of results"
+msgstr "Maximálny poèet výsledkov"
 
 #: Pyblio/GnomeUI/Document.py:371
-msgid ""
-"Start listing at\n"
-"result number: "
-msgstr ""
-"Zaèa» zoznam\n"
-"pri výsledku èíslo:"
-
-#: Pyblio/GnomeUI/Document.py:387
-msgid "Limited to:"
-msgstr "Obmedzi» do:"
-
-#: Pyblio/GnomeUI/Document.py:463
-msgid "From:"
-msgstr "Od:"
-
-#: Pyblio/GnomeUI/Document.py:466
-msgid "To:"
-msgstr "Komu:"
-
-#: Pyblio/GnomeUI/Document.py:472
-msgid "Use the format YYYY/MM/DD; month and day are optional."
-msgstr "Pou¾i» formát RRRR/MM/DD; mesiac a deò nie sú povinné."
-
-#: Pyblio/GnomeUI/Document.py:527
 msgid "Merge file"
 msgstr "Zlúèi» súbor"
 
-#: Pyblio/GnomeUI/Document.py:539 Pyblio/GnomeUI/Document.py:599
+#: Pyblio/GnomeUI/Document.py:383 Pyblio/GnomeUI/Document.py:443
 msgid "Open error"
 msgstr "Chyba pri otváraní"
 
-#: Pyblio/GnomeUI/Document.py:563
+#: Pyblio/GnomeUI/Document.py:407
 msgid "Merge status"
 msgstr "Stav zluèovania"
 
-#: Pyblio/GnomeUI/Document.py:574
+#: Pyblio/GnomeUI/Document.py:418
 msgid "Open file"
 msgstr "Otvori» súbor"
 
-#: Pyblio/GnomeUI/Document.py:626
+#: Pyblio/GnomeUI/Document.py:470
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
@@ -544,7 +520,7 @@ msgstr ""
 "Databáza bola externe zmenená.\n"
 "Prepísa» zmeny?"
 
-#: Pyblio/GnomeUI/Document.py:636
+#: Pyblio/GnomeUI/Document.py:480
 #, c-format
 msgid ""
 "Unable to save `%s':\n"
@@ -553,7 +529,7 @@ msgstr ""
 "Nie je mo¾né ulo¾i» `%s':\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:644
+#: Pyblio/GnomeUI/Document.py:488
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -561,11 +537,11 @@ msgstr ""
 "Vyskytla sa interná chyba poèas ukladania\n"
 "Skúste Ulo¾i» ako..."
 
-#: Pyblio/GnomeUI/Document.py:658
+#: Pyblio/GnomeUI/Document.py:502
 msgid "Save As..."
 msgstr "Ulo¾i» ako..."
 
-#: Pyblio/GnomeUI/Document.py:664
+#: Pyblio/GnomeUI/Document.py:508
 #, c-format
 msgid ""
 "The file `%s' already exists.\n"
@@ -574,7 +550,7 @@ msgstr ""
 "Súbor `%s' u¾ existuje.\n"
 "Prepísa» ho?"
 
-#: Pyblio/GnomeUI/Document.py:671
+#: Pyblio/GnomeUI/Document.py:515
 #, c-format
 msgid ""
 "During opening:\n"
@@ -583,11 +559,11 @@ msgstr ""
 "Poèas otvárania:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:689
+#: Pyblio/GnomeUI/Document.py:533
 msgid "Reopen error"
 msgstr "Chyba pri opätovnom otváraní"
 
-#: Pyblio/GnomeUI/Document.py:730
+#: Pyblio/GnomeUI/Document.py:574
 #, c-format
 msgid ""
 "An entry called `%s' already exists.\n"
@@ -596,30 +572,30 @@ msgstr ""
 "Polo¾ka, nazvaná ako `%s', u¾ existuje\n"
 "Premenova» ju, alebo aj napriek tomu ju prida»?"
 
-#: Pyblio/GnomeUI/Document.py:767
+#: Pyblio/GnomeUI/Document.py:611
 msgid "Really remove all the entries ?"
 msgstr "Skutoène odstráni» v¹etky polo¾ky ?"
 
-#: Pyblio/GnomeUI/Document.py:787
+#: Pyblio/GnomeUI/Document.py:631
 msgid "Create new entry"
 msgstr "Vytvori» novú polo¾ku"
 
-#: Pyblio/GnomeUI/Document.py:801
+#: Pyblio/GnomeUI/Document.py:645
 #, c-format
 msgid "Really edit %d entries ?"
 msgstr "Skutoène upravi» %d polo¾iek?"
 
-#: Pyblio/GnomeUI/Document.py:839
+#: Pyblio/GnomeUI/Document.py:683
 #, c-format
 msgid "Remove all the %d entries ?"
 msgstr "Odstráni» v¹etky %d polo¾ky?"
 
-#: Pyblio/GnomeUI/Document.py:841
+#: Pyblio/GnomeUI/Document.py:685
 #, c-format
 msgid "Remove entry `%s' ?"
 msgstr "Odstráni» polo¾ku `%s'?"
 
-#: Pyblio/GnomeUI/Document.py:911 Pyblio/GnomeUI/Document.py:918
+#: Pyblio/GnomeUI/Document.py:755 Pyblio/GnomeUI/Document.py:762
 #, c-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -628,7 +604,7 @@ msgstr ""
 "Nie je mo¾né sa pripoji» k LyXu: \n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:998
+#: Pyblio/GnomeUI/Document.py:840
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -636,15 +612,15 @@ msgstr ""
 "Nain¹talujte si prosím bug-buddy,\n"
 "ak chcete pou¾íva» túto vlastnos»"
 
-#: Pyblio/GnomeUI/Document.py:1009
+#: Pyblio/GnomeUI/Document.py:851
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Tento program je autorsky chránený cez GNU GPL"
 
-#: Pyblio/GnomeUI/Document.py:1011
+#: Pyblio/GnomeUI/Document.py:853
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Gnome rozhranie pre systém Pybliographer."
 
-#: Pyblio/GnomeUI/Document.py:1016
+#: Pyblio/GnomeUI/Document.py:858
 msgid "Pybliographer Home Page"
 msgstr "Domovská stránka Pybliographera"
 
