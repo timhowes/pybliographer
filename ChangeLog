@@ -1,3 +1,8 @@
+2001-03-28  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* configure.in: handled the case where no DISPLAY is available
+	during configuration (this breaks importing gtk)
+
 2001-01-15  Fatih Demir	<kabalak@gmx.net>
 
 	* configure.in: Added tr to ALL_LINGUAS and

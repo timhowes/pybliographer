@@ -156,11 +156,15 @@ if ${Python} -c 'import gnome' >&5 2>&1 ; then
   dnl Check if Gtk/GNOME is new enough
   AC_MSG_CHECKING([for Gnome-Python threads])
 
-  if ${Python} -c 'import gtk ; print gtk.threads_leave' >&5 2>&1 ; then
-    AC_MSG_RESULT([found])
+  if test "x${DISPLAY}" = "x" ; then
+    AC_MSG_RESULT([skipped (no display)])
   else
-    AC_MSG_RESULT([not found])
-    AC_MSG_ERROR([this version is too old. Please install gnome-python, version >= 1.0.52])
+    if ${Python} -c 'import gtk ; print gtk.threads_leave' >&5 2>&1 ; then
+      AC_MSG_RESULT([found])
+    else
+      AC_MSG_RESULT([not found])
+      AC_MSG_ERROR([this version is too old. Please install gnome-python, version >= 1.0.52])
+    fi
   fi
 
   AC_MSG_CHECKING([for a working GdkImlib])
