@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-1999 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -22,9 +22,10 @@
 pybdir = $(datadir)/$(PACKAGE)/Pyblio/GnomeUI
 
 EXTRA_DIST = 	__init__.py	\
-		Config.py	\
+		Document.py	\
 		FieldsInfo.py 	\
-		Database.py 	\
+		Index.py 	\
+		Editor.py	\
 		Entry.py 	\
 		Search.py	\
 		Utils.py	\

@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -28,6 +28,7 @@ import string, re, sys, traceback, copy
 from Pyblio import Types, Search, Config
 
 from Pyblio.GnomeUI import Utils
+from Pyblio.Connector import Publisher
 
 import Pyblio.GnomeUI.Database
 import Pyblio.TextUI
@@ -36,18 +37,10 @@ import gettext
 _ = gettext.gettext
 
 
-def popup_add (menu, item, action = None, argument = None):
-    ''' Helper to add a new menu entry '''
-    tmp = GtkMenuItem (item)
-    if action:
-        tmp.connect ('activate', action, argument)
-    tmp.show ()
-    menu.append (tmp)
-    
-    return tmp
-
 class ItemStorage (GtkTreeItem):
-
+    ''' Extension to TreeItem that stores additional information about
+    the search nodes '''
+    
     def __init__ (self, name, data):
         GtkTreeItem.__init__ (self, name)
 
@@ -111,7 +104,7 @@ class ItemStorage (GtkTreeItem):
             
         return None
     
-class SearchDialog (GtkDialog):
+class SearchDialog (GtkDialog, Publisher):
     ''' Search Dialog '''
     
     def __init__ (self, data):
@@ -198,7 +191,7 @@ class SearchDialog (GtkDialog):
         self.root_tree.connect ('button_press_event', self.popup_menu)
 
         self.menu = GtkMenu ()
-        self.delete_button = popup_add (self.menu, _("Delete"),  self.search_delete)
+        self.delete_button = Utils.popup_add (self.menu, _("Delete"),  self.search_delete)
         self.menu.show ()
 
         self.root_item = None
@@ -206,14 +199,12 @@ class SearchDialog (GtkDialog):
         return
 
     def create_root_item (self, data):
-        self.data = data
-
         if self.root_item:
             self.root_item.remove_subtree ()
             self.root_tree.remove (self.root_item)
             
         # initialize the tree with the full database
-        self.root_item = ItemStorage (_("Full database"), self.data.data)
+        self.root_item = ItemStorage (_("Full database"), data)
         self.root_tree.append (self.root_item)
         self.root_item.show ()
 
@@ -223,7 +214,8 @@ class SearchDialog (GtkDialog):
     
     
     def apply (self, widget):
-        if self.data.data is None: return
+        if self.root_item.data is None: return
+        
         page = self.notebook.get_current_page ()
 
         name = None
@@ -362,15 +354,16 @@ class SearchDialog (GtkDialog):
         data = self.root_item.search (selection).data
         
         if data is None: return
+
+        if selection == self.root_item:
+            subset = -1
+        else:
+            subset = len (data)
+            
+        self.issue ('select-subset', data, subset)
         
-        if data.key != self.data.data.key:
-            Utils.set_cursor (self, 'clock')
-            self.data.set (data)
-            Utils.set_cursor (self, 'normal')
-            
-            self.status.pop (1)
-            self.status.push (1, _("%d matches in this node") % len (data))
-            
+        self.status.pop (1)
+        self.status.push (1, _("%d matches in this node") % len (data))
         return
 
     

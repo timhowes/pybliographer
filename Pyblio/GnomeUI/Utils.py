@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -42,16 +42,13 @@ cursor ['normal'] = cursor_new (68)
 def set_cursor (self, name):
     if not Config.get ('gnomeui/threads').data: return
 
-    self.get_window ().set_cursor (cursor [name])
-        
-    # not necessary with Gtk+-1.2.5
-    # threads_leave ()
+    window = self.get_window ()
+    if not window: return
     
+    window.set_cursor (cursor [name])
+        
     while events_pending ():
         mainiteration (FALSE)
-    
-    # not necessary with Gtk+-1.2.5
-    # threads_enter ()
     return
 
 def popup_add (menu, item, action = None, argument = None):
@@ -88,6 +85,8 @@ def error_dialog (title, err):
 color = {}
 
 def init_colors (colormap):
+    if color: return
+    
     color [' colormap '] = colormap
     
     color ['red']  = colormap.alloc ('red')
@@ -95,3 +94,16 @@ def init_colors (colormap):
     return
 
 
+class Callback:
+    def __init__ (self):
+        self.ans = 0
+        return
+
+    def answer (self):
+        mainloop ()
+        return self.ans
+
+    def callback (self, button):
+        self.ans = button == 0
+        mainquit ()
+        return
