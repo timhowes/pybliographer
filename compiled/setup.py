@@ -96,7 +96,7 @@ if rebuild ('biblex.l', ['biblex.c']):
 # Actual compilation
 
 setup (name = "bibtex",
-       version = "1.0",
+       version = "1.1.90",
 
        description = "A Python extension to parse BibTeX files",
        author = "Frederic Gobry",
