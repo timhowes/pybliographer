@@ -338,28 +338,186 @@ class Document (Connector.Publisher):
 
         def dlg_cb_2 (dummy): return
         
-        dlg = GnomeOkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
+        #################################################
+        # Changes to Document.py by John Vu starts here #
+        #################################################
         
-        key_w = GtkEntry()
-        adj   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
-        max_w = GtkSpinButton (adj=adj, digits=0)
+        # Load up the past search queries by reading the file .pybsearchhis in the user's home directory; otherwise, the list will be empty via the searchhistory = [''] command
+        try:
+            pybsearchhis = open(os.path.expanduser('~')+'/.pybsearchhis', 'r')
+            searchhistory = pybsearchhis.readlines()
+            pybsearchhis.close()
+        except IOError:
+            searchhistory = ['']
+        
+        # get rid of newline character so that search history is displayed correctly in the combobox
+        for x in range(0,len(searchhistory)):
+            searchhistory[x] = string.replace(searchhistory[x],'\n','') 
 
-        dlg.vbox.pack_start (GtkLabel (_("Search string")))
-        dlg.vbox.pack_start (key_w)
+        dlg = GnomeOkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
+        key_w_combo = GtkCombo() # make it a combo box so that past search entries can be viewed
+        key_w_combo.set_popdown_strings(searchhistory)
+        key_w = key_w_combo.entry # the query string will be loaded onto key_w assigned here
+        key_w.set_text ('') # the entry should be empty; if this option is not set, the first list item will show instead
         key_w.set_editable (TRUE)
+        adj1   = GtkAdjustment (100, 0, 10000, 1.0, 100.0, 0.0)
+        adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
+        max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
+        disp_s = GtkSpinButton (adj=adj2, digits=0) # disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
+
+        hbox1 = GtkHBox()
+        hbox1.pack_start (GtkLabel (_("Search PubMed for: ")))
+        hbox1.pack_start (key_w_combo)
+        hbox1.pack_start (GtkLabel (_("Maximum number\nof results: ")))
+        hbox1.pack_start (max_w)
+        hbox1.pack_start (GtkLabel (_("Start listing at\nresult number: ")))
+        hbox1.pack_start (disp_s)
+        dlg.vbox.pack_start (hbox1)
         
-        dlg.vbox.pack_start (GtkLabel (_("Maximum number of results")))
-        dlg.vbox.pack_start (max_w)
+        hseparator1 = GtkHSeparator()
+        dlg.vbox.pack_start (hseparator1)
+
+        # Print partial instructions on use of the limits
+        hbox2 = GtkHBox()
+        instructions = GtkLabel ("o   Leave options below unchanged if you do not want your search limited.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Boolean operators AND, OR, NOT must be in upper case.\no   If search fields tags are used, enclose in square brackets with no space\n     between the search term and the tag, e.g., rubella[ti].\no   Search limits may exclude \"in process\" and \"publisher supplied\" citations.\no   For more help goto: http://www.ncbi.nlm.nih.gov:80/entrez/query/static/help/pmhelp.html")
+        instructions.set_justify (0) # LEFT justify the instructions
+        hbox2.pack_start (instructions)
+        dlg.vbox.pack_start (hbox2)
+
+        hseparator2 = GtkHSeparator()
+        dlg.vbox.pack_start (hseparator2)
+        dlg.vbox.pack_start (GtkLabel (_("Limited to:")))
+
+        # Below are all the limits allowable. All entries are not editable, except for the date entries.
+        hbox3 = GtkHBox()
+        field_combo = GtkCombo()
+        field_combo.set_popdown_strings (['All Fields', 'Affiliation', 'Author Name', 'EC/RN Number', 'Entrez Date', 'Filter', 'Issue', 'Journal Name', 'Language', 'MeSH Date', 'MeSH Major Topic', 'MeSH Subheading', 'MeSH Terms', 'Pagination', 'Publication Date', 'Publication Type', 'Secondary Source ID', 'Substance Name', 'Text Word', 'Title', 'Title/Abstract', 'UID', 'Volume'])
+        field_combo_entry = field_combo.entry
+        field_combo_entry.set_text ('All Fields')
+        GtkEditable.set_editable(field_combo_entry,0) # command to prevent the user from editing the limit
+        hbox3.pack_start (field_combo)
+        checkbutton1 = GtkCheckButton (label='Only items\nwith abstracts')
+        hbox3.pack_start (checkbutton1)
+        checkbutton2 = GtkCheckButton (label='Only items\nahead of print')
+        hbox3.pack_start (checkbutton2)
+        dlg.vbox.pack_start (hbox3)
+
+        hbox4 = GtkHBox()
+        pub_type_combo = GtkCombo()
+        
+        pub_type_combo.set_popdown_strings (['Publication Types', 'Addresses', 'Bibliography', 'Biography', 'Classical Article', 'Clinical Conference', 'Clinical Trial', 'Clinical Trial, Phase I', 'Clinical Trial, Phase II', 'Clinical Trial, Phase III', 'Clinical Trial, Phase IV', 'Comment', 'Congresses', 'Consensus Development Conference', 'Consensus Development Conference, NIH', 'Controlled Clinical Trial', 'Corrected and Republished Article', 'Dictionary', 'Directory', 'Duplicate Publication', 'Editorial', 'Evaluation Studies', 'Festschrift', 'Government Publications', 'Guideline', 'Historical Article', 'Interview', 'Journal Article', 'Lectures', 'Legal Cases', 'Legislation', 'Letter', 'Meta-Analysis', 'Multicenter Study', 'News', 'Newspaper Article', 'Overall', 'Periodical Index', 'Practice Guideline', 'Published Erratum', 'Randomized Controlled Trial', 'Retraction of Publication', 'Retracted Publication', 'Review', 'Review, Academic', 'Review Literature', 'Review, Multicase', 'Review of Reported Cases', 'Review, Tutorial', 'Scientific Integrity Review', 'Technical Report', 'Twin Study', 'Validation Studies'])
+        
+        pub_type_combo_entry = pub_type_combo.entry
+        pub_type_combo_entry.set_text ('Publication Types')
+        GtkEditable.set_editable (pub_type_combo_entry,0) # again, entry not editable, only selectable
+        hbox4.pack_start (pub_type_combo)
+        lang_combo = GtkCombo ()
+        lang_combo.set_popdown_strings (['Languages', 'English', 'French', 'German', 'Italian', 'Japanese', 'Russian', 'Spanish'])
+        lang_combo_entry = lang_combo.entry
+        lang_combo_entry.set_text ('Languages')
+        GtkEditable.set_editable (lang_combo_entry,0)
+        hbox4.pack_start (lang_combo)
+        subset_combo = GtkCombo()
+        subset_combo.set_popdown_strings (['Subsets', 'AIDS', 'AIDS/HIV journals', 'Bioethics', 'Bioethics journals',  'Biotechnology journals', 'Communication disorders journals', 'Complementary and Alternative Medicine', 'Consumer health journals', 'Core clinical journals', 'Dental journals', 'Health administration journals', 'Health tech assessment journals', 'History of Medicine', 'History of Medicine journals', 'In process', 'Index Medicus journals', 'MEDLINE', 'NASA journals', 'Nursing journals', 'PubMed Central', 'Reproduction journals', 'Space Life Sciences', 'Supplied by Publisher', 'Toxicology'])
+        subset_combo_entry = subset_combo.entry
+        subset_combo_entry.set_text ('Subsets')
+        GtkEditable.set_editable (subset_combo_entry,0)
+        hbox4.pack_start (subset_combo)
+        dlg.vbox.pack_start (hbox4)
+
+        hbox5 = GtkHBox()
+        age_range_combo = GtkCombo ()
+        age_range_combo.set_popdown_strings (['Ages', 'All Infant: birth-23 month', 'All Child: 0-18 years', 'All Adult: 19+ years', 'Newborn: birth-1 month', 'Infant: 1-23 months', 'Preschool Child: 2-5 years', 'Child: 6-12 years', 'Adolescent: 13-18 years', 'Adult: 19-44 years', 'Middle Aged: 45-64 years', 'Aged: 65+ years', '80 and over: 80+ years'])
+        age_range_combo_entry = age_range_combo.entry
+        age_range_combo_entry.set_text ('Ages')
+        GtkEditable.set_editable (age_range_combo_entry,0)
+        hbox5.pack_start (age_range_combo)
+        human_animal_combo = GtkCombo ()
+        human_animal_combo.set_popdown_strings (['Human or Animal', 'Human', 'Animal'])
+        human_animal_combo_entry = human_animal_combo.entry
+        human_animal_combo_entry.set_text ('Human or Animal')
+        GtkEditable.set_editable (human_animal_combo_entry,0)
+        hbox5.pack_start (human_animal_combo)
+        gender_combo = GtkCombo ()
+        gender_combo.set_popdown_strings (['Gender', 'Female', 'Male'])
+        gender_combo_entry = gender_combo.entry
+        gender_combo_entry.set_text ('Gender')
+        GtkEditable.set_editable (gender_combo_entry,0)
+        hbox5.pack_start (gender_combo)
+        dlg.vbox.pack_start (hbox5)
+
+        hbox6 = GtkHBox ()
+        entrez_date_combo = GtkCombo ()
+        entrez_date_combo.set_popdown_strings (['Entrez Date', '30 Days', '60 Days', '90 Days', '180 Days', '1 Year', '2 Years', '5 Years', '10 Years'])
+        entrez_date_combo_entry = entrez_date_combo.entry
+        entrez_date_combo_entry.set_text ('Entrez Date')
+        GtkEditable.set_editable (entrez_date_combo_entry,0)
+        hbox6.pack_start (entrez_date_combo)
+        dlg.vbox.pack_start (hbox6)
+
+        hbox7 = GtkHBox ()
+        pub_date_combo = GtkCombo ()
+        pub_date_combo.set_popdown_strings (['Publication Date', 'Entrez Date'])
+        pub_date_combo_entry = pub_date_combo.entry
+        pub_date_combo_entry.set_text ('Publication Date')
+        GtkEditable.set_editable (pub_date_combo_entry,0)
+        hbox7.pack_start (pub_date_combo)
+        hbox7.pack_start (GtkLabel (_("From:")))
+        from_date_entry = GtkEntry ()
+        hbox7.pack_start (from_date_entry)
+        hbox7.pack_start (GtkLabel (_("To:")))        
+        to_date_entry = GtkEntry ()
+        hbox7.pack_start (to_date_entry)
+        dlg.vbox.pack_start (hbox7)
+
+        hbox8 = GtkHBox ()
+        hbox8.pack_start (GtkLabel (_("Use the format YYYY/MM/DD; month and day are optional.")))
+        dlg.vbox.pack_start (hbox8)
         
         dlg.show_all ()
         dlg.run_and_close ()
         
         keyword  = string.strip (key_w.get_text ())
         maxcount = max_w.get_value_as_int ()
-        
+        displaystart = disp_s.get_value_as_int ()
+        field = field_combo_entry.get_text ()
+        abstract = checkbutton1.get_active ()
+        epubahead = checkbutton2.get_active ()
+        pubtype = pub_type_combo_entry.get_text ()
+        language = lang_combo_entry.get_text ()
+        subset = subset_combo_entry.get_text ()
+        agerange = age_range_combo_entry.get_text ()
+        humananimal = human_animal_combo_entry.get_text ()
+        gender = gender_combo_entry.get_text ()
+        entrezdate = entrez_date_combo_entry.get_text ()
+        pubdate = pub_date_combo_entry.get_text ()
+        fromdate = from_date_entry.get_text ()
+        todate = to_date_entry.get_text ()
+
+        # Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
+        for x in range(0,len(searchhistory)):
+            searchhistory[x] = searchhistory[x] + '\n'
+
         if keyword == "": return
-        
-        url = Query.medline_query (keyword, maxcount)
+        else: # save keyword to medline search history if it's a valid keyword
+            if len(searchhistory) < 10: # I only want a maximum of the 10 most recent keywords
+                searchhistory.insert(0,keyword+'\n') # I don't want to append to the list, I want to add the most recent search term at the top of the list
+            else:
+                searchhistory[9] = '' # essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
+                searchhistory.insert(0,keyword+'\n')
+            try:
+                pybsearchhis = open(os.path.expanduser('~')+'/.pybsearchhis','w') # save the search history to the .pybsearchhis file in the user's home dir
+                pybsearchhis.writelines(searchhistory)
+                pybsearchhis.close()
+            except IOError:
+                print "Can't save search history."
+
+        # Call the actual function to do the search and then return the results into url: 16 parameters passed altogether
+        url = Query.medline_query (keyword,maxcount,displaystart,field,abstract,epubahead,pubtype,language,subset,agerange,humananimal,gender,entrezdate,pubdate,fromdate,todate)
+
+        ###############################################
+        # Changes to Document.py by John Vu ends here #
+        ###############################################
         
         self.open_document (url, 'medline', no_name = TRUE)
         return
