@@ -1,6 +1,6 @@
 # Swedish messages for pybliographer.
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Christian Rose <menthos@menthos.com>, 2000.
+# Copyright (C) 2000, 2001 Free Software Foundation, Inc.
+# Christian Rose <menthos@menthos.com>, 2000, 2001.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000.
 #
 # $Id$
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2001-01-09 18:27+0100\n"
-"PO-Revision-Date: 2000-11-16 11:57+0100\n"
+"POT-Creation-Date: 2001-11-30 02:50+0100\n"
+"PO-Revision-Date: 2001-11-30 02:50+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Ogiltig månad"
 msgid "Illegal day value"
 msgstr "Ogiltig dag"
 
-#: Pyblio/Fields.py:438
+#: Pyblio/Fields.py:439
 #, c-format
 msgid "in %s"
 msgstr "i %s"
@@ -121,12 +121,12 @@ msgid "method `%s' provides no iterator"
 msgstr "metoden \"%s\" tillhandahåller ingen iterator"
 
 # .././Pyblio/Format/BibTeX.py:345 :403
-#: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
+#: Pyblio/Format/BibTeX.py:347 Pyblio/Format/BibTeX.py:405
 #, c-format
 msgid "key `%s' is malformed"
 msgstr "nyckeln \"%s\" har felaktigt format"
 
-#: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
+#: Pyblio/Format/BibTeX.py:368 Pyblio/Format/BibTeX.py:389
 #, c-format
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d nyckeln \"%s\" är redan definierad"
@@ -216,7 +216,7 @@ msgstr "Ursprungsredigering"
 msgid "Standard Editing"
 msgstr "Standardredigering"
 
-#: Pyblio/GnomeUI/Document.py:195 Pyblio/GnomeUI/Document.py:209
+#: Pyblio/GnomeUI/Document.py:196 Pyblio/GnomeUI/Document.py:210
 #: Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
 msgstr "Fil"
@@ -330,91 +330,95 @@ msgstr "_Nytt"
 msgid "_Merge with..."
 msgstr "Slå _ihop med..."
 
-#: Pyblio/GnomeUI/Document.py:58
+#: Pyblio/GnomeUI/Document.py:55
+msgid "Medline Query..."
+msgstr "Medline-fråga..."
+
+#: Pyblio/GnomeUI/Document.py:59
 msgid "_Previous Documents"
 msgstr "_Föregående dokument"
 
-#: Pyblio/GnomeUI/Document.py:65
+#: Pyblio/GnomeUI/Document.py:66
 msgid "About..."
 msgstr "Om..."
 
-#: Pyblio/GnomeUI/Document.py:66
+#: Pyblio/GnomeUI/Document.py:67
 msgid "Submit a Bug Report"
 msgstr "Skicka felrapport"
 
-#: Pyblio/GnomeUI/Document.py:78
+#: Pyblio/GnomeUI/Document.py:79
 msgid "_Add..."
 msgstr "_Lägg till..."
 
-#: Pyblio/GnomeUI/Document.py:79
+#: Pyblio/GnomeUI/Document.py:80
 msgid "_Edit..."
 msgstr "R_edigera..."
 
-#: Pyblio/GnomeUI/Document.py:80
+#: Pyblio/GnomeUI/Document.py:81
 msgid "_Delete"
 msgstr "Ta _bort"
 
-#: Pyblio/GnomeUI/Document.py:83
+#: Pyblio/GnomeUI/Document.py:84
 msgid "S_ort..."
 msgstr "S_ortera..."
 
-#: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
+#: Pyblio/GnomeUI/Document.py:88 Pyblio/GnomeUI/Document.py:102
 msgid "_Cite"
 msgstr "_Citera"
 
-#: Pyblio/GnomeUI/Document.py:88
+#: Pyblio/GnomeUI/Document.py:89
 msgid "_Format..."
 msgstr "_Format..."
 
-#: Pyblio/GnomeUI/Document.py:92
+#: Pyblio/GnomeUI/Document.py:93
 msgid "_Fields..."
 msgstr "_Fält..."
 
-#: Pyblio/GnomeUI/Document.py:93
+#: Pyblio/GnomeUI/Document.py:94
 msgid "_Entries..."
 msgstr "_Poster..."
 
-#: Pyblio/GnomeUI/Document.py:99
+#: Pyblio/GnomeUI/Document.py:100
 msgid "_File"
 msgstr "_Arkiv"
 
-#: Pyblio/GnomeUI/Document.py:100
+#: Pyblio/GnomeUI/Document.py:101
 msgid "_Edit"
 msgstr "R_edigera"
 
-#: Pyblio/GnomeUI/Document.py:102
+#: Pyblio/GnomeUI/Document.py:103
 msgid "_Settings"
 msgstr "_Inställningar"
 
-#: Pyblio/GnomeUI/Document.py:103
+#: Pyblio/GnomeUI/Document.py:104
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: Pyblio/GnomeUI/Document.py:107
+#: Pyblio/GnomeUI/Document.py:108
 msgid "Open"
 msgstr "Öppna"
 
-#: Pyblio/GnomeUI/Document.py:108
+#: Pyblio/GnomeUI/Document.py:109
 msgid "Save"
 msgstr "Spara"
 
-#: Pyblio/GnomeUI/Document.py:110
+#: Pyblio/GnomeUI/Document.py:111
 msgid "Find"
 msgstr "Sök"
 
-#: Pyblio/GnomeUI/Document.py:111
+#: Pyblio/GnomeUI/Document.py:112
 msgid "Cite"
 msgstr "Citera"
 
-#: Pyblio/GnomeUI/Document.py:113
+#: Pyblio/GnomeUI/Document.py:114
 msgid "Close"
 msgstr "Stäng"
 
-#: Pyblio/GnomeUI/Document.py:195 Pyblio/GnomeUI/Document.py:209
+#: Pyblio/GnomeUI/Document.py:196 Pyblio/GnomeUI/Document.py:210
 msgid "Previous Documents"
 msgstr "Föregående dokument"
 
-#: Pyblio/GnomeUI/Document.py:231
+#: Pyblio/GnomeUI/Document.py:232
 #, c-format
 msgid ""
 "can't open file `%s' for writing:\n"
@@ -423,7 +427,7 @@ msgstr ""
 "Kan inte öppna filen \"%s\" för skrivning:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:252
+#: Pyblio/GnomeUI/Document.py:253
 #, c-format
 msgid ""
 "Error while parsing `%s':\n"
@@ -432,38 +436,38 @@ msgstr ""
 "Fel vid läsning av \"%s\":\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:271
+#: Pyblio/GnomeUI/Document.py:272
 msgid "New database"
 msgstr "Ny databas"
 
-#: Pyblio/GnomeUI/Document.py:279 Pyblio/GnomeUI/Document.py:283
+#: Pyblio/GnomeUI/Document.py:280 Pyblio/GnomeUI/Document.py:284
 msgid "[no entry]"
 msgstr "[ingen post]"
 
-#: Pyblio/GnomeUI/Document.py:280
+#: Pyblio/GnomeUI/Document.py:281
 msgid "[1 entry]"
 msgstr "[1 post]"
 
-#: Pyblio/GnomeUI/Document.py:281
+#: Pyblio/GnomeUI/Document.py:282
 #, c-format
 msgid "[%d entries]"
 msgstr "[%d poster]"
 
-#: Pyblio/GnomeUI/Document.py:284
+#: Pyblio/GnomeUI/Document.py:285
 #, c-format
 msgid "[%d/1 entry]"
 msgstr "[%d/1 post]"
 
-#: Pyblio/GnomeUI/Document.py:285
+#: Pyblio/GnomeUI/Document.py:286
 #, c-format
 msgid "[%d/%d entries]"
 msgstr "[%d/%d poster]"
 
-#: Pyblio/GnomeUI/Document.py:290
+#: Pyblio/GnomeUI/Document.py:291
 msgid "[modified]"
 msgstr "[ändrad]"
 
-#: Pyblio/GnomeUI/Document.py:300
+#: Pyblio/GnomeUI/Document.py:301
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
@@ -471,23 +475,35 @@ msgstr ""
 "Databasen har ändrats.\n"
 "Släng bort ändringarna?"
 
-#: Pyblio/GnomeUI/Document.py:316
+#: Pyblio/GnomeUI/Document.py:321
+msgid "Enter your Medline query"
+msgstr "Ange din Medline-fråga"
+
+#: Pyblio/GnomeUI/Document.py:327
+msgid "Search string"
+msgstr "Sök sträng"
+
+#: Pyblio/GnomeUI/Document.py:331
+msgid "Maximum number of results"
+msgstr "Maximalt antal resultat"
+
+#: Pyblio/GnomeUI/Document.py:351
 msgid "Merge file"
 msgstr "Lägg till filen"
 
-#: Pyblio/GnomeUI/Document.py:328 Pyblio/GnomeUI/Document.py:388
+#: Pyblio/GnomeUI/Document.py:363 Pyblio/GnomeUI/Document.py:423
 msgid "Open error"
 msgstr "Fel vid öppning"
 
-#: Pyblio/GnomeUI/Document.py:352
+#: Pyblio/GnomeUI/Document.py:387
 msgid "Merge status"
 msgstr "Ihopslagningsstatus"
 
-#: Pyblio/GnomeUI/Document.py:363
+#: Pyblio/GnomeUI/Document.py:398
 msgid "Open file"
 msgstr "Öppna fil"
 
-#: Pyblio/GnomeUI/Document.py:413
+#: Pyblio/GnomeUI/Document.py:450
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
@@ -495,7 +511,7 @@ msgstr ""
 "Databasen har ändrats från utanför programmet.\n"
 "Skriv över ändringarna?"
 
-#: Pyblio/GnomeUI/Document.py:423
+#: Pyblio/GnomeUI/Document.py:460
 #, c-format
 msgid ""
 "Unable to save `%s':\n"
@@ -504,7 +520,7 @@ msgstr ""
 "Kunde inte spara \"%s\":\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:431
+#: Pyblio/GnomeUI/Document.py:468
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -512,11 +528,11 @@ msgstr ""
 "Ett internt fel uppstod vid sparning\n"
 "Försöker spara som..."
 
-#: Pyblio/GnomeUI/Document.py:445
+#: Pyblio/GnomeUI/Document.py:482
 msgid "Save As..."
 msgstr "Spara som..."
 
-#: Pyblio/GnomeUI/Document.py:451
+#: Pyblio/GnomeUI/Document.py:488
 #, c-format
 msgid ""
 "The file `%s' already exists.\n"
@@ -525,7 +541,7 @@ msgstr ""
 "Filen \"%s\" finns redan redan.\n"
 "Vill du skriva över den?"
 
-#: Pyblio/GnomeUI/Document.py:458
+#: Pyblio/GnomeUI/Document.py:495
 #, c-format
 msgid ""
 "During opening:\n"
@@ -534,11 +550,11 @@ msgstr ""
 "Vid öppnande:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:478
+#: Pyblio/GnomeUI/Document.py:513
 msgid "Reopen error"
 msgstr "Återöppningsfel"
 
-#: Pyblio/GnomeUI/Document.py:519
+#: Pyblio/GnomeUI/Document.py:554
 #, c-format
 msgid ""
 "An entry called `%s' already exists.\n"
@@ -547,31 +563,31 @@ msgstr ""
 "En post som heter \"%s\" finns redan.\n"
 "Vill du döpa om och lägga till i alla fall?"
 
-#: Pyblio/GnomeUI/Document.py:556
+#: Pyblio/GnomeUI/Document.py:591
 msgid "Really remove all the entries ?"
 msgstr "Vill du verkligen ta bort alla poster?"
 
-#: Pyblio/GnomeUI/Document.py:576
+#: Pyblio/GnomeUI/Document.py:611
 msgid "Create new entry"
 msgstr "Skapa ny post"
 
-#: Pyblio/GnomeUI/Document.py:590
+#: Pyblio/GnomeUI/Document.py:625
 #, c-format
 msgid "Really edit %d entries ?"
 msgstr "Vill du verkligen ta bort %d poster?"
 
 # hoppas att ja fungerar som svar KONTROLLERA!
-#: Pyblio/GnomeUI/Document.py:628
+#: Pyblio/GnomeUI/Document.py:663
 #, c-format
 msgid "Remove all the %d entries ?"
 msgstr "Vill du verkligen ta bort alla %d poster?"
 
-#: Pyblio/GnomeUI/Document.py:630
+#: Pyblio/GnomeUI/Document.py:665
 #, c-format
 msgid "Remove entry `%s' ?"
 msgstr "Ta bort post \"%s\"?"
 
-#: Pyblio/GnomeUI/Document.py:696 Pyblio/GnomeUI/Document.py:703
+#: Pyblio/GnomeUI/Document.py:731 Pyblio/GnomeUI/Document.py:738
 #, c-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -580,7 +596,7 @@ msgstr ""
 "Kan inte ansluta till LyX:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:750
+#: Pyblio/GnomeUI/Document.py:785
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
@@ -588,15 +604,15 @@ msgstr ""
 "Du måste installera bug-buddy\n"
 "för att använda den här finessen"
 
-#: Pyblio/GnomeUI/Document.py:761
+#: Pyblio/GnomeUI/Document.py:796
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Detta program är copyrightskyddad under GNU GPL"
 
-#: Pyblio/GnomeUI/Document.py:763
+#: Pyblio/GnomeUI/Document.py:798
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Gnome-gränssnitt till Pybliographer-systemet."
 
-#: Pyblio/GnomeUI/Document.py:768
+#: Pyblio/GnomeUI/Document.py:803
 msgid "Pybliographer Home Page"
 msgstr "Pybliographers hemsida"
 
@@ -756,65 +772,65 @@ msgstr ""
 "\thelp     för att få hjälp\n"
 "\tquit     för att avsluta\n"
 
-#: scripts/pybcompact.py:30
+#: scripts/pybcompact.py:29
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
 msgstr "användning: pybcompact <latexfil> <bibtexfiler...>"
 
-#: scripts/pybcompact.py:34
+#: scripts/pybcompact.py:33
 #, c-format
 msgid "pybcompact: error: %s\n"
 msgstr "pybcompact: fel: %s\n"
 
-#: scripts/pybcompact.py:97
+#: scripts/pybcompact.py:96
 msgid "no entry"
 msgstr "ingen post"
 
-#: scripts/pybcompact.py:142
+#: scripts/pybcompact.py:141
 #, c-format
 msgid "can't find the following entries: %s"
 msgstr "kan inte hitta följande poster: %s"
 
-#: scripts/pybconvert.py:29
+#: scripts/pybconvert.py:28
 msgid "usage: pybconvert <source>..<target> <input> [output]"
 msgstr "användning: pybconvert <källa>..<mål> <indata> [utdata]"
 
-#: scripts/pybconvert.py:38
+#: scripts/pybconvert.py:37
 msgid "pybconvert: bad conversion format"
 msgstr "pybconvert: felaktigt konverteringsformat"
 
-#: scripts/pybformat.py:34
+#: scripts/pybformat.py:33
 msgid "usage: pybformat [bibtexfiles...]\n"
 msgstr "användning: pybformat [bibtexfiler...]\n"
 
-#: scripts/pybformat.py:38
+#: scripts/pybformat.py:37
 #, c-format
 msgid "pybformat: error: %s\n"
 msgstr "pybformat: fel: %s\n"
 
-#: scripts/pybformat.py:44
+#: scripts/pybformat.py:43
 #, c-format
 msgid "pybformat: warning: %s\n"
 msgstr "pybformat: varning: %s\n"
 
-#: scripts/pybformat.py:141 scripts/pybtex.py:86
+#: scripts/pybformat.py:140 scripts/pybtex.py:85
 #, c-format
 msgid "can't find style `%s'"
 msgstr "kan inte hitta stilen \"%s\""
 
-#: scripts/pybtex.py:34
+#: scripts/pybtex.py:33
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
 msgstr "användning: pybtex <latexfil> [bibtexfiler...]"
 
-#: scripts/pybtex.py:38
+#: scripts/pybtex.py:37
 #, c-format
 msgid "pybtex: error: %s\n"
 msgstr "pybtex: fel: %s\n"
 
-#: scripts/pybtex.py:59
+#: scripts/pybtex.py:58
 msgid "pybtex: warning: the following keys were not resolved"
 msgstr "pybtex: varning: följande nycklar hittades inte"
 
-#: scripts/pybtex.py:64
+#: scripts/pybtex.py:63
 msgid "no style defined"
 msgstr "ingen stil definierad"
 
@@ -842,8 +858,8 @@ msgstr "ingen stil definierad"
 #~ msgid ""
 #~ "Links from `real' date field to the two bibtex fields that compose it"
 #~ msgstr ""
-#~ "Länkar från \"riktiga\" datumfältet till de två BiBTeX-fälten som bygger upp "
-#~ "det"
+#~ "Länkar från \"riktiga\" datumfältet till de två BiBTeX-fälten som bygger "
+#~ "upp det"
 
 #~ msgid "Month values"
 #~ msgstr "Månadsvärden"
@@ -864,8 +880,8 @@ msgstr "ingen stil definierad"
 #~ "Specify wether or not the program should add a message saying that the "
 #~ "output files are generated by pybliographer"
 #~ msgstr ""
-#~ "Välj om programmet ska lägga till ett meddelande som säger att utdatafilen "
-#~ "skapats med pybliographer"
+#~ "Välj om programmet ska lägga till ett meddelande som säger att "
+#~ "utdatafilen skapats med pybliographer"
 
 #~ msgid "Fields"
 #~ msgstr "Fält"
