@@ -58,7 +58,6 @@ class ConfigDialog:
         self.dialog = self.xml.get_widget ('config1')
         self.dialog_vbox = self.xml.get_widget ('dialog-vbox1')
         self.w = gtk.Notebook ()
-
         self.dialog_vbox.pack_start(self.w)
 
         tooltips = gtk.Tooltips ()
@@ -81,7 +80,8 @@ class ConfigDialog:
             keys  = Config.keys_in_domain (string.lower (dom))
             keys.sort ()
 
-            table = gtk.VBox ()
+            table = gtk.VBox (spacing=6)
+            table.set_border_width (12)
             
             for item in keys:
                 data  = Config.get (item)
@@ -92,7 +92,7 @@ class ConfigDialog:
                 label = gtk.Label()
                 label.set_use_markup(gtk.TRUE)
 
-                label.set_markup('   <b>%s</b>' % (nice))
+                label.set_markup('<b>%s</b>' % (nice))
                 label.set_alignment(xalign=0.5, yalign=0.5)
                 table.pack_start (label,False)
                 
@@ -132,7 +132,7 @@ class ConfigDialog:
         return
 
     def on_applybutton1_clicked(self, w):
-        print 'ON_APPLY_BUTTON_CLICKED:', self, w
+        #print 'ON_APPLY_BUTTON_CLICKED:', self, w
         page = self.w.get_current_page()
         
         if page == -1: return
@@ -140,9 +140,9 @@ class ConfigDialog:
 
         cw = self.page [page]
         for item in cw.keys ():
-            print 'ITEM:', item,
+
             if cw [item].update ():
-                print 'UPDATE:', Config.get (item).data
+                #print 'UPDATE:', Config.get (item).data
                 changed [item] = Config.get (item).data
             print changed.get(item, '*unchanged*')
         Config.save_user (changed)
@@ -157,19 +157,19 @@ class ConfigDialog:
         return
         
     def on_okbutton1_clicked(self, w, *data):
-        print 'ON_OK_BUTTON_CLICKED:', self, w, data
+        #print 'ON_OK_BUTTON_CLICKED:', self, w, data
         #self.apply (w, page)
         self.dialog.response(gtk.RESPONSE_OK)
         self.dialog.hide()
        
     def on_helpbutton1_clicked(self, w, *data):
-        print 'ON_HELP_BUTTON_CLICKED:',self, w, data
+        #print 'ON_HELP_BUTTON_CLICKED:',self, w, data
 
         self.dialog.response(gtk.RESPONSE_HELP)
         self.dialog.destroy()
         
     def on_cancelbutton1_clicked(self, w, *data):
-        print 'ON_CANCEL_BUTTON_CLICKED:',self, w, data
+        #print 'ON_CANCEL_BUTTON_CLICKED:',self, w, data
         self.dialog.response(gtk.RESPONSE_CANCEL)
         self.dialog.destroy()
        
@@ -204,7 +204,7 @@ class ConfigDialog:
 
 class BaseConfig:
     def __init__ (self, dtype, props, key, help_text=''):
-        print 'INIT CONFIG:', self, dtype, props, key
+
         self.type    = dtype
         self.key     = key
         self.prop    = props
