@@ -238,6 +238,11 @@ class QFields:
         except KeyError:
             pass
 
+        try:
+            self.name = root.attributes ['name'].value
+        except KeyError:
+            raise Exceptions.SyntaxError ('missing name in fields')
+
         for node in root.childNodes:
             tag = string.lower (node.nodeName)
 
@@ -269,7 +274,7 @@ class QSelection:
         
         try:
             self.name = root.attributes ['name'].value
-        except ValueError:
+        except KeyError:
             raise Exceptions.SyntaxError ('missing name in selection')
 
         for node in root.childNodes:
@@ -297,7 +302,7 @@ class QToggle:
     def parse (self, root):
         try:
             self.name = root.attributes ['name'].value
-        except ValueError:
+        except KeyError:
             raise Exceptions.SyntaxError ('missing name in toggle')
 
         if not root.hasAttribute ('default'):

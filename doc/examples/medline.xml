@@ -11,7 +11,7 @@
   <Query>
     <Default>
       <!-- Dynamic number of fields, connected by boolean connectors -->
-      <Fields max="4">
+      <Fields name="query" max="4">
         <Title>Avail. Fields</Title>
 	
 	<!-- Common operators -->

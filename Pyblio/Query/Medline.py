@@ -34,6 +34,8 @@ class Medline (Engine):
     def search (self, query):
         self.running = 1
 
+        print query
+        
         p = 0.0
         while p < 1.0 and self.running:
             self.issue ('progress', p)

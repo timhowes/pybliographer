@@ -36,7 +36,7 @@ from Pyblio.GnomeUI import Utils
 
 from Pyblio import QueryEngine
 
-import os, pickle
+import os, pickle, string
 
 path = os.path.join ('Pyblio', 'GnomeUI', 'query.glade')
 
@@ -150,7 +150,14 @@ class QueryUI:
         
         cnx = self.current_cnx
         if cnx is None: return
+
+        # get back the user query 
+        query = cnx.default.query_get ()
         
+        if cnx.extended:
+            query = cnx.extended.query_get (query)
+
+        # get the query engine
         engine = cnx.engine ()
 
         # display a progress bar...
@@ -176,7 +183,7 @@ class QueryUI:
         engine.Subscribe ('progress', show_progress)
         show_progress (0.0)
         
-        if not engine.search ({}):
+        if not engine.search (query):
             # close the progress bar but do not destroy the search
             w.destroy ()
             return
@@ -316,6 +323,9 @@ class QOperator (QueryEngine.QOperator):
     def display (self, box):
         return
 
+    def query_get (self, query):
+        return query
+
     
 class QField (QueryEngine.QField):
 
@@ -327,6 +337,9 @@ class QField (QueryEngine.QField):
 
     def display (self, box):
         return
+
+    def query_get (self, query):
+        return query
 
 
 
@@ -342,12 +355,16 @@ class QFields (QueryEngine.QFields):
     def display (self, box):
 
         self.current = []
-
+        
         vbox = GtkVBox (spacing = 5)
         
         # the fields are displayed in a table
         self.w_table = GtkTable (1, 3)
-        vbox.pack_start (self.w_table)
+        self.w_table.set_row_spacings (5)
+
+        self.row_max = 1
+        
+        vbox.pack_start (self.w_table, fill = FALSE, expand = FALSE)
         
         if self.title:
             vbox.set_border_width (5)
@@ -361,17 +378,71 @@ class QFields (QueryEngine.QFields):
         hbox = GtkHButtonBox ()
         hbox.set_layout_default (GTK.BUTTONBOX_END)
         hbox.set_spacing_default (5)
-        
-        hbox.pack_end (GtkButton ("Add"))
-        hbox.pack_end (GtkButton ("Remove"))
 
+        self.w_add = GtkButton ("Add")
+        self.w_add.connect ('clicked', self.field_add)
+        hbox.pack_end (self.w_add)
+        
+        self.w_remove = GtkButton ("Remove")
+        self.w_remove.connect ('clicked', self.field_remove)
+        self.w_remove.set_sensitive (FALSE)
+        
+        hbox.pack_end (self.w_remove)
+        
         # ...and add a first field, so that it does not look too
         # strange.
-        self.set_field (0)
+        self.w_rows = [ self.set_field (0) ]
 
         vbox.pack_start (hbox)
         box.pack_start (frame)
         return
+
+
+    def field_add (self, * arg):
+        r, c = self.w_table ['n_rows'], self.w_table ['n_columns']
+
+        # there is no row left in the GtkTable, allocate one more
+        if r == self.row_max:
+            self.w_table.resize (r + 1, c)
+
+        self.w_rows.append (self.set_field (self.row_max))
+        self.w_table.show_all ()
+
+        self.row_max = self.row_max + 1
+
+        self.w_remove.set_sensitive (TRUE)
+        return
+
+    
+    def field_remove (self, * arg):
+        if self.row_max == 1: return
+        
+        self.row_max = self.row_max - 1
+        if self.row_max == 1: self.w_remove.set_sensitive (FALSE)
+
+        for w in self.w_rows [-1]: w.destroy ()
+        del self.w_rows [-1]
+
+        self.w_table.show_all ()
+        return
+    
+
+    def query_get (self, query):
+
+        user_query = []
+        
+        for f, o, t in self.w_rows:
+            fv = f.get_menu ().get_active ().get_data ('value')
+            ov = o.get_menu ().get_active ().get_data ('value')
+            tv = string.strip (t.get_text ())
+
+            if not tv: continue
+            
+            user_query.append ((fv, ov, tv))
+            
+        query [self.name] = user_query
+            
+        return query
 
 
     def set_field (self, row):
@@ -388,7 +459,8 @@ class QFields (QueryEngine.QFields):
 
         for item in self.content:
             w = GtkMenuItem (item.title.encode ('latin-1'))
-
+            w.set_data ('value', item.name)
+            
             w.connect ('activate', self.activate_field, item, o_holder)
             menu.add (w)
         
@@ -401,7 +473,8 @@ class QFields (QueryEngine.QFields):
         # display the first field by default
         holder.set_history (0)
         self.activate_field (None, self.content [0], o_holder)
-        return
+
+        return holder, o_holder, text
 
 
     def activate_field (self, w, field, holder):
@@ -410,6 +483,7 @@ class QFields (QueryEngine.QFields):
 
         for op in field.operators:
             w = GtkMenuItem (op.title.encode ('latin-1'))
+            w.set_data ('value', op.name)
             menu.add (w)
 
         menu.show_all ()
@@ -431,13 +505,15 @@ class QSelection (QueryEngine.QSelection):
                              expand = FALSE, fill = FALSE)
         
         holder = GtkOptionMenu ()
-        menu   = GtkMenu ()
+        self.menu = GtkMenu ()
         
-        holder.set_menu (menu)
+        holder.set_menu (self.menu)
 
         for item in self.content:
             w = GtkMenuItem (item [1].encode ('latin-1'))
-            menu.add (w)
+            w.set_data ('value', item [0])
+            
+            self.menu.add (w)
 
         holder.set_history (0)
         
@@ -446,16 +522,25 @@ class QSelection (QueryEngine.QSelection):
         return
 
 
+    def query_get (self, query):
+        query [self.name] = self.menu.get_active ().get_data ('value')
+        return query
+
+
 class QToggle (QueryEngine.QToggle):
 
     ''' A selection between two choices '''
 
     def display (self, box):
-        toggle = GtkCheckButton (self.title.encode ('latin-1'))
-        toggle.set_active (self.enabled)
+        self.w = GtkCheckButton (self.title.encode ('latin-1'))
+        self.w.set_active (self.enabled)
 
-        box.pack_start (toggle, expand = TRUE, fill = TRUE)
+        box.pack_start (self.w, expand = TRUE, fill = TRUE)
         return
+
+    def query_get (self, query):
+        query [self.name] = self.w.get_active ()
+        return query
 
 
 class QGroup (QueryEngine.QGroup):
@@ -483,8 +568,15 @@ class QGroup (QueryEngine.QGroup):
         for part in self.content:
             part.display (hbox)
 
-        box.pack_start (frame)
+        box.pack_start (frame, expand = FALSE, fill = FALSE)
         return
+
+
+    def query_get (self, query):
+        for part in self.content:
+            part.query_get (query)
+
+        return query
 
 
 class QForm (QueryEngine.QForm):
@@ -505,3 +597,11 @@ class QForm (QueryEngine.QForm):
             part.display (box)
         return
     
+    def query_get (self, q = None):
+        query = q or {}
+
+        for part in self.content:
+            part.query_get (query)
+
+        return query
+        
