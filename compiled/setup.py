@@ -1,6 +1,7 @@
 # -*- python -*-
 
-import os
+import os, stat
+
 from distutils.core import setup, Extension
 
 
@@ -45,6 +46,32 @@ for lib in library.split (' '):
 
     if lib [:2] == '-L':
         libdirs.append (lib [2:])
+
+
+# Check the state of the generated lex and yacc files
+
+def rebuild (src, deps):
+
+    st = os.stat (src) [stat.ST_MTIME]
+
+    for dep in deps:
+        try:
+            dt = os.stat (dep) [stat.ST_MTIME]
+        except OSError:
+            return True
+
+        if st > dt: return True
+
+    return False
+
+
+if rebuild ('biblex.l', ['biblex.c']):
+    print "rebuild biblex.l"
+
+
+if rebuild ('bibparse.y', ['bibparse.c',
+                           'bibparse.h']):
+    print "rebuild bibparse.y"
 
 
 # Actual compilation
