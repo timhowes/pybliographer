@@ -1,3 +1,43 @@
+2003-04-11  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/GnomeUI/Document.py (Document.__init__): added notebook
+	widget self.main_box to allow layout change, moved code to
+	(Document.make_old_layout)  -- added (empty) View menu 
+	(Document.add_layout, Document.switch_layout)
+	(Document.remove_layout, Document.get_layout_pos): added
+	(passim) added some linebreaks
+
+2002-08-18  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/Format/isifile.py: now subclasses TaggedReader
+	(transition unfinished).
+
+	* Pyblio/Coco.py, Pyblio/Import.py, Pyblio/Format/TaggedReader.py:
+	New files -- first sketch.
+
+2002-08-08  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/GnomeUI/Document.py (Document.ui_import): new callback
+	for Import. Added File menu position as well.
+
+2002-07-27  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/GnomeUI/Document.py: from __future__ import nested_scopes
+	added for python2.1
+
+2002-07-06  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/GnomeUI/Document.py (Document.set_progress): new
+	self.progress_max field and method set_progress 
+
+2002-07-03  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/Utils.py: (generate_key): corrected handling of invalid
+	author/editor fields.
+
+	* Pyblio/GnomeUI/Document.py (Document.__init__): checks for
+	undefined base/bibpath.
+
 2002-07-01  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
 	* Pyblio/userformat.py: New file 
