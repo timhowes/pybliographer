@@ -177,6 +177,7 @@ AC_OUTPUT(
 	Makefile 
 	etc/installer
 	scripts/Makefile
+	tests/Makefile
 	compiled/Setup.tmp:compiled/Setup.in
 	bibtex/Makefile 
 	Pyblio/Makefile
