@@ -82,7 +82,7 @@ AM_PROG_LEX
 AC_PROG_YACC
 
 dnl NLS
-ALL_LINGUAS="fr it de hu"
+ALL_LINGUAS="fr it de hu no"
 
 dnl Manually unset LINGUAS so that all the packages get installed
 unset LINGUAS
