@@ -38,33 +38,13 @@ version <b>1.0.53</b> at least.
 
 <h2>Download pybliographer, version pyblio_last</h2>
 
-Here is a list of <a href="http://www.gnome.org/ftpmirrors.shtml">FTP
-mirrors</a> where you can find pybliographer.
+Here is a list of Gnome <a
+href="http://www.gnome.org/ftpmirrors.shtml">FTP mirrors</a> where you
+can find pybliographer.
 
-<p>The latest release (<b>pyblio_last</b>) is available in the following
-formats:
-
-<ul>
-ifelse(html_testfile(local_stable/pybliographer-pyblio_last.tar.gz), 0,
-<li><a href="pyblio_stable/pybliographer-pyblio_last.tar.gz">gzipped</a> 
-(.tar.gz, html_filesize(local_stable/pybliographer-pyblio_last.tar.gz))
-)
-
-ifelse(html_testfile(local_stable/pybliographer-pyblio_last.tar.bz2), 0,
-<li><a href="pyblio_stable/pybliographer-pyblio_last.tar.bz2">bzipped</a> 
-(.tar.bz2, html_filesize(local_stable/pybliographer-pyblio_last.tar.bz2))
-)
-
-ifelse(html_testfile(local_stable/pybliographer-pyblio_last-1.i386.rpm), 0,
-<li><a href="pyblio_stable/pybliographer-pyblio_last-1.i386.rpm">RPM</a>
-(.i386.rpm, html_filesize(local_stable/pybliographer-pyblio_last-1.i386.rpm))
-)
-
-ifelse(html_testfile(local_stable/pybliographer-pyblio_last-1.src.rpm), 0,
-<li>or <a href="pyblio_stable/pybliographer-pyblio_last-1.src.rpm">source RPM</a>
-(.src.rpm, html_filesize(local_stable/pybliographer-pyblio_last-1.src.rpm))
-)
-</ul>
+<p>The latest release (<b>pyblio_last</b>) is available at <a
+href="http://sourceforge.net/project/filelist.php?group_id=4825">SourceForge</a>
+in several formats.
 
 The official site for latest RPM files is <a
 href="ftp://dirac.cnrs-orleans.fr/pub/pybliographer/">here</a>.  These

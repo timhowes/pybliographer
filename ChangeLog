@@ -4,7 +4,8 @@
 	selector
 
 	* Pyblio/GnomeUI/Document.py: added error box when opening an
-	invalid XML file for formatting
+	invalid XML file for formatting. Fixed bug when cancelling close
+	action with window manager button.
 
 	* Pyblio/Style/Generic.py: removed final dot for author list
 

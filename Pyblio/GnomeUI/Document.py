@@ -467,7 +467,7 @@ class Document (Connector.Publisher):
                                       
     def close_document (self, * arg):
         self.issue ('close-document', self)
-        return
+        return 1
 
 
     def close_document_request (self):

@@ -1,10 +1,15 @@
 dnl -*- html -*-
 dnl
 dnl --------------------------------------------------
-define(pyblio_last,  [[1.0.1]])dnl
+define(pyblio_last,  [[1.0.2]])dnl
 dnl --------------------------------------------------
 dnl
 define(pyblio_news, [[
+
+[[<b>13/06/2000</b>: let's go for 1.0.2! Now, it's possible to read
+bibtex files written on Windows, adding a new field in an entry
+doesn't cancel previous modifications on that entry, and some bugs
+have been fixed in the formatting styles]],
 
 [[ <b>30/05/2000</b>: bugfix release 1.0.1 is out. It corrects
 problems with empty bibtex databases and fixes the broken the
