@@ -271,7 +271,7 @@ class Index (Connector.Publisher):
     
     def button_press (self, clist, event, *arg):
         ''' handler for double-click and right mouse button '''
-        
+
         if (event.type == GDK._2BUTTON_PRESS and event.button == 1):
             # select the item below the cursor
             couple = self.clist.get_selection_info (event.x, event.y)
@@ -314,7 +314,7 @@ class Index (Connector.Publisher):
     
     def entry_edit (self, * arg):
         if not self.clist.selection: return
-        
+
         self.issue ('edit-entry', map (lambda x, self=self: self.access [x],
                                        self.clist.selection))
         return

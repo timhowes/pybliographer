@@ -13,6 +13,9 @@ entries in their native format by default ? """, Config.Boolean ())
 Config.define ('gnome/searched', """ List of searchable fields """,
                Config.List (Config.String ()))
 
+Config.define ('gnome/history', """ Size of the history file """,
+               Config.Integer (min = 1))
+
 # --------------------------------------------------
 
 Config.set ('gnome/searched', ['Author', 'Title', 'Abstract', 'Date'])
@@ -23,3 +26,4 @@ Config.set ('gnome/native-as-default', 0)
 
 Config.set ('gnome/columns', ('Author', 'Date', 'Title'))
 
+Config.set ('gnome/history', 10)

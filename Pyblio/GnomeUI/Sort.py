@@ -28,6 +28,7 @@ import gettext, string
 _ = gettext.gettext
 
 from Pyblio import Connector, Sort, Config
+from Pyblio.GnomeUI import Utils
 
 class SortDialog (Connector.Publisher):
     
@@ -49,7 +50,7 @@ class SortDialog (Connector.Publisher):
         self.window.close_hides (1)
         self.window.set_policy (TRUE, TRUE, FALSE)
         
-        self.list = GtkCList (2, (_("In use"),_("Sort criterions")))
+        self.list = GtkCList (2, (_("Sort direction"),_("Sort criterions")))
         self.list.column_titles_passive ()
         self.list.set_column_justification (0, JUSTIFY_CENTER)
         self.list.set_reorderable (1)
@@ -89,9 +90,12 @@ class SortDialog (Connector.Publisher):
         box.set_layout_default (BUTTONBOX_SPREAD)
         
         b = GtkButton (_("Reorder"))
+        Utils.set_tip (b, _("Groups the active fields on the top of the list"))
         b.connect ('clicked', self.reorder_items)
         box.pack_start (b)
+
         b = GtkButton (_("Unselect all"))
+        Utils.set_tip (b, _("Removes all the sort criterions"))
         b.connect ('clicked', self.unselect_items)
         box.pack_start (b)
 

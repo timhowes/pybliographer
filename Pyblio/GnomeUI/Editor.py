@@ -419,6 +419,8 @@ class RealEditor (Connector.Publisher):
 
         self.key = GtkEntry ()
         self.key.set_editable (TRUE)
+        self.key.connect ('key_press_event', self.key_handler)
+        
         if self.entry.key:
             self.key.set_text (self.entry.key.key)
         
@@ -486,6 +488,20 @@ class RealEditor (Connector.Publisher):
         self.entry = new
         self.update_notebook ()
         return
+
+
+    def key_handler (self, widget, ev):
+        if ev.keyval == GDK.Return and \
+           ev.state  == GDK.CONTROL_MASK:
+            widget.emit_stop_by_name ('key_press_event')
+            self.issue ('apply')
+        
+        elif ev.keyval == GDK.Tab and \
+           ev.state  == GDK.CONTROL_MASK:
+            widget.emit_stop_by_name ('key_press_event')
+            self.issue ('next')
+
+        return 1
 
 
     def apply_cb (self, * arg):
@@ -645,11 +661,14 @@ class NativeEditor (Connector.Publisher):
     
 class Editor (Connector.Publisher):
     
-    def __init__ (self, database, entry, parent = None):
+    def __init__ (self, database, entry, parent = None, title = None):
         self.w = GtkDialog ()
         
         self.w.set_policy (TRUE, TRUE, FALSE)
-        self.w.set_title (_("Edit entry"))
+        
+        if title: self.w.set_title (title)
+        else:     self.w.set_title (_("Edit entry") + ' [%s]' % str (entry.key) )
+        
         self.w.connect ('delete_event', self.close_dialog)
 
         if parent: self.w.set_transient_for (parent)

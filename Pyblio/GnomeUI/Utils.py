@@ -46,6 +46,20 @@ def set_cursor (self, name):
     return
 
 
+_tooltips = GtkTooltips ()
+
+
+def set_tip (w, text):
+    _tooltips.set_tip (w, text)
+    return
+
+
+if Config.get ('gnome/tooltips').data:
+    _tooltips.enable ()
+else:
+    _tooltips.disable ()
+
+
 def popup_add (menu, item, action = None, argument = None):
     ''' Helper to add a new menu entry '''
     

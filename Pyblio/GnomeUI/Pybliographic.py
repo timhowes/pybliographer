@@ -26,7 +26,7 @@ import gettext, copy
 _ = gettext.gettext
 
 from Pyblio.GnomeUI import Document
-from Pyblio import Base
+from Pyblio import Base, Config
 
 from gtk import *
 from gnome import config, history
@@ -37,10 +37,26 @@ class Pybliographic:
 
     def __init__ (self):
         self.documents = []
+        self.opened    = []
+        
+        histsize = Config.get ('gnome/history').data
 
-        self.opened = filter (lambda x: x,
-                              list (config.get_vector ('Pybliographic/Base/History=')))
+        for i in range (1, histsize + 1):
+            file = config.get_string  ('Pybliographic/History/File%d=' % i)
+            fmat = config.get_string  ('Pybliographic/History/Type%d=' % i)
+
+            if not file: continue
+            
+            if not fmat: fmat = None
+            self.opened.append ((file, fmat))
+
+        if not self.opened:
+            # get the old format of history
+            self.opened = map (lambda x: (x, None),
+                               filter (lambda x: x,
+                                       list (config.get_vector ('Pybliographic/Base/History='))))
         return
+
 
     def new_document (self, * arg):
         db  = Base.DataBase (None)
@@ -61,16 +77,17 @@ class Pybliographic:
         ''' a document has been opened '''
 
         file = str (doc.data.key)
-
+        fmat = doc.data.id
+        
         history.recently_used (file, 'application/x-bibtex',
                                'pybliographic', 'Bibliography')
                               
         try:
-            self.opened.remove (file)
+            self.opened.remove ((file, fmat))
         except ValueError:
             pass
         
-        self.opened.insert (0, file)
+        self.opened.insert (0, (file, fmat))
 
         # warn all the documents
         for doc in self.documents:
@@ -102,9 +119,16 @@ class Pybliographic:
 
     def exit_application (self, document):
         document.update_configuration ()
+
+        i = 1
+        for file in self.opened [0:Config.get ('gnome/history').data]:
+            name = file [0]
+            fmat = file [1] or ''
+            
+            config.set_string ('Pybliographic/History/File%d' % i, name)
+            config.set_string ('Pybliographic/History/Type%d' % i, fmat)
+            i = i + 1
         
-        config.set_vector ('Pybliographic/Base/History',
-                           self.opened [0:10])
         config.sync ()
 
         doclist = copy.copy (self.documents)

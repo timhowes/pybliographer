@@ -36,13 +36,29 @@ _ = gettext.gettext
 # this database is shared between all the unpickled entries
 _unpickle_db = _bibtex.open_string ("<unpickled>", '', 0);
 
-_fieldtype = {
-    Text        : 2,
+_base_fieldtype = {
+    Text        : 0,
     Date        : 3,
     AuthorGroup : 1,
     URL         : 0,
     Reference   : 0,
     }
+
+_text_fieldtype = Config.get ('bibtex/capitalize').data
+
+def _fieldtype (field):
+    if field.type is not Text:
+        return _base_fieldtype [field.type]
+
+    name = string.lower (field.name)
+    
+    if not _text_fieldtype.has_key (name):
+        return 0
+    
+    if _text_fieldtype [name]:
+        return 2
+
+    return 0
 
 
 extended_date = re.compile ('^[\{"]\s*(\d+)\s*[\}"]\s*#\s*(\w+)$')
@@ -150,7 +166,8 @@ class Entry (Base.Entry):
         if isinstance (value, Reference):
             value = string.join (map (lambda item: item.key, value.list), ', ')
         
-	self.dict [key] = _bibtex.reverse (_fieldtype [Types.get_field (key).type],
+	self.dict [key] = _bibtex.reverse (_fieldtype (Types.get_field (key)),
+                                           Config.get ('bibtex/braces').data,
                                            value)
 	return
 
@@ -220,7 +237,7 @@ class Entry (Base.Entry):
 
 	return _bibtex.get_latex (self.parser,
                                   self.dict [key],
-                                  _fieldtype [Types.get_field (key).type])
+                                  _fieldtype (Types.get_field (key)))
 
 
     def field_and_loss (self, key):
@@ -233,9 +250,11 @@ class Entry (Base.Entry):
 
 	# search its declared type
 
-	fieldtype = Types.get_field (key).type
+	fieldtype = Types.get_field (key)
 	ret  = _bibtex.expand (self.parser, obj,
-                               _fieldtype [fieldtype])
+                               _fieldtype (fieldtype))
+
+        fieldtype = fieldtype.type
         
 	if fieldtype == AuthorGroup:
 	    # Author
@@ -326,7 +345,8 @@ class DataBase (Base.DataBase):
 		    raise TypeError, _("key `%s' is malformed") % k
 
 		_bibtex.set_string (self.parser, k,
-				    _bibtex.reverse (_fieldtype [Text],
+				    _bibtex.reverse (_base_fieldtype [Text],
+                                                     Config.get ('bibtex/braces').data,
 						     user [k] [0]))
 
 	finished = 0
@@ -381,7 +401,8 @@ class DataBase (Base.DataBase):
 		    raise TypeError, _("key `%s' is malformed") % k
 
 		_bibtex.set_string (self.parser, k,
-				    _bibtex.reverse (_fieldtype [Text],
+				    _bibtex.reverse (_base_fieldtype [Text],
+                                                     Config.get ('bibtex/braces').data,
 						     user [k] [0]))
 	return
 
@@ -428,7 +449,8 @@ class DataBase (Base.DataBase):
 def _nativify (field, fieldtype):
     ''' private method to convert from field to native format '''
 
-    obj = _bibtex.reverse (fieldtype, field)
+    obj = _bibtex.reverse (fieldtype, Config.get ('bibtex/braces').data,
+                           field)
     return _bibtex.get_native (obj)
 
 
@@ -493,7 +515,7 @@ def entry_write (entry, output):
 
 	    else:
 		# we are processing a normal entry
-                fieldtype = _fieldtype [Types.get_field (field).type]
+                fieldtype = _fieldtype (Types.get_field (field))
                 dico [field] = _nativify (entry [field], fieldtype)
 
 

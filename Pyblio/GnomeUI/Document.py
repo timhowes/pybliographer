@@ -32,11 +32,11 @@ from Pyblio.GnomeUI.Config import ConfigDialog
 from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
 
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
-from Pyblio import version, Fields
+from Pyblio import version, Fields, Types
 
 import Pyblio.Style.Utils
 
-import gettext, os, string, copy, types
+import gettext, os, string, copy, types, sys, traceback
 
 _ = gettext.gettext
 
@@ -49,13 +49,13 @@ class Document (Connector.Publisher):
         self.w.connect ('delete_event', self.close_document)
         
         file_menu = [
-            UIINFO_MENU_NEW_ITEM     (_("New"), None, self.new_document),
+            UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
-            UIINFO_ITEM              (_("Merge with..."),None, self.merge_database),
+            UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
-            UIINFO_SUBTREE           (_("Previous Documents"), []),
+            UIINFO_SUBTREE           (_("_Previous Documents"), []),
             UIINFO_SEPARATOR,
             UIINFO_MENU_CLOSE_ITEM   (self.close_document),
             UIINFO_MENU_EXIT_ITEM    (self.exit_application)
@@ -75,32 +75,32 @@ class Document (Connector.Publisher):
             UIINFO_MENU_CLEAR_ITEM      (self.clear_entries),
             UIINFO_MENU_SELECT_ALL_ITEM (self.select_all_entries),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK(_("Add..."), None, self.add_entry,    STOCK_MENU_NEW),
-            UIINFO_ITEM      (_("Edit..."),None, self.edit_entry),
-            UIINFO_ITEM_STOCK(_("Delete"), None, self.delete_entry, STOCK_MENU_TRASH),
+            UIINFO_ITEM_STOCK(_("_Add..."), None, self.add_entry,    STOCK_MENU_NEW),
+            UIINFO_ITEM      (_("_Edit..."),None, self.edit_entry),
+            UIINFO_ITEM_STOCK(_("_Delete"), None, self.delete_entry, STOCK_MENU_TRASH),
             UIINFO_SEPARATOR,
             UIINFO_MENU_FIND_ITEM (self.find_entries),
-            UIINFO_ITEM           (_("Sort..."),None, self.sort_entries),
+            UIINFO_ITEM           (_("S_ort..."),None, self.sort_entries),
             ]
 
         cite_menu = [
-            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,            STOCK_MENU_CONVERT),
-            UIINFO_ITEM_STOCK(_("Format..."), None, self.format_entries, STOCK_MENU_REFRESH),
+            UIINFO_ITEM_STOCK(_("_Cite"), None, self.lyx_cite,            STOCK_MENU_CONVERT),
+            UIINFO_ITEM_STOCK(_("_Format..."), None, self.format_entries, STOCK_MENU_REFRESH),
             ]
 
         settings_menu = [
-            UIINFO_ITEM      (_("Fields..."),  None, self.set_fields),
-            UIINFO_ITEM      (_("Entries..."), None, self.set_entries),
+            UIINFO_ITEM      (_("_Fields..."),  None, self.set_fields),
+            UIINFO_ITEM      (_("_Entries..."), None, self.set_entries),
             UIINFO_SEPARATOR,
             UIINFO_MENU_PREFERENCES_ITEM   (self.set_preferences),
             ]
             
         menus = [
-            UIINFO_SUBTREE (_("File"),     file_menu),
-            UIINFO_SUBTREE (_("Edit"),     edit_menu),
-            UIINFO_SUBTREE (_("Cite"),     cite_menu),
-            UIINFO_SUBTREE (_("Settings"), settings_menu),
-            UIINFO_SUBTREE (_("Help"),     help_menu)
+            UIINFO_SUBTREE (_("_File"),     file_menu),
+            UIINFO_SUBTREE (_("_Edit"),     edit_menu),
+            UIINFO_SUBTREE (_("_Cite"),     cite_menu),
+            UIINFO_SUBTREE (_("_Settings"), settings_menu),
+            UIINFO_SUBTREE (_("_Help"),     help_menu)
             ]
         
         toolbar = [
@@ -194,12 +194,14 @@ class Document (Connector.Publisher):
 
         menuinfo = []
         for item in history:
-            def callback (widget, self = self, file = item):
+            def callback (widget, self = self, file = item [0], how = item [1]):
                 if not self.confirm (): return
-                self.open_document (file)
+                self.open_document (file, how)
                 return
 
-            menuinfo.append (UIINFO_ITEM_STOCK (item, None, callback, STOCK_MENU_OPEN))
+            filename = item [0]
+            
+            menuinfo.append (UIINFO_ITEM_STOCK (filename, None, callback, STOCK_MENU_OPEN))
 
         self.w.insert_menus (_("File") + '/' + _("Previous Documents") + '/',
                              menuinfo)
@@ -385,13 +387,16 @@ class Document (Connector.Publisher):
         Utils.set_cursor (self.w, 'clock')
         try:
             try:
-                self.data.update ()
+                self.data.update (self.selection.sort)
             except (OSError, IOError), error:
                 Utils.set_cursor (self.w, 'normal')
                 self.w.error (_("Unable to save `%s':\n%s") % (str (self.data.key),
                                                                str (error)))
                 return
         except:
+            etype, value, tb = sys.exc_info ()
+            traceback.print_exception (etype, value, tb)
+            
             Utils.set_cursor (self.w, 'normal')
             self.w.error (_("An internal error occured during saving\nTry to Save As..."))
             return
@@ -421,8 +426,10 @@ class Document (Connector.Publisher):
             return
 
         Utils.set_cursor (self.w, 'clock')
-        
-        Open.bibwrite (self.data.iterator (), out = file, how = how)
+
+        iterator = Selection.Selection (sort = self.selection.sort)
+        Open.bibwrite (iterator.iterator (self.data.iterator ()),
+                       out = file, how = how)
         file.close ()
         
         if self.data.key is None:
@@ -479,6 +486,7 @@ class Document (Connector.Publisher):
                 
     def cut_entry (self, * arg):
         entries = self.index.selection ()
+        if not entries: return
         
         self.index.selection_copy (entries)
         for entry in entries:
@@ -521,7 +529,7 @@ class Document (Connector.Publisher):
     def add_entry (self, * arg):
         entry = self.data.new_entry (Config.get ('base/defaulttype').data)
         
-        edit = Editor.Editor (self.data, entry, self.w)
+        edit = Editor.Editor (self.data, entry, self.w, _("Create new entry"))
         edit.Subscribe ('commit-edition', self.commit_edition)
         return
 

@@ -45,6 +45,9 @@ class ConfigDialog:
         self.w.set_title (_("Choose you preferences"))
         self.w.connect ('apply', self.apply)
         self.w.set_policy (TRUE, TRUE, FALSE)
+
+        self.warning = 0
+        self.parent = parent
         
         domains = Config.domains ()
         domains = map (lambda x: string.capitalize (x), domains)
@@ -117,6 +120,14 @@ class ConfigDialog:
                 changed [item] = Config.get (item).data
 
         Config.save_user (changed)
+
+        if not self.warning:
+            self.warning = 1
+
+            d = GnomeWarningDialog (_("Some changes require to restart Pybliographic\n"
+                                      "to be correctly taken into account"))
+            d.set_parent (self.parent)
+            d.show_all ()
         return
 
 

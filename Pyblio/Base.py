@@ -24,7 +24,7 @@ import re, copy, os
 import Pyblio.Help
 from types import *
 
-from Pyblio import Config, Open, Utils, Key, Iterator
+from Pyblio import Config, Open, Utils, Key, Iterator, Selection
 
 import gettext
 _ = gettext.gettext
@@ -271,7 +271,7 @@ class DataBase:
 	return Iterator.DBIterator (self)
 
 
-    def update (self):
+    def update (self, sorting = None):
 	''' Updates the Entries stored in the database '''
 	
 	if self.key.url [0] != 'file':
@@ -284,8 +284,9 @@ class DataBase:
 
 	tmpfile = open (name, 'w')
 
-	Open.bibwrite (self.iterator (), out = tmpfile, how = self.id)
+        iterator = Selection.Selection (sort = sorting).iterator (self.iterator ())
+        
+	Open.bibwrite (iterator, out = tmpfile, how = self.id)
 	tmpfile.close ()
-
         return
 
