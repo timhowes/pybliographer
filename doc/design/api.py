@@ -31,11 +31,12 @@ class Record (object):
         ''' Register the record in the database '''
         return self
 
-    def attr_set (self, attr, role):
-        ''' Connect an attribute to the Record, for a specific Role  '''
+    def attr_ins (self, attr, role, index):
+        ''' Connect an attribute to the Record, for a specific Role,
+        at a given index '''
         pass
     
-    def attr_del (self, attr, role):
+    def attr_del (self, role, index):
         ''' Disconnect an attribute from a Record '''
         pass
     
@@ -46,7 +47,7 @@ class Record (object):
     def unlink (self, record, role):
         ''' Unlink a Record from another Record, for a specific Role '''
         pass
-    
+
 
 class Work (Record):
     
