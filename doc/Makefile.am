@@ -19,5 +19,5 @@
 # 
 # $Id$
 
-SUBDIRS = C
+SUBDIRS = C it
 
