@@ -32,7 +32,7 @@ from Pyblio import Fields, Config, Base, Types, Connector, Exceptions, Key
 
 from Pyblio.GnomeUI import FieldsInfo, Utils, Mime
 
-key_re = re.compile ("^[\w:_+-]+$")
+key_re = re.compile ("^[\w:_+-.]+$")
 
 _newcontent = {
     Fields.AuthorGroup : _("Last Name, First Name"),
