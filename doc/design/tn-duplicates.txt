@@ -1,0 +1,123 @@
+Detecting and Merging Duplicate Records in Pybliographer
+
+
+* The Problem
+
+   One document (I speak of document as a more general term
+   encompassing books, articles, etc., in order not to have to speak
+   always of entries ... ) may be represented by multiple items in a
+   Pybliographer database, because of:
+
+   1. it is manually entered repeatedly, e.g., because it has not been
+      searched or found beforehand
+   2. it is obtained and imported by repeated queries against a database  
+   3. it is contained in multiple databases (files) that are imported/
+      merged
+
+   The cases pose different problems.
+
+
+** Multiple data entry (1)
+
+   That should go away with the new release. :-))    
+   
+   Presently the items are not ordered by default, the display is not
+   very clear, it is time consuming to check for an entry; in addition
+   there is the possibility, nd sometimes even need, to maintain
+   several .bib files, that makes redundant data entry a problem.
+
+** Repetitive queries (2)
+
+   It might be possible to weed these out by the simple means of
+   keeping the identifier from the originating database.
+
+   
+** Merging and importing (3) 
+
+   That is the general case. We can distinguish the following subtasks:
+
+   1. checking for possible duplicates (candidates) 
+   2. testing for identity of the underlying object
+   3. combining the entries and removing the redundant ones
+
+
+* Checking for duplicates
+
+   I read recently about the duplication check that has been used when
+   building the Bavarian union catalogue.  It starts from the main
+   entry, i.e., author/title, and mostly tries to identify or
+   distinguish differing editions, so considers year and place of
+   publication, number of pages, type of publication and physical
+   representation, the latter to distinguish the originals from
+   microfilms. 
+
+   That works, of course, because the author and title fields are
+   tightly controlled, it is prescribed how to find the information,
+   how to choose among alternatives etc. 
+
+   So that doesn't work with us -- e.g., libraries ascertain that an
+   author name is always (well, almost) represented by the same
+   string, while we cannot be sure.  
+
+   We have to live with different abbreviation strategies for names
+   and the like. In addition, we have to consider errors during data
+   entry, which are taken care of differently in the case of libraries.
+
+
+** Candidates
+
+   I propose a multidimensional approach, including information like
+   journal, volume etc. which are of no importance in traditional
+   libraries' work. Thus we might be able to help error checking as
+   well.
+
+   Once collected, a set of candidates could be registered and
+   presented to the user for examination.
+
+** Identification
+
+   Essentially, two database entries can be combined if and only if
+   there will be no loss of relevant information. That depends a
+   little bit upon the general layout. So it must be discussed whether
+   and how different manifestations, physical representations, and the
+   like of one document or work can be combined. 
+
+   Apart from this question, it seems that this problem is intertwined
+   with the problem of combining two records. 
+
+** Combining
+
+   Means the computation of a better approximation from two (or more)
+   given records (better than any individual record). 
+
+   Component wise, i.e., persons, title, etc. are combined
+   individually, must match afterwards. 
+
+   Sometimes a distance could be computed -- allows elimination of
+   candidates. 
+
+   Manual intervention. 
+
+
+* Customisation
+
+   Needed, because of widely differing situations, but unsure how.
+
+
+** Options
+
+   The following choices for the treament of duplicates upon import
+   are evident  (update = ): 
+   - 'no'	do not touch the database,
+   - 'check'    only check against database, do not change
+   - 'prompt'   ask user before changing
+   - 'combine'  automatically combine entries
+
+** Manual merge (DnD)
+
+   It should be possible to merge two entries by dragging the one over
+   the other.
+
+
+$Id$
+Id:$

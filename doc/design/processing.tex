@@ -1,5 +1,4 @@
 % $Id$
-% $Id$
 
 \section{Searching, Selecting, and Formatting Data}
 \label{sec:processing}
@@ -20,8 +19,34 @@ of manually inspecting (\textit{scanning}) some result set, that is
 presented to a processing option: either to be set apart for further
 processing at a later time, or to be processed by the output routines
 in order to be presented or exported.
-
 [XXX Are there other uses? ]
+
+
+
+\paragraph{Notes:}
+
+\begin{itemize}
+\item Results sets can vary considerably in size. Efficiant means of
+  handling them are important.
+\item Various situations are to be considered and equally suppported
+  \begin{itemize}
+  \item One looks up price/holdings/availability information for an
+    already known title.  That should result in the new information
+    being added to the existing entry (and perhaps the latter being a
+    bit improved). Possible actions include posting a note to pick up
+    the book at the next visit to the library, or to make a copy from a
+    journal, or to order it from the bookseller or the ILL service.
+  \item One browses several data bases and cumulates the
+    results. Later one reduces the set and adds it to the data base.
+  \item One adds, perhaps on a regular schedule, records from an
+    external source. Evidently this situation calls for other
+    mechanisms and tools than the previous one, in spite of its
+    superficial similarity. 
+  \item On builds a bibliography or similar documentation database --
+    involves most of the above situations and adds requirements for
+    stringent administrative control. 
+  \end{itemize}
+\end{itemize}
 
 
 
@@ -43,6 +68,9 @@ usually include information that is not available to the
 program. (Example: cataloguing rules -- RAK, AACR, \dots)
 
 
+
+
+
 \subsection{Integration with editors and wordprocessors}
 \label{sec:wpintegr}
 \task{wpintegration}
@@ -52,6 +80,10 @@ program. (Example: cataloguing rules -- RAK, AACR, \dots)
 \label{sec:formatting}
 
 
+\subsection{Other applications}
+\label{sec:applications}
+
+[Connecting to OPACS, etc. ]
 
 %%% Local Variables: 
 %%% mode: latex

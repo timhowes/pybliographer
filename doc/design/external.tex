@@ -4,12 +4,32 @@
 \label{sec:external}
 
 
+
+
+
 \subsection{Connecting to external databases}
 \label{sec:extconn}
+
+Pybliographer uses \textit{connections} to external ressources for the
+following purposes:
+\begin{itemize}
+\item To look up a catalogue (for immediate consumption, so to say),
+  i.e., as a client program.
+\item To obtain, as a result of a query, additional data for import.
+\item To obtain additional documents that are referred to from the
+  data base, i.e., via an \textit{URL} or an \textit{Eprints} link.
+\item To perform operations on the remote system, i.e., to request
+  books or copies by means of an \textit{OPAC}. 
+\item \Think To cooperate with other Pybliographers, sharing and
+  updating data.
+
+\end{itemize}
+
 
 
 \subsection{Writing Import Filters}
 \label{sec:importfilter}
+
 
 
 \subsection{Writing Export Filters}
@@ -18,6 +38,14 @@
 
 \subsection{Pybliographer as Web Server }
 \label{sec:pybweb}
+
+
+\subsection{Requesting remote operations}
+\label{sec:remotereq}
+
+
+\subsection{Requesting documents}
+\label{sec:docrequest}
 
 
 

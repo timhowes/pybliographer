@@ -1,0 +1,162 @@
+Query/Connection: Some Considerations for Configuration and Use
+
+
+
+* Configuration:
+
+  We have the following to distinguish: 
+   - the code for the queries and connections etc. (query modules)
+   - the parameters that are given by a certain service 
+     (connection parameters)
+   - the data used for an individual query, and the data
+     returned. (input/output data)
+
+
+** Query modules
+
+  They should go into a separate directory. Do we have a place for
+  user supplied modules? The registration mechanism seems adequate;
+  say: Autoload.preregister ('Connection', 'Generic', 
+          'Pyblio.Connect.Generic') and so on. 
+
+  The Connection Type would be used to connect the database to its
+  module. (Are there generic types?)
+
+
+** Connection Parameters
+
+   Parameters for connections, which do not change so often, after all,
+   should go into a per-site/-user configuration file. To reduce
+   redundancy (in coding, of course) we should use an XML-file with a
+   DTD & entity `PyblioConf' like :
+
+   <PyblioConf>
+      . . . 
+      <Connection type="Z3950">
+         <head>DIMDI Z39.50 Server</head>
+	 . . . 
+	 <Parameters>
+	    <ParameterGroup> ... </ParameterGroup>
+	    <param i="ipnumber" v="194.153.219.10" />
+	    <param i="hostname" v="z3950gw.dimdi.de"/>
+	    <param i="port" v="2020" />
+	    . . .
+	 </Parameters>
+      </Connection>
+   </PyblioConf>
+
+   The default usage is to associate the Connection parameter the name
+   of which is given by `i' with the value that is in the `v´
+   attribute. This is a very generic mechanism, albeit a little bit
+   insecure.  This does not exclude a more specific treatment of
+   parameters of more general use, say the Internet IP and Port
+   numbers, but should suffice in most cases.
+   
+
+** Databases
+
+   I note that sometimes a multitude of databases is made available by
+   one service, cf. the Cologne DIMDI (www.dimdi.de), so the question
+   arises whether the service (i.e., the server side software) or the
+   database is the correct object to model: neither decision is fully
+   satisfying. Most parameters are in fact determined by the service,
+   but we want to query a database, but for any database, there could
+   be many servers. 
+
+   Given the possibility, on the other hand, of querying multiple
+   databases parallely or alternatively, it all boils down to allowing
+   both grouping connections (virtual connections, if you like) and
+   incomplete ones (connection templates), which could be referred to
+   later -- that should prove not too complicated.
+
+
+* User interface (GUI)
+
+   The central function is to post a query, and in this connection, to
+   select, if necessary, a database and server to answer it. In
+   principle, the local Pybliographer database could be treated on a
+   par with the external services, and serve as the default DB. 
+
+   The  connection data must be set up earlier, not only are they
+   independent of the concrete question, they are usually either
+   configured by down loading a file from a central server or by keying
+   in raw data from a memorandum, neither of which fits in with the
+   usual use of a reference manager. 
+
+   From my understanding of the Gnome HI guidelines at
+   http://developer.gnome.org/projects/gup/hig/draft_hig/index.html
+   I gather that it should be placed in the menus like: 
+
+   File 
+    |--	New
+    |--- |  ....
+    |	 |  Connection...
+    |   ....
+    |--	Query... (or perhaps it gets an own menu point)
+
+   I confess that I don't like it this way. In Pybliographer we have
+   to do with two kinds of objects: the objects of interst like
+   bibliographic entries, persons, keywords and the like, even
+   reference lists and other products; and administrative, or better
+   environmental objects -- libraries (for holding and order data),
+   database connections, various formats, scripts, etc. 
+
+   I'd like to visualise it as an envelopping space, where I start my
+   work, where I can find the results; perhaps it is sufficient to
+   have a tree view in a column (often copied model, compare Acrobat's
+   bookmarks or the Windows Explorer (IIRC). (There are limits to the
+   number of different concepts and object that can be easily
+   displayed thus, but it is perhaps both, sufficiently expressive and
+   easy to program.)
+
+   Once upon a time, IBM proposed (for OS/2) an alternative menu
+   organisation, WOSH, where similar submenus were established
+   parallely for the Window per se, the Object on display, the
+   Object(s) selected in this display, and for Help. I have no
+   experience with it, but find it interesting.
+   
+
+** Special features of individual services...
+
+   are best handled via Extended Query Options dialogues. For really
+   interesting things, say a geographical search limit option, who
+   knows, some extension to Pybliographer may appear, that could be
+   shared by such dialogues. 
+
+   In any case is the run-of-the-mill query to be formulated
+   independently of the query code used, any variations must be hidden
+   from the user, who in any case must be aware of the unlike
+   qualities of the data returned (something we cannot change). 
+
+
+** Query dialogue 
+
+   why should we not use a GtkNotebook widget with the
+   servers/databases as tabs? Because there could be more than a few
+   servers -- doesn't work with tabs. Because the per server data
+   should be out of the main window. Ideally there should be no per
+   server data required. 
+
+
+** Results 
+
+   The handling of the resulting data is dismal. (The following
+   applies also, perhaps even more so, to the older code in the Format
+   subdir.)  
+   - The result set should be automatically marked, so that
+   I can recall it under some heading `Recent additions' or the like.
+   - It is really necessary to have a duplication check and options to
+   add / override, augment, merge or so the existing data.
+   - The original data should be (optionally) be kept in the database.
+   - Scanning and editing the result set are not a pleasure, a.t.m.
+   - We do not enough to get the data right, e.g., w.r.t. to
+   capitalisation and similar differences. That burdens the user with
+   needless later editing work. 
+
+
+
+
+   
+   
+
+$Id$
