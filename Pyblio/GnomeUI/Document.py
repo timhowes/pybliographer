@@ -379,7 +379,9 @@ class Document (Connector.Publisher):
                 dlg.close ()
                 return
 
-        def cancel_cb (dummy): return
+        def cancel_cb (dummy):
+            dlg.close ()
+            return
 
         def help_cb (dummy):            # Print partial instructions on use of the limits
             dlg_help = GnomeDialog (_("Medline/PubMed Online Search Help"), 'Ok')
