@@ -4,6 +4,8 @@ import os, stat, sys
 
 from distutils.core import setup, Extension
 
+version = '1.1.91'
+
 
 bibtex = [
     'accents.c',
@@ -113,7 +115,7 @@ if rebuild ('biblex.l', ['biblex.c']):
 # Actual compilation
 
 setup (name = "python-bibtex",
-       version = "1.1.90",
+       version = version,
 
        description = "A Python extension to parse BibTeX files",
        author = "Frederic Gobry",
