@@ -369,11 +369,11 @@ msgstr "%s-ben"
 
 #: .././Pyblio/LyX.py:39
 msgid "no input pipe `%s'"
-msgstr "nincs `%s' bemeneti pipe"
+msgstr "nincs `%s' bemeneti csõvezeték"
 
 #: .././Pyblio/LyX.py:45
 msgid "no output pipe `%s'"
-msgstr "nincs `%s' kimeneti pipe"
+msgstr "nincs `%s' kimeneti csõvezeték"
 
 #: .././Pyblio/Open.py:97
 msgid "method `%s' provides no opener"
@@ -818,7 +818,7 @@ msgid ""
 "Can't connect to LyX:\n"
 "%s"
 msgstr ""
-"Nem tudok kapcsolódni LyX-hez:\n"
+"Nem sikerült kapcsolódni LyX-hez:\n"
 "%s"
 
 #: .././Pyblio/GnomeUI/Document.py:709
