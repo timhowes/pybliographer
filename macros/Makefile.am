@@ -24,7 +24,7 @@ MACROS=						\
   linger.m4					\
   need-declaration.m4
 
-EXTRA_DIST=$(MACROS) gnome-common.m4 autogen.sh
+EXTRA_DIST=$(MACROS) gnome-common.m4 
 MAINTAINERCLEANFILES=macros.dep
 
 @MAINT@macros.dep: Makefile.am
