@@ -1,0 +1,1254 @@
+# pybliographer
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Yukihiro Nakai <nakai@gnome.gr.jp>, 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pybliographer CVS\n"
+"POT-Creation-Date: 2000-10-15 03:43+0900\n"
+"PO-Revision-Date: 2000-10-15 03:43+0900\n"
+"Last-Translator: Yukihiro Nakai <nakai@gnome.gr.jp>\n"
+"Language-Team: Japanese <translation@gnome.gr.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=euc-jp\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Pyblio/ConfDir/BibTeX.py:9
+msgid "BibTeX"
+msgstr "BibTeX"
+
+#: Pyblio/ConfDir/BibTeX.py:10
+msgid "BibTeX parser configuration"
+msgstr "BibTeXパーサ設定"
+
+#: Pyblio/ConfDir/BibTeX.py:13
+msgid "Strict Parsing"
+msgstr "厳密なパース"
+
+#: Pyblio/ConfDir/BibTeX.py:14
+msgid "Turn warnings into errors"
+msgstr "警告もエラーにする"
+
+#: Pyblio/ConfDir/BibTeX.py:18
+msgid "Macros"
+msgstr "マクロ"
+
+#: Pyblio/ConfDir/BibTeX.py:19
+msgid "BibTeX @String{} macros"
+msgstr "BibTeX @String{} マクロ"
+
+#: Pyblio/ConfDir/BibTeX.py:24
+msgid "Date Fields"
+msgstr "データフィールド"
+
+#: Pyblio/ConfDir/BibTeX.py:25
+msgid "Links from `real' date field to the two bibtex"
+msgstr "`実際の'日付フィールドから2つのbibtexへのリンク"
+
+#: Pyblio/ConfDir/BibTeX.py:29
+msgid "Month values"
+msgstr "月の値"
+
+#: Pyblio/ConfDir/BibTeX.py:30
+msgid " A hash table linking month names to their"
+msgstr " ハッシュテーブルからのリンクが月名から"
+
+#: Pyblio/ConfDir/Base.py:15
+msgid "Base"
+msgstr "ベース"
+
+#: Pyblio/ConfDir/Base.py:16
+msgid "Elementary configuration"
+msgstr "要素の設定"
+
+#: Pyblio/ConfDir/Base.py:19
+msgid "Advertise"
+msgstr "広告"
+
+#: Pyblio/ConfDir/Base.py:20
+msgid "Specify wether or not the program should add a message"
+msgstr "プログラムがメッセージを追加するかどうかを指定してください"
+
+#: Pyblio/ConfDir/Base.py:25
+msgid "Fields"
+msgstr "フィールド"
+
+#: Pyblio/ConfDir/Base.py:26
+msgid "Existing fields"
+msgstr "存在するフィールド"
+
+#: Pyblio/ConfDir/Base.py:30
+msgid "Entries"
+msgstr "エントリ"
+
+#: Pyblio/ConfDir/Base.py:31
+msgid "Existing entries"
+msgstr "存在するエントリ"
+
+#: Pyblio/ConfDir/Base.py:34
+msgid "Default Type"
+msgstr "デフォルトタイプ"
+
+#: Pyblio/ConfDir/Base.py:35
+msgid "Default type for a newly created entry"
+msgstr "新規に作成されたエントリのデフォルトタイプ"
+
+#: Pyblio/ConfDir/Base.py:39
+msgid "LyX Path"
+msgstr "LyX パス"
+
+#: Pyblio/ConfDir/Base.py:40
+msgid "Path to the LyX server"
+msgstr "LyXサーバへのパス"
+
+#: Pyblio/ConfDir/Base.py:41
+msgid "Path"
+msgstr "パス"
+
+#: Pyblio/ConfDir/Base.py:48
+msgid "Cross Reference"
+msgstr "クロスリファレンス"
+
+#: Pyblio/ConfDir/Base.py:48 Pyblio/ConfDir/Base.py:49
+#: Pyblio/ConfDir/Base.py:50 Pyblio/ConfDir/Base.py:51
+#: Pyblio/ConfDir/Base.py:52 Pyblio/ConfDir/Base.py:53
+#: Pyblio/ConfDir/Base.py:54 Pyblio/ConfDir/Base.py:55
+#: Pyblio/ConfDir/Base.py:56 Pyblio/ConfDir/Base.py:57
+#: Pyblio/ConfDir/Base.py:58 Pyblio/ConfDir/Base.py:59
+#: Pyblio/ConfDir/Base.py:60 Pyblio/ConfDir/Base.py:61
+#: Pyblio/ConfDir/Base.py:62 Pyblio/ConfDir/Base.py:63
+#: Pyblio/ConfDir/Base.py:64 Pyblio/ConfDir/Base.py:65
+#: Pyblio/ConfDir/Base.py:66 Pyblio/ConfDir/Base.py:67
+#: Pyblio/ConfDir/Base.py:68 Pyblio/ConfDir/Base.py:69
+#: Pyblio/ConfDir/Base.py:70 Pyblio/ConfDir/Base.py:71
+#: Pyblio/ConfDir/Base.py:72 Pyblio/ConfDir/Base.py:73
+#: Pyblio/ConfDir/Base.py:74 Pyblio/ConfDir/Base.py:75
+#: Pyblio/ConfDir/Base.py:76 Pyblio/ConfDir/Base.py:77
+#: Pyblio/ConfDir/Base.py:78 Pyblio/ConfDir/Base.py:79
+#: Pyblio/ConfDir/Base.py:80 Pyblio/ConfDir/Base.py:81
+#: Pyblio/ConfDir/Base.py:82 Pyblio/ConfDir/Base.py:83
+#: Pyblio/ConfDir/Base.py:84 Pyblio/ConfDir/Base.py:85
+#: Pyblio/ConfDir/Base.py:86 Pyblio/ConfDir/Base.py:87
+#: Pyblio/ConfDir/Base.py:88 Pyblio/ConfDir/Base.py:89
+#: Pyblio/ConfDir/Base.py:90 Pyblio/ConfDir/Base.py:91
+#: Pyblio/ConfDir/Base.py:92 Pyblio/ConfDir/Base.py:93
+#: Pyblio/ConfDir/Base.py:94
+msgid "Description"
+msgstr "説明"
+
+#: Pyblio/ConfDir/Base.py:49 Pyblio/GnomeUI/Config.py:524
+#: Pyblio/GnomeUI/Editor.py:428
+msgid "Key"
+msgstr "キー"
+
+#: Pyblio/ConfDir/Base.py:50
+msgid "Author"
+msgstr "著者"
+
+#: Pyblio/ConfDir/Base.py:51
+msgid "Address 1"
+msgstr "アドレス 1"
+
+#: Pyblio/ConfDir/Base.py:52
+msgid "Address 2"
+msgstr "アドレス 2"
+
+#: Pyblio/ConfDir/Base.py:53
+msgid "Title"
+msgstr "タイトル"
+
+#: Pyblio/ConfDir/Base.py:54
+msgid "Specific Title"
+msgstr "特定できるタイトル"
+
+#: Pyblio/ConfDir/Base.py:55
+msgid "Journal"
+msgstr "ジャーナル"
+
+#: Pyblio/ConfDir/Base.py:56
+msgid "Special"
+msgstr "特別"
+
+#: Pyblio/ConfDir/Base.py:57 Pyblio/GnomeUI/Fields.py:58
+msgid "Type"
+msgstr "タイプ"
+
+#: Pyblio/ConfDir/Base.py:58
+msgid "Book Title"
+msgstr "本のタイトル"
+
+#: Pyblio/ConfDir/Base.py:59
+msgid "Subject"
+msgstr "題名"
+
+#: Pyblio/ConfDir/Base.py:60
+msgid "Ownership"
+msgstr "所有者"
+
+#: Pyblio/ConfDir/Base.py:61
+msgid "Series"
+msgstr "シリーズ"
+
+#: Pyblio/ConfDir/Base.py:62
+msgid "Editor"
+msgstr "編集"
+
+#: Pyblio/ConfDir/Base.py:63
+msgid "Edition"
+msgstr "版"
+
+#: Pyblio/ConfDir/Base.py:64
+msgid "Volume"
+msgstr "巻"
+
+#: Pyblio/ConfDir/Base.py:65
+msgid "Number"
+msgstr "番号"
+
+#: Pyblio/ConfDir/Base.py:66
+msgid "Chapter"
+msgstr "章"
+
+#: Pyblio/ConfDir/Base.py:67
+msgid "Pages"
+msgstr "ページ"
+
+#: Pyblio/ConfDir/Base.py:68
+msgid "School"
+msgstr "学校"
+
+#: Pyblio/ConfDir/Base.py:69
+msgid "Organization"
+msgstr "所属"
+
+#: Pyblio/ConfDir/Base.py:70
+msgid "Location"
+msgstr "場所"
+
+#: Pyblio/ConfDir/Base.py:71
+msgid "Dates"
+msgstr "日付"
+
+#: Pyblio/ConfDir/Base.py:72
+msgid "Institution"
+msgstr "学会"
+
+#: Pyblio/ConfDir/Base.py:73
+msgid "Publisher"
+msgstr "発行人"
+
+#: Pyblio/ConfDir/Base.py:74
+msgid "Address"
+msgstr "アドレス"
+
+#: Pyblio/ConfDir/Base.py:75
+msgid "Format"
+msgstr "フォーマット"
+
+#: Pyblio/ConfDir/Base.py:76
+msgid "Date"
+msgstr "日付"
+
+#: Pyblio/ConfDir/Base.py:77
+msgid "# Series"
+msgstr "# シリーズ"
+
+#: Pyblio/ConfDir/Base.py:78
+msgid "Conference Place"
+msgstr "会議の場所"
+
+#: Pyblio/ConfDir/Base.py:79
+msgid "Cote"
+msgstr "コート"
+
+#: Pyblio/ConfDir/Base.py:80
+msgid "IEEECN"
+msgstr "IEEECN"
+
+#: Pyblio/ConfDir/Base.py:81
+msgid "LoCN"
+msgstr "LoCN"
+
+#: Pyblio/ConfDir/Base.py:82
+msgid "ISBN"
+msgstr "ISBN"
+
+#: Pyblio/ConfDir/Base.py:83
+msgid "ISSN"
+msgstr "ISSN"
+
+#: Pyblio/ConfDir/Base.py:84
+msgid "Note"
+msgstr "注意"
+
+#: Pyblio/ConfDir/Base.py:85
+msgid "Language"
+msgstr "言語"
+
+#: Pyblio/ConfDir/Base.py:86
+msgid "How Published"
+msgstr "発行の経緯"
+
+#: Pyblio/ConfDir/Base.py:87
+msgid "To Appear"
+msgstr "出版"
+
+#: Pyblio/ConfDir/Base.py:88
+msgid "From"
+msgstr "元"
+
+#: Pyblio/ConfDir/Base.py:89
+msgid "Received"
+msgstr "受取"
+
+#: Pyblio/ConfDir/Base.py:90
+msgid "Owner"
+msgstr "所有者"
+
+#: Pyblio/ConfDir/Base.py:91
+msgid "Keywords"
+msgstr "キーワード"
+
+#: Pyblio/ConfDir/Base.py:92
+msgid "Abstract"
+msgstr "概要"
+
+#: Pyblio/ConfDir/Base.py:93
+msgid "Remarks"
+msgstr "リマーク"
+
+#: Pyblio/ConfDir/Base.py:94
+msgid "URL"
+msgstr "URL"
+
+#: Pyblio/ConfDir/Base.py:98
+msgid "Article"
+msgstr "記事"
+
+#: Pyblio/ConfDir/Base.py:98 Pyblio/ConfDir/Base.py:102
+#: Pyblio/ConfDir/Base.py:106 Pyblio/ConfDir/Base.py:110
+#: Pyblio/ConfDir/Base.py:114 Pyblio/ConfDir/Base.py:119
+#: Pyblio/ConfDir/Base.py:125 Pyblio/ConfDir/Base.py:129
+#: Pyblio/ConfDir/Base.py:133 Pyblio/ConfDir/Base.py:137
+#: Pyblio/ConfDir/Base.py:141 Pyblio/ConfDir/Base.py:147
+#: Pyblio/ConfDir/Base.py:151
+msgid " "
+msgstr " "
+
+#: Pyblio/ConfDir/Base.py:102
+msgid "Book"
+msgstr "本"
+
+#: Pyblio/ConfDir/Base.py:106
+msgid "Booklet"
+msgstr "本棚"
+
+#: Pyblio/ConfDir/Base.py:110
+msgid "In Book"
+msgstr "本の中"
+
+#: Pyblio/ConfDir/Base.py:114
+msgid "In Collection"
+msgstr "コレクションの中"
+
+#: Pyblio/ConfDir/Base.py:119
+msgid "In Proceedings"
+msgstr "議事録の中"
+
+#: Pyblio/ConfDir/Base.py:125
+msgid "Manual"
+msgstr "マニュアル"
+
+#: Pyblio/ConfDir/Base.py:129
+msgid "Masters Thesis"
+msgstr "修士論文"
+
+#: Pyblio/ConfDir/Base.py:133
+msgid "Miscellanous"
+msgstr "その他"
+
+#: Pyblio/ConfDir/Base.py:137
+msgid "PhD Thesis"
+msgstr "PhD論文"
+
+#: Pyblio/ConfDir/Base.py:141
+msgid "Proceedings"
+msgstr "議事録"
+
+#: Pyblio/ConfDir/Base.py:147
+msgid "Technical Report"
+msgstr "テクニカルレポート"
+
+#: Pyblio/ConfDir/Base.py:151
+msgid "Unpublished"
+msgstr "未発行"
+
+#: Pyblio/ConfDir/Ovid.py:9
+msgid "Default type"
+msgstr "デフォルトタイプ"
+
+#: Pyblio/ConfDir/Ovid.py:10
+msgid "Default type for an Ovid entry"
+msgstr "Ovidエントリのデフォルトタイプ"
+
+#: Pyblio/ConfDir/Ovid.py:15 Pyblio/ConfDir/Refer.py:7
+msgid "Mapping"
+msgstr "マッピング"
+
+#: Pyblio/ConfDir/Ovid.py:16
+msgid "A mapping between the Ovid field name and the"
+msgstr "Ovidフィールド名とのマッピング"
+
+#: Pyblio/ConfDir/Refer.py:8
+msgid "Field names correspondances"
+msgstr "フィールド名の対応"
+
+#: Pyblio/ConfDir/Gnome.py:7
+msgid "Gnome"
+msgstr "Gnome"
+
+#: Pyblio/ConfDir/Gnome.py:8
+msgid "Gnome interface configuration"
+msgstr "Gnomeインターフェース設定"
+
+#: Pyblio/ConfDir/Gnome.py:11
+msgid "Columns"
+msgstr "カラム"
+
+#: Pyblio/ConfDir/Gnome.py:12
+msgid "Fields displayed on the main screen of the interface"
+msgstr "インターフェースのメインスクリーンに表示されるフィールド"
+
+#: Pyblio/ConfDir/Gnome.py:16
+msgid "Tooltips"
+msgstr "ツールチップ"
+
+#: Pyblio/ConfDir/Gnome.py:17
+msgid "Enable tooltips ?"
+msgstr "ツールチップを有効にしますか?"
+
+#: Pyblio/ConfDir/Gnome.py:21
+msgid "Native Edit"
+msgstr "ネイティブ編集"
+
+#: Pyblio/ConfDir/Gnome.py:22
+msgid "Edit the entries in their native format by default ?"
+msgstr "デフォルトではエントリをネイティブなフォーマットで編集しますか?"
+
+#: Pyblio/ConfDir/Gnome.py:23
+msgid "Use native edit by default ?"
+msgstr "デフォルトでネイティブ編集を使用しますか?"
+
+#: Pyblio/ConfDir/Gnome.py:26
+msgid "Searchable"
+msgstr "検索可能"
+
+#: Pyblio/ConfDir/Gnome.py:27
+msgid "Searchable fields"
+msgstr "検索可能フィールド"
+
+#: Pyblio/ConfDir/Gnome.py:31
+msgid "History Size"
+msgstr "履歴サイズ"
+
+#: Pyblio/ConfDir/Gnome.py:32
+msgid "Size of the history file"
+msgstr "履歴ファイルのサイズ"
+
+#: Pyblio/ConfDir/Gnome.py:33
+msgid "Number of items"
+msgstr "アイテムの数"
+
+#: Pyblio/ConfDir/Medline.py:7
+msgid "Medline Mapping"
+msgstr "Medlineマッピング"
+
+#: Pyblio/ConfDir/Medline.py:8
+msgid "Medline field names correspondances"
+msgstr "Medlineフィールド名の対応"
+
+#: Pyblio/Autoload.py:57
+#, c-format
+msgid "warning: can't import %s: %s"
+msgstr "注意: %sをインポートできません: %s"
+
+#: Pyblio/Config.py:53
+#, c-format
+msgid "value of `%s' should be of type %s"
+msgstr "`%s'の値はタイプ%sでなければなりません"
+
+#: Pyblio/Config.py:200
+msgid "String"
+msgstr "文字"
+
+#: Pyblio/Config.py:210
+msgid "Boolean"
+msgstr "真偽値"
+
+#: Pyblio/Config.py:230
+msgid "Integer"
+msgstr "整数"
+
+#: Pyblio/Config.py:232
+#, c-format
+msgid "Integer under %d"
+msgstr "%d未満の整数"
+
+#: Pyblio/Config.py:234
+#, c-format
+msgid "Integer over %d"
+msgstr "%dを越える整数"
+
+#: Pyblio/Config.py:236
+#, c-format
+msgid "Integer between %d and %d"
+msgstr "%dと%dの間の整数"
+
+#: Pyblio/Config.py:249
+#, c-format
+msgid "Element in `%s'"
+msgstr "`%s'の要素"
+
+#: Pyblio/Config.py:270
+#, c-format
+msgid "Tuple (%s)"
+msgstr "タプル (%s)"
+
+#: Pyblio/Config.py:292
+#, c-format
+msgid "List (%s)"
+msgstr "リスト (%s)"
+
+#: Pyblio/Config.py:318
+#, c-format
+msgid "Dictionary (%s, %s)"
+msgstr "辞書 (%s, %s)"
+
+#: Pyblio/Fields.py:265
+msgid "Illegal year value"
+msgstr "不正な年号の値"
+
+#: Pyblio/Fields.py:269
+msgid "Illegal month value"
+msgstr "不正な月の値"
+
+#: Pyblio/Fields.py:273
+msgid "Illegal day value"
+msgstr "不正な日付の値"
+
+#: Pyblio/Fields.py:438
+#, c-format
+msgid "in %s"
+msgstr "%sの中で"
+
+#: Pyblio/LyX.py:39
+#, c-format
+msgid "no input pipe `%s'"
+msgstr "パイプ`%s'に入力がありません"
+
+#: Pyblio/LyX.py:45
+#, c-format
+msgid "no output pipe `%s'"
+msgstr "パイプ`%s'に入力がありません"
+
+#: Pyblio/Open.py:97
+#, c-format
+msgid "method `%s' provides no opener"
+msgstr "メソッド`%s'にはオープナーがありません"
+
+#: Pyblio/Open.py:105 Pyblio/Open.py:151
+#, c-format
+msgid "File `%s' does not exist"
+msgstr "ファイル`%s'は存在しません"
+
+#: Pyblio/Open.py:116 Pyblio/Open.py:162
+#, c-format
+msgid "don't know how to open `%s'"
+msgstr "`%s'をどうやって開くのか分かりません"
+
+#: Pyblio/Open.py:143
+#, c-format
+msgid "method `%s' provides no iterator"
+msgstr "メソッド`%s'にはイテレータがありません"
+
+#: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
+#, c-format
+msgid "key `%s' is malformed"
+msgstr "キー `%s'は不正です"
+
+#: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
+#, c-format
+msgid "%s:%d: key `%s' already defined"
+msgstr "%s:%d: キー`%s'はすでに定義されています"
+
+#: Pyblio/GnomeUI/Editor.py:38
+msgid "Last Name, First Name"
+msgstr "名前、名字"
+
+#: Pyblio/GnomeUI/Editor.py:39
+msgid "Text"
+msgstr "テキスト"
+
+#: Pyblio/GnomeUI/Editor.py:42
+msgid "Reference"
+msgstr "参照"
+
+#: Pyblio/GnomeUI/Editor.py:258
+msgid "Day"
+msgstr "日"
+
+#: Pyblio/GnomeUI/Editor.py:267
+msgid "Month"
+msgstr "月"
+
+#: Pyblio/GnomeUI/Editor.py:276
+msgid "Year"
+msgstr "年"
+
+#: Pyblio/GnomeUI/Editor.py:301
+msgid "Invalid day field in date"
+msgstr "日付の日フィールドが不適切です"
+
+#: Pyblio/GnomeUI/Editor.py:309
+msgid "Invalid month field in date"
+msgstr "日付の月フィールドが不適切です"
+
+#: Pyblio/GnomeUI/Editor.py:317
+msgid "Invalid year field in date"
+msgstr "日付の年フィールドが不適切です"
+
+#: Pyblio/GnomeUI/Editor.py:426
+msgid "Entry type"
+msgstr "エントリタイプ"
+
+#: Pyblio/GnomeUI/Editor.py:469
+msgid "Create Field"
+msgstr "フィールドの作成"
+
+#: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:178
+msgid "Mandatory"
+msgstr "必須"
+
+#: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:179
+msgid "Optional"
+msgstr "オプション"
+
+#: Pyblio/GnomeUI/Editor.py:534
+msgid "Extra"
+msgstr "おまけ"
+
+#: Pyblio/GnomeUI/Editor.py:596
+msgid "Invalid key format"
+msgstr "不適切なキーのフォーマット"
+
+#: Pyblio/GnomeUI/Editor.py:604
+#, c-format
+msgid "Key `%s' already exists"
+msgstr "キー`%s'はすでに存在します"
+
+#: Pyblio/GnomeUI/Editor.py:671
+msgid "Error in native string parsing"
+msgstr "ネイティブ文字のパースでエラー"
+
+#: Pyblio/GnomeUI/Editor.py:684
+msgid "Edit entry"
+msgstr "エントリの編集"
+
+#: Pyblio/GnomeUI/Editor.py:698 Pyblio/GnomeUI/Editor.py:739
+msgid "Native Editing"
+msgstr "ネイティブ編集"
+
+#: Pyblio/GnomeUI/Editor.py:751
+msgid "Standard Editing"
+msgstr "標準編集"
+
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+#: Pyblio/GnomeUI/FileSelector.py:41
+msgid "File"
+msgstr "ファイル"
+
+#: Pyblio/GnomeUI/FileSelector.py:74
+msgid "Bibliography type:"
+msgstr "文献タイプ"
+
+#: Pyblio/GnomeUI/Index.py:66
+msgid "Add..."
+msgstr "追加..."
+
+#: Pyblio/GnomeUI/Index.py:67
+msgid "Edit..."
+msgstr "編集..."
+
+#: Pyblio/GnomeUI/Index.py:68 Pyblio/GnomeUI/Search.py:176
+msgid "Delete"
+msgstr "削除"
+
+#: Pyblio/GnomeUI/Search.py:109
+msgid "Search"
+msgstr "検索"
+
+#: Pyblio/GnomeUI/Fields.py:211 Pyblio/GnomeUI/Search.py:133
+msgid "Field"
+msgstr "フィールド"
+
+#: Pyblio/GnomeUI/Search.py:134
+msgid "Pattern"
+msgstr "パターン"
+
+#: Pyblio/GnomeUI/Search.py:149
+msgid "Simple Search"
+msgstr "簡単検索"
+
+#: Pyblio/GnomeUI/Search.py:153
+msgid "Search command:"
+msgstr "検索コマンド:"
+
+#: Pyblio/GnomeUI/Search.py:159
+msgid "Expert Search"
+msgstr "上級検索"
+
+#: Pyblio/GnomeUI/Search.py:194
+msgid "Full database"
+msgstr "全データベース"
+
+#: Pyblio/GnomeUI/Search.py:229
+msgid "internal error during evaluation"
+msgstr "評価の途中の内部エラー"
+
+#: Pyblio/GnomeUI/Search.py:278
+#, c-format
+msgid ""
+"while compiling %s\n"
+"error: %s"
+msgstr ""
+"%sをコンパイルしているときに\n"
+"エラー: %s"
+
+#: Pyblio/GnomeUI/Sort.py:42
+msgid "Select sort criterions"
+msgstr "ソート基準の選択"
+
+#: Pyblio/GnomeUI/Sort.py:53
+msgid "Sort direction"
+msgstr "ソートの方向"
+
+#: Pyblio/GnomeUI/Sort.py:53
+msgid "Sort criterions"
+msgstr "ソート基準"
+
+#: Pyblio/GnomeUI/Sort.py:66
+msgid "[Entry Type]"
+msgstr "[エントリ タイプ]"
+
+#: Pyblio/GnomeUI/Sort.py:67
+msgid "[Key Value]"
+msgstr "[キー 値]"
+
+#: Pyblio/GnomeUI/Sort.py:92
+msgid "Reorder"
+msgstr "再ソート"
+
+#: Pyblio/GnomeUI/Sort.py:93
+msgid "Groups the active fields on the top of the list"
+msgstr "リストの先頭にあるアクティブなフィールドをグループ化"
+
+#: Pyblio/GnomeUI/Sort.py:97
+msgid "Unselect all"
+msgstr "すべて選択解除"
+
+#: Pyblio/GnomeUI/Sort.py:98
+msgid "Removes all the sort criterions"
+msgstr "すべてのソート基準を削除"
+
+#: Pyblio/GnomeUI/Utils.py:163
+msgid ""
+"The following errors occured:\n"
+"\n"
+msgstr ""
+"次のエラーが発生しました:\n"
+"\n"
+
+#: Pyblio/GnomeUI/__init__.py:36
+msgid "Internal Error"
+msgstr "内部エラー"
+
+#: Pyblio/GnomeUI/Document.py:52
+msgid "_New"
+msgstr "新規(_N)"
+
+#: Pyblio/GnomeUI/Document.py:54
+msgid "_Merge with..."
+msgstr "結合(_M)..."
+
+#: Pyblio/GnomeUI/Document.py:58
+msgid "_Previous Documents"
+msgstr "前のドキュメント(_P)"
+
+#: Pyblio/GnomeUI/Document.py:65
+msgid "About..."
+msgstr "情報..."
+
+#: Pyblio/GnomeUI/Document.py:66
+msgid "Submit a Bug Report"
+msgstr "バグレポートの提出"
+
+#: Pyblio/GnomeUI/Document.py:78
+msgid "_Add..."
+msgstr "追加(_A)..."
+
+#: Pyblio/GnomeUI/Document.py:79
+msgid "_Edit..."
+msgstr "編集(_E)..."
+
+#: Pyblio/GnomeUI/Document.py:80
+msgid "_Delete"
+msgstr "削除(_D)"
+
+#: Pyblio/GnomeUI/Document.py:83
+msgid "S_ort..."
+msgstr "ソート(_O)..."
+
+#: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
+msgid "_Cite"
+msgstr "引用(_C)"
+
+#: Pyblio/GnomeUI/Document.py:88
+msgid "_Format..."
+msgstr "フォーマット(_F)..."
+
+#: Pyblio/GnomeUI/Document.py:92
+msgid "_Fields..."
+msgstr "フィールド(_F)..."
+
+#: Pyblio/GnomeUI/Document.py:93
+msgid "_Entries..."
+msgstr "エントリ(_E)..."
+
+#: Pyblio/GnomeUI/Document.py:99
+msgid "_File"
+msgstr "ファイル(_F)"
+
+#: Pyblio/GnomeUI/Document.py:100
+msgid "_Edit"
+msgstr "編集(_E)"
+
+#: Pyblio/GnomeUI/Document.py:102
+msgid "_Settings"
+msgstr "設定(_S)"
+
+#: Pyblio/GnomeUI/Document.py:103
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: Pyblio/GnomeUI/Document.py:107
+msgid "Open"
+msgstr "開く"
+
+#: Pyblio/GnomeUI/Document.py:108
+msgid "Save"
+msgstr "保存"
+
+#: Pyblio/GnomeUI/Document.py:110
+msgid "Find"
+msgstr "検索"
+
+#: Pyblio/GnomeUI/Document.py:111
+msgid "Cite"
+msgstr "引用"
+
+#: Pyblio/GnomeUI/Document.py:113
+msgid "Close"
+msgstr "閉じる"
+
+#: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
+msgid "Previous Documents"
+msgstr "前のどきゅめんと"
+
+#: Pyblio/GnomeUI/Document.py:228
+#, c-format
+msgid ""
+"can't open file `%s' for writing:\n"
+"%s"
+msgstr ""
+"ファイル`%s'を書き込んでいます:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:243
+#, c-format
+msgid ""
+"Error while parsing `%s':\n"
+"%s"
+msgstr ""
+"`%s'のパースでエラーが発生しました:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:262
+msgid "New database"
+msgstr "新規データベース"
+
+#: Pyblio/GnomeUI/Document.py:270 Pyblio/GnomeUI/Document.py:274
+msgid "[no entry]"
+msgstr "[エントリなし]"
+
+#: Pyblio/GnomeUI/Document.py:271
+msgid "[1 entry]"
+msgstr "[1エントリ]"
+
+#: Pyblio/GnomeUI/Document.py:272
+#, c-format
+msgid "[%d entries]"
+msgstr "[%dエントリ]"
+
+#: Pyblio/GnomeUI/Document.py:275
+#, c-format
+msgid "[%d/1 entry]"
+msgstr "[%d/1エントリ]"
+
+#: Pyblio/GnomeUI/Document.py:276
+#, c-format
+msgid "[%d/%d entries]"
+msgstr "[%d/%dエントリ]"
+
+#: Pyblio/GnomeUI/Document.py:281
+msgid "[modified]"
+msgstr "[変更されました]"
+
+#: Pyblio/GnomeUI/Document.py:291
+msgid ""
+"The database has been modified.\n"
+"Discard changes ?"
+msgstr ""
+"データベースは変更されました。\n"
+"変更を破棄しますか?"
+
+#: Pyblio/GnomeUI/Document.py:307
+msgid "Merge file"
+msgstr "ファイルの結合"
+
+#: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:379
+msgid "Open error"
+msgstr "開くときのエラー"
+
+#: Pyblio/GnomeUI/Document.py:343
+msgid "Merge status"
+msgstr "結合状態"
+
+#: Pyblio/GnomeUI/Document.py:354
+msgid "Open file"
+msgstr "ファイルを開く"
+
+#: Pyblio/GnomeUI/Document.py:403
+#, c-format
+msgid ""
+"Unable to save `%s':\n"
+"%s"
+msgstr ""
+"`%s'を開けません:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:411
+msgid ""
+"An internal error occured during saving\n"
+"Try to Save As..."
+msgstr ""
+"保存するときに内部エラーが発生しました\n"
+"別名で保存してください..."
+
+#: Pyblio/GnomeUI/Document.py:422
+msgid "Save As..."
+msgstr "別名で保存..."
+
+#: Pyblio/GnomeUI/Document.py:428
+#, c-format
+msgid ""
+"The file `%s' already exists.\n"
+"Overwrite it ?"
+msgstr ""
+"`%s'はすでに存在します。\n"
+"上書きしますか?"
+
+#: Pyblio/GnomeUI/Document.py:435
+#, c-format
+msgid ""
+"During opening:\n"
+"%s"
+msgstr ""
+"開いているときに:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:455
+msgid "Reopen error"
+msgstr "再オープンエラー"
+
+#: Pyblio/GnomeUI/Document.py:496
+#, c-format
+msgid ""
+"An entry called `%s' already exists.\n"
+"Rename and add it anyway ?"
+msgstr ""
+"`%s'というエントリがすでに存在します。\n"
+"名前を変更してとにかく追加しますか?"
+
+#: Pyblio/GnomeUI/Document.py:532
+msgid "Really remove all the entries ?"
+msgstr "本当にすべてのエントリを削除しますか?"
+
+#: Pyblio/GnomeUI/Document.py:552
+msgid "Create new entry"
+msgstr "新規エントリの作成"
+
+#: Pyblio/GnomeUI/Document.py:566
+#, c-format
+msgid "Really edit %d entries ?"
+msgstr "本当に%dエントリを編集しますか?"
+
+#: Pyblio/GnomeUI/Document.py:601
+#, c-format
+msgid "Remove all the %d entries ?"
+msgstr "%dエントリをすべて削除しますか?"
+
+#: Pyblio/GnomeUI/Document.py:603
+#, c-format
+msgid "Remove entry `%s' ?"
+msgstr "エントリ`%s'を削除しますか?"
+
+#: Pyblio/GnomeUI/Document.py:661 Pyblio/GnomeUI/Document.py:668
+#, c-format
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr ""
+"LyXに接続できません:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Document.py:709
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+"この機能を使うにはbug-buddyを\n"
+"インストールしてください"
+
+#: Pyblio/GnomeUI/Document.py:720
+msgid "This program is copyrighted under the GNU GPL"
+msgstr "このプログラムはGNU GPLのもとに著作権があります"
+
+#: Pyblio/GnomeUI/Document.py:722
+msgid "Gnome interface to the Pybliographer system."
+msgstr "PybliobrapherシステムのGNOMEインターフェースです。"
+
+#: Pyblio/GnomeUI/Document.py:727
+msgid "Pybliographer Home Page"
+msgstr "Pybliographerホームページ"
+
+#: Pyblio/GnomeUI/Format.py:37
+msgid "Format entries"
+msgstr "エントリのフォーマット"
+
+#: Pyblio/GnomeUI/Format.py:51
+msgid "Bibliography style:"
+msgstr "目録スタイル:"
+
+#: Pyblio/GnomeUI/Format.py:52
+msgid "Select style"
+msgstr "スタイルの選択"
+
+#: Pyblio/GnomeUI/Format.py:58
+msgid "Output format:"
+msgstr "出力フォーマット:"
+
+#: Pyblio/GnomeUI/Format.py:75
+msgid "Output File:"
+msgstr "出力ファイル:"
+
+#: Pyblio/GnomeUI/Format.py:76
+msgid "Select output file"
+msgstr "出力ファイルの選択"
+
+#: Pyblio/GnomeUI/Config.py:46
+msgid "Choose your preferences"
+msgstr "設定の選択"
+
+#: Pyblio/GnomeUI/Config.py:111
+#, c-format
+msgid ""
+"Item `%s':\n"
+"\n"
+"%s"
+msgstr ""
+"アイテム`%s':\n"
+"\n"
+"%s"
+
+#: Pyblio/GnomeUI/Config.py:146
+msgid ""
+"Some changes require to restart Pybliographic\n"
+"to be correctly taken into account"
+msgstr ""
+"いくつかの変更は、正しく反映するためには\n"
+"Pybliographicを再起動する必要があります"
+
+#: Pyblio/GnomeUI/Config.py:291
+msgid "True"
+msgstr "真"
+
+#: Pyblio/GnomeUI/Config.py:292
+msgid "False"
+msgstr "偽"
+
+#: Pyblio/GnomeUI/Config.py:432
+msgid "Add"
+msgstr "追加"
+
+#: Pyblio/GnomeUI/Config.py:435
+msgid "Update"
+msgstr "更新"
+
+#: Pyblio/GnomeUI/Config.py:438 Pyblio/GnomeUI/Config.py:536
+#: Pyblio/GnomeUI/Fields.py:95 Pyblio/GnomeUI/Fields.py:225
+msgid "Remove"
+msgstr "削除"
+
+#: Pyblio/GnomeUI/Config.py:524
+msgid "Value"
+msgstr "値"
+
+#: Pyblio/GnomeUI/Config.py:533 Pyblio/GnomeUI/Fields.py:92
+#: Pyblio/GnomeUI/Fields.py:222
+msgid "Set"
+msgstr "設定"
+
+#: Pyblio/GnomeUI/Config.py:549
+msgid "Key:"
+msgstr "キー:"
+
+#: Pyblio/GnomeUI/Config.py:551
+msgid "Value:"
+msgstr "値:"
+
+#: Pyblio/GnomeUI/Fields.py:45
+msgid "Fields configuration"
+msgstr "フィールド設定"
+
+#: Pyblio/GnomeUI/Fields.py:58
+msgid "Name"
+msgstr "名前"
+
+#: Pyblio/GnomeUI/Fields.py:69
+msgid "Name:"
+msgstr "名前:"
+
+#: Pyblio/GnomeUI/Fields.py:71
+msgid "Type:"
+msgstr "タイプ:"
+
+#: Pyblio/GnomeUI/Fields.py:185
+msgid "Entries configuration"
+msgstr "エントリ設定"
+
+#: Pyblio/GnomeUI/Fields.py:195
+msgid "Entry"
+msgstr "エントリ"
+
+#: Pyblio/GnomeUI/Fields.py:206
+msgid "Entry Name:"
+msgstr "エントリ名:"
+
+#: Pyblio/GnomeUI/Fields.py:211
+msgid "Status"
+msgstr "状態"
+
+#: pybliographer.py:38
+#, c-format
+msgid "This is %s, version %s"
+msgstr "これは%sで、バージョンは%sです"
+
+#: pybliographer.py:42 pybliographer.py:49
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr "これはまったく保証のないフリーソフトウェアです。"
+
+#: pybliographer.py:43
+msgid "For details, type `warranty'."
+msgstr "詳しくは、`warranty'と入力して下さい。"
+
+#: pybliographer.py:110 pybliographer.py:158
+#, c-format
+msgid "%s: error: can't open file `%s'"
+msgstr "%s: エラー: ファイル`%s'を開けません"
+
+#: pybliographer.py:123
+#, c-format
+msgid "For help, run %s and type `help' at the prompt"
+msgstr "ヘルプを見るには、%sを実行してプロンプトで`help'と入力してください"
+
+#: pybliographer.py:132
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+"使用可能なコマンド:\n"
+"\thelp     でヘルプをいくらか見れます\n"
+"\tquit     で終了します\n"
+
+#: scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr "使い方: pybcompact <latexファイル> <bibtexファイル...>"
+
+#: scripts/pybcompact.py:34
+#, c-format
+msgid "pybcompact: error: %s\n"
+msgstr "pybcompact: エラー: %s\n"
+
+#: scripts/pybcompact.py:97
+msgid "no entry"
+msgstr "エントリなし"
+
+#: scripts/pybcompact.py:142
+#, c-format
+msgid "can't find the following entries: %s"
+msgstr "次のエントリを検索できません: %s"
+
+#: scripts/pybconvert.py:29
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr "使い方: pybconvert <ソース>..<ターゲット> <入力> [出力]"
+
+#: scripts/pybconvert.py:38
+msgid "pybconvert: bad conversion format"
+msgstr "pybconvert: 変換フォーマットが間違っています"
+
+#: scripts/pybformat.py:34
+msgid "usage: pybformat [bibtexfiles...]\n"
+msgstr "使い方: pybformat [bibtexファイル...]\n"
+
+#: scripts/pybformat.py:38
+#, c-format
+msgid "pybformat: error: %s\n"
+msgstr "pybformat: エラー: %s\n"
+
+#: scripts/pybformat.py:44
+#, c-format
+msgid "pybformat: warning: %s\n"
+msgstr "pybformat: 注意: %s\n"
+
+#: scripts/pybformat.py:141 scripts/pybtex.py:84
+#, c-format
+msgid "can't find style `%s'"
+msgstr "スタイル`%s'を検索できません"
+
+#: scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr "使い方: pybtex <latexファイル> [bibtexファイル...]"
+
+#: scripts/pybtex.py:38
+#, c-format
+msgid "pybtex: error: %s\n"
+msgstr "pybtex: エラー: %s\n"
+
+#: scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr "pybtex: 注意: 次のキーは解決されていません"
+
+#: scripts/pybtex.py:64
+msgid "no style defined"
+msgstr "スタイルが定義されていません"

@@ -1,3 +1,8 @@
+2000-10-15  Yukihiro Nakai  <nakai@gnome.gr.jp>
+
+	* configure.in: Add ja to ALL_LINGUAS
+	* .desktop: Add Japanese translation
+
 2000-06-13  Fred  <fred@lithpc10.epfl.ch>
 
 	* Pyblio/GnomeUI/FileSelection.py: Removed fileops for file
