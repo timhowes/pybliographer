@@ -214,6 +214,8 @@ class Index (Connector.Publisher):
         
         self.clist.select_row (item, 0)
         self.set_scroll (item)
+
+        self.issue ('select-entry', self.access [item])
         return
     
         

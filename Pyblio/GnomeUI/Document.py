@@ -587,10 +587,10 @@ class Document (Connector.Publisher):
         else:
             self.data.add (new)
 
+        self.freeze_display (None)
+
         self.redisplay_index (1)
         self.index.select_item (new)
-        
-        self.freeze_display (None)
         return
     
     
