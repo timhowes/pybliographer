@@ -1,7 +1,6 @@
 # Pybliographer German Translation
 # Copyright (C) 1999, 2000 Free Software Foundation, Inc.
-# Christian Meyer <linux@chrisime.de>, 2000.
-#
+# Christian Meyer <linux@chrisime.de>, 2000.#
 #
 # Da stehen noch ein paar Strings aus, bei denen ich mir absolut
 # nicht sicher bin! -cm-
@@ -9,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.4\n"
-"POT-Creation-Date: 2000-08-14 22:57+0200\n"
-"PO-Revision-Date: 2000-08-14 22:51+0200\n"
+"POT-Creation-Date: 2000-08-28 16:19+0200\n"
+"PO-Revision-Date: 2000-08-28 16:18+0100\n"
 "Last-Translator: Christian Meyer <linux@chrisime.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +190,7 @@ msgstr "Gegenstand"
 
 #: Pyblio/ConfDir/Base.py:60
 msgid "Ownership"
-msgstr "Besitztum"
+msgstr "Eigentum"
 
 #: Pyblio/ConfDir/Base.py:61
 msgid "Series"
@@ -267,7 +266,7 @@ msgstr "Konferenzort"
 
 #: Pyblio/ConfDir/Base.py:79
 msgid "Cote"
-msgstr "Käfig"
+msgstr "Einband"
 
 #: Pyblio/ConfDir/Base.py:80
 msgid "IEEECN"
@@ -319,7 +318,7 @@ msgstr "Schlüsselwörter"
 
 #: Pyblio/ConfDir/Base.py:92
 msgid "Abstract"
-msgstr "Abstrakt"
+msgstr "Anhang"
 
 #: Pyblio/ConfDir/Base.py:93
 msgid "Remarks"
@@ -411,7 +410,7 @@ msgstr "Ein `Mapping' zwischen dem `Ovid'-Feldnamen und"
 
 #: Pyblio/ConfDir/Refer.py:8
 msgid "Field names correspondances"
-msgstr "Feldnamen-Korrespondenzen"
+msgstr "Feldnamen Korrespondenzen"
 
 #: Pyblio/ConfDir/Gnome.py:7
 msgid "Gnome"
@@ -439,7 +438,7 @@ msgstr "Minihilfen aktivieren ?"
 
 #: Pyblio/ConfDir/Gnome.py:21
 msgid "Native Edit"
-msgstr "Native bearbeiten"
+msgstr "Native Bearbeitung"
 
 #: Pyblio/ConfDir/Gnome.py:22
 msgid "Edit the entries in their native format by default ?"
@@ -447,7 +446,7 @@ msgstr "Die Einträge standardmäßig in ihrem Ursprungsformat bearbeiten ?"
 
 #: Pyblio/ConfDir/Gnome.py:23
 msgid "Use native edit by default ?"
-msgstr "Standardmäßig Native-Bearbeitung verwenden ?"
+msgstr "Standardmäßig Native Bearbeitung verwenden ?"
 
 #: Pyblio/ConfDir/Gnome.py:26
 msgid "Searchable"
@@ -930,7 +929,7 @@ msgid ""
 "Discard changes ?"
 msgstr ""
 "Diese Datenbank wurde geändert.\n"
-"Änderungen verwerfen?"
+"Änderungen verwerfen ?"
 
 #: Pyblio/GnomeUI/Document.py:307
 msgid "Merge file"
@@ -942,7 +941,7 @@ msgstr "Fehler beim Öffnen"
 
 #: Pyblio/GnomeUI/Document.py:343
 msgid "Merge status"
-msgstr "Status des Zusammenführens"
+msgstr "Status der Zusammenführung"
 
 #: Pyblio/GnomeUI/Document.py:354
 msgid "Open file"
@@ -963,7 +962,7 @@ msgid ""
 "Try to Save As..."
 msgstr ""
 "Ein interner Fehler trat während des Speicherns auf\n"
-"Probiere Sie `Speichern unter...'"
+"Probieren Sie `Speichern unter...'"
 
 #: Pyblio/GnomeUI/Document.py:422
 msgid "Save As..."
@@ -1006,7 +1005,7 @@ msgstr "Wirklich alle Einträge entfernen ?"
 
 #: Pyblio/GnomeUI/Document.py:552
 msgid "Create new entry"
-msgstr "Neuen Eintrag erzeugen"
+msgstr "Neuen Eintrag erstellen"
 
 #: Pyblio/GnomeUI/Document.py:566
 #, c-format
@@ -1046,7 +1045,7 @@ msgstr "Dieses Programm steht unter der GNU GPL"
 
 #: Pyblio/GnomeUI/Document.py:722
 msgid "Gnome interface to the Pybliographer system."
-msgstr "Gnome Interface zum Pybliographer System."
+msgstr "Gnome-Schnittstelle zum Pybliographer System."
 
 #: Pyblio/GnomeUI/Document.py:727
 msgid "Pybliographer Home Page"
