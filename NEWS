@@ -1,5 +1,16 @@
 -*- text -*-
 
+New in 1.0.10 -  2001-11-29
+
+        * Added a direct Medline Query Interface (John Vu)
+	* Improved Authors parsing in Medline
+	* Avoid accented characters in entry keys
+	* Added formatting style for APA (4th edition)
+	* Keys can be copy/pasted to an external editor (instead of
+	  entries content)
+	* Miscellanous bug fixes (ISI format, Bibtex commands, URL support)
+
+	  
 New in 1.0.9 -  2001-06-27
 
         * Use of GtkHTML to display entries, when available

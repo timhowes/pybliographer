@@ -1,7 +1,29 @@
+2001-11-28  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/GnomeUI: added Medline Query interface
+	* Pyblio/Format/Medline.py: consider first names as set of
+	initials
+	* Pyblio/Utils.py: flatify key names so that they contain no
+	accents.
+	* Pyblio/Format/isfile.py: committed fixes from	Peter
+	Schulte-Stracke
+	* Pyblio/Style/apa4e.py: added style APA 4th edition from Darrell
+	Rudmann.
+	
+	
+2001-10-24  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+
+	* Pyblio/GnomeUI/Editor.py: added . as a valid character for a
+	field key.
+	* bibtex/accents.c: code flqq and frqq (sorry, ldots is not a
+	latin1 character)
+	* Pyblio/GnomeUI/Index.py: possibility to copy/paste entry keys
+	instead of content.
+
 2001-10-17  Frédéric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/Fields.py: remove white space around URLs
-
+	
 2001-06-29  Karl Eichwalder  <ke@suse.de>
 
 	* compiled/Setup.in: Don't try to link non-pic objects in shared
