@@ -2,7 +2,6 @@
 # Copyright (C) 1999, 2000 Free Software Foundation, Inc.
 # Yuri Bongiorno <yurix@tiscalinet.it>, 1999, 2000.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-1.0.0\n"
