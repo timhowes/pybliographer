@@ -1,13 +1,13 @@
 <refentry id="class-iterator">
   <refnamediv>
-    <refname>Iterator</refname> 
+    <refname>Iterator.Iterator</refname> 
     <refpurpose>Uniform   access   to    loop   over   an   object's
       content.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
 
     <programlisting>
-class <classname>Iterator</classname>:
+class <classname>Iterator.Iterator</classname>:
 	def <link linkend="meth-iterator-first">first (self):</link> 
 		return <returnvalue>item</returnvalue>
 	def <link linkend="meth-iterator-next">next  (self):</link> 

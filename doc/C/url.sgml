@@ -1,12 +1,12 @@
 <refentry id="class-url">
   <refnamediv>
-    <refname>URL</refname>
+    <refname>Fields.URL</refname>
     <refpurpose>Holds an URL and give access to its components</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <programlisting>
-class URL:
-    <link linkend="mem-url-url">self.url</link>
+class <classname>Fields.URL</classname>:
+    <link linkend="mem-url-url"><varname>self.url</varname></link>
 
     def <link linkend="meth-url-init">__init__</link> (self, url):
 </programlisting>

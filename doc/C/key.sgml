@@ -1,6 +1,6 @@
 <refentry id="class-key">
   <refnamediv>
-    <refname>Key</refname>
+    <refname>Key.Key</refname>
     
     <refpurpose>defines a  hashable object that  uniquely identifies a
     bibliographic entry.</refpurpose>
@@ -8,9 +8,9 @@
 
   <refsynopsisdiv>
     <programlisting>
-class Key:
-    <link linkend="mem-key-key">self.key</link>
-    <link linkend="mem-key-base">self.base</link>
+class <classname>Key.Key</classname>:
+    <link linkend="mem-key-key"><varname>self.key</varname></link>
+    <link linkend="mem-key-base"><varname>self.base</varname></link>
 
     def <link linkend="meth-key-init">__init__</link> (self, database, key):
 </programlisting>

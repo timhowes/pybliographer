@@ -1,14 +1,14 @@
 <refentry id="class-database">
   <refnamediv>
-    <refname>DataBase</refname>
+    <refname>Base.DataBase</refname>
     <refpurpose>Represents a bibliographic database</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <programlisting>
-class DataBase:
-    <link linkend="mem-database-key">self.key</link>
-    <link linkend="mem-database-id">self.id</link>
+class <classname>Base.DataBase</classname>:
+    <link linkend="mem-database-key"><varname>self.key</varname></link>
+    <link linkend="mem-database-id"><varname>self.id</varname></link>
 
     def <link linkend="meth-database-init">__init__</link>     (self, url):
     def <link linkend="meth-database-has-property">has_property</link> (self, prop):

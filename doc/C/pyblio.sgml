@@ -7,12 +7,14 @@
 <!Entity script System "script.sgml"> 
 <!Entity config System "config.sgml"> 
 
-<!Entity ref-iter  System "iterator.sgml"> 
-<!Entity ref-db    System "database.sgml"> 
-<!Entity ref-sel   System "selection.sgml"> 
-<!Entity ref-key   System "key.sgml"> 
-<!Entity ref-entry System "entry.sgml"> 
-<!Entity ref-url   System "url.sgml"> 
+<!Entity ref-iter   System "iterator.sgml"> 
+<!Entity ref-db     System "database.sgml"> 
+<!Entity ref-sel    System "selection.sgml"> 
+<!Entity ref-key    System "key.sgml"> 
+<!Entity ref-entry  System "entry.sgml"> 
+<!Entity ref-url    System "url.sgml"> 
+<!Entity ref-tester System "tester.sgml"> 
+<!Entity ref-sort   System "sort.sgml"> 
 ]>
 
 <Book>
@@ -27,7 +29,7 @@
 	databases. It provides a general framework that can be used to
 	manipulate these databases  with a simple graphical interface,
 	but  that  can  also be  easily  extended  by  the mean  of  a
-	scripting language to fit a wide range of needs.</para>
+	scripting language, to fit a wide range of needs.</para>
     </abstract>
   </bookinfo>
   
@@ -36,7 +38,7 @@
     &script;
   
   &config;
-
+  
   <chapter>
     <title>Adding new formats</title>
     <para>to be written...</para>
@@ -44,13 +46,41 @@
 
   <reference>
     <title>Class reference</title>
-    
+
+    <partintro>
+      <para>Here, you'll find the list of all the basic classes used
+	in &pyb;. They belong to the <classname>Pyblio</classname>
+	module and hence are usually imported and used by code that
+	looks like:
+	<programlisting> 
+from Pyblio import Base, Open, Selection
+
+entry = Base.Entry (...)
+
+</programlisting></para>
+    </partintro>
+
+    <!-- Base -->
     &ref-db;
     &ref-entry;
-    &ref-iter;
-    &ref-key;
-    &ref-sel;
+
+    <!-- Fields -->
     &ref-url;
+
+    <!-- Iterator -->
+    &ref-iter;
+
+    <!-- Key -->
+    &ref-key;
+    
+    <!-- Search -->
+    &ref-tester;
+
+    <!-- Selection -->
+    &ref-sel;
+
+    <!-- Sort -->
+    &ref-sort;
 
   </reference>
 
