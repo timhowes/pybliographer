@@ -203,6 +203,11 @@ class DataBase:
 	return entry
 
 
+    def new_entry (self, type):
+        ''' Creates a new entry of the native type of the database '''
+        return Entry (None, type)
+    
+
     def keys (self):
 	''' Returns a list of all the keys available for the database '''
 

@@ -405,6 +405,9 @@ class DataBase (Base.DataBase):
 	return entry
 
 
+    def new_entry (self, type):
+        return Entry (None, type, {}, self.parser, 1)
+    
 
 # ==================================================
 
@@ -428,18 +431,19 @@ def entry_write (entry, output):
     # create a hash containing all the keys, to keep track
     # of those who have been already written
     dico = {}
-    if native:
-	# for a native type, we have to handle the special case of the dates
-	datefields = Config.get ('bibtex/datefield').data
-	convert    = Config.get ('bibtex/months').data
+    datefields = Config.get ('bibtex/datefield').data
+    convert    = Config.get ('bibtex/months').data
+    # we have to handle the special case of the dates
+    # create the list of months
+    monthlist  = range (0, 12)
+    for key in convert.keys ():
+        monthlist [convert [key] - 1] = key
 
-	# create the list of months
-	monthlist  = range (0, 12)
-	for key in convert.keys ():
-	    monthlist [convert [key] - 1] = key
+    if native:
 
 	# loop over all the fields
 	for field in entry.keys ():
+
 	    if datefields.has_key (field):
 		# we are processing a date...
 		date = entry [field]
@@ -460,8 +464,23 @@ def entry_write (entry, output):
     else:
 	for field in entry.keys ():
 	    # convert the field in a bibtex form
-	    fieldtype = _fieldtype [Types.get_field (field).type]
-	    dico [field] = _nativify (entry [field], fieldtype)
+	    if datefields.has_key (field):
+		# we are processing a date...
+		date = entry [field]
+
+		dico [datefields [field] [0]] = str (date.year)
+		if date.month:
+                    month = monthlist [date.month - 1]
+                    if date.day:
+                        month = '{%d } # %s' % (date.day, month)
+                        
+		    dico [datefields [field] [1]] = month
+			 
+
+	    else:
+		# we are processing a normal entry
+                fieldtype = _fieldtype [Types.get_field (field).type]
+                dico [field] = _nativify (entry [field], fieldtype)
 
 
     # write according to the type order

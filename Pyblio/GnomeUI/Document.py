@@ -433,7 +433,7 @@ class Document (Connector.Publisher):
     
     
     def add_entry (self, * arg):
-        entry = Base.Entry (None, Config.get ('base/defaulttype').data)
+        entry = self.data.new_entry (Config.get ('base/defaulttype').data)
         
         edit = Editor.Editor (self.data, entry, self.w)
         edit.Subscribe ('commit-edition', self.commit_edition)
