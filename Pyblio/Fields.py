@@ -215,7 +215,7 @@ class AuthorGroup:
         return string.join (map (str, self.authors), '; ')
 
     def __repr__ (self):
-        return `self.authors`
+        return 'AuthorGroup (%s)' % `self.authors`
 
     def match (self, regex):
         return regex.search (string.join (map (str, self.authors), ' '))

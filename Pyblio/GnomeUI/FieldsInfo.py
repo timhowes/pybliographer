@@ -57,13 +57,15 @@ def justification (field):
 
 def widget (field):
     ''' returns the representative widget of a field '''
+
+    default = Config.get ('gnomeui/default').data [2]
     
     ht = Config.get ('base/fields').data
-
+    
     field = string.lower (field)
 
     if not ht.has_key (field):
-        return Config.get ('gnomeui/default').data [2]
+        return default
     
     if hasattr (ht [field], 'widget'):
         return ht [field].widget
@@ -71,5 +73,5 @@ def widget (field):
     if hasattr (ht [field].type, 'widget'):
         return ht [field].type.widget
 
-    return Config.get ('gnomeui/default').data [2]
+    return default
         
