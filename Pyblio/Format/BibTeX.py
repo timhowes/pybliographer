@@ -44,7 +44,10 @@ _fieldtype = {
     Reference   : 0,
     }
 
-    
+
+extended_date = re.compile ('^[\{"]\s*(\d+)\s*[\}"]\s*#\s*(\w+)$')
+
+
 class BibTextField (Text):
     ''' This class overrides the basic Text class and provides
     a specific method to write the entries as latex code '''
@@ -85,8 +88,10 @@ class Entry (Base.Entry):
 	    # check if this entry provides a date field
 	    if not self.has_key (yearfield): continue
 
+            day   = None
 	    month = None
 	    year  = int (self [yearfield].text)
+            
 	    del self [yearfield]
 
 	    if self.has_key (monthfield):
@@ -95,8 +100,20 @@ class Entry (Base.Entry):
 		if convert.has_key (mt):
 		    month = convert [mt]
 		    del self [monthfield]
+                else:
+                    df = extended_date.match (mt)
+                    if df:
+                        (gd, gm) = (df.group (1), df.group (2))
+                        if convert.has_key (gm):
+                            month = convert [gm]
+                            try:
+                                day   = int (gd)
+                            except ValueError:
+                                pass
+                            
+                            del self [monthfield]
 
-	    self [field] = Date ((year, month, None))
+	    self [field] = Date ((year, month, day))
 	return
 
 
@@ -417,8 +434,12 @@ def entry_write (entry, output):
 
 		dico [datefields [field] [0]] = str (date.year)
 		if date.month:
-		    dico [datefields [field] [1]] = \
-			 monthlist [date.month - 1]
+                    month = monthlist [date.month - 1]
+                    if date.day:
+                        month = '{%d } # %s' % (date.day, month)
+                        
+		    dico [datefields [field] [1]] = month
+			 
 
 	    else:
 		# we are processing a normal entry
@@ -505,13 +526,15 @@ def opener (url, check):
     return base
 
 
-def iterator (url):
+def iterator (url, check):
     ''' This methods returns an iterator that will parse the
     database on the fly (useful for merging or to parse broken
     databases '''
 
+    if check and url.url [2] [-4:] != '.bib': return None
+
     # Ouvrir le fichier associe
-    parser = _bibtex.open_file (Open.url_to_local (self.key),
+    parser = _bibtex.open_file (Open.url_to_local (url),
 				Config.get ('bibtex/strict').data)
 
     # create a database to generate correct keys

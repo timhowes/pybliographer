@@ -40,7 +40,7 @@ class ReferDB (Base.DataBase):
     def __init__ (self, url):
         Base.DataBase.__init__ (self, url)
 
-        iter = iterator (url)
+        iter = iterator (url, 0)
 
         entry = iter.first ()
         while entry:
@@ -193,7 +193,9 @@ def writer (iter, output):
     return
 
 
-def iterator (url):
+def iterator (url, check):
+    if check and url.url [2] [-6:] != '.refer': return
+
     file = open (Open.url_to_local (url))
 
     return  ReferIterator (file)

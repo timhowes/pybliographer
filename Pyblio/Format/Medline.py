@@ -21,26 +21,15 @@
 
 # Extension module for Medline files
 
-from Pyblio import Base, Fields, Types, Autoload, Open, Iterator, Utils
+from Pyblio import Base, Fields, Types, Autoload, Open, Iterator, Utils, Config
 
 import re, string,sys
 
 header = re.compile ('^(\w\w[\w ][\w ])- (.*)$')
 contin = re.compile ('^      (.*)$')
 
-one_to_one = {
-    'TI' : 'title',
-    'LA' : 'language',
-    'MH' : 'keywords',
-    'AD' : 'affiliation',
-    'AB' : 'abstract',
-    'AD' : 'authoraddress',
-    'TA' : 'journal',
-    'CY' : 'country',
-    'PG' : 'pages',
-    'IP' : 'number',
-    'VI' : 'volume',
-    }
+one_to_one = Config.get ('medline/mapping').data
+
 
 class MedlineIterator (Iterator.Iterator):
 
@@ -103,7 +92,8 @@ class MedlineIterator (Iterator.Iterator):
         type = Types.get_entry ('article')
     
         if table.has_key ('UI'):
-            norm ['medlineref'] = Fields.Text (table ['UI'] [0])
+            norm [one_to_one ['UI']] = Fields.Text (table ['UI'] [0])
+            del table ['UI']
 
         if table.has_key ('AU'):
             group = Fields.AuthorGroup ()
@@ -115,17 +105,22 @@ class MedlineIterator (Iterator.Iterator):
                     
                 group.append (author)
                 
-            norm ['author'] = group
+            norm [one_to_one ['AU']] = group
+            del table ['AU']
 
         if table.has_key ('DP'):
             fields = string.split (table ['DP'][0], ' ')
-            norm ['pubdate'] = Fields.Date (fields [0])
+            norm [one_to_one ['DP']] = Fields.Date (fields [0])
+            del table ['DP']
             
         # The simple fields...
-        for f in one_to_one.keys ():
-            if table.has_key (f):
+        for f in table.keys ():
+            if one_to_one.has_key (f):
                 norm [one_to_one [f]] = Fields.Text (string.join (table [f], " ; "))
-
+            else:
+                norm ['medline-' + string.lower (f)] = \
+                     Fields.Text (string.join (table [f], " ; "))
+        
         return Base.Entry (None, type, norm)
 
 
@@ -171,7 +166,7 @@ class Medline (Base.DataBase):
     def __init__ (self, url):
         Base.DataBase.__init__ (self, url)
 
-        iter = iterator (url)
+        iter = iterator (url, 0)
 
         entry = iter.first ()
         while entry:
@@ -186,33 +181,55 @@ def writer (iter, output):
     entry = iter.first ()
     while entry:
 
-        if entry.has_key ('medlineref'):
-            ui = str (entry ['medlineref'])
+        ekeys = {}
+        for k in entry.keys (): ekeys [k] = 1
+        
+        med = one_to_one ['UI']
+
+        if entry.has_key (med):
+            del ekeys [med]
+            ui = str (entry [med])
         else:
-            ui = 0
             print "warning: entry has no medline reference"
+            ui = 0
             
         output.write ('%-4.4s- %s\n' % ('UI', ui))
 
-        if entry.has_key ('author'):
-            for auth in entry ['author']:
+        med = one_to_one ['AU']
+        
+        if entry.has_key (med):
+            del ekeys [med]
+            for auth in entry [med]:
                 text = '%s %s' % (auth.last or '', auth.first or '')
                 output.write ('%-4.4s- %s\n' % ('AU', text))
-                
-        if entry.has_key ('pubdate'):
-            output.write ('%-4.4s- %s\n' % ('DP', str (entry ['pubdate'])))
 
+        med = one_to_one ['DP']
+        if entry.has_key (med):
+            del ekeys [med]
+            output.write ('%-4.4s- %s\n' % ('DP', str (entry [med])))
+
+        # write the remaining know fields
         for key in one_to_one.keys ():
             field = one_to_one [key]
 
-            if not entry.has_key (field): continue
-
+            if not ekeys.has_key (field): continue
+            del ekeys [field]
+            
             output.write ('%-4.4s- %s\n' % (key, Utils.format (str (entry [field]),
                                                               75, 0, 6)))
-
+        # write the unknown fields
+        remaining = ekeys.keys ()
+        remaining.sort ()
+        for field in remaining:
+            if field [0:8] == 'medline-':
+                key = string.upper (field [8:])
+                output.write ('%-4.4s- %s\n' % (key, Utils.format (str (entry [field]),
+                                                                   75, 0, 6)))
+            
         
         entry = iter.next ()
         if entry: output.write ('\n')
+
         
 def opener (url, check):
 	
@@ -223,11 +240,14 @@ def opener (url, check):
 		
 	return base
 
-def iterator (url):
+
+def iterator (url, check):
 	''' This methods returns an iterator that will parse the
 	database on the fly (useful for merging or to parse broken
 	databases '''
 
+        if check and url.url [2] [-4:] != '.med': return
+        
         return MedlineIterator (open (Open.url_to_local (url), 'r'))
 
 

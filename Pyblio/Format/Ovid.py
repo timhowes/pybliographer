@@ -40,7 +40,7 @@ class Ovid (Base.DataBase):
     def __init__ (self, url):
         Base.DataBase.__init__ (self, url)
 
-        iter = iterator (url)
+        iter = iterator (url, 0)
 
         entry = iter.first ()
         while entry:
@@ -61,10 +61,12 @@ def opener (url, check):
     return base
 
 
-def iterator (url):
+def iterator (url, check):
     ''' This methods returns an iterator that will parse the
     database on the fly (useful for merging or to parse broken
     databases '''
+
+    if check and url.url [2] [-5:] != '.ovid': return
 
     file = open (Open.url_to_local (url))
     
