@@ -21,8 +21,8 @@
 
 ''' Useful functions for Gnome Interface '''
 
-from gtk import *
-from gnome.ui import *
+import gtk
+from gnome import ui
 
 from Pyblio import Config
 
@@ -52,7 +52,7 @@ def set_cursor (self, name):
     return
 
 
-_tooltips = Tooltips ()
+_tooltips = gtk.Tooltips ()
 
 
 def set_tip (w, text):
@@ -69,7 +69,7 @@ else:
 def popup_add (menu, item, action = None, argument = None):
     ''' Helper to add a new menu entry '''
     
-    tmp = MenuItem (item)
+    tmp = gtk.MenuItem (item)
     if action:
         tmp.connect ('activate', action, argument)
     
@@ -79,7 +79,7 @@ def popup_add (menu, item, action = None, argument = None):
     return tmp
 
 
-class TmpGnomeDialog (Dialog):
+class TmpGnomeDialog (ui.Dialog):
 
     def __init__ (self, title='', b1=None, b2=None, b3=None, b4=None,
                   b5=None, b6=None, b7=None, b8=None, b9=None, b10=None):
@@ -170,7 +170,8 @@ def error_dialog (title, err, parent = None):
     text.insert (None, color ['red'], None, str (err))
     
     holder = ScrolledWindow ()
-    holder.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
+    holder.set_policy (gtk.POLICY_AUTOMATIC,
+                       gtk.POLICY_AUTOMATIC)
     holder.add (text)
     
     dialog.vbox.pack_start (holder)
@@ -192,19 +193,19 @@ def init_colors (colormap):
 
 class Callback:
     def __init__ (self, question, parent = None):
-        self.ans = 0
 
-        dialog = GnomeQuestionDialog (question, self.callback, parent = parent)
-        dialog.connect ('delete_event', mainquit)
+        self.dialog = gtk.Dialog (_("Question"),
+                                  parent = parent,
+                                  flags = gtk.DIALOG_MODAL,
+                                  buttons =
+                                  (gtk.STOCK_YES, gtk.RESPONSE_ACCEPT,
+                                   gtk.STOCK_NO, gtk.RESPONSE_REJECT))
+
+        self.dialog.vbox.pack_start (gtk.Label (question))
         return
 
     def answer (self):
-        mainloop ()
-        return self.ans
+        return self.dialog.run () == gtk.RESPONSE_ACCEPT
 
-    def callback (self, button):
-        self.ans = button == 0
-        mainquit ()
-        return
 
 

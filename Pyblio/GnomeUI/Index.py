@@ -19,6 +19,13 @@
 # 
 # $Id$
 
+
+# TO FIX
+#
+#  - DnD
+#  - Copy/Paste
+#  - contextual popup menu
+
 ''' Main index containing the columned view of the entries '''
 
 from Pyblio import Fields, Config, Connector, Types, Sort
@@ -183,9 +190,11 @@ class Index (Connector.Publisher):
             item = self.get_item_position (item)
 
         if item == -1 or item >= len (self.access): return
+
+        path = (item,)
         
-        self.clist.select_row (item, 0)
-        self.set_scroll (item)
+        self.selinfo.select_path (path)
+        self.list.scroll_to_cell (path)
 
         self.issue ('select-entry', self.access [item])
         return

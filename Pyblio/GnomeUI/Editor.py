@@ -19,6 +19,12 @@
 # 
 # $Id$
 
+
+# TO FIX
+#
+#  - keyboard shortcuts (Ctrl-Enter, Ctrl-Tab)
+#  - window size
+
 import string, re
 from gnome import ui
 import gtk
@@ -59,8 +65,8 @@ class BaseField (Connector.Publisher):
         self.edit = None
         expand = self.create_widget (h)
         
-        if self.edit:
-            self.edit.connect ('key_press_event', self.key_handler)
+        #if self.edit:
+        #    self.edit.connect ('key_press_event', self.key_handler)
         
         if self.loss: h.pack_start (gtk.Button (stock = gtk.STOCK_NO),
                                     False, False)
@@ -71,19 +77,19 @@ class BaseField (Connector.Publisher):
         self.w.show_all ()
 
         flag = 0
-        if expand: flag = EXPAND | FILL
+        if expand: flag = gtk.EXPAND | gtk.FILL
         content.attach (self.w, 0, 1, j, j + 1, yoptions = flag)
         return
 
 
     def key_handler (self, widget, ev):
-        if ev.keyval == GDK.Return and \
-           ev.state  == GDK.CONTROL_MASK:
+        if ev.keyval == gtk.gdk.Return and \
+           ev.state  == gtk.gdk.CONTROL_MASK:
             widget.emit_stop_by_name ('key_press_event')
             self.issue ('apply')
         
-        elif ev.keyval == GDK.Tab and \
-           ev.state  == GDK.CONTROL_MASK:
+        elif ev.keyval == gtk.gdk.Tab and \
+           ev.state  == gtk.gdk.CONTROL_MASK:
             widget.emit_stop_by_name ('key_press_event')
             self.issue ('next')
 
@@ -178,10 +184,14 @@ class Text (TextBase):
     def create_widget (self, h):
         w = gtk.ScrolledWindow ()
         w.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
-        self.edit = gtk.Text ()
+        self.edit = gtk.TextView ()
         self.edit.set_editable (True)
-        self.edit.insert_defaults (self.string)
-        self.edit.set_word_wrap (True)
+        self.edit.set_wrap_mode (gtk.WRAP_WORD)
+
+        self.buff = self.edit.get_buffer ()
+        
+        self.buff.set_text (self.string)
+
         self.edit.show ()
         w.add (self.edit)
         w.show ()
@@ -190,20 +200,52 @@ class Text (TextBase):
         return 1
 
 
+    def update (self, entry):
+        text = self.buff.get_text (self.buff.get_start_iter (),
+                                   self.buff.get_end_iter ())
+        text = string.rstrip (text)
+        
+        if text == self.string: return 0
+
+        if text == '':
+            del entry [self.field]
+            return 1
+
+        self.update_content (entry, text)
+        return 1
+
 class AuthorGroup (BaseField):
     
     def create_widget (self, h):
         w = gtk.ScrolledWindow ()
         w.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
-        self.edit = gtk.Text ()
+        
+        self.edit = gtk.TextView ()
+        self.edit.set_wrap_mode (gtk.WRAP_WORD)
         self.edit.set_editable (True)
-        self.edit.set_word_wrap (True)
-        self.edit.insert_defaults (self.string)
+
+        self.buff = self.edit.get_buffer ()
+        self.buff.set_text (self.string)
         self.edit.show ()
         w.add (self.edit)
         w.show ()
 
         h.pack_start (w)
+        return 1
+
+
+    def update (self, entry):
+        text = self.buff.get_text (self.buff.get_start_iter (),
+                                   self.buff.get_end_iter ())
+        text = string.strip (text)
+        
+        if text == self.string: return 0
+
+        if text == '':
+            del entry [self.field]
+            return 1
+
+        self.update_content (entry, text)
         return 1
 
 
@@ -249,7 +291,7 @@ class Date (BaseField):
         (width, height) = self.day.size_request ()
         self.day.set_size_request (width / 4, height)
         self.day.set_max_length (2)
-        self.day.connect ('key_press_event', self.key_handler)
+        #self.day.connect ('key_press_event', self.key_handler)
         if self.initial [0]:
             self.day.set_text (str (self.initial [0]))
         hbox.pack_start (self.day)
@@ -258,7 +300,7 @@ class Date (BaseField):
         self.month = gtk.Entry ()
         self.month.set_size_request (width / 4, height)
         self.month.set_max_length (2)
-        self.month.connect ('key_press_event', self.key_handler)
+        #self.month.connect ('key_press_event', self.key_handler)
         if self.initial [1]:
             self.month.set_text (str (self.initial [1]))
         hbox.pack_start (self.month)
@@ -267,7 +309,7 @@ class Date (BaseField):
         self.year = gtk.Entry ()
         self.year.set_max_length (4)
         self.year.set_size_request (width / 3, height)
-        self.year.connect ('key_press_event', self.key_handler)
+        #self.year.connect ('key_press_event', self.key_handler)
         if self.initial [2]:
             self.year.set_text (str (self.initial [2]))
         hbox.pack_start (self.year)
@@ -428,7 +470,7 @@ class RealEditor (Connector.Publisher):
 
         self.key = gtk.Entry ()
         self.key.set_editable (True)
-        self.key.connect ('key_press_event', self.key_handler)
+        #self.key.connect ('key_press_event', self.key_handler)
         
         if self.entry.key:
             self.key.set_text (self.entry.key.key)
@@ -651,7 +693,7 @@ class NativeEditor (Connector.Publisher):
         
         self.w = gtk.Text ()
         self.w.set_editable (True)
-        self.w.connect ('key_press_event', self.key_handler)
+        #self.w.connect ('key_press_event', self.key_handler)
         
         self.w.insert (Config.get ('gnomeui/monospaced').data,
                        None, None, self.original)
@@ -697,7 +739,7 @@ class Editor (Connector.Publisher):
 
         if parent: self.w.set_transient_for (parent)
 
-        self.apply_b = gtk.Button (gtk.STOCK_APPLY)
+        self.apply_b = gtk.Button (stock = gtk.STOCK_APPLY)
         self.apply_b.connect ('clicked', self.apply_changes)
         self.apply_b.show ()
 
@@ -709,7 +751,7 @@ class Editor (Connector.Publisher):
             self.native_b.connect ('clicked', self.toggle_native)
             self.native_b.show ()
         
-        self.close_b = gtk.Button (gtk.STOCK_CANCEL)
+        self.close_b = gtk.Button (stock = gtk.STOCK_CANCEL)
         self.close_b.connect ('clicked', self.close_dialog)
         self.close_b.show ()
 
