@@ -177,21 +177,34 @@ bibtex_reverse_field (BibtexField * field,
 	    g_string_append (st, "@preamble{\"");
 	}
 
-	/* Put the upper cases or the first lower cases between {} */
+	/* Put the first lower case between {} */
 	string = tmp;
 	if (* tmp >= 'a' && * tmp <= 'z') {
 	    /* Put the beginning in lower cases */
 	    g_string_append_c (st, '{');
 	    g_string_append_c (st, * tmp);
 	    g_string_append_c (st, '}');
+	}
+	else {
+	    /* The first character is done */
+	    g_string_append_c (st, * tmp);
 	    tmp ++;
 	}
 
+	/* check for upper cases afterward */
 	is_upper   = false;
 	is_command = false;
 
 	while (* tmp) {
+	    /* start a latex command */
 	    if (* tmp == '\\') {
+
+		/* eventually closes the bracket */
+		if (is_upper) {
+		    is_upper = false;
+		    g_string_append_c (st, '}');
+		}
+
 		is_command = true;
 		g_string_append_c (st, * tmp);
 		tmp ++;
@@ -209,7 +222,7 @@ bibtex_reverse_field (BibtexField * field,
 		continue;
 	    }
 
-	    if (* tmp >= 'A' && * tmp <= 'Z' && (tmp > string)) {
+	    if (* tmp >= 'A' && * tmp <= 'Z') {
 		if (! is_upper) {
 		    g_string_append_c (st, '{');
 		    is_upper = true;
@@ -226,6 +239,8 @@ bibtex_reverse_field (BibtexField * field,
 	    }
 	    tmp ++;
 	}
+
+	/* eventually close the brackets */
 	if (is_upper) {
 	    g_string_append_c (st, '}');
 	    is_upper = false;
