@@ -21,6 +21,7 @@
 
 import string, re
 from gnome.ui import *
+from gnome import config
 from gtk import *
 import GTK
 
@@ -32,6 +33,14 @@ from Pyblio import Fields, Config, Base, Types, Connector, Exceptions, Key
 from Pyblio.GnomeUI import FieldsInfo, Utils, Mime
 
 key_re = re.compile ("^[\w:_+-]+$")
+
+_newcontent = {
+    Fields.AuthorGroup : _("Last Name, First Name"),
+    Fields.Text        : _("Text"),
+    Fields.URL         : 'http://',
+    Fields.Date        : '2000',
+    Fields.Reference   : _("Reference"),
+    }
 
 
 class BaseField (Connector.Publisher):
@@ -539,8 +548,10 @@ class RealEditor (Connector.Publisher):
         widget = self.newfield.gtk_entry ()
         text = string.strip (string.lower (widget.get_text ()))
         if text == '': return
-        
-        self.entry [text] = Fields.Text (_("New text"))
+
+        newtype = Types.get_field (text).type
+        print newtype
+        self.entry [text] = newtype (_newcontent [newtype])
         self.update_notebook ()
         return
     
@@ -640,8 +651,15 @@ class Editor (Connector.Publisher):
         self.w = GtkDialog ()
         
         self.w.set_policy (TRUE, TRUE, FALSE)
-        self.w.set_title ('Edit')
+        self.w.set_title (_("Edit entry"))
         self.w.connect ('delete_event', self.close_dialog)
+
+        # set window size
+        ui_width  = config.get_int ('Pybliographic/Editor/Width=-1')
+        ui_height = config.get_int ('Pybliographic/Editor/Height=-1')
+
+        if ui_width != -1 and ui_height != -1:
+            self.w.set_default_size (ui_width, ui_height)
 
         if parent: self.w.set_transient_for (parent)
 
@@ -731,6 +749,10 @@ class Editor (Connector.Publisher):
 
 
     def close_dialog (self, *arg):
+        alloc = self.w.get_allocation ()
+        config.set_int ('Pybliographic/Editor/Width',  alloc [2])
+        config.set_int ('Pybliographic/Editor/Height', alloc [3])
+
         self.w.destroy ()
         return
 

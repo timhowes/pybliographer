@@ -19,6 +19,8 @@
 # 
 # $Id$
 
+''' Main index containing the columned view of the entries '''
+
 from Pyblio import Fields, Config, Connector, Types
 
 from gnome.ui import *
@@ -71,7 +73,7 @@ class Index (Connector.Publisher):
         # resize the columns
         for c in range (len (self.fields)):
             self.clist.set_column_width (c, FieldsInfo.width (self.fields [c]))
-
+            self.clist.set_column_justification (c, FieldsInfo.justification (self.fields [c]))
         # some events we want to react to...
         self.clist.connect ('click_column',       self.click_column)
         self.clist.connect ('select_row',         self.select_row)
@@ -92,12 +94,12 @@ class Index (Connector.Publisher):
                                   DEST_DEFAULT_HIGHLIGHT |
                                   DEST_DEFAULT_DROP,
                                   accept,
-                                  GDK.ACTION_COPY)
+                                  GDK.ACTION_COPY | GDK.ACTION_MOVE)
         self.clist.connect ("drag_data_received", self.drag_received)
 
 
         self.clist.drag_source_set (GDK.BUTTON1_MASK | GDK.BUTTON3_MASK,
-                                    targets, GDK.ACTION_COPY)
+                                    targets, GDK.ACTION_COPY | GDK.ACTION_MOVE)
         self.clist.connect ('drag_data_get', self.dnd_drag_data_get)
 
         # ---------- Copy/Paste configuration
@@ -166,7 +168,7 @@ class Index (Connector.Publisher):
     
     def dnd_drag_data_get (self, list, context, selection, info, time):
         ''' send the selected entries as dnd data '''
-        
+
         entries = self.selection ()
         if not entries: return
         
@@ -178,7 +180,10 @@ class Index (Connector.Publisher):
         elif info == Mime.ENTRY:
             data = pickle.dumps (entries)
             selection.set (selection.target, 8, data)
-            
+
+        if context.action == GDK.ACTION_MOVE:
+            self.issue ('drag-moved', entries)
+        
         return
     
     # --------------------------------------------------

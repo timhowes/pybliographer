@@ -444,7 +444,7 @@ class DictConfig (BaseConfig):
 
         self.list = GtkCList (2, (_("Key"), _("Value")))
         self.list.connect ('select-row', self.select_cb)
-        self.list.set_reorderable (TRUE)
+        self.list.set_column_auto_resize (0, TRUE)
         
         scroll.add (self.list)
         h.pack_start (scroll)

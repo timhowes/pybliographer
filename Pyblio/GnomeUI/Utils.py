@@ -19,6 +19,8 @@
 # 
 # $Id$
 
+''' Useful functions for Gnome Interface '''
+
 from gtk import *
 from gnome.ui import *
 

@@ -25,9 +25,11 @@ from gnome.ui import *
 from gtk import *
 from gnome import config
 
-from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor, Search, Format
+from Pyblio.GnomeUI import Index, Entry, Utils, FileSelector, Editor
+from Pyblio.GnomeUI import Search, Format
 from Pyblio.GnomeUI.Sort import SortDialog
 from Pyblio.GnomeUI.Config import ConfigDialog
+from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
 
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
 from Pyblio import version, Fields
@@ -49,7 +51,7 @@ class Document (Connector.Publisher):
         file_menu = [
             UIINFO_MENU_NEW_ITEM     (_("New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
-            UIINFO_ITEM              (_("Merge..."),None, self.merge_database),
+            UIINFO_ITEM              (_("Merge with..."),None, self.merge_database),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -87,6 +89,9 @@ class Document (Connector.Publisher):
             ]
 
         settings_menu = [
+            UIINFO_ITEM      (_("Fields..."),  None, self.set_fields),
+            UIINFO_ITEM      (_("Entries..."), None, self.set_entries),
+            UIINFO_SEPARATOR,
             UIINFO_MENU_PREFERENCES_ITEM   (self.set_preferences),
             ]
             
@@ -123,6 +128,7 @@ class Document (Connector.Publisher):
         self.index.Subscribe ('select-entry',   self.update_display)
         self.index.Subscribe ('select-entries', self.freeze_display)
         self.index.Subscribe ('drag-received',  self.drag_received)
+        self.index.Subscribe ('drag-moved',     self.drag_moved)
         self.index.Subscribe ('click-on-field', self.sort_by_field)
 
         # The text area
@@ -167,6 +173,16 @@ class Document (Connector.Publisher):
 
     def set_preferences (self, * arg):
         w = ConfigDialog (self.w)
+        return
+
+
+    def set_fields (self, * arg):
+        w = FieldsDialog (self.w)
+        return
+    
+
+    def set_entries (self, * arg):
+        w = EntriesDialog (self.w)
         return
     
 
@@ -431,6 +447,15 @@ class Document (Connector.Publisher):
         self.issue ('exit-application', self)
         return
 
+    def drag_moved (self, entries):
+        if not entries: return
+        
+        for e in entries:
+            del self.data [e.key]
+
+        self.redisplay_index (1)
+        return
+    
     def drag_received (self, entries):
         for entry in entries:
             
@@ -657,6 +682,7 @@ class Document (Connector.Publisher):
                             ['Frédéric Gobry'],
                             _("Gnome interface to the Pybliographer system."),
                             'pybliographic-logo.png')
+        about.set_parent (self.w)
         
         link = GnomeHRef ('http://www.gnome.org/pybliographer',
                           _("Pybliographer Home Page"))

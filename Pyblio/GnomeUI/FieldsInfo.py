@@ -36,15 +36,40 @@ def width (field):
         return Config.get ('gnomeui/default').data [0]
 
 
-def widget (field):
+def justification (field):
     ''' returns the representative widget of a field '''
     
     ht = Config.get ('base/fields').data
 
     field = string.lower (field)
     
-    if ht.has_key (field) and hasattr (ht [field], 'widget'):
-        return ht [field].widget
-    else:
+    if not ht.has_key (field):
         return Config.get ('gnomeui/default').data [1]
+    
+    if hasattr (ht [field], 'justification'):
+        return ht [field].justification
+    
+    if hasattr (ht [field].type, 'justification'):
+        return ht [field].type.justification
+
+    return Config.get ('gnomeui/default').data [1]
+
+
+def widget (field):
+    ''' returns the representative widget of a field '''
+    
+    ht = Config.get ('base/fields').data
+
+    field = string.lower (field)
+
+    if not ht.has_key (field):
+        return Config.get ('gnomeui/default').data [2]
+    
+    if hasattr (ht [field], 'widget'):
+        return ht [field].widget
+    
+    if hasattr (ht [field].type, 'widget'):
+        return ht [field].type.widget
+
+    return Config.get ('gnomeui/default').data [2]
         

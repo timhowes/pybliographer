@@ -27,6 +27,7 @@ EXTRA_DIST = \
 	Document.py 		\
 	Editor.py 		\
 	Entry.py 		\
+	Fields.py		\
 	FieldsInfo.py 		\
 	FileSelector.py 	\
 	Index.py 		\

@@ -53,6 +53,7 @@ class SortDialog (Connector.Publisher):
         self.list = GtkCList (2, (_("In use"),_("Sort criterions")))
         self.list.column_titles_passive ()
         self.list.set_reorderable (1)
+        self.list.set_selection_mode (SELECTION_BROWSE)
         self.list.connect ('select_row', self.select_row)
         
         # fill in the lists
@@ -74,6 +75,7 @@ class SortDialog (Connector.Publisher):
             criterions.append ([current_sort.count (sort), sort])
 
         self.set_criterions (criterions)
+        self.reorder_items ()
         
         scroll = GtkScrolledWindow ()
         scroll.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
@@ -157,6 +159,7 @@ class SortDialog (Connector.Publisher):
 
 
     def show (self):
+        self.reorder_items ()
         self.window.show ()
         return
 

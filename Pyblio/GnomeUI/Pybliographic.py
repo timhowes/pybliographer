@@ -19,6 +19,8 @@
 # 
 # $Id$
 
+''' Main Module holding all the documents '''
+
 import gettext, copy
 
 _ = gettext.gettext
@@ -27,7 +29,7 @@ from Pyblio.GnomeUI import Document
 from Pyblio import Base
 
 from gtk import *
-from gnome import config
+from gnome import config, history
 
 class Pybliographic:
     ''' Main class holding all the documents and performing
@@ -37,6 +39,8 @@ class Pybliographic:
         self.documents = []
 
         self.opened = list (config.get_vector ('Pybliographic/Base/History='))
+        if len (self.opened) == 1 and self.opened [0] == '':
+            self.opened = []
         return
 
     def new_document (self, * arg):
@@ -58,7 +62,10 @@ class Pybliographic:
         ''' a document has been opened '''
 
         file = str (doc.data.key)
-        
+
+        history.recently_used (file, 'application/x-bibtex',
+                               'pybliographic', 'Bibliography')
+                              
         try:
             self.opened.remove (file)
         except ValueError:
@@ -70,6 +77,7 @@ class Pybliographic:
         for doc in self.documents:
             doc.update_history (self.opened)
         return
+
     
     def open_document (self, url, how = None):
         doc = self.new_document ()
@@ -96,7 +104,7 @@ class Pybliographic:
     def exit_application (self, document):
         document.update_configuration ()
         
-        config.set_vector ('Pybliographic/Base/History=',
+        config.set_vector ('Pybliographic/Base/History',
                            self.opened [0:10])
         config.sync ()
 
