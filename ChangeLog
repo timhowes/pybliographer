@@ -1,3 +1,7 @@
+2003-10-04  Danilo Segan  <dsegan@gmx.net>
+
+	* pybliographic.desktop: Added Serbian (sr, sr@Latn) translation.
+
 2003-09-16  Frederic Gobry  <gobry@pybliographer.org>
 
 	* Pyblio/GnomeUI/Medline.py, glade/medline.glade: ported the
