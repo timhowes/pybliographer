@@ -41,6 +41,7 @@
 	    <widget class="GtkButton" id="okbutton1">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
+	      <property name="has_default">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="label">gtk-ok</property>
 	      <property name="use_stock">True</property>
@@ -141,7 +142,7 @@
 	  </child>
 
 	  <child>
-	    <widget class="GnomeFileEntry" id="fileentry1">
+	    <widget class="GnomeFileEntry" id="_w_style_entry">
 	      <property name="visible">True</property>
 	      <property name="history_id">style</property>
 	      <property name="max_saved">10</property>
@@ -172,7 +173,7 @@
 	  </child>
 
 	  <child>
-	    <widget class="GnomeFileEntry" id="fileentry2">
+	    <widget class="GnomeFileEntry" id="_w_output_entry">
 	      <property name="visible">True</property>
 	      <property name="history_id">output</property>
 	      <property name="max_saved">10</property>

@@ -32,6 +32,13 @@ from Pyblio.GnomeUI import Utils
 
 class FormatDialog (Connector.Publisher, Utils.GladeWindow):
 
+    """ Class implementing the Format dialog. This class issues a
+
+        'format-query'
+
+        signal when the user applies its settings
+    """
+
     gladeinfo = { 'file': 'format.glade',
                   'root': '_w_format',
                   'name': 'format'
@@ -41,52 +48,22 @@ class FormatDialog (Connector.Publisher, Utils.GladeWindow):
 
         Utils.GladeWindow.__init__ (self, parent)
 
-        return
-    
-        self.w = GnomeDialog (_("Format entries"),
-                              STOCK_BUTTON_OK,
-                              STOCK_BUTTON_CANCEL)
+        # Fill the output format drop-down menu
+        menu = gtk.Menu ()
+        self._w_menu.set_menu (menu)
         
-        if parent: self.w.set_parent (parent)
+        outlist = Autoload.available ('output')
+        outlist.sort ()
         
-        self.w.set_close (0)
-        self.w.close_hides (1)
-        self.w.set_policy (TRUE, TRUE, FALSE)
-
-        self.w.button_connect (0, self.apply)
-        self.w.button_connect (1, self.close)
-
-        h = GtkHBox (FALSE, 5)
-        h.pack_start (GtkLabel (_("Bibliography style:")), FALSE, FALSE)
-        self.file = GnomeFileEntry ('format', _("Select style"))
-        self.file.set_default_path (os.path.join (version.prefix, 'Styles'))
-        h.pack_start (self.file)
-        self.w.vbox.pack_start (h, TRUE, FALSE)
-
-        h = GtkHBox (FALSE, 5)
-        h.pack_start (GtkLabel (_("Output format:")), FALSE, FALSE)
-        self.menu = GtkOptionMenu ()
-        h.pack_start (self.menu)
-        self.w.vbox.pack_start (h, TRUE, FALSE)
-
-        # menu content
-        menu = GtkMenu ()
-        self.menu.set_menu (menu)
-        
-        liste = Autoload.available ('output')
-        liste.sort ()
-        for avail in liste:
+        for avail in outlist:
             Utils.popup_add (menu, avail, self.menu_select, avail)
-        self.menu.set_history (0)
-        self.menu_item = liste [0]
+
+        self._w_menu.set_history (0)
+        self.menu_item = outlist [0]
         
-        h = GtkHBox (FALSE, 5)
-        h.pack_start (GtkLabel (_("Output File:")), FALSE, FALSE)
-        self.output = GnomeFileEntry ('output', _("Select output file"))
-        h.pack_start (self.output)
-        self.w.vbox.pack_start (h, TRUE, FALSE)
-        
-        self.w.show_all ()
+        self._w_style_entry.set_default_path (
+            os.path.join (version.prefix, 'Styles'))
+
         return
 
 
@@ -100,19 +77,21 @@ class FormatDialog (Connector.Publisher, Utils.GladeWindow):
         return
     
 
-    def apply (self, * arg):
-        style  = self.file.get_full_path (FALSE)
-        output = self.output.get_full_path (FALSE)
+    def on_validate (self, * arg):
+        style  = self._w_style_entry.get_full_path (False)
+        output = self._w_output_entry.get_full_path (False)
+        
         format = Autoload.get_by_name ('output', self.menu_item).data
 
         if style is None or output is None: return
         self.issue ('format-query', style, format, output)
         
-        self.w.close ()
+        self.size_save ()
+        self._w_format.destroy ()
         return
     
 
-    def close (self, * arg):
+    def on_cancel (self, * arg):
         self.size_save ()
-        self._w_format.close ()
+        self._w_format.destroy ()
         return
