@@ -17,7 +17,12 @@ m4_define(html_header,[[<html>
 </head>
 <body bgcolor="#ffffff">
 <center><img src="pyblio.png" width="367" height="78" 
-alt="p y b l i o g r a p h e r"></center>
+alt="p y b l i o g r a p h e r">
+<p><b>This site is frozen. The current active site is <a
+href="http://pybliographer.org/">pybliographer.org</a></b>
+
+</center>
+
 ]])m4_dnl
 m4_dnl
 m4_dnl --------------------------------------------------
