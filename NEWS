@@ -1,3 +1,10 @@
+New in 0.9.9 - 2000-04-07
+
+	* use of GnomeDialogs
+	* better testing for DnD entry overriding
+	* cosmetics
+	
+
 New in 0.9.8 - 2000-04-04
 
 	* Many bug fixes
