@@ -62,15 +62,15 @@ for f in fields:
     
 # Special fields
 
-desc ['author'].type = AuthorGroup.id
-desc ['editor'].type = AuthorGroup.id
+desc ['author'].type = AuthorGroup
+desc ['editor'].type = AuthorGroup
 
-desc ['pubdate'].type  = Date.id
-desc ['confdate'].type = Date.id
+desc ['pubdate'].type  = Date
+desc ['confdate'].type = Date
 
-desc ['crossref'].type = Reference.id
+desc ['crossref'].type = Reference
 
-desc ['url'].type      = URL.id
+desc ['url'].type      = URL
 
 
 # Entry types
@@ -161,7 +161,7 @@ Config.set ('gnomeui/fields', {
 Config.set ('gnomeui/default',
             FieldsInfo.UIDescription (150, FieldsInfo.WidgetEntry))
 
-Config.set ('gnomeui/columns', ('Author', 'Date', 'Title'))
+Config.set ('gnomeui/columns', ('Author', 'PubDate', 'Title'))
 
 
     
