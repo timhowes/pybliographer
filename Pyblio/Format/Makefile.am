@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-1999 Frederic GOBRY
+# Copyright (C) 1998,1999,2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -24,9 +24,10 @@ pybdir = $(datadir)/$(PACKAGE)/Pyblio/Format
 EXTRA_DIST = 	__init__.py	\
 		BibTeX.py	\
 		Ovid.py		\
+		OvidLike.py	\
 		Refer.py	\
 		docbook.py	\
-		Medline.py	\
-		RefDB.py
+		Medline.py
+
 
 pyb_DATA = $(EXTRA_DIST)

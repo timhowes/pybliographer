@@ -71,7 +71,7 @@ class OvidLike (Iterator.Iterator):
             
             if separator_re.match (line): break
             
-            raise Exceptions.ParserException (["bad file format"])
+            raise Exceptions.ParserError (["bad file format"])
         
         return self.next ()
 
