@@ -35,10 +35,10 @@ class Medline (Engine):
         self.host = urlparse.urlparse (url) [1]
         return
 
-    def search (self, query):
+    def search (self, query, common):
         self.running = 1
 
-        print query
+        print query, common
 
         try:
             query_field, op, term = query ['query'] [0]
@@ -92,8 +92,8 @@ class Medline (Engine):
             'term' : string.join (cmd, ' AND '),
             'field' : query_field,
             'dopt' : 'd',
-            'retmax' : 100,
-            'retstart' : 0,
+            'retmax'   : common ['count'],
+            'retstart' : common ['first'] - 1,
             'usehistory' : 'n',
             'tool' : 'pybliographer'
             }

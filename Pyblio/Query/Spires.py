@@ -33,7 +33,7 @@ class Spires (Engine):
         self.url = urlparse.urlparse (url)
         return
 
-    def search (self, query):
+    def search (self, query, common):
         print query
 
         params = { 'FORMAT' : 'WWWBRIEFBIBTEX' }

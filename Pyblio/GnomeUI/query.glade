@@ -21,7 +21,7 @@
     <handler>destroy</handler>
     <last_modification_time>Fri, 16 Aug 2002 14:38:42 GMT</last_modification_time>
   </signal>
-  <title>Query</title>
+  <title>Remote Query</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

@@ -38,7 +38,7 @@ class Engine (Publisher):
         ''' Create a connection with a remote server  '''
         pass
 
-    def search (self, args):
+    def search (self, args, common):
         pass
 
     def cancel (self):

@@ -157,6 +157,12 @@ class QueryUI (Connector.Publisher):
         if cnx.extended:
             query = cnx.extended.query_get (query)
 
+        # additional parameters common to all the engines
+        common = {
+            'count' : self.xml.get_widget ('result_count').get_value_as_int (),
+            'first' : self.xml.get_widget ('result_first').get_value_as_int (),
+            }
+        
         # get the query engine
         try:
             engine = cnx.engine ()
@@ -189,7 +195,7 @@ class QueryUI (Connector.Publisher):
 
         
         try:
-            retval = engine.search (query)
+            retval = engine.search (query, common)
         except Exceptions.SyntaxError, msg:
             GnomeErrorDialog ("%s" % msg).show ()
             retval = 0
