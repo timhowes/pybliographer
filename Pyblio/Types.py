@@ -60,7 +60,7 @@ class FieldDescription:
         return FieldDescription (self.name, self.type)
     
     def __str__ (self):
-	return "[`%s' Field]" % self.name
+	return "`%s' field" % self.name
 
 
 class EntryDescription:
@@ -79,7 +79,7 @@ class EntryDescription:
 
     
     def __str__ (self):
-	return "[`%s' Entry]" % self.name
+	return "`%s' entry" % self.name
 
 
     def __getattr__ (self, attr):

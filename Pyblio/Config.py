@@ -49,8 +49,9 @@ class ConfigItem:
 
         if self.type:
             if not self.type.match (value):
-                raise ValueError, _("value of `%s' should be %s") % (self.name,
-                                                                     str (self.type))
+                raise ValueError, \
+                      _("value of `%s' should be of type %s") % (self.name,
+                                                                 str (self.type))
             
         # eventually call the hook
         if self.hook:
@@ -74,15 +75,13 @@ class Storage:
 
     def eventually_resolve (self, key):
         if self.items.has_key (key): return
-        
         domain = string.split (key, '/') [0]
         
         if self.sources.has_key (domain):
             file = self.sources [domain]
             del self.sources [domain]
 
-            execfile (file)
-
+            execfile (file, globals (), globals ())
         return
 
 
@@ -194,7 +193,7 @@ class String (PrimaryType):
         return
 
     def __str__ (self):
-        return _("a String")
+        return _("String")
 
 
 class Boolean (PrimaryType):
@@ -203,7 +202,7 @@ class Boolean (PrimaryType):
         return
 
     def __str__ (self):
-        return _("a Boolean")
+        return _("Boolean")
 
 
 class Integer (PrimaryType):
@@ -222,13 +221,13 @@ class Integer (PrimaryType):
 
     def __str__ (self):
         if self.min is None and self.max is None:
-            return _("an Integer")
+            return _("Integer")
         if self.min is None:
-            return _("an Integer under %d") % self.max
+            return _("Integer under %d") % self.max
         if self.max is None:
-            return _("an Integer over %d") % self.min
+            return _("Integer over %d") % self.min
 
-        return _("an Integer between %d and %d") % (self.min, self.max)
+        return _("Integer between %d and %d") % (self.min, self.max)
     
 
 class Element:
@@ -240,7 +239,7 @@ class Element:
         return self.get ().count (value)
 
     def __str__ (self):
-        return _("an Element in `%s'") % str (self.get ())
+        return _("Element in `%s'") % str (self.get ())
 
     
 class Tuple:
@@ -260,7 +259,7 @@ class Tuple:
         return 1
 
     def __str__ (self):
-        return _("a Tuple ([%s])") % \
+        return _("Tuple (%s)") % \
                string.join (map (str, self.subtypes), ', ')
     
 
@@ -281,7 +280,7 @@ class List:
         return 1
 
     def __str__ (self):
-        return _("a List (%s)") % str (self.subtype)
+        return _("List (%s)") % str (self.subtype)
     
 
 class Dict:
@@ -299,14 +298,15 @@ class Dict:
                     return 0
                 if not self.value.match (value [k]):
                     return 0
-        except AttributeError:
+        except AttributeError, error:
+            print error
             return 0
         
         return 1
 
     def __str__ (self):
-        return _("a Dictionnary (%s, %s)") % (str (self.key),
-                                              str (self.value))
+        return _("Dictionnary (%s, %s)") % (str (self.key),
+                                            str (self.value))
 
 
 
