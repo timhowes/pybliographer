@@ -21,6 +21,3 @@
 
 SUBDIRS = C
 
-EXTRA_DIST = \
-	gui.sgml pyblio.sgml script.sgml \
-	edit.png main.png open.png search.png

@@ -19,9 +19,18 @@
 # 
 # $Id$
 
-EXTRA_DIST = topic.dat
+SGML = gui.sgml pyblio.sgml script.sgml
+
+EXTRA_DIST = \
+	topic.dat $(SGML)\
+	edit.png main.png open.png search.png
 
 pybliographic_helpdir = $(datadir)/gnome/help/pybliographic/C
+
+all: update-doc
+
+update-doc: $(SGML)
+	db2html pyblio.sgml || echo "** can't regenerate documentation"
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pybliographic_helpdir)
