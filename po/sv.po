@@ -1096,7 +1096,7 @@ msgid ""
 "to be correctly taken into account"
 msgstr ""
 "Vissa ändringar kräver att du startar om\n"
-"Pybliographer för att de ska fungera."
+"Pybliographic för att de ska fungera"
 
 #: Pyblio/GnomeUI/Config.py:291
 msgid "True"
