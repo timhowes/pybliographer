@@ -8,6 +8,10 @@ m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
 
+news_item([[11/12/2002]], [[Moritz Moeller-Herrmann has built RPMs
+especially for SuSE 8.1 users. The packages are available on <a
+href="http://sourceforge.net/projects/pybliographer/">Sourceforge</a>.]]),
+
 news_item([[02/10/2002]], [[We are currently in the process of
 defining how bibliographic data should be structured in the internals
 of pybliographer. This design is expected to allow many new
