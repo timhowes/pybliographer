@@ -43,7 +43,7 @@ m4_define(rpm_src, 1)
 
 
 <dl>
-  <dt><i>Debian</i><dd> from any <a href="http://www.debian.org">debian</a> mirror, in woody/text.</dd>
+  <dt><i>Debian</i><dd> from any <a href="http://packages.debian.org/unstable/text/pybliographer.html">debian</a> mirror.</dd>
 
   <dt><i>RPM</i><dd>
 
