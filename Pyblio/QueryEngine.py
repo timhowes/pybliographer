@@ -59,10 +59,12 @@ class Connection:
 
     ''' Definition of the connection to a specific server '''
 
-    def __init__ (self, description):
+    def __init__ (self, file, form):
 
+        self.name = None
+        
         try:
-            dom  = minidom.parse (open (description, 'r'))
+            dom  = minidom.parse (open (file, 'r'))
         except xml.sax.SAXParseException, msg:
             raise Exceptions.SyntaxError ('Cannot parse the XML file\n%s' %
                                           msg)
@@ -72,27 +74,75 @@ class Connection:
         if string.lower (root.nodeName) != 'connection':
             raise Exceptions.SyntaxError ('Not a Connection XML file')
 
-        self.name = getString (root.getElementsByTagName ('Name') [0])
-        
-        cnx = root.getElementsByTagName ('Server') [0]
-        
-        try:
-            self.type = cnx.attributes ['type'].value
-        except KeyError:
-            raise Exceptions.SyntaxError ('Unspecified Connection type')
+        for node in root.childNodes:
+            tag = string.lower (node.nodeName)
 
-        self.host = getString (cnx.getElementsByTagName ('Host') [0])
-        self.args = {}
+            if tag == 'name':
+                self.name = getString (node)
+                continue
 
-        for param in cnx.getElementsByTagName ('Parameter'):
-            key = param.attributes ['name'].value
-            val = getString (param)
+            if tag == 'server':
+                self.__parse_server (node)
+                continue
 
-            self.args [key] = val
-
-        # get the query model of the server
+            if tag == 'query':
+                self.__parse_query (node, form)
+                continue
         
         return
+
+
+    def __parse_server (self, root):
+
+        self.args = {}
+        self.type = None
+        self.host = None
+        
+        try:
+            self.type = root.attributes ['type'].value
+        except KeyError:
+            raise Exceptions.SyntaxError ('Unspecified Connection type')
+        
+        for node in root.childNodes:
+            tag = string.lower (node.nodeName)
+
+            if tag == 'host':
+                self.host = getString (node)
+                continue
+
+            if tag == 'parameter':
+                key = node.attributes ['name'].value
+                val = getString (node)
+            
+                self.args [key] = val
+                continue
+
+        return
+
+
+    def __parse_query (self, root, form):
+        self.default  = None
+        self.extended = None
+
+        for node in root.childNodes:
+            tag = string.lower (node.nodeName)
+
+            if tag == 'default':
+                if self.default is None:
+                    self.default = form ()
+
+                self.default.parse (node)
+                continue
+            
+            if tag == 'extended':
+                if self.extended is None:
+                    self.extended = form ()
+
+                self.extended.parse (node)
+                continue
+            
+        return
+
 
     def engine (self):
         
@@ -105,3 +155,225 @@ class Connection:
         return query (self.host, self.args)
             
         
+    
+
+class QOperator:
+    ''' Allowed operators for a field search '''
+
+    def parse (self, root):
+        try:
+            self.name = root.attributes ['name'].value
+        except KeyError:
+            raise Exceptions.SyntaxError ('missing name in operator')
+
+        self.title = getString (root)
+        return
+
+    
+class QField:
+
+    CL = {
+        'QOperator' : QOperator
+        }
+    
+    ''' A specific field that can be searched '''
+
+    def __init__ (self, operators = []):
+
+        self.operators = [] + operators
+        return
+    
+
+    def parse (self, root):
+        self.title = None
+
+        try:
+            self.name = root.attributes ['name'].value
+        except KeyError:
+            raise Exceptions.SyntaxError ('missing name in field')
+
+        try:
+            self.type = root.attributes ['type'].value
+        except KeyError:
+            raise Exceptions.SyntaxError ('missing type in field')
+
+
+        for node in root.childNodes:
+            tag = string.lower (node.nodeName)
+
+            if tag == 'title':
+                self.title = getString (node)
+                continue
+
+            if tag == 'operator':
+                p = self.CL ['QOperator'] ()
+                p.parse (node)
+
+                self.operators.append (p)
+                continue
+            
+        return
+
+
+class QFields:
+
+    CL = {
+        'QOperator'  : QOperator,
+        'QField'     : QField,
+        }
+    
+    ''' Sets of fields the user can search on '''
+
+    def parse (self, root):
+        self.max   = None
+        self.title = None
+        self.content = []
+
+        operators = []
+        
+        try:
+            self.max = int (root.attributes ['max'].value)
+        except ValueError:
+            raise Exceptions.SyntaxError ('invalid fields maximal value')
+        except KeyError:
+            pass
+
+        for node in root.childNodes:
+            tag = string.lower (node.nodeName)
+
+            if tag == 'title':
+                self.title = getString (node)
+                continue
+
+            if tag == 'operator':
+                p = self.CL ['QOperator'] ()
+                p.parse (node)
+
+                operators.append (p)
+                continue
+            
+            if tag == 'field':
+                p = self.CL ['QField'] (operators)
+                p.parse (node)
+                
+                self.content.append (p)
+                continue
+
+        return
+
+
+class QSelection:
+    ''' A selection between several choices '''
+    def parse (self, root):
+        self.content = []
+        
+        try:
+            self.name = root.attributes ['name'].value
+        except ValueError:
+            raise Exceptions.SyntaxError ('missing name in selection')
+
+        for node in root.childNodes:
+            tag = string.lower (node.nodeName)
+
+            if tag == 'title':
+                self.title = getString (node)
+                continue
+
+            if tag == 'item':
+                text = getString (node)
+                try:
+                    name = node.attributes ['name'].value
+                except ValueError:
+                    raise Exceptions.SyntaxError ('missing name in item')
+
+                self.content.append ((name, text))
+                continue
+
+        return
+
+class QToggle:
+    ''' A selection between two choices '''
+
+    def parse (self, root):
+        try:
+            self.name = root.attributes ['name'].value
+        except ValueError:
+            raise Exceptions.SyntaxError ('missing name in toggle')
+
+        if not root.hasAttribute ('default'):
+            self.enabled = 0
+        else:
+            val = string.lower (root.attributes ['default'].value)
+            self.enabled = val == 'true'
+            
+        self.title = getString (root)
+        return
+
+
+class QGroup:
+    CL = {
+        'QFields' : QFields,
+        'QSelection' : QSelection,
+        'QToggle' : QToggle,
+        }
+
+    ''' Grouping of several query forms '''
+
+    def __init__ (self):
+        self.content = []
+        return
+
+    def parse (self, root):
+        self.title = None
+        
+        for node in root.childNodes:
+            tag = string.lower (node.nodeName)
+
+            if tag == 'title':
+                self.title = getString (node)
+                continue
+
+            if tag in ('fields', 'selection', 'toggle'):
+                cls = 'Q' + string.capitalize (tag)
+                
+                fields = self.CL [cls] ()
+                fields.parse (node)
+                
+                self.content.append (fields)
+                continue
+
+        return
+
+class QForm:
+    ''' Complete description of a query form '''
+
+    CL = {
+        'QFields'    : QFields,
+        'QGroup'     : QGroup,
+        'QSelection' : QSelection,
+        'QOperator'  : QOperator,
+        'QToggle'    : QToggle,
+        }
+
+    def __init__ (self):
+
+        self.content = []
+        return
+
+    
+    def parse (self, root):
+        
+        for node in root.childNodes:
+            tag = string.lower (node.nodeName)
+
+            if tag in ('fields', 'group', 'selection', 'toggle'):
+                cls = 'Q' + string.capitalize (tag)
+                
+                fields = self.CL [cls] ()
+                fields.parse (node)
+                
+                self.content.append (fields)
+                continue
+
+        return
+

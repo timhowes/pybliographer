@@ -32,6 +32,8 @@ from Pyblio import version, Exceptions
 from Pyblio.QueryEngine import Connection
 from Pyblio.GnomeUI import Utils
 
+from Pyblio import QueryEngine
+
 import os, pickle
 
 path = os.path.join ('Pyblio', 'GnomeUI', 'query.glade')
@@ -83,6 +85,7 @@ class QueryUI:
         pickle.dump (self.cnx, open (self.file, 'w'))
         return
 
+
     def update (self):
         ''' Update the optionmenu of available connections '''
         
@@ -101,7 +104,8 @@ class QueryUI:
         option.set_menu (menu)
         option.set_history (0)
 
-        self.show_cnx_query (self.cnx [0])
+        if self.cnx:
+            self.show_cnx_query (self.cnx [0])
         return
 
 
@@ -116,8 +120,16 @@ class QueryUI:
 
         if self.current_cnx == cnx: return
         self.current_cnx = cnx
+
+        box = self.xml.get_widget ('query_vbox')
+
+        for child in box.children (): child.destroy ()
         
-        print cnx
+        cnx.default.display (box)
+        box.show_all ()
+
+        extra = self.xml.get_widget ('extra_query')
+        extra.set_sensitive (cnx.extended is not None)
         return
     
         
@@ -204,7 +216,7 @@ class QueryUI:
         file = arg [0].get_text ()
 
         try:
-            cnx = Connection (file)
+            cnx = Connection (file, QForm)
         except Exceptions.SyntaxError, msg:
             GnomeErrorDialog ("In the XML Connection '%s':\n%s" %
                               (os.path.basename (file), msg),
@@ -275,3 +287,136 @@ class QueryUI:
         self.w_cnx.show ()
         return
         
+
+
+class QOperator (QueryEngine.QOperator):
+    ''' Allowed operators for a field search '''
+
+    def display (self, box):
+        return
+
+    
+class QField (QueryEngine.QField):
+
+    CL = {
+        'QOperator' : QOperator
+        }
+    
+    ''' A specific field that can be searched '''
+
+    def display (self, box):
+        return
+
+
+
+class QFields (QueryEngine.QFields):
+
+    CL = {
+        'QOperator'  : QOperator,
+        'QField'     : QField,
+        }
+    
+    ''' Sets of fields the user can search on '''
+
+    def display (self, box):
+
+        vbox = GtkVBox ()
+
+        if self.title:
+            frame = GtkFrame (self.title.encode ('latin-1'))
+            vbox.set_border_width (5)
+            
+            frame.add (vbox)
+        else:
+            frame = vbox
+
+        box.pack_start (frame)
+        return
+
+
+
+class QSelection (QueryEngine.QSelection):
+
+    ''' A selection between several choices '''
+
+    def display (self, box):
+        hbox = GtkHBox ()
+        hbox.set_spacing (5)
+
+        if self.title:
+            hbox.pack_start (GtkLabel (self.title.encode ('latin-1')),
+                             expand = FALSE, fill = FALSE)
+        
+        holder = GtkOptionMenu ()
+        menu   = GtkMenu ()
+        
+        holder.set_menu (menu)
+
+        for item in self.content:
+            w = GtkMenuItem (item [0].encode ('latin-1'))
+            menu.add (w)
+
+        hbox.pack_start (holder, expand = TRUE, fill = TRUE)
+        box.pack_start (hbox, expand = TRUE, fill = TRUE)
+        return
+
+
+class QToggle (QueryEngine.QToggle):
+
+    ''' A selection between two choices '''
+
+    def display (self, box):
+        toggle = GtkCheckButton (self.title.encode ('latin-1'))
+        toggle.set_active (self.enabled)
+
+        box.pack_start (toggle, expand = TRUE, fill = TRUE)
+        return
+
+
+class QGroup (QueryEngine.QGroup):
+    CL = {
+        'QFields' : QFields,
+        'QSelection' : QSelection,
+        'QToggle' : QToggle,
+        }
+
+    ''' Grouping of several query forms '''
+
+    def display (self, box):
+
+        hbox = GtkHBox ()
+        hbox.set_spacing (5)
+        
+        if self.title:
+            frame = GtkFrame (self.title.encode ('latin-1'))
+            hbox.set_border_width (5)
+            
+            frame.add (hbox)
+        else:
+            frame = hbox
+
+        for part in self.content:
+            part.display (hbox)
+
+        box.pack_start (frame)
+        return
+
+
+class QForm (QueryEngine.QForm):
+    ''' Complete description of a query form '''
+
+    CL = {
+        'QFields'    : QFields,
+        'QGroup'     : QGroup,
+        'QSelection' : QSelection,
+        'QOperator'  : QOperator,
+        'QToggle'    : QToggle,
+        }
+
+
+    def display (self, box):
+
+        for part in self.content:
+            part.display (box)
+        return
+    
