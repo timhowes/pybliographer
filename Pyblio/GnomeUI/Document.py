@@ -53,8 +53,8 @@ class Document (Connector.Publisher):
             UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
             UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
-            UIINFO_ITEM              (_("Medline Query..."),None, self.query_database),
-            UIINFO_ITEM              (_("Query Z39.50 Server..."),None, self.query_z3950server),
+            UIINFO_SUBTREE           (_("Online Query"), [UIINFO_ITEM  (_("PubMed/Medline..."),None, self.query_pubmed),
+                                                          UIINFO_ITEM  (_("Z39.50 Server..."),None, self.query_z3950)]),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -326,7 +326,7 @@ class Document (Connector.Publisher):
         return
 
 
-    def query_database (self, * arg):
+    def query_pubmed (self, * arg):
         ''' callback corresponding to the "Medline Query..." button '''
 
         if not self.confirm (): return
@@ -390,7 +390,6 @@ class Document (Connector.Publisher):
             instructions.set_justify (0) # LEFT justify the instructions
             hbox2.pack_start (instructions)
             dlg_help.vbox.pack_start (hbox2)
-            dlg_help.set_close (1)
             dlg_help.show_all ()
             dlg_help.run_and_close ()
             return
@@ -524,14 +523,70 @@ class Document (Connector.Publisher):
         dlg.show_all ()
         dlg.run ()
 
-    def query_z3950server (self, * arg):
-        ''' callback corresponding to the "Query a Z39.50 Server..." button '''
+    def query_z3950 (self, * arg):
+        ''' callback corresponding to the "Online Query -> Z39.50 Server" file menu button '''
 
         if not self.confirm (): return
 
-        def dlg_cb_2 (dummy): return
+        def search_cb (dummy):
+            servername = server_combo_entry.get_text ()
+            serveraddress  = server['Address'+`serverdictionary[servername]`]
+            port = server['Port'+`serverdictionary[servername]`]
+            database = server['Database'+`serverdictionary[servername]`]
+            displaystart = disp_s.get_value_as_int ()
+            maxresults = max_w.get_value_as_int ()
+            term1 = term1_entry.get_text ()
+            term1attribute = field_combo1_entry.get_text ()
+            term2 = term2_entry.get_text ()
+            term2attribute = field_combo2_entry.get_text ()
+            if radiobutton1.get_active (): operator = 'and'
+            elif radiobutton2.get_active (): operator = 'or'
+            elif radiobutton3.get_active (): operator = 'and-not'
 
-        def help_cb (dummy): return
+            if term1 == "":
+                dlg.close ()
+                return
+            else:
+                connectcount = 1
+                accesscomplete = FALSE
+                Utils.set_cursor (self.w, 'clock')
+                while connectcount < 5 and not accesscomplete:
+                    try:
+                        query_result = Query.z3950_query (serveraddress,port,database,displaystart,maxresults,term1,term1attribute,term2,term2attribute,operator)
+                        if query_result <> '':
+                            pybzsearchfile = tempfile.mktemp('.bib')
+                            pybzsearch = open(pybzsearchfile,'w')
+                            pybzsearch.writelines(query_result)
+                            pybzsearch.close()
+                            self.open_document (pybzsearchfile,'bibtex',no_name = TRUE)
+                            accesscomplete = TRUE
+                        else:
+                            Utils.error_dialog (_("No Results Found"), "No results matched your query", parent = self.w)
+                            accesscomplete = TRUE
+                    except (EOFError, NameError):
+                        print "Can't connect to server " +serveraddress +". Attempt " + `connectcount+1` + "."  #debugging
+                        connectcount = connectcount + 1
+                    except AssertionError, errmessage:
+                        Utils.error_dialog (_("Search Error"), errmessage, parent = self.w)
+                        accesscomplete = TRUE
+                Utils.set_cursor (self.w, 'normal')
+                dlg.close ()
+                return
+
+        def cancel_cb (dummy):
+            dlg.close ()
+            return
+
+        def help_cb (dummy):
+            dlg_help = GnomeDialog (_("Z39.50 Server Query Help"), 'Ok')
+            hbox7 = GtkHBox ()
+            instructions = GtkLabel ("o   Enter your search criteria in the editable boxes.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Leave the second editable region empty for singular searches.\no   Boolean operators AND, OR, NOT are available as buttons to further limit your searches.\no   Only servers that do not require login and password are accessible.\no   You may add more servers by editing the ~/.pybliographer/zservers text file.")
+            instructions.set_justify (0) # LEFT justify the instructions
+            hbox7.pack_start (instructions)
+            dlg_help.vbox.pack_start (hbox7)
+            dlg_help.show_all ()
+            dlg_help.run_and_close ()
+            return
 
         try:
             if not os.path.exists(os.path.expanduser('~')+'/.pybliographer'):
@@ -564,9 +619,11 @@ class Document (Connector.Publisher):
             server['Database'+`i`] = string.replace (linespl[3], '\n', '')
             i = i+1
         
-        dlg = GnomeOkCancelDialog (_("Enter your query"), dlg_cb_2, parent = self.w)
-        dlg.append_button ('Help')
+        dlg = GnomeDialog (_("Enter Your Query"), 'Search', 'Cancel', 'Help')
+        dlg.button_connect (0, search_cb)
+        dlg.button_connect (1, cancel_cb)
         dlg.button_connect (2, help_cb)
+        dlg.set_default (0)
         adj1   = GtkAdjustment (20, 0, 10000, 1.0, 100.0, 0.0)
         adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
         max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
@@ -638,48 +695,7 @@ class Document (Connector.Publisher):
         dlg.vbox.pack_start (hbox6)
 
         dlg.show_all ()
-        dlg.run_and_close ()
-
-        servername = server_combo_entry.get_text ()
-        serveraddress  = server['Address'+`serverdictionary[servername]`]
-        port = server['Port'+`serverdictionary[servername]`]
-        database = server['Database'+`serverdictionary[servername]`]
-        displaystart = disp_s.get_value_as_int ()
-        maxresults = max_w.get_value_as_int ()
-        term1 = term1_entry.get_text ()
-        term1attribute = field_combo1_entry.get_text ()
-        term2 = term2_entry.get_text ()
-        term2attribute = field_combo2_entry.get_text ()
-        if radiobutton1.get_active (): operator = 'and'
-        elif radiobutton2.get_active (): operator = 'or'
-        elif radiobutton3.get_active (): operator = 'and-not'
-
-        if term1 == "": return
-        else:
-            connectcount = 1
-            accesscomplete = FALSE
-            Utils.set_cursor (self.w, 'clock')
-            while connectcount < 5 and not accesscomplete:
-                try:
-                    query_result = Query.z3950_query (serveraddress,port,database,displaystart,maxresults,term1,term1attribute,term2,term2attribute,operator)
-                    if query_result <> '':
-                        pybzsearchfile = tempfile.mktemp('.bib')
-                        pybzsearch = open(pybzsearchfile,'w')
-                        pybzsearch.writelines(query_result)
-                        pybzsearch.close()
-                        self.open_document (pybzsearchfile,'bibtex',no_name = TRUE)
-                        accesscomplete = TRUE
-                    else:
-                        Utils.error_dialog (_("No Results Found"), "No results matched your query", parent = self.w)
-                        accesscomplete = TRUE
-                except (EOFError, NameError):
-                    print "Can't connect to server " +serveraddress +". Attempt " + `connectcount+1` + "."  #debugging
-                    connectcount = connectcount + 1
-                except AssertionError, errmessage:
-                    Utils.error_dialog (_("Search Error"), errmessage, parent = self.w)
-                    accesscomplete = TRUE
-            Utils.set_cursor (self.w, 'normal')
-            return
+        dlg.run ()
 
     def merge_database (self, * arg):
         ''' add all the entries of another database to the current one '''
