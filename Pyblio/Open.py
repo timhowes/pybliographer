@@ -29,9 +29,9 @@ _ = gettext.gettext
 
 
 def url_to_local (url):
-	
-	(file, headers) = urllib.urlretrieve (str (url))
-	return file
+
+    (file, headers) = urllib.urlretrieve (str (url))
+    return file
 
 
 Help.register ('bibopen', """
@@ -44,75 +44,78 @@ for client/server access for example.
 
 One can apply the following commands on the output of bibopen :
 
- - database.keys () : lists the available entries
- - database ['key'] : returns a given entry
- - del database ['key'] : removes an entry from the file
- - database.where (...) : searches the base (see also `searching')
+    - database.keys () : lists the available entries
+    - database ['key'] : returns a given entry
+    - del database ['key'] : removes an entry from the file
+    - database.where (...) : searches the base (see also `searching')
 """)
 
 
 def get_by_name (entity, method):
-	''' returns a specific field of the given entity '''
+    ''' returns a specific field of the given entity '''
 
-	meth = Autoload.get_by_name ("format", entity)
-	
-	if meth and meth.data.has_key (method):
-		return meth.data [method]
+    meth = Autoload.get_by_name ("format", entity)
 
-	return None
+    if meth and meth.data.has_key (method):
+	return meth.data [method]
+
+    return None
 
 def get_by_regexp (entity, method):
-	''' returns a specific field of the given entity '''
+    ''' returns a specific field of the given entity '''
 
-	meth = Autoload.get_by_regexp ("format", entity)
-	
-	if meth and meth.data.has_key (method):
-		return meth.data [method]
+    meth = Autoload.get_by_regexp ("format", entity)
 
-	return None
+    if meth and meth.data.has_key (method):
+	return meth.data [method]
+
+    return None
 
 
 def bibopen (entity, how = None):
-	''' Generic function to open a bibliographic database '''
+    ''' Generic function to open a bibliographic database '''
 
-	def simple_try (url, how):
-		base = None
+    def simple_try (url, how):
+	base = None
 
-		if how == None:
-			listedmethods = Autoload.available ("format")
-			
-			for method in listedmethods:
-				opener = get_by_name (method, 'open')
-				if opener:
-					base = opener (url, 1)
-					if base is not None:
-						return base
-			return None
-		
-		opener = get_by_name (how, 'open')
-		
+	if how == None:
+	    listedmethods = Autoload.available ("format")
+
+	    for method in listedmethods:
+		opener = get_by_name (method, 'open')
 		if opener:
-			base = opener (url, 0)
-		else:
-			raise Exceptions.FormatError (_("method `%s' provides no opener") % how)
-		
-		return base
-	
-	# Consider the reference as an URL
-	url = Fields.URL (entity)
+		    base = opener (url, 1)
+		    if base is not None:
+			return base
+	    return None
 
-	# eventually load a new module
-	if how is None:
-		handler = Autoload.get_by_regexp ("format", str (url))
-		if handler:
-			how = handler.name
-	
-	base = simple_try (url, how)
+	opener = get_by_name (how, 'open')
 
-	if base is None:
-		raise Exceptions.FormatError (_("don't know how to open `%s'") % entity)
+	if opener:
+	    base = opener (url, 0)
+	else:
+	    raise Exceptions.FormatError (_("method `%s' provides no opener") % how)
 
 	return base
+
+    # Consider the reference as an URL
+    url = Fields.URL (entity)
+
+    if url.url [0] == 'file' and not os.path.exists (url.url [2]):
+	raise Exceptions.FileError (_("File `%s' does not exist") % str (url))
+
+    # eventually load a new module
+    if how is None:
+	handler = Autoload.get_by_regexp ("format", str (url))
+	if handler:
+	    how = handler.name
+
+    base = simple_try (url, how)
+
+    if base is None:
+	raise Exceptions.FormatError (_("don't know how to open `%s'") % entity)
+
+    return base
 
 
 Help.register ('bibwrite', """
@@ -125,26 +128,26 @@ default, this formatting is the same as the one used by `more'.
 
 
 def bibwrite (iter, out = None, how = None):
-	''' writes a descriptions of a list of entries '''
+    ''' writes a descriptions of a list of entries '''
 
-	# default output
-	out = out or sys.stdout
-	
-	if how == None:
-		entry = iter.first ()
-		while entry:
-			out.write (str (entry) + "\n")
-			entry = iter.next ()
-			
-		return
+    # default output
+    out = out or sys.stdout
 
-	writer = get_by_name (how, 'write')
-	
-	if writer is None:
-		raise IOError, "type `%s' does not specify write method" % how
+    if how == None:
+	entry = iter.first ()
+	while entry:
+	    out.write (str (entry) + "\n")
+	    entry = iter.next ()
 
-	writer (iter, out)
 	return
+
+    writer = get_by_name (how, 'write')
+
+    if writer is None:
+	raise IOError, "type `%s' does not specify write method" % how
+
+    writer (iter, out)
+    return
 
 Help.register ('bibnew', """
 Syntax: bib = bibnew (name, type)
@@ -154,23 +157,23 @@ Creates a new bibliographic database of a given type.
 
 def bibnew (name, type = None):
 
-	opener = get_by_name (type, 'new')
-	
-	if opener is None:
-		if os.path.exists (name):
-			raise IOError, "file `%s' exists" % name
-		
-		file = open (name, 'w')
-		file.close ()
-		
-		return bibopen (name, type)
+    opener = get_by_name (type, 'new')
 
-	# Consider the reference as an URL
-	url = list (urlparse.urlparse (name))
+    if opener is None:
+	if os.path.exists (name):
+	    raise IOError, "file `%s' exists" % name
 
-	if url [0] == '':
-		# Consider we handle a local file
-		url [0] = 'file'
-		url [2] = os.path.expanduser (url [2])
+	file = open (name, 'w')
+	file.close ()
 
-	return opener (url)
+	return bibopen (name, type)
+
+    # Consider the reference as an URL
+    url = list (urlparse.urlparse (name))
+
+    if url [0] == '':
+	# Consider we handle a local file
+	url [0] = 'file'
+	url [2] = os.path.expanduser (url [2])
+
+    return opener (url)
