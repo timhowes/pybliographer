@@ -1,12 +1,18 @@
 m4_dnl -*- html -*-
 m4_dnl
 m4_dnl --------------------------------------------------
-m4_define(pyblio_last,  [[1.0.5]])m4_dnl
+m4_define(pyblio_last,  [[1.0.6]])m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
 m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
+
+news_item([[17/10/2000]], [[We are at 1.0.6. A few bug fixes (for
+Refer to BibTeX conversion), the ability to compile with Python 2.0,
+and a new feature: user defined key generators. It will be possible to
+generate emacs-like keys for your new entries (for more explanation,
+have a look at the mailing-list...)]]),
 
 news_item([[01/10/2000]],[[1.0.5 is out. Now, the searched words are
 saved between sessions, it is possible to display the key and type of
