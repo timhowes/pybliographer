@@ -7,6 +7,10 @@ def utf (txt):
     if txt is None: return None
     return txt.encode ('utf-8')
 
+def uni (txt):
+    if txt is None: return None
+    return txt.decode ('utf-8')
+    
 class Database (api.Database):
 
     tables = (
@@ -165,8 +169,31 @@ class Database (api.Database):
 
     def query (self, query = None, order = None):
 
-        q = "SELECT id, type FROM record"
-        return ResultSet (self, q, [])
+        tables = {}
+        args   = []
+        
+        if query is None:
+            tables ['record'] = 1
+            where = ''
+        else:
+            where = query.where (tables, args)
+
+            if len (tables):
+                for k in tables.keys ():
+                    where += ' AND attribute.data = %s.id' % k
+                tables ['attribute'] = 1
+                
+                where += ' AND attribute.record = record.id'
+                
+            tables ['record'] = 1
+            where = 'WHERE ' + where
+            
+        f = string.join (tables.keys (), ', ')
+
+        q = "SELECT record.id, record.type FROM %s %s" % (f, where)
+
+        print "Query: %s  %s" % (q, args)
+        return ResultSet (self, q, args)
 
 
 
@@ -253,6 +280,11 @@ class Record (object):
              "WHERE r.id = l.rec_b AND l.rec_a = %s")
         args = [ self.id ]
         
+        if role:
+            q += " AND l.role = %s"
+            args.append (role)
+            
+        
         return RelatedResultSet (self.db, q, args)
 
 
@@ -260,26 +292,29 @@ class Record (object):
         ret = []
         
         op = self.db._db.cursor ()
+
+        # fetch all the text attributes
         op.execute ("SELECT a.role, a.index, t.* FROM text_t t, attribute a"
                     " WHERE t.id = a.data AND a.record = %s", self.id)
 
-        while 1:
-            r = op.fetchone ()
-            if r is None: break
-
-            o = Text (r [3], r [4])
+        for r in op.fetchall ():
+            o = Text (uni (r [3]),
+                      uni (r [4]))
+            
             o._fill (self.db, r [2])
             
             ret.append ((r [0], r [1], o))
 
+        # fetch all the person attributes
         op.execute ("SELECT a.role, a.index, t.* FROM person_t t, attribute a"
                     " WHERE t.id = a.data AND a.record = %s", self.id)
 
-        while 1:
-            r = op.fetchone ()
-            if r is None: break
+        for r in op.fetchall ():
 
-            o = Text (r [3], r [4])
+            o = Person (uni (r [3]),
+                        uni (r [4]),
+                        uni (r [5]))
+            
             o._fill (self.db, r [2])
             
             ret.append ((r [0], r [1], o))
@@ -371,7 +406,8 @@ class Type (object):
         self.id = id
         self.db = db
         return
-    
+
+
 class Boolean (object):
 
     def __and__ (self, other):
@@ -388,6 +424,11 @@ class QueryOr (Boolean):
         self.b = b
         return
 
+    def where (self, tables, args):
+        return "(%s OR %s)" % (self.a.where (tables, args),
+                               self.b.where (tables, args))
+
+
 class QueryAnd (Boolean):
 
     def __init__ (self, a, b):
@@ -395,7 +436,10 @@ class QueryAnd (Boolean):
         self.b = b
         return
 
-    
+    def where (self, tables, args):
+        return "(%s AND %s)" % (self.a.where (tables, args),
+                                self.b.where (tables, args))
+
 
 class Person (Type, api.Person):
 
@@ -520,4 +564,21 @@ class TextQuery (Boolean, api.Searchable):
         self.text = text
         self.lang = lang
         return
+    
+    def where (self, tables, args):
+        q = [ 'attribute.role = %s' ]
+        args.append (self.role)
+        
+        if self.text:
+            q.append ("text_t.text ILIKE %s")
+            args.append ('%' + utf (self.text) + '%')
+            
+        if self.lang:
+            q.append ("text_t.lang = %s")
+            args.append (utf (self.text))
+            
+        if len (q) > 1:
+            tables ['text_t'] = 1
+        
+        return "(%s)" % string.join (q, ' AND ')
     

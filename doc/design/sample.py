@@ -27,7 +27,8 @@ w_1.link (w_2, c_r)
 
 db.commit ()
 
-q = Text.search ('base:title', u'un')
+q = (Text.search ('base:title', u'un') |
+     Text.search ('base:title', u'deux'))
 
 for r in db.query (q):
     print r.attributes ()
