@@ -20,4 +20,4 @@
 # $Id$
 
 
-TESTS = import-export
+TESTS = test-pybcheck import-export 

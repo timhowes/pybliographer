@@ -19,7 +19,6 @@ slope centering, a new technique described herein. Our benchmark
 experiments bear out this prediction, and show that factor-centering 
 decomposition can speed up learning significantly without adversely 
 affecting the trained network's generalization ability.
-%Z Tue, 12 Jan 1999 19:58:05 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-32-98.ps.gz
 %A Schraudolph, Nicol N.
@@ -39,7 +38,6 @@ signal at a hidden node, slope centering effectively decouples that node
 from the shortcuts that bypass it. This eliminates the possibility of 
 destructive interference from shortcut weights, and thus ensures that the 
 benefits of shortcut connections are fully realized.
-%Z Tue, 12 Jan 1999 20:01:42 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-19-97.ps.gz
 %A Schraudolph, Nicol N.
@@ -57,7 +55,6 @@ removes the linear component of backpropagated error; this improves
 credit assignment in networks with shortcut connections. Benchmark 
 results show that this can speed up learning significantly without adversely 
 affecting the trained network's generalization ability.
-%Z Tue, 12 Jan 1999 20:14:18 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-38-98.ps.gz
 %A Rizzoli, Andrea E.
@@ -67,7 +64,6 @@ affecting the trained network's generalization ability.
 %R IDSIA-38-98
 %D May 20, 1998
 %K Model management, model integration and re-use, environmental decision support systems
-%Y Representation languages
 %X This paper presents a software architecture for the management of 
 environmental models. The Systems Theory representation of models is 
 embedded in an object-oriented approach that emphasises the separation 
@@ -77,7 +73,6 @@ a Model Management System (MMS). It is finally shown how a Decision
 Support System can use this approach to implement the MMS in order to 
 facilitate problem definition (via the domain base) and problem 
 solution (via the model base).
-%Z Wed, 13 Jan 1999 14:24:11 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-41-98.ps.gz
 %A Gambardella, Luca M.
@@ -106,7 +101,6 @@ oriented paradigm. The simulator provides a test bed for checking the validity
 and the robustness of the policy computed by the optimisation module. The case  
 study of the Contship La Spezia Container Terminal, located in the  
 Mediterranean Sea in Italy, is examined.
-%Z Wed, 13 Jan 1999 14:36:26 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-42-97.ps.gz
 %A Schmidhuber, Juergen
@@ -137,7 +131,6 @@ Until the next SSA call, they build the basis for additional
 SMP-modifications. Solely by self-modifications our SMP/SSA-based  
 learners solve a complex task in a partially observable environment (POE)  
 whose state space is far bigger than most reported in the POE literature.
-%Z Thu, 14 Jan 1999 11:48:13 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-95-96.ps.gz
 %A Wiering, Marco
@@ -159,7 +152,6 @@ standard Q-learning cannot solve at all. (b) It can solve partially
 observable mazes with more states than those used in most previous 
 POMDP work. (c) It can quickly solve complex tasks that require 
 manipulation of the environment to free a blocked path to the goal.
-%Z Thu, 14 Jan 1999 13:56:25 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-11-98.ps.gz
 %A Salustowicz, Rafal
@@ -184,7 +176,6 @@ complexity.  We overcome this drawback by introducing filtering, a novel,
 general, data-driven divide-and-conquer technique for automatic task   
 decomposition that is not limited to a particular learning method.  
 We compare PIPE plus filtering to various analog recurrent net methods.
-%Z Thu, 14 Jan 1999 14:48:51 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-08-98.ps.gz
 %A Salustowicz, Rafal
@@ -203,7 +194,6 @@ switching program parts on and off. In our experiments H-PIPE
 outperforms PIPE, and SNs facilitate synthesis of certain structured 
 programs but not unstructured ones. We conclude that introns can  
 be particularly useful in the presence of structural bias.
-%Z Thu, 14 Jan 1999 15:00:30 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-29-97.ps.gz
 %A Salustowicz, Rafal
@@ -230,7 +220,6 @@ PIPE, however, does not depend on EFs and can find good policies faster
 and more reliably.  This suggests that in multiagent learning scenarios   
 direct search through policy space can offer advantages over EF-based   
 approaches.
-%Z Thu, 14 Jan 1999 15:08:12 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-07-98.ps.gz
 %A Schraudolph, Nicol N.
@@ -246,7 +235,6 @@ paper describes how exponentiation can be approximated by manipulating
 the components of a standard (IEEE-754) floating-point representation.  
 This models the exponential function as well as a lookup table with  
 linear interpolation, but is significantly faster and more compact.
-%Z Thu, 14 Jan 1999 17:40:36 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-19-96.ps.gz
 %A Schmidhuber, Juergen
@@ -263,7 +251,6 @@ alternative methods.
 We show: many problems used to test 
 previous algorithms can be solved more 
 quickly by random weight guessing.
-%Z Tue, 26 Jan 1999 15:29:29 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-69-96.ps.gz
 %A Schmidhuber, Juergen
@@ -291,7 +278,6 @@ learning fails,  we test it in complex, non-Markovian, changing environments
 (``POMDPs'').  One of the tasks involves more than $10^{13}$ states, two  
 learners that both cooperate and compete, and strongly delayed reinforcement  
 signals (initially separated by more than 300,000 time steps).
-%Z Tue, 26 Jan 1999 15:33:06 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-59-95.ps.gz
 %A Schmidhuber, Juergen
@@ -335,7 +321,6 @@ just a connection in a fully recurrent reinforcement learning neural
 net. A by-product of this research is a general reinforcement 
 learning algorithm for such nets.  Preliminary experiments 
 illustrate the theory.
-%Z Tue, 26 Jan 1999 16:02:27 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-35-97.ps.gz
 %A Schmidhuber, Juergen
@@ -360,7 +345,6 @@ a source of reward --- an incentive to shift the focus of interest.
 Both brains deal with the complex credit assignment problem using the 
 recent Incremental Self-Improvement paradigm.  Extensive simulations 
 include an example where curiosity helps to speed up external reward.
-%Z Tue, 26 Jan 1999 16:06:34 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-50-98.ps.gz
 %A Schmidhuber, Juergen
@@ -390,7 +374,6 @@ advantages over traditional
 direct policy search (such as stochastic hill-climbing) 
 on problems involving several sources of stochasticity and 
 uncertainty.
-%Z Tue, 26 Jan 1999 16:14:40 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-28-98.ps.gz
 %A Schmidhuber, Juergen
@@ -414,7 +397,6 @@ which  are compactly encodable with the help of simple feature detectors
 similar to those observed in mammalian brains.  This suggests   
 that a face's beauty correlates with simplicity relative to the   
 subjective observer's way of encoding it.
-%Z Tue, 26 Jan 1999 16:23:01 GMT
 
 %A Zaffalon, M.
 %T A Credal Approach to Naive Classification
@@ -430,7 +412,6 @@ n classifier is extended to credal sets. A fast classification algorithm is deri
 ta-driven construction of the classifier is proposed and discussed. The latter takes the 
 variability of the probability estimates into account, thus making classification more re
 liable.
-%Z Thu, 28 Jan 1999 10:39:17 GMT
 
 %A Fagiuoli, E.
 %A  Zaffalon, M.
@@ -452,14 +433,12 @@ tion. Such an insight leads to the definition of a general exact solution algori
 cial emphasis on the relationship between the solution procedure and the decision maker's
  subjective attitude to the risk. It is shown that depending on the latter, the solution 
 can be made simpler. A numerical example is presented.
-%Z Thu, 28 Jan 1999 10:56:08 GMT
 
 %A Taillard, E. D.
 %T FANT: Fast ant system
 %R IDSIA-46-98
 %D October 15, 1998
 %K Meta-heuristic, ant system, quadratic assignment, BiQAP, p-median.
-%Y I.2.8; G.2.1; G.2.2
 %X This paper presents a new point of view of ant systems that is more  
 general than previous ones, identifying artificial ants with  
 processes that cooperate through a shared memory and a Queen  
@@ -470,7 +449,6 @@ strategies such as intensification, diversification and learning
 mechanisms. FANT is used to solve various hard assignment problems  
 and shown to be very competitive with other implementations using  
 various meta-heuristics.
-%Z Fri, 29 Jan 1999 15:39:06 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-09-98.ps.gz
 %A Schraudolph, Nicol N.
@@ -493,7 +471,6 @@ number of floating-point operations required per weight update is taken
 into account. Unlike the method of Almeida et al., ELK1 does not require   
 statistical independence between successive training patterns, and   
 handles large initial learning rates well.
-%Z Sun, 31 Jan 1999 18:01:16 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-19-98.ps.gz
 %A Taillard, E. D.
@@ -504,7 +481,6 @@ handles large initial learning rates well.
 %R IDSIA-19-98
 %D June 10, 1998
 %K Adaptive memory programming, meta-heuristics, combinatorial optimization
-%Y I.2.8;G.2.1;G.2.2
 %X The paper analyses recent developments of a number of memory-based  
 metaheuristics such as taboo search, scatter search, genetic  
 algorithms and ant colonies. Its shows that the implementations of  
@@ -516,7 +492,6 @@ are reviewed and presented under the adaptive memory programming
 point of view. AMP presents a number of interesting aspects such as   
 a high parallelization potential and theability of dealing with real   
 and dynamic applications.
-%Z Mon, 01 Feb 1999 13:38:09 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-96-96.ps.gz
 %A Taillard, E. D.
@@ -525,7 +500,6 @@ and dynamic applications.
 %D October 10, 1996
 %K Clustering, location-allocation, p-median, sum-of-squares clustering, multi-source Web
 er problem
-%Y I.2.8;G.2.1;G.2.2
 %X This article presents new heuristic methods for solving a class of    
 hard centroid clustering problems including the p-median, the    
 sum-of-squares clustering and the multi-source Weber problems.    
@@ -547,7 +521,6 @@ in the literature. The expected complexity of these new procedures
 is discussed and shown to be comparable to that of an existing    
 method which is known to be very fast.   
 (Old title: Heuristic Methods for Large Multi-source Weber Problems)
-%Z Mon, 01 Feb 1999 14:27:47 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-22-97.ps.gz
 %A Taillard, E. D.
@@ -556,13 +529,11 @@ method which is known to be very fast.
 %R IDSIA-22-97
 %D January 22, 1997
 %K Quadratic assignment problem, ant system, adaptive memory programming
-%Y I.2.8;G.2.1;G.2.2
 %X The paper presents a new heuristic method for the quadratic  
 assignment problem. This method is based on an artificial ant  
 system, hybridized with a fast local search. The method is easy  
 to implement and numerical results show that it is fast and  
 efficient for structured problem instances
-%Z Mon, 01 Feb 1999 14:35:10 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-87-97.ps.gz
 %A  Gambardella, L.-M.
@@ -571,7 +542,6 @@ efficient for structured problem instances
 %R IDSIA-87-97
 %D September 10, 1997
 %K Quadratic Assignment, Adaptive Memory Programming, Ant System, Genetic Algorithm
-%Y I.2.8;G.2.1;G.2.2
 %X The paper proposes, compares and analyses different memory-  
 based meta-heuristics for the quadratic assignment problem   
 (QAP). Two of these methods (FANT and GDH) are new while two   
@@ -583,7 +553,6 @@ However, they use different types of memory and different
 improving procedures. Two new memoryless methods (VNS-QAP   
 and RVNS-QAP) based on variable neighbourhood search are   
 also proposed and compared with adaptive memory procedures.
-%Z Mon, 01 Feb 1999 14:36:26 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-33-97.ps.gz
 %A Brimberg, J.
@@ -594,7 +563,6 @@ also proposed and compared with adaptive memory procedures.
 %R IDSIA-33-97
 %D September 04, 1997
 %K Clustering, multi-source Weber
-%Y I.2.8;G.2.1;G.2.2
 %X The multisource Weber problem is to locate simultaneously p  
 facilities in the Euclidean plane in order to minimize the  
 total transportation cost for satisfying the demand of n fixed  
@@ -610,7 +578,6 @@ heuristics give pour results when the number of facilities
 to locate is large and that Variable Neighbourhood Search  
 gives consistently best results on average, in moderate computing  
 time.
-%Z Mon, 01 Feb 1999 14:43:32 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-79-97.ps.gz
 %A Taillard, E.D.
@@ -622,7 +589,6 @@ time.
 %D September 05, 1997
 %K Meta-heuristics, evolutionary algorithms, taboo search, genetic algorithms, scatter se
 arch, quadratic assignment, vehicle routeing
-%Y I.2.8;G.2.1;G.2.2
 %X Cet article analyse les d?éveloppements r?écents de plusieurs  
 m?éta-heuristiques à m?émoire et montre que les mani?ères d'implanter  
 l'une ou l'autre de ces m?éthodes gé?n?rales d'optimisation ont  
@@ -643,7 +609,6 @@ conveniently parallelised. Finally, a number of recently proposed
 methods for quadratic assignment and vehicle routeing problems are  
 reviewed and presented under an adaptive memory programming point  
 of view.
-%Z Mon, 01 Feb 1999 14:54:51 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-52-98.ps.gz
 %A Taillard, E.D.
@@ -652,7 +617,6 @@ rspectives pour les méta-heuristiques
 %R IDSIA-52-98
 %D July 10, 1998
 %K Programmation à mémoire adaptative, Méta-heuristiques, Parallélisation
-%Y I.2.8;G.2.1;G.2.2
 %X La première partie de ce dossier analyse les développements récents  
 de plusieurs méta-heuristiques à mémoire et montre que les manières  
 d'implanter l'une ou l'autre de ces méthodes générales  
@@ -677,7 +641,6 @@ glouton ; on parlera alors de méthode pseudo-gloutonne.
 Finalement, on montre comment un programme à mémoire adaptative ou  
 une recherche pseudo-gloutonne peuvent se paralléliser de façon  
 naturelle et efficace.
-%Z Mon, 01 Feb 1999 15:02:56 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-03-99.ps.gz
 %A Cummins, Fred
@@ -687,7 +650,6 @@ naturelle et efficace.
 %R IDSIA-03-99
 %D February 03, 1999
 %K Language Identification, Prosody, Long Short-Term Memory
-%Y I.2.7
 %X The development of methods for the automatic identification of 
 languages is motivated both by speech-based applications intended for 
 use in a multi-lingual environment, and by theoretical questions of 
@@ -700,7 +662,6 @@ Both variables are found to be useful in discriminating among
 languages, and confusion patterns, in general, reflect traditional 
 intonational and rhythmic language classes.  The methods employed 
 allow empirical determination of prosodic similarity across languages.
-%Z Wed, 03 Feb 1999 09:02:51 GMT
 
 %A Zaffalon, M.
 %T Credal Networks Classification
@@ -721,7 +682,6 @@ y for expressing subjective knowledge and of reliability of the classification w
 d to the frequentist construction of the classifier. Furthermore, they allow the robustne
 ss of the classification to be verified depending on imprecision in the probability estim
 ates.
-%Z Thu, 18 Feb 1999 16:30:46 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-05-99.ps.gz
 %A Taillard, E. D.
@@ -729,7 +689,6 @@ ates.
 %R IDSIA-05-99
 %D February 23, 1999
 %K Meta-heuristics, Adaptive Memory Programming, Ant Systems
-%Y I.2.8
 %X This article describes Ant Systems, a meta-heuristic based on an  
 ant foraging  metaphor. The presentation of Ant Systems has been  
 somewhat generalized by adding a ``Queen" process in charge of 
@@ -737,7 +696,6 @@ co-ordinating classical ``Ant" processes, so that recent Ant Systems
 can be naturally included while remaining close to the metaphor.  
 To illustrate how Ant Systems are practically implemented, a number  
 of applications to the quadratic assignment problem are reviewed.
-%Z Wed, 24 Feb 1999 09:21:49 GMT
 
 %A Gambardella, L.M.
 %A  Zaffalon, M.
@@ -755,7 +713,6 @@ he problem with a mixed integer linear programming (MILP) solver that reads the 
  bound. Third, by turning the algebraic solution into a description of the terminal activ
 ity during the period that can easily be read by the user.   
 This document provides a detailed description of ITRA and of the allocation problem.
-%Z Wed, 24 Feb 1999 12:15:16 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-40-98.ps.gz
 %A Fagiuoli, E.
@@ -776,7 +733,6 @@ emoval of the redundant parts of an ID. This technical result is significant bec
 recisely defines what is relevant to know at the time of a decision. Furthermore, it allo
 ws a redundant influence diagram to be transformed into another ID, that can be used to c
 ompute the optimal policy in an equivalent but more efficient way.
-%Z Wed, 24 Feb 1999 12:31:57 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-11-97.ps.gz
 %A Gambardella, L.M.
@@ -793,7 +749,6 @@ izer, an extension of a TSP heuristic which directly handles multiple constraint
  set of twenty-three test problems taken from the TSPLIB show that HAS-SOP outperforms ex
 isting methods both in terms of solution quality and computation time.  Moreover, HAS-SOP
  improves most of the best known results for the considered problems.
-%Z Mon, 01 Mar 1999 14:19:13 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-07-99.ps.gz
 %A Cummins, Fred
@@ -822,7 +777,6 @@ distinct from languages conventionally described as stress-, syllable-
 or mora-timed.  When both variables are provided to the networks, the   
 results provide an empirical measure of prosodic distance among the   
 languages.
-%Z Wed, 03 Mar 1999 15:43:31 GMT
 
 %A Zaffalon, M.
 %A  Gambardella, L.-M.
@@ -847,7 +801,6 @@ approach is widely discussed, some characteristics are analyzed, like the
 NP-completeness, and some extensions are considered. The proposed model 
 appears also easy to adapt to other terminals to provide effective answers 
 in the direction of supporting the terminal management.
-%Z Mon, 08 Mar 1999 09:57:25 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-06-99.ps.gz
 %A Gambardella, L.M.
@@ -867,7 +820,6 @@ h pheromone updating. We show that MACS-VRPTW is competitive with the best known
  methods both in terms of solution quality and computation time. Moreover, MACS-VRPTW imp
 roves some of the best solutions known for a number of problem instances in the literatur
 e.
-%Z Fri, 12 Mar 1999 11:13:07 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-01-99.ps.gz
 %A Gers, F. A.
@@ -891,7 +843,6 @@ We review illustrative benchmark problems on which standard LSTM
 outperforms other RNN algorithms. All algorithms (including LSTM) fail     
 to solve continual versions of these problems. LSTM with forget     
 gates, however, easily solves them in an elegant way.
-%Z Mon, 15 Mar 1999 14:40:35 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-09-99.ps.gz
 %A Schraudolph, Nicol N.
@@ -910,7 +861,6 @@ independence between successive training patterns, and do not require
 an arbitrary smoothing parameter.  In our benchmark experiments, they  
 consistently outperform other acceleration methods, and show remarkable  
 robustness when faced with non-i.i.d. sampling of the input space.
-%Z Sat, 15 May 1999 15:51:23 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-77-97.ps.gz
 %A Schraudolph, Nicol N.
@@ -934,7 +884,6 @@ experiments that examine its response to artificial and real-world images.
 In particular, we observe that under a wide variety of conditions,   
 predictability minimization results in the development of well-known visual   
 feature detectors.
-%Z Mon, 21 Jun 1999 13:31:19 GMT
 
 %U ftp://ftp.idsia.ch/pub/techrep/IDSIA-10-99.ps.gz
 %A Zaffalon, M.
@@ -954,7 +903,6 @@ ecific procedure is provided, for which the linear program can be solved in cons
 . The interval case is the proper choice when the classifier is induced from data; theref
 ore the result seems a significant step towards easy and fast implementations of credal c
 lassification.
-%Z Wed, 14 Jul 1999 14:24:14 GMT
 
 %A Zaffalon, M.
 %T Exact Credal Treatment of Missing Data, with an Application to Classification
@@ -975,6 +923,5 @@ c case of allowing missing data to be treated in the classification context. The
 g tool, based on the naive credal classifier, deals with missing data exactly, together w
 ith the imprecision due to the finite sample size. Furthermore, it has low computational 
 complexity, such that relevant significance for data mining is achieved.
-%Z Mon, 02 Aug 1999 09:55:04 GMT
 
 
