@@ -1,9 +1,11 @@
 [Desktop Entry]
 Name=Pybliographic
 Name[de]=Pybliographic
+Name[sv]=Pybliographic
 Comment=Bibliographic database editor
 Comment[de]=Bibliographischer Datenbank-Editor
 Comment[fr]=Éditeur de bases de données bibliographiques
+Comment[sv]=Redigerinsgprogram för bibliografidatabaser
 Icon=pybliographic.png
 Exec=pybliographic
 Terminal=0

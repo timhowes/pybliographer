@@ -1,3 +1,7 @@
+2000-11-30  Martin Norbäck  <d95mback@dtek.chalmers.se>
+
+	* pybliographer.desktop: Added Swedish translation
+
 2000-11-21  Gobry Frederic  <frederic.gobry@epfl.ch>
 
 	* Pyblio/Format/OvidLike.py: fixed keyword separators
