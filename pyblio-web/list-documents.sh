@@ -5,7 +5,7 @@ cat<<EOF
 <li>A large TODO file, in <a href="design/todo.pdf">PDF</a>
 EOF
 
-for file in *.txt ; do
+for file in *.txt *.py ; do
   echo "<li> <a href=\"design/$file\">$file</a>"
 done
 
