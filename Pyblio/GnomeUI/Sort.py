@@ -23,7 +23,7 @@
 
 import os, string
 
-import gtk
+import gtk, gobject
 from gnome import ui
 
 from Pyblio import Connector, Sort, Config, version
@@ -37,136 +37,155 @@ del cPickle
 
 class SortDialog (Connector.Publisher, Utils.GladeWindow):
 
+    """ Provide a configuration dialog for sorting the main index.
+    Emit a 'sort-data' signal when the user chooses new sort options.
+    """
+    
+    # This dialog is described as a glade XML file
     glade_file  = 'sort.glade'
     root_widget = '_w_sort'
     
-    def __init__ (self, current_sort, parent = None):
+    def __init__ (self, sort, parent = None):
 
+        """ Create the dialog.
+
+          - current_sort: the current sorting options
+          - parent: parent window
+       """
+        
         Utils.GladeWindow.__init__ (self, parent)
+
+        self._model = gtk.ListStore (gtk.gdk.Pixbuf, str, gobject.TYPE_PYOBJECT, int)
+        self._w_tree.set_model (self._model)
+
+        # Only the first two rows are visibles, the others are for
+        # internal bookkeeping.
+        
+        col = gtk.TreeViewColumn ('Direction', gtk.CellRendererPixbuf (), pixbuf = 0)
+        self._w_tree.append_column (col)
+
+        col = gtk.TreeViewColumn ('Field', gtk.CellRendererText (), text = 1)
+        self._w_tree.append_column (col)
 
         self._w_sort.show ()
 
-        # Gather the current sort info
-        if current_sort:
-            current_sort = current_sort.fields
-        else:
-            current_sort = []
+        self._icon = {0: None}
 
-        # fill in the lists
-        criterions = [
-            [ 0, Sort.TypeSort () ],
-            [ 0, Sort.KeySort ()  ],
-            ]
+        for id, stock in ((1, gtk.STOCK_GO_UP), (-1, gtk.STOCK_GO_DOWN)):
+                          
+            self._icon [id] = self._w_tree.render_icon (stock_id = stock,
+                                                        size = gtk.ICON_SIZE_MENU,
+                                                        detail = None)
+        
 
-        criterions [0][1].name = _("[Entry Type]")
-        criterions [1][1].name = _("[Key Value]")
+        # Gather the current sort info for all the available
+        # fields. We create a tuple containing:
+        #  (display name, sort criterion instance, sort direction)
+        #
+        # The sort direction can be:
+        #   0: not sorting according to this
+        #   1: ascending sort
+        #  -1: descending sort
+        
+        if sort: sort = sort.fields
+        else:    sort = []
+
+        # These are additional search fields
+        avail = [[_("[Entry Type]"), Sort.TypeSort (), 0],
+                 [_("[Key Value]"),  Sort.KeySort (), 0]]
+
         
         fields = map (lambda x: x.name,
                       Config.get ('base/fields').data.values ())
         fields.sort ()
+
+        def make_one (x):
+            return [x, Sort.FieldSort (x.lower ()), 0]
+
+        avail = avail + map (make_one, fields)
+
+        # Update the list with the current user settings
+        for v in avail:
+
+            if v [1] not in sort: continue
+            
+            i = sort.index (v [1])
+            
+            if sort [i].ascend: v [2] = +1
+            else:               v [2] = -1
+
+        # In the list, display the fields that are used in the current
+        # sort procedure first.
         
-        for field in fields:
-            sort = Sort.FieldSort (string.lower (field))
-            sort.name = field
-            criterions.append ([current_sort.count (sort), sort])
+        for k, v, d in filter (lambda x: x [2], avail):
+            s = self._icon [d]
 
-        self.set_criterions (criterions)
-        self.reorder_items ()
+            self._model.append ((s, k, v, d))
+        
+        s = self._icon [0]
+        for k, v, d in filter (lambda x: x [2] == 0, avail):
+            self._model.append ((s, k, v, d))
+        
         return
 
 
-    def select_row (self, w, row, column, * arg):
-        if column != 0: return
+    def on_activate (self, view, path, col):
 
-        data = self.list.get_row_data (row)
-        data [0] = ((data [0] + 2) % 3) - 1
-        if   data [0] == -1:
-            self.list.set_text (row, 0, '<')
-        elif data [0] == +1:
-            self.list.set_text (row, 0, '>')
-        else:
-            self.list.set_text (row, 0, '')
+        ''' Toggle between the three states for the selected field (do
+        not sort, ascending sort, descending sort) '''
+        
+        row = self._model [path]
+
+        d = ((row [3] + 2) % 3) - 1
+
+        row [3] = d
+        row [0] = self._icon [d]
         return
+
+
+    def _results (self):
+
+        ''' Extract the current sorting settings '''
+        
+        sort = []
+        
+        for r in self._model:
+            item, dir = r [2], r [3]
+            
+            if dir == 0: continue
+
+            if dir > 0: item.ascend = True
+            else:       item.ascend = False
+            
+            sort.append (item)
+
+        if not sort: sort = None
+        else:  sort = Sort.Sort (sort)
+
+        return sort
     
-
-    def get_criterions (self):
-        return []
-    
-        criterions = []
-        for i in range (0, self.list.rows):
-            data = self.list.get_row_data (i)
-            if not data: break
-
-            criterions.append (data)
-        return criterions
-
-    def set_criterions (self, criterions):
-
-        return
-    
-        self.list.freeze ()
-        self.list.clear ()
-        i = 0
-        for c in criterions:
-            status = ''
-            if   c [0] == +1:
-                status = '>'
-            elif c [0] == -1:
-                status = '<'
-            self.list.append ((status, c [1].name))
-            self.list.set_row_data (i, c)
-            i = i + 1
-        self.list.thaw ()
-        return
-
-    
-    def reorder_items (self, * arg):
-        crit = self.get_criterions ()
-        select = []
-        unselect = []
-        for c in crit:
-            if c [0]:
-                select.append (c)
-            else:
-                unselect.append (c)
-        unselect.sort (lambda x, y: cmp (string.lower (x [1].name),
-                                         string.lower (y [1].name)))
-        self.set_criterions (select + unselect)
-        return
-    
-
-    def unselect_items (self, * arg):
-        crit = self.get_criterions ()
-        for c in crit: c [0] = 0
-        self.set_criterions (crit)
-        return
-
-
-    def show (self):
-        self.reorder_items ()
-        return
-
-
-    def get_result (self):
-        data   = filter (lambda x: x [0], self.get_criterions ())
-        result = []
-        for d in data:
-            d [1].ascend = d [0]
-            result.append (d [1])
-
-        if result == []: result = None
-
-        return result
-
 
     def set_as_default (self, * arg):
+
+        ''' Pickle the current sorting settings to be used as the
+        default value '''
+        
         Utils.config.set_string ('/apps/pybliographic/sort/default',
-                                 pickle.dumps (self.get_result ()))
+                                 pickle.dumps (self._results ()))
         return
     
-    
-    def apply (self, * arg):
-        self.issue ('sort-data', self.get_result ())
-        self.window.close ()
+
+    def on_cancel (self, * arg):
+        ''' Invoked when the user clicks on Cancel '''
+        
+        self._w_sort.destroy ()
+        return
+
+
+    def on_accept (self, * arg):
+        ''' Invoked when the user clicks on Apply '''
+
+        self.issue ('sort-data', self._results ())
+        self._w_sort.destroy ()
         return
     

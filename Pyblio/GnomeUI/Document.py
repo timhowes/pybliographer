@@ -845,11 +845,7 @@ class Document (Connector.Publisher):
 
 
     def sort_view (self, sort):
-        if sort is None:
-            self.selection.sort = None
-        else:
-            self.selection.sort = Sort.Sort (sort)
-        
+        self.selection.sort = sort
         self.redisplay_index ()
         return
     
