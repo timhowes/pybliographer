@@ -11,8 +11,10 @@ m4_define(pyblio_news, [[
 news_item([[01/10/2000]],[[1.0.5 is out. Now, the searched words are
 saved between sessions, it is possible to display the key and type of
 the entries in the index window (as explained in the <a
-href="faq.html">FAQ</a>, and formatted entries follow the order of the
-display when no specific ordering is specified. ]]),
+href="faq.html">FAQ</a>), and formatted entries follow the order of the
+display when no specific ordering is specified. And for the Italian
+speaking people, a brand new version of the documentation, written by
+Yuri Bongiorno. ]]),
 
 news_item([[31/08/2000]], [[Two new translations, in Danish by Kenneth
 Christiansen and in Ukrainian by Yuri Syrota. Well, I guess I must
