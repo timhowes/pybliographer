@@ -1,3 +1,11 @@
+2000-05-11  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/Format/BibTeX.py: save entries with crossrefs _after_ the
+	ones being crossrefered
+
+	* Pyblio/GnomeUI/Document.py, Pyblio/GnomeUI/Index.py: correct
+	transfer of Keys with no attached database
+
 2000-04-18  Fred  <fred@pium.home.org>
 
 	* bibtex/reverse.c, Pyblio/GnomeUI/Editor.py:

@@ -1,6 +1,7 @@
-For 1.0:
+1.2.x :
 
-- add default suffix to file whenever it is missing ?
+- fill fields with crossref informations
+- ranges for dates
 
 Long term:
 

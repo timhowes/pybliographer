@@ -60,6 +60,6 @@ be present :
 
  - If the interface locks during search or open operations, or if you
    experience core dumps and random crashes, upgrade
-   your versions of Gtk (>= 1.2.6) and Gnome-Python (>= 1.0.52).
+   your versions of Gtk (>= 1.2.7) and Gnome-Python (>= 1.0.53).
 
 
