@@ -52,7 +52,7 @@ def getString (element):
         if node.nodeType == node.TEXT_NODE:
             s += node.data
 
-    return s
+    return string.strip (s)
 
 
 class Connection:
@@ -271,6 +271,7 @@ class QSelection:
     ''' A selection between several choices '''
     def parse (self, root):
         self.content = []
+        self.title   = None
         
         try:
             self.name = root.attributes ['name'].value
@@ -294,6 +295,8 @@ class QSelection:
                 self.content.append ((name, text))
                 continue
 
+        if self.title is None:
+            raise Exceptions.SyntaxError ('missing title in selection')
         return
 
 class QToggle:

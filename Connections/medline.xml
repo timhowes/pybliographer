@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+
+<connection>
+  <name>Medline / PubMed</name>
+  
+  <server type="medline">
+    <host></host>
+  </server>
+
+  <query>
+    <default>
+      <fields name="query" max="1">
+        <operator name="equal">Matches</operator>
+
+        <field type="text" name="all"><title>All Fields</title></field>
+        <field type="text" name="affiliation"><title>Affiliation</title></field>
+        <field type="text" name="author"><title>Author Name</title></field>
+        <field type="text" name="ecrn"><title>EC/RN Number</title></field>
+        <field type="text" name="entrez"><title>Entrez Date</title></field>
+        <field type="text" name="filter"><title>Filter</title></field>
+        <field type="text" name="issue"><title>Issue</title></field>
+        <field type="text" name="journal"><title>Journal Name</title></field>
+        <field type="text" name="language"><title>Language</title></field>
+        <field type="text" name="mesh_date"><title>MeSH Date</title></field>
+        <field type="text" name="mesh_major"><title>MeSH Major Topic</title></field>
+        <field type="text" name="mesh_subheading"><title>MeSH Subheading</title></field>
+        <field type="text" name="mesh_terms"><title>MeSH Terms</title></field>
+        <field type="text" name="pagination"><title>Pagination</title></field>
+        <field type="text" name="pub_date"><title>Publication Date</title></field>
+        <field type="text" name="pub_type"><title>Publication Type</title></field>
+        <field type="text" name="secondary_source"><title>Secondary Source ID</title></field>
+        <field type="text" name="substance"><title>Substance Name</title></field>
+        <field type="text" name="text_word"><title>Text Word</title></field>
+        <field type="text" name="title"><title>Title</title></field>
+        <field type="text" name="abstract"><title>Title/Abstract</title></field>
+        <field type="text" name="uid"><title>UID</title></field>
+        <field type="text" name="volume"><title>Volume</title></field>
+      </fields>
+
+      <group>
+        <selection name="pub_type">
+	  <title>Publication types</title>
+
+          <item name="">Addresses</item>
+          <item name="">Bibliography</item>
+          <item name="">Biography</item>
+          <item name="">Classical Article</item>
+          <item name="">Clinical Conference</item>
+          <item name="">Clinical Trial</item>
+          <item name="">Clinical Trial, Phase I</item>
+          <item name="">Clinical Trial, Phase II</item>
+          <item name="">Clinical Trial, Phase III</item>
+          <item name="">Clinical Trial, Phase IV</item>
+          <item name="">Comment</item>
+          <item name="">Congresses</item>
+          <item name="">Consensus Development Conference</item>
+          <item name="">Consensus Development Conference, NIH</item>
+          <item name="">Controlled Clinical Trial</item>
+          <item name="">Corrected and Republished Article</item>
+          <item name="">Dictionary</item>
+          <item name="">Directory</item>
+          <item name="">Duplicate Publication</item>
+          <item name="">Editorial</item>
+          <item name="">Evaluation Studies</item>
+          <item name="">Festschrift</item>
+          <item name="">Government Publications</item>
+          <item name="">Guideline</item>
+          <item name="">Historical Article</item>
+          <item name="">Interview</item>
+          <item name="">Journal Article</item>
+          <item name="">Lectures</item>
+          <item name="">Legal Cases</item>
+          <item name="">Legislation</item>
+          <item name="">Letter</item>
+          <item name="">Meta-Analysis</item>
+          <item name="">Multicenter Study</item>
+          <item name="">News</item>
+          <item name="">Newspaper Article</item>
+          <item name="">Overall</item>
+          <item name="">Periodical Index</item>
+          <item name="">Practice Guideline</item>
+          <item name="">Published Erratum</item>
+          <item name="">Randomized Controlled Trial</item>
+          <item name="">Retraction of Publication</item>
+          <item name="">Retracted Publication</item>
+          <item name="">Review</item>
+          <item name="">Review,Academic</item>
+          <item name="">Review Literature</item>
+          <item name="">Review, Multicase</item>
+          <item name="">Review of Reported Cases</item>
+          <item name="">Review, Tutorial</item>
+          <item name="">Scientific Integrity Review</item>
+          <item name="">Technical Report</item>
+          <item name="">Twin Study</item>
+          <item name="">Validation Studies</item>
+
+        </selection>
+	<selection name="language">
+	  <title>Language</title>
+          <item name="">English</item>
+          <item name="">French</item>
+          <item name="">German</item>
+          <item name="">Italian</item>
+          <item name="">Japanese</item>
+          <item name="">Russian</item>
+          <item name="">Spanish</item>
+        </selection>
+      </group>
+
+      <group>
+        <selection name="subsets">
+          <title>Subsets</title>
+          <item name="">AIDS</item>
+          <item name="">AIDS/HIV journals</item>
+          <item name="">Bioethics</item>
+          <item name="">Bioethics journals</item>
+          <item name="">Biotechnology journals</item>
+          <item name="">Communication disorders journals</item>
+          <item name="">Complementary and Alternative Medicine</item>
+          <item name="">Consumer health journals</item>
+          <item name="">Core clinical journals</item>
+          <item name="">Dental journals</item>
+          <item name="">Health administration journals</item>
+          <item name="">Health tech assessment journals</item>
+          <item name="">History of Medicine</item>
+          <item name="">History of Medicine journals</item>
+          <item name="">In process</item>
+          <item name="">Index Medicus journals</item>
+          <item name="">MEDLINE</item>
+          <item name="">NASA journals</item>
+          <item name="">Nursing journals</item>
+          <item name="">PubMed Central</item>
+          <item name="">Reproduction journals</item>
+          <item name="">Space Life Sciences</item>
+          <item name="">Supplied by Publisher</item>
+          <item name="">Toxicology</item>
+        </selection>
+
+        <selection name="ages">
+          <title>Ages</title>
+          <item name="">All Infant: birth-23 month</item>
+          <item name="">All Child: 0-18 years</item>
+          <item name="">All Adult: 19+ years</item>
+          <item name="">Newborn: birth-1 month</item>
+          <item name="">Infant: 1-23 months</item>
+          <item name="">Preschool Child: 2-5 years</item>
+          <item name="">Child: 6-12 years</item>
+          <item name="">Adolescent: 13-18 years</item>
+          <item name="">Adult: 19-44 years</item>
+          <item name="">Middle Aged: 45-64 years</item>
+          <item name="">Aged: 65+ years</item>
+          <item name="">80 and over: 80+ years</item>
+        </selection>
+      </group>
+
+      <group>
+        <selection name="kind">
+          <title>Human / Animal</title>
+	  <item name="">Human</item>
+	  <item name="">Animal</item>
+        </selection>
+
+        <selection name="gender">
+          <title>Gender</title>
+	  <item name="">Male</item>
+	  <item name="">Female</item>
+        </selection>
+      </group>
+
+      <group>
+        <toggle name="abstracts">
+Only items
+with abstracts
+        </toggle>
+
+        <toggle name="printed">
+Only items
+ahead of print
+        </toggle>
+      </group>
+
+    </default>
+  </query>
+</connection>

@@ -36,7 +36,7 @@ from Pyblio.GnomeUI import Utils
 
 from Pyblio import QueryEngine
 
-import os, pickle, string
+import os, pickle, string, copy
 
 path = os.path.join ('Pyblio', 'GnomeUI', 'query.glade')
 
@@ -66,8 +66,8 @@ class QueryUI:
         ui_height = config.get_int ('Pybliographic/Query/Height=-1')
 
         # set window size
-        if ui_width != -1 and ui_height != -1:
-            self.w_search.set_usize(ui_width, ui_height)
+        # if ui_width != -1 and ui_height != -1:
+        #    self.w_search.set_usize(ui_width, ui_height)
 
 
         # get the previous connection settings
@@ -317,6 +317,20 @@ class QueryUI:
         
 
 
+class Picklable:
+
+    def __getstate__ (self):
+        dict = copy.copy (self.__dict__)
+
+        for key in self.non_picklable:
+            try:
+                del dict [key]
+            except KeyError: pass
+            
+        return dict
+
+    
+    
 class QOperator (QueryEngine.QOperator):
     ''' Allowed operators for a field search '''
 
@@ -343,14 +357,18 @@ class QField (QueryEngine.QField):
 
 
 
-class QFields (QueryEngine.QFields):
+class QFields (QueryEngine.QFields, Picklable):
 
     CL = {
         'QOperator'  : QOperator,
         'QField'     : QField,
         }
+
+    non_picklable = ('w_table', 'w_remove', 'w_add', 'w_rows')
+
     
     ''' Sets of fields the user can search on '''
+
 
     def display (self, box):
 
@@ -382,6 +400,8 @@ class QFields (QueryEngine.QFields):
         self.w_add = GtkButton ("Add")
         self.w_add.connect ('clicked', self.field_add)
         hbox.pack_end (self.w_add)
+        if self.max == 1:
+            self.w_add.set_sensitive (FALSE)
         
         self.w_remove = GtkButton ("Remove")
         self.w_remove.connect ('clicked', self.field_remove)
@@ -393,7 +413,7 @@ class QFields (QueryEngine.QFields):
         # strange.
         self.w_rows = [ self.set_field (0) ]
 
-        vbox.pack_start (hbox)
+        vbox.pack_start (hbox, fill = FALSE, expand = FALSE)
         box.pack_start (frame)
         return
 
@@ -410,6 +430,9 @@ class QFields (QueryEngine.QFields):
 
         self.row_max = self.row_max + 1
 
+        if self.max == self.row_max:
+            self.w_add.set_sensitive (FALSE)
+
         self.w_remove.set_sensitive (TRUE)
         return
 
@@ -419,6 +442,8 @@ class QFields (QueryEngine.QFields):
         
         self.row_max = self.row_max - 1
         if self.row_max == 1: self.w_remove.set_sensitive (FALSE)
+
+        self.w_add.set_sensitive (TRUE)
 
         for w in self.w_rows [-1]: w.destroy ()
         del self.w_rows [-1]
@@ -454,16 +479,20 @@ class QFields (QueryEngine.QFields):
         # Field menu
         holder = GtkOptionMenu ()
         menu   = GtkMenu ()
-        
-        holder.set_menu (menu)
 
+        menu.show ()
+        
         for item in self.content:
             w = GtkMenuItem (item.title.encode ('latin-1'))
             w.set_data ('value', item.name)
             
             w.connect ('activate', self.activate_field, item, o_holder)
+            w.show ()
             menu.add (w)
-        
+
+        holder.set_menu (menu)
+
+
         self.w_table.attach (holder, 0, 1, row, row + 1)
 
         # ...and attach the entry widget
@@ -479,23 +508,27 @@ class QFields (QueryEngine.QFields):
 
     def activate_field (self, w, field, holder):
         menu   = GtkMenu ()
-        holder.set_menu (menu)
+        menu.show ()
 
         for op in field.operators:
             w = GtkMenuItem (op.title.encode ('latin-1'))
             w.set_data ('value', op.name)
+            w.show ()
+            
             menu.add (w)
 
-        menu.show_all ()
+        holder.set_menu (menu)
         
         holder.set_history (0)
         return
 
 
-class QSelection (QueryEngine.QSelection):
+class QSelection (QueryEngine.QSelection, Picklable):
 
     ''' A selection between several choices '''
 
+    non_picklable = ('menu', )
+    
     def display (self, box):
         hbox = GtkHBox ()
         hbox.set_spacing (5)
@@ -506,15 +539,18 @@ class QSelection (QueryEngine.QSelection):
         
         holder = GtkOptionMenu ()
         self.menu = GtkMenu ()
+        self.menu.show ()
         
-        holder.set_menu (self.menu)
-
         for item in self.content:
             w = GtkMenuItem (item [1].encode ('latin-1'))
             w.set_data ('value', item [0])
+            w.show ()
             
             self.menu.add (w)
 
+        holder.set_menu (self.menu)
+
+        holder.show ()
         holder.set_history (0)
         
         hbox.pack_start (holder, expand = TRUE, fill = TRUE)
@@ -527,10 +563,12 @@ class QSelection (QueryEngine.QSelection):
         return query
 
 
-class QToggle (QueryEngine.QToggle):
+class QToggle (QueryEngine.QToggle, Picklable):
 
     ''' A selection between two choices '''
 
+    non_picklable = ('w',)
+    
     def display (self, box):
         self.w = GtkCheckButton (self.title.encode ('latin-1'))
         self.w.set_active (self.enabled)

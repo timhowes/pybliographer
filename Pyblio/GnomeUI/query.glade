@@ -184,6 +184,16 @@
     </widget>
 
     <widget>
+      <class>GtkHSeparator</class>
+      <name>hseparator2</name>
+      <child>
+	<padding>0</padding>
+	<expand>True</expand>
+	<fill>True</fill>
+      </child>
+    </widget>
+
+    <widget>
       <class>GtkHBox</class>
       <name>hbox3</name>
       <homogeneous>False</homogeneous>
