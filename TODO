@@ -1,4 +1,8 @@
-- Client/Server module
-- MDI for pybliographic
+- Client/Server module ?
+- MDI for pybliographic + Fusion de DB
 - Copy Paste
-- Fusion de DB
+- Graphical configuration
+- extensive use of Glade
+- handling of intra/inter references
+- handling of "related articles"
+
