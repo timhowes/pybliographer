@@ -7,8 +7,9 @@ tst_start
 com="../pybliographer -q ${srcdir}/../scripts/pybconvert.py"
 
 run ${com} medline..bibtex ${srcdir}/medline.med > tmp.bib
-run diff tmp.bib medline.bib
-run rm -f tmp.bib
+run ../pybliographer -q ${srcdir}/reorder.py tmp.bib tmp-2.bib
+run diff tmp-2.bib ${srcdir}/medline.bib
+run rm -f tmp.bib tmp-2.bib
 
 tst_stop
 

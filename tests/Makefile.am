@@ -44,7 +44,9 @@ EXTRA_DIST =  \
 	format.raw		\
 	format.text		\
 	import-export.py	\
+	reorder.py		\
 	medline.med		\
+	medline.bib		\
 	ovid.ovid		\
 	refer.refer		\
 	testing.sh
