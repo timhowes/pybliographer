@@ -464,6 +464,8 @@ class RealEditor (Connector.Publisher):
         self.newfield_area = GtkHBox (spacing = 5)
         self.newfield_area.set_border_width (5)
         self.newfield = GnomeEntry ('newfield')
+        self.newfield.load_history ()
+        
         self.newfield_area.pack_start (self.newfield)
 
         b = GtkButton (_("Create Field"))

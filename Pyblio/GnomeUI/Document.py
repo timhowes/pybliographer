@@ -700,8 +700,10 @@ class Document (Connector.Publisher):
 
         # updates the index's config
         self.index.update_configuration ()
-        
-        config.sync ()
+
+        # ...and the search window
+        if self.search_dg:
+            self.search_dg.update_configuration ()
         return
 
     

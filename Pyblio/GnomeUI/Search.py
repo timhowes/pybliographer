@@ -137,6 +137,8 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         table.attach (self.field, 0, 1, 1, 2)
 
         self.text = GnomeEntry ('match')
+        self.text.load_history ()
+        
         table.attach (self.text, 1, 2, 1, 2)
         self.text.gtk_entry ().connect ('activate', self.apply_cb)
 
@@ -182,8 +184,11 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         self.show_all ()
         return
 
-    def destroyed (self, * arg):
-        print "nooo !"
+
+    def update_configuration (self):
+        self.text.save_history ()
+        return
+
         
     def create_root_item (self, data):
         if self.root_item:

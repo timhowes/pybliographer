@@ -380,5 +380,4 @@ class Index (Connector.Publisher):
         for i in range (len (self.fields)):
             config.set_int ('Pybliographic/Columns/%s' % self.fields [i],
                             self.field_width [i])
-
         return
