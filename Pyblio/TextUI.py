@@ -27,7 +27,7 @@ import os, sys, traceback, tempfile, string
 
 from Pyblio import Base, Help, Search, Types, Autoload, Fields
 from Pyblio.Selection import Selection
-from Pyblio.Open import bibopen, bibwrite
+from Pyblio.Open import bibopen, bibwrite, bibnew
 from Pyblio.Style import Utils
 
 # ----- Create elementary Test -----

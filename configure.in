@@ -24,7 +24,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT(pybliographer.py)
 
-AM_INIT_AUTOMAKE(pybliographer, 1.0.0)
+AM_INIT_AUTOMAKE(pybliographer, 1.0.1)
 AM_CONFIG_HEADER(config.h)
 
 AC_PROG_CC
@@ -83,8 +83,11 @@ AC_PROG_YACC
 
 dnl NLS
 ALL_LINGUAS="fr it de hu"
-AM_GNU_GETTEXT
 
+dnl Manually unset LINGUAS so that all the packages get installed
+unset LINGUAS
+
+AM_GNU_GETTEXT
 
 AC_ARG_WITH(recode_prefix,
 [  --with-recode-prefix=dir   Prefix where GNU Recode is installed],,
