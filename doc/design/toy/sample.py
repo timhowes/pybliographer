@@ -12,7 +12,7 @@ m.set ({r: Text ('this is not test')})
 c = db.content ()
 res = c.query ('this')
 
-for r in res.v:
+for r in res.__iter__ ():
     print r
     
 

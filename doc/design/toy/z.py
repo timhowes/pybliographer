@@ -64,10 +64,13 @@ class Role (Persistent, api.Role):
 
     def __init__ (self, db, name, type, parent = None):
         ''' Create a new role and insert it in the DB '''
+        
         self.name = name
         self.type = type
         self.parent = parent
         self.desc = {}
+
+        self.db = db
         
         db.root ['role'] [name] = self
         db.root._p_changed = 1
@@ -75,8 +78,8 @@ class Role (Persistent, api.Role):
 
     def kill (self):
         ''' Kill the role from the DB '''
-        del db.root ['role'] [self.name]
-        db.root._p_changed = 1
+        del self.db.root ['role'] [self.name]
+        self.db.root._p_changed = 1
         return
 
     def get (self):
@@ -185,16 +188,14 @@ class Indexed:
             
 class Text (api.Text):
 
-    def __init__ (self, v):
-        self.v = v
-        return
-
     def words (self):
         return string.split (self.v)
 
-    def __repr__ (self):
-        return 'Text (%s)' % `self.v`
 
+class Name (api.Name):
+
+    def words (self):
+        return string.split (self.v)
     
 
 class Manifestation (Persistent, Indexed, api.Manifestation):

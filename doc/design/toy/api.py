@@ -40,7 +40,9 @@ class Role:
     in a hash table.'''
 
     def __init__ (self, db, name, type, parent = None):
-        pass
+        self.parent = parent
+        self.name = name
+        return
 
     def kill (self):
         ''' Kill the role from the DB '''
@@ -61,27 +63,46 @@ class Role:
         return hash (self.name)
     
     def __repr__ (self):
-        return 'Role (%s)' % `self.name`
+        if self.parent:
+            return 'Role (%s, %s)' % (`self.name`, `self.parent.name`)
+        else:
+            return 'Role (%s)' % `self.name`
+            
     
 
 class Set:
 
-    ''' Set of Manifestations, resulting from a query or from user
-    manipulations'''
+    ''' Set of Manifestations, resulting from a query. Sets are not
+    created directly, they all come from db.content () or subsequent
+    calls to set.query ().'''
 
     def kill (self):
         ''' Kill the set from the DB '''
-        pass
-
-    def __iter__ (self):
         pass
 
     def query (self, word, role = None):
         ''' Return a subset of the current Set, according to the filter. '''
         pass
 
+    def update (self):
+        ''' Request that the content of the Set be updated according
+        to its current query. '''
+        pass
+    
+    def sort (self, order):
+        ''' Define the sort order of the Set '''
+        pass
+    
+    def __iter__ (self):
+        ''' Return an iterator that will loop over the Manifestations
+        available in the Set, in the defined sort order. '''
+        pass
+
 
 class Folder (Set):
+
+    ''' A Folder is a named Set. Users have the ability to modify the
+    content of folders by adding and removing entries. '''
 
     def __init__ (self, db, name, parent = None):
         pass
@@ -96,11 +117,28 @@ class Folder (Set):
 class Text:
 
     def __init__ (self, v):
-        pass
+        self.v = v
+        return
 
     def words (self):
         pass
-    
+
+    def __repr__ (self):
+        return 'Text (%s)' % `self.v`
+
+
+class Name:
+
+    def __init__ (self, v):
+        self.v = v
+        return
+
+    def words (self):
+        pass
+
+    def __repr__ (self):
+        return 'Name (%s)' % `self.v`
+
 class Manifestation:
 
     '''  Holder for bibliographic information '''
