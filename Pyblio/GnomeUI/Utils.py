@@ -19,19 +19,89 @@
 # 
 # $Id$
 
-''' Useful functions for Gnome Interface '''
+''' Utility functions for Gnome Interface management. '''
 
+import os
 
 import gtk
+import gtk.glade
+
 from gnome import ui
 
-from Pyblio import Config
-
-import gettext
-_ = gettext.gettext
+from Pyblio import Config, version
 
 import gconf
 
+
+class Callback:
+
+    ''' This class provides a simple requested that asks the user a
+    queation and waits for an answer. '''
+    
+    def __init__ (self, question, parent = None):
+
+        self.dialog = \
+                    gtk.MessageDialog (parent,
+                                       gtk.DIALOG_MODAL |
+                                       gtk.DIALOG_DESTROY_WITH_PARENT,
+                                       gtk.MESSAGE_QUESTION,
+                                       gtk.BUTTONS_YES_NO,
+                                       question)
+        return
+
+    def answer (self):
+        res = self.dialog.run () == gtk.RESPONSE_YES
+        self.dialog.destroy ()
+        return res
+
+
+class GladeWindow:
+
+    ''' A Helper class that builds a graphical interface provided by a
+    Glade XML file. This class binds the methods with
+    signal_autoconnect, and imports wigets whose name starts with _w_
+    as instance attributes. Therefore, after init, the instance can refer to:
+
+        self._w_main
+
+    if the glade file defined a _w_main widget.
+
+    This class must be derived and the following class variables must
+    be given some sensible value:
+
+        glade_file  : name of the glade file (with no directory info)
+        root_widget : name of the root widget
+
+    '''
+
+
+    # This is a class variable that contains the file name to load for
+    # each instance of a subclass.
+    
+    glade_file  = None
+    root_widget = None
+
+    def __init__ (self, parent = None):
+        
+        gp = os.path.join (version.prefix, 'glade',
+                           self.glade_file)
+        
+        self.xml = gtk.glade.XML (gp)
+        self.xml.signal_autoconnect (self)
+
+        for w in self.xml.get_widget_prefix ('_w_'):
+            setattr (self, w.name, w)
+
+        # Set the parent window. The root widget is not necessarily
+        # exported as an instance attribute.
+        
+        if parent:
+            w = self.xml.get_widget (self.root_widget)
+            w.set_transient_for (parent)
+            
+        return
+
+    
 config = gconf.client_get_default ()
 
 cursor = {
@@ -79,83 +149,6 @@ def popup_add (menu, item, action = None, argument = None):
     return tmp
 
 
-class TmpGnomeDialog (ui.Dialog):
-
-    def __init__ (self, title='', b1=None, b2=None, b3=None, b4=None,
-                  b5=None, b6=None, b7=None, b8=None, b9=None, b10=None):
-
-        self._o = Dialog ()._o
-        
-        self.set_title (title)
-        self.vbox.set_spacing (5)
-        self.vbox.set_border_width (5)
-
-        self.connect ('delete_event', self._delete)
-        
-        self._b = []
-        self._close = 1
-        self._hides = 0
-        
-        self.append_buttons (b1,b2,b3,b4,b5,b6,b7,b8,b9,b10)
-        return
-
-    def _delete (self, * arg):
-        self.close ()
-        return 1
-
-    def _clicked (self, * arg):
-        if self._close: self.close ()
-        return
-    
-    def set_parent(self, parent):
-        self.set_transient_for (parent)
-        return
-        
-    def button_connect(self, button, callback):
-        b = self._b [button]
-        b.connect ('clicked', callback)
-        return
-        
-    def set_default(self, button):
-        return
-
-    def set_sensitive(self, button, setting):
-        self._b [button].set_sensitive (setting)
-        return
-    
-    def close (self):
-        if self._hides:
-            self.hide ()
-        else:
-            self.destroy ()
-        return
-
-    def close_hides (self, just_hide):
-        self._hides = just_hide
-        return
-    
-    def set_close (self, click_closes):
-        self._close = click_closes
-        return
-
-    def editable_enters (self, editable):
-        return
-
-    def append_buttons (self, b1=None, b2=None, b3=None, b4=None, b5=None,
-                        b6=None, b7=None, b8=None, b9=None, b10=None):
-        buttons = filter(lambda x: x, (b1,b2,b3,b4,b5,b6,b7,b8,b9,b10))
-        for b in buttons:
-            self.append_button (b)
-        return
-    
-    def append_button (self, name):
-        button = GnomeStockButton (name)
-        button.connect_after ('clicked', self._clicked)
-        
-        self._b.append (button)
-        self.action_area.pack_start (button)
-        return
-
 
 def error_dialog (title, err, parent = None):
     dialog = GnomeDialog (title, STOCK_BUTTON_CLOSE)
@@ -191,22 +184,6 @@ def init_colors (colormap):
     return
 
 
-class Callback:
-    def __init__ (self, question, parent = None):
-
-        self.dialog = \
-                    gtk.MessageDialog (parent,
-                                       gtk.DIALOG_MODAL |
-                                       gtk.DIALOG_DESTROY_WITH_PARENT,
-                                       gtk.MESSAGE_QUESTION,
-                                       gtk.BUTTONS_YES_NO,
-                                       question)
-        return
-
-    def answer (self):
-        res = self.dialog.run () == gtk.RESPONSE_YES
-        self.dialog.destroy ()
-        return res
 
 
 

@@ -839,10 +839,8 @@ class Document (Connector.Publisher):
 
     
     def sort_entries (self, * arg):
-        if self.sort_dg is None:
-            self.sort_dg = SortDialog (self.selection.sort, self.w)
-            self.sort_dg.Subscribe ('sort-data', self.sort_view)
-        self.sort_dg.show ()
+        sort_dg = SortDialog (self.selection.sort, self.w)
+        sort_dg.Subscribe ('sort-data', self.sort_view)
         return
 
 

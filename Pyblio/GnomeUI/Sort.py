@@ -21,13 +21,12 @@
 
 ''' This module implements a Dialog to define Sort criterions '''
 
-from gtk import *
-from gnome.ui import *
+import os, string
 
-import gettext, string
-_ = gettext.gettext
+import gtk
+from gnome import ui
 
-from Pyblio import Connector, Sort, Config
+from Pyblio import Connector, Sort, Config, version
 from Pyblio.GnomeUI import Utils
 
 import cPickle
@@ -36,33 +35,23 @@ pickle = cPickle
 del cPickle
 
 
-class SortDialog (Connector.Publisher):
+class SortDialog (Connector.Publisher, Utils.GladeWindow):
+
+    glade_file  = 'sort.glade'
+    root_widget = '_w_sort'
     
     def __init__ (self, current_sort, parent = None):
 
+        Utils.GladeWindow.__init__ (self, parent)
+
+        self._w_sort.show ()
+
+        # Gather the current sort info
         if current_sort:
             current_sort = current_sort.fields
         else:
             current_sort = []
-        
-        self.window = GnomeDialog (_("Select sort criterions"),
-                                   STOCK_BUTTON_OK,
-                                   STOCK_BUTTON_CANCEL)
-        
-        if parent: self.window.set_parent (parent)
 
-        self.window.button_connect (0, self.apply)
-        self.window.set_close (1)
-        self.window.close_hides (1)
-        self.window.set_policy (TRUE, TRUE, FALSE)
-        
-        self.list = GtkCList (2, (_("Sort direction"),_("Sort criterions")))
-        self.list.column_titles_passive ()
-        self.list.set_column_justification (0, JUSTIFY_CENTER)
-        self.list.set_reorderable (1)
-        self.list.set_selection_mode (SELECTION_BROWSE)
-        self.list.connect ('select_row', self.select_row)
-        
         # fill in the lists
         criterions = [
             [ 0, Sort.TypeSort () ],
@@ -83,36 +72,6 @@ class SortDialog (Connector.Publisher):
 
         self.set_criterions (criterions)
         self.reorder_items ()
-        
-        scroll = GtkScrolledWindow ()
-        scroll.set_policy (POLICY_NEVER, POLICY_AUTOMATIC)
-        scroll.add (self.list)
-        (width, height) = scroll.size_request ()
-        scroll.set_usize (width, height * 4)
-        self.window.vbox.pack_start (scroll)
-
-        # operation buttons
-        box = GtkHButtonBox ()
-        box.set_layout_default (BUTTONBOX_SPREAD)
-        
-        b = GtkButton (_("Reorder"))
-        Utils.set_tip (b, _("Groups the active fields on the top of the list"))
-        b.connect ('clicked', self.reorder_items)
-        box.pack_start (b)
-
-        b = GtkButton (_("Unselect all"))
-        Utils.set_tip (b, _("Removes all the sort criterions"))
-        b.connect ('clicked', self.unselect_items)
-        box.pack_start (b)
-
-        b = GtkButton (_("Set as default"))
-        Utils.set_tip (b, _("Use this sort criterion as the default"
-                            " for new files"))
-        b.connect ('clicked', self.set_as_default)
-        box.pack_start (b)
-
-        self.window.vbox.pack_start (box, FALSE, FALSE)
-        self.window.show_all ()
         return
 
 
@@ -131,6 +90,8 @@ class SortDialog (Connector.Publisher):
     
 
     def get_criterions (self):
+        return []
+    
         criterions = []
         for i in range (0, self.list.rows):
             data = self.list.get_row_data (i)
@@ -140,6 +101,9 @@ class SortDialog (Connector.Publisher):
         return criterions
 
     def set_criterions (self, criterions):
+
+        return
+    
         self.list.freeze ()
         self.list.clear ()
         i = 0
@@ -180,7 +144,6 @@ class SortDialog (Connector.Publisher):
 
     def show (self):
         self.reorder_items ()
-        self.window.show ()
         return
 
 

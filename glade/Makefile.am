@@ -1,3 +1,4 @@
 gladedir = $(datadir)/$(PACKAGE)/glade
 
-glade_DATA = pyblio.glade search.glade
+glade_DATA = pyblio.glade search.glade sort.glade
+

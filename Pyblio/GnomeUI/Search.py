@@ -183,26 +183,17 @@ class SearchTree (gtk.GenericTreeModel):
         return node.parent
 
     
-class SearchDialog (Connector.Publisher):
+class SearchDialog (Connector.Publisher, Utils.GladeWindow):
     ''' Search Dialog '''
 
     cfg = '/apps/pybliographic/search/'
 
+    glade_file  = 'search.glade'
+    root_widget = '_w_search'
     
     def __init__ (self, parent = None):
 
-        gp = os.path.join (version.prefix, 'glade', 'search.glade')
-        
-        self.xml = gtk.glade.XML (gp)
-        self.xml.signal_autoconnect (self)
-
-        for k in ('search', 'notebook', 'tree',
-                  'field', 'field_text', 'pattern_text',
-                  'expert_text'):
-            w = self.xml.get_widget (k)
-            assert (w is not None)
-            
-            setattr (self, '_w_' + k, w)
+        Utils.GladeWindow.__init__ (self, parent)
 
         w = Utils.config.get_int (self.cfg + 'width')  or -1
         h = Utils.config.get_int (self.cfg + 'height') or -1
