@@ -16,6 +16,9 @@ dnl -*- html -*-
 <br> html_item_summary(mailing, 
 	<a href="mailing.html">Mailing List</a>,
 	 - Mailing List)
+<br> html_item_summary(devel, 
+	<a href="development.html">Development</a>,
+	 - Development)
 <br> html_item_summary(history, 
 	<a href="history.html">History</a>,
 	 - History)

@@ -1,7 +1,14 @@
 M4   = template.m4 defines.m4 news.m4 
 WEB  = /usr/local/www/www.gnome.org/pybliographer
 
-HTML  = index.html download.html screenshots.html documentation.html history.html mailing.html
+HTML =	index.html 		\
+	download.html 		\
+	screenshots.html 	\
+	documentation.html 	\
+	history.html 		\
+	mailing.html 		\
+	development.html
+
 EXTRA = pyblio.png
 
 
