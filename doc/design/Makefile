@@ -27,4 +27,4 @@ todo.pdf: $(TEX)
 	cp $(MAIN).pdf todo.pdf
 
 remote: all
-	rsync *.txt *.pdf $(REMOTE)/design
+	rsync *.txt *.pdf *.py $(REMOTE)/design
