@@ -92,6 +92,9 @@ class Set:
     def sort (self, order):
         ''' Define the sort order of the Set '''
         pass
+
+    def __len__ (self):
+        pass
     
     def __iter__ (self):
         ''' Return an iterator that will loop over the Manifestations

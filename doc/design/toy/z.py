@@ -41,9 +41,7 @@ class Database (api.Database):
 
     def content (self):
         ''' Return the Set containing all the manifestations. '''
-        s = Set (self)
-        s.value = self.root ['manif']
-        return s
+        return Set (self, value = self.root ['manif'])
     
     def index (self, role):
         ''' Return an Index to browse a given role. '''
@@ -117,10 +115,14 @@ class Set (Persistent, api.Set):
     def __iter__ (self):
         return iter (self.v)
 
+    def __len__ (self):
+        return len (self.v)
 
     def query (self, word, role = None):
         ''' Return a subset of the current Set, according to the filter. '''
 
+        word = word.lower ()
+        
         idx = self.db.root ['index']
         try:
             w = idx [word]
@@ -160,6 +162,7 @@ class Indexed:
 
         for txt in txts:
             for w in txt.words ():
+                w = w.lower ()
                 try:
                     idx [w] [role].remove (self)
                 except KeyError, ValueError:
@@ -173,6 +176,8 @@ class Indexed:
 
         for txt in txts:
             for w in txt.words ():
+                w = w.lower ()
+                
                 if not idx.has_key (w):
                     idx [w] = {}
                 if not idx [w].has_key (role):
@@ -215,8 +220,8 @@ class Manifestation (Persistent, Indexed, api.Manifestation):
 
     def kill (self):
         ''' Kill the manif from the database '''
-        db.root ['manif'].remove (self)
-        db.root._p_changed = 1
+        self.db.root ['manif'].remove (self)
+        self.db.root._p_changed = 1
         return
 
 

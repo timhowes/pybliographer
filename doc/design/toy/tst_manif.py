@@ -6,15 +6,35 @@ r = db.roles ()
 
 m = Manifestation (db)
 
-m.set ({r ['titre']: Text ('Aldebaran - La catastrophe'),
+m.set ({r ['titre']: Text (u'Aldebaran - La catastrophe'),
         r ['scenariste']: Name ('Leo')})
-
-print m.get ()
 
 m = Manifestation (db)
 
-m.set ({r ['titre']: Text ('La Source et la Sonde'),
-        r ['scenariste']: [Name ('<sn>Bourgeon</sn>'), Name ('Lacroix')]})
+m.set ({r ['titre']: Text (u'La Source et la Sonde'),
+        r ['scenariste']: [Name (u'<sn>Bourgeon</sn>'),
+                           Name (u'Lacroix')]})
 
-print m.get ()
+m = Manifestation (db)
 
+m.set ({r ['titre']: Text (u'Six Saisons sur Ilo'),
+        r ['scenariste']: [Name (u'<sn>Bourgeon</sn>'),
+                           Name (u'Lacroix')]})
+
+m = Manifestation (db)
+
+m.set ({r ['titre']: Text (u'Dummy')})
+
+print ">> before <<"
+
+for m in db.content ().__iter__ ():
+    print m.get ()
+
+m.kill ()
+
+print ">> after <<"
+
+for m in db.content ().__iter__ ():
+    print m.get ()
+
+db.commit ()
