@@ -1,0 +1,333 @@
+\chapter{Introduction}
+\label{cha:intro}
+
+
+\setcounter{secnumdepth}{3}
+%\cleardoublepage
+
+Pybliographer provides Reference manager services to create, load,
+modify, list, read, transport, and copy descriptions of bibliographic
+resources like books, articles, and electronic documents, including
+derivative and private information.  In addition it helps in accessing
+external databases and document repositories. 
+
+Today, scholars and writers need efficient, consistent, and less
+complex ways to work with bibliographic resources and to maintain
+their existing inventory of references.  The trend in bibliography is
+to integrate and share data, and to develop applications that
+transcend traditional boundaries.
+
+In the past, reference managers had only limited ability to adapt to
+the plenitude of working environments and to interact with other
+applications.  This has often constrained those with special needs to
+work with inadequate programs, and burdened them with work-arounds and
+makeshift arrangements. Bibliographic software has on the whole tended
+to be idiosyncratic and limited in its outlook, or to be expensive,
+complicated and nevertheless constrained to a small subset of the
+requirements, as it is, e.g., the case with \textsf{MARC}-based
+library software (from the point of an individual writer\slash
+scholar, at least).
+
+\Pyb\ establishes a common base for many tasks. It combines essential
+services, such as database access, formatting and searching records,
+with a common vocabulary and structure.  In making use of 
+established practice and standards it avoids many of the problems that
+other programs have when it comes to extending and inter-operating.
+All of these services are available through a set of interfaces that
+are easy to adapt and a fertile foundation for extensions.
+
+
+Many restrictions inherent in the BibTeX database format used by
+earlier versions of this program (and many competing programs) are
+removed or relaxed in this version. 
+
+This version continues to support \BibTeX\ databases to assist you in
+converting to the new database structure. Subsequent releases,
+however, might not support these features, so we strongly recommend
+conversion to the exclusive use of the new database structure.
+
+Support for using \BibTeX\ as an import and export format, however, is
+planned for the foreseeable future.
+
+
+\section{The Evolution of Bibliographical Software}
+\label{sec:introevo}
+
+
+
+
+As a bibliographic database manager, \textit{Pybliographer} places
+itself at the intersection of various expectations, traditions, and
+requirements, each of which developed originally independent, and
+often in ignorance of the other, and which are still shaping the field
+according to their own peculiarities, although they are getting into
+closer contact recently. For orientation, it may be useful to give a
+short view of some of these ancestral developments. They embody still
+important principles, and may serve as benchmarks for our endeavour.
+ 
+
+\subsection{Reference Managers}
+\label{sec:introdocrm}
+
+Very early the scholarly (and technical) document preparation has been
+supported with programs to augment document sources with correctly
+formatted references, of which \textit{BibTeX} may be regarded as
+prime example.  Those early applications are slanted towards the
+production of reference lists, almost at the exclusion of other uses:
+their storage formats are implicitly defined and easy to extend, and
+the building and maintaining of its data base is left to other means.
+
+In spite of (or perhaps because of) these deficiencies these have been
+very successful programs. Their restrictions, that follow a well
+proved tradition after all, were intended and adequate at the time of
+their creation. They have been addressed by the next class of
+applications which developed, characteristically, in the highly
+competitive marketplace of the \textit{personal computer}.
+
+With the advent of the Personal Computer a new class of users came to
+the fore. While the majority of the scientific\slash technical writers
+(who have little choice, anyway) stayed with their \TeX\ applications,
+the new users were mostly attracted to the perceived simplicity of the
+word processors, and eschewed the command line and simple editors of
+Unix.  Almost by necessity, the new applications stressed those
+aspects of the job, that the older tradition neglected; word processor
+users didn't care for the typographical refinements of \TeX, nor the
+frugality and intellectual self restriction of the command line.  They
+wanted simplicity and ease of use, \dots\ and over the time, they
+succeeded.  The graphical user interface comes no longer as an
+afterthought, it is at the centre of the development effort (often to
+the detriment of the application proper).
+
+The features of \textit{Biblioscape}, a commercial product are given
+in appendix \ref{sec:commfeat}.
+For us it is important to pay attention to the \textit{organising} of
+the references, by providing suitable instruments, e.g., the
+\textit{virtual folders} of Biblioscape.
+
+
+\subsection{Library Catalogues}
+\label{sec:introlibs}
+
+
+It comes to no surprise that in the beginning library catalogues were
+nothing but simple \textit{inventories}, and that they and their
+counterparts in archives, serve this purpose to this day.  After they
+became accessible to the public, though, and now it is getting
+interesting, a number of problems arose, that are still important, as
+are some of the solutions, too.  At about the same time, required by
+the inter-library loan services, among others, rules for the
+bibliographical description were developed, culminating in the ISBD,
+which set a widely accepted standard.  Both developments never ceased
+to influence each other.
+
+
+
+
+
+% {The legacy of the card catalogue --
+%   \textsf{MARC}\protect\footnote{Although \textsf{MARC} stands for Machine
+%   Readable Cataloguing, it is used here loosely but legitimately and
+%   stands for the whole of classical librarian's cataloguing, of which
+%   the actual MARC standard has been, in a way the epitome and
+%   culmination of centuries of work. Of course, it has begun to change \dots }}
+% \label{sec:the-legacy-card}
+
+% Originally inventories for the use of the librarians only, since about
+% one century, the library catalogues have become accessible to the
+% public and henceforth set the standard of bibliographical description.
+
+% At about the same time began the development of rules for the
+% bibliographical description,\footnote{The \textit{Preuﬂische
+%     Instruktionen} and the \textit{ALA Rules} were among the first.
+%   Their successors are the \textit{RAK} and the AACR2, both are in
+%   turn influenced (the RAK more so) by the international
+%   standardisation efforts of the \textit{ISBD}.} to enable the sharing
+% of catalogue entries between libraries\footnote{Either by one library
+%   providing the catalogue cards f or the majority of the libraries (in
+%   the US), or by building union catalogues for the purpose of sharing
+%   the holdings, too (the inter-library lending service in Germany).}
+% and to enable a catalogue to be build and used \textit{compatibly}
+% without annoyance by many people (which is a form of sharing, too).
+
+The actual rules used have always been a compromise between precision
+and cost. % oscillating between the ideal of capturing the whole title
+% page (of course, only the title page\footnote{see Robert Musil's
+%   \textit{Mann ohne Eigenschaften} and the talk between General Stumm
+%   von Borgwehr and the director of the Royal Library \dots}) and the
+% need of coping (manually) with all this. 
+Over time, the descriptions tended to grow in size. There are several
+reasons for this: (i) the more items exist, the more difficult it is
+to distinguish between them, the more details are thus needed, (ii) if
+one tries to spread the cost over more parties, one has to accept
+information that individually one might not find worthwhile, and
+finally, (iii) the need for better pre-selection entails even more
+information, as, e.g., abstracts, to be given.\footnote {In the
+  classical catalogues one could afford to be concise, as one could
+  always go and fetch the copy for actual inspection.} 
+
+% \begin{enumerate*}
+% \item the more titles exist, the more it becomes difficult to
+%   distinguish between similar ones,
+% \item more information is made centrally available, mostly to share the
+%   cost of providing it. Such was the case in Germany, where subject
+%   headings appeared in the national bibliographical database, thus
+%   moving something which has traditionally been the responsibility of
+%   the individual institution onwards to the \textit{Deutsche
+%     Bibliothek}. To do so, additional categories needed to be defined,
+%   rules set up, an authority file maintained, as it was done earlier
+%   for the nucleus of the bibliographical description.
+% \end{enumerate*}
+
+It should be noted, that traditionally only books have been
+catalogued, together with other physical objects, that might land in a
+library (\textsf{MARC} being quite comprehensive in its scope of
+materials allowed). That reflects the point of view of the librarian,
+who is the custodian of these said objects, buys, lends, ranges them.
+The contents are not his business.  In that his view differs from the
+usual patron's view, as exemplified by the Bib\TeX\ and reference
+manager software (see \ref{sec:introdocrm}).  This orientation is
+slowly changing under the influence of Internet resources and
+integration with patron's software (section
+\ref{sec:internet-access}).\footnote{\textsf{MARC} intended, indeed,
+  to support so called \textit{analytical} cataloguing as well, if
+  only as a secondary task. Even the description of archival resources
+  is not, or so one thought, out of its scope. This reflects the facts
+  that American libraries hold archival collections to a far greater
+  degree than European ones, and that these are far simpler than the
+  classical European archival fonds; but remarkably this proved to be
+  a failure -- a separate standard (EAD) evolved, this time based on
+  XML. Perhaps the reason was the absence of any form of hierarchy in
+  \textsf{MARC} databases.}
+
+Perhaps the most important heritage from this development is the idea
+of \textit{entry points}: try to establish for everything that you
+catalogue well-defined and precise enough attributes and make the
+database search-able for them. 
+
+
+
+For a card catalogue this implies defining not only under which
+\textit{form} an author is filed, but in addition under which author a
+book is filed (if there is a choice).  The first class of
+normalisations is done via \textit{authority files} the importance of
+which, under the conditions of on-line catalogues, has only increased,
+because it is more difficult to find entries which differ slightly
+\cite{Hal98} while the so called question of the main entry has no
+longer the importance it used to have.
+ 
+
+
+\subsection{Records Management}
+\label{sec:intrormapp}
+
+Of course, the management of current administrative records (records
+and document management applications) is out of the scope of
+bibliographical software, mostly.  But to a degree, it would be
+beneficial to be able to handle one's own documents with more ease and
+consistency by adding a records management feature to the reference
+manager.
+ 
+If, as it is the case in particular in the United States, archival
+resources are integrated into library systems, the idea is not far to
+use the same software and the same set of rules for both kinds of
+material.  The use of \textsf{MARC} for archival resources failed,
+however, not because of any impossibility, but because of the cultural
+inability of using the in this case inevitable multi-level description
+technique.  In Germany, archivists use database systems for data
+entry, in America, word processors -- neither choice is fully
+adequate.
+
+Extending the database schema to enable the description of
+\textit{administrative records, personal papers,} and
+\textit{manuscripts}, and collections thereof, should be taken into
+consideration. 
+
+
+\subsection{The spell of the Internet -- Database \& Document Access}
+\label{sec:internet-access}
+
+Although the Internet precedes the personal computer by some
+years,\footnote{Of course, it all depends.  Arguably the first
+  personal computer was the \textsf{Alto} at \textit{Xerox Parc} from
+  the early 1970, while the switch to the \textit{IP/TCP} protocol
+  family did not occur but a couple of years later.}  the impact of
+the Internet was but slowly felt. We can at this time distinguish the
+following issues:
+\begin{description*}
+\item[Database access] in particular with the intent of adding the
+  results at least partially to one's database.
+\item[Document access] in particular where the document's \textsf{URL}
+  forms part of the bibliographical description.
+\item[Electronic documents] continue to challenge the librarian's
+  profession. Ephemeral, they were often felt not to warrant the
+  expense of traditional cataloguing (out of which considerations the
+  \textit{Dublin Core} standard evolved), hierarchical, they stretched
+  the card-bound structure of \textsf{MARC} to the limits, ever
+  changing, they challenged the concepts of bibliographical unit, of
+  work, and edition (see chapter \ref{cha:bibdata}).
+\end{description*}
+
+
+
+\section{Reference Documents}
+\label{sec:introrefdoc}
+
+The following gives a list of articles and other reference sources
+that are helpful in understanding the issues.
+
+
+\subsection{General}
+\label{sec:introrefgen}
+\begin{description}
+\item [Research] Dagmar Knorr examines in her thesis \citep{knorr98}
+  practical processes of academic writing with a particular regard
+  towards the use of bibliographical information and reference manager
+  tools.  While she finds a very inhomogeneous landscape, she is
+  correct in my view, in stressing the importance of adequate tools,
+  and of activities antecedent to and supportive of actual writing,
+  such as note taking, including task related notes, and tracing,
+  e.g., of quoted literature. She documents an earlier period (early
+  1990s) where often very basic Bib\TeX\ features were not available,
+  so this would be even relatively more important today.
+  
+\item [Reviews] Of the many overviews of existing reference manager
+  systems, the following have been particular helpful: \dots
+\end{description}
+
+
+\subsection{Cataloguing Rules and Library Applications}
+\label{sec:introrefrule}
+
+\begin{description}
+\item[ISBD] The influential international standards, available (mostly) at
+  \url {www.ifla.org}
+\item[FRBR] An important report at \url{}, for discussion papers see \dots
+\item[AACR2R] The Anglo-American rules are explained in Maxwell's
+  Handbook \cite{MM97}. See also the \dots web site and the following:
+\item[MARC] Good official site is \url{www.loc.gov/...} including a lot
+  of discussion papers; very good material also at the \textsf{OCLC}
+  site, in particular \dots
+\item[RAK] The German rules are explained at \dots
+\item[Allegro] is a small library system developed at the Technische
+  Universit‰t in Braunschweig by Eversberg, its documentation \url{}
+  comprises an outstanding comparison and discussion of library
+  formats.
+\end{description}
+
+
+\subsection{Records Management and Archives}
+\label{sec:introrefrecords}
+\begin{description}
+\item Management of living (current) administrative records has
+  evolved, of course, independent of bibliographic considerations. For
+  a recent standard see \cite{DOD:5015.2std}.
+\item 
+\end{description}
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "DG"
+%%% End: 
