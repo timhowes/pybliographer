@@ -23,9 +23,106 @@ from gtk import *
 import string
 
 from Pyblio.GnomeUI import Utils
-from Pyblio import Config
+from Pyblio import Config, recode, Fields
 
-class Entry:
+from gnome import url
+
+has_gtkhtml = 1
+
+try:    from gtkhtml import *
+except: has_gtkhtml = 0
+
+
+# This is the new HTML-based entry
+
+class HTMLEntry:
+    ''' Displays a bibliographic entry as simple text '''
+
+    header = '<html><body bgcolor="#ffffff">'
+    
+    def __init__ (self):
+        ''' Create the graphical widget '''
+        
+        self.text = GtkHTML ()
+        self.text.load_empty ()
+        self.text.connect('link_clicked', self.link_clicked)
+        
+        self.w = GtkScrolledWindow ()
+        
+        self.w.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
+        self.w.add (self.text)
+
+        self.text.show ()
+        
+        # currently, nothing to display
+        self.entry = None
+        return
+
+    def link_clicked (self, html, link):
+        url.show (link)
+        return
+
+    
+    def display (self, entry):
+        self.entry = entry
+
+        # Display this entry
+        content = self.text.begin ()
+
+        self.text.write (content, self.header)
+        
+        self.text.write (content, '<font color="#0000ff"><h1> [' +
+                         html (str (entry.key.key)) + '] </h1></font>')
+        
+        dico = entry.keys ()
+
+        self.text.write (content, '<table>')
+        
+        for f in entry.type.fields:
+            
+            field = string.lower (f.name)
+            
+            if entry.has_key (field):
+                self.text.write (content, '<tr><td><font color="#ff0000">' +
+                                 html (f.name) + '</font>&nbsp;</td>')
+
+                data = entry [field]
+                if isinstance (data, Fields.URL):
+                    print "url: %s" % str (data)
+                    data = '<a href="%s">%s</a>' % (str (data), html (str (data)))
+                else:
+                    data = html (str (data))
+                    
+                self.text.write (content, '<td>' + data + '</td></tr>')
+                dico.remove (field)
+
+        self.text.write (content, '</table><hr><table>')
+
+        for f in dico:
+            self.text.write (content, '<tr><td><font color="#ff0000">' +
+                             html (f) + '</font>&nbsp;</td>')
+
+            data = entry [f]
+            if isinstance (data, Fields.URL):
+                data = '<a href="%s">%s</a>' % (str (data), html (str (data)))
+            else:
+                data = html (str (data))
+                
+            self.text.write (content, '<td>' + data + '</td></tr>')
+
+        self.text.write (content, '</table>')
+        
+        self.text.end (content, HTML_STREAM_OK)
+        return
+
+    def clear (self):
+        self.text.load_from_string (self.header)
+        return
+
+
+# This is the old GtkText-based entry
+
+class ClassicEntry:
     ''' Displays a bibliographic entry as simple text '''
 
     def __init__ (self):
@@ -95,5 +192,13 @@ class Entry:
     def clear (self):
         self.text.delete_text (0, -1)
         return
-    
+
+
+if has_gtkhtml:
+    html = recode.recode ("latin1..html")
+    Entry = HTMLEntry
+else:
+    Entry = ClassicEntry
+
+
         

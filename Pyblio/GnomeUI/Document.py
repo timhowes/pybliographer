@@ -108,7 +108,7 @@ class Document (Connector.Publisher):
             UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,    STOCK_PIXMAP_SAVE),
             UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,     STOCK_PIXMAP_SEARCH),
-            UIINFO_ITEM_STOCK(_("Cite"), None, self.lyx_cite,          STOCK_MENU_CONVERT),
+            UIINFO_ITEM_STOCK(_("Cite"),  None, self.lyx_cite,          STOCK_MENU_CONVERT),
             UIINFO_SEPARATOR,
             UIINFO_ITEM_STOCK(_("Close"), None, self.close_document,   STOCK_PIXMAP_CLOSE),
             ]
@@ -465,22 +465,20 @@ class Document (Connector.Publisher):
                        out = file, how = how)
         file.close ()
         
-        if self.data.key is None:
-            # we wrote an anonymous database. Lets reopen it !
-            try:
-                self.data = Open.bibopen (url, how = how)
+        try:
+            self.data = Open.bibopen (url, how = how)
                 
-            except (Exceptions.ParserError,
-                    Exceptions.FormatError,
-                    Exceptions.FileError), error:
+        except (Exceptions.ParserError,
+                Exceptions.FormatError,
+                Exceptions.FileError), error:
                     
-                Utils.set_cursor (self.w, 'normal')
-                Utils.error_dialog (_("Reopen error"), error,
-                                    parent = self.w)
-                return
+            Utils.set_cursor (self.w, 'normal')
+            Utils.error_dialog (_("Reopen error"), error,
+                                parent = self.w)
+            return
             
-            self.redisplay_index ()
-            self.issue ('open-document', self)
+        self.redisplay_index ()
+        self.issue ('open-document', self)
             
         Utils.set_cursor (self.w, 'normal')
 
