@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer 1.0.8\n"
-"POT-Creation-Date: 2001-01-18 08:26+0100\n"
+"POT-Creation-Date: 2001-05-22 16:36+0200\n"
 "PO-Revision-Date: 2001-01-18 08:43+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -319,7 +319,9 @@ msgstr "Fjerner alle sÅ¯kekriterier"
 msgid ""
 "The following errors occured:\n"
 "\n"
-msgstr "F¯lgende feil oppsto:\n\n"
+msgstr ""
+"F¯lgende feil oppsto:\n"
+"\n"
 
 #: Pyblio/GnomeUI/Document.py:52
 msgid "_New"
@@ -360,7 +362,7 @@ msgstr "S_orter..."
 # .././Pyblio/GnomeUI/Document.py:87 :101
 #: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
 msgid "_Cite"
-msgstr "_SitÈr"
+msgstr "_Siter"
 
 #: Pyblio/GnomeUI/Document.py:88
 msgid "_Format..."
@@ -404,7 +406,7 @@ msgstr "Finn"
 
 #: Pyblio/GnomeUI/Document.py:111
 msgid "Cite"
-msgstr "SitÈr"
+msgstr "Siter"
 
 #: Pyblio/GnomeUI/Document.py:113
 msgid "Close"
@@ -537,11 +539,11 @@ msgstr ""
 "Under Âpning:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:478
+#: Pyblio/GnomeUI/Document.py:476
 msgid "Reopen error"
 msgstr "Feil under gjenÂpning"
 
-#: Pyblio/GnomeUI/Document.py:519
+#: Pyblio/GnomeUI/Document.py:517
 #, c-format
 msgid ""
 "An entry called `%s' already exists.\n"
@@ -550,31 +552,31 @@ msgstr ""
 "En oppf¯ring kalt `%s' eksisterer allerede.\n"
 "Endre navn og legg den til uansett?"
 
-#: Pyblio/GnomeUI/Document.py:556
+#: Pyblio/GnomeUI/Document.py:554
 msgid "Really remove all the entries ?"
 msgstr "Vil du virkelig fjerne alle oppf¯ringer?"
 
-#: Pyblio/GnomeUI/Document.py:576
+#: Pyblio/GnomeUI/Document.py:574
 msgid "Create new entry"
 msgstr "Opprett ny oppf¯ring"
 
-#: Pyblio/GnomeUI/Document.py:590
+#: Pyblio/GnomeUI/Document.py:588
 #, c-format
 msgid "Really edit %d entries ?"
 msgstr "Vil du virkelig redigere %d oppf¯ringer?"
 
-#: Pyblio/GnomeUI/Document.py:628
+#: Pyblio/GnomeUI/Document.py:626
 #, c-format
 msgid "Remove all the %d entries ?"
 msgstr "Fjerne alle %d oppf¯ringene?"
 
-#: Pyblio/GnomeUI/Document.py:630
+#: Pyblio/GnomeUI/Document.py:628
 #, c-format
 msgid "Remove entry `%s' ?"
 msgstr "Fjern oppf¯ring `%s'?"
 
 # .././Pyblio/GnomeUI/Document.py:661 :668
-#: Pyblio/GnomeUI/Document.py:696 Pyblio/GnomeUI/Document.py:703
+#: Pyblio/GnomeUI/Document.py:694 Pyblio/GnomeUI/Document.py:701
 #, c-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -583,23 +585,23 @@ msgstr ""
 "Kan ikke koble til LyX:\n"
 "%s"
 
-#: Pyblio/GnomeUI/Document.py:750
+#: Pyblio/GnomeUI/Document.py:748
 msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
 msgstr ""
-"Venligst installÈr bug-buddy\n"
+"Venligst installer bug-buddy\n"
 "for Â bruke denne funksjonen"
 
-#: Pyblio/GnomeUI/Document.py:761
+#: Pyblio/GnomeUI/Document.py:759
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Dette programmet er utgitt under GNU GPL"
 
-#: Pyblio/GnomeUI/Document.py:763
+#: Pyblio/GnomeUI/Document.py:761
 msgid "Gnome interface to the Pybliographer system."
 msgstr "Gnome grensesnitt til Pybliographer systemet."
 
-#: Pyblio/GnomeUI/Document.py:768
+#: Pyblio/GnomeUI/Document.py:766
 msgid "Pybliographer Home Page"
 msgstr "Pybliographer nettside"
 
@@ -760,64 +762,64 @@ msgstr ""
 "\tthelp  for Â fÂ litt hjelp\n"
 "\tquit   for Â avslutte\n"
 
-#: scripts/pybcompact.py:30
+#: scripts/pybcompact.py:29
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
 msgstr "bruk: pybcompact <latexfil> <bibtexfiler...>"
 
-#: scripts/pybcompact.py:34
+#: scripts/pybcompact.py:33
 #, c-format
 msgid "pybcompact: error: %s\n"
 msgstr "pybcompact: feil: %s\n"
 
-#: scripts/pybcompact.py:97
+#: scripts/pybcompact.py:96
 msgid "no entry"
 msgstr "ingen oppf¯ring"
 
-#: scripts/pybcompact.py:142
+#: scripts/pybcompact.py:141
 #, c-format
 msgid "can't find the following entries: %s"
 msgstr "kan ikke finne f¯lgende oppf¯ringer: %s"
 
-#: scripts/pybconvert.py:29
+#: scripts/pybconvert.py:28
 msgid "usage: pybconvert <source>..<target> <input> [output]"
 msgstr "bruk: pybconvert <kilde>..<mÂl> <inndata> [utdata]"
 
-#: scripts/pybconvert.py:38
+#: scripts/pybconvert.py:37
 msgid "pybconvert: bad conversion format"
 msgstr "pybconvert: ugyldig konverteringsformat"
 
-#: scripts/pybformat.py:34
+#: scripts/pybformat.py:33
 msgid "usage: pybformat [bibtexfiles...]\n"
 msgstr "bruk: pybformat [bibtexfiler...]\n"
 
-#: scripts/pybformat.py:38
+#: scripts/pybformat.py:37
 #, c-format
 msgid "pybformat: error: %s\n"
 msgstr "pybformat: feil: %s\n"
 
-#: scripts/pybformat.py:44
+#: scripts/pybformat.py:43
 #, c-format
 msgid "pybformat: warning: %s\n"
 msgstr "pybformat: advarsel: %s\n"
 
-#: scripts/pybformat.py:141 scripts/pybtex.py:86
+#: scripts/pybformat.py:140 scripts/pybtex.py:85
 #, c-format
 msgid "can't find style `%s'"
 msgstr "kan ikke finne stil `%s'"
 
-#: scripts/pybtex.py:34
+#: scripts/pybtex.py:33
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
 msgstr "bruk: pybtex <latexfil> [bibtexfiler...]"
 
-#: scripts/pybtex.py:38
+#: scripts/pybtex.py:37
 #, c-format
 msgid "pybtex: error: %s\n"
 msgstr "pybtex: feil: %s\n"
 
-#: scripts/pybtex.py:59
+#: scripts/pybtex.py:58
 msgid "pybtex: warning: the following keys were not resolved"
 msgstr "pybtex: advarsel: f¯lgende n¯kler ble ikke funnet"
 
-#: scripts/pybtex.py:64
+#: scripts/pybtex.py:63
 msgid "no style defined"
 msgstr "ingen stil definert"
