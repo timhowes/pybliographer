@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer-0.9.9\n"
-"POT-Creation-Date: 2000-06-13 10:34+ZONE\n"
-"PO-Revision-Date: 2000-05-11 16:18+02:00\n"
+"Project-Id-Version: pybliographer-1.0.3\n"
+"POT-Creation-Date: 2000-06-13 11:10+ZONE\n"
+"PO-Revision-Date: 2000-06-26 15:26+02:00\n"
 "Last-Translator: Zoltán Kóta <kota@szbk.u-szeged.hu>\n"
 "Language-Team: hu <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -299,7 +299,7 @@ msgstr ""
 
 #: .././Pyblio/GnomeUI/Document.py:52
 msgid "_New"
-msgstr "_Új"
+msgstr "Ú_j"
 
 #: .././Pyblio/GnomeUI/Document.py:54
 msgid "_Merge with..."
@@ -307,7 +307,7 @@ msgstr "_Hozzáfûz..."
 
 #: .././Pyblio/GnomeUI/Document.py:58
 msgid "_Previous Documents"
-msgstr "_Elõzõ dokumentumok"
+msgstr "E_lõzõ dokumentumok"
 
 #: .././Pyblio/GnomeUI/Document.py:65
 msgid "About..."
@@ -327,7 +327,7 @@ msgstr "_Szerkeszt..."
 
 #: .././Pyblio/GnomeUI/Document.py:80
 msgid "_Delete"
-msgstr "_Töröl"
+msgstr "Törö_l"
 
 #: .././Pyblio/GnomeUI/Document.py:83
 msgid "S_ort..."
@@ -347,7 +347,7 @@ msgstr "_Mezõk..."
 
 #: .././Pyblio/GnomeUI/Document.py:93
 msgid "_Entries..."
-msgstr "_Bejegyzések..."
+msgstr "Be_jegyzések..."
 
 #: .././Pyblio/GnomeUI/Document.py:99
 msgid "_File"
@@ -363,7 +363,7 @@ msgstr "_Beállítások"
 
 #: .././Pyblio/GnomeUI/Document.py:103
 msgid "_Help"
-msgstr "_Súgó"
+msgstr "Sú_gó"
 
 #: .././Pyblio/GnomeUI/Document.py:107
 msgid "Open"
@@ -402,6 +402,8 @@ msgid ""
 "Error while parsing `%s':\n"
 "%s"
 msgstr ""
+"Hiba `%s' elemzése során:\n"
+"%s"
 
 #: .././Pyblio/GnomeUI/Document.py:262
 msgid "New database"
@@ -469,7 +471,7 @@ msgid ""
 "Try to Save As..."
 msgstr ""
 "Belsõ hiba történt a mentés során\n"
-"Próbálja másként: Mentés másként..."
+"Próbálja más néven: Mentés másként..."
 
 #: .././Pyblio/GnomeUI/Document.py:422
 msgid "Save As..."
