@@ -11,6 +11,22 @@ html_summary(faq, summary.m4, [[
 
 <ul> 
 
+faq_item([[When adding a new entry, pybliographic outputs a lot of
+messages ending with something like:
+<br>
+IOError: can't parse entry `@preamble{{']], [[You probably have a
+broken version of GNU recode. Please check the <a
+href="download.html#requirements">requirements</a> section, which
+hopefully contains information for your linux distribution.]])
+
+faq_item([[Pybliographic shows some text in lower case whereas it is
+in upper case in the bibtex file.]], [[This is not a bug, it's a
+feature&nbsp;! ;-) Pybliographer tries to mimic bibtex's behavior,
+which recapitalizes some fields (like the title), so that you see what
+you would get. You can configure which fields are subject to this
+recapitalization in the Preference menu.]])
+
+
 faq_item([[I don't see the new display system which allows clicking on
 URLs...]], [[Your version of gnome-python is not compiled with support
 for GtkHTML. You may need to compile it from the sources.]])
@@ -43,13 +59,6 @@ faq_item([[The Close button of the search menu behaves as the Search
 button]],[[Check that you have installed gnome-python 1.0.53 at least,
 and that the <b>installation prefix</b> is the same as the one used
 for python (usually /usr on Linux systems).]])
-
-faq_item([[Pybliographic shows some text in lower case whereas it is
-in upper case in the bibtex file.]], [[This is not a bug, it's a
-feature&nbsp;! ;-) Pybliographer tries to mimic bibtex's behavior,
-which recapitalizes some fields (like the title), so that you see what
-you would get. You can configure which fields are subject to this
-recapitalization in the Preference menu.]])
 
 faq_item([[I cannot cite an entry in LyX, whereas all the paths are
 correctly specified.]], [[On some systems, it is not possible to

@@ -17,11 +17,20 @@ Please, check that your system meets the following requirements.
 <li><b><a href="http://www.python.org">python</a></b> version <b>1.5.2</b>.
 <li><b><a href="http://www.gtk.org">Glib</a></b> version <b>1.2.x</b>
 <li><b><a href="http://www.iro.umontreal.ca/contrib/recode">GNU
-Recode</a></b> version <b>3.5 exactly</b> (not 3.6, not any of the
-development versions called 3.5d,...) For your convenience, an
-untested RPM version is available <a href="recode-3.5-1.i386.rpm">here</a>, thanks to The
+Recode</a></b>.
+
+<p><b>IMPORTANT NOTE</b>: There have been many problems related to a
+bug in GNU recode version 3.6. Some Linux vendors are distributing
+patched versions. For the ones not listed below, please use version
+<b>3.5 exactly</b> (not 3.6, not any of the development versions
+called 3.5d,...) For your convenience, an untested RPM version is
+available <a href="recode-3.5-1.i386.rpm">here</a>, thanks to The
 Matt.
 
+<p>Vendors known to provide a working GNU Recode version 3.6:
+<ul>
+<li> Debian (Woody, Sarge)
+</ul>
 </ul>
 
 <p>For the Gnome interface, you will have to add:
