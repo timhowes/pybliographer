@@ -15,6 +15,11 @@
 	when the user clicked on search (and didn't use Enter to validate
 	its choice).
 	
+2000-09-20  Fred  <fred@lithpc10.epfl.ch>
+
+	* Pyblio/GnomeUI/DOcument.py, Pyblio/Style/Generic.py: fixed
+	numeric key and format entries in the same order as they are displayed.
+
 2000-08-28  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.in: Added no to ALL_LINGUAS.
