@@ -1,10 +1,4 @@
-import string
-from Pyblio import Config, Fields
-
-def _get_text_ent ():
-    return map (lambda x: string.lower (x.name),
-                filter (lambda x: x.type is Fields.Text,
-                        Config.get ('base/fields').data.values ()))
+from Pyblio import Config
 
 # ==================================================
 
@@ -12,26 +6,12 @@ Config.define ('bibtex/strict',
                """ A boolean indicating the strictness of the parsing """,
                Config.Boolean ())
 
-Config.define ('bibtex/braces',
-               """ A boolean specifying if pybliographic should use
-               braces (instead of quotes) to limit entries """,
-               Config.Boolean ())
-
-Config.define ('bibtex/capitalize', """ A flag indicating if
-pybliographer should handle automatic capitalization in the bibtex
-output """, vtype = Config.Dict (Config.Element (_get_text_ent),
-                                 Config.Boolean ()))
-
 Config.define ('bibtex/macros', """ A dictionnary defining the BibTeX
 macros (@String{} macros). Each entry of the dictionnary is a 2-uple :
 the first field is the expansion of the macro, the second is a boolean
 indicating if this macro definition has to be saved in the .bib files """,
                Config.Dict (Config.String (),
                             Config.Tuple ((Config.String (), Config.Boolean ()))))
-
-Config.define ('bibtex/override', """ A boolean indicating if the
-macro definitions provided here should override the ones given in a
-file """, Config.Boolean ())
 
 Config.define ('bibtex/datefield', """ A hash table linking a `real'
 date field to the two bibtex fields that compose it """)
@@ -43,13 +23,6 @@ values """)
 
 Config.set ('bibtex/strict', 0)
 
-Config.set ('bibtex/braces', 1)
-
-Config.set ('bibtex/capitalize', {
-    'title'     : 1,
-    'booktitle' : 1,
-    })
-               
 
 Config.set ('bibtex/macros',
             {'jan' : ("January", 0),
@@ -65,9 +38,6 @@ Config.set ('bibtex/macros',
              'nov' : ("November", 0),
              'dec' : ("December", 0),
              })
-
-
-Config.set ('bibtex/override', 0)
 
 
 Config.set ('bibtex/datefield', {

@@ -76,7 +76,7 @@ class ConfigDialog:
                 desc  = string.translate (desc, _map)
                 desc  = string.strip (_cpt.sub (' ', desc))
 
-                hbox = GtkHBox ()
+                hbox = GtkHBox (spacing = 5)
                 hbox.set_border_width (5)
                 
                 # Create the edition widget...
@@ -95,7 +95,9 @@ class ConfigDialog:
                 tooltips.set_tip (button, desc)
 
                 label.add (hbox)
-                table.pack_start (label)
+                table.pack_start (label,
+                                  expand = edit.resize,
+                                  fill   = edit.resize)
 
             if cw:
                 self.w.append_page (table, GtkLabel (dom))
@@ -167,6 +169,8 @@ class BaseConfig:
 
 
 class StringConfig (BaseConfig):
+
+    resize = FALSE
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
@@ -194,6 +198,8 @@ class StringConfig (BaseConfig):
     
 
 class IntegerConfig (StringConfig):
+
+    resize = FALSE
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
@@ -236,6 +242,8 @@ class IntegerConfig (StringConfig):
     
 
 class BooleanConfig (BaseConfig):
+
+    resize = FALSE
     
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
@@ -271,6 +279,9 @@ class BooleanConfig (BaseConfig):
     
 
 class ElementConfig (BaseConfig):
+    
+    resize = TRUE
+    
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
@@ -306,17 +317,27 @@ class ElementConfig (BaseConfig):
 
     
 class TupleConfig (BaseConfig):
+
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
-        self.w = GtkVBox ()
-        
+        self.w = GtkVBox (spacing = 5)
         self.sub = []
+
+        self.resize = FALSE
+
         for sub in dtype.subtypes:
             w = sub.w (sub, props)
-            self.w.pack_start (w.w)
             self.sub.append (w)
+            
+            if w.resize:
+                self.resize = TRUE
 
+        for w in self.sub:
+            self.w.pack_start (w.w,
+                               expand = w.resize,
+                               fill   = w.resize)
+        
         if key:
             data = Config.get (key).data
             i = 0
@@ -349,6 +370,9 @@ class TupleConfig (BaseConfig):
 
 
 class ListConfig (BaseConfig):
+
+    resize = TRUE
+    
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
@@ -381,7 +405,9 @@ class ListConfig (BaseConfig):
 
         # Bottom
         self.subw = dtype.subtype.w (dtype.subtype, props)
-        self.w.pack_start (self.subw.w)
+        self.w.pack_start (self.subw.w,
+                           expand = self.subw.resize,
+                           fill   = self.subw.resize)
 
         if self.key:
             data = Config.get (self.key).data
@@ -445,6 +471,9 @@ class ListConfig (BaseConfig):
     
     
 class DictConfig (BaseConfig):
+
+    resize = TRUE
+    
     def __init__ (self, dtype, props, key = None):
         BaseConfig.__init__ (self, dtype, props, key)
 
@@ -472,20 +501,31 @@ class DictConfig (BaseConfig):
         h.pack_start (bbox, FALSE, FALSE)
         self.w.pack_start (h)
 
+        self.w.pack_start (GtkHSeparator (), expand = FALSE, fill = FALSE)
+        
         # Bottom
-        table = GtkTable (2, 2)
+        table = GtkTable (2, 2, homogeneous = FALSE)
         table.set_row_spacings (5)
         table.set_col_spacings (5)
-        table.attach (GtkLabel (_("Key")), 0, 1, 0, 1,
+        table.attach (GtkLabel (_("Key:")), 0, 1, 0, 1,
                       xoptions = 0, yoptions = 0)
-        table.attach (GtkLabel (_("Value")), 0, 1, 1, 2,
+        table.attach (GtkLabel (_("Value:")), 0, 1, 1, 2,
                       xoptions = 0, yoptions = 0)
-        
+
         self.keyw   = dtype.key.w (dtype.key, props)
-        table.attach (self.keyw.w, 1, 2, 0, 1)
+        if self.keyw.resize:
+            table.attach (self.keyw.w, 1, 2, 0, 1)
+        else:
+            table.attach (self.keyw.w, 1, 2, 0, 1,
+                          yoptions = 0)
+            
         self.valuew = dtype.value.w (dtype.value, props)
-        table.attach (self.valuew.w, 1, 2, 1, 2)
-        
+        if self.valuew.resize:
+            table.attach (self.valuew.w, 1, 2, 1, 2)
+        else:
+            table.attach (self.valuew.w, 1, 2, 1, 2,
+                          yoptions = 0)
+            
         self.w.pack_start (table)
         self.dict = {}
         

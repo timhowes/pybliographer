@@ -305,8 +305,8 @@ class Dict:
         return 1
 
     def __str__ (self):
-        return _("Dictionnary (%s, %s)") % (str (self.key),
-                                            str (self.value))
+        return _("Dictionary (%s, %s)") % (str (self.key),
+                                           str (self.value))
 
 
 

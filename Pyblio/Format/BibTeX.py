@@ -44,7 +44,7 @@ _base_fieldtype = {
     Reference   : 0,
     }
 
-_text_fieldtype = Config.get ('bibtex/capitalize').data
+_text_fieldtype = Config.get ('bibtex+/capitalize').data
 
 def _fieldtype (field):
     if field.type is not Text:
@@ -167,7 +167,7 @@ class Entry (Base.Entry):
             value = string.join (map (lambda item: item.key, value.list), ', ')
         
 	self.dict [key] = _bibtex.reverse (_fieldtype (Types.get_field (key)),
-                                           Config.get ('bibtex/braces').data,
+                                           Config.get ('bibtex+/braces').data,
                                            value)
 	return
 
@@ -336,7 +336,7 @@ class DataBase (Base.DataBase):
 					 Config.get ('bibtex/strict').data)
 
 	# Incorporer les definitions de l'utilisateur
-	if not Config.get ('bibtex/override').data:
+	if not Config.get ('bibtex+/override').data:
 	    user = Config.get ('bibtex/macros').data
 	    valid = re.compile ('^\w+$')
 
@@ -346,7 +346,7 @@ class DataBase (Base.DataBase):
 
 		_bibtex.set_string (self.parser, k,
 				    _bibtex.reverse (_base_fieldtype [Text],
-                                                     Config.get ('bibtex/braces').data,
+                                                     Config.get ('bibtex+/braces').data,
 						     user [k] [0]))
 
 	finished = 0
@@ -392,7 +392,7 @@ class DataBase (Base.DataBase):
 	    raise Exceptions.ParserError (errors)
 
 	# Incorporer les definitions de l'utilisateur
-	if Config.get ('bibtex/override').data:
+	if Config.get ('bibtex+/override').data:
 	    user  = Config.get ('bibtex/macros').data
 	    valid = re.compile ('^\w+$')
 
@@ -402,7 +402,7 @@ class DataBase (Base.DataBase):
 
 		_bibtex.set_string (self.parser, k,
 				    _bibtex.reverse (_base_fieldtype [Text],
-                                                     Config.get ('bibtex/braces').data,
+                                                     Config.get ('bibtex+/braces').data,
 						     user [k] [0]))
 	return
 
@@ -449,7 +449,7 @@ class DataBase (Base.DataBase):
 def _nativify (field, fieldtype):
     ''' private method to convert from field to native format '''
 
-    obj = _bibtex.reverse (fieldtype, Config.get ('bibtex/braces').data,
+    obj = _bibtex.reverse (fieldtype, Config.get ('bibtex+/braces').data,
                            field)
     return _bibtex.get_native (obj)
 
