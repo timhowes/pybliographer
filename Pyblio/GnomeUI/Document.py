@@ -655,7 +655,14 @@ class Document (Connector.Publisher):
     
 
     def sort_by_field (self, field):
-        self.selection.sort = Sort.Sort ([Sort.FieldSort (field)])
+        if field == '-key-':
+            mode = Sort.KeySort ()
+        elif field == '-type-':
+            mode = Sort.TypeSort ()
+        else:
+            mode = Sort.FieldSort (field)
+            
+        self.selection.sort = Sort.Sort ([mode])
         self.redisplay_index ()
         return
 

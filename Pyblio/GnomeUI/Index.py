@@ -255,7 +255,13 @@ class Index (Connector.Publisher):
             row = []
             
             for f in self.fields:
-                if entry.has_key (f):
+                if f == '-key-':
+                    row.append (str (entry.key.key))
+                    
+                elif f == '-type-':
+                    row.append (str (entry.type.name))
+                    
+                elif entry.has_key (f):
                     
                     if Types.get_field (f).type == Fields.AuthorGroup:
                         text = join (map (lambda a: str (a.last), entry [f]), ', ')
