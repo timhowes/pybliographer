@@ -47,6 +47,10 @@ correctly specified.]], [[On some systems, it is not possible to
 read a pipe on a NFS device. You can specify another name for the
 lyxserver pipe, so that it is located on a local disk.]])
 
+faq_item([[How can I display the Key/Type of the entries in the index window?]],
+[[You can edit the preferences and add special fields called <b>-Key-</b> and <b>-Type-</b>.
+Don't forget the minus signs...]])
+
 </ul>
 ]])
 

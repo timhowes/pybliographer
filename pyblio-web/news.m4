@@ -1,12 +1,22 @@
 m4_dnl -*- html -*-
 m4_dnl
 m4_dnl --------------------------------------------------
-m4_define(pyblio_last,  [[1.0.4]])m4_dnl
+m4_define(pyblio_last,  [[1.0.5]])m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
 m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
+
+news_item([[01/10/2000]],[[1.0.5 is out. Now, the searched words are
+saved between sessions, it is possible to display the key and type of
+the entries in the index window (as explained in the <a
+href="faq.html">FAQ</a>, and formatted entries follow the order of the
+display when no specific ordering is specified. ]]),
+
+news_item([[31/08/2000]], [[Two new translations, in Danish by Kenneth
+Christiansen and in Ukrainian by Yuri Syrota. Well, I guess I must
+implement unicode support now ;^)]]),
 
 news_item([[22/08/2000]], [[Kjartan Maraas has worked out a norwegian
 translation of pybliographer, whereas in the same time Valek Filippov
