@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<PyblioQuery>
+ <Connection type="medline">
+  <Name>Medline</Name>
+  
+  <Host>medline.toto.com</Host>
+
+  <Parameter name="a"></Parameter>
+ </Connection>
+</PyblioQuery>
