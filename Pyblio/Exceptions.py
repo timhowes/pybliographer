@@ -49,3 +49,12 @@ class FormatError:
     def __repr__ (self):
         return self.message
     
+
+class FileError:
+    def __init__ (self, message):
+        self.message = message
+        return
+
+    def __repr__ (self):
+        return self.message
+    
