@@ -125,6 +125,18 @@ class Entry (Base.Entry):
 	del self.dict [key]
 	return
 
+
+    def set_native (self, key, value):
+        if self.__text.has_key (key):
+            del self.__text [key]
+
+        try:
+            self.dict [key] = _bibtex.set_native (value, 0)
+        except IOError, err:
+            raise Exceptions.ParserError ([str (err)])
+        return
+
+    
     def __setitem__ (self, key, value):
 	# First, set the cache for free
 	self.__text [key] = (value, 0)

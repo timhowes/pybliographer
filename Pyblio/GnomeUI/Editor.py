@@ -135,6 +135,10 @@ class Entry (BaseField):
 
 
     def update_content (self, entry, text):
+        if text [0] == '@' and hasattr (entry, 'set_native'):
+            entry.set_native (self.field, text [1:])
+            return
+        
         entry [self.field] = Fields.Text (text)
         return
 
@@ -157,6 +161,10 @@ class Text (BaseField):
 
 
     def update_content (self, entry, text):
+        if text [0] == '@' and hasattr (entry, 'set_native'):
+            entry.set_native (self.field, text [1:])
+            return
+        
         entry [self.field] = Fields.Text (text)
         return
 
