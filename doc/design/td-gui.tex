@@ -1,10 +1,10 @@
-\section{The Graphical User Interface}
+\chapter{The Graphical User Interface}
 \label{sec:gui}
 
 
 In this chapter we discuss the user interface, in our case based on
 the \textsf{Gtk\,2.0} toolkit. First we give an overview of the user
-interface elements, then we look at the rewuirements of individual
+interface elements, then we look at the requirements of individual
 widgets.
 
 \textbf{See also:} For the integration of Pybliographer into Word
@@ -13,17 +13,83 @@ Pybliographer from the commandline or scripts, see chapter
 \ref{sec:scripting}.
 
 
+% \section{Major elements of the user interface}
+% \label{sec:guimajor}
 
-\subsection{Major elements of the user interface}
-\label{sec:guimajor}
-
-
-\ref{sec:docrequest}
+% \ref{sec:docrequest}
 
 
+\section{Menus}
+\label{sec:menus}\index{menu}
+
+The menus are the main way to access \Pyb's functions, and must
+accordingly be laid out with care. 
+All functions  should  be accessbile through the menu interface.
+
+Usually the main menu is laid out as follows:\\ \indent
+ File \textbullet  Edit \textbullet View \textbullet \dots Help
 
 
-\subsection{Displaying and Using Indices}
+This is an organisation that has been critised often enough, as being
+appropiate only for one special case of program, viz.\ an editor like
+application.  It is, however, well established.
+
+Nevertheless, there is broad support for an adapted menu structure, if
+the application doesn't fit the mold of an editor.
+
+\subsection{The Menu Bar}
+\label{sec:menusbar}
+
+
+So I propose the following:
+\begin{description}
+\item[Pybliographer] The fulcrum of the application. Contains the
+  \textsf{Preferences\dots} button, and then buttons for
+  \textsf{Database}, \textsf{Folder}, \dots , each of which
+  immediately switches  to the respective main view. In addition, exit
+  function. 
+\item[VarObject] Where Varobject is Database, \dots\ depending upon
+  the preceding choice.
+
+  
+\item[Edit]  Contex dependent standard editing, 
+\item[View]  Select view options, among them for window layout, e.g.,
+  toolbat toggle, and for record display. \textit{Perhaps:} elementary
+  formatting options for entries
+\item[Go]  Necessary to navigate the result sets
+\item[Search] To select the search dialog, to select a query for
+  editing or execution, and to select an index for browsing.
+\item[Format] 
+\item[Scripts] to run external scripts (perhaps even to write them?)
+  \textit{presuming that the user uses this way of customisation at all}
+\item[Window] \textit{if there should be multiple windows}
+\item[Help] Standard help menu
+\end{description}
+
+
+
+\subsection{The Application Menu}
+\label{sec:guimnappl}
+
+\begin{dnote}
+\item  Compare also the Apple  Aqua Guidelines.
+\end{dnote}
+
+
+\subsection{The Database Menu}
+\label{sec:guimndb}
+
+
+\subsection{The Folder Menu}
+\label{sec:guimnfold}
+
+
+\subsection{The Record Menu}
+\label{sec:guimnrecord}
+
+
+
+\section{Displaying and Using Indices}
 \label{sec:guiindex}
 
 
@@ -46,14 +112,23 @@ translations, etc.
 Sometimes special indices are required. A manuscript collection might
 want to enter and find listed the first few words of a manuscript or
 letter, a specialist might need the names of translators, or scribes,
-or printers. So ther must be a degree of configurability in addition
+or printers. So there must be a degree of configurability in addition
 to that needed to cater for the differing tastes and traditions.
+
+\subsection{Marking items}
+\label{sec:marking}
+
+A mark is available in every list view to the left of an entry, it is
+used as the indicator for one special folder ``Marked''. 
+By toggling the mark, one can easily change the exten
+
+
 
 \subsection{Accelerator Key Assignments}
 \label{sec:keys}
 
 Accelerator keys allow easy selection of functions, in particular easy
-switching of views, which is in paricular desireable when doing data
+switching of views, which is in particular desireable when doing data
 entry and editing. These are activities which repeatedly and
 predictably need a great number of screens to proceed, switching them
 with the mouse is particularly unpleasant. 
@@ -61,7 +136,73 @@ Consitent assignment of \textit{shortcuts} is needed.
 
 
 
+\cbstart
+
+\section{Appendix: Accessability Guidelines}
+\label{sec:guiaccess}
+
+From \url{www.pro.gov.uk/recordsmanagement/2002referencefinal.pdf}
+
+These samples guidelines are
+indicative only, and are drawn from information available at
+\url {www.state.me.us/CIO/accessibility/software_policy.html}
+
+
+\begin{itemize*}
+\item A program must provide keyboard access to all functions of the
+  application. All actions required or available by the program must
+  be available with keystrokes, i.e., keyboard equivalents for all
+  mouse actions including but not limited to, buttons, scroll windows,
+  text entry fields and pop-up menus.
+\item A program must have a keyboard control sequence among all
+  program controls and focal points. (e.g. using the tab key to
+  navigate among edit fields, text boxes, buttons, and all other
+  controls).
+\item The focus must follow the keystroke, that is, using the arrow
+  keys to navigate through a list followed by pressing the ENTER key
+  or spacebar to select the desired item.
+\item The software shall not interfere with existing accessibility
+  features built into the operating system, such as Sticky keys, Slow
+  Keys and Repeat Keys.
+\item Timed responses are not to be used unless the timing parameter
+  can be adjusted by an individual user.
+\item There shall be selectable visual and auditory indication of key
+  status for all toggle keys. (i.e. visual and auditory status
+  indicators for keys such as the Number Lock, Shift/Caps Lock, and
+  Scroll Lock keys.
+\item All icons shall have clear precise text labels included on the
+  focus or provide a user-selected option of text-only buttons.
+\item The use of icons shall be consistent throughout the application.
+  Pull-down menu equivalents must be provided for Icon functions
+  (menu, tool and format bar).
+\item There must be keyboard access to all pull-down menus.
+\item For graphic text, system text drawing tools or other industry
+  standard methods must be used so that screen reader software can
+  interpret the image.
+\item A visual cue for all audio alerts must be provided. The Sounds
+  feature must be supported where built into the operating system. The
+  user must be allowed to disable or adjust sound volume.
+\item Colour-coding is not to be used as the only means of conveying
+  information or indicating an action. An alternative or parallel
+  method that can be used by individuals who do not possess the
+  ability to identify colours must always be provided.
+\item The application must support user defined color settings system
+  wide. Highlighting should also be Viewable with inverted colors.
+\item No patterned backgrounds behind text or important graphics are
+  to be used.
+\item User adjustment of, or user disabling of flashing, rotating or
+  moving displays must be permitted to the extent that it does not
+  interfere with the purpose of the application.  Consistently
+  position the descriptions or labels for data fields immediately next
+  to the field.
+\item All reports and program output must be available in a format
+  that is accessible by screen readers and other access systems.
+\end{itemize*}
+
+\cbend
+
+
 %%% Local Variables: 
 %%% mode: latex
-%%% TeX-master: "td-td1"
+%%% TeX-master: "DG"
 %%% End: 
