@@ -227,7 +227,16 @@ class AuthorGroup (BaseField):
             author = string.strip (author)
             if author == '': continue
 
-            group.append (Fields.Author (author))
+            fields = string.split (author, ',')
+
+            if   len (fields) == 1:
+                (first, last, lineage) = (None, fields [0], None)
+            elif len (fields) == 2:
+                (first, last, lineage) = (fields [1], fields [0], None)
+            else:
+                (first, last, lineage) = (fields [2], fields [0], fields [1])
+                
+            group.append (Fields.Author ((None, first, last, lineage)))
         
         entry [self.field] = group
         return
