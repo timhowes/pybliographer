@@ -124,6 +124,7 @@ StringMapping commands [] = {
     {"o",  "ø"},
     {"TH", "Þ"},
     {"th", "þ"},
+    {"AA", "Å"},
     {"guillemotleft",    "«"},
     {"guillemotright",   "»"},
     {"guilsingleft",     "<"},

@@ -91,7 +91,7 @@ bibtex_reverse_field (BibtexField * field,
 #ifdef USE_RECODE
     BibtexStruct * s;
     gchar * string, * tmp, c;
-    gboolean has_upper, is_upper, has_space;
+    gboolean has_upper, is_upper, has_space, is_command;
     gint start, stop, last, i;
     BibtexAuthor * author;
 
@@ -187,8 +187,28 @@ bibtex_reverse_field (BibtexField * field,
 	    tmp ++;
 	}
 
-	is_upper = false;
+	is_upper   = false;
+	is_command = false;
+
 	while (* tmp) {
+	    if (* tmp == '\\') {
+		is_command = true;
+		g_string_append_c (st, * tmp);
+		tmp ++;
+
+		continue;
+	    }
+	    if (is_command) {
+		if (! ((* tmp >= 'a' && * tmp <= 'z') ||
+		       (* tmp >= 'A' && * tmp <= 'Z'))) {
+		    is_command = false;
+		}
+		g_string_append_c (st, * tmp);
+		tmp ++;
+
+		continue;
+	    }
+
 	    if (* tmp >= 'A' && * tmp <= 'Z' && (tmp > string)) {
 		if (! is_upper) {
 		    g_string_append_c (st, '{');
@@ -218,7 +238,7 @@ bibtex_reverse_field (BibtexField * field,
 	else {
 	    g_string_append (st, "\"}");
 	}
-	
+
 	s = text_to_struct (st->str);
 	break;
 
