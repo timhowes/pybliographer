@@ -32,6 +32,7 @@ SUBDIRS = 	Pyblio 		\
 		scripts		\
 		tests		\
 		Styles		\
+		macros		\
 		doc
 
 
