@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc005' type='standard' lang='en' >
+
+    <title>Add an note to an item
+    </title>
+
+    <summary>A note is added to an item.
+    </summary>
+    <actor></actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note> -- that should be possible
+      even for the output stage on a per user basis.
+    </note>
+    
+  <related></related>
+
+  </usecase>
+

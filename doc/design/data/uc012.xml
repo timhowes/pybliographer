@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc012' type='standard' lang='en' >
+
+    <title>Cite a reference
+    </title>
+
+    <summary>Place a marker in a document to indicate a cited
+    reference.
+
+    This function needs the collaboration of the document
+    processor/editor. 
+    </summary>
+    <actor></actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note></note>
+    <related></related>
+
+  </usecase>
+

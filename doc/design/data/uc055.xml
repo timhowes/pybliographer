@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc015' type='standard' lang='en' >
+
+    <title>User administration
+    </title>
+
+    <summary>Modify preferences and possibly access rights on a per
+    user basis. [pro memoria: must not assume that there will be only
+    one user]
+    </summary>
+    <actor></actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note></note>
+    <related></related>
+
+  </usecase>
+

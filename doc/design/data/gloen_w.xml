@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE glossary SYSTEM '../txdata.dtd' >
+
+
+<glossary buchstabe="W">
+
+  <GlossEntry>
+    <GlossTerm>      Work
+    </GlossTerm>
+    <GlossDef>
+      An equivalence class of <GlossTerm>manifestations</GlossTerm> --
+    an individual intellectual creation, an original work.
+
+      This  is typically represented by a <GlossTerm>uniform
+      title</GlossTerm>. 
+    </GlossDef>
+    <GlossSeeAlso>Expression</GlossSeeAlso>
+  </GlossEntry>
+
+
+
+
+</glossary>

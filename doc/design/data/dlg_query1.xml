@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE dialogue SYSTEM '../txdata.dtd' >
+
+
+<dialogue n="query1">
+
+  <title>Standard Search</title>
+  <summary>
+  </summary>
+  <context>
+    General use -- this is in many cases the most frequently used
+    interface component at all.
+  </context>
+
+  <data>
+    <label>database</label>
+    <item>The database or folder etc. the query is executed against.
+      The type should be indicated.
+    </item>
+  </data>
+  <data>
+    <label>q.string</label>
+    <item>The string to search for</item>
+  </data>
+  <data>
+    <label>q.regexp</label>
+    <item>Allow regexp search, if possible (les imbeciles ne sont pas
+      admis)
+    </item> 
+  </data>
+  <data>
+    <label>q.field</label>
+    <item>The (gross) category we search in (usually "all").
+    </item>
+  </data>
+  <action>
+    <subactions>
+      browse index; complete field; read help; examine prevous
+      results;
+    </subactions>
+  </action>
+  <action>
+    <label>Cancel</label>
+    <item>(special case when this is the main window)
+    </item>
+  </action>
+  <action>
+    <label>Search</label>
+    <item>Execute search</item>
+  </action>
+  <action>
+    <label>Expert search</label>
+    <item>A dialogue is opened which displays extended search options.
+    </item>
+  </action>
+  <note>
+    For an example of a visually appealing query dialogue see the
+    aleph500 main window at http://obelix.ub.uni-siegen.de/
+
+    It clearly labels the database against which the search will be
+    executed.
+
+    </note>
+  <note>
+    It is possible to have more than one query string in this
+    dialogue; but perhaps a simple dialogue is more appealing here?
+  </note>
+</dialogue>
+
+
+
+    

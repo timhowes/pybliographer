@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE classinfo SYSTEM '../txdata.dtd' >
+
+
+  <classinfo id='cls0001'>
+
+    <title>Topic</title>
+    <summary>
+      Superclass of all information usually considered as classificatory
+      or organising (often called `authority data' in library
+      catalogues), viz. Persons, subjects headings, and works.
+
+    </summary>
+
+  
+
+  </classinfo>
+
+
+

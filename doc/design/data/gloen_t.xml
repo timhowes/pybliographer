@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE glossary SYSTEM '../txdata.dtd' >
+
+
+<glossary buchstabe="T">
+
+
+  <GlossEntry>
+    <GlossTerm>Topic (class)</GlossTerm>
+    <GlossDef>
+      Super class of (at least) Persons and Subject headings. 
+
+      Topics have (generally multiple) names and are related to each
+      other and to bibliographical records. 
+    </GlossDef>
+    <GlossSeeAlso>Bibliographical record; Person(class)</GlossSeeAlso>
+  </GlossEntry>
+
+  <GlossEntry>
+    <GlossTerm>
+      Topic map 
+    </GlossTerm>
+    
+    <GlossDef>
+      An evolving standard (ISO 13250) for the representation of
+      semantic nets.      (?).
+
+   </GlossDef>
+    <GlossSeeAlso>RDF</GlossSeeAlso>
+  </GlossEntry>
+
+</glossary>
+
+

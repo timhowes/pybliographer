@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+  <usecase n='uc003' type='standard' lang='en' actor="A">
+
+    <title>Output Item</title>
+
+    <summary>An item is selected from a result set,
+      formatted (according to preset choices) and presented via drag
+      and drop or other means to the user for inclusion in other
+      documents etc.  
+    </summary>
+    <actor>A</actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note></note>
+    <related></related>
+
+  </usecase>
+

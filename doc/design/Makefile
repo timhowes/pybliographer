@@ -28,3 +28,27 @@ todo.pdf: $(TEX)
 
 remote: all
 	rsync *.txt *.pdf *.py $(REMOTE)/design
+
+
+glossary: tx-gloss-en.html
+
+tx-gloss-en.html: data/gloen_*.xml txglosshtml.xsl
+	xsltproc -o $@  txglosshtml.xsl txgloss.xml
+	lynx --dump $@ > tx-gloss-en.txt
+
+data/cl_%.html: data/cl_%.xml txclhtml
+	xsltproc -o $@ txclhtml.xsl $<
+
+tx-class.html: data/cl_*.xml txclhtm.xsl
+	sh txmlcl.sh
+	xsltproc -o $@ txclhtm.xsl txclass.xml
+
+
+data/uc%.html: data/uc%.xml txusehtml.xsl
+	xsltproc -o $@ txusehtml.xsl $<
+
+tx-use.html: data/uc*.xml txusehtm.xsl
+	sh txmluc.sh
+	xsltproc -o $@ txusehtm.xsl txuses.xml
+
+

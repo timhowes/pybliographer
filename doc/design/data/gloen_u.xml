@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE glossary SYSTEM '../txdata.dtd' >
+
+
+<glossary buchstabe="U">
+
+  <GlossEntry>
+    <GlossTerm>      Uniform title
+    </GlossTerm>
+
+    <GlossDef>
+      A <GlossTerm>heading</GlossTerm> that is used to
+      <GlossTerm>collocate</GlossTerm> all
+      <GlossTerm>manifestations</GlossTerm> of a
+      <GlossTerm>work</GlossTerm>, or as <GlossTerm>collective uniform
+      title</GlossTerm>, all (subclasses of) collections by an
+      author. Compares to *<GlossTerm>GMD</GlossTerm> and German
+      FST. Generalisation: <GlossTerm>Classifier</GlossTerm>.
+    </GlossDef>
+
+    <GlossSeeAlso>title</GlossSeeAlso>
+
+  </GlossEntry>
+
+
+</glossary>

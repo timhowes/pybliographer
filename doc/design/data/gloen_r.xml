@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE glossary SYSTEM '../txdata.dtd' >
+
+
+<glossary buchstabe="R">
+
+  <GlossEntry>
+    <GlossTerm>Regeln für die Alphabetische
+    Katalogisierung</GlossTerm>
+    <Acronym>RAK</Acronym>
+    <GlossDef>
+      The newer German Rules (replacing the Preußischen
+      Instruktionen), developed around 1970 under the marked influence
+      of the ISBD. There are two sets of fundamental rules,
+      RAK-ÖB and RAK-WB, for the public and academic libraries,
+      resp. together with special rules (sometimes quite inconsistent)
+      developed over the years for non-book materials etc.
+    </GlossDef>
+  </GlossEntry>
+
+
+  <GlossEntry>
+    <GlossTerm>      Reproduction
+    </GlossTerm>
+    <GlossDef>
+      A secondary copy of a  <GlossTerm>manifestation</GlossTerm>. 
+    </GlossDef>
+  
+  </GlossEntry>
+
+
+
+
+  <GlossEntry>
+    <GlossTerm>      Reproduction Note      
+    </GlossTerm>
+    <GlossDef>
+      A note that contains information about a
+      <GlossTerm>reproduction</GlossTerm> -- pertains to a holding
+      record.
+
+      MARC XXXX cf. dicussion there.
+    </GlossDef>
+  
+  </GlossEntry>
+
+
+</glossary>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE glossary SYSTEM '../txdata.dtd' >
+
+
+<glossary buchstabe="G">
+
+  <GlossEntry>
+    <GlossTerm>
+      General material designation (MARC 245 $h)
+    </GlossTerm>
+    <Abbrev>GMD</Abbrev>
+    <GlossDef>
+      ``A generic term used to identify the general category of material
+      to which an item belongs and to distinguish one general category
+      from another in a catalog containing records for more than one
+      type of material'' (Maxwell's Hdb. AACR2R, p.23)
+
+      In our use this is a <GlossTerm>Classifier</GlossTerm>.
+    </GlossDef>
+  
+  </GlossEntry>
+
+
+</glossary>

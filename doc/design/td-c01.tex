@@ -8,6 +8,8 @@
 \subsection{The Way of Pybliographer}
 \label{sec:way-pybliographer}
 
+
+
 \paragraph{Highlights of Pybliographer Release 2}
 \label{sec:highr2}
 \begin{itemize}
@@ -34,9 +36,8 @@ often in ignorance of the other, and which are still shaping the field
 according to their own peculiarities, although they are getting into
 closer contact recently.
 
-It should prove useful to start with a view of these ancestral
-developments:
-
+This overview starts with a look at the purpose of catalogues -- the
+most important tradition to consider. 
 In 1876 Charles A.~\textsc{Cutter} thus explained the aim of the
 catalogue:\footnote{as quoted in \cite[p.196]{Hal98}}
 \begin{itemize}
@@ -59,6 +60,165 @@ catalogue:\footnote{as quoted in \cite[p.196]{Hal98}}
   \end{itemize}
 \end{itemize}
 
+More recently, B. Eversberg named the following main points:
+\begin{description}
+\item[Reliable search] -- this requires agreement on identifying
+  attributes and consistent data acquisition. 
+                                % Verläßliches Finden ermöglichen
+
+%            "Known-item search" 
+%            Festgelegte Merkmale 
+%            Einheitliche Erfassung (Konsistenz) 
+%            Zettelkatalog: Nur 1 Haupteintragung 
+%            OPAC: Mehrere verläßliche Zugriffe 
+%            Schnelle Negativ-Feststellung 
+%            Entitäten-Problem (Was und wer kommt in den Katalog?) 
+\item[Differentiation] between similar items (the more are in the
+  database, the more this is a problem) -- requires precise capture of
+  distinguishing characteristics of the item at hand, allows automatic
+  duplication checks.
+          
+% Unterscheiden, was verschieden ist
+
+%            Knappe, aber genaue Beschreibung 
+%            Strikte Orientierung an der Vorlage 
+%            Haupttitelseite als primäre Informationsquelle 
+%            Unterscheidung von Versionen eines Werks 
+%            Internationale Normierung: ISBD 
+%                 Reihenfolge und Interpunktion 
+%                 Weitgehend sprachunabhängig 
+%            Automatisierte Dublettenkontrolle 
+  
+\item[Joining] related records may look at a first glance like the
+  opposite task. Looking closer it is best understood as a task of
+  organising references by means of equivalance classes. Typical
+  questions are for all works by one author, or all representations of
+  one work, or even all books in French or printed before 1703. Of
+  particular importance are hierarchical and derivative
+  relationsships, part of which is just usual, part of which is quite
+  uncommon (situations differ, b.t.w., take as an example the handling
+  of multi-volume works by AACR and RAK). To be sure that equivalent
+  records are not accidentally distinguished, it is often necessary to
+  standardise the description, e.g., frequently by using keywords,
+  author names, uniform titles, etc., that are taken from so called
+  authority files (Normdaten).
+% Zusammenführen, was zusammengehört
+
+%            "Collocation search" 
+%            Werke eines Verfassers 
+%            Ausgaben eines Werkes 
+%            Teile von Gesamtwerken (Hierarchien) 
+%            (Werke zu einem Thema) 
+%                 Werke über eine Person 
+%                 Werke über ein anderes Werk 
+%            Ansetzung von Namen und Titeln 
+%            Normdateien 
+  
+\item[Organising] search results is a problem that has yet to find
+  enough attention. Two major points are readable short titles, and
+  other display forms, and suitably designed, and enough indices for
+  browsing as well as for verification.
+% Gefundenes überschaubar machen
+
+%            Ordnungsregeln 
+%            Kurzlisten 
+%            Index-Gestaltung 
+%            "Collocation search" 
+
+\item[Providing access] is the final purpose of all of this, and
+  nowadays it is invariably also an integrated use of the
+  bibliographical software. 
+% Gewähltes zugänglich machen
+
+%            Vom Nachweis zur Nutzung 
+%            Verbundkatalog mit Fernleih-Bestellfunktion 
+%            Zugang wichtiger als Besitz (access vs. ownership) 
+%            Finden des bestgeeigneten Exemplars 
+%            Nutzungsrechte 
+
+\end{description}
+
+% Tiefenerschließung
+
+%       Zeitschriftenaufsätze; Tagungsbeiträge
+
+% Mehr Wortmaterial
+
+%       Inhaltsverzeichnisse von Büchern; Metadaten von Verlagen?; z.B.
+%       Projekt MILOS
+      
+% Integration anderer Metadaten
+
+%       Scan-Kataloge; Online-Ressourcen (Link-Sammlungen); z.B. EZB
+
+% Automatische Klassifizierung
+%       und andere neue Methoden der Sacherschließung, z.B. Projekt Osiris
+
+% Invisible Web
+
+%       Datenbank-Inhalte; Volltextmaterial (PDF etc.); Inhalte von
+%       Digitalisierten Objekten Abgrenzung zur Suchmaschinen-Technik
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Was ist ein guter Katalog? 
+
+%  Nach aller Erfahrung könnte man ihn so charakterisieren: 
+ 
+%  Verläßlichkeit: hat man ein genaues Zitat, kann man schnell und mit
+%  Sicherheit feststellen, ob das Gesuchte vorhanden ist - oder daß es
+%  nicht vorhanden ist (in einem unzuverlässigen Katalog muß man u.U.
+%  viele Versuche anstellen, um dies herauszufinden!)
+ 
+%  Zufallsfunde : in den vorhandenen Einträgen muß man blättern können
+%  (browsing), erstens weil oft das Ziel einer Suche nicht genau bekannt
+%  ist und zweitens weil Zufallsentdeckungen bekanntlich sehr wertvoll
+%  sein können. Deshalb gehen Nutzer zuerst ans Regal, wenn es eine
+%  systematische Aufstellung gibt. Auch der Katalog sollte daher das
+%  Durchstreifen von benachbarten Dingen unterstützen. Das geht im OPAC
+%  am besten durch 1.Register, in denen vor und zurück geblättert werden
+%  kann, 2.sinnvoll geordnete Auflistungen von Ergebnismengen, und
+%  3.Hyperlinks, die direkt und schnell zu verwandtem Material führen.
+ 
+%  Tiefe der Erschließung : Damit sind zwei Punkte berührt, die
+%  außerhalb der eigentlichen Katalogisierung liegen:
+ 
+%  1.geht es um die Entscheidung, was man eigentlich katalogisiert.
+%  Klassisch sind dies Bücher, geschlossene Pakete von Aufzeichnungen
+%  also. Oft ist es aber so, daß in einem Buch mehrere oder viele
+%  kleinere Pakete stecken, die jedes für sich genommen eine Einheit
+%  darstellen, nach der gesucht werden könnte. Man denke nur an
+%  Tagungsbände und Festschriften, erst recht an Zeitschriften. Im
+%  Grunde ist es in den meisten Fällen so, von Belletristik einmal
+%  abgesehen, daß ein Nutzer nur ein bestimmtes Kapitel oder einzelne
+%  Abschnitte eines Buches wirklich braucht. Katalogisiert man nur die
+%  Titel, die auf den Büchern stehen, bleiben die Bestandteile verborgen
+%  und im Katalog nicht auffindbar. Aus ökonomischen Gründen haben aber
+%  nur wenige Bibliotheken jemals eine "Tiefenerschließung" betrieben,
+%  also etwa Festschrift- oder Konferenzbeiträge einzeln erfaßt. Ein
+%  Spezialfall sind "mehrbändige Werke" mit Stücktiteln: katalogisiert
+%  man sie nur als Ganzes oder jeden Teil für sich (als wäre es eine
+%  Serie) oder sowohl als auch?  
+ 
+%  2.braucht man ein Konzept für die sachliche Erschließung. Begnügt man
+%  sich mit ein paar wenigen normierten Schlagwörtern oder Notationen,
+%  um den Inhalt eines Dokuments global zu kennzeichnen, oder versucht
+%  man, wirklich jedes Thema zu erfassen, das in einem Dokument
+%  abgehandelt wird. Es gibt z.B. Experimente, bei Büchern auch die
+%  Inhaltsverzeichnisse zu erfassen, oder mit automatisierten Methoden
+%  einem Metadatensatz weitere Sachbegriffe zuzuordnen.
+
+
+
+
+\subsection{The roots}
+\label{sec:roots}
+
+
+
+It should prove useful to start with a view of these ancestral
+developments:
+
 These are still important principles, today perhaps even more than
 most of the time. 
 
@@ -68,7 +228,7 @@ most of the time.
 %In the following some of these strands are more fully discussed.
 
 
-\subsection[The legacy of the card catalogue -- MARC]
+\subsubsection[The legacy of the card catalogue -- MARC]
 {The legacy of the card catalogue --
   \textsf{MARC}\protect\footnote{Although \textsf{MARC} stands for Machine
   Readable Cataloguing, it is used here loosely but legitimately and
@@ -151,7 +311,7 @@ importance it used to have.
  
 
 
-\subsection{Taking the fast track  -- BibTeX}
+\subsubsection{Taking the fast track  -- BibTeX}
 \label{sec:taking-fast-track}
  
 
@@ -179,7 +339,7 @@ that \TeX\ and Bib\TeX\ (and earlier troff and Refer) thrived in.
 
 
 
-\subsection{Enters the Personal Computer -- Reference Managers}
+\subsubsection{Enters the Personal Computer -- Reference Managers}
 \label{sec:enters-pers-comp}
 
 With the advent of the Personal Computer a new class of users came to
@@ -204,7 +364,7 @@ the references, by providing suitable instruments, e.g., the
 \textit{virtual folders} of Biblioscape.
 
 
-\subsection{The spell of the Internet -- Database \& Document Access}
+\subsubsection{The spell of the Internet -- Database \& Document Access}
 \label{sec:internet-access}
 
 Although the Internet precedes the personal Computer by some
@@ -227,11 +387,11 @@ the following uses:
   \ref{sec:standards-evolve}). 
 \end{description}
 
-\subsection{The view from the fringes -- exotic becomes normal}
+\subsubsection{The view from the fringes -- exotic becomes normal}
 
 
 
-\subsection{The standards evolve}
+\subsubsection{The standards evolve}
 \label{sec:standards-evolve}
 \textit{The major development has been not the Dublin Core but the
   development of an object model that underlies the cataloguing process.}
@@ -240,7 +400,7 @@ the following uses:
 
 
 
-\subsection{Other lists of requirements}
+\subsubsection{Other lists of requirements}
 \label{sec:otherreq}
 
 
@@ -336,6 +496,12 @@ into it without losing, or requiring additional, information.[\dots]
 \subsection{Summary of Requirements}
 \label{sec:summrequ}
 
+\begin{enumerate}
+\item \textit{Identifying}
+\item \textit{Organising}
+\item \textit{Accessing}
+\end{enumerate}
+
 
 \begin{itemize}
 \item The oldest stems from the librarian's duty to keep inventories
@@ -368,6 +534,69 @@ into it without losing, or requiring additional, information.[\dots]
   natural extensions of their primary function.
 \end{itemize}
 
+
+\newpage
+
+\subsection{Actors and Activities}
+\label{sec:ov-actors}
+
+\begin{table}[hbp]
+  \centering
+  \begin{tabular}[t]{|l|p{.8\textwidth}|}
+\hline
+\textbf{\sffamily Actors}& \textbf{\sffamily Description}\\
+\hline
+\textbf{\sffamily User}& assumes different roles:
+\begin{itemize}
+\item \textit{searches} internal and external databases
+\item \textit{adds} references and notes
+\item \textit{formats} reference lists and bibliographies
+\item \textit{accesses} external documents 
+\item \textit{administrates} Pybliographer itself.
+\end{itemize}\\
+
+\hline
+  \end{tabular}
+  \caption{Actors}
+  \label{tab:actors}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.8\textwidth]{pics/ov-uc-001}
+  \caption{Use case diagram (overview)}
+  \label{fig:ov-usecase}
+\end{figure}
+
+\textit{Note:} Perhaps it is better to use the describe -- organise --
+refer structure from \ref{sec:summrequ} supra?
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}[t]{|l|p{.8\textwidth}|}
+\hline
+\textbf{\sffamily Use case} & \textbf{\sffamily Description}\\
+\hline
+
+
+
+
+
+\hline
+  \end{tabular}
+  \caption{Activities (use cases)}
+  \label{tab:ov-usecase}
+\end{table}
+
+\newpage
+\subsection{Objects and Classes -- the problem domain}
+\label{sec:ov-domain}
+
+
+
+
+\subsection{Interfaces}
+\label{sec:ov-interface}
 
 
 %%% Local Variables: 

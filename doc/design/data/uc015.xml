@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc011' type='standard' lang='en' >
+
+    <title>Make a bibliography (reference list)
+    </title>
+
+    <summary>This is the equivalent of running bibtex.
+    </summary>
+    <actor></actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note></note>
+    <related></related>
+
+  </usecase>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc014' type='standard' lang='en' >
+
+    <title>Select display and output formats.
+    </title>
+
+    <summary>For various display purposes as well as for output
+    to diverse targets  the user can select and modify the applicable
+    formatting.  
+    </summary>
+    <actor></actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note></note>
+    <related></related>
+
+  </usecase>
+

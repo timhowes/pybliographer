@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--                    General attributes                         -->
+<!--                    Attributes common to most elements         -->
+<!ENTITY % genattr      "
+        n          CDATA #IMPLIED
+        type       CDATA #IMPLIED
+        valid      CDATA #IMPLIED
+        id         ID    #IMPLIED
+        kind       CDATA #IMPLIED               "                    >
+        
+
+<!--                    uml related information                    -->
+<!--                    presently only use cases                   -->
+
+<!ELEMENT  uml          ((classinfo|usecase)*)                       >
+
+<!--                    Class information                          -->
+<!--                    textual overview of classes                -->
+<!ELEMENT  classinfo    (title, summary, attribute*, operation*,
+                         invariant*, note*, related*  )              >
+<!ATTLIST  classinfo
+         %genattr;
+>
+<!--                    title                                      -->
+<!ELEMENT  title        (#PCDATA)                                    >
+
+<!--                    summary                                    -->
+<!ELEMENT  summary      (#PCDATA)                                    >
+
+<!--                    Class attributes                           -->
+<!--                    may be incomplete                          -->
+<!ELEMENT  attributes   ((attribute|note)*)                          >
+
+<!--                    attribute                                  -->
+<!ELEMENT  attribute    (#PCDATA)                                    >
+
+<!--                    Usecase description (text)                 -->
+<!ELEMENT  usecase      (title, summary, actor+, context?,
+                           precondition, postcondition, input?, 
+                           result?,  error*, sequence*, note*,
+                           related* )                                >
+
+
+
+
+<!--                    Note                                       -->
+<!--                    any textual addition or explanation        -->
+<!ELEMENT  note         (#PCDATA)                                    >
+
+<!--                    Class operations                           -->
+<!--                    may be incomplete                          -->
+<!ELEMENT  operations   ((operation|note)*)                          >
+
+<!--                    Class operation                            -->
+<!--                    not yet defined                            -->
+<!ELEMENT  operation    (#PCDATA)                                    >
+
+<!--                    Class invariants                           -->
+<!--                    may be incomplete                          -->
+<!ELEMENT  invariants   ((invariant|note)*)                          >
+
+<!--                    Class invariant                            -->
+<!--                    not yet defined                            -->
+<!ELEMENT  invariant    (#PCDATA)                                    >
+
+<!--                    Notes                                      -->
+<!--                    any sosequence of additions and
+                        explanations                               -->
+<!ELEMENT  notes        (note*)                                      >
+
+
+<!--                    precondition                               -->
+<!ELEMENT  precondition (#PCDATA)                                    >
+
+<!--                    postcondition                              -->
+<!ELEMENT  postcondition  (#PCDATA)                                  >
+
+<!--                    error                                      -->
+<!ELEMENT  error        (title?, summary?, precondition?,
+                         postcondition?)                             >
+
+<!--                    actor                                      -->
+<!ELEMENT  actor       (#PCDATA)                                    >
+
+<!--                    sequence                                   -->
+<!ELEMENT  sequence     (title?,summary?,(item,note*)+)              >
+
+
+<!--                    li                                         -->
+<!ELEMENT  li           (#PCDATA)                                    >
+
+<!--                    dt                                         -->
+<!ELEMENT  dt           (#PCDATA)                                    >
+
+<!--                    di                                         -->
+<!ELEMENT  di           (#PCDATA)                                    >
+
+<!--                    trigger                                    -->
+<!ELEMENT  trigger      (#PCDATA)                                    >
+
+
+<!--                    UML Glossary                               -->
+<!--                    incomplete                                 -->
+<!ELEMENT  glossary     (GlossEntry+)                                >
+
+
+<!--                    Glossary entry                             -->
+<!--                    incomplete                                 -->
+<!ELEMENT  GlossEntry   (GlossTerm, Acronym?, Abbrev?,
+                         (GlossSee | GlossDef+), GlossSeeAlso*)      >
+
+
+<!--                    Term                                       -->
+<!--                    a simple string?                           -->
+<!ELEMENT  term         (#PCDATA)                                    >
+
+
+<!--                    Docbook GlossTerm                          -->
+<!--                    Term outside a Glossary that is defined in
+                        some GlossEntry; term within a GlossEntry 
+                        that is defined by that GlossEntry         -->
+<!ELEMENT  GlossTerm    (#PCDATA)                                    >
+
+<!--                    Docbook Acronym                            -->
+<!--                    Pronounceable contraction of initials      -->
+<!ELEMENT  Acronym      (#PCDATA)                                    >
+
+<!--                    Docbook Abbrev                             -->
+<!--                    Abbreviation, especially one followed by a
+                        period                                     -->
+<!ELEMENT  Abbrev       (#PCDATA)                                     >
+
+
+<!--                    Docbook GlossSee               -->
+<!--                    Cross-reference from one GlossEntry to
+                        another                                    -->
+<!ELEMENT  GlossSee     (#PCDATA|GlossTerm)*                   >
+
+<!--                    Docbook GlossSeeAlso                       -->
+<!--                    Cross-reference from one GlossDef to
+                        another GlossEntry                         -->
+<!ELEMENT  GlossSeeAlso (#PCDATA |  GlossTerm)*                   >
+
+
+<!--                    Docbook GlossDef                           -->
+<!--                    Definition attached to a GlossTerm in a
+                        GlossEntry                                 -->
+<!ELEMENT  GlossDef     (#PCDATA |  GlossTerm)*                   >
+
+
+<!--                    Dialogue Interface description             -->
+<!--                    Describes a GUI interface                  -->
+<!ELEMENT  dialogue     (title, summary?, context?, data*, action*,
+                         note*)                                      >
+<!ATTLIST  dialogue
+        %genattr;
+>
+
+<!--                    Context of action, interface               -->
+<!--                    Describes context, usage, etc.             -->
+<!ELEMENT  context      (#PCDATA)                                    >
+
+<!--                    Data description                           -->
+<!--                    Describes data elements of interfaces      -->
+<!ELEMENT  data         (label, item, note?)                         >
+
+<!--                    Input description                          -->
+<!--                    Describes input data elements              -->
+<!ELEMENT  input        (label, item, note?)*                        >
+
+<!--                    Result description                         -->
+<!--                    Describes resulting data elements          -->
+<!ELEMENT  result       (label, item, note?)*                        >
+
+<!--                    Descriptive Label                          -->
+<!--                    Gives the name of data elements etc.       -->
+<!ELEMENT  label        (#PCDATA)                                    >
+
+<!--                    Description of Item                        -->
+<!--                    Explains the item                          -->
+<!ELEMENT  item         (#PCDATA)                                    >
+
+<!--                    Action Description                         -->
+<!--                    Associated Actions                         -->
+<!ELEMENT  action       (subactions?, label, item, note?)            >
+
+<!--                    Subaction references                       -->
+<!--                    Gives actions that are not explained here
+                        but possibly nested within the described
+                        action                                     -->
+<!ELEMENT  subactions   (#PCDATA)                                    >
+
+<!--                    Related information                        -->
+<!--                    Indicates related documents                -->
+<!ELEMENT  related      (#PCDATA)                                    >
+
+
+

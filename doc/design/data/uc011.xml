@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc006' type='standard' lang='en' >
+
+    <title>Select a database
+    </title>
+
+    <summary>All processing is against a database (?).
+    A choice is given, even if a default database is defined.
+    </summary>
+    <actor></actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note></note>
+    <related></related>
+
+  </usecase>
+

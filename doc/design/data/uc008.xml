@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc008' type='standard' lang='en' >
+
+    <title>Add an action to an item
+    </title>
+
+    <summary>An item (or a set of them) is selected for further
+    processing, an indicative action is added to them.
+    </summary>
+    <actor></actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note></note>
+    <related></related>
+
+  </usecase>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE glossary SYSTEM '../txdata.dtd' >
+
+
+<glossary buchstabe="A">
+
+
+  <GlossEntry>
+    <GlossTerm>analytic</GlossTerm>
+    <GlossDef>
+      In the field of bibliography (so called library science), one
+      calls analytic a description or record for a work that is
+      contained in another bibliographic unit, i.e., an article that is
+      published in a (volume of a) journal and not as an individual
+      physical unit. In German, one speaks of publications that are
+      (un)selbstständig, (in)dependant. 
+
+      Analytic description is usually considered the province of
+      database services, not of the library system, so the cataloguing
+      rules and standards mostly ignore this topic. 
+    </GlossDef>
+    <GlossSeeAlso>Collection, Monograph</GlossSeeAlso>
+  </GlossEntry>
+
+  <GlossEntry>
+    <GlossTerm>
+      Anglo-American Cataloguing Rules (second edition, revised)
+    </GlossTerm>
+    <Abbrev>AACR2R</Abbrev>
+    <GlossDef>
+      
+    </GlossDef>
+    <GlossSeeAlso>RAK</GlossSeeAlso>
+  </GlossEntry>
+
+</glossary>
+
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE glossary SYSTEM '../txdata.dtd' >
+
+
+<glossary buchstabe="F">
+
+  <GlossEntry>
+    <GlossTerm>      Folder
+    </GlossTerm>
+    <GlossDef>
+      A subset of a database. An item may be in several folders, at
+      the same time. A folder may contain either items or folders (?).
+
+      For an example look at Biblioscope.
+    </GlossDef>
+  
+  </GlossEntry>
+
+
+
+
+  <GlossEntry>
+    <GlossTerm>      Format   
+    </GlossTerm>
+    <GlossDef>
+      
+    </GlossDef>
+  
+  </GlossEntry>
+
+
+</glossary>

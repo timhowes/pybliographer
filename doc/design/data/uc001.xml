@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc000' type='standard' lang='en' >
+
+    <title>Simple Search</title>
+
+    <summary>
+      A simple search (known item search) is performed.  The result
+      set is displayed.
+    </summary>
+    <actor>Simple user (A)</actor> <situation></situation>
+    <precondition>
+      A database, folder or result set is given (usually
+      defaulted). The item is correctly entered into the database, or
+      not available.
+    </precondition>
+    <postcondition>
+      A resultset of item selected is displayed, or an indication of
+      empty result set is given.
+    </postcondition>
+
+    <sequence>
+    <item>Enter the search term, select regexp search and the search
+      field, if appropiate.
+    </item>
+    <item>Start search.</item>
+    <item>Receive results or failure indication (should be
+    explanatory).</item> 
+    <item>Continue with ..... browsing the result set or similar
+    activity.</item>
+    </sequence>
+    <note>For general considerations for this known item search, which
+    pertain mostly to the question of database content, as opposed to
+    programming, see in particular Eversberg.
+    </note>
+    <related>
+      Interfaces: if_query1
+    </related>
+
+  </usecase>
+

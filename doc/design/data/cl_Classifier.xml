@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE classinfo SYSTEM '../txdata.dtd' >
+
+
+
+  <classinfo>
+    <title>Classifier</title>
+    <summary>
+      A formal characteristic of an entry, such as language, general
+      material designation, or publication type. For display purposes
+      assimilated to subject headings or similar classifications.
+
+      Differs from subject headings by being better controlled and
+      taken from a much smaller vocabulary, thus able to control
+      processing. Examples are indicators for review, festschrift,
+      biography, which all imply a subject person or publication, or
+      language together with a uniform title which implies a
+      translation.
+    </summary>
+  </classinfo>
+
+  
+

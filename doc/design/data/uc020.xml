@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso8859-1" ?>
+
+<!DOCTYPE usecase SYSTEM '../txdata.dtd' >
+
+
+
+  <usecase n='uc020' type='standard' lang='en' >
+
+    <title>Create a Record
+    </title>
+
+    <summary>A record is created. This can be a Topic record or a
+    Bibliographical record.
+
+    
+    </summary>
+    <actor></actor>
+    <situation></situation>
+    <precondition></precondition>
+    <postcondition></postcondition>
+    <error>
+    </error>
+    <sequence>
+    </sequence>
+    <note></note>
+    <related></related>
+
+  </usecase>
+
