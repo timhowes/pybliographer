@@ -82,7 +82,7 @@ optlist, args = getopt.getopt (sys.argv [1:],
 				'version',
 				'help'])
 
-sys.argv = args
+sys.argv = sys.argv [0:1] + args
 
 quiet = 0
 
