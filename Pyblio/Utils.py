@@ -93,14 +93,21 @@ def generate_key (entry, table):
             
             if year:
                 key = key + str (year) [2:]
+
+    base = key
+    key  = Key.Key (table, base)
     
     if table.has_key (key):
-	base = key
 	suff = ord ('a')
 	
         while table.has_key (key):
             suff = suff + 1
-            key  = base + chr (suff)
+            
+            if suff > ord ('z'):
+                suff = ord ('a')
+                base = base + 'a'
+                
+            key  = Key.Key (table, base + chr (suff))
 	            
     return Key.Key (table, key)
 
