@@ -932,7 +932,9 @@ class Document (Connector.Publisher):
 
 
     def key_pressed (self, app, event):
-        if event.string == '': return 1
+        # filter out special keys
+        if (event.string < 'a' or event.string > 'z') and \
+           (event.string < '0' or event.string > '9'): return 1
 
         if self.selection.sort is None:
             app.flash ("Select a column to search in first.")
