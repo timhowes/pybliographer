@@ -25,11 +25,11 @@
 #include "config.h"
 #endif
 
+#include <string.h>
+
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>
 #else /* ! HAVE_STDBOOL_H */
-
-#include <string.h>
 
 /* stdbool.h for GNU.  */
 
@@ -82,8 +82,6 @@ text_to_struct (gchar * string) {
     
     bibtex_entry_destroy (entry, TRUE);
 
-/*      bibtex_source_destroy (source, TRUE); */
-
     return s;
 }
 
@@ -93,7 +91,7 @@ bibtex_reverse_field (BibtexField * field,
 #ifdef USE_RECODE
     BibtexStruct * s;
     gchar * string, * tmp, c;
-    gboolean has_upper, is_upper;
+    gboolean has_upper, is_upper, has_space;
     gint start, stop, last, i;
     BibtexAuthor * author;
 
@@ -131,13 +129,13 @@ bibtex_reverse_field (BibtexField * field,
 
 	g_string_truncate (st, 0);
 
-	tmp = recode_string (request, field->text);
-
 	if (! use_braces) {
-	    if (strchr (tmp, '"')) {
+	    if (strchr (field->text, '"')) {
 	        use_braces = TRUE;
 	    }
 	}
+
+	tmp = recode_string (request, field->text);
 
 	if (use_braces) {
 	    g_string_append (st, "@preamble{{");
@@ -164,13 +162,13 @@ bibtex_reverse_field (BibtexField * field,
 
 	g_string_truncate (st, 0);
 	
-	tmp = recode_string (request, field->text);
-
 	if (! use_braces) {
-	    if (strchr (tmp, '"')) {
+	    if (strchr (field->text, '"')) {
 	        use_braces = TRUE;
 	    }
 	}
+
+	tmp = recode_string (request, field->text);
 
 	if (use_braces) {
 	    g_string_append (st, "@preamble{{");
@@ -229,6 +227,33 @@ bibtex_reverse_field (BibtexField * field,
 
 	g_string_truncate (st, 0);
 
+	/* Create a simple preamble to parse */
+	if (! use_braces) {
+	    for (i = 0 ; i < field->field.author->len; i ++) {
+		author = & g_array_index (field->field.author, BibtexAuthor, i);
+		
+		if (author->last && strchr (author->last, '"')) {
+		    use_braces = TRUE;
+		    break;
+		}
+		if (author->lineage && strchr (author->lineage, '"')) {
+		    use_braces = TRUE;
+		    break;
+		}
+		if (author->first && strchr (author->first, '"')) {
+		    use_braces = TRUE;
+		    break;
+		}
+	    }
+	}
+	
+	if (use_braces) {
+	    g_string_append (st, "@preamble{{");
+	}
+	else {
+	    g_string_append (st, "@preamble{\"");
+	}
+
 	for (i = 0 ; i < field->field.author->len; i ++) {
 	    author = & g_array_index (field->field.author, BibtexAuthor, i);
 
@@ -236,37 +261,65 @@ bibtex_reverse_field (BibtexField * field,
 		g_string_append (st, " and ");
 	    }
 
-	    g_string_append_c (st, '{');
 	    if (author->last) {
+		has_space = strpbrk (author->last, " \t") != NULL;
+		if (has_space) {
+		    g_string_append_c (st, '{');
+		}
+
 		tmp = recode_string (request, author->last);
 		g_string_append (st, tmp);
 		g_free (tmp);
+
+		if (has_space) {
+		    g_string_append_c (st, '}');
+		}
 	    }
 
 	    if (author->lineage) {
-		g_string_append (st, "}, {");
+		g_string_append (st, ", ");
+
+		has_space = strpbrk (author->lineage, " \t") != NULL;
+		if (has_space) {
+		    g_string_append_c (st, '{');
+		}
+
 		tmp = recode_string (request, author->lineage);
 		g_string_append (st, tmp);
 		g_free (tmp);
+
+		if (has_space) {
+		    g_string_append_c (st, '}');
+		}
 	    }
-	    g_string_append_c (st, '}');
+
 
 	    if (author->first) {
 		g_string_append (st, ", ");
-		g_string_append_c (st, '{');
+
+		has_space = strpbrk (author->first, " \t") != NULL;
+		if (has_space) {
+		    g_string_append_c (st, '{');
+		}
+
 		tmp = recode_string (request, author->first);
 		g_string_append (st, tmp);
 		g_free (tmp);
-		g_string_append_c (st, '}');
+
+		if (has_space) {
+		    g_string_append_c (st, '}');
+		}
 	    }
 	}
 
-	/* Create a simple preamble to parse */
-	g_string_append  (st, "}}");
-	g_string_prepend (st, "@preamble{{");
+	if (use_braces) {
+	    g_string_append (st, "}}");
+	}
+	else {
+	    g_string_append (st, "\"}");
+	}
 
 	s = text_to_struct (st->str);
-
 	break;
 
     case BIBTEX_DATE:

@@ -73,6 +73,18 @@ main (int argc, char * argv [])
 
     bibtex_set_default_handler ();
 
+    if (0) {
+      field = bibtex_field_new (BIBTEX_TITLE);
+      field->text = g_strdup ("Essai \\ é GRONF oui FIN");
+      field->converted = TRUE;
+      
+      field = bibtex_reverse_field (field, 1);
+      tmp = bibtex_struct_as_bibtex (field->structure);
+      
+      g_message ("converted: %s", tmp);
+      g_free (tmp);
+    }
+
     file = bibtex_source_new ();
 
     if (! bibtex_source_file (file, argv [1])) {
@@ -123,17 +135,6 @@ main (int argc, char * argv [])
 
     bibtex_source_destroy (file, TRUE);
 
-    if (0) {
-	field = bibtex_field_new (BIBTEX_TITLE);
-	field->text = g_strdup ("Essai \\ é GRONF oui FIN");
-	field->converted = TRUE;
-	
-	field = bibtex_reverse_field (field, 1);
-	tmp = bibtex_struct_as_bibtex (field->structure);
-	
-	g_message ("converted: %s", tmp);
-	g_free (tmp);
-    }
 
     g_mem_profile ();
 }
