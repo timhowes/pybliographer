@@ -14,6 +14,13 @@
 
 	* Pyblio/Config.py (save_changes): Termination routine added
 
+2003-09-03  Frederic Gobry  <gobry@pybliographer.org>
+
+	* intl/, po/: removed C code, as everything will be performed in
+	Python.
+
+	* configure.ac: cleaned up the unnecessary checks
+	
 2003-08-14  Frederic Gobry  <gobry@pybliographer.org>
 
 	* Pyblio/GnomeUI/Search.py, glade/search.glade: both simple and
