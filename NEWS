@@ -3,6 +3,7 @@
 New in 1.0.8 -  2001-01-09
 
 	* New Finnish and Turkish translations
+	* updated italian documentation
 	* Fixed Search button
 	* improved bibtex parser (empty authors, latin1 set)
 	
