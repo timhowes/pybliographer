@@ -90,7 +90,10 @@ class Entry (Base.Entry):
 
             day   = None
 	    month = None
-	    year  = int (self [yearfield].text)
+            try:
+                year = int (self [yearfield].text)
+            except ValueError:
+                break
             
 	    del self [yearfield]
 
