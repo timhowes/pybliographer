@@ -114,10 +114,11 @@ class SearchDialog (TmpGnomeDialog, Connector.Publisher):
         
         if parent: self.set_parent (parent)
 
-        self.button_connect (0, self.apply)
-        self.button_connect (1, self.close)
+        self.button_connect (0, self.apply_cb)
+        self.button_connect (1, self.close_cb)
         self.set_default (0)
         self.close_hides (1)
+        self.set_close (0)
         
         self.pairs   = []
         
@@ -138,7 +139,7 @@ class SearchDialog (TmpGnomeDialog, Connector.Publisher):
 
         self.text = GnomeEntry ('match')
         table.attach (self.text, 1, 2, 1, 2)
-        self.text.gtk_entry ().connect ('activate', self.apply)
+        self.text.gtk_entry ().connect ('activate', self.apply_cb)
 
         # fill the combo
         self.field.set_popdown_strings ([' - any field - '] +
@@ -153,7 +154,7 @@ class SearchDialog (TmpGnomeDialog, Connector.Publisher):
         hbox.pack_start (GtkLabel (_("Search command:")),
                          expand=FALSE, fill=FALSE)
         self.expert = GnomeEntry ('expert-search')
-        self.expert.gtk_entry ().connect ('activate', self.apply)
+        self.expert.gtk_entry ().connect ('activate', self.apply_cb)
         hbox.pack_start (self.expert)
         
         self.notebook.append_page (hbox, GtkLabel (_("Expert Search")))
@@ -195,9 +196,14 @@ class SearchDialog (TmpGnomeDialog, Connector.Publisher):
         self.root_tree.append (self.root_item)
         self.root_item.show ()
         return
+
+
+    def close_cb (self, widget):
+        self.close ()
+        return
     
     
-    def apply (self, widget):
+    def apply_cb (self, widget):
         page = self.notebook.get_current_page ()
 
         name = None

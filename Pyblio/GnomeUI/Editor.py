@@ -237,7 +237,6 @@ class Date (BaseField):
     
     def create_widget (self, h):
         hbox = GtkHBox (FALSE, 5)
-        #hbox.set_border_width (5)
 
         self.day = GtkEntry ()
         (width, height) = self.day.size_request ()
