@@ -22,4 +22,3 @@ todo.pdf: $(TEX)
 
 remote: all
 	rsync *.txt *.pdf $(REMOTE)/design
-	rsync list-documents.sh $(REMOTE)
