@@ -33,7 +33,7 @@ Config.define ('base/keyformat', """ Style of generated keys """,
 
 # --------------------------------------------------
 
-Config.set ('base/keyformat', 'Short')
+Config.set ('base/keyformat', 'Default')
 
 # Available fields
 

@@ -111,7 +111,7 @@ def generate_key (entry, table):
 	            
     return Key.Key (table, key)
 
-Autoload.register ('keys', 'Short', generate_key)
+Autoload.register ('keys', 'Default', generate_key)
 
 
 class StringStream:

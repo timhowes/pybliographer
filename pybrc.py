@@ -27,7 +27,7 @@ Autoload.preregister ('output', 'LaTeX', 'Pyblio.Output.LaTeX')
 
 # define key formats
 
-Autoload.preregister ('key', 'Short', 'Pyblio.Utils')
+Autoload.preregister ('key', 'Default', 'Pyblio.Utils')
 
 # Parse the configuration directory
 
