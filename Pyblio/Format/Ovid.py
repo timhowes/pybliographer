@@ -32,19 +32,7 @@ long_month = {"Jan":'January',   "Feb":'February', "Mar":'March',
               "Jul":'July',      "Aug":'August',   "Sep":'September',
               "Oct":'October',   "Nov":'November', "Dec":'December'}
 
-source_obj = re.compile(r"""
-    (.*).                  # Journal
-    \s+([^(]*)             # volume,
-    (?:\s+no[.]([^,]*),)*  # number
-    (?:\s+pt[.]([^,]*),)*  # part
-    \s+                    # separator
-       (\d*)\s*            # day
-       ([a-zA-Z\-.]*)[.]*  # month
-       \s*(\d\d\d\d),      # year
-    \s+pp[.]([^.]*)[.]     # pages
-    \s([^,]*),*            # Publisher
-    ([^.]*).               # Address
-    """,re.VERBOSE)
+source_obj = re.compile ('([^\.]+)\.\s*(\w+)\((\w+)\):(\w+),\s*(\d+)\s*(\w+)')
 
 pages_obj = re.compile(r".*(\s+pp[.]([0-9\-]+)[.\s]*)")
 year_obj  = re.compile(r".*(\s*(\d\d\d\d),)")
@@ -58,22 +46,13 @@ def parse_so(dict):
     dict ["journal"] = so_match.group(1)
     dict ["volume"]  = so_match.group(2)
     dict ["number"]  = so_match.group(3)
-    dict ["part"]    = so_match.group(4)
-    dict ["year"]    = so_match.group(7)
+    dict ["pages"]   = so_match.group(4)
+    dict ["year"]    = so_match.group(5)
     dict ["month"]   = string.replace(so_match.group(6),'.','')
     
     if len (dict ["month"]) == 3:
         dict ["month"] = long_month [dict ["month"]]
         
-    dict["pages"] = string.replace(so_match.group(8),'-','--')
-    
-    if so_match.group(10):
-        dict["pubadd"] = string.lstrip(so_match.group(10))
-        dict["publisher"] = string.replace(so_match.group(9),"Publisher: ","")
-    else:
-        dict["pubadd"] = so_match.group(9)
-        dict["publisher"] = ""
-    
     return dict
 
 def parse2_so(dict):
@@ -114,7 +93,7 @@ def parse2_so(dict):
 subs_pat   = re.compile(r"\s{2,}")
 search_pat = re.compile(r"\n[A-Z]\w+(?:\s+\w+)*?\n[ ]{2,2}")
 
-ovid2dict = {"Accession Number":"ui", "Author":"author", "Editor":"editor",
+ovid2dict = {"Accession Number":"ui", "Authors":"author", "Editor":"editor",
              "Source":"source", "Abstract":"abstract", "Title":"title",
              "Subject Headings":"keywords", "Corporate Author":"corp_auth",
              "Country of Publication":"cop"}
@@ -126,7 +105,7 @@ def get_entry (entry):
     entry = "\n" + entry
 
     # This is the list of entries actually parsed if present
-    tofind = ["Accession Number", "Author", "Editor", "Title", "Source",
+    tofind = ["Accession Number", "Authors", "Editor", "Title", "Source",
               "Abstract", "Subject Headings"]
 
     for field in tofind:
@@ -296,20 +275,20 @@ class Ovid (Base.DataBase):
                     val.append (Fields.Author ((None, first, last, None)))
                     
             elif ftype == Types.TypeDate:
-                # Date
                 try:
-                    val = Fields.Date (int (dict [f]))
+                    # Date
+                    val = Fields.Date (dict [f])
                 except ValueError:
-                    val = Fields.Text (dict [f])
+                    val = None
             else:
                 # Any other text
                 val = Fields.Text (dict [f])
 
-
-            entrydict [f] = val
+            if val:
+                entrydict [f] = val
 
         fullkey = Base.Key (self, key)
-        self [fullkey] = Base.Entry (fullkey, key, type, entrydict)
+        self [fullkey] = Base.Entry (fullkey, type, entrydict)
 
 
 def my_open (entity, check):

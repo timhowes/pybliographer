@@ -19,7 +19,9 @@
 # 
 # $Id$
 
-import os, string, re
+import os, string, re, gettext
+
+_ = gettext.gettext
 
 class Loader:
     ''' An object containing the description of a loadable object '''
@@ -52,7 +54,7 @@ class Loader:
         try:
             exec ('import ' + self.module)
         except ImportError, err:
-            print "warning: can't import %s: %s" % \
+            print _("warning: can't import %s: %s") % \
                   (self.module, str (err))
             return 0
         

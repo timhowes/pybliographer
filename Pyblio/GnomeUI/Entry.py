@@ -52,7 +52,7 @@ class NativeEditor (GtkDialog):
         
         GtkDialog.__init__ (self)
 
-        self.set_title (_("Native edition of field `%s'") % entry.field)
+        self.set_title (_("Native editing of field `%s'") % entry.field)
         self.set_modal (TRUE)
         self.set_usize (400, 200)
         
@@ -201,7 +201,7 @@ class BasicEditor (GtkHBox):
 
     def modified_cb (self, * arg):
         ''' called when the textual entry is modified. This discards the
-        native edition '''
+        native editing '''
         
         if not self.__in_fill:
             self.modified = 0
@@ -659,7 +659,7 @@ class Entry (GtkVBox):
             crossref = self.database [Base.Key (self.entry.key.base, name)]
         except KeyError:
             d = GnomeErrorDialog \
-                (_("Cross-Reference `%s' is unexistant in the database") % cr)
+                (_("Cross-Reference `%s' is unexistent in the database") % cr)
             d.run_and_close ()
             return
         
@@ -701,7 +701,7 @@ class Entry (GtkVBox):
             crossref = self.database [Base.Key (self.entry.key.base, name)]
         except KeyError:
             d = GnomeErrorDialog \
-                (_("Cross-Reference `%s' is unexistant in the database") % cr)
+                (_("Cross-Reference `%s' is unexistent in the database") % cr)
             d.run_and_close ()
             return
 
@@ -991,7 +991,7 @@ class EntryDialog (GtkDialog):
                                                   cr)]
                 except KeyError:
                     d = GnomeErrorDialog (
-                        _("Cross-Reference `%s' is unexistant in the database") % cr)
+                        _("Cross-Reference `%s' is unexistent in the database") % cr)
                     d.run_and_close ()
                     return
                 

@@ -26,6 +26,9 @@ from types import *
 
 from Pyblio import Config
 
+import gettext
+_ = gettext.gettext
+
 ''' This Module contains the base classes one might want to inherit
 from in order to provide a new database format '''
 
@@ -86,7 +89,7 @@ class Key:
 		return
 
 	def __repr__ (self):
-		return "Key (%s, %s)" % (`self.base`, `self.key`)
+		return 'Key (%s, %s)' % (`self.base`, `self.key`)
 	
 	def __str__ (self):
 		if self.base:
@@ -112,7 +115,7 @@ class Entry:
 	'''
 	A database entry. It behaves like a dictionnary, which
 	returns an instance of Description for each key. For example,
-	entry ['author'] is expected to return a Types.AuthorGroup
+	entry [\'author\'] is expected to return a Types.AuthorGroup
 	instance.
 
 	Each entry class must define an unique ID, which is used
@@ -182,7 +185,7 @@ class Entry:
 			if self.crossref.has_key (key):
 				return self.crossref.text (key)
 			
-		raise KeyError, "entry has no key `%s'" % key
+		raise KeyError, _("entry has no key `%s'") % key
 
 	
 	def get_native (self, key):
@@ -238,7 +241,7 @@ class Entry:
 
 
 	def __repr__ (self):
-		return "<entry `" + self.key.key + "'>"
+		return '<entry `' + self.key.key + '\'>'
 
 
 	def __str__ (self):
@@ -266,8 +269,8 @@ class Entry:
 				dico.remove (lcname)
 			except ValueError:
 				raise ValueError,\
-				      "error: field `%s' appears more than once in " +\
-				      "the definition of `%s'" % (name, tp)
+				      _("error: field `%s' appears more than once in the definition of `%s'") \
+				      % (name, tp)
 			
 		for f in dico:
 			text = text + '  %-14s ' % f
@@ -325,13 +328,13 @@ class DataBase:
 		
 		# generate a new key
 		while (not name) or self.has_key (key):
-			name = "entry-%d" % self.__keyid
+			name = 'entry-%d' % self.__keyid
 			key = Key (self, name)
 			
 			self.__keyid = self.__keyid + 1
 
 		# get the first type
-		type = Config.get ("base/defaulttype").data
+		type = Config.get ('base/defaulttype').data
 
 		# return the new entry
 		return Entry (key, type)
@@ -365,8 +368,8 @@ class DataBase:
 		return len (self.keys ())
 
 	def __repr__ (self):
-		return "<generic bibliographic database (" + `len (self)` + \
-		       " entries)>"
+		return '<generic bibliographic database (' + `len (self)` + \
+		       ' entries)>'
 		
 
 	def where (self, test):
@@ -395,7 +398,7 @@ class DataBase:
 	def update (self):
 		''' Updates the Entries stored in the database '''
 		
-		raise IOError, "no update method defined"
+		raise IOError, _("no update method defined")
 		return
 
 
@@ -451,18 +454,18 @@ Pyblio.Help.register ('references', '''
 References are generic holders of subsets or complete databases. One
 can apply several method on a reference :
 
- - ref.add (base, items) : adds `items' from a given `base' in the
+ - ref.add (base, items) : adds `items\' from a given `base\' in the
    reference
  
- - ref.foreach (method, argument) : calls `method' on every entry
+ - ref.foreach (method, argument) : calls `method\' on every entry
  - ref.where ( condition ) : returns the reference of entries matching
    the condition
 
  - ref.bases () : a list of all the bases that compose the reference
  - ref.refs (base) : entries from a given database
- - ref.base_foreach (base) : like `foreach' but only on a given database
+ - ref.base_foreach (base) : like `foreach\' but only on a given database
 
-In addition, references can be merged with `+'.
+In addition, references can be merged with `+\'.
 ''')
 
 
@@ -632,7 +635,7 @@ class Reference (DataBase):
 		if not self.has_key (key):
 			# check the database
 			if not self.__bases.has_key (key.base):
-				raise KeyError, "database `%s' is unknown in this Reference" \
+				raise KeyError, + _("database `%s' is unknown in this Reference") \
 				      % key.base
 			
 			self.__refs.append (key)
@@ -656,7 +659,7 @@ class Reference (DataBase):
 			return
 		
 		# else, raise an error
-		raise IOError, "can't update a database of type Reference ()"
+		raise IOError, _("can't update a database of type Reference ()")
 	
 
 	def where (self, test):
@@ -675,4 +678,4 @@ class Reference (DataBase):
 	def __repr__ (self):
 		''' Representation of the database '''
 		
-		return "Reference (<...%d entries...>)" % len (self.keys ())
+		return 'Reference (<...%d entries...>)' % len (self.keys ())

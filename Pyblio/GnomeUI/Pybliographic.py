@@ -699,7 +699,7 @@ class Pybliographic (GnomeApp):
         selection = self.database.selection
 
         if not self.database.data.has_property ('add'):
-            d = GnomeErrorDialog (_("edition is disabled in this database"), self)
+            d = GnomeErrorDialog (_("editing is disabled in this database"), self)
             d.run_and_close ()
             return
         

@@ -23,9 +23,9 @@ import string
 
 from Pyblio import Base, Autoload, Open
 
-""" This is a simple opener that reads a file containing references to
+''' This is a simple opener that reads a file containing references to
 other databases (one per line) and returns a reference on this group
-of databases """
+of databases '''
 
 def fileopen (entity, check):
 
