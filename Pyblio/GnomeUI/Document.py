@@ -31,6 +31,7 @@ from Pyblio.GnomeUI import Search, Format
 from Pyblio.GnomeUI.Sort import SortDialog
 from Pyblio.GnomeUI.Config import ConfigDialog
 from Pyblio.GnomeUI.Fields import FieldsDialog, EntriesDialog
+from Pyblio.GnomeUI.Query import QueryUI
 
 from Pyblio import Connector, Open, Exceptions, Selection, Sort, Base, Config
 from Pyblio import version, Fields, Types, Query
@@ -53,9 +54,17 @@ class Document (Connector.Publisher):
             UIINFO_MENU_NEW_ITEM     (_("_New"), None, self.new_document),
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
             UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
-            UIINFO_SUBTREE           (_("Online Query"), [UIINFO_ITEM  (_("PubMed/Medline..."),None, self.query_pubmed),
-                                                          UIINFO_ITEM  (_("SPIRES Server..."),None, self.query_spires),
-                                                          UIINFO_ITEM  (_("Z39.50 Server..."),None, self.query_z3950)]),
+            UIINFO_SUBTREE           (_("Online Query"),
+                                      [UIINFO_ITEM (_("PubMed/Medline..."),
+                                                    None, self.query_pubmed),
+                                       UIINFO_ITEM  (_("SPIRES Server..."),
+                                                     None, self.query_spires),
+                                       UIINFO_ITEM  (_("Z39.50 Server..."),
+                                                     None, self.query_z3950),
+                                       UIINFO_ITEM  (_("Generic Server..."),
+                                                     None, self.generic_query)
+                                       ]),
+
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -325,6 +334,11 @@ class Document (Connector.Publisher):
         
         self.issue ('new-document', self)
         return
+
+
+    def generic_query (self, * arg):
+        ''' '''
+        QueryUI (self.w)
 
 
     def query_pubmed (self, * arg):
