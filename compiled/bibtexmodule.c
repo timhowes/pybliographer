@@ -474,7 +474,7 @@ bib_next (PyObject * self, PyObject * args)
     BibtexSource * file;
     PyBibtexSource_Object * file_obj;
 
-    PyObject * dico, * tmp, * tmp2;
+    PyObject * dico, * tmp, * tmp2, * name;
 
     if (! PyArg_ParseTuple(args, "O!:next", & PyBibtexSource_Type, & file_obj))
 	return NULL;
@@ -495,7 +495,14 @@ bib_next (PyObject * self, PyObject * args)
     dico = PyDict_New (); 
     g_hash_table_foreach (ent->table, fill_dico, dico);
 
-    tmp = Py_BuildValue ("ssiiO", ent->name, ent->type, 
+    if (ent->name) {
+      name = PyString_FromString (ent->name);
+    }
+    else {
+      name = Py_None;
+    }
+
+    tmp = Py_BuildValue ("OsiiO", name, ent->type, 
 			 ent->offset, ent->start_line,
 			 dico);
     Py_DECREF (dico);

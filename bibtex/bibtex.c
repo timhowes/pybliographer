@@ -160,19 +160,39 @@ bibtex_source_next_entry (BibtexSource * file,
 				    g_strdup (ent->preamble->value.ref);
 			    }
 			    else {
-				bibtex_error ("%s:%d: entry has weird name", 
-					      file->name, file->line);
+				if (file->strict) {
+				    bibtex_error ("%s:%d: entry has a weird name", 
+						  file->name, file->line);
+				    bibtex_entry_destroy (ent, TRUE);
+				    file->error = TRUE;
+				
+				    return NULL;
+				}
+				else {
+				    bibtex_warning ("%s:%d: entry has a weird name", 
+						    file->name, file->line);
+				    bibtex_struct_destroy (ent->preamble, TRUE);
+				    ent->preamble = NULL;
+				    ent->name = NULL;
+				}
 			    }
 			}
 			else {
-			    bibtex_error ("%s:%d: entry has no identifier", 
-					  file->name,
-					  file->line);
-			    
-			    bibtex_entry_destroy (ent, TRUE);
-			    file->error = TRUE;
-			    
-			    return NULL;
+			    if (file->strict) {
+				bibtex_error ("%s:%d: entry has no identifier", 
+					      file->name,
+					      file->line);
+				
+				bibtex_entry_destroy (ent, TRUE);
+				file->error = TRUE;
+				
+				return NULL;
+			    }
+			    else {
+				bibtex_warning ("%s:%d: entry has no identifier", 
+						file->name,
+						file->line);
+			    }
 			}
 		    } while (0);
 		}

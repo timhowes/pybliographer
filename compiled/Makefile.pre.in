@@ -195,11 +195,11 @@ $(TARGET):	$(ADDOBJS) lib.a $(PYTHONLIBS) Makefile $(BASELIB)
 		 -o $(TARGET)
 
 install:	sharedmods
-		if test ! -d $(pybdir) ; then \
-			mkdir $(pybdir) ; else true ; fi
+		if test ! -d $(DESTDIR)$(pybdir) ; then \
+			mkdir $(DESTDIR)$(pybdir) ; else true ; fi
 		-for i in X $(SHAREDMODS); do \
 			if test $$i != X; \
-			then $(INSTALL_SHARED) $$i $(pybdir)/$$i; \
+			then $(INSTALL_SHARED) $$i $(DESTDIR)$(pybdir)/$$i; \
 			fi; \
 		done
 
