@@ -12,5 +12,5 @@ Simple install procedure
 For additional configuration options, please run `configure --help'
 
 Once the program is installed, you may want to install a site specific
-configuration file in $(libdir)/pybliographer. Please have a look at
+configuration file in $(datadir)/pybliographer. Please have a look at
 `pybrc.py' to find an example.

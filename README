@@ -58,20 +58,8 @@ be present :
    (assuming recode has been installed in /usr or /usr/local...)
 
 
- - If the interface locks during search or open operations, upgrade
-   your versions of Gtk (>= 1.2.6) and Gnome-Python (>= 1.0.50).
-
-   As a temporary workaround, create ~/.pybrc.py containing the
-   following lines :
-
-from Pyblio import Config
-
-Config.set ("gnomeui/threads", 0)
-
-   ...or add this to the global configuration file (which is 
-   $prefix/share/pybliographer/pybrc.py)
-
-   
-
+ - If the interface locks during search or open operations, or if you
+   experience core dumps and random crashes, upgrade
+   your versions of Gtk (>= 1.2.6) and Gnome-Python (>= 1.0.52).
 
 
