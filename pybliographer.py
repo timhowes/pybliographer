@@ -133,9 +133,6 @@ if not quiet:
 
 user_global = {'__builtins__' : __builtins__,
 	       '__name__'     : progname,
-	       'pyb_prefix'   : data_pybdir,
-	       'quiet'        : quiet,
-	       'version'      : version
 	       }
 
 user_local  = {}

@@ -1,6 +1,6 @@
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998 Frederic GOBRY
+# Copyright (C) 1998-2000 Frederic GOBRY
 # Email : gobry@idiap.ch
 # 	   
 # This program is free software; you can redistribute it and/or
@@ -30,6 +30,7 @@ SUBDIRS = 	Pyblio 		\
 		.		\
 		scripts		\
 		tests		\
+		Styles		\
 		doc
 
 

@@ -3,7 +3,7 @@
 from Pyblio.Types  import *
 from Pyblio.Fields import *
 
-from Pyblio import Autoload, Config
+from Pyblio import Autoload, Config, version
 
 from Pyblio.TextUI import *
 
@@ -21,9 +21,7 @@ Autoload.preregister ('format', 'Refer',   'Pyblio.Format.Refer',   '.*\.refer')
 
 # define styles and outputs
 
-Autoload.preregister ('style', 'Alpha',  'Pyblio.Style.alpha')
-Autoload.preregister ('style', 'Abbrv',  'Pyblio.Style.alpha')
-Autoload.preregister ('style', 'Custom', 'Pyblio.Style.custom')
+Autoload.preregister ('style', 'Generic', 'Pyblio.Style.Generic')
 
 Autoload.preregister ('output', 'Text',  'Pyblio.Output.text')
 Autoload.preregister ('output', 'Raw',   'Pyblio.Output.raw')
@@ -36,7 +34,7 @@ Autoload.preregister ('output', 'LaTeX', 'Pyblio.Output.LaTeX')
 rootconfig = os.path.join ('Pyblio', 'ConfDir')
 
 if not os.path.isdir (rootconfig):
-    rootconfig = os.path.join (pyb_prefix, 'Pyblio', 'ConfDir')
+    rootconfig = os.path.join (version.prefix, 'Pyblio', 'ConfDir')
     
 if os.path.isdir (rootconfig):
     Config.parse_directory (rootconfig)
