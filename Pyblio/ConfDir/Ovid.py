@@ -17,7 +17,6 @@ Config.set ('ovid/mapping', {
     'title'    : ('title',    SimpleField),
     'authors'  : ('author',   AuthorField),
     'abstract' : ('abstract', SimpleField),
-    
-    'source'   : (('journal', 'volume', 'number', 'pages', 'pubdate'),
+    'source'   : (('journal', 'volume', 'number', 'pages', 'date'),
                   SourceField),
     })
