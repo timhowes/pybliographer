@@ -22,7 +22,7 @@
 # $Id$
 
 import os, sys, string
-from Pyblio import Config
+from Pyblio import Config, Exceptions
 
 # check the arguments
 if len (sys.argv) < 2:
@@ -56,7 +56,7 @@ for dir in sys.argv [1:]:
         try:
             b = bibopen (f)
             print "file `%s' is ok [%d entries]" % (f, len (b))
-        except (IOError, KeyError), err:
+        except (Exceptions.ParserError, KeyError), err:
             broken.append (str (err))
 
 # write the error messages (expected to be well formated)
