@@ -32,6 +32,11 @@ class Ovid (Base.DataBase):
 
     id = 'Ovid'
     
+    properties = {
+        'change_id'   : 0,
+        'change_type' : 0
+        }
+
     def __init__ (self, url):
         Base.DataBase.__init__ (self, url)
 

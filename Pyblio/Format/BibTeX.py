@@ -215,18 +215,6 @@ class DataBase (Base.DataBase):
 
     id = 'BibTeX'
 
-    properties = {
-	    'edit'        : 1,
-	    'change_id'   : 1,
-	    'change_type' : 1,
-	    'add'         : 1,
-	    'remove'      : 1,
-	    'has_extra'   : 1,
-	    'crossref'    : 1,
-	    'native'      : 1,
-	    }
-
-
     def __init__ (self, basename):
 	''' Initialisation '''
 
@@ -343,25 +331,6 @@ class DataBase (Base.DataBase):
 
 	return
 
-
-    def update (self):
-	''' save the database '''
-
-	if self.key.url [0] != 'file':
-	    raise IOError, "can't update the remote database `%s'" % self.url
-
-	name = self.key.url [2]
-
-	# backup file
-	os.rename (name, name + '.bak')
-
-	tmpfile = open (name, 'w')
-
-	my_write (self, tmpfile)
-	tmpfile.close ()
-
-	self.__parsefile__ ()
-	return
 
 
 # ==================================================

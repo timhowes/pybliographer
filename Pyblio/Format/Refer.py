@@ -31,6 +31,11 @@ tag_re = re.compile ('%(.) (.*)')
 class ReferDB (Base.DataBase):
 
     id = 'Refer'
+
+    properties = {
+        'change_id'   : 0,
+        'change_type' : 0
+        }
     
     def __init__ (self, url):
         Base.DataBase.__init__ (self, url)
@@ -204,8 +209,8 @@ def iterator (url):
 def opener (url, check):
 	
     base = None
-	
-    if (not check) or (url [2] [-6:] == '.refer'):
+
+    if (not check) or (url.url [2] [-6:] == '.refer'):
         base = ReferDB (url)
 		
     return base
