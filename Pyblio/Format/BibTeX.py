@@ -595,6 +595,10 @@ def writer (it, output):
 
 	    output.write ('\n')
 
+    # write the crossreferenced ones
+    for entry in refere.values ():
+        entry_write (entry, output)
+    
     # write the entries with no cross references
     entry = it.first ()
     while entry:
@@ -602,10 +606,6 @@ def writer (it, output):
             entry_write (entry, output)
 	entry = it.next ()
 
-    # write the crossreferenced ones
-    for entry in refere.values ():
-        entry_write (entry, output)
-    
     return
 
 
