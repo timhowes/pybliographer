@@ -16,6 +16,11 @@
   <class>GnomeDialog</class>
   <name>query</name>
   <visible>False</visible>
+  <signal>
+    <name>destroy</name>
+    <handler>destroy</handler>
+    <last_modification_time>Fri, 16 Aug 2002 14:38:42 GMT</last_modification_time>
+  </signal>
   <title>Query</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
@@ -99,8 +104,8 @@
       <spacing>5</spacing>
       <child>
 	<padding>0</padding>
-	<expand>True</expand>
-	<fill>True</fill>
+	<expand>False</expand>
+	<fill>False</fill>
       </child>
 
       <widget>
@@ -157,8 +162,8 @@
       <name>hseparator1</name>
       <child>
 	<padding>0</padding>
-	<expand>True</expand>
-	<fill>True</fill>
+	<expand>False</expand>
+	<fill>False</fill>
       </child>
     </widget>
 

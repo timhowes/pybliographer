@@ -23,6 +23,8 @@
 
 from __future__ import nested_scopes
 
+import GTK
+
 from gtk import *
 from gnome.ui import *
 from gnome import config
@@ -48,15 +50,25 @@ class QueryUI:
         ''' Create a generic Query interface '''
         
         self.xml = GladeXML (path, 'query')
-        self.xml.signal_autoconnect ({ 'search' : self.search,
-                                       'cancel' : self.cancel,
-                                       'edit'   : self.cnx_edit })
+        self.xml.signal_autoconnect ({ 'search'  : self.search,
+                                       'cancel'  : self.cancel,
+                                       'destroy' : self.close,
+                                       'edit'    : self.cnx_edit })
         
         self.w_search = self.xml.get_widget ('query')
         self.w_cnx    = None
 
         if parent:
             self.w_search.set_parent (parent)
+
+
+        ui_width  = config.get_int ('Pybliographic/Query/Width=-1')
+        ui_height = config.get_int ('Pybliographic/Query/Height=-1')
+
+        # set window size
+        if ui_width != -1 and ui_height != -1:
+            self.w_search.set_usize(ui_width, ui_height)
+
 
         # get the previous connection settings
         self.current_cnx = None
@@ -184,7 +196,16 @@ class QueryUI:
         self.w_search.destroy ()
         return
 
-
+    def close (self, * arg):
+        
+        # save the size of the window
+        alloc = self.w_search.get_allocation ()
+        config.set_int ('Pybliographic/Query/Width',  alloc [2])
+        config.set_int ('Pybliographic/Query/Height', alloc [3])
+        config.sync ()
+        
+        self.w_cnx = None
+        return
 
     def cnx_validate (self, * arg):
         self.w_cnx.destroy ()
@@ -320,19 +341,81 @@ class QFields (QueryEngine.QFields):
 
     def display (self, box):
 
-        vbox = GtkVBox ()
+        self.current = []
 
+        vbox = GtkVBox (spacing = 5)
+        
+        # the fields are displayed in a table
+        self.w_table = GtkTable (1, 3)
+        vbox.pack_start (self.w_table)
+        
         if self.title:
-            frame = GtkFrame (self.title.encode ('latin-1'))
             vbox.set_border_width (5)
-            
+
+            frame = GtkFrame (self.title.encode ('latin-1'))
             frame.add (vbox)
         else:
             frame = vbox
 
+        # add the function buttons below
+        hbox = GtkHButtonBox ()
+        hbox.set_layout_default (GTK.BUTTONBOX_END)
+        hbox.set_spacing_default (5)
+        
+        hbox.pack_end (GtkButton ("Add"))
+        hbox.pack_end (GtkButton ("Remove"))
+
+        # ...and add a first field, so that it does not look too
+        # strange.
+        self.set_field (0)
+
+        vbox.pack_start (hbox)
         box.pack_start (frame)
         return
 
+
+    def set_field (self, row):
+
+        # Operator menu
+        o_holder = GtkOptionMenu ()
+        self.w_table.attach (o_holder, 1, 2, row, row + 1)
+
+        # Field menu
+        holder = GtkOptionMenu ()
+        menu   = GtkMenu ()
+        
+        holder.set_menu (menu)
+
+        for item in self.content:
+            w = GtkMenuItem (item.title.encode ('latin-1'))
+
+            w.connect ('activate', self.activate_field, item, o_holder)
+            menu.add (w)
+        
+        self.w_table.attach (holder, 0, 1, row, row + 1)
+
+        # ...and attach the entry widget
+        text = GtkEntry ()
+        self.w_table.attach (text, 2, 3, row, row + 1)
+
+        # display the first field by default
+        holder.set_history (0)
+        self.activate_field (None, self.content [0], o_holder)
+        return
+
+
+    def activate_field (self, w, field, holder):
+        menu   = GtkMenu ()
+        holder.set_menu (menu)
+
+        for op in field.operators:
+            w = GtkMenuItem (op.title.encode ('latin-1'))
+            menu.add (w)
+
+        menu.show_all ()
+        
+        holder.set_history (0)
+        return
 
 
 class QSelection (QueryEngine.QSelection):
@@ -353,9 +436,11 @@ class QSelection (QueryEngine.QSelection):
         holder.set_menu (menu)
 
         for item in self.content:
-            w = GtkMenuItem (item [0].encode ('latin-1'))
+            w = GtkMenuItem (item [1].encode ('latin-1'))
             menu.add (w)
 
+        holder.set_history (0)
+        
         hbox.pack_start (holder, expand = TRUE, fill = TRUE)
         box.pack_start (hbox, expand = TRUE, fill = TRUE)
         return
