@@ -1,6 +1,9 @@
 2003-08-05  Frederic Gobry  <gobry@puck.ch>
 
-	* Pyblio/GnomeUI/Index.py: fixed the contextual popup menu
+	* Pyblio/GnomeUI/Editor.py: allow window shrinking
+
+	* Pyblio/GnomeUI/Index.py: fixed the contextual popup menu and the
+	size of the columns.
 
 	* Pyblio/GnomeUI/Document.py: fixed the About window and Previous
 	documents menu.

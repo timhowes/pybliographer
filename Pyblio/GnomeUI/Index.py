@@ -24,7 +24,6 @@
 #
 #  - DnD with the world
 #  - Copy/Paste with the world
-#  - column width storage
 
 
 ''' Main index containing the columned view of the entries '''
@@ -70,6 +69,13 @@ class Index (Connector.Publisher):
             col.set_resizable (True)
             col.set_clickable (True)
 
+            k = '/apps/pybliographic/columns/%s' % self.fields [i]
+            w = Utils.config.get_int (k)
+
+            if w:
+                col.set_sizing (gtk.TREE_VIEW_COLUMN_FIXED)
+                col.set_fixed_width (w)
+            
             col.connect ('clicked', self.click_column, i)
             
             self.list.append_column (col)
@@ -348,11 +354,6 @@ class Index (Connector.Publisher):
         return
 
 
-    def resize_column (self, clist, column, width):
-        self.field_width [column] = width
-        return
-
-    
     def select_row (self, sel, * data):
         ''' handler for row selection '''
 
@@ -431,7 +432,9 @@ class Index (Connector.Publisher):
 
     def update_configuration (self):
 
-#        for i in range (len (self.fields)):
-#            Utils.config.set_int ('/apps/pybliographic/columns/%s' % self.fields [i],
-#                                  self.field_width [i])
+        for i in range (len (self.fields)):
+            w = self.list.get_column (i).get_width ()
+            k = '/apps/pybliographic/columns/%s' % self.fields [i]
+            
+            Utils.config.set_int (k, w)
         return

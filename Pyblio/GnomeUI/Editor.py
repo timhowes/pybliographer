@@ -20,11 +20,6 @@
 # $Id$
 
 
-# TO FIX
-#
-#  - allow window srinking
-
-
 import string, re
 from gnome import ui
 import gtk
@@ -801,8 +796,9 @@ class Editor (Connector.Publisher):
 
         # set window size
         if ui_width != -1 and ui_height != -1:
-            self.editor.w.set_size_request (ui_width, ui_height)
-            
+            self.w.set_default_size (ui_width, ui_height)
+            self.w.resize (ui_width, ui_height)
+        
         self.editor.w.show ()
         return
 
@@ -820,12 +816,12 @@ class Editor (Connector.Publisher):
     def save_size (self):
         if not self.editor: return
         
-        alloc = self.editor.w.get_allocation ()
+        w, h = self.w.get_size ()
         if self.native_mode: field = 'native'
         else:                field = 'editor'
 
-        Utils.config.set_int ('/apps/pybliographic/%s/width' % field,  alloc [2])
-        Utils.config.set_int ('/apps/pybliographic/%s/height' % field, alloc [3])
+        Utils.config.set_int ('/apps/pybliographic/%s/width' % field,  w)
+        Utils.config.set_int ('/apps/pybliographic/%s/height' % field, h)
         return
 
     
