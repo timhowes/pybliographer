@@ -32,7 +32,9 @@ key_map = {
     'DE' : ('keywords', ' '),
     'IS' : ('number', ' ; '),
     'LA' : ('language', ' ; '),
+    'PA' : ('address', ' ; '),
     'PD' : ('month', ' ; '),
+    'PU' : ('publisher', ' ; '),
     'PY' : ('date', ' ; '),
     'SE' : ('series', ' '),
     'SN' : ('issn', ' ; '),
@@ -145,7 +147,8 @@ class IsifileIterator(Iterator.Iterator):
             else:
                 print 'Warning: Unknown type of entry (%s) -- may need editing.' %(
                     lines[key])
-            type = Types.get_entry ('article')
+        
+        type = Types.get_entry ('article')
             
 
         key = 'AU'
@@ -226,6 +229,9 @@ class Isifile (Base.DataBase):
         self.postamble = iter.extraneous    
         return
 
+
+re_page = re.compile (r'\s*-+\s*')
+
 def writer (iter, output_stream, preamble=None, postamble = None):
     '''Write data given by an iterator, as well as an
     optional pre- and postamble, onto an output stream.'''
@@ -277,7 +283,7 @@ def writer (iter, output_stream, preamble=None, postamble = None):
         fld = 'pages'
         if entry.has_key (fld):
             for pair in string.split (str(entry[fld]), ' ; '):
-                beginpg, endpg = string.split(pair, ' -- ')
+                beginpg, endpg = re_page.split(pair)
                 output_write('BP', beginpg)
                 output_write('EP', endpg)
             del remaining[fld]
