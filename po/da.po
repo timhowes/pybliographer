@@ -60,7 +60,7 @@ msgstr "Base"
 
 #: Pyblio/ConfDir/Base.py:16
 msgid "Elementary configuration"
-msgstr ""
+msgstr "Elementær konfiguration"
 
 #: Pyblio/ConfDir/Base.py:19
 msgid "Advertise"
@@ -92,15 +92,15 @@ msgstr "Standard-type"
 
 #: Pyblio/ConfDir/Base.py:35
 msgid "Default type for a newly created entry"
-msgstr ""
+msgstr "Standard type for en nyligt oprette indgang"
 
 #: Pyblio/ConfDir/Base.py:39
 msgid "LyX Path"
-msgstr ""
+msgstr "LyX sti"
 
 #: Pyblio/ConfDir/Base.py:40
 msgid "Path to the LyX server"
-msgstr ""
+msgstr "Sti til LyX serveren"
 
 #: Pyblio/ConfDir/Base.py:41
 msgid "Path"
@@ -163,7 +163,7 @@ msgstr "Titel"
 
 #: Pyblio/ConfDir/Base.py:54
 msgid "Specific Title"
-msgstr ""
+msgstr "Specifik titel"
 
 #: Pyblio/ConfDir/Base.py:55
 msgid "Journal"
@@ -191,7 +191,7 @@ msgstr "Ejerskab"
 
 #: Pyblio/ConfDir/Base.py:61
 msgid "Series"
-msgstr ""
+msgstr "Serier"
 
 #: Pyblio/ConfDir/Base.py:62
 msgid "Editor"
@@ -223,7 +223,7 @@ msgstr "Skole"
 
 #: Pyblio/ConfDir/Base.py:69
 msgid "Organization"
-msgstr ""
+msgstr "Organisation"
 
 #: Pyblio/ConfDir/Base.py:70
 msgid "Location"
@@ -255,11 +255,11 @@ msgstr "Dato"
 
 #: Pyblio/ConfDir/Base.py:77
 msgid "# Series"
-msgstr ""
+msgstr "Antal serier"
 
 #: Pyblio/ConfDir/Base.py:78
 msgid "Conference Place"
-msgstr ""
+msgstr "Konference-sted"
 
 #: Pyblio/ConfDir/Base.py:79
 msgid "Cote"
@@ -291,7 +291,7 @@ msgstr "Sprog"
 
 #: Pyblio/ConfDir/Base.py:86
 msgid "How Published"
-msgstr ""
+msgstr "Publiceringsmåde"
 
 #: Pyblio/ConfDir/Base.py:87
 msgid "To Appear"
@@ -315,7 +315,7 @@ msgstr "Nøgleord"
 
 #: Pyblio/ConfDir/Base.py:92
 msgid "Abstract"
-msgstr ""
+msgstr "Sammendrag"
 
 #: Pyblio/ConfDir/Base.py:93
 msgid "Remarks"
@@ -351,11 +351,11 @@ msgstr ""
 
 #: Pyblio/ConfDir/Base.py:110
 msgid "In Book"
-msgstr ""
+msgstr "I bog"
 
 #: Pyblio/ConfDir/Base.py:114
 msgid "In Collection"
-msgstr ""
+msgstr "I samling"
 
 #: Pyblio/ConfDir/Base.py:119
 msgid "In Proceedings"
@@ -363,7 +363,7 @@ msgstr ""
 
 #: Pyblio/ConfDir/Base.py:125
 msgid "Manual"
-msgstr ""
+msgstr "Håndbog"
 
 #: Pyblio/ConfDir/Base.py:129
 msgid "Masters Thesis"
@@ -375,7 +375,7 @@ msgstr "Diverse"
 
 #: Pyblio/ConfDir/Base.py:137
 msgid "PhD Thesis"
-msgstr ""
+msgstr "Phd afhandling"
 
 #: Pyblio/ConfDir/Base.py:141
 msgid "Proceedings"
@@ -383,19 +383,19 @@ msgstr ""
 
 #: Pyblio/ConfDir/Base.py:147
 msgid "Technical Report"
-msgstr ""
+msgstr "Teknisk rapport"
 
 #: Pyblio/ConfDir/Base.py:151
 msgid "Unpublished"
-msgstr ""
+msgstr "Upubliceret"
 
 #: Pyblio/ConfDir/Ovid.py:9
 msgid "Default type"
-msgstr ""
+msgstr "Standard type"
 
 #: Pyblio/ConfDir/Ovid.py:10
 msgid "Default type for an Ovid entry"
-msgstr ""
+msgstr "Standard type for en Ovid indgang"
 
 #: Pyblio/ConfDir/Ovid.py:15 Pyblio/ConfDir/Refer.py:7
 msgid "Mapping"
@@ -415,11 +415,11 @@ msgstr "Gnome"
 
 #: Pyblio/ConfDir/Gnome.py:8
 msgid "Gnome interface configuration"
-msgstr ""
+msgstr "Gnome grænsesnit konfiguration"
 
 #: Pyblio/ConfDir/Gnome.py:11
 msgid "Columns"
-msgstr ""
+msgstr "Kolonner"
 
 #: Pyblio/ConfDir/Gnome.py:12
 msgid "Fields displayed on the main screen of the interface"
@@ -427,43 +427,43 @@ msgstr ""
 
 #: Pyblio/ConfDir/Gnome.py:16
 msgid "Tooltips"
-msgstr ""
+msgstr "Værktøjstips"
 
 #: Pyblio/ConfDir/Gnome.py:17
 msgid "Enable tooltips ?"
-msgstr ""
+msgstr "Aktiver værktøjstips?"
 
 #: Pyblio/ConfDir/Gnome.py:21
 msgid "Native Edit"
-msgstr ""
+msgstr "Almindelig regigering"
 
 #: Pyblio/ConfDir/Gnome.py:22
 msgid "Edit the entries in their native format by default ?"
-msgstr ""
+msgstr "Redigér indgangene i deres eget format som standard?"
 
 #: Pyblio/ConfDir/Gnome.py:23
 msgid "Use native edit by default ?"
-msgstr ""
+msgstr "Brug egen redigering som standard?"
 
 #: Pyblio/ConfDir/Gnome.py:26
 msgid "Searchable"
-msgstr ""
+msgstr "Søgbar"
 
 #: Pyblio/ConfDir/Gnome.py:27
 msgid "Searchable fields"
-msgstr ""
+msgstr "Søgbare felter"
 
 #: Pyblio/ConfDir/Gnome.py:31
 msgid "History Size"
-msgstr ""
+msgstr "Størrelse af historik"
 
 #: Pyblio/ConfDir/Gnome.py:32
 msgid "Size of the history file"
-msgstr ""
+msgstr "Størrelse på historik-fil"
 
 #: Pyblio/ConfDir/Gnome.py:33
 msgid "Number of items"
-msgstr ""
+msgstr "Antal indgange"
 
 #: Pyblio/ConfDir/Medline.py:7
 msgid "Medline Mapping"
@@ -476,54 +476,54 @@ msgstr ""
 #: Pyblio/Autoload.py:57
 #, c-format
 msgid "warning: can't import %s: %s"
-msgstr ""
+msgstr "Advarsel: kan ikke importere %s: %s"
 
 #: Pyblio/Config.py:53
 #, c-format
 msgid "value of `%s' should be of type %s"
-msgstr ""
+msgstr "Værdi af '%s' bør være af type %s"
 
 #: Pyblio/Config.py:200
 msgid "String"
-msgstr ""
+msgstr "Streng"
 
 #: Pyblio/Config.py:210
 msgid "Boolean"
-msgstr ""
+msgstr "Boolsk"
 
 #: Pyblio/Config.py:230
 msgid "Integer"
-msgstr ""
+msgstr "Heltal"
 
 #: Pyblio/Config.py:232
 #, c-format
 msgid "Integer under %d"
-msgstr ""
+msgstr "Heltal under %d"
 
 #: Pyblio/Config.py:234
 #, c-format
 msgid "Integer over %d"
-msgstr ""
+msgstr "Heltal over %d"
 
 #: Pyblio/Config.py:236
 #, c-format
 msgid "Integer between %d and %d"
-msgstr ""
+msgstr "Heltal mellem %d og %d"
 
 #: Pyblio/Config.py:249
 #, c-format
 msgid "Element in `%s'"
-msgstr ""
+msgstr "Indgang i '%s'"
 
 #: Pyblio/Config.py:270
 #, c-format
 msgid "Tuple (%s)"
-msgstr ""
+msgstr "par (%s)"
 
 #: Pyblio/Config.py:292
 #, c-format
 msgid "List (%s)"
-msgstr ""
+msgstr "Liste (%s)"
 
 #: Pyblio/Config.py:318
 #, c-format
@@ -532,30 +532,30 @@ msgstr ""
 
 #: Pyblio/Fields.py:265
 msgid "Illegal year value"
-msgstr ""
+msgstr "Ugyldig værdi for år"
 
 #: Pyblio/Fields.py:269
 msgid "Illegal month value"
-msgstr ""
+msgstr "Ugyldig værdi for måned"
 
 #: Pyblio/Fields.py:273
 msgid "Illegal day value"
-msgstr ""
+msgstr "Ugyldig værdi for dag"
 
 #: Pyblio/Fields.py:438
 #, c-format
 msgid "in %s"
-msgstr ""
+msgstr "i %s"
 
 #: Pyblio/LyX.py:39
 #, c-format
 msgid "no input pipe `%s'"
-msgstr ""
+msgstr "intet inddata rør '%s'"
 
 #: Pyblio/LyX.py:45
 #, c-format
 msgid "no output pipe `%s'"
-msgstr ""
+msgstr "intet uddata rør '%s'"
 
 #: Pyblio/Open.py:97
 #, c-format
@@ -572,7 +572,7 @@ msgstr ""
 #: Pyblio/Open.py:116 Pyblio/Open.py:162
 #, c-format
 msgid "don't know how to open `%s'"
-msgstr ""
+msgstr "Véd ikke hvordan '%s' skal åbnes"
 
 #: Pyblio/Open.py:143
 #, c-format
@@ -583,37 +583,37 @@ msgstr ""
 #: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
 #, c-format
 msgid "key `%s' is malformed"
-msgstr ""
+msgstr "nøgle '%s' er misdannet"
 
 # .././Pyblio/Format/BibTeX.py:366 :387
 #: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
 #, c-format
 msgid "%s:%d: key `%s' already defined"
-msgstr ""
+msgstr "%s:%d: nøgle '%s' allerede defineret"
 
 #: Pyblio/GnomeUI/Editor.py:38
 msgid "Last Name, First Name"
-msgstr ""
+msgstr "Efternavn, fornavn"
 
 #: Pyblio/GnomeUI/Editor.py:39
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: Pyblio/GnomeUI/Editor.py:42
 msgid "Reference"
-msgstr ""
+msgstr "Reference"
 
 #: Pyblio/GnomeUI/Editor.py:258
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: Pyblio/GnomeUI/Editor.py:267
 msgid "Month"
-msgstr ""
+msgstr "Måned"
 
 #: Pyblio/GnomeUI/Editor.py:276
 msgid "Year"
-msgstr ""
+msgstr "År"
 
 #: Pyblio/GnomeUI/Editor.py:301
 msgid "Invalid day field in date"
@@ -625,7 +625,7 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Editor.py:317
 msgid "Invalid year field in date"
-msgstr ""
+msgstr "Ugyldigt felt for år i dato"
 
 #: Pyblio/GnomeUI/Editor.py:426
 msgid "Entry type"
@@ -633,23 +633,23 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Editor.py:469
 msgid "Create Field"
-msgstr ""
+msgstr "Opret felt"
 
 #: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:178
 msgid "Mandatory"
-msgstr ""
+msgstr "Obligatorisk"
 
 #: Pyblio/GnomeUI/Editor.py:534 Pyblio/GnomeUI/Fields.py:179
 msgid "Optional"
-msgstr ""
+msgstr "Valgfrit"
 
 #: Pyblio/GnomeUI/Editor.py:534
 msgid "Extra"
-msgstr ""
+msgstr "Ekstra"
 
 #: Pyblio/GnomeUI/Editor.py:596
 msgid "Invalid key format"
-msgstr ""
+msgstr "Ugyldigt nøgleformat"
 
 #: Pyblio/GnomeUI/Editor.py:604
 #, c-format
@@ -662,7 +662,7 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Editor.py:684
 msgid "Edit entry"
-msgstr ""
+msgstr "Redigér indgang"
 
 # .././Pyblio/GnomeUI/Editor.py:698 :739
 #: Pyblio/GnomeUI/Editor.py:698 Pyblio/GnomeUI/Editor.py:739
@@ -677,7 +677,7 @@ msgstr ""
 #: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
 #: Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
-msgstr ""
+msgstr "Fil"
 
 #: Pyblio/GnomeUI/FileSelector.py:74
 msgid "Bibliography type:"
@@ -685,47 +685,47 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Index.py:66
 msgid "Add..."
-msgstr ""
+msgstr "Tilføj..."
 
 #: Pyblio/GnomeUI/Index.py:67
 msgid "Edit..."
-msgstr ""
+msgstr "Redigér..."
 
 #: Pyblio/GnomeUI/Index.py:68 Pyblio/GnomeUI/Search.py:176
 msgid "Delete"
-msgstr ""
+msgstr "Slet"
 
 #: Pyblio/GnomeUI/Search.py:109
 msgid "Search"
-msgstr ""
+msgstr "Søg"
 
 #: Pyblio/GnomeUI/Fields.py:211 Pyblio/GnomeUI/Search.py:133
 msgid "Field"
-msgstr ""
+msgstr "Felt"
 
 #: Pyblio/GnomeUI/Search.py:134
 msgid "Pattern"
-msgstr ""
+msgstr "Mønster"
 
 #: Pyblio/GnomeUI/Search.py:149
 msgid "Simple Search"
-msgstr ""
+msgstr "Simpel søgning"
 
 #: Pyblio/GnomeUI/Search.py:153
 msgid "Search command:"
-msgstr ""
+msgstr "Søgekommando:"
 
 #: Pyblio/GnomeUI/Search.py:159
 msgid "Expert Search"
-msgstr ""
+msgstr "Avanceret søgning"
 
 #: Pyblio/GnomeUI/Search.py:194
 msgid "Full database"
-msgstr ""
+msgstr "Fuld database"
 
 #: Pyblio/GnomeUI/Search.py:229
 msgid "internal error during evaluation"
-msgstr ""
+msgstr "intern fejl ved evaluering"
 
 #: Pyblio/GnomeUI/Search.py:278
 #, c-format
@@ -736,15 +736,15 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Sort.py:42
 msgid "Select sort criterions"
-msgstr ""
+msgstr "Vælg sorteringskriterier"
 
 #: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort direction"
-msgstr ""
+msgstr "Sorteringsretning"
 
 #: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort criterions"
-msgstr ""
+msgstr "Sorteringskriterier"
 
 #: Pyblio/GnomeUI/Sort.py:66
 msgid "[Entry Type]"
@@ -764,11 +764,11 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Sort.py:97
 msgid "Unselect all"
-msgstr ""
+msgstr "Fravælg alt"
 
 #: Pyblio/GnomeUI/Sort.py:98
 msgid "Removes all the sort criterions"
-msgstr ""
+msgstr "Fjerner alle sorteringskriterierne"
 
 #: Pyblio/GnomeUI/Utils.py:163
 msgid ""
@@ -778,101 +778,101 @@ msgstr ""
 
 #: Pyblio/GnomeUI/__init__.py:36
 msgid "Internal Error"
-msgstr ""
+msgstr "Intern fejl"
 
 #: Pyblio/GnomeUI/Document.py:52
 msgid "_New"
-msgstr ""
+msgstr "_Ny"
 
 #: Pyblio/GnomeUI/Document.py:54
 msgid "_Merge with..."
-msgstr ""
+msgstr "_Flet med..."
 
 #: Pyblio/GnomeUI/Document.py:58
 msgid "_Previous Documents"
-msgstr ""
+msgstr "_Foregående dokumenter"
 
 #: Pyblio/GnomeUI/Document.py:65
 msgid "About..."
-msgstr ""
+msgstr "Om..."
 
 #: Pyblio/GnomeUI/Document.py:66
 msgid "Submit a Bug Report"
-msgstr ""
+msgstr "Indsend en fejlrapport"
 
 #: Pyblio/GnomeUI/Document.py:78
 msgid "_Add..."
-msgstr ""
+msgstr "_Tilføj..."
 
 #: Pyblio/GnomeUI/Document.py:79
 msgid "_Edit..."
-msgstr ""
+msgstr "_Redigér..."
 
 #: Pyblio/GnomeUI/Document.py:80
 msgid "_Delete"
-msgstr ""
+msgstr "_Slet"
 
 #: Pyblio/GnomeUI/Document.py:83
 msgid "S_ort..."
-msgstr ""
+msgstr "Sor_tér..."
 
 # .././Pyblio/GnomeUI/Document.py:87 :101
 #: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
 msgid "_Cite"
-msgstr ""
+msgstr "_Citér"
 
 #: Pyblio/GnomeUI/Document.py:88
 msgid "_Format..."
-msgstr ""
+msgstr "_Formatér..."
 
 #: Pyblio/GnomeUI/Document.py:92
 msgid "_Fields..."
-msgstr ""
+msgstr "_Felter..."
 
 #: Pyblio/GnomeUI/Document.py:93
 msgid "_Entries..."
-msgstr ""
+msgstr "_Indgange..."
 
 #: Pyblio/GnomeUI/Document.py:99
 msgid "_File"
-msgstr ""
+msgstr "_Fil"
 
 #: Pyblio/GnomeUI/Document.py:100
 msgid "_Edit"
-msgstr ""
+msgstr "_Redigér"
 
 #: Pyblio/GnomeUI/Document.py:102
 msgid "_Settings"
-msgstr ""
+msgstr "_Opsætning"
 
 #: Pyblio/GnomeUI/Document.py:103
 msgid "_Help"
-msgstr ""
+msgstr "_Hjælp"
 
 #: Pyblio/GnomeUI/Document.py:107
 msgid "Open"
-msgstr ""
+msgstr "Åbn"
 
 #: Pyblio/GnomeUI/Document.py:108
 msgid "Save"
-msgstr ""
+msgstr "Gem"
 
 #: Pyblio/GnomeUI/Document.py:110
 msgid "Find"
-msgstr ""
+msgstr "Find"
 
 #: Pyblio/GnomeUI/Document.py:111
 msgid "Cite"
-msgstr ""
+msgstr "Citér"
 
 #: Pyblio/GnomeUI/Document.py:113
 msgid "Close"
-msgstr ""
+msgstr "Luk"
 
 # .././Pyblio/GnomeUI/Document.py:193 :207
 #: Pyblio/GnomeUI/Document.py:193 Pyblio/GnomeUI/Document.py:207
 msgid "Previous Documents"
-msgstr ""
+msgstr "Foregående dokumenter"
 
 #: Pyblio/GnomeUI/Document.py:228
 #, c-format
@@ -890,7 +890,7 @@ msgstr ""
 
 #: Pyblio/GnomeUI/Document.py:262
 msgid "New database"
-msgstr ""
+msgstr "Ny database"
 
 # .././Pyblio/GnomeUI/Document.py:270 :274
 #: Pyblio/GnomeUI/Document.py:270 Pyblio/GnomeUI/Document.py:274
@@ -933,15 +933,15 @@ msgstr ""
 # .././Pyblio/GnomeUI/Document.py:319 :379
 #: Pyblio/GnomeUI/Document.py:319 Pyblio/GnomeUI/Document.py:379
 msgid "Open error"
-msgstr ""
+msgstr "Fejl ved åbning"
 
 #: Pyblio/GnomeUI/Document.py:343
 msgid "Merge status"
-msgstr ""
+msgstr "Fletningsstatus"
 
 #: Pyblio/GnomeUI/Document.py:354
 msgid "Open file"
-msgstr ""
+msgstr "Åbn fil"
 
 #: Pyblio/GnomeUI/Document.py:403
 #, c-format
