@@ -7,18 +7,48 @@ class Database (object):
     def __init__ (self, uri, create = 0):
         pass
 
+    def commit (self):
+        ''' Commit the set of local changes to the database '''
+        pass
+    
     def save (self):
         ''' Save the database  '''
         pass
 
     def query (self, query = None, order = None):
-        ''' Perform a query on the database  '''
+        ''' Perform a query on the database and return a ResultSet '''
         pass
     
     def roles (self):
         pass
 
 
+class ResultSet (object):
+
+    def __iter__ (self):
+        return self
+
+    def next (self):
+        raise StopIteration ()
+
+
+class Searchable (object):
+
+    ''' Base class of an elementary search unit. An instanciated
+    subclass of Searchable is returned by the 'search' method of all
+    the available types. This instance must be passed as the 'query'
+    argument of the Database.query method. '''
+    
+    def __init__ (self, role):
+        self.role = role
+        return
+
+    def __and__ (self, other):
+        return self
+    
+    def __or__ (self, other):
+        return self
+    
 
 class Record (object):
 
@@ -51,6 +81,10 @@ class Record (object):
         ''' Unlink a Record from another Record, for a specific Role '''
         pass
 
+    def attributes (self):
+        ''' Return all the attributes of a Record '''
+        return []
+    
 
 class Work (Record):
     
@@ -121,6 +155,15 @@ class Type (object):
     def register (self, db):
         ''' Register the attribute in the database '''
         return self
+
+
+    def search (role):
+        ''' Return a search object for the current type and the
+        specified role '''
+
+        pass
+
+    search = staticmethod (search)
 
 
 class Actor (Type):

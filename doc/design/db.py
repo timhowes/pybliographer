@@ -53,6 +53,8 @@ class Database (api.Database):
              id INT PRIMARY KEY
            )''',
 
+        # This function keeps in sync the Info table with the
+        # different subclasses of Type.
         '''
         CREATE FUNCTION update_info ()
         RETURNS opaque AS '
@@ -103,9 +105,9 @@ class Database (api.Database):
         '''CREATE TABLE attribute (
              record INT  REFERENCES record (id),
              role   TEXT REFERENCES role (id),
-             index  INT,
-             data   INT,
-             CONSTRAINT index_role UNIQUE (index, role)
+             data   INT  REFERENCES info (id),
+             index  INT  NOT NULL,
+             CONSTRAINT index_role UNIQUE (role, index)
         )''',
 
         )
@@ -139,11 +141,14 @@ class Database (api.Database):
     def save (self):
         return
 
+    def commit (self):
+        self._db.commit ()
+        return
+
     def roles (self):
         # get all the roles in a single pass
         self._op.execute ("SELECT id, parent, info FROM role")
 
-        roles = []
         assoc = {}
 
         result = self._op.fetchall ()
@@ -152,7 +157,6 @@ class Database (api.Database):
             r = Role (role [0], role [2], None)
             r.db = self
 
-            roles.append (r)
             assoc [role [0]] = r
 
         for role in result:
@@ -160,7 +164,13 @@ class Database (api.Database):
             
             assoc [role [0]]._parent = assoc [role [1]]
 
-        return roles
+        return assoc
+
+    def query (self, query = None, order = None):
+
+        q = "SELECT id, type FROM record"
+        return ResultSet (self._db, q)
+
 
 
 class Role (api.Role):
@@ -172,22 +182,20 @@ class Role (api.Role):
     
 
     def register (self, db):
-        self.db = db
+        self._db = db
 
         self._parent = None
         
         db._op.execute ("INSERT INTO role (id, info) "
                         "VALUES (%s, %s)",
                         self.id, self.desc)
-        db._db.commit ()
         return self
     
     def _set_parent (self, super):
         ''' Set the parent Role, possibly to None '''
         
-        self.db._op.execute ("UPDATE role SET parent = %s WHERE id = %s",
-                             super.id, self.id)
-        self.db._db.commit ()
+        self._db._op.execute ("UPDATE role SET parent = %s WHERE id = %s",
+                              super.id, self.id)
         return
 
     def _get_parent (self):
@@ -207,38 +215,70 @@ class Record (object):
         self.db = db
         db._op.execute ("INSERT INTO record (id, type) VALUES (%s, %s)",
                         self.id, self._type)
-        db._db.commit ()
         return self
 
     def attr_ins (self, attr, role, index):
         self.db._op.execute ("INSERT INTO attribute (index, role, "
                              "data, record) VALUES (%s, %s, %s, %s)",
                              index, role.id, attr.id, self.id)
-        self.db._db.commit ()
         return
         
     def attr_del (self, role, index):
         self.db._op.execute ("DELETE FROM attribute WHERE "
                              "record = %s AND role = % AND index = %s",
                              self.id, role.id, index)
-        db._db.commit ()
         return
 
     def link (self, record, role):
         self.db._op.execute ("INSERT INTO record_link (rec_a, role, "
                              "rec_b) VALUES (%s, %s, %s)",
                              self.id, role.id, record.id)
-        db._db.commit ()
         return
         
     def unlink (self, record, role):
         self.db._op.execute ("DELETE FROM record_link WHERE "
                              "rec_a = %s AND role = %s AND rec_b = %s",
                              self.id, role.id, record.id)
-        db._db.commit ()
         return
         
     
+    def _fill (self, db, id):
+        ''' Initialize a Record that has been retrieved from a query '''
+        self.id = id
+        self.db = db
+        return
+
+
+    def attributes (self):
+        ret = []
+        
+        op = self.db.cursor ()
+        op.execute ("SELECT a.role, a.index, t.* FROM text_t t, attribute a"
+                    " WHERE t.id = a.data AND a.record = %s", self.id)
+
+        while 1:
+            r = op.fetchone ()
+            if r is None: break
+
+            o = Text (r [3], r [4])
+            o._fill (self.db, r [2])
+            
+            ret.append ((r [0], r [1], o))
+
+        op.execute ("SELECT a.role, a.index, t.* FROM person_t t, attribute a"
+                    " WHERE t.id = a.data AND a.record = %s", self.id)
+
+        while 1:
+            r = op.fetchone ()
+            if r is None: break
+
+            o = Text (r [3], r [4])
+            o._fill (self.db, r [2])
+            
+            ret.append ((r [0], r [1], o))
+
+        return ret
+
 
 class Work (Record, api.Work):
     _type = 'w'
@@ -247,7 +287,7 @@ class Work (Record, api.Work):
 class Expression (Record, api.Expression):
     _type = 'e'
 
-    
+
 class Manifestation (Record, api.Manifestation):
     _type = 'm'
 
@@ -256,6 +296,32 @@ class Item (Record, api.Item):
     _type = 'i'
 
 
+class ResultSet (api.ResultSet):
+
+    _assoc = {
+        'w': Work,
+        'e': Expression,
+        'm': Manifestation,
+        'i': Item,
+        }
+    
+    def __init__ (self, db, q):
+        self._db = db
+        self._op = db.cursor ()
+
+        self._op.execute (q)
+        return
+
+    def next (self):
+        row = self._op.fetchone ()
+        if row is None:
+            raise StopIteration ()
+
+        r = self._assoc [row [1]] ()
+        r._fill (self._db, row [0])
+        return r
+    
+        
 class Type (object):
 
     def _register (self, db):
@@ -264,6 +330,35 @@ class Type (object):
         self.db = db
         return
 
+    def _fill (self, db, id):
+        self.id = id
+        self.db = db
+        return
+    
+class Boolean (object):
+
+    def __and__ (self, other):
+        return QueryAnd (self, other)
+    
+    def __or__ (self, other):
+        return QueryOr (self, other)
+
+
+class QueryOr (Boolean):
+
+    def __init__ (self, a, b):
+        self.a = a
+        self.b = b
+        return
+
+class QueryAnd (Boolean):
+
+    def __init__ (self, a, b):
+        self.a = a
+        self.b = b
+        return
+
+    
 
 class Person (Type, api.Person):
 
@@ -280,7 +375,6 @@ class Person (Type, api.Person):
         val = [ self.id ] + self._cache
         db._op.execute ("INSERT INTO person_t (id, first, middle, last) "
                         "values (%s, %s, %s, %s)", val)
-        db._db.commit ()
         return self
 
     def _get_first (self):
@@ -299,7 +393,6 @@ class Person (Type, api.Person):
         self.db._op.execute ("UPDATE person_t SET first = %s "
                              "WHERE id = %s", utf (val),
                              self.id)
-        self.db._db.commit ()
         return
     
     def _set_middle (self, val):
@@ -308,7 +401,6 @@ class Person (Type, api.Person):
 
         self.db._op.execute ("UPDATE person_t SET middle = %s "
                              "WHERE id = %s", val, self.id)
-        self.db._db.commit ()
         return
 
     def _set_last (self, val):
@@ -317,22 +409,15 @@ class Person (Type, api.Person):
         
         self.db._op.execute ("UPDATE person_t SET last = %s "
                              "WHERE id = %s", val, self.id)
-        self.db._db.commit ()
         return
 
-    first  = property (_get_first,
-                       _set_first,
-                       None,
+    first  = property (_get_first, _set_first, None,
                        'Middle Name of a Person')
     
-    middle = property (_get_middle,
-                       _set_middle,
-                       None,
+    middle = property (_get_middle, _set_middle, None,
                        'Middle Name of a Person')
     
-    last   = property (_get_last,
-                       _set_last,
-                       None,
+    last   = property (_get_last, _set_last, None,
                        'Last Name of a Person')
     
 
@@ -354,7 +439,6 @@ class Text (Type, api.Text):
                         self.id,
                         utf (self._text),
                         utf (self._lang))
-        db._db.commit ()
         return self
 
     def _get_text (self): return self._text
@@ -368,7 +452,6 @@ class Text (Type, api.Text):
         self.db._op.execute ("UPDATE text_t SET text = %s "
                              "WHERE id = %s", utf (val),
                              self.id)
-        self.db._db.commit ()
         return
     
     def _set_lang (self, val):
@@ -377,18 +460,27 @@ class Text (Type, api.Text):
 
         self.db._op.execute ("UPDATE text_t SET lang = %s "
                              "WHERE id = %s", val, self.id)
-        self.db._db.commit ()
         return
 
-    text = property (_get_text,
-                     _set_text,
-                     None,
+    text = property (_get_text, _set_text, None,
                      'Textual content')
     
-    lang = property (_get_lang,
-                     _set_lang,
-                     None,
+    lang = property (_get_lang, _set_lang, None,
                      'Language in which the text is written')
+
+
+    def search (role, text, lang = None):
+        return TextQuery (role, text, lang)
     
+    search = staticmethod (search)
     
+
+class TextQuery (Boolean, api.Searchable):
+
+    def __init__ (self, role, text, lang):
+        api.Searchable.__init__ (self, role)
+
+        self.text = text
+        self.lang = lang
+        return
     
