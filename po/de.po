@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer-1.0.4\n"
-"POT-Creation-Date: 2001-01-09 18:27+0100\n"
-"PO-Revision-Date: 2000-08-28 16:18+0100\n"
-"Last-Translator: Kai Lahmann <kl@linuxfaq.de>\n"
+"Project-Id-Version: pybliographer-1.0.x\n"
+"POT-Creation-Date: 2001-02-06 14:51+0100\n"
+"PO-Revision-Date: 2001-02-06 14:51+0100\n"
+"Last-Translator: Christian Meyer <cm@ggtt.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -16,7 +16,7 @@ msgstr ""
 #: Pyblio/Autoload.py:57
 #, c-format
 msgid "warning: can't import %s: %s"
-msgstr "Warnung: kann %s: %s nicht importieren"
+msgstr "Warnung: %s kann nicht importiert werden: %s"
 
 #: Pyblio/Config.py:53
 #, c-format
@@ -272,7 +272,7 @@ msgid ""
 "while compiling %s\n"
 "error: %s"
 msgstr ""
-"Beim Kompilieren von `%s'\n"
+"Beim Compilieren von `%s'\n"
 "Fehler: %s"
 
 #: Pyblio/GnomeUI/Sort.py:42
@@ -337,7 +337,7 @@ msgstr "Über..."
 
 #: Pyblio/GnomeUI/Document.py:66
 msgid "Submit a Bug Report"
-msgstr "Bug-Report senden"
+msgstr "Fehlerbericht senden"
 
 #: Pyblio/GnomeUI/Document.py:78
 msgid "_Add..."
@@ -417,7 +417,7 @@ msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
 msgstr ""
-"Kann Datei `%s' nicht zum Schreiben öffnen:\n"
+"Datei `%s' kann nicht zum Schreiben geöffnet werden:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:252
@@ -485,12 +485,11 @@ msgid "Open file"
 msgstr "Datei öffnen"
 
 #: Pyblio/GnomeUI/Document.py:413
-#, fuzzy
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
 msgstr ""
-"Diese Datenbank wurde geändert.\n"
+"Diese Datenbank wurde extern verändert.\n"
 "Änderungen verwerfen ?"
 
 #: Pyblio/GnomeUI/Document.py:423
@@ -499,7 +498,7 @@ msgid ""
 "Unable to save `%s':\n"
 "%s"
 msgstr ""
-"Kann `%s' nicht speichern:\n"
+"`%s' kann nicht gespeichert werden:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:431
@@ -574,7 +573,7 @@ msgid ""
 "Can't connect to LyX:\n"
 "%s"
 msgstr ""
-"Kann keine Verbindung zu LyX herstellen:\n"
+"Es kann keine Verbindung zu LyX hergestellt werden:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:750
@@ -591,11 +590,11 @@ msgstr "Dieses Programm steht unter der GNU GPL"
 
 #: Pyblio/GnomeUI/Document.py:763
 msgid "Gnome interface to the Pybliographer system."
-msgstr "Gnome-Schnittstelle zum Pybliographer System."
+msgstr "Gnome-Schnittstelle zum Pybliographer-System."
 
 #: Pyblio/GnomeUI/Document.py:768
 msgid "Pybliographer Home Page"
-msgstr "Pybliographer Homepage"
+msgstr "Pybliographer-Homepage"
 
 #: Pyblio/GnomeUI/Format.py:37
 msgid "Format entries"
@@ -768,7 +767,7 @@ msgstr "kein Eintrag"
 #: scripts/pybcompact.py:142
 #, c-format
 msgid "can't find the following entries: %s"
-msgstr "kann die folgenden Einträge nicht finden: %s"
+msgstr "die folgenden Einträge können nicht gefunden werden: %s"
 
 #: scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
@@ -795,7 +794,7 @@ msgstr "pybformat: Warnung: %s\n"
 #: scripts/pybformat.py:141 scripts/pybtex.py:86
 #, c-format
 msgid "can't find style `%s'"
-msgstr "kann Stil `%s' nicht finden"
+msgstr "Stil `%s' wurde nicht gefunden"
 
 #: scripts/pybtex.py:34
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
