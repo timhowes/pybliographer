@@ -38,8 +38,7 @@ Config.define ('bibtex/datefield', """ A hash table linking a `real'
 date field to the two bibtex fields that compose it """)
 
 Config.set ('bibtex/datefield', {
-    'pubdate'  : ('year', 'month'),
-    'confdate' : ('year', 'month'),
+    'date'  : ('year', 'month'),
     })
 
 Config.define ('bibtex/months', """ A hash table linking month names to their

@@ -15,7 +15,7 @@ Config.set ('refer/mapping', {
     'V' : ('volume', 1),
     'N' : ('number', 1),
     'E' : ('editor', 1),
-    'D' : ('pubdate', 1),
+    'D' : ('date', 1),
     'P' : ('pages', 1),
     'I' : ('publisher', 1),
     'C' : ('address', 1),
