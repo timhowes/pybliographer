@@ -24,6 +24,8 @@
 from Pyblio import Fields, Config, Connector, Types
 
 from gnome.ui import *
+from gnome import config
+
 from Pyblio.GnomeUI import FieldsInfo, Utils, Mime
 from gtk import *
 import GTK, GDK
@@ -70,12 +72,21 @@ class Index (Connector.Publisher):
         
         self.menu.show ()
 
+        self.field_width = []
         # resize the columns
         for c in range (len (self.fields)):
-            self.clist.set_column_width (c, FieldsInfo.width (self.fields [c]))
+            width = config.get_int ('Pybliographic/Columns/%s=-1' % self.fields [c])
+            if width == -1:
+                width = FieldsInfo.width (self.fields [c])
+
+            self.field_width.append (width)
+            
+            self.clist.set_column_width (c, width)
             self.clist.set_column_justification (c, FieldsInfo.justification (self.fields [c]))
+            
         # some events we want to react to...
         self.clist.connect ('click_column',       self.click_column)
+        self.clist.connect ('resize_column',      self.resize_column)
         self.clist.connect ('select_row',         self.select_row)
         self.clist.connect ('button_press_event', self.button_press)
 
@@ -271,6 +282,11 @@ class Index (Connector.Publisher):
         self.issue ('click-on-field', self.fields [column])
         return
 
+
+    def resize_column (self, clist, column, width):
+        self.field_width [column] = width
+        return
+
     
     def select_row (self, clist, row, column, * data):
         ''' handler for row selection '''
@@ -356,4 +372,13 @@ class Index (Connector.Publisher):
         
         self.issue ('delete-entry', map (lambda x, self=self: self.access [x],
                                        self.clist.selection))
+        return
+
+
+    def update_configuration (self):
+
+        for i in range (len (self.fields)):
+            config.set_int ('Pybliographic/Columns/%s' % self.fields [i],
+                            self.field_width [i])
+
         return

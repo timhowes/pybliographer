@@ -474,11 +474,14 @@ class RealEditor (Connector.Publisher):
         self.w.pack_start (self.newfield_area, FALSE, FALSE)
         
         # Notebook
+        scroll = GtkScrolledWindow ()
+        scroll.set_policy (GTK.POLICY_AUTOMATIC, GTK.POLICY_AUTOMATIC)
         self.notebook = GtkNotebook ()
         self.notebook.show ()
 
-        self.w.pack_start (self.notebook)
-        self.w.show ()
+        scroll.add_with_viewport (self.notebook)
+        self.w.pack_start (scroll)
+        self.w.show_all ()
         
         self.notebook_init = FALSE
         self.update_notebook ()

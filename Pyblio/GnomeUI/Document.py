@@ -697,6 +697,10 @@ class Document (Connector.Publisher):
         # 2.- Proportion betzeen list and text
         height = self.paned.children () [0].get_allocation () [3]
         config.set_int ('Pybliographic/UI/Paned', height)
+
+        # updates the index's config
+        self.index.update_configuration ()
+        
         config.sync ()
         return
 

@@ -308,7 +308,14 @@ class EntriesDialog:
     
     def apply (self, * arg):
         Config.set ('base/entries', self.entries)
-        Config.save_user ({'base/entries' : self.entries})
+
+        default  = string.lower (Config.get ('base/defaulttype').data.name)
+        def_type = Config.get ('base/entries').data [default]
+        
+        Config.set ('base/defaulttype', def_type)
+        
+        Config.save_user ({'base/entries' : self.entries,
+                           'base/defaulttype' : def_type})
         return
 
     def add_cb (self, * arg):
