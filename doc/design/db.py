@@ -24,13 +24,14 @@ class Database (api.Database):
         '''CREATE TABLE record (
              id   INT  PRIMARY KEY,
              type CHAR CONSTRAINT valid_type
-                       CHECK (type in ('w', 'e', 'm', 'i'))
+                       CHECK (type in ('w', 'e', 'm', 'i', 'd'))
            )''',
 
         # A Role.
         '''CREATE TABLE role (
              id     TEXT PRIMARY KEY,
              parent TEXT REFERENCES role (id),
+             code   INTEGER UNIQUE NOT NULL,
              type   TEXT NOT NULL,
              info   TEXT NOT NULL
            )''',
@@ -152,6 +153,7 @@ class Database (api.Database):
     def commit (self):
         self._db.commit ()
         return
+
 
     def roles (self):
         # get all the roles in a single pass
@@ -330,19 +332,24 @@ class Record (object):
 
 
 class Work (Record, api.Work):
-    pass
+    
+    tag = 'w'
 
 
 class Expression (Record, api.Expression):
-    pass
+
+    tag = 'e'
+
 
 
 class Manifestation (Record, api.Manifestation):
-    pass
+
+    tag = 'm'
 
     
 class Item (Record, api.Item):
-    pass
+
+    tag = 'i'
 
 
 class ResultSet (object):
@@ -456,6 +463,8 @@ class QueryAnd (Boolean):
 
 class Person (Type, api.Person):
 
+    tag = 'p'
+    
     def __init__ (self, first = None, middle = None, last = None):
         self._cache = [ None, None, None]
 
@@ -517,6 +526,8 @@ class Person (Type, api.Person):
 
 class Text (Type, api.Text):
 
+    tag = 't'
+    
     def __init__ (self, text = None, lang = None):
         self._text = None
         self._lang = None

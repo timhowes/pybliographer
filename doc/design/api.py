@@ -5,22 +5,41 @@ class Database (object):
     the system is connected to such a database. '''
     
     def __init__ (self, uri, create = 0):
+        
         pass
 
     def commit (self):
+        
         ''' Commit the set of local changes to the database '''
+        
         pass
     
     def save (self):
+
         ''' Save the database  '''
+
         pass
 
-    def query (self, query = None, order = None):
+    def records (self, query = None, order = None):
+        
         ''' Perform a query on the database and returns an iterator on
-        the results '''
+        the resulting records. The query is composed of Searchable or
+        Type instances, related by boolean operators. '''
+        
         pass
-    
+
+    def attributes (self, query = None, order = None):
+
+        ''' Perform a query on the database and returns an iterator on
+        the resulting attributes. The query must of course be a single
+        attribute search. '''
+        
+        pass
+
     def roles (self):
+
+        ''' Return a dictionnary of the existing roles '''
+        
         pass
 
 
@@ -42,10 +61,10 @@ class Searchable (object):
         return self
     
 
-class Record (object):
+class DBObject (object):
 
-    ''' Set of attributes describing a bibliographic object '''
-
+    ''' Superclass of all the objects that are stored in the database '''
+    
     def __init__ (self):
         # these are defined once the object has been registered in the db.
         self.db = None
@@ -55,6 +74,11 @@ class Record (object):
     def register (self, db):
         ''' Register the record in the database '''
         return self
+
+
+class Record (DBObject):
+
+    ''' Set of attributes describing a bibliographic object '''
 
     def attr_ins (self, attr, role, index):
         ''' Connect an attribute to the Record, for a specific Role,
@@ -73,17 +97,6 @@ class Record (object):
         ''' Unlink a Record from another Record, for a specific Role '''
         pass
 
-    def child_ins (self, record):
-        self.link   (record, 'record:below')
-        record.link (self,   'record:above')
-        return
-
-    def child_del (self, record):
-        self.unlink   (record, 'record:below')
-        record.unlink (self,   'record:above')
-        return
-    
-
     def attributes (self):
         ''' Return a list of all the attributes of a Record '''
         return []
@@ -95,8 +108,6 @@ class Record (object):
     
 class Work (Record):
 
-    tag = 'w'
-    
     def __init__ (self):
         Record.__init__ (self)
         return
@@ -107,8 +118,6 @@ class Work (Record):
 
 class Expression (Record):
     
-    tag = 'e'
-
     def __init__ (self):
         Record.__init__ (self)
         return
@@ -118,8 +127,6 @@ class Expression (Record):
 
 class Manifestation (Record):
     
-    tag = 'm'
-
     def __init__ (self):
         Record.__init__ (self)
         return
@@ -129,8 +136,6 @@ class Manifestation (Record):
 
 class Item (Record):
 
-    tag = 'i'
-
     def __init__ (self):
         Record.__init__ (self)
         return
@@ -139,7 +144,7 @@ class Item (Record):
         return 'Item (id = %d)' % self.id
 
 
-class Role (object):
+class Role (DBObject):
 
     ''' Detailed information about an attribute role. A role can be a
     specialization of another role. '''
@@ -153,34 +158,18 @@ class Role (object):
                <domain>:<role>
 
         The type indicates the classes that can be related by that role. '''
-        
+
+        DBObject.__init__ (self)
+            
         self.id   = role
         self.desc = description
         self.type = type
-
-        # these are defined once the object has been registered in the db.
-        self.db = None
         return
 
-    def register (self, db):
-        ''' Register the role in the database '''
-        pass
 
-
-class Type (object):
+class Type (DBObject):
 
     ''' The base class of all the attributes of a record '''
-
-    def __init__ (self):
-        # these are defined once the object has been registered in the db.
-        self.db = None
-        self.id = None
-        return
-
-    def register (self, db):
-        ''' Register the attribute in the database '''
-        return self
-
 
     def search (role):
         ''' Return a search object for the current type and the
@@ -191,10 +180,13 @@ class Type (object):
     search = staticmethod (search)
 
 
-class Person (Type):
+class Actor (Type):
 
-    tag = 'p'
-    
+    pass
+
+
+class Person (Actor):
+
     __slots__ = ('first', 'middle', 'last')
     
     def __init__ (self, first = None, middle = None, last = None):
@@ -211,11 +203,23 @@ class Person (Type):
                                         `self.last`)
 
 
+class Corporate (Actor):
+
+    __slots__ = ('name')
+    
+    def __init__ (self, name = None):
+        Actor.__init__ (self)
+
+        if name: self.name = name
+        return
+
+    def __repr__ (self):
+        return 'Corporate (%s)' % `self.name`
+
+
 
 class Text (Type):
 
-    tag = 't'
-    
     ''' A non-constrained text attribute, with formatting and language
     properties. '''
 
@@ -235,8 +239,6 @@ class Text (Type):
 
 class Date (Type):
 
-    tag = 'd'
-
     YEAR  = 0
     MONTH = 1
     DAY   = 2
@@ -250,8 +252,6 @@ class Date (Type):
 
 class Concept (Type):
 
-    tag = 'c'
-
     def __init__ (self):
         Type.__init__ (self)
 
@@ -264,8 +264,6 @@ class Concept (Type):
 
 
 class URI (Type):
-
-    tag = 'u'
 
     def __init__ (self):
         Type.__init__ (self)
