@@ -1,273 +1,269 @@
-# Swedish messages for pybliographer.
+# pybliographer
 # Copyright (C) 2000 Free Software Foundation, Inc.
-# Christian Rose <menthos@menthos.com>, 2000.
-# Martin Norbäck <d95mback@dtek.chalmers.se>, 2000.
-#
-# $Id$
+# Yukihiro Nakai <nakai@gnome.gr.jp>, 2000.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer\n"
+"Project-Id-Version: pybliographer CVS\n"
 "POT-Creation-Date: 2001-01-09 18:27+0100\n"
-"PO-Revision-Date: 2000-11-16 11:57+0100\n"
-"Last-Translator: Christian Rose <menthos@menthos.com>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2000-10-15 03:43+0900\n"
+"Last-Translator: Yukihiro Nakai <nakai@gnome.gr.jp>\n"
+"Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=euc-jp\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: Pyblio/Autoload.py:57
 #, c-format
 msgid "warning: can't import %s: %s"
-msgstr "varning: kan inte importera %s: %s"
+msgstr "Ãí°Õ: %s¤ò¥¤¥ó¥Ý¡¼¥È¤Ç¤­¤Þ¤»¤ó: %s"
 
 #: Pyblio/Config.py:53
 #, c-format
 msgid "value of `%s' should be of type %s"
-msgstr "värdet på \"%s\" ska vara av typen %s"
+msgstr "`%s'¤ÎÃÍ¤Ï¥¿¥¤¥×%s¤Ç¤Ê¤±¤ì¤Ð¤Ê¤ê¤Þ¤»¤ó"
 
 #: Pyblio/Config.py:196
 msgid "String"
-msgstr "Sträng"
+msgstr "Ê¸»ú"
 
 #: Pyblio/Config.py:205
 msgid "Boolean"
-msgstr "Boolesk variabel"
+msgstr "¿¿µ¶ÃÍ"
 
 #: Pyblio/Config.py:224
 msgid "Integer"
-msgstr "Heltal"
+msgstr "À°¿ô"
 
 #: Pyblio/Config.py:226
 #, c-format
 msgid "Integer under %d"
-msgstr "Heltal under %d"
+msgstr "%dÌ¤Ëþ¤ÎÀ°¿ô"
 
 #: Pyblio/Config.py:228
 #, c-format
 msgid "Integer over %d"
-msgstr "Heltal över %d"
+msgstr "%d¤ò±Û¤¨¤ëÀ°¿ô"
 
 #: Pyblio/Config.py:230
 #, c-format
 msgid "Integer between %d and %d"
-msgstr "Heltal mellan %d och %d"
+msgstr "%d¤È%d¤Î´Ö¤ÎÀ°¿ô"
 
 #: Pyblio/Config.py:242
 #, c-format
 msgid "Element in `%s'"
-msgstr "Element i \"%s\""
+msgstr "`%s'¤ÎÍ×ÁÇ"
 
 #: Pyblio/Config.py:262
 #, c-format
 msgid "Tuple (%s)"
-msgstr "Tupel (%s)"
+msgstr "¥¿¥×¥ë (%s)"
 
 #: Pyblio/Config.py:283
 #, c-format
 msgid "List (%s)"
-msgstr "Lista (%s)"
+msgstr "¥ê¥¹¥È (%s)"
 
 #: Pyblio/Config.py:308
 #, c-format
 msgid "Dictionary (%s, %s)"
-msgstr "Katalog (%s, %s)"
+msgstr "¼­½ñ (%s, %s)"
 
 #: Pyblio/Fields.py:265
 msgid "Illegal year value"
-msgstr "Ogiltigt årtal"
+msgstr "ÉÔÀµ¤ÊÇ¯¹æ¤ÎÃÍ"
 
 #: Pyblio/Fields.py:269
 msgid "Illegal month value"
-msgstr "Ogiltig månad"
+msgstr "ÉÔÀµ¤Ê·î¤ÎÃÍ"
 
 #: Pyblio/Fields.py:273
 msgid "Illegal day value"
-msgstr "Ogiltig dag"
+msgstr "ÉÔÀµ¤ÊÆüÉÕ¤ÎÃÍ"
 
 #: Pyblio/Fields.py:438
 #, c-format
 msgid "in %s"
-msgstr "i %s"
+msgstr "%s¤ÎÃæ¤Ç"
 
 #: Pyblio/LyX.py:39
 #, c-format
 msgid "no input pipe `%s'"
-msgstr "inget inmatningsrör \"%s\""
+msgstr "¥Ñ¥¤¥×`%s'¤ËÆþÎÏ¤¬¤¢¤ê¤Þ¤»¤ó"
 
 #: Pyblio/LyX.py:45
 #, c-format
 msgid "no output pipe `%s'"
-msgstr "inget utmatningsrör \"%s\""
+msgstr "¥Ñ¥¤¥×`%s'¤ËÆþÎÏ¤¬¤¢¤ê¤Þ¤»¤ó"
 
 #: Pyblio/Open.py:97
 #, c-format
 msgid "method `%s' provides no opener"
-msgstr "metoden \"%s\" tillhandahåller ingen öppnare"
+msgstr "¥á¥½¥Ã¥É`%s'¤Ë¤Ï¥ª¡¼¥×¥Ê¡¼¤¬¤¢¤ê¤Þ¤»¤ó"
 
 #: Pyblio/Open.py:105 Pyblio/Open.py:151
 #, c-format
 msgid "File `%s' does not exist"
-msgstr "Filen \"%s\" finns inte"
+msgstr "¥Õ¥¡¥¤¥ë`%s'¤ÏÂ¸ºß¤·¤Þ¤»¤ó"
 
 #: Pyblio/Open.py:116 Pyblio/Open.py:162
 #, c-format
 msgid "don't know how to open `%s'"
-msgstr "vet inte hur man öppnar \"%s\""
+msgstr "`%s'¤ò¤É¤¦¤ä¤Ã¤Æ³«¤¯¤Î¤«Ê¬¤«¤ê¤Þ¤»¤ó"
 
 #: Pyblio/Open.py:143
 #, c-format
 msgid "method `%s' provides no iterator"
-msgstr "metoden \"%s\" tillhandahåller ingen iterator"
+msgstr "¥á¥½¥Ã¥É`%s'¤Ë¤Ï¥¤¥Æ¥ì¡¼¥¿¤¬¤¢¤ê¤Þ¤»¤ó"
 
-# .././Pyblio/Format/BibTeX.py:345 :403
 #: Pyblio/Format/BibTeX.py:345 Pyblio/Format/BibTeX.py:403
 #, c-format
 msgid "key `%s' is malformed"
-msgstr "nyckeln \"%s\" har felaktigt format"
+msgstr "¥­¡¼ `%s'¤ÏÉÔÀµ¤Ç¤¹"
 
 #: Pyblio/Format/BibTeX.py:366 Pyblio/Format/BibTeX.py:387
 #, c-format
 msgid "%s:%d: key `%s' already defined"
-msgstr "%s:%d nyckeln \"%s\" är redan definierad"
+msgstr "%s:%d: ¥­¡¼`%s'¤Ï¤¹¤Ç¤ËÄêµÁ¤µ¤ì¤Æ¤¤¤Þ¤¹"
 
 #: Pyblio/GnomeUI/Editor.py:38
 msgid "Last Name, First Name"
-msgstr "Efternamn, Förnamn"
+msgstr "Ì¾Á°¡¢Ì¾»ú"
 
 #: Pyblio/GnomeUI/Editor.py:39
 msgid "Text"
-msgstr "Text"
+msgstr "¥Æ¥­¥¹¥È"
 
 #: Pyblio/GnomeUI/Editor.py:42
 msgid "Reference"
-msgstr "Referens"
+msgstr "»²¾È"
 
 #: Pyblio/GnomeUI/Editor.py:258
 msgid "Day"
-msgstr "Dag"
+msgstr "Æü"
 
 #: Pyblio/GnomeUI/Editor.py:267
 msgid "Month"
-msgstr "Månad"
+msgstr "·î"
 
 #: Pyblio/GnomeUI/Editor.py:276
 msgid "Year"
-msgstr "År"
+msgstr "Ç¯"
 
 #: Pyblio/GnomeUI/Editor.py:301
 msgid "Invalid day field in date"
-msgstr "Ogiltig dag i datum"
+msgstr "ÆüÉÕ¤ÎÆü¥Õ¥£¡¼¥ë¥É¤¬ÉÔÅ¬ÀÚ¤Ç¤¹"
 
 #: Pyblio/GnomeUI/Editor.py:309
 msgid "Invalid month field in date"
-msgstr "Ogiltig månadad i datum"
+msgstr "ÆüÉÕ¤Î·î¥Õ¥£¡¼¥ë¥É¤¬ÉÔÅ¬ÀÚ¤Ç¤¹"
 
 #: Pyblio/GnomeUI/Editor.py:317
 msgid "Invalid year field in date"
-msgstr "Ogiltigt år i datum"
+msgstr "ÆüÉÕ¤ÎÇ¯¥Õ¥£¡¼¥ë¥É¤¬ÉÔÅ¬ÀÚ¤Ç¤¹"
 
 #: Pyblio/GnomeUI/Editor.py:426
 msgid "Entry type"
-msgstr "Inmatningstyp"
+msgstr "¥¨¥ó¥È¥ê¥¿¥¤¥×"
 
 #: Pyblio/GnomeUI/Config.py:482 Pyblio/GnomeUI/Editor.py:428
 msgid "Key"
-msgstr "Nyckel"
+msgstr "¥­¡¼"
 
 #: Pyblio/GnomeUI/Editor.py:471
 msgid "Create Field"
-msgstr "Skapa fält"
+msgstr "¥Õ¥£¡¼¥ë¥É¤ÎºîÀ®"
 
 #: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:191
 msgid "Mandatory"
-msgstr "Nödvändigt"
+msgstr "É¬¿Ü"
 
 #: Pyblio/GnomeUI/Editor.py:539 Pyblio/GnomeUI/Fields.py:192
 msgid "Optional"
-msgstr "Valfri"
+msgstr "¥ª¥×¥·¥ç¥ó"
 
 #: Pyblio/GnomeUI/Editor.py:539
 msgid "Extra"
-msgstr "Extra"
+msgstr "¤ª¤Þ¤±"
 
 #: Pyblio/GnomeUI/Editor.py:601
 msgid "Invalid key format"
-msgstr "Ogiltigt nyckelformat"
+msgstr "ÉÔÅ¬ÀÚ¤Ê¥­¡¼¤Î¥Õ¥©¡¼¥Þ¥Ã¥È"
 
 #: Pyblio/GnomeUI/Editor.py:609
 #, c-format
 msgid "Key `%s' already exists"
-msgstr "Nyckeln \"%s\" existerar redan"
+msgstr "¥­¡¼`%s'¤Ï¤¹¤Ç¤ËÂ¸ºß¤·¤Þ¤¹"
 
 #: Pyblio/GnomeUI/Editor.py:676
 msgid "Error in native string parsing"
-msgstr "Fel vid läsning av ursprungssträng"
+msgstr "¥Í¥¤¥Æ¥£¥ÖÊ¸»ú¤Î¥Ñ¡¼¥¹¤Ç¥¨¥é¡¼"
 
 #: Pyblio/GnomeUI/Editor.py:689
 msgid "Edit entry"
-msgstr "Redigera inmatning"
+msgstr "¥¨¥ó¥È¥ê¤ÎÊÔ½¸"
 
 #: Pyblio/GnomeUI/Editor.py:703 Pyblio/GnomeUI/Editor.py:744
 msgid "Native Editing"
-msgstr "Ursprungsredigering"
+msgstr "¥Í¥¤¥Æ¥£¥ÖÊÔ½¸"
 
 #: Pyblio/GnomeUI/Editor.py:756
 msgid "Standard Editing"
-msgstr "Standardredigering"
+msgstr "É¸½àÊÔ½¸"
 
 #: Pyblio/GnomeUI/Document.py:195 Pyblio/GnomeUI/Document.py:209
 #: Pyblio/GnomeUI/FileSelector.py:41
 msgid "File"
-msgstr "Fil"
+msgstr "¥Õ¥¡¥¤¥ë"
 
 #: Pyblio/GnomeUI/FileSelector.py:74
 msgid "Bibliography type:"
-msgstr "Bibliografityp:"
+msgstr "Ê¸¸¥¥¿¥¤¥×"
 
 #: Pyblio/GnomeUI/Index.py:68
 msgid "Add..."
-msgstr "Lägg till..."
+msgstr "ÄÉ²Ã..."
 
 #: Pyblio/GnomeUI/Index.py:69
 msgid "Edit..."
-msgstr "Redigera..."
+msgstr "ÊÔ½¸..."
 
 #: Pyblio/GnomeUI/Index.py:70 Pyblio/GnomeUI/Search.py:178
 msgid "Delete"
-msgstr "Ta bort"
+msgstr "ºï½ü"
 
 #: Pyblio/GnomeUI/Search.py:109
 msgid "Search"
-msgstr "Sök"
+msgstr "¸¡º÷"
 
 #: Pyblio/GnomeUI/Fields.py:225 Pyblio/GnomeUI/Search.py:133
 msgid "Field"
-msgstr "Fält"
+msgstr "¥Õ¥£¡¼¥ë¥É"
 
 #: Pyblio/GnomeUI/Search.py:134
 msgid "Pattern"
-msgstr "Mönster"
+msgstr "¥Ñ¥¿¡¼¥ó"
 
 #: Pyblio/GnomeUI/Search.py:151
 msgid "Simple Search"
-msgstr "Enkel sökning"
+msgstr "´ÊÃ±¸¡º÷"
 
 #: Pyblio/GnomeUI/Search.py:155
 msgid "Search command:"
-msgstr "Sökkommando:"
+msgstr "¸¡º÷¥³¥Þ¥ó¥É:"
 
 #: Pyblio/GnomeUI/Search.py:161
 msgid "Expert Search"
-msgstr "Expertsökning"
+msgstr "¾åµé¸¡º÷"
 
 #: Pyblio/GnomeUI/Search.py:199
 msgid "Full database"
-msgstr "Hela databasen"
+msgstr "Á´¥Ç¡¼¥¿¥Ù¡¼¥¹"
 
 #: Pyblio/GnomeUI/Search.py:241
 msgid "internal error during evaluation"
-msgstr "internt fel vid beräkning"
+msgstr "É¾²Á¤ÎÅÓÃæ¤ÎÆâÉô¥¨¥é¡¼"
 
 #: Pyblio/GnomeUI/Search.py:290
 #, c-format
@@ -275,144 +271,144 @@ msgid ""
 "while compiling %s\n"
 "error: %s"
 msgstr ""
-"vid kompilering av %s\n"
-"fel: %s"
+"%s¤ò¥³¥ó¥Ñ¥¤¥ë¤·¤Æ¤¤¤ë¤È¤­¤Ë\n"
+"¥¨¥é¡¼: %s"
 
 #: Pyblio/GnomeUI/Sort.py:42
 msgid "Select sort criterions"
-msgstr "Välj sorteringsvilkor"
+msgstr "¥½¡¼¥È´ð½à¤ÎÁªÂò"
 
 #: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort direction"
-msgstr "Sorteringsordning"
+msgstr "¥½¡¼¥È¤ÎÊý¸þ"
 
 #: Pyblio/GnomeUI/Sort.py:53
 msgid "Sort criterions"
-msgstr "Sorteringsvillkor"
+msgstr "¥½¡¼¥È´ð½à"
 
 #: Pyblio/GnomeUI/Sort.py:66
 msgid "[Entry Type]"
-msgstr "[Inmatningstyp]"
+msgstr "[¥¨¥ó¥È¥ê ¥¿¥¤¥×]"
 
 #: Pyblio/GnomeUI/Sort.py:67
 msgid "[Key Value]"
-msgstr "[Nyckelvärde]"
+msgstr "[¥­¡¼ ÃÍ]"
 
 #: Pyblio/GnomeUI/Sort.py:92
 msgid "Reorder"
-msgstr "Ordna om"
+msgstr "ºÆ¥½¡¼¥È"
 
 #: Pyblio/GnomeUI/Sort.py:93
 msgid "Groups the active fields on the top of the list"
-msgstr "Gruppera aktiva fält i början av listan"
+msgstr "¥ê¥¹¥È¤ÎÀèÆ¬¤Ë¤¢¤ë¥¢¥¯¥Æ¥£¥Ö¤Ê¥Õ¥£¡¼¥ë¥É¤ò¥°¥ë¡¼¥×²½"
 
 #: Pyblio/GnomeUI/Sort.py:97
 msgid "Unselect all"
-msgstr "Avmarkera alla"
+msgstr "¤¹¤Ù¤ÆÁªÂò²ò½ü"
 
 #: Pyblio/GnomeUI/Sort.py:98
 msgid "Removes all the sort criterions"
-msgstr "Tar bort alla sorteringsvillkor"
+msgstr "¤¹¤Ù¤Æ¤Î¥½¡¼¥È´ð½à¤òºï½ü"
 
 #: Pyblio/GnomeUI/Utils.py:163
 msgid ""
 "The following errors occured:\n"
 "\n"
 msgstr ""
-"Följande fel inträffade:\n"
+"¼¡¤Î¥¨¥é¡¼¤¬È¯À¸¤·¤Þ¤·¤¿:\n"
 "\n"
 
 #: Pyblio/GnomeUI/Document.py:52
 msgid "_New"
-msgstr "_Nytt"
+msgstr "¿·µ¬(_N)"
 
 #: Pyblio/GnomeUI/Document.py:54
 msgid "_Merge with..."
-msgstr "Slå _ihop med..."
+msgstr "·ë¹ç(_M)..."
 
 #: Pyblio/GnomeUI/Document.py:58
 msgid "_Previous Documents"
-msgstr "_Föregående dokument"
+msgstr "Á°¤Î¥É¥­¥å¥á¥ó¥È(_P)"
 
 #: Pyblio/GnomeUI/Document.py:65
 msgid "About..."
-msgstr "Om..."
+msgstr "¾ðÊó..."
 
 #: Pyblio/GnomeUI/Document.py:66
 msgid "Submit a Bug Report"
-msgstr "Skicka felrapport"
+msgstr "¥Ð¥°¥ì¥Ý¡¼¥È¤ÎÄó½Ð"
 
 #: Pyblio/GnomeUI/Document.py:78
 msgid "_Add..."
-msgstr "_Lägg till..."
+msgstr "ÄÉ²Ã(_A)..."
 
 #: Pyblio/GnomeUI/Document.py:79
 msgid "_Edit..."
-msgstr "R_edigera..."
+msgstr "ÊÔ½¸(_E)..."
 
 #: Pyblio/GnomeUI/Document.py:80
 msgid "_Delete"
-msgstr "Ta _bort"
+msgstr "ºï½ü(_D)"
 
 #: Pyblio/GnomeUI/Document.py:83
 msgid "S_ort..."
-msgstr "S_ortera..."
+msgstr "¥½¡¼¥È(_O)..."
 
 #: Pyblio/GnomeUI/Document.py:87 Pyblio/GnomeUI/Document.py:101
 msgid "_Cite"
-msgstr "_Citera"
+msgstr "°úÍÑ(_C)"
 
 #: Pyblio/GnomeUI/Document.py:88
 msgid "_Format..."
-msgstr "_Format..."
+msgstr "¥Õ¥©¡¼¥Þ¥Ã¥È(_F)..."
 
 #: Pyblio/GnomeUI/Document.py:92
 msgid "_Fields..."
-msgstr "_Fält..."
+msgstr "¥Õ¥£¡¼¥ë¥É(_F)..."
 
 #: Pyblio/GnomeUI/Document.py:93
 msgid "_Entries..."
-msgstr "_Poster..."
+msgstr "¥¨¥ó¥È¥ê(_E)..."
 
 #: Pyblio/GnomeUI/Document.py:99
 msgid "_File"
-msgstr "_Arkiv"
+msgstr "¥Õ¥¡¥¤¥ë(_F)"
 
 #: Pyblio/GnomeUI/Document.py:100
 msgid "_Edit"
-msgstr "R_edigera"
+msgstr "ÊÔ½¸(_E)"
 
 #: Pyblio/GnomeUI/Document.py:102
 msgid "_Settings"
-msgstr "_Inställningar"
+msgstr "ÀßÄê(_S)"
 
 #: Pyblio/GnomeUI/Document.py:103
 msgid "_Help"
-msgstr "_Hjälp"
+msgstr "¥Ø¥ë¥×(_H)"
 
 #: Pyblio/GnomeUI/Document.py:107
 msgid "Open"
-msgstr "Öppna"
+msgstr "³«¤¯"
 
 #: Pyblio/GnomeUI/Document.py:108
 msgid "Save"
-msgstr "Spara"
+msgstr "ÊÝÂ¸"
 
 #: Pyblio/GnomeUI/Document.py:110
 msgid "Find"
-msgstr "Sök"
+msgstr "¸¡º÷"
 
 #: Pyblio/GnomeUI/Document.py:111
 msgid "Cite"
-msgstr "Citera"
+msgstr "°úÍÑ"
 
 #: Pyblio/GnomeUI/Document.py:113
 msgid "Close"
-msgstr "Stäng"
+msgstr "ÊÄ¤¸¤ë"
 
 #: Pyblio/GnomeUI/Document.py:195 Pyblio/GnomeUI/Document.py:209
 msgid "Previous Documents"
-msgstr "Föregående dokument"
+msgstr "Á°¤Î¤É¤­¤å¤á¤ó¤È"
 
 #: Pyblio/GnomeUI/Document.py:231
 #, c-format
@@ -420,7 +416,7 @@ msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
 msgstr ""
-"Kan inte öppna filen \"%s\" för skrivning:\n"
+"¥Õ¥¡¥¤¥ë`%s'¤ò½ñ¤­¹þ¤ó¤Ç¤¤¤Þ¤¹:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:252
@@ -429,71 +425,72 @@ msgid ""
 "Error while parsing `%s':\n"
 "%s"
 msgstr ""
-"Fel vid läsning av \"%s\":\n"
+"`%s'¤Î¥Ñ¡¼¥¹¤Ç¥¨¥é¡¼¤¬È¯À¸¤·¤Þ¤·¤¿:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:271
 msgid "New database"
-msgstr "Ny databas"
+msgstr "¿·µ¬¥Ç¡¼¥¿¥Ù¡¼¥¹"
 
 #: Pyblio/GnomeUI/Document.py:279 Pyblio/GnomeUI/Document.py:283
 msgid "[no entry]"
-msgstr "[ingen post]"
+msgstr "[¥¨¥ó¥È¥ê¤Ê¤·]"
 
 #: Pyblio/GnomeUI/Document.py:280
 msgid "[1 entry]"
-msgstr "[1 post]"
+msgstr "[1¥¨¥ó¥È¥ê]"
 
 #: Pyblio/GnomeUI/Document.py:281
 #, c-format
 msgid "[%d entries]"
-msgstr "[%d poster]"
+msgstr "[%d¥¨¥ó¥È¥ê]"
 
 #: Pyblio/GnomeUI/Document.py:284
 #, c-format
 msgid "[%d/1 entry]"
-msgstr "[%d/1 post]"
+msgstr "[%d/1¥¨¥ó¥È¥ê]"
 
 #: Pyblio/GnomeUI/Document.py:285
 #, c-format
 msgid "[%d/%d entries]"
-msgstr "[%d/%d poster]"
+msgstr "[%d/%d¥¨¥ó¥È¥ê]"
 
 #: Pyblio/GnomeUI/Document.py:290
 msgid "[modified]"
-msgstr "[ändrad]"
+msgstr "[ÊÑ¹¹¤µ¤ì¤Þ¤·¤¿]"
 
 #: Pyblio/GnomeUI/Document.py:300
 msgid ""
 "The database has been modified.\n"
 "Discard changes ?"
 msgstr ""
-"Databasen har ändrats.\n"
-"Släng bort ändringarna?"
+"¥Ç¡¼¥¿¥Ù¡¼¥¹¤ÏÊÑ¹¹¤µ¤ì¤Þ¤·¤¿¡£\n"
+"ÊÑ¹¹¤òÇË´þ¤·¤Þ¤¹¤«?"
 
 #: Pyblio/GnomeUI/Document.py:316
 msgid "Merge file"
-msgstr "Lägg till filen"
+msgstr "¥Õ¥¡¥¤¥ë¤Î·ë¹ç"
 
 #: Pyblio/GnomeUI/Document.py:328 Pyblio/GnomeUI/Document.py:388
 msgid "Open error"
-msgstr "Fel vid öppning"
+msgstr "³«¤¯¤È¤­¤Î¥¨¥é¡¼"
 
 #: Pyblio/GnomeUI/Document.py:352
 msgid "Merge status"
-msgstr "Ihopslagningsstatus"
+msgstr "·ë¹ç¾õÂÖ"
 
 #: Pyblio/GnomeUI/Document.py:363
 msgid "Open file"
-msgstr "Öppna fil"
+msgstr "¥Õ¥¡¥¤¥ë¤ò³«¤¯"
 
 #: Pyblio/GnomeUI/Document.py:413
+#, fuzzy
 msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
 msgstr ""
-"Databasen har ändrats från utanför programmet.\n"
-"Skriv över ändringarna?"
+"¥Ç¡¼¥¿¥Ù¡¼¥¹¤ÏÊÑ¹¹¤µ¤ì¤Þ¤·¤¿¡£\n"
+"ÊÑ¹¹¤òÇË´þ¤·¤Þ¤¹¤«?"
 
 #: Pyblio/GnomeUI/Document.py:423
 #, c-format
@@ -501,7 +498,7 @@ msgid ""
 "Unable to save `%s':\n"
 "%s"
 msgstr ""
-"Kunde inte spara \"%s\":\n"
+"`%s'¤ò³«¤±¤Þ¤»¤ó:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:431
@@ -509,12 +506,12 @@ msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
 msgstr ""
-"Ett internt fel uppstod vid sparning\n"
-"Försöker spara som..."
+"ÊÝÂ¸¤¹¤ë¤È¤­¤ËÆâÉô¥¨¥é¡¼¤¬È¯À¸¤·¤Þ¤·¤¿\n"
+"ÊÌÌ¾¤ÇÊÝÂ¸¤·¤Æ¤¯¤À¤µ¤¤..."
 
 #: Pyblio/GnomeUI/Document.py:445
 msgid "Save As..."
-msgstr "Spara som..."
+msgstr "ÊÌÌ¾¤ÇÊÝÂ¸..."
 
 #: Pyblio/GnomeUI/Document.py:451
 #, c-format
@@ -522,8 +519,8 @@ msgid ""
 "The file `%s' already exists.\n"
 "Overwrite it ?"
 msgstr ""
-"Filen \"%s\" finns redan redan.\n"
-"Vill du skriva över den?"
+"`%s'¤Ï¤¹¤Ç¤ËÂ¸ºß¤·¤Þ¤¹¡£\n"
+"¾å½ñ¤­¤·¤Þ¤¹¤«?"
 
 #: Pyblio/GnomeUI/Document.py:458
 #, c-format
@@ -531,12 +528,12 @@ msgid ""
 "During opening:\n"
 "%s"
 msgstr ""
-"Vid öppnande:\n"
+"³«¤¤¤Æ¤¤¤ë¤È¤­¤Ë:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:478
 msgid "Reopen error"
-msgstr "Återöppningsfel"
+msgstr "ºÆ¥ª¡¼¥×¥ó¥¨¥é¡¼"
 
 #: Pyblio/GnomeUI/Document.py:519
 #, c-format
@@ -544,32 +541,31 @@ msgid ""
 "An entry called `%s' already exists.\n"
 "Rename and add it anyway ?"
 msgstr ""
-"En post som heter \"%s\" finns redan.\n"
-"Vill du döpa om och lägga till i alla fall?"
+"`%s'¤È¤¤¤¦¥¨¥ó¥È¥ê¤¬¤¹¤Ç¤ËÂ¸ºß¤·¤Þ¤¹¡£\n"
+"Ì¾Á°¤òÊÑ¹¹¤·¤Æ¤È¤Ë¤«¤¯ÄÉ²Ã¤·¤Þ¤¹¤«?"
 
 #: Pyblio/GnomeUI/Document.py:556
 msgid "Really remove all the entries ?"
-msgstr "Vill du verkligen ta bort alla poster?"
+msgstr "ËÜÅö¤Ë¤¹¤Ù¤Æ¤Î¥¨¥ó¥È¥ê¤òºï½ü¤·¤Þ¤¹¤«?"
 
 #: Pyblio/GnomeUI/Document.py:576
 msgid "Create new entry"
-msgstr "Skapa ny post"
+msgstr "¿·µ¬¥¨¥ó¥È¥ê¤ÎºîÀ®"
 
 #: Pyblio/GnomeUI/Document.py:590
 #, c-format
 msgid "Really edit %d entries ?"
-msgstr "Vill du verkligen ta bort %d poster?"
+msgstr "ËÜÅö¤Ë%d¥¨¥ó¥È¥ê¤òÊÔ½¸¤·¤Þ¤¹¤«?"
 
-# hoppas att ja fungerar som svar KONTROLLERA!
 #: Pyblio/GnomeUI/Document.py:628
 #, c-format
 msgid "Remove all the %d entries ?"
-msgstr "Vill du verkligen ta bort alla %d poster?"
+msgstr "%d¥¨¥ó¥È¥ê¤ò¤¹¤Ù¤Æºï½ü¤·¤Þ¤¹¤«?"
 
 #: Pyblio/GnomeUI/Document.py:630
 #, c-format
 msgid "Remove entry `%s' ?"
-msgstr "Ta bort post \"%s\"?"
+msgstr "¥¨¥ó¥È¥ê`%s'¤òºï½ü¤·¤Þ¤¹¤«?"
 
 #: Pyblio/GnomeUI/Document.py:696 Pyblio/GnomeUI/Document.py:703
 #, c-format
@@ -577,7 +573,7 @@ msgid ""
 "Can't connect to LyX:\n"
 "%s"
 msgstr ""
-"Kan inte ansluta till LyX:\n"
+"LyX¤ËÀÜÂ³¤Ç¤­¤Þ¤»¤ó:\n"
 "%s"
 
 #: Pyblio/GnomeUI/Document.py:750
@@ -585,48 +581,48 @@ msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
 msgstr ""
-"Du måste installera bug-buddy\n"
-"för att använda den här finessen"
+"¤³¤Îµ¡Ç½¤ò»È¤¦¤Ë¤Ïbug-buddy¤ò\n"
+"¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¯¤À¤µ¤¤"
 
 #: Pyblio/GnomeUI/Document.py:761
 msgid "This program is copyrighted under the GNU GPL"
-msgstr "Detta program är copyrightskyddad under GNU GPL"
+msgstr "¤³¤Î¥×¥í¥°¥é¥à¤ÏGNU GPL¤Î¤â¤È¤ËÃøºî¸¢¤¬¤¢¤ê¤Þ¤¹"
 
 #: Pyblio/GnomeUI/Document.py:763
 msgid "Gnome interface to the Pybliographer system."
-msgstr "Gnome-gränssnitt till Pybliographer-systemet."
+msgstr "Pybliobrapher¥·¥¹¥Æ¥à¤ÎGNOME¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹¤Ç¤¹¡£"
 
 #: Pyblio/GnomeUI/Document.py:768
 msgid "Pybliographer Home Page"
-msgstr "Pybliographers hemsida"
+msgstr "Pybliographer¥Û¡¼¥à¥Ú¡¼¥¸"
 
 #: Pyblio/GnomeUI/Format.py:37
 msgid "Format entries"
-msgstr "Formatera poster"
+msgstr "¥¨¥ó¥È¥ê¤Î¥Õ¥©¡¼¥Þ¥Ã¥È"
 
 #: Pyblio/GnomeUI/Format.py:51
 msgid "Bibliography style:"
-msgstr "Bibliografistil:"
+msgstr "ÌÜÏ¿¥¹¥¿¥¤¥ë:"
 
 #: Pyblio/GnomeUI/Format.py:52
 msgid "Select style"
-msgstr "Välj stil"
+msgstr "¥¹¥¿¥¤¥ë¤ÎÁªÂò"
 
 #: Pyblio/GnomeUI/Format.py:58
 msgid "Output format:"
-msgstr "Utdataformat:"
+msgstr "½ÐÎÏ¥Õ¥©¡¼¥Þ¥Ã¥È:"
 
 #: Pyblio/GnomeUI/Format.py:75
 msgid "Output File:"
-msgstr "Utdatafil:"
+msgstr "½ÐÎÏ¥Õ¥¡¥¤¥ë:"
 
 #: Pyblio/GnomeUI/Format.py:76
 msgid "Select output file"
-msgstr "Välj utdatafil"
+msgstr "½ÐÎÏ¥Õ¥¡¥¤¥ë¤ÎÁªÂò"
 
 #: Pyblio/GnomeUI/Config.py:45
 msgid "Choose your preferences"
-msgstr "Ange dina inställningar"
+msgstr "ÀßÄê¤ÎÁªÂò"
 
 #: Pyblio/GnomeUI/Config.py:93
 #, c-format
@@ -635,7 +631,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Objekt \"%s\":\n"
+"¥¢¥¤¥Æ¥à`%s':\n"
 "\n"
 "%s"
 
@@ -645,106 +641,105 @@ msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
-"Vissa ändringar kräver att du startar om\n"
-"Pybliographic för att de ska fungera"
+"¤¤¤¯¤Ä¤«¤ÎÊÑ¹¹¤Ï¡¢Àµ¤·¤¯È¿±Ç¤¹¤ë¤¿¤á¤Ë¤Ï\n"
+"Pybliographic¤òºÆµ¯Æ°¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Þ¤¹"
 
 #: Pyblio/GnomeUI/Config.py:249
 msgid "True"
-msgstr "Sant"
+msgstr "¿¿"
 
 #: Pyblio/GnomeUI/Config.py:250
 msgid "False"
-msgstr "Falskt"
+msgstr "µ¶"
 
 #: Pyblio/GnomeUI/Config.py:390
 msgid "Add"
-msgstr "Lägg till"
+msgstr "ÄÉ²Ã"
 
 #: Pyblio/GnomeUI/Config.py:393
 msgid "Update"
-msgstr "Uppdatera"
+msgstr "¹¹¿·"
 
 #: Pyblio/GnomeUI/Config.py:396 Pyblio/GnomeUI/Config.py:494
 #: Pyblio/GnomeUI/Fields.py:96 Pyblio/GnomeUI/Fields.py:239
 msgid "Remove"
-msgstr "Ta bort"
+msgstr "ºï½ü"
 
 #: Pyblio/GnomeUI/Config.py:482
 msgid "Value"
-msgstr "Värde"
+msgstr "ÃÍ"
 
 #: Pyblio/GnomeUI/Config.py:491 Pyblio/GnomeUI/Fields.py:93
 #: Pyblio/GnomeUI/Fields.py:236
 msgid "Set"
-msgstr "Sätt"
+msgstr "ÀßÄê"
 
 #: Pyblio/GnomeUI/Config.py:507
 msgid "Key:"
-msgstr "Nyckel:"
+msgstr "¥­¡¼:"
 
 #: Pyblio/GnomeUI/Config.py:509
 msgid "Value:"
-msgstr "Värde:"
+msgstr "ÃÍ:"
 
 #: Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"
-msgstr "Fältkonfiguration"
+msgstr "¥Õ¥£¡¼¥ë¥ÉÀßÄê"
 
 #: Pyblio/GnomeUI/Fields.py:59
 msgid "Name"
-msgstr "Namn"
+msgstr "Ì¾Á°"
 
 #: Pyblio/GnomeUI/Fields.py:59
 msgid "Type"
-msgstr "Typ"
+msgstr "¥¿¥¤¥×"
 
 #: Pyblio/GnomeUI/Fields.py:70
 msgid "Name:"
-msgstr "Namn:"
+msgstr "Ì¾Á°:"
 
 #: Pyblio/GnomeUI/Fields.py:72
 msgid "Type:"
-msgstr "Typ:"
+msgstr "¥¿¥¤¥×:"
 
 #: Pyblio/GnomeUI/Fields.py:198
 msgid "Entries configuration"
-msgstr "Inmatningskonfiguration"
+msgstr "¥¨¥ó¥È¥êÀßÄê"
 
 #: Pyblio/GnomeUI/Fields.py:209
 msgid "Entry"
-msgstr "Inmatning"
+msgstr "¥¨¥ó¥È¥ê"
 
 #: Pyblio/GnomeUI/Fields.py:220
 msgid "Entry Name:"
-msgstr "Inmatningsnamn:"
+msgstr "¥¨¥ó¥È¥êÌ¾:"
 
 #: Pyblio/GnomeUI/Fields.py:225
 msgid "Status"
-msgstr "Status"
+msgstr "¾õÂÖ"
 
 #: pybliographer.py:45
 #, c-format
 msgid "This is %s, version %s"
-msgstr "Det här är %s, version %s"
+msgstr "¤³¤ì¤Ï%s¤Ç¡¢¥Ð¡¼¥¸¥ç¥ó¤Ï%s¤Ç¤¹"
 
-# .././pybliographer.py:42 :49
 #: pybliographer.py:49 pybliographer.py:56
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
-msgstr "Detta är fri programvara UTAN NÅGON SOM HELST GARANTI."
+msgstr "¤³¤ì¤Ï¤Þ¤Ã¤¿¤¯ÊÝ¾Ú¤Î¤Ê¤¤¥Õ¥ê¡¼¥½¥Õ¥È¥¦¥§¥¢¤Ç¤¹¡£"
 
 #: pybliographer.py:50
 msgid "For details, type `warranty'."
-msgstr "För mer detaljer, skriv \"warranty\""
+msgstr "¾Ü¤·¤¯¤Ï¡¢`warranty'¤ÈÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£"
 
 #: pybliographer.py:113 pybliographer.py:165
 #, c-format
 msgid "%s: error: can't open file `%s'"
-msgstr "%s: fel: kan inte öppna filen \"%s\""
+msgstr "%s: ¥¨¥é¡¼: ¥Õ¥¡¥¤¥ë`%s'¤ò³«¤±¤Þ¤»¤ó"
 
 #: pybliographer.py:126
 #, c-format
 msgid "For help, run %s and type `help' at the prompt"
-msgstr "För hjälp, kör %s och skriv \"help\" vid prompten"
+msgstr "¥Ø¥ë¥×¤ò¸«¤ë¤Ë¤Ï¡¢%s¤ò¼Â¹Ô¤·¤Æ¥×¥í¥ó¥×¥È¤Ç`help'¤ÈÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤"
 
 #: pybliographer.py:135
 msgid ""
@@ -752,240 +747,233 @@ msgid ""
 "\thelp     to get some help\n"
 "\tquit     to quit\n"
 msgstr ""
-"Användbara kommandon:\n"
-"\thelp     för att få hjälp\n"
-"\tquit     för att avsluta\n"
+"»ÈÍÑ²ÄÇ½¤Ê¥³¥Þ¥ó¥É:\n"
+"\thelp     ¤Ç¥Ø¥ë¥×¤ò¤¤¤¯¤é¤«¸«¤ì¤Þ¤¹\n"
+"\tquit     ¤Ç½ªÎ»¤·¤Þ¤¹\n"
 
 #: scripts/pybcompact.py:30
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
-msgstr "användning: pybcompact <latexfil> <bibtexfiler...>"
+msgstr "»È¤¤Êý: pybcompact <latex¥Õ¥¡¥¤¥ë> <bibtex¥Õ¥¡¥¤¥ë...>"
 
 #: scripts/pybcompact.py:34
 #, c-format
 msgid "pybcompact: error: %s\n"
-msgstr "pybcompact: fel: %s\n"
+msgstr "pybcompact: ¥¨¥é¡¼: %s\n"
 
 #: scripts/pybcompact.py:97
 msgid "no entry"
-msgstr "ingen post"
+msgstr "¥¨¥ó¥È¥ê¤Ê¤·"
 
 #: scripts/pybcompact.py:142
 #, c-format
 msgid "can't find the following entries: %s"
-msgstr "kan inte hitta följande poster: %s"
+msgstr "¼¡¤Î¥¨¥ó¥È¥ê¤ò¸¡º÷¤Ç¤­¤Þ¤»¤ó: %s"
 
 #: scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
-msgstr "användning: pybconvert <källa>..<mål> <indata> [utdata]"
+msgstr "»È¤¤Êý: pybconvert <¥½¡¼¥¹>..<¥¿¡¼¥²¥Ã¥È> <ÆþÎÏ> [½ÐÎÏ]"
 
 #: scripts/pybconvert.py:38
 msgid "pybconvert: bad conversion format"
-msgstr "pybconvert: felaktigt konverteringsformat"
+msgstr "pybconvert: ÊÑ´¹¥Õ¥©¡¼¥Þ¥Ã¥È¤¬´Ö°ã¤Ã¤Æ¤¤¤Þ¤¹"
 
 #: scripts/pybformat.py:34
 msgid "usage: pybformat [bibtexfiles...]\n"
-msgstr "användning: pybformat [bibtexfiler...]\n"
+msgstr "»È¤¤Êý: pybformat [bibtex¥Õ¥¡¥¤¥ë...]\n"
 
 #: scripts/pybformat.py:38
 #, c-format
 msgid "pybformat: error: %s\n"
-msgstr "pybformat: fel: %s\n"
+msgstr "pybformat: ¥¨¥é¡¼: %s\n"
 
 #: scripts/pybformat.py:44
 #, c-format
 msgid "pybformat: warning: %s\n"
-msgstr "pybformat: varning: %s\n"
+msgstr "pybformat: Ãí°Õ: %s\n"
 
 #: scripts/pybformat.py:141 scripts/pybtex.py:86
 #, c-format
 msgid "can't find style `%s'"
-msgstr "kan inte hitta stilen \"%s\""
+msgstr "¥¹¥¿¥¤¥ë`%s'¤ò¸¡º÷¤Ç¤­¤Þ¤»¤ó"
 
 #: scripts/pybtex.py:34
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
-msgstr "användning: pybtex <latexfil> [bibtexfiler...]"
+msgstr "»È¤¤Êý: pybtex <latex¥Õ¥¡¥¤¥ë> [bibtex¥Õ¥¡¥¤¥ë...]"
 
 #: scripts/pybtex.py:38
 #, c-format
 msgid "pybtex: error: %s\n"
-msgstr "pybtex: fel: %s\n"
+msgstr "pybtex: ¥¨¥é¡¼: %s\n"
 
 #: scripts/pybtex.py:59
 msgid "pybtex: warning: the following keys were not resolved"
-msgstr "pybtex: varning: följande nycklar hittades inte"
+msgstr "pybtex: Ãí°Õ: ¼¡¤Î¥­¡¼¤Ï²ò·è¤µ¤ì¤Æ¤¤¤Þ¤»¤ó"
 
 #: scripts/pybtex.py:64
 msgid "no style defined"
-msgstr "ingen stil definierad"
+msgstr "¥¹¥¿¥¤¥ë¤¬ÄêµÁ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó"
 
 #~ msgid "BibTeX"
 #~ msgstr "BibTeX"
 
 #~ msgid "BibTeX parser configuration"
-#~ msgstr "Parserkonfiguration för BiBTeX"
+#~ msgstr "BibTeX¥Ñ¡¼¥µÀßÄê"
 
 #~ msgid "Strict Parsing"
-#~ msgstr "Strikt parsning"
+#~ msgstr "¸·Ì©¤Ê¥Ñ¡¼¥¹"
 
 #~ msgid "Turn warnings into errors"
-#~ msgstr "Gör varningar till fel"
+#~ msgstr "·Ù¹ð¤â¥¨¥é¡¼¤Ë¤¹¤ë"
 
 #~ msgid "Macros"
-#~ msgstr "Makron"
+#~ msgstr "¥Þ¥¯¥í"
 
 #~ msgid "BibTeX @String{} macros"
-#~ msgstr "BibTeX @String{}-makron"
+#~ msgstr "BibTeX @String{} ¥Þ¥¯¥í"
 
 #~ msgid "Date Fields"
-#~ msgstr "Datumfält"
+#~ msgstr "¥Ç¡¼¥¿¥Õ¥£¡¼¥ë¥É"
 
-#~ msgid ""
-#~ "Links from `real' date field to the two bibtex fields that compose it"
-#~ msgstr ""
-#~ "Länkar från \"riktiga\" datumfältet till de två BiBTeX-fälten som bygger upp "
-#~ "det"
+#~ msgid "Links from `real' date field to the two bibtex"
+#~ msgstr "`¼ÂºÝ¤Î'ÆüÉÕ¥Õ¥£¡¼¥ë¥É¤«¤é2¤Ä¤Îbibtex¤Ø¤Î¥ê¥ó¥¯"
 
 #~ msgid "Month values"
-#~ msgstr "Månadsvärden"
+#~ msgstr "·î¤ÎÃÍ"
 
-#~ msgid " A hash table linking month names to their values "
-#~ msgstr " En hashtabell som länkar månadsnamn till sina värden "
+#~ msgid " A hash table linking month names to their"
+#~ msgstr " ¥Ï¥Ã¥·¥å¥Æ¡¼¥Ö¥ë¤«¤é¤Î¥ê¥ó¥¯¤¬·îÌ¾¤«¤é"
 
 #~ msgid "Base"
-#~ msgstr "Grund"
+#~ msgstr "¥Ù¡¼¥¹"
 
 #~ msgid "Elementary configuration"
-#~ msgstr "Grundläggande konfiguration"
+#~ msgstr "Í×ÁÇ¤ÎÀßÄê"
 
 #~ msgid "Advertise"
-#~ msgstr "Annonsera"
+#~ msgstr "¹­¹ð"
 
-#~ msgid ""
-#~ "Specify wether or not the program should add a message saying that the "
-#~ "output files are generated by pybliographer"
-#~ msgstr ""
-#~ "Välj om programmet ska lägga till ett meddelande som säger att utdatafilen "
-#~ "skapats med pybliographer"
+#~ msgid "Specify wether or not the program should add a message"
+#~ msgstr "¥×¥í¥°¥é¥à¤¬¥á¥Ã¥»¡¼¥¸¤òÄÉ²Ã¤¹¤ë¤«¤É¤¦¤«¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤"
 
 #~ msgid "Fields"
-#~ msgstr "Fält"
+#~ msgstr "¥Õ¥£¡¼¥ë¥É"
 
 #~ msgid "Existing fields"
-#~ msgstr "Existerande fält"
+#~ msgstr "Â¸ºß¤¹¤ë¥Õ¥£¡¼¥ë¥É"
 
 #~ msgid "Entries"
-#~ msgstr "Poster"
+#~ msgstr "¥¨¥ó¥È¥ê"
 
 #~ msgid "Existing entries"
-#~ msgstr "Existerande poster"
+#~ msgstr "Â¸ºß¤¹¤ë¥¨¥ó¥È¥ê"
 
 #~ msgid "Default Type"
-#~ msgstr "Standardtyp"
+#~ msgstr "¥Ç¥Õ¥©¥ë¥È¥¿¥¤¥×"
 
 #~ msgid "Default type for a newly created entry"
-#~ msgstr "Standardtyp för en nyskapad post"
+#~ msgstr "¿·µ¬¤ËºîÀ®¤µ¤ì¤¿¥¨¥ó¥È¥ê¤Î¥Ç¥Õ¥©¥ë¥È¥¿¥¤¥×"
 
 #~ msgid "LyX Path"
-#~ msgstr "LyX-sökväg"
+#~ msgstr "LyX ¥Ñ¥¹"
 
 #~ msgid "Path to the LyX server"
-#~ msgstr "Sökväg till LyX-servern"
+#~ msgstr "LyX¥µ¡¼¥Ð¤Ø¤Î¥Ñ¥¹"
 
 #~ msgid "Path"
-#~ msgstr "Sökväg"
+#~ msgstr "¥Ñ¥¹"
 
 #~ msgid "Cross Reference"
-#~ msgstr "Korsreferens"
+#~ msgstr "¥¯¥í¥¹¥ê¥Õ¥¡¥ì¥ó¥¹"
 
 #~ msgid "Description"
-#~ msgstr "Beskrivning"
+#~ msgstr "ÀâÌÀ"
 
 #~ msgid "Author"
-#~ msgstr "Författare"
+#~ msgstr "Ãø¼Ô"
 
 #~ msgid "Address 1"
-#~ msgstr "Adress 1"
+#~ msgstr "¥¢¥É¥ì¥¹ 1"
 
 #~ msgid "Address 2"
-#~ msgstr "Adress 2"
+#~ msgstr "¥¢¥É¥ì¥¹ 2"
 
 #~ msgid "Title"
-#~ msgstr "Titel"
+#~ msgstr "¥¿¥¤¥È¥ë"
 
 #~ msgid "Specific Title"
-#~ msgstr "Specifik titel"
+#~ msgstr "ÆÃÄê¤Ç¤­¤ë¥¿¥¤¥È¥ë"
 
 #~ msgid "Journal"
-#~ msgstr "Tidskrift"
+#~ msgstr "¥¸¥ã¡¼¥Ê¥ë"
 
 #~ msgid "Special"
-#~ msgstr "Special"
+#~ msgstr "ÆÃÊÌ"
 
 #~ msgid "Book Title"
-#~ msgstr "Boktitel"
+#~ msgstr "ËÜ¤Î¥¿¥¤¥È¥ë"
 
 #~ msgid "Subject"
-#~ msgstr "Ämne"
+#~ msgstr "ÂêÌ¾"
 
 #~ msgid "Ownership"
-#~ msgstr "Ägare"
+#~ msgstr "½êÍ­¼Ô"
 
 #~ msgid "Series"
-#~ msgstr "Serie"
+#~ msgstr "¥·¥ê¡¼¥º"
 
 #~ msgid "Editor"
-#~ msgstr "Redigerare"
+#~ msgstr "ÊÔ½¸"
 
 #~ msgid "Edition"
-#~ msgstr "Utgåva"
+#~ msgstr "ÈÇ"
 
 #~ msgid "Volume"
-#~ msgstr "Volym"
+#~ msgstr "´¬"
 
 #~ msgid "Number"
-#~ msgstr "Nummer"
+#~ msgstr "ÈÖ¹æ"
 
 #~ msgid "Chapter"
-#~ msgstr "Kapitel"
+#~ msgstr "¾Ï"
 
 #~ msgid "Pages"
-#~ msgstr "Sidor"
+#~ msgstr "¥Ú¡¼¥¸"
 
 #~ msgid "School"
-#~ msgstr "Skolan"
+#~ msgstr "³Ø¹»"
 
 #~ msgid "Organization"
-#~ msgstr "Organisation"
+#~ msgstr "½êÂ°"
 
 #~ msgid "Location"
-#~ msgstr "Plats"
+#~ msgstr "¾ì½ê"
 
 #~ msgid "Dates"
-#~ msgstr "Datum"
+#~ msgstr "ÆüÉÕ"
 
 #~ msgid "Institution"
-#~ msgstr "Institution"
+#~ msgstr "³Ø²ñ"
 
 #~ msgid "Publisher"
-#~ msgstr "Förlag"
+#~ msgstr "È¯¹Ô¿Í"
 
 #~ msgid "Address"
-#~ msgstr "Adress"
+#~ msgstr "¥¢¥É¥ì¥¹"
 
 #~ msgid "Format"
-#~ msgstr "Format"
+#~ msgstr "¥Õ¥©¡¼¥Þ¥Ã¥È"
 
 #~ msgid "Date"
-#~ msgstr "Datum"
+#~ msgstr "ÆüÉÕ"
 
 #~ msgid "# Series"
-#~ msgstr "Nummerserie"
+#~ msgstr "# ¥·¥ê¡¼¥º"
 
 #~ msgid "Conference Place"
-#~ msgstr "Konferensplats"
+#~ msgstr "²ñµÄ¤Î¾ì½ê"
 
 #~ msgid "Cote"
-#~ msgstr "Citat"
+#~ msgstr "¥³¡¼¥È"
 
 #~ msgid "IEEECN"
 #~ msgstr "IEEECN"
@@ -1000,142 +988,142 @@ msgstr "ingen stil definierad"
 #~ msgstr "ISSN"
 
 #~ msgid "Note"
-#~ msgstr "Anmärkning"
+#~ msgstr "Ãí°Õ"
 
 #~ msgid "Language"
-#~ msgstr "Språk"
+#~ msgstr "¸À¸ì"
 
 #~ msgid "How Published"
-#~ msgstr "Hur publicerad"
+#~ msgstr "È¯¹Ô¤Î·Ð°Þ"
 
 #~ msgid "To Appear"
-#~ msgstr "Kommer i"
+#~ msgstr "½ÐÈÇ"
 
 #~ msgid "From"
-#~ msgstr "Från"
+#~ msgstr "¸µ"
 
 #~ msgid "Received"
-#~ msgstr "Mottagen"
+#~ msgstr "¼õ¼è"
 
 #~ msgid "Owner"
-#~ msgstr "Ägare"
+#~ msgstr "½êÍ­¼Ô"
 
 #~ msgid "Keywords"
-#~ msgstr "Nyckelord"
+#~ msgstr "¥­¡¼¥ï¡¼¥É"
 
 #~ msgid "Abstract"
-#~ msgstr "Sammanfattning"
+#~ msgstr "³µÍ×"
 
 #~ msgid "Remarks"
-#~ msgstr "Kommentarer"
+#~ msgstr "¥ê¥Þ¡¼¥¯"
 
 #~ msgid "URL"
 #~ msgstr "URL"
 
 #~ msgid "Article"
-#~ msgstr "Artikel"
+#~ msgstr "µ­»ö"
 
 #~ msgid " "
 #~ msgstr " "
 
 #~ msgid "Book"
-#~ msgstr "Bok"
+#~ msgstr "ËÜ"
 
 #~ msgid "Booklet"
-#~ msgstr "Häfte"
+#~ msgstr "ËÜÃª"
 
 #~ msgid "In Book"
-#~ msgstr "I bok"
+#~ msgstr "ËÜ¤ÎÃæ"
 
 #~ msgid "In Collection"
-#~ msgstr "I samling"
+#~ msgstr "¥³¥ì¥¯¥·¥ç¥ó¤ÎÃæ"
 
 #~ msgid "In Proceedings"
-#~ msgstr "I konferensanteckningar"
+#~ msgstr "µÄ»öÏ¿¤ÎÃæ"
 
 #~ msgid "Manual"
-#~ msgstr "Manuell"
+#~ msgstr "¥Þ¥Ë¥å¥¢¥ë"
 
 #~ msgid "Masters Thesis"
-#~ msgstr "Masters-uppsats"
+#~ msgstr "½¤»ÎÏÀÊ¸"
 
 #~ msgid "Miscellanous"
-#~ msgstr "Diverse"
+#~ msgstr "¤½¤ÎÂ¾"
 
 #~ msgid "PhD Thesis"
-#~ msgstr "Doktorsavhandling"
+#~ msgstr "PhDÏÀÊ¸"
 
 #~ msgid "Proceedings"
-#~ msgstr "Konferensanteckningar"
+#~ msgstr "µÄ»öÏ¿"
 
 #~ msgid "Technical Report"
-#~ msgstr "Teknisk rapport"
+#~ msgstr "¥Æ¥¯¥Ë¥«¥ë¥ì¥Ý¡¼¥È"
 
 #~ msgid "Unpublished"
-#~ msgstr "Ej publicerad"
+#~ msgstr "Ì¤È¯¹Ô"
 
 #~ msgid "Default type"
-#~ msgstr "Standardtyp"
+#~ msgstr "¥Ç¥Õ¥©¥ë¥È¥¿¥¤¥×"
 
 #~ msgid "Default type for an Ovid entry"
-#~ msgstr "Standardtyp för Ovid-post"
+#~ msgstr "Ovid¥¨¥ó¥È¥ê¤Î¥Ç¥Õ¥©¥ë¥È¥¿¥¤¥×"
 
 #~ msgid "Mapping"
-#~ msgstr "Koppling"
+#~ msgstr "¥Þ¥Ã¥Ô¥ó¥°"
 
-#~ msgid "A mapping between the Ovid field name and the current field and type"
-#~ msgstr "Koppling mellan Ovid-fältnamn och nuvarande fält och typ"
+#~ msgid "A mapping between the Ovid field name and the"
+#~ msgstr "Ovid¥Õ¥£¡¼¥ë¥ÉÌ¾¤È¤Î¥Þ¥Ã¥Ô¥ó¥°"
 
 #~ msgid "Field names correspondances"
-#~ msgstr "Korresponderande fältnamn"
+#~ msgstr "¥Õ¥£¡¼¥ë¥ÉÌ¾¤ÎÂÐ±þ"
 
 #~ msgid "Gnome"
 #~ msgstr "Gnome"
 
 #~ msgid "Gnome interface configuration"
-#~ msgstr "Anpassa Gnome-gränssnittet"
+#~ msgstr "Gnome¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹ÀßÄê"
 
 #~ msgid "Columns"
-#~ msgstr "Kolumner"
+#~ msgstr "¥«¥é¥à"
 
 #~ msgid "Fields displayed on the main screen of the interface"
-#~ msgstr "Fält som ska visas på huvudskärmen av gränssnittet"
+#~ msgstr "¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹¤Î¥á¥¤¥ó¥¹¥¯¥ê¡¼¥ó¤ËÉ½¼¨¤µ¤ì¤ë¥Õ¥£¡¼¥ë¥É"
 
 #~ msgid "Tooltips"
-#~ msgstr "Verktygstips"
+#~ msgstr "¥Ä¡¼¥ë¥Á¥Ã¥×"
 
 #~ msgid "Enable tooltips ?"
-#~ msgstr "Slå på verktygstips?"
+#~ msgstr "¥Ä¡¼¥ë¥Á¥Ã¥×¤òÍ­¸ú¤Ë¤·¤Þ¤¹¤«?"
 
 #~ msgid "Native Edit"
-#~ msgstr "Ursprungsredigering"
+#~ msgstr "¥Í¥¤¥Æ¥£¥ÖÊÔ½¸"
 
 #~ msgid "Edit the entries in their native format by default ?"
-#~ msgstr "Redigera posterna i sitt ursprunsformat som standard?"
+#~ msgstr "¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï¥¨¥ó¥È¥ê¤ò¥Í¥¤¥Æ¥£¥Ö¤Ê¥Õ¥©¡¼¥Þ¥Ã¥È¤ÇÊÔ½¸¤·¤Þ¤¹¤«?"
 
 #~ msgid "Use native edit by default ?"
-#~ msgstr "Använd ursprungsredigering som standard?"
+#~ msgstr "¥Ç¥Õ¥©¥ë¥È¤Ç¥Í¥¤¥Æ¥£¥ÖÊÔ½¸¤ò»ÈÍÑ¤·¤Þ¤¹¤«?"
 
 #~ msgid "Searchable"
-#~ msgstr "Sökbara"
+#~ msgstr "¸¡º÷²ÄÇ½"
 
 #~ msgid "Searchable fields"
-#~ msgstr "Sökbara fält"
+#~ msgstr "¸¡º÷²ÄÇ½¥Õ¥£¡¼¥ë¥É"
 
 #~ msgid "History Size"
-#~ msgstr "Storlek på historik"
+#~ msgstr "ÍúÎò¥µ¥¤¥º"
 
 #~ msgid "Size of the history file"
-#~ msgstr "Storlek på historikfilen"
+#~ msgstr "ÍúÎò¥Õ¥¡¥¤¥ë¤Î¥µ¥¤¥º"
 
 #~ msgid "Number of items"
-#~ msgstr "Antal element"
+#~ msgstr "¥¢¥¤¥Æ¥à¤Î¿ô"
 
 #~ msgid "Medline Mapping"
-#~ msgstr "Madline-koppling"
+#~ msgstr "Medline¥Þ¥Ã¥Ô¥ó¥°"
 
 #~ msgid "Medline field names correspondances"
-#~ msgstr "Korresponderande fältnamn i Medline"
+#~ msgstr "Medline¥Õ¥£¡¼¥ë¥ÉÌ¾¤ÎÂÐ±þ"
 
 #~ msgid "Internal Error"
-#~ msgstr "Internt fel"
+#~ msgstr "ÆâÉô¥¨¥é¡¼"

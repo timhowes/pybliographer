@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"POT-Creation-Date: 2000-11-20 18:19+ZONE\n"
+"POT-Creation-Date: 2001-01-09 18:27+0100\n"
 "PO-Revision-Date: 2000-12-09 12:33+0100\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -268,11 +268,11 @@ msgstr "Ekspertsøgning"
 msgid "Full database"
 msgstr "Fuld database"
 
-#: Pyblio/GnomeUI/Search.py:243
+#: Pyblio/GnomeUI/Search.py:241
 msgid "internal error during evaluation"
 msgstr "intern fejl under evaluering"
 
-#: Pyblio/GnomeUI/Search.py:292
+#: Pyblio/GnomeUI/Search.py:290
 #, c-format
 msgid ""
 "while compiling %s\n"
