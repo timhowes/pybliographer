@@ -78,7 +78,7 @@ main (int argc, char * argv [])
       field->text = g_strdup ("Essai \\ é GRONF oui FIN");
       field->converted = TRUE;
       
-      field = bibtex_reverse_field (field, 1);
+      field = bibtex_reverse_field (field, 1, 1);
       tmp = bibtex_struct_as_bibtex (field->structure);
       
       g_message ("converted: %s", tmp);

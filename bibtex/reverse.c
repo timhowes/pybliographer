@@ -106,7 +106,8 @@ author_needs_quotes (gchar * string) {
 
 BibtexField * 
 bibtex_reverse_field (BibtexField * field,
-		      gboolean use_braces) {
+		      gboolean use_braces,
+		      gboolean do_quote) {
 #ifdef USE_RECODE
     BibtexStruct * s;
     gchar * string, * tmp, c;
@@ -154,8 +155,6 @@ bibtex_reverse_field (BibtexField * field,
 	    }
 	}
 
-	tmp = recode_string (request, field->text);
-
 	if (use_braces) {
 	    g_string_append (st, "@preamble{{");
 	}
@@ -163,8 +162,14 @@ bibtex_reverse_field (BibtexField * field,
 	    g_string_append (st, "@preamble{\"");
 	}
 
-	g_string_append (st, tmp);
-	g_free (tmp);
+	if (do_quote) {
+	  tmp = recode_string (request, field->text);
+	  g_string_append (st, tmp);
+	  g_free (tmp);
+	}
+	else {
+	  g_string_append (st, field->text);
+	}
 
 	if (use_braces) {
 	    g_string_append (st, "}}");
