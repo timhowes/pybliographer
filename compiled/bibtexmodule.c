@@ -115,7 +115,7 @@ py_message_handler (const gchar *log_domain G_GNUC_UNUSED,
 }
 
 static PyObject *
-bib_open (PyObject * self, PyObject * args)
+bib_open_file (PyObject * self, PyObject * args)
 {
     char * name;
     BibtexSource * file;
@@ -132,6 +132,36 @@ bib_open (PyObject * self, PyObject * args)
     file->strict = strictness;
 
     if (! bibtex_source_file (file, name)) {
+	bibtex_source_destroy (file, TRUE);
+	return NULL;
+    }
+
+    /* Create a new object */
+    ret = (PyBibtexSource_Object *) 
+	PyObject_NEW (PyBibtexSource_Object, & PyBibtexSource_Type);
+    ret->obj = file;
+
+    return (PyObject *) ret;
+}
+
+static PyObject *
+bib_open_string (PyObject * self, PyObject * args)
+{
+    char * name, * string;
+    BibtexSource * file;
+    gint strictness;
+
+    PyBibtexSource_Object * ret;
+
+    if (! PyArg_ParseTuple(args, "ssi", & name, & string, & strictness))
+	return NULL;
+
+    file = bibtex_source_new ();
+
+    /* set the strictness */
+    file->strict = strictness;
+
+    if (! bibtex_source_string (file, name, string)) {
 	bibtex_source_destroy (file, TRUE);
 	return NULL;
     }
@@ -272,6 +302,25 @@ bib_get_native (PyObject * self, PyObject * args) {
     g_free (text);
 
     return tmp;
+}
+
+static PyObject *
+bib_copy_field (PyObject * self, PyObject * args) {
+    BibtexField * field, * copy;
+    PyBibtexField_Object * field_obj, * new_obj;
+    gchar * text;
+    int i;
+
+    if (! PyArg_ParseTuple(args, "O!:get_native", & PyBibtexField_Type, & field_obj))
+	return NULL;
+
+    field = field_obj->obj;
+
+    new_obj = (PyBibtexField_Object *) PyObject_NEW (PyBibtexField_Object, & PyBibtexField_Type);
+
+    new_obj->obj = bibtex_struct_as_field (bibtex_struct_copy (field->structure), field->type);
+
+    return (PyObject *) new_obj;
 }
 
 static PyObject *
@@ -644,7 +693,8 @@ bib_get_offset (PyObject * self, PyObject * args)
 
 
 static PyMethodDef bibtexMeth [] = {
-    { "open", bib_open, METH_VARARGS },
+    { "open_file", bib_open_file, METH_VARARGS },
+    { "open_string", bib_open_string, METH_VARARGS },
     { "next", bib_next, METH_VARARGS },
     { "first", bib_first, METH_VARARGS },
     { "set_offset", bib_set_offset, METH_VARARGS },
@@ -656,6 +706,7 @@ static PyMethodDef bibtexMeth [] = {
     { "reverse", bib_reverse, METH_VARARGS },
     { "get_dict", bib_get_dict, METH_VARARGS },
     { "set_string", bib_set_string, METH_VARARGS },
+    { "copy_field", bib_copy_field, METH_VARARGS },
     {NULL, NULL, 0},
 };
 
