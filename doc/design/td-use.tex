@@ -1,22 +1,396 @@
-\section{Organising and Manipulating References }
-\label{sec:basicwork}
+\chapter{Organising and Manipulating References }
+\label{cha:basicwork}
 
 One aspect of Pybliographer is its use to \textit{organise references}
--- that lays the accent onto the varieties of uses that these
+-- that lays the accent onto the variety of uses that these
 references could be put to, and the concomitant variety of possible
-organisation we have to cope with. This de-emphasises the
+organisations we have to cope with.  This de-emphasises the
 bibliographical description, as a rule, but stresses our ability to
 annotate and link.
 
+As a rule, our data is kept in \textit{one} database, organised into
+\textit{folders} (compare Biblioscape \ref{biblioscapefolder}).  A
+variety of \textit{Indices} are kept to allow fast access.
+
+\cbstart
+\begin{dnote}
+
+\item Most entities used in this connection are fully blown DB objcts,
+  that can hold metadata, annotations, etc.  Possible exceptions are
+  \textit{keywords,} 
+\item Another question not yet discussed is \textit{indexing} -- but
+  there are strong connections. 
+\item Checking against a simple index could be used alongside spelling
+  correction during input, that is what many programs do. 
+
+\end{dnote}
+
+\cbend
+
+\section{Folders and Lists}
+\label{sec:folders}
+
+We often have to do with the need to structure the search space, to
+group entries, and generally to organise the data in various ways.
+
+One way to do so, which is perhaps particularly useful and of near
+universal application, is to use folders. These are modelled after the
+Biblioscape feature of this name, cf. also Fowler's \textit{Portfolio
+  pattern}. Lists are in this connection simply stand-alone (unrooted)
+folders that may contain any number of items but do not allow
+sub-folders.
 
 
-As a rule, our data is kept in one database, organised into
-\textit{folders} (compare Biblioscape \ref{biblioscapefolder}). 
 
-A variety of \textit{Indices} are kept  to allow fast access. q
+With each folder are associated various attributes and data structures
+besides the items that it contains (or the subfolders, resp.).
+\begin{itemize*}
+\item Display format: in particular for special purpose lists.
+\item Sorting order: same considerations. These could be combined, but
+  are of unlike type.
+\item Filter condition.
+\item Base set.
+\end{itemize*}
 
+Major operations:
+\begin{itemize*}
+\item Add (move, copy) an item into one list or folder. 
+
+Supposedly more often items are marked into a list, or subsumed into a
+folder.
+
+\item Display a folder (means display the union of all subfolders if
+  not a leaf folder).
+\item Open a folder (means display if a leaf folder).
+\item Close a folder.
+\end{itemize*}
+
+In Biblioscape there is a so-called \textit{dynamic folder}
+capability, meaning a folder the extend of which is determined by
+executing a SQL [like] query against the data base. I.e., a standard
+folder is defined by an arbitrary assignment, while a dynamic folder
+is defined by the value of one or more attributes. It is evident that
+this is an interesting variant.
+
+To a degree, the assignment to a folder could imply the assignment of
+an attribute, but it is not clear if this direction there is much to
+be gained.
+
+I would argue against tying the folders to any extrinsic purpose or
+organisation, but allow them to be freely used by the user.  This does
+not exclude (so it seems) using  \textit{existing} attributes for
+classification, while acknowledging their limitations in most cases.
+
+
+\subsection{Lists}
+\label{sec:orglists}
+
+Any result set is a \textit{List}, and vice versa. So lists are a very
+prominent feature in \Pyb\ -- by using them we allow intermediate
+results to be saved, as task related information to be easily kept.
+
+List cannot be nested, to distinguish them from folders and to relieve
+the application from the problem of inferring an hierarchy, but they
+could be turned into folders, if the need arises.
+
+
+\section{Keywords}
+\label{sec:orgkeys}
+
+It is easy to add a \textit{keyword} to an entry and easy to search
+for it.  So this is an favourite feature.  But this is also a technique
+that has its limitations; let us consider some situations to find out
+more:
+
+We may simply think of coarsely classifying an item, putting it onto
+one heap or another, where it is understood that it can be very
+diverse schemes involved, i.e., the one want to classify according to
+his work plan, the other according to tasks involved, a third assigns
+a priority.  This is, however, a task that is much more better
+accomplished with folders, indeed, this is their foremost purpose.
+
+Another use is to indicate the contents, as a sort of diminutive
+\textit{subject headings} (see \textit{infra} section
+\ref{sec:orgsubj}). Compared to these they have the following
+deficits:
+\begin{itemize*}
+\item There is not \textit{thesaurus structure}
+\item There is no support for multi-lingual application
+\item In consequence, little stability can be expected in its
+  application
+\end{itemize*}
+Therefore, it is of little interest in that respect.
+
+However, another usage that in fact might not come easily into one's
+mind is valuable: adding search terms to compensate for variations in
+spelling, terminology or for omissions in titling that would otherwise
+require more elaborate mechanisms.
+
+
+
+\newpage
+
+\cbstart
+
+\section{Subject Headings}
+\label{sec:orgsubj}
+
+\textit{Subject headings} are, by contrast, keywords with special
+enhancements which make them more useful for the purpose of indicating
+the content of an item. 
+
+Subject headings are like keywords given to an item in order to
+indicate its content, but they have a \textit{syntactic structure}
+that sets them off from keywords, and they are taken from a
+\textit{thesaurus}, a controlled vocabulary with special features for
+improved usability, both at the time the item is described and at the
+time the search is formulated.
+
+\textbf{Note:} Some interesting contributions are in the little volume
+\citep{dbi:SWD90}.
+
+An item is given one or more subject headings (up to six in Germany),
+each of which is a chain of one or more (up to six in Germany) subject
+elements (my translation).
+
+
+\newenvironment{requtab}[3]{%
+  \label{sec:rq#1}\def\myrequprefix{#2}
+  \fbox{\textbf{\sffamily #2 #3}}\hrule\noindent\nopagebreak}
+{\nopagebreak\vspace{\baselineskip}\hrule\medskip}
+\newcommand{\requel}[5][]{%
+  {\makebox[15mm]{\textbf{\sffamily \myrequprefix.#2 \hfill#1\,}}
+    \parbox[t]{9.5cm}{#3 \small\textit{#4}}\,
+    \parbox[t]{3cm}{\small\sffamily#5}\par}}
+
+\begin{requtab}
+  {a33}{3.3}{Subject Headings}
+  
+  \requel{01} {It shall be possible to add Subject Headings to
+    Entries.}  {Minimally for all manifestations, but also valuable
+    for e.g., quotes and notes}{}
+
+  \requel[?]{02}
+  {It shall be possible to distinguish primary and secondary references}  
+  {In the sense of giving a weight.}{}
+
+  \requel{03}
+  {It shall be possible to limit the  number of subject heading per entry}
+  {Some rules require this -- including zero depending upon type, e.g.}{}
+
+  \requel{04}
+  {It shall be possible to derive subject headings during import}{}{9271}
+
+  \requel{05}
+  {The assignment of subject headings (i.e. manual entry) shall be assisted}
+  {by look up, browsing, completion, copying etc.}{9276, 9280}
+
+  
+
+  \requel{10}
+  {Chained subject headings shall be used}
+  {Syntactic structure v. infra}{}
+
+
+  \requel{11}
+  {Types of heading elements shall be distinguished}
+  {persons, geographical names, historical periods, forms}{}
+
+
+  \requel[?]{12}
+  {It shall be possible to limit permutations of the chain}
+  {(This is not without problems, though.)}{}
+
+
+  \requel{13}
+  {Predefined chains shall be available}
+  {v. infra}{}
+
+  \requel{14}
+  {Subject headings shall be entities, not strings}
+  {i.e. shared not copied -- generally so}{9273, 9275}
+
+  \requel{15}
+  {Subject headings shall be editable, im-\slash export- and
+  annotatable}
+  {}{9272, 9277, 9278, 9279}
+
+  \requel{20}
+  {Syntactical searching must be used}
+  {v. infra}{}
+
+
+  \requel{21}
+  {PF references must be followed automatically}
+  {}{}
+
+
+  \requel{22}
+  {A folding display must be used}
+  {}{}
+
+
+  \requel{30}
+  {Multiple schemas must be supported}
+  {To allow mapping during  or after import, e.g.}{}
+
+
+  \requel{31}
+  {A Thesaurus structure must be used}
+  {}{9113 9114 9128 }
+
+
+  \requel{32}
+  {Multiple languages must be supported}
+  {}{}
+
+  \requel{33}
+  {Import mappings must be possible}
+  {}{}
+
+  \requel{34}
+  {Adding a  classification to SHs must be possible}
+  {(This is done in Zürich, e.g.)}{}
+
+  \requel{35}
+  {It should be possible to produce (hierarchically) sorted list,
+  e.g., for subject bibliographies}
+  {}{9208}
+
+  
+  
+\end{requtab}
+
+\subsection{Syntactic Structure}
+\label{sec:orgsubsyn}
+
+Why do subject headings need a syntactic structure?  Isn't this only
+good for card catalogues?  But consider the following.
+
+There are indeed two kinds of syntactical structure present. First we
+compose subject headings as chains of subject elements in order to
+make more precise the intended meaning (subordinating index).  The
+improvement is, of course, more easily felt with greater databases.
+But even for smaller databases the following considerations are
+important:
+
+If some subject elements occur very frequently, in variable
+combinations, a worthwhile gain in precision results compared to mere
+juxtaposition.  This is for example the case for papers situated on
+the border between two disciplines, or on the horizon of one's
+interests, where the choice of headings becomes less specific. 
+
+It is also easier to produce and to peruse both, printed and displayed
+lists and registers alike, if an additional structure is available.
+
+And, whenever we import data we might well get data structured in this
+way, why should we destroy information neddlessly?
+
+A second kind of syntactic structure that must be taken into account,
+is given within each element: the qualifying information that is used
+to distinguish between homonymes. It is particular important to avoid
+the qualifiers when searching, as e.g. in \textsf{group
+  <mathematics>}, lest a search for \textsf{mathematics} should
+produce all entries indexed with the former. 
+
+\cbend
+
+\subsection{Thesaurus Structure}
+\label{sec:orgsubthes}
+
+
+
+\section{Classifications}
+\label{sec:orgclass}
+
+Although a \textit{thesaurus} and a classification share a common
+storage structure, they stem from different principles, are build and
+used in quite different ways, and as a result complement each other
+more than that they would compete.
+
+
+\newpage
+
+\cbstart
+
+\section{Indexes}
+\label{orgindex}
+
+Indexes are, of course, a rather general concept; it is treated here,
+and not in the database chapter, because they are essentially in their
+unrefined way, used in many programs to emulate  what \Pyb\
+accomplishes with more sophistication. 
+
+Thus we can often find the following picture (see, e.g., the
+evaluations by F. Dell' Orso \citep{ors:bfs02})
+
+\begin{itemize*}
+\item a field is indexed, sometimes every field gets its own index,
+  perhaps separating authors from editors, 
+\item we deal usually with strings, thus there is no option of
+  annotating, or of silently following references
+\item sometimes we have copy semantics,\footnote {Which is, b.t.w.,
+    the rule in American library applications, such as OCLC.}
+\item the index is often used  as data entry helper, checking for
+  typos, or offering completion
+\end{itemize*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{requtab}[3]{%
+  \label{sec:rq#1}\def\myrequprefix{#2}
+  \fbox{\textbf{\sffamily #2 #3}}\hrule\noindent\nopagebreak}
+{\nopagebreak\vspace{\baselineskip}\hrule\medskip}
+\newcommand{\requel}[5][]{%
+  {\makebox[15mm]{\textbf{\sffamily \myrequprefix.#2 \hfill#1\,}}
+    \parbox[t]{9.5cm}{#3 \small\textit{#4}}\,
+    \parbox[t]{3cm}{\small\sffamily#5}\par}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{requtab}{a3a0}{3.0}{General considerations -- Indexes}
+
+  \requel{01}
+  {The creation of indexes shall be freely possible}{}{9270}
+  
+  \requel{02} {The creation of Indexes shall be usually possible with
+    little or no programming, by subclassing or cloning}
+  {}{}
+
+  \requel{03}
+  {Indexes shall be maintained \textit{real-time} with option of
+    backgroud (re-)building}
+  {}{9271}
+
+  \requel{04} 
+  {Multiple fields (data elements) shall be able to share one index}
+  {}{}
+
+  \requel{05} 
+  {All indexes shall be searchable}
+  {}{9281}
+
+  \requel{06} 
+  {All indexes should be usable during input for validation or completion}
+  {}{9280}
+
+  \requel{07} 
+  {Application should provide sufficient utilities for printing etc.}
+  {}{9278}
+
+  \requel[?]{08}
+  {Indexes should be shareable}{}{9283}
+
+  \requel{09}
+  {The number of matching records should be displayed in appropiate
+  circumstances} {}{9282}
+
+
+\end{requtab}
+
+\cbend
 
 %%% Local Variables: 
 %%% mode: latex
-%%% TeX-master: "td-td1"
+%%% TeX-master: "DG"
 %%% End: 
