@@ -27,7 +27,7 @@ from gtk import *
 from Pyblio.GnomeUI.Pybliographic import Pybliographic
 from Pyblio.Fields import URL
 
-main = Pybliographic (version)
+main = Pybliographic ()
 
 if len (sys.argv) > 2:
     for file in sys.argv [2:]:
