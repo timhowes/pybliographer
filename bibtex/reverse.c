@@ -317,7 +317,10 @@ bibtex_reverse_field (BibtexField * field,
 	    }
 
 	    if (author->last) {
-	        has_space = author_needs_quotes (author->last);
+	        /* quotes if there is no first name */
+	        has_space = author_needs_quotes (author->last) ||
+		  (author->first == NULL && 
+		   strpbrk (author->last, " \t") != NULL);
 
 		if (has_space) {
 		    g_string_append_c (st, '{');
