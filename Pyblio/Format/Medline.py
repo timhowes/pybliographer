@@ -204,7 +204,14 @@ def writer (iter, output):
         if entry.has_key (med):
             del ekeys [med]
             for auth in entry [med]:
-                text = '%s %s' % (auth.last or '', auth.first or '')
+                first = auth.first or ''
+                compact = []
+                for seq in string.split (first, ' '):
+                    compact.append (seq [0])
+
+                first = string.join (compact, '')
+                text = '%s %s' % (auth.last or '', first)
+                
                 output.write ('%-4.4s- %s\n' % ('AU', text))
 
         med = one_to_one ['DP']
