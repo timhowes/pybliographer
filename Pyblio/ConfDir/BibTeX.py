@@ -1,7 +1,8 @@
 from Pyblio import Config
 
 Config.define ('bibtex/strict',
-               """ A boolean indicating the strictness of the parsing """)
+               """ A boolean indicating the strictness of the parsing """,
+               Config.Boolean ())
 
 Config.set ('bibtex/strict', 0)
 
@@ -9,7 +10,9 @@ Config.set ('bibtex/strict', 0)
 Config.define ('bibtex/macros', """ A dictionnary defining the BibTeX
 macros (@String{} macros). Each entry of the dictionnary is a 2-uple :
 the first field is the expansion of the macro, the second is a boolean
-indicating if this macro definition has to be saved in the .bib files """)
+indicating if this macro definition has to be saved in the .bib files """,
+               Config.Dict (Config.String (),
+                            Config.Tuple ((Config.String (), Config.Boolean ()))))
 
 Config.set ('bibtex/macros',
             {'jan' : ("January", 0),
@@ -29,13 +32,15 @@ Config.set ('bibtex/macros',
 
 Config.define ('bibtex/override', """ A boolean indicating if the
 macro definitions provided here should override the ones given in a
-file """)
+file """, Config.Boolean ())
 
 Config.set ('bibtex/override', 0)
 
 
 Config.define ('bibtex/datefield', """ A hash table linking a `real'
-date field to the two bibtex fields that compose it """)
+date field to the two bibtex fields that compose it """,
+               Config.Dict (Config.String (),
+                            Config.Tuple ((Config.String (), Config.String ()))))
 
 Config.set ('bibtex/datefield', {
     'date'  : ('year', 'month'),

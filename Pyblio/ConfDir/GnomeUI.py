@@ -4,17 +4,19 @@ Config.define ('gnomeui/default', """ Graphical description of the
 default field. """)
 
 Config.define ('gnomeui/columns', """ A list of the fields displayed
-on the main screen of the interface """)
+on the main screen of the interface """,
+               Config.List (Config.String ()))
 
 Config.define ('gnomeui/tooltips', """ A boolean indicating if
-tooltips are enabled """)
+tooltips are enabled """, Config.Boolean ())
 
 Config.define ('gnomeui/monospaced', """ A monospaced font, for native edition """)
 
 Config.define ('gnomeui/native-as-default', """ Should we edit the
-entries in their native format by default ? """)
+entries in their native format by default ? """, Config.Boolean ())
 
-Config.define ('gnomeui/searched', """ List of searchable fields """)
+Config.define ('gnomeui/searched', """ List of searchable fields """,
+               Config.List (Config.String ()))
 
 # --------------------------------------------------
 from Pyblio.GnomeUI import Utils, Editor

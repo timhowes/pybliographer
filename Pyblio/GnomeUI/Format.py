@@ -52,13 +52,13 @@ class FormatDialog (Connector.Publisher):
         self.file = GnomeFileEntry ('format', _("Select style"))
         self.file.set_default_path (os.path.join (version.prefix, 'Styles'))
         h.pack_start (self.file)
-        self.w.vbox.pack_start (h, FALSE, FALSE)
+        self.w.vbox.pack_start (h, TRUE, FALSE)
 
         h = GtkHBox (FALSE, 5)
         h.pack_start (GtkLabel (_("Output format:")), FALSE, FALSE)
         self.menu = GtkOptionMenu ()
         h.pack_start (self.menu)
-        self.w.vbox.pack_start (h, FALSE, FALSE)
+        self.w.vbox.pack_start (h, TRUE, FALSE)
 
         # menu content
         menu = GtkMenu ()
@@ -75,7 +75,7 @@ class FormatDialog (Connector.Publisher):
         h.pack_start (GtkLabel (_("Output File:")), FALSE, FALSE)
         self.output = GnomeFileEntry ('output', _("Select output file"))
         h.pack_start (self.output)
-        self.w.vbox.pack_start (h, FALSE, FALSE)
+        self.w.vbox.pack_start (h, TRUE, FALSE)
         
         self.w.show_all ()
         return

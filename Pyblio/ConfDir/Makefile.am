@@ -24,7 +24,6 @@ pybdir = $(datadir)/$(PACKAGE)/Pyblio/ConfDir
 EXTRA_DIST = \
 	Base.py 	\
 	BibTeX.py 	\
-	DocBook.py 	\
 	GnomeUI.py 	\
 	Medline.py 	\
 	Ovid.py 	\

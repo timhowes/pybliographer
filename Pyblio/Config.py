@@ -19,7 +19,10 @@
 # 
 # $Id$
 
-import string, os, sys, types, gettext
+import string, os, sys, types, gettext, cPickle
+
+pickle = cPickle
+del cPickle
 
 _ = gettext.gettext
 
@@ -137,7 +140,6 @@ class Storage:
         
 ConfigItems = Storage ()
 
-
 def define (key, description, vtype = None, hook = None, user = None):
     if ConfigItems.has_key (key):
         raise KeyError, "key `%s' already defined" % key
@@ -186,7 +188,7 @@ class PrimaryType:
 
     
     
-class StringType (PrimaryType):
+class String (PrimaryType):
     def __init__ (self):
         self.type = types.StringType
         return
@@ -195,16 +197,16 @@ class StringType (PrimaryType):
         return _("a String")
 
 
-class BooleanType (PrimaryType):
+class Boolean (PrimaryType):
     def __init__ (self):
         self.type = types.IntType
         return
 
     def __str__ (self):
-        return _("a String")
+        return _("a Boolean")
 
 
-class IntegerType (PrimaryType):
+class Integer (PrimaryType):
     def __init__ (self, min = None, max = None):
         self.type = types.IntType
         self.min  = min
@@ -229,19 +231,19 @@ class IntegerType (PrimaryType):
         return _("an Integer between %d and %d") % (self.min, self.max)
     
 
-class InstanceType:
-    def __init__ (self, cl):
-        self.instance_class = cl
+class Element:
+    def __init__ (self, elements):
+        self.get = elements
         return
 
     def match (self, value):
-        return isinstance (value, self.instance_class)
+        return self.get ().count (value)
 
     def __str__ (self):
-        return _("an Instance of `%s'") % str (self.instance_class)
+        return _("an Element in `%s'") % str (self.get ())
 
     
-class TupleType:
+class Tuple:
     ''' A tuple composed of different subtypes '''
     
     def __init__ (self, subtypes):
@@ -262,7 +264,7 @@ class TupleType:
                string.join (map (str, self.subtypes), ', ')
     
 
-class ListType:
+class List:
     ''' An enumeration of items of the same type '''
 
     def __init__ (self, subtype):
@@ -282,7 +284,7 @@ class ListType:
         return _("a List (%s)") % str (self.subtype)
     
 
-class DictType:
+class Dict:
     ''' A dictionnary '''
 
     def __init__ (self, key, value):
@@ -305,4 +307,39 @@ class DictType:
     def __str__ (self):
         return _("a Dictionnary (%s, %s)") % (str (self.key),
                                               str (self.value))
+
+
+
+def load_user ():
+    # load the saved items
+    try:
+        file = open (os.path.expanduser ('~/.pybrc.conf'), 'r')
+    except IOError: return
     
+    changed = pickle.load (file)
+    file.close ()
+    
+    for item in changed.keys ():
+        ConfigItems.eventually_resolve (item)
+        set (item, changed [item])
+        
+    return
+        
+def save_user (changed):
+    # read what has to be saved again
+    try:
+        file = open (os.path.expanduser ('~/.pybrc.conf'), 'r')
+        previous = pickle.load (file)
+        file.close ()
+    except IOError: previous = {}
+    
+    for item in changed.keys ():
+        previous [item] = changed [item]
+    
+    file = open (os.path.expanduser ('~/.pybrc.conf'), 'w')
+    pickle.dump (previous, file)
+    file.close ()
+    return
+
+
+

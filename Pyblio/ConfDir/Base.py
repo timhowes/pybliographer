@@ -2,22 +2,19 @@ from Pyblio import Config, Types, Fields
 
 Config.define ('base/fields', """ Existing fields.  It's a hash table,
                with the field name (lower case) as key, and a instance
-               of Types.FieldDescription as value. """,
-               vtype = Config.DictType (Config.StringType (),
-                                        Config.InstanceType (Types.FieldDescription)))
+               of Types.FieldDescription as value. """)
 
 
 Config.define ('base/entries', """ Existing entries.  It's a hash
                table, with the entry name (lower case) as key, and a
-               instance of Types.EntryDescription as value. """,
-               vtype = Config.DictType (Config.StringType (),
-                                        Config.InstanceType (Types.EntryDescription)))
+               instance of Types.EntryDescription as value. """)
 
 Config.define ('base/defaulttype', """ Default type for a newly created entry """,
-               vtype = Config.InstanceType (Types.EntryDescription))
+               vtype = Config.Element (lambda Config = Config:
+                                       Config.get ('base/entries').data.values ()))
 
 Config.define ('base/lyxpipe', """ Path to the LyX server """,
-               vtype = Config.StringType ())
+               vtype = Config.String ())
 
 # --------------------------------------------------
 
