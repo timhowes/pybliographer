@@ -387,6 +387,36 @@ fill_struct_dico (gpointer key, gpointer value, gpointer user)
     Py_DECREF (tmp2);
 }
 
+static PyObject *
+bib_set_string (PyObject * self, PyObject * args)
+{
+    BibtexField * field;
+    BibtexSource * source;
+    PyBibtexSource_Object * source_obj;
+    PyBibtexField_Object * field_obj;
+    
+    gchar * key;
+
+    if (! PyArg_ParseTuple(args, "O!sO!:set_string", 
+			   & PyBibtexSource_Type, 
+			   & source_obj,
+			   & key,
+			   & PyBibtexField_Type,
+			   & field_obj
+			   ))
+	return NULL;
+
+    source = source_obj->obj;
+    field  = field_obj->obj;
+
+    /* set a copy of the struct as the field value */
+    bibtex_source_set_string (source, key, 
+			      bibtex_struct_copy (field->structure));
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+
 
 static PyObject *
 bib_next (PyObject * self, PyObject * args)
@@ -530,7 +560,6 @@ bib_reverse (PyObject * self, PyObject * args)
 	    tmp = PyObject_GetAttrString (authobj, "last");
 	    if (tmp != Py_None) {
 		auth->last = g_strdup (PyString_AsString (tmp));
-/*  		g_message ("last: %s", auth->last); */
 	    }
 	    else {
 		auth->last = NULL;
@@ -539,7 +568,6 @@ bib_reverse (PyObject * self, PyObject * args)
 	    tmp = PyObject_GetAttrString (authobj, "first");
 	    if (tmp != Py_None) {
 		auth->first = g_strdup (PyString_AsString (tmp));
-/*  		g_message ("first: %s %x", auth->first, auth->first); */
 	    }
 	    else {
 		auth->first = NULL;
@@ -627,6 +655,7 @@ static PyMethodDef bibtexMeth [] = {
     { "set_native", bib_set_native, METH_VARARGS },
     { "reverse", bib_reverse, METH_VARARGS },
     { "get_dict", bib_get_dict, METH_VARARGS },
+    { "set_string", bib_set_string, METH_VARARGS },
     {NULL, NULL, 0},
 };
 
