@@ -211,7 +211,7 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
         if self.notebook.get_current_page () == 0:
             self.text.append_history (TRUE, self.text.gtk_entry ().get_text ())
 
-        self.apply_cb (self, widget)
+        self.apply_cb (widget)
         return
     
     def apply_cb (self, widget):
