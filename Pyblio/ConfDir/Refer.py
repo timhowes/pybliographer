@@ -27,8 +27,5 @@ Config.set ('refer/mapping', {
     'K' : ('keywords', 1),
     'X' : ('abstract', 1),
     'W' : ('location', 1),
+    'F' : ('label', 1),
     })
-
-
-
-
