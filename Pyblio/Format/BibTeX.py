@@ -22,7 +22,7 @@
 # Extension module for BibTeX files
 
 import Pyblio.Base, _bibtex
-import os,sys, tempfile, pwd, time, traceback, re, string, copy
+import os, sys, tempfile, pwd, time, traceback, re, string, copy
 
 from types import *
 from Pyblio.Fields import *
@@ -34,7 +34,7 @@ _ = gettext.gettext
 
 
 # this database is shared between all the unpickled entries
-__unpickle_db = _bibtex.open_string ("<unpickled>", '', 0);
+_unpickle_db = _bibtex.open_string ("<unpickled>", '', 0);
 
 
 class BibTextField (Text):
@@ -134,13 +134,12 @@ class Entry (Base.Entry):
 
 
     def __setstate__ (self, state):
-        print "setstate", `state`
-        
         self.dict   = {}
         self.type   = state.type
         self.key    = state.key
         self.__text = state.dict
-
+        self.parser = _unpickle_db
+        
         for field in state.dict.keys ():
             self [field] = state [field]
         return
