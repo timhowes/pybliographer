@@ -1,5 +1,5 @@
 # Serbian translation of pybliographer
-# Courtesy of Prevod.org team (http://www.prevod.org/) -- 2003.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004.
 #
 # This file is distributed under the same license as the pybliographer package.
 #
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-01 15:24+0100\n"
-"PO-Revision-Date: 2003-11-01 15:33+0100\n"
+"POT-Creation-Date: 2004-02-20 09:54+0100\n"
+"PO-Revision-Date: 2004-02-20 09:55+0100\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -1331,7 +1331,9 @@ msgstr "Подразумевајте ово правило ређања за н�
 msgid ""
 "The following errors occured:\n"
 "\n"
-msgstr "Догодиле су се следеће грешке:\n\n"
+msgstr ""
+"Догодиле су се следеће грешке:\n"
+"\n"
 
 #. This file is part of pybliographer
 #.
