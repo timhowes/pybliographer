@@ -40,8 +40,8 @@ class ParserError:
     def __repr__ (self):
         return format (self.file, self.errors)
 
-class FormatError:
 
+class SimpleError:
     def __init__ (self, message):
         self.message = message
         return
@@ -49,12 +49,14 @@ class FormatError:
     def __repr__ (self):
         return self.message
     
-
-class FileError:
-    def __init__ (self, message):
-        self.message = message
-        return
-
-    def __repr__ (self):
-        return self.message
     
+class FormatError (SimpleError):
+    pass
+
+
+class FileError (SimpleError):
+    pass
+
+
+class DateError (SimpleError):
+    pass

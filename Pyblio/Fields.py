@@ -19,9 +19,12 @@
 # 
 # $Id$
 
-from Pyblio import Key
+from Pyblio import Key, Exceptions
 
-import string, types, re, string, recode, urlparse, os
+import string, types, re, string, recode, urlparse, os, gettext, time
+
+import copy, re
+_ = gettext.gettext
 
 year_match = re.compile ('(\d\d\d\d)')
 
@@ -237,7 +240,6 @@ class AuthorGroup:
 
         return 0
             
-RangeError = 'RangeError'
 
 class Date:
     ''' Fine description of a date '''
@@ -260,19 +262,20 @@ class Date:
             year, month, day = arg
         
         if year and year < 0:
-            raise RangeError, 'wrong year'
+            raise Exceptions.DateError (_("Illegal year value"))
         self.year = year
         
         if month and (month < 1 or month > 12):
-            raise RangeError, 'wrong month'
+            raise Exceptions.DateError (_("Illegal month value"))
         self.month = month
         
         if day and (day < 1 or day > 31):
-            raise RangeError, 'wrong day'
+            raise Exceptions.DateError (_("Illegal day value"))
         self.day = day
 
         self.text = None
         return
+
 
     def __cmp__ (self, other):
 
@@ -293,6 +296,7 @@ class Date:
         
         return s - o
 
+
     def __str__ (self):
         ''' Returns textual representation '''
 
@@ -310,6 +314,7 @@ class Date:
                 self.text = ''
                 
         return self.text
+
 
     def format (self, fmt = 'latin1'):
         ''' Returns the fields in a given format '''
@@ -408,7 +413,7 @@ class Reference:
     ''' Holder for a reference to a bibliographic entry (which can be
     a crossref, a link to related entries, ... '''
 
-    def __init__ (self, keylist, database):
+    def __init__ (self, keylist, database = None):
         
         if type (keylist) is types.StringType:
             self.list = map (lambda k, db = database: Key.Key (db, string.strip (k)),
@@ -418,8 +423,21 @@ class Reference:
         return
     
     def __str__ (self):
-        body = string.join (map (str, self.list), ', ')
-        return 'Reference on %s' % body
+        body = []
+        # get the list of databases
+        dbs = {}
+        for refs in self.list:
+            dbs [refs.base] = 1
+
+        for db in dbs.keys ():
+            keys = []
+            for refs in self.list:
+                if refs.base == db:
+                    keys.append (refs.key)
+            body.append ('(' + string.join (keys, ', ') + ') ' +
+                         _("in %s") % db)
+        
+        return 'Reference on %s' % string.join (body, ', ')
 
 
     def __repr__ (self):

@@ -37,6 +37,17 @@ def get_entry (entry, has_default = 1):
     return None
 
 
+def get_field (field):
+    ''' return a field description given its name '''
+    
+    fields = Config.get ("base/fields").data
+
+    if fields.has_key (field):
+        return fields [field]
+
+    return FieldDescription (field)
+
+
 class FieldDescription:
     ''' Available informations for a given field type '''
 
@@ -62,6 +73,11 @@ class EntryDescription:
 	self.__dict__ ['optional']  = []
 	return
 
+
+    def __cmp__ (self, other):
+        return cmp (string.lower (self.name), string.lower (other.name))
+
+    
     def __str__ (self):
 	return "<EntryDescription `%s'>" % self.name
 
@@ -86,30 +102,4 @@ class EntryDescription:
 	self.__dict__ [attr] = value
 	return
         
-    def __call__ (entry, field):
-	''' Return a field type given its name and the entry it
-	belongs to '''
-
-	fields = Config.get ("base/fields").data
-
-	if entry and entry.has_key (field):
-	    return entry [field].type
-
-	if fields.has_key (field):
-	    return fields [field].type
-
-	return Fields.Text
-
-
-    def __getitem__ (self, item):
-	return self.__dict__ ['lcfields'] [item]
-
-
-    def __setitem__ (self, item, value):
-	self.__dict__ ['lcfields'] [item] = value
-	return
-
-
-    def has_key (self, field):
-	return self.__dict__ ['lcfields'].has_key (field)
 

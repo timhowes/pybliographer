@@ -88,8 +88,8 @@ def generate_key (entry, table):
                 key = join (map (lambda x: x [0], parts), '')
 	
                 
-        if entry.has_key ('pubdate'):
-            year = entry ['pubdate'].year
+        if entry.has_key ('date'):
+            year = entry ['date'].year
             
             if year:
                 key = key + str (year) [2:]
