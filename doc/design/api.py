@@ -8,30 +8,13 @@ class Database (object):
         pass
 
     def save (self):
+        ''' Save the database  '''
         pass
 
-    def record_get (self, query = None):
-        ''' Returns an iterator to loop over some records of the
-        database '''
-        pass
-
-    def role_get (self, query = None):
-        ''' Returns an iterator to loop over some roles of the
-        database '''
+    def query (self, query):
+        ''' Perform a query on the database  '''
         pass
     
-    def attribute_get (self, query = None):
-        ''' Returns an iterator to loop over some attributes of the
-        database '''
-        pass
-
-
-    def __iter__ (self):
-        ''' A default iterator that loops over all the entries in
-        natural order '''
-        return self.record_get ()
-
-
 
 
 class Record (object):
@@ -39,8 +22,6 @@ class Record (object):
     ''' Set of attributes describing a bibliographic object '''
 
     def __init__ (self):
-        self.attribute = {}
-
         # these are defined once the object has been registered in the db.
         self.db = None
         self.id = None
@@ -50,13 +31,27 @@ class Record (object):
         ''' Register the record in the database '''
         return self
 
+    def attr_set (self, attr, role):
+        ''' Connect an attribute to the Record, for a specific Role  '''
+        pass
+    
+    def attr_del (self, attr, role):
+        ''' Disconnect an attribute from a Record '''
+        pass
+    
+    def link (self, record, role):
+        ''' Link a Record to another Record, for a specific Role '''
+        pass
+    
+    def unlink (self, record, role):
+        ''' Unlink a Record from another Record, for a specific Role '''
+        pass
+    
 
 class Work (Record):
     
     def __init__ (self):
         Record.__init__ (self)
-        
-        self.expression = []
         return
 
 
@@ -64,9 +59,6 @@ class Expression (Record):
     
     def __init__ (self):
         Record.__init__ (self)
-
-        self.work = None
-        self.manifestation = []
         return
 
 
@@ -74,9 +66,6 @@ class Manifestation (Record):
     
     def __init__ (self):
         Record.__init__ (self)
-
-        self.expression = None
-        self.item = []
         return
 
 
@@ -84,8 +73,6 @@ class Item (Record):
 
     def __init__ (self):
         Record.__init__ (self)
-        
-        self.manifestation = None
         return
     
 
@@ -94,19 +81,17 @@ class Role (object):
     ''' Detailed information about an attribute role. A role can be a
     specialization of another role. '''
     
-    def __init__ (self, role_name, type, shared):
+    def __init__ (self, role, description, type):
         
-        ''' A role_name is an intern string with the following syntax:
+        ''' A role is an intern string with the following syntax:
 
                <domain>:<role>
 
-        The type is a subclass of Attribute. If shared is 1, then a
-        unique attribute can be used in several records for the same role. '''
+        The type indicates the classes that can be related by that role. '''
         
-        self.role  = role_name
-        self.type  = type
-        self.super = None
-        self.sub   = []
+        self.role = role
+        self.desc = description
+        self.type = type
 
         # these are defined once the object has been registered in the db.
         self.db = None
@@ -117,8 +102,13 @@ class Role (object):
         ''' Register the role in the database '''
         pass
 
+    def parent_set (self, super):
+        ''' Set the parent Role, possibly to None '''
+        pass
 
-class Attribute (object):
+    
+
+class Type (object):
 
     ''' The base class of all the attributes of a record '''
 
@@ -136,7 +126,7 @@ class Attribute (object):
         return self
 
 
-class Actor (Attribute):
+class Actor (Type):
     ''' A Person or Corporate Entity '''
     pass
 
@@ -162,36 +152,50 @@ class Corporate (Actor):
         return
 
 
-class Text (Attribute):
+class Text (Type):
 
     ''' A non-constrained text attribute, with formatting and language
     properties. '''
     
-    def __init__ (self, lang = None):
-        Attribute.__init__ (self)
+    def __init__ (self):
+        Type.__init__ (self)
         
-        self.lang = lang
+        self.lang = None
+        self.text = None
         return
 
 
-class Date (Attribute):
+class Date (Type):
 
     YEAR  = 0
     MONTH = 1
     DAY   = 2
     
     def __init__ (self):
-        Actor.__init__ (self)
+        Type.__init__ (self)
 
         self.date = [ None, None, None ]
         return
 
 
-class Concept (Attribute):
+class Concept (Type):
 
-    pass
+    def __init__ (self):
+        Type.__init__ (self)
+
+        self.name = None
+        return
+
+    def parent_set (self, concept):
+        ''' Set the parent Concept, possibly to None '''
+        pass
 
 
-class URI (Attribute):
+class URI (Type):
 
-    pass
+    def __init__ (self):
+        Type.__init__ (self)
+        
+        self.uri = None
+        return
+
