@@ -290,7 +290,6 @@ bib_get_native (PyObject * self, PyObject * args) {
     BibtexField * field;
     PyBibtexField_Object * field_obj;
     gchar * text;
-    int i;
 
     if (! PyArg_ParseTuple(args, "O!:get_native", & PyBibtexField_Type, & field_obj))
 	return NULL;
@@ -306,10 +305,8 @@ bib_get_native (PyObject * self, PyObject * args) {
 
 static PyObject *
 bib_copy_field (PyObject * self, PyObject * args) {
-    BibtexField * field, * copy;
+    BibtexField * field;
     PyBibtexField_Object * field_obj, * new_obj;
-    gchar * text;
-    int i;
 
     if (! PyArg_ParseTuple(args, "O!:get_native", & PyBibtexField_Type, & field_obj))
 	return NULL;
@@ -332,7 +329,6 @@ bib_get_latex (PyObject * self, PyObject * args) {
     BibtexSource * file;
     PyBibtexSource_Object * file_obj;
     gchar * text;
-    int i;
 
     if (! PyArg_ParseTuple(args, "O!O!i:get_latex", 
 			   &PyBibtexSource_Type, & file_obj, 
@@ -361,9 +357,7 @@ bib_set_native (PyObject * self, PyObject * args) {
     BibtexStruct * s;
     BibtexFieldType type;
 
-    PyBibtexField_Object * field_obj;
     gchar * text, * to_parse;
-    int i;
 
     if (! PyArg_ParseTuple(args, "si:set_native", & text, &type))
 	return NULL;
@@ -474,7 +468,7 @@ bib_next (PyObject * self, PyObject * args)
     BibtexSource * file;
     PyBibtexSource_Object * file_obj;
 
-    PyObject * dico, * tmp, * tmp2, * name;
+    PyObject * dico, * tmp, * name;
 
     if (! PyArg_ParseTuple(args, "O!:next", & PyBibtexSource_Type, & file_obj))
 	return NULL;
@@ -519,7 +513,7 @@ bib_get_dict (PyObject * self, PyObject * args)
     BibtexSource * file;
     PyBibtexSource_Object * file_obj;
 
-    PyObject * dico, * tmp, * tmp2;
+    PyObject * dico;
 
     if (! PyArg_ParseTuple(args, "O!:next", &PyBibtexSource_Type, & file_obj))
 	return NULL;
@@ -660,7 +654,7 @@ static PyObject *
 bib_set_offset (PyObject * self, PyObject * args)
 {
     BibtexSource * file;
-    gint offset;
+    gint offset = 0;
     PyBibtexSource_Object * file_obj;
 
     if (! PyArg_ParseTuple(args, "O!:first", &PyBibtexSource_Type, & file_obj))
@@ -718,7 +712,7 @@ static PyMethodDef bibtexMeth [] = {
 };
 
 
-void init_bibtex ()
+void init_bibtex (void)
 {
     bibtex_set_default_handler ();
     g_log_set_handler ("BibTeX", BIB_LEVEL_ERROR,   

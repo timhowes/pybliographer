@@ -151,7 +151,7 @@ static PyMethodDef recodeMeth [] = {
 };
 
 
-void init_recode ()
+void init_recode (void)
 {
     outer = recode_new_outer (false);
     if (outer == NULL) return;
