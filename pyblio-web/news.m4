@@ -8,6 +8,12 @@ m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
 
+news_item([[08/08/2002]], [[The <a
+href="development.html">development</a> page now contains some
+documents that describe the design study of the future
+pybliographer. For feedback, don't hesitate to subscribe to the
+mailing-list.]]),
+
 news_item([[12/07/2002]], [[Despite the lack of news, things continue
 to evolve slowly in the backstage. Fresh developments have finally
 started, stay tuned for more information!]]),
