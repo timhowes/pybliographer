@@ -158,6 +158,11 @@
   <class>GnomeDialog</class>
   <name>connections</name>
   <visible>False</visible>
+  <signal>
+    <name>destroy</name>
+    <handler>destroy</handler>
+    <last_modification_time>Tue, 06 Aug 2002 11:13:05 GMT</last_modification_time>
+  </signal>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

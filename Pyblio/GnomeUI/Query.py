@@ -25,6 +25,7 @@ from __future__ import nested_scopes
 
 from gtk import *
 from gnome.ui import *
+from gnome import config
 
 from libglade import GladeXML
 from Pyblio import version, Exceptions
@@ -154,7 +155,6 @@ class QueryUI:
 
     def cnx_validate (self, * arg):
         self.w_cnx.destroy ()
-        self.w_cnx = None
 
         self.save ()
         self.update ()
@@ -165,9 +165,20 @@ class QueryUI:
         self.load ()
 
         self.w_cnx.destroy ()
-        self.w_cnx = None
         return
 
+    def cnx_closed (self, * arg):
+        ''' Called when the connection editor is closed '''
+
+        # save the size of the window
+        alloc = self.w_cnx.get_allocation ()
+        config.set_int ('Pybliographic/QueryCnx/Width',  alloc [2])
+        config.set_int ('Pybliographic/QueryCnx/Height', alloc [3])
+        config.sync ()
+        
+        self.w_cnx = None
+        return
+    
     def cnx_entry (self, * arg):
         file = arg [0].get_text ()
 
@@ -216,9 +227,13 @@ class QueryUI:
                                          'cancel'    : self.cnx_cancel,
                                          'cnx_entry' : self.cnx_entry,
                                          'delete'    : self.cnx_delete,
+                                         'destroy'   : self.cnx_closed,
                                          })
         
         self.w_cnx = self.x_cnx.get_widget ('connections')
+
+        ui_width  = config.get_int ('Pybliographic/QueryCnx/Width=-1')
+        ui_height = config.get_int ('Pybliographic/QueryCnx/Height=-1')
 
         accelerator = GtkAccelGroup ()
         self.w_cnx.add_accel_group (accelerator)
@@ -229,7 +244,11 @@ class QueryUI:
                                 GDK.D, GDK.CONTROL_MASK, 0)
 
         self.cnx_update ()
-        
+
+        # set window size
+        if ui_width != -1 and ui_height != -1:
+            self.w_cnx.set_usize(ui_width, ui_height)
+
         self.w_cnx.set_parent (self.w_search)
         self.w_cnx.show ()
         return
