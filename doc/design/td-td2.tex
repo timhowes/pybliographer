@@ -1,0 +1,111 @@
+\documentclass[12pt,a4paper,smallheadings,cleardoubleplain,DIV8]{scrbook}
+\usepackage{pyblio,graphicx,mdwlist}
+%\includeonly{td-rg3}
+% add font styles  like: ,galliard,gillsans, if you like
+\hyphenation{data-base}
+%\rcsInfo $Id$
+\begin{document}
+\frontmatter
+\title{Pybliographer\\ User's Reference Guide}
+\author{Frédéric Gobry and Peter Schulte-Stracke}
+\maketitle{}
+\mainmatter
+\pagestyle{headings}
+% \begin{abstract}This manual gives an introduction and reference for
+%   the use of Pybliographer version 2.
+% \end{abstract}
+
+%%% ad interim 
+\newcommand{\myrulewidth}{.8pt}
+\newenvironment{dnote}{\par\medskip\centerline{\textbf{Note}}\vspace{-7pt}
+\noindent\rule{\textwidth}{\myrulewidth}\begin{itemize}}
+{\end{itemize}\rule{\textwidth}{\myrulewidth}\\[2pt]\noindent}
+
+\newenvironment{dtask}{\par\medskip\centerline{\textbf{Task}}\vspace{-7pt}
+\noindent\rule{\textwidth}{\myrulewidth}\begin{itemize}}
+{\end{itemize}\rule{\textwidth}{\myrulewidth}\\[2pt]\noindent}
+
+\newenvironment{drequ}{\par\medskip\centerline{\textbf{Requirements}}
+\vspace{-7pt}\noindent\rule{\textwidth}{\myrulewidth}\begin{itemize}}
+{\end{itemize}\rule{\textwidth}{\myrulewidth}\\[2pt]\noindent}
+
+\tableofcontents
+\reversemarginpar
+
+% Part 1 -- Introduction
+\part{Introduction}
+\include{td-rg1}
+\include{td-rg2}
+\include{td-rg3}
+\include{td-rg4}
+\include{td-rg5}
+\include{td-rg6}
+\include{td-rg7}
+
+% Part 2 -- Bibliographic description guide
+\part{A Guide to Bibliographical Descriptions}
+\include{td-rh1}
+\include{td-rh2}
+\include{td-rh3}
+\include{td-rh4}
+\include{td-rh5}
+\include{td-rh6}
+\include{td-rh7}
+\include{td-rh8}
+\include{td-rh9}
+% Part 3 -- User tasks
+\part{User Tasks}
+\include{td-rj1}
+\include{td-rj2}
+\include{td-rj3}
+\include{td-rj4}
+\include{td-rj5}
+\include{td-rj6}
+\include{td-rj7}
+\include{td-rj8}
+\include{td-rj9}
+\include{td-rj10}
+\include{td-rj11}
+
+% part 4 -- Interfaces
+\part{The Application Programming Interface}
+\include{td-rk1}
+\include{td-rk2}
+\include{td-rk3}
+\include{td-rk4}
+\include{td-rk5}
+\include{td-rk6}
+\include{td-rk7}
+\include{td-rk8}
+\include{td-rk9}
+\include{td-rk10}
+
+
+
+\appendix
+\part{Appendices}
+\chapter{Migration}
+\label{cha:appmig}
+
+
+\cleardoublepage
+
+\addchap{Glossary}
+\label{cha:glossary}
+\newcommand{\txglossbuchstb}[1]{\medskip}
+
+\makeatletter
+
+\newcommand{\txglossentry}[2][]{%
+\noindent\textbf{#2\ifx#1\@empty\else\hfill [#1]\fi}\nopagebreak}
+
+\makeatother
+
+\input{tx-gloss.lst}
+
+
+
+\bibliographystyle{plaindin}
+\bibliography{pyblio}
+
+\end{document}
