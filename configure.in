@@ -254,22 +254,6 @@ if ${Python} -c 'import gnome' >&5 2>&1 ; then
     fi
   fi
 
-  AC_MSG_CHECKING([for a working GdkImlib])
-  if ${Python} -c 'import _gdkimlib' >&5 2>&1 ; then
-    AC_MSG_RESULT([yes])
-  else
-    AC_MSG_RESULT([no])
-    echo
-    echo " Unable to import the python module _gdkimlib."
-    echo " This usually means that your gnome installation is"
-    echo " either incomplete or partially out of date."
-    echo
-    echo " You can upgrade your system, or alternatively you can"
-    echo " reinstall gnome-python *from sources*."
-    echo
-    AC_MSG_ERROR([unable to use GdkImlib])
-  fi
-
 else
   AC_MSG_RESULT([not found])
   AC_MSG_WARN([install gnome-python if you want the graphical interface])
