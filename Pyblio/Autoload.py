@@ -19,7 +19,7 @@
 # 
 # $Id$
 
-import os, string, re, gettext
+import os, string, re, gettext, sys
 
 _ = gettext.gettext
 
@@ -79,9 +79,13 @@ def preregister (group, name, module, regexp = None, info = None):
         gp = {}
         __loaders [group] = gp
 
-        
+    lc = string.lower (name)
+    # are we preregistering an existing key ?
+    if gp.has_key (lc):
+        return gp [lc]
+    
     lo = Loader (name, regexp, module, info)
-    gp [string.lower (name)] = lo
+    gp [lc] = lo
     
     return lo
 

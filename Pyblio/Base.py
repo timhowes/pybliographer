@@ -184,7 +184,7 @@ class DataBase:
 
         if entry.key is None:
             # call a key generator
-            keytype = Config.get ('base/keyformat').data
+            keytype   = Config.get ('base/keyformat').data
             entry.key = Autoload.get_by_name ('key', keytype).data (entry, self)
         else:
             entry.key.base = self.key
