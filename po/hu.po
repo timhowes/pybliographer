@@ -1,0 +1,747 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pybliographer-0.9.9\n"
+"POT-Creation-Date: 2000-04-14 10:06+ZONE\n"
+"PO-Revision-Date: 2000-04-14 08:00+0200\n"
+"Last-Translator: Zoltán Kóta <kota@szbk.u-szeged.hu>\n"
+"Language-Team: hu <hu@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-latin-2\n"
+"Content-Transfer-Encoding: \n"
+
+#: .././Pyblio/Autoload.py:57
+msgid "warning: can't import %s: %s"
+msgstr "figyelmeztetés: nem tudom importálni %s-t: %s"
+
+#: .././Pyblio/Config.py:53
+msgid "value of `%s' should be of type %s"
+msgstr "`%s' értékének %s típusúnak kell lennie"
+
+#: .././Pyblio/Config.py:196
+msgid "String"
+msgstr "Sztring"
+
+#: .././Pyblio/Config.py:205
+msgid "Boolean"
+msgstr "Boole"
+
+#: .././Pyblio/Config.py:224
+msgid "Integer"
+msgstr "Egész"
+
+#: .././Pyblio/Config.py:226
+msgid "Integer under %d"
+msgstr "Egész %d alatt"
+
+#: .././Pyblio/Config.py:228
+msgid "Integer over %d"
+msgstr "Egész %d felett"
+
+#: .././Pyblio/Config.py:230
+msgid "Integer between %d and %d"
+msgstr "Egész %d és %d között"
+
+#: .././Pyblio/Config.py:242
+msgid "Element in `%s'"
+msgstr "Elem `%s'-ben"
+
+#: .././Pyblio/Config.py:262
+msgid "Tuple (%s)"
+msgstr "Szekvencia (%s)"
+
+#: .././Pyblio/Config.py:283
+msgid "List (%s)"
+msgstr "Lista (%s)"
+
+#: .././Pyblio/Config.py:308
+msgid "Dictionnary (%s, %s)"
+msgstr "Szótár (%s, %s)"
+
+#: .././Pyblio/Fields.py:265
+msgid "Illegal year value"
+msgstr "Illegális év"
+
+#: .././Pyblio/Fields.py:269
+msgid "Illegal month value"
+msgstr "Illegális hónap"
+
+#: .././Pyblio/Fields.py:273
+msgid "Illegal day value"
+msgstr "Illegális nap"
+
+#: .././Pyblio/Fields.py:438
+msgid "in %s"
+msgstr "%s-ben"
+
+#: .././Pyblio/LyX.py:39
+msgid "no input pipe `%s'"
+msgstr "nincs bemeneti pipe `%s'"
+
+#: .././Pyblio/LyX.py:45
+msgid "no output pipe `%s'"
+msgstr "nincs kimeneti pipe `%s'"
+
+#: .././Pyblio/Open.py:97
+msgid "method `%s' provides no opener"
+msgstr "`%s' módszer nem biztosít megnyitót"
+
+#: .././Pyblio/Open.py:105
+msgid "File `%s' does not exist"
+msgstr "`%s' állomány nem létezik"
+
+#: .././Pyblio/Open.py:116
+msgid "don't know how to open `%s'"
+msgstr "Nem tudom hogy nyissam meg `%s'-t"
+
+#: .././Pyblio/Open.py:143
+msgid "method `%s' provides no iterator"
+msgstr "`%s' módszer nem biztosít iterátort"
+
+#: .././Pyblio/Format/BibTeX.py:326
+msgid "key `%s' is malformed"
+msgstr "kulcs `%s' helytelen"
+
+#: .././Pyblio/Format/BibTeX.py:345
+msgid "%s:%d: key `%s' already defined"
+msgstr "%s:%d: kulcs `%s' már definiálva van"
+
+#: .././Pyblio/GnomeUI/Editor.py:38
+msgid "Last Name, First Name"
+msgstr "Vezetéknév, Keresztnév"
+
+#: .././Pyblio/GnomeUI/Editor.py:39
+msgid "Text"
+msgstr "Szöveg"
+
+#: .././Pyblio/GnomeUI/Editor.py:42
+msgid "Reference"
+msgstr "Hivatkozás"
+
+#: .././Pyblio/GnomeUI/Editor.py:249
+msgid "Day"
+msgstr "Nap"
+
+#: .././Pyblio/GnomeUI/Editor.py:258
+msgid "Month"
+msgstr "Hónap"
+
+#: .././Pyblio/GnomeUI/Editor.py:267
+msgid "Year"
+msgstr "Év"
+
+#: .././Pyblio/GnomeUI/Editor.py:292
+msgid "Invalid day field in date"
+msgstr "Érvénytelen nap a dátumban"
+
+#: .././Pyblio/GnomeUI/Editor.py:300
+msgid "Invalid month field in date"
+msgstr "Érvénytelen hónap a dátumban"
+
+#: .././Pyblio/GnomeUI/Editor.py:308
+msgid "Invalid year field in date"
+msgstr "Érvénytelen év a dátumban"
+
+#: .././Pyblio/GnomeUI/Editor.py:415
+msgid "Entry type"
+msgstr "Bejegyzés típusa"
+
+#: .././Pyblio/GnomeUI/Config.py:445 .././Pyblio/GnomeUI/Editor.py:417
+msgid "Key"
+msgstr "Kulcs"
+
+#: .././Pyblio/GnomeUI/Editor.py:458
+msgid "Create Field"
+msgstr "Új mezõ"
+
+#: .././Pyblio/GnomeUI/Editor.py:523 .././Pyblio/GnomeUI/Fields.py:178
+msgid "Mandatory"
+msgstr "Kötelezõ"
+
+#: .././Pyblio/GnomeUI/Editor.py:523 .././Pyblio/GnomeUI/Fields.py:179
+msgid "Optional"
+msgstr "Opcionális"
+
+#: .././Pyblio/GnomeUI/Editor.py:523
+msgid "Extra"
+msgstr "Extra"
+
+#: .././Pyblio/GnomeUI/Editor.py:582
+msgid "Invalid key format"
+msgstr "Érvénytelen kulcs formátum"
+
+#: .././Pyblio/GnomeUI/Editor.py:590
+msgid "Key `%s' already exists"
+msgstr "Kulcs `%s' már létezik"
+
+#: .././Pyblio/GnomeUI/Editor.py:657
+msgid "Error in native string parsing"
+msgstr "Hiba a sztringelemzésben"
+
+#: .././Pyblio/GnomeUI/Editor.py:670
+msgid "Edit entry"
+msgstr "Bejegyzés módosítása"
+
+#: .././Pyblio/GnomeUI/Editor.py:684
+msgid "Native Editing"
+msgstr "Natív szerkesztés"
+
+#: .././Pyblio/GnomeUI/Editor.py:737
+msgid "Standard Editing"
+msgstr "Standard szerkesztés"
+
+#: .././Pyblio/GnomeUI/Document.py:192 .././Pyblio/GnomeUI/FileSelector.py:41
+msgid "File"
+msgstr "Fájl"
+
+#: .././Pyblio/GnomeUI/FileSelector.py:71
+msgid "Bibliography type:"
+msgstr "Bibliográfia típusa:"
+
+#: .././Pyblio/GnomeUI/Index.py:66
+msgid "Add..."
+msgstr "Hozzáad..."
+
+#: .././Pyblio/GnomeUI/Index.py:67
+msgid "Edit..."
+msgstr "Módosít..."
+
+#: .././Pyblio/GnomeUI/Index.py:68 .././Pyblio/GnomeUI/Search.py:176
+msgid "Delete"
+msgstr "Töröl"
+
+#: .././Pyblio/GnomeUI/Search.py:109
+msgid "Search"
+msgstr "Keres"
+
+#: .././Pyblio/GnomeUI/Fields.py:211 .././Pyblio/GnomeUI/Search.py:133
+msgid "Field"
+msgstr "Mezõ"
+
+#: .././Pyblio/GnomeUI/Search.py:134
+msgid "Pattern"
+msgstr "Minta"
+
+#: .././Pyblio/GnomeUI/Search.py:149
+msgid "Simple Search"
+msgstr "Egyszerû keresés"
+
+#: .././Pyblio/GnomeUI/Search.py:153
+msgid "Search command:"
+msgstr "Keresési parancs:"
+
+#: .././Pyblio/GnomeUI/Search.py:159
+msgid "Expert Search"
+msgstr "Haladó keresés"
+
+#: .././Pyblio/GnomeUI/Search.py:194
+msgid "Full database"
+msgstr "Teljes adatbázis"
+
+#: .././Pyblio/GnomeUI/Search.py:229
+msgid "internal error during evaluation"
+msgstr "belsõ hiba a kiértékelés során"
+
+#: .././Pyblio/GnomeUI/Search.py:278
+msgid ""
+"while compiling %s\n"
+"error: %s"
+msgstr ""
+"%s fordítása során\n"
+"hiba: %s"
+
+#: .././Pyblio/GnomeUI/Sort.py:42
+msgid "Select sort criterions"
+msgstr "Rendezési kritérium választása"
+
+#: .././Pyblio/GnomeUI/Sort.py:53
+#, fuzzy
+msgid "Sort direction"
+msgstr "Rendezési kritériumok"
+
+#: .././Pyblio/GnomeUI/Sort.py:53
+msgid "Sort criterions"
+msgstr "Rendezési kritériumok"
+
+#: .././Pyblio/GnomeUI/Sort.py:66
+msgid "[Entry Type]"
+msgstr "[Bejegyzés típusa]"
+
+#: .././Pyblio/GnomeUI/Sort.py:67
+msgid "[Key Value]"
+msgstr "[Kulcs értéke]"
+
+#: .././Pyblio/GnomeUI/Sort.py:92
+msgid "Reorder"
+msgstr "Újrarendez"
+
+#: .././Pyblio/GnomeUI/Sort.py:93
+msgid "Groups the active fields on the top of the list"
+msgstr ""
+
+#: .././Pyblio/GnomeUI/Sort.py:97
+msgid "Unselect all"
+msgstr "Szelektálás megszüntetése"
+
+#: .././Pyblio/GnomeUI/Sort.py:98
+#, fuzzy
+msgid "Removes all the sort criterions"
+msgstr "Rendezési kritérium választása"
+
+#: .././Pyblio/GnomeUI/Utils.py:163
+msgid ""
+"The following errors occured:\n"
+"\n"
+msgstr ""
+"A következõ hibák fordultak elõ:\n"
+"\n"
+
+#: .././Pyblio/GnomeUI/Document.py:52
+#, fuzzy
+msgid "_New"
+msgstr "Új"
+
+#: .././Pyblio/GnomeUI/Document.py:54
+#, fuzzy
+msgid "_Merge with..."
+msgstr "Hozzáfûz..."
+
+#: .././Pyblio/GnomeUI/Document.py:58
+#, fuzzy
+msgid "_Previous Documents"
+msgstr "Elõzõ dokumentumok"
+
+#: .././Pyblio/GnomeUI/Document.py:65
+msgid "About..."
+msgstr "Névjegy..."
+
+#: .././Pyblio/GnomeUI/Document.py:66
+msgid "Submit a Bug Report"
+msgstr "Bug Report küldése"
+
+#: .././Pyblio/GnomeUI/Document.py:78
+#, fuzzy
+msgid "_Add..."
+msgstr "Hozzáad..."
+
+#: .././Pyblio/GnomeUI/Document.py:79
+#, fuzzy
+msgid "_Edit..."
+msgstr "Módosít..."
+
+#: .././Pyblio/GnomeUI/Document.py:80
+#, fuzzy
+msgid "_Delete"
+msgstr "Töröl"
+
+#: .././Pyblio/GnomeUI/Document.py:83
+#, fuzzy
+msgid "S_ort..."
+msgstr "Rendez..."
+
+#: .././Pyblio/GnomeUI/Document.py:87
+#, fuzzy
+msgid "_Cite"
+msgstr "Idéz"
+
+#: .././Pyblio/GnomeUI/Document.py:88
+#, fuzzy
+msgid "_Format..."
+msgstr "Formátum..."
+
+#: .././Pyblio/GnomeUI/Document.py:92
+#, fuzzy
+msgid "_Fields..."
+msgstr "Mezõk..."
+
+#: .././Pyblio/GnomeUI/Document.py:93
+#, fuzzy
+msgid "_Entries..."
+msgstr "Bejegyzések..."
+
+#: .././Pyblio/GnomeUI/Document.py:99
+#, fuzzy
+msgid "_File"
+msgstr "Fájl"
+
+#: .././Pyblio/GnomeUI/Document.py:100
+#, fuzzy
+msgid "_Edit"
+msgstr "Szerkesztés"
+
+#: .././Pyblio/GnomeUI/Document.py:102
+#, fuzzy
+msgid "_Settings"
+msgstr "Beállítások"
+
+#: .././Pyblio/GnomeUI/Document.py:103
+#, fuzzy
+msgid "_Help"
+msgstr "Súgó"
+
+#: .././Pyblio/GnomeUI/Document.py:107
+msgid "Open"
+msgstr "Megnyit"
+
+#: .././Pyblio/GnomeUI/Document.py:108
+msgid "Save"
+msgstr "Ment"
+
+#: .././Pyblio/GnomeUI/Document.py:110
+msgid "Find"
+msgstr "Keres"
+
+#: .././Pyblio/GnomeUI/Document.py:111
+msgid "Cite"
+msgstr "Idéz"
+
+#: .././Pyblio/GnomeUI/Document.py:113
+msgid "Close"
+msgstr "Bezár"
+
+#: .././Pyblio/GnomeUI/Document.py:192
+msgid "Previous Documents"
+msgstr "Elõzõ dokumentumok"
+
+#: .././Pyblio/GnomeUI/Document.py:227
+msgid ""
+"can't open file `%s' for writing:\n"
+"%s"
+msgstr ""
+"nem tudom írásra megnyitni a `%s' állományt:\n"
+"%s"
+
+#: .././Pyblio/GnomeUI/Document.py:257
+msgid "New database"
+msgstr "Új adatbázis"
+
+#: .././Pyblio/GnomeUI/Document.py:265
+msgid "[no entry]"
+msgstr "[nincs bejegyzés]"
+
+#: .././Pyblio/GnomeUI/Document.py:266
+msgid "[1 entry]"
+msgstr "[1 bejegyzés]"
+
+#: .././Pyblio/GnomeUI/Document.py:267
+msgid "[%d entries]"
+msgstr "[%d bejegyzés]"
+
+#: .././Pyblio/GnomeUI/Document.py:270
+msgid "[%d/1 entry]"
+msgstr "[%d/1 bejegyzés]"
+
+#: .././Pyblio/GnomeUI/Document.py:271
+msgid "[%d/%d entries]"
+msgstr "[%d/%d bejegyzés]"
+
+#: .././Pyblio/GnomeUI/Document.py:276
+msgid "[modified]"
+msgstr "[módosítva]"
+
+#: .././Pyblio/GnomeUI/Document.py:286
+msgid ""
+"The database has been modified.\n"
+"Discard changes ?"
+msgstr ""
+"Az adatbázis módosítva lett.\n"
+"Változások eldobása ?"
+
+#: .././Pyblio/GnomeUI/Document.py:302
+msgid "Merge file"
+msgstr "Állomány hozzáfûzése"
+
+#: .././Pyblio/GnomeUI/Document.py:314
+msgid "Open error"
+msgstr "Megnyitási hiba"
+
+#: .././Pyblio/GnomeUI/Document.py:338
+msgid "Merge status"
+msgstr "Hozzáfûzés státusza"
+
+#: .././Pyblio/GnomeUI/Document.py:349
+msgid "Open file"
+msgstr "Állomány megnyitása"
+
+#: .././Pyblio/GnomeUI/Document.py:393
+msgid ""
+"Unable to save `%s':\n"
+"%s"
+msgstr ""
+"Nem tudom `%s'-t menteni:\n"
+"%s"
+
+#: .././Pyblio/GnomeUI/Document.py:398
+msgid ""
+"An internal error occured during saving\n"
+"Try to Save As..."
+msgstr ""
+"Belsõ hiba történt a mentés során\n"
+"Próbálja: Mentés másként..."
+
+#: .././Pyblio/GnomeUI/Document.py:415
+msgid ""
+"The file `%s' already exists.\n"
+"Overwrite it ?"
+msgstr ""
+"A `%s' állomány már létezik.\n"
+"Felülírja ?"
+
+#: .././Pyblio/GnomeUI/Document.py:422
+msgid ""
+"During opening:\n"
+"%s"
+msgstr ""
+"A megnyitás során:\n"
+"%s"
+
+#: .././Pyblio/GnomeUI/Document.py:471
+msgid ""
+"An entry called `%s' already exists.\n"
+"Rename and add it anyway ?"
+msgstr ""
+"`%s' néven már létezik egy bejegyzés.\n"
+"Ennek ellenére akarja átnevezni és hozzáadni ?"
+
+#: .././Pyblio/GnomeUI/Document.py:507
+msgid "Really remove all the entries ?"
+msgstr "Valóban törölni akarja az összes bejegyzést ?"
+
+#: .././Pyblio/GnomeUI/Document.py:527
+msgid "Create new entry"
+msgstr ""
+
+#: .././Pyblio/GnomeUI/Document.py:541
+msgid "Really edit %d entries ?"
+msgstr "Valóban szerkeszteni akarja a %d bejegyzéseket ?"
+
+#: .././Pyblio/GnomeUI/Document.py:576
+msgid "Remove all the %d entries ?"
+msgstr "%d bejegyzések törlése ?"
+
+#: .././Pyblio/GnomeUI/Document.py:578
+msgid "Remove entry `%s' ?"
+msgstr "A `%s' bejegyzés törlése ?"
+
+#: .././Pyblio/GnomeUI/Document.py:636
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr ""
+"Nem tudok kapcsolódni LyX-hez:\n"
+"%s"
+
+#: .././Pyblio/GnomeUI/Document.py:684
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+"Kérem telepítse bug-buddy-t\n"
+"ezen funkció használatához"
+
+#: .././Pyblio/GnomeUI/Document.py:695
+msgid "This program is copyrighted under the GNU GPL"
+msgstr "Ez a program a GNU GPL-nek megfelelõ szerzõi joggal védett"
+
+#: .././Pyblio/GnomeUI/Document.py:697
+msgid "Gnome interface to the Pybliographer system."
+msgstr "Gnome felület a Pybliographer-hez."
+
+#: .././Pyblio/GnomeUI/Document.py:702
+msgid "Pybliographer Home Page"
+msgstr "Pybliographer Home Page"
+
+#: .././Pyblio/GnomeUI/Format.py:37
+msgid "Format entries"
+msgstr "Bejegyzések formázása"
+
+#: .././Pyblio/GnomeUI/Format.py:51
+msgid "Bibliography style:"
+msgstr "Bibliográfia stílusa:"
+
+#: .././Pyblio/GnomeUI/Format.py:52
+msgid "Select style"
+msgstr "Stílus választása"
+
+#: .././Pyblio/GnomeUI/Format.py:58
+msgid "Output format:"
+msgstr "Kimenet formátuma:"
+
+#: .././Pyblio/GnomeUI/Format.py:75
+msgid "Output File:"
+msgstr "Kimeneti állomány:"
+
+#: .././Pyblio/GnomeUI/Format.py:76
+msgid "Select output file"
+msgstr "Kimeneti állomány választása"
+
+#: .././Pyblio/GnomeUI/Config.py:45
+msgid "Choose you preferences"
+msgstr "Preferenciák választása"
+
+#: .././Pyblio/GnomeUI/Config.py:90
+msgid ""
+"Item `%s':\n"
+"\n"
+"%s"
+msgstr ""
+"Tétel `%s':\n"
+"\n"
+"%s"
+
+#: .././Pyblio/GnomeUI/Config.py:233
+msgid "True"
+msgstr "Igaz"
+
+#: .././Pyblio/GnomeUI/Config.py:234
+msgid "False"
+msgstr "Hamis"
+
+#: .././Pyblio/GnomeUI/Config.py:358
+msgid "Add"
+msgstr "Hozzáad"
+
+#: .././Pyblio/GnomeUI/Config.py:361
+msgid "Update"
+msgstr "Frissít"
+
+#: .././Pyblio/GnomeUI/Config.py:364
+msgid "Remove"
+msgstr "Eltávolít"
+
+#: .././Pyblio/GnomeUI/Config.py:445
+msgid "Value"
+msgstr "Érték"
+
+#: .././Pyblio/GnomeUI/Config.py:454 .././Pyblio/GnomeUI/Fields.py:92
+msgid "Set"
+msgstr "Beállít"
+
+#: .././Pyblio/GnomeUI/Fields.py:45
+msgid "Fields configuration"
+msgstr "Mezõk beállítása"
+
+#: .././Pyblio/GnomeUI/Fields.py:58
+msgid "Name"
+msgstr "Név"
+
+#: .././Pyblio/GnomeUI/Fields.py:58
+msgid "Type"
+msgstr "Típus"
+
+#: .././Pyblio/GnomeUI/Fields.py:69
+msgid "Name:"
+msgstr "Név:"
+
+#: .././Pyblio/GnomeUI/Fields.py:71
+msgid "Type:"
+msgstr "Típus:"
+
+#: .././Pyblio/GnomeUI/Fields.py:185
+msgid "Entries configuration"
+msgstr "Bejegyzések beállítása"
+
+#: .././Pyblio/GnomeUI/Fields.py:195
+msgid "Entry"
+msgstr "Bejegyzés"
+
+#: .././Pyblio/GnomeUI/Fields.py:206
+msgid "Entry Name:"
+msgstr "Bejegyzés neve:"
+
+#: .././Pyblio/GnomeUI/Fields.py:211
+msgid "Status"
+msgstr "Státusz"
+
+#: .././pybliographer.py:38
+msgid "This is %s, version %s"
+msgstr "Ez a %s, %s verzió"
+
+#: .././pybliographer.py:42
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr "Ez egy szabad szoftver, bárminemû GARANCIA nélkül."
+
+#: .././pybliographer.py:43
+msgid "For details, type `warranty'."
+msgstr "A részletek megtekintéséhez írja be: `warranty'."
+
+#: .././pybliographer.py:110
+msgid "%s: error: can't open file `%s'"
+msgstr "%s: hiba: `%s'-t nem tudom megnyitni"
+
+#: .././pybliographer.py:123
+msgid "For help, run %s and type `help' at the prompt"
+msgstr "A súgóhoz futtassa %s-t és a parancssorban írja be: `help'"
+
+#: .././pybliographer.py:132
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+"Hasznos parancsok:\n"
+"\thelp     Súgó\n"
+"\tquit     Kilépés\n"
+
+#: .././scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr "használat: pybcompact <latex állomány> <bibtex állományok...>"
+
+#: .././scripts/pybcompact.py:34
+msgid "pybcompact: error: %s\n"
+msgstr "pybcompact: hiba: %s\n"
+
+#: .././scripts/pybcompact.py:97
+msgid "no entry"
+msgstr "nincs bejegyzés"
+
+#: .././scripts/pybcompact.py:142
+msgid "can't find the following entries: %s"
+msgstr "a következõ bejegyzések nem találhatók: %s"
+
+#: .././scripts/pybconvert.py:27
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr "használat: pybconvert <forrás>..<cél> <bemenet> [kimenet]"
+
+#: .././scripts/pybconvert.py:36
+msgid "pybconvert: bad conversion format"
+msgstr "pybconvert: rossz konverzió formátum"
+
+#: .././scripts/pybformat.py:34
+msgid "usage: pybformat [bibtexfiles...]\n"
+msgstr "használat: pybformat [bibtex állományok...]\n"
+
+#: .././scripts/pybformat.py:38
+msgid "pybformat: error: %s\n"
+msgstr "pybformat: hiba: %s\n"
+
+#: .././scripts/pybformat.py:44
+msgid "pybformat: warning: %s\n"
+msgstr "pybformat: figyelmeztetés: %s\n"
+
+#: .././scripts/pybformat.py:141 .././scripts/pybtex.py:84
+msgid "can't find style `%s'"
+msgstr "nem találom a `%s' stílust"
+
+#: .././scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr "használat: pybtex <latex állomány> [bibtex állományok...]"
+
+#: .././scripts/pybtex.py:38
+msgid "pybtex: error: %s\n"
+msgstr "pybtex: hiba: %s\n"
+
+#: .././scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr "pybtex: figyelmeztetés: a következõ kulcsok nem lettek feldolgozva"
+
+#: .././scripts/pybtex.py:64
+msgid "no style defined"
+msgstr "nincs stílus definiálva"
+
+#~ msgid "In use"
+#~ msgstr "Használatban"
