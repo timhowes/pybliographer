@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer-0.9.8\n"
-"POT-Creation-Date: 2000-05-11 16:42+ZONE\n"
-"PO-Revision-Date: 2000-04-04\n"
+"POT-Creation-Date: 2000-05-12 15:29+ZONE\n"
+"PO-Revision-Date: 2000-05-14\n"
 "Last-Translator: Holger Daszler <holger@daszler.de>\n"
 "Language-Team: de <de@li.org> \n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #: .././Pyblio/Autoload.py:57
 msgid "warning: can't import %s: %s"
-msgstr "Achtung: kann %s : %s nicht importieren"
+msgstr "Achtung: kann %s: %s nicht importieren"
 
 #: .././Pyblio/Config.py:53
 msgid "value of `%s' should be of type %s"
@@ -27,7 +27,7 @@ msgstr "String"
 
 #: .././Pyblio/Config.py:205
 msgid "Boolean"
-msgstr "Booléan"
+msgstr "Boolean"
 
 #: .././Pyblio/Config.py:224
 msgid "Integer"
@@ -58,7 +58,6 @@ msgid "List (%s)"
 msgstr "Liste (%s)"
 
 #: .././Pyblio/Config.py:308
-#, fuzzy
 msgid "Dictionary (%s, %s)"
 msgstr "Wörterbuch (%s, %s)"
 
@@ -120,7 +119,7 @@ msgstr "Text"
 
 #: .././Pyblio/GnomeUI/Editor.py:42
 msgid "Reference"
-msgstr "Réferenzen"
+msgstr "Referenzen"
 
 #: .././Pyblio/GnomeUI/Editor.py:258
 msgid "Day"
@@ -200,7 +199,7 @@ msgstr "Datei"
 
 #: .././Pyblio/GnomeUI/FileSelector.py:73
 msgid "Bibliography type:"
-msgstr "Bibliographietyp :"
+msgstr "Bibliographietyp:"
 
 #: .././Pyblio/GnomeUI/Index.py:66
 msgid "Add..."
@@ -259,9 +258,8 @@ msgid "Select sort criterions"
 msgstr "Auswahl der Sortierkriterien"
 
 #: .././Pyblio/GnomeUI/Sort.py:53
-#, fuzzy
 msgid "Sort direction"
-msgstr "Sortierkriterien"
+msgstr "Sortierrichtung"
 
 #: .././Pyblio/GnomeUI/Sort.py:53
 msgid "Sort criterions"
@@ -281,16 +279,15 @@ msgstr "Ordnen"
 
 #: .././Pyblio/GnomeUI/Sort.py:93
 msgid "Groups the active fields on the top of the list"
-msgstr ""
+msgstr "Gruppiert die aktiven Felder am Anfang der Liste"
 
 #: .././Pyblio/GnomeUI/Sort.py:97
 msgid "Unselect all"
 msgstr "Alle abwählen"
 
 #: .././Pyblio/GnomeUI/Sort.py:98
-#, fuzzy
 msgid "Removes all the sort criterions"
-msgstr "Auswahl der Sortierkriterien"
+msgstr "Entfernt alle Sortierkriterien"
 
 #: .././Pyblio/GnomeUI/Utils.py:163
 msgid ""
@@ -301,19 +298,16 @@ msgstr ""
 "\n"
 
 #: .././Pyblio/GnomeUI/Document.py:52
-#, fuzzy
 msgid "_New"
-msgstr "Neu..."
+msgstr "_Neu..."
 
 #: .././Pyblio/GnomeUI/Document.py:54
-#, fuzzy
 msgid "_Merge with..."
-msgstr "Zusammenführen mit..."
+msgstr "_Zusammenführen mit..."
 
 #: .././Pyblio/GnomeUI/Document.py:58
-#, fuzzy
 msgid "_Previous Documents"
-msgstr "Bisherige Dokumente"
+msgstr "_Bisherige Dokumente"
 
 #: .././Pyblio/GnomeUI/Document.py:65
 msgid "About..."
@@ -324,68 +318,56 @@ msgid "Submit a Bug Report"
 msgstr "Bug-Report senden"
 
 #: .././Pyblio/GnomeUI/Document.py:78
-#, fuzzy
 msgid "_Add..."
-msgstr "Hinzufügen..."
+msgstr "_Hinzufügen..."
 
 #: .././Pyblio/GnomeUI/Document.py:79
-#, fuzzy
 msgid "_Edit..."
-msgstr "Ändern..."
+msgstr "_Ändern..."
 
 #: .././Pyblio/GnomeUI/Document.py:80
-#, fuzzy
 msgid "_Delete"
-msgstr "Löschen"
+msgstr "_Löschen"
 
 #: .././Pyblio/GnomeUI/Document.py:83
-#, fuzzy
 msgid "S_ort..."
-msgstr "Sortieren..."
+msgstr "_Sortieren..."
 
 #: .././Pyblio/GnomeUI/Document.py:87
-#, fuzzy
 msgid "_Cite"
-msgstr "Zitat"
+msgstr "_Zitat"
 
 #: .././Pyblio/GnomeUI/Document.py:88
-#, fuzzy
 msgid "_Format..."
-msgstr "Formatieren..."
+msgstr "_Formatieren..."
 
 #: .././Pyblio/GnomeUI/Document.py:92
-#, fuzzy
 msgid "_Fields..."
-msgstr "Felder..."
+msgstr "_Felder..."
 
 #: .././Pyblio/GnomeUI/Document.py:93
-#, fuzzy
 msgid "_Entries..."
-msgstr "Einträge..."
+msgstr "_Einträge..."
 
 #: .././Pyblio/GnomeUI/Document.py:99
-#, fuzzy
 msgid "_File"
-msgstr "Datei"
+msgstr "_Datei"
 
 #: .././Pyblio/GnomeUI/Document.py:100
-#, fuzzy
 msgid "_Edit"
-msgstr "Ändern"
+msgstr "_Ändern"
 
 #: .././Pyblio/GnomeUI/Document.py:102
-#, fuzzy
 msgid "_Settings"
-msgstr "Einstellungen"
+msgstr "_Einstellungen"
 
 #: .././Pyblio/GnomeUI/Document.py:103
-#, fuzzy
 msgid "_Help"
-msgstr "Hilfe"
+msgstr "_Hilfe"
 
 #: .././Pyblio/GnomeUI/Document.py:107
 msgid "Open"
-msgstr "Öffnen"
+msgstr "_Öffnen"
 
 #: .././Pyblio/GnomeUI/Document.py:108
 msgid "Save"
@@ -485,7 +467,7 @@ msgstr ""
 
 #: .././Pyblio/GnomeUI/Document.py:418
 msgid "Save As..."
-msgstr ""
+msgstr "Speichern als..."
 
 #: .././Pyblio/GnomeUI/Document.py:424
 msgid ""
@@ -504,7 +486,6 @@ msgstr ""
 "%s"
 
 #: .././Pyblio/GnomeUI/Document.py:451
-#, fuzzy
 msgid "Reopen error"
 msgstr "Fehler beim Öffnen"
 
@@ -522,7 +503,7 @@ msgstr "Wirklich alle Einträge entfernen?"
 
 #: .././Pyblio/GnomeUI/Document.py:548
 msgid "Create new entry"
-msgstr ""
+msgstr "Neuen Eintrag erzeugen"
 
 #: .././Pyblio/GnomeUI/Document.py:562
 msgid "Really edit %d entries ?"
@@ -589,7 +570,6 @@ msgid "Select output file"
 msgstr "Ausgabedatei auswählen"
 
 #: .././Pyblio/GnomeUI/Config.py:45
-#, fuzzy
 msgid "Choose your preferences"
 msgstr "Voreinstellungen wählen"
 
@@ -608,6 +588,8 @@ msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
+"Einige Änderungen erfordern den Neustart von Pybliographic\n"
+"um korrekt übernommen zu werden"
 
 #: .././Pyblio/GnomeUI/Config.py:249
 msgid "True"
@@ -638,14 +620,12 @@ msgid "Set"
 msgstr "Übernehmen"
 
 #: .././Pyblio/GnomeUI/Config.py:507
-#, fuzzy
 msgid "Key:"
-msgstr "Schlüssel"
+msgstr "Schlüssel:"
 
 #: .././Pyblio/GnomeUI/Config.py:509
-#, fuzzy
 msgid "Value:"
-msgstr "Wert"
+msgstr "Wert:"
 
 #: .././Pyblio/GnomeUI/Fields.py:45
 msgid "Fields configuration"
