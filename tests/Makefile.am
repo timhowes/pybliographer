@@ -47,6 +47,8 @@ EXTRA_DIST =  \
 	reorder.py		\
 	medline.med		\
 	medline.bib		\
+	pubmed.med		\
+	pubmed.bib		\
 	ovid.ovid		\
 	refer.refer		\
 	testing.sh
