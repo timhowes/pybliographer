@@ -76,8 +76,6 @@ class Document (Connector.Publisher):
         
         help_menu = [
             UIINFO_ITEM_STOCK (_("About..."), None, self.about, STOCK_MENU_ABOUT),
-            UIINFO_ITEM_STOCK (_("Submit a Bug Report"), None,
-                               self.exec_bug_buddy, STOCK_MENU_TRASH_FULL),
             UIINFO_HELP ('pybliographic')
             ]
 
@@ -1348,26 +1346,6 @@ class Document (Connector.Publisher):
         # ...and the search window
         if self.search_dg:
             self.search_dg.update_configuration ()
-        return
-
-    
-    def exec_bug_buddy (self, *args):
-        ''' run bug-buddy in background, with the minimal configuration data '''
-        
-        # search the program in the current path
-        exists = 0
-        for d in string.split (os.environ ['PATH'], ':'):
-            if os.path.exists (os.path.join (d, 'bug-buddy')):
-                exists = 1
-                break
-
-        if not exists:
-            self.w.error (_("Please install bug-buddy\nto use this feature"))
-            return
-        
-        command = 'bug-buddy --package=pybliographer --package-ver=%s &' % version.version
-        
-        os.system (command)
         return
 
     
