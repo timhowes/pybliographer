@@ -156,10 +156,12 @@ def create_string_key (database, keys, fmt):
 
 def create_numeric_key (database, keys, fmt):
     table = {}
+    skeys = []
     for key in keys:
         s = numeric_key (database [key], fmt, table)
         table [s] = key
-   
+        skeys.append (s)
+        
     return table, skeys
 
 

@@ -233,7 +233,13 @@ class Document (Connector.Publisher):
         entries = map (lambda x: x.key, self.index.selection ())
         
         if not entries:
-            entries = self.data.keys ()
+            iter    = self.selection.iterator (self.data.iterator ())
+            entries = []
+            
+            e = iter.first ()
+            while e:
+                entries.append (e.key)
+                e = iter.next ()
 
         url = Fields.URL (style)
 
