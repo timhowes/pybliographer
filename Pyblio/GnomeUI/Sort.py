@@ -40,10 +40,12 @@ class SortDialog (Connector.Publisher, Utils.GladeWindow):
     """ Provide a configuration dialog for sorting the main index.
     Emit a 'sort-data' signal when the user chooses new sort options.
     """
-    
-    # This dialog is described as a glade XML file
-    glade_file  = 'sort.glade'
-    root_widget = '_w_sort'
+
+   # This dialog is described as a glade XML file
+    gladeinfo = { 'file': 'sort.glade',
+                  'root': '_w_sort',
+                  'name': 'sort'
+                  }
     
     def __init__ (self, sort, parent = None):
 
@@ -57,6 +59,7 @@ class SortDialog (Connector.Publisher, Utils.GladeWindow):
 
         self._model = gtk.ListStore (gtk.gdk.Pixbuf, str, gobject.TYPE_PYOBJECT, int)
         self._w_tree.set_model (self._model)
+
 
         # Only the first two rows are visibles, the others are for
         # internal bookkeeping.
@@ -148,12 +151,14 @@ class SortDialog (Connector.Publisher, Utils.GladeWindow):
         ''' Extract the current sorting settings '''
         
         sort = []
-        
+
         for r in self._model:
             item, dir = r [2], r [3]
-            
+
+            # Only consider fields on which we sort
             if dir == 0: continue
 
+            # Store the direction of sorting in each item
             if dir > 0: item.ascend = True
             else:       item.ascend = False
             
@@ -178,6 +183,7 @@ class SortDialog (Connector.Publisher, Utils.GladeWindow):
     def on_cancel (self, * arg):
         ''' Invoked when the user clicks on Cancel '''
         
+        self.size_save ()
         self._w_sort.destroy ()
         return
 
@@ -185,6 +191,7 @@ class SortDialog (Connector.Publisher, Utils.GladeWindow):
     def on_accept (self, * arg):
         ''' Invoked when the user clicks on Apply '''
 
+        self.size_save ()
         self.issue ('sort-data', self._results ())
         self._w_sort.destroy ()
         return

@@ -186,23 +186,14 @@ class SearchTree (gtk.GenericTreeModel):
 class SearchDialog (Connector.Publisher, Utils.GladeWindow):
     ''' Search Dialog '''
 
-    cfg = '/apps/pybliographic/search/'
-
-    glade_file  = 'search.glade'
-    root_widget = '_w_search'
+    gladeinfo = { 'name': 'search',
+                  'file': 'search.glade',
+                  'root': '_w_search'
+                  }
     
     def __init__ (self, parent = None):
 
         Utils.GladeWindow.__init__ (self, parent)
-
-        w = Utils.config.get_int (self.cfg + 'width')  or -1
-        h = Utils.config.get_int (self.cfg + 'height') or -1
-
-        if w != -1 and h != -1:
-            self._w_search.set_default_size (w, h)
-            self._w_search.resize (w, h)
-
-        if parent: self._w_search.set_transient_for (parent)
 
         col = gtk.TreeViewColumn ('field', gtk.CellRendererText (), text = 0)
         self._w_tree.append_column (col)
@@ -244,11 +235,8 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
 
 
     def close_cb (self, widget):
-        w, h = self._w_search.get_size ()
 
-        Utils.config.set_int (self.cfg + 'width',  w)
-        Utils.config.set_int (self.cfg + 'height', h)
-
+        self.size_save ()
         self._w_search.hide ()
         return
     

@@ -77,14 +77,16 @@ class GladeWindow:
 
     # This is a class variable that contains the file name to load for
     # each instance of a subclass.
-    
-    glade_file  = None
-    root_widget = None
+
+    gladeinfo = { 'file': None,
+                  'root': None,
+                  'name': None
+                  }
 
     def __init__ (self, parent = None):
         
         gp = os.path.join (version.prefix, 'glade',
-                           self.glade_file)
+                           self.gladeinfo ['file'])
         
         self.xml = gtk.glade.XML (gp)
         self.xml.signal_autoconnect (self)
@@ -94,13 +96,32 @@ class GladeWindow:
 
         # Set the parent window. The root widget is not necessarily
         # exported as an instance attribute.
+        root = self.xml.get_widget (self.gladeinfo ['root'])
+        cfg  = '/apps/pybliographic/%s/' % self.gladeinfo ['name']
+        
+        w = config.get_int (cfg + 'width')  or -1
+        h = config.get_int (cfg + 'height') or -1
+
+        if w != -1 and h != -1:
+            root.set_default_size (w, h)
+            root.resize (w, h)
         
         if parent:
-            w = self.xml.get_widget (self.root_widget)
-            w.set_transient_for (parent)
+            root.set_transient_for (parent)
             
         return
 
+    def size_save (self):
+        root = self.xml.get_widget (self.gladeinfo ['root'])
+        cfg  = '/apps/pybliographic/%s/' % self.gladeinfo ['name']
+
+        w, h = root.get_size ()
+
+        config.set_int (cfg + 'width',  w)
+        config.set_int (cfg + 'height', h)
+
+        return
+    
     
 config = gconf.client_get_default ()
 
