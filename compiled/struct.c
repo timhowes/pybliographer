@@ -26,6 +26,8 @@
 #endif
 
 #include <strings.h>
+#include <ctype.h>
+
 #include "bibtex.h"
 
 static GMemChunk * struct_chunk = NULL;

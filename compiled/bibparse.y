@@ -24,11 +24,17 @@
 */
 
 /*  #include "parsername.h" */
+
+#include <string.h>
 #include "bibtex.h"
 
 extern void bibtex_parser_initialize (BibtexSource *);
 extern void bibtex_parser_continue (BibtexSource *);
 extern void bibtex_parser_finish (BibtexSource *);
+
+extern int bibtex_parser_lex (void);
+
+int bibtex_parser_parse (void);
 
 extern gboolean bibtex_parser_is_content;
 
@@ -40,8 +46,6 @@ static BibtexSource *	current_source;
 static gchar *	        error_string = NULL;
 static gchar *	        warning_string = NULL;
 static GString *        tmp_string = NULL;
-
-static gboolean recovering = FALSE;
 
 static void 
 nop (void) { 

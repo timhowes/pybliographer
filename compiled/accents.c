@@ -26,6 +26,8 @@
 #endif
 
 #include <ctype.h>
+#include <string.h>
+
 #include "bibtex.h"
 
 typedef struct  {
@@ -153,7 +155,7 @@ initialize_table (CharMapping * map, char empty) {
     table = g_new0 (gchar, 256);
 
     while (map->c != '\0') {
-	table [map->c] = map->m;
+	table [(int) map->c] = map->m;
 	map ++;
     }
 
@@ -287,12 +289,12 @@ bibtex_accent_string (BibtexStruct * s,
 	    }
 	    
 	    /* We know how to convert */
-	    if (tmp [text [0]] != 0) {
+	    if (tmp [(int) text [0]] != 0) {
 		if (text [0]) {
-		    text [0] = tmp [text [0]];
+		    text [0] = tmp [(int) text [0]];
 		}
 		else {
-		    tmp = g_strdup_printf ("%c", tmp [text [0]]);
+		    tmp = g_strdup_printf ("%c", tmp [(int)text [0]]);
 		    g_free (text);
 		    text = tmp;
 		}

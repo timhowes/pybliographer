@@ -8,8 +8,8 @@ from distutils.core import setup, Extension
 bibtex = [
     'accents.c',
     'author.c',
-    'biblex.c',
     'bibparse.c',
+    'biblex.c',
     'bibtex.c',
     'bibtexmodule.c',
     'entry.c',
@@ -65,14 +65,33 @@ def rebuild (src, deps):
     return False
 
 
-if rebuild ('biblex.l', ['biblex.c']):
-    print "rebuild biblex.l"
-
-
 if rebuild ('bibparse.y', ['bibparse.c',
                            'bibparse.h']):
     print "rebuild bibparse.y"
 
+    os.system ('bison -y -d -t -p bibtex_parser_ bibparse.y')
+
+    try: os.unlink ('bibparse.c')
+    except: pass
+    
+    try: os.unlink ('bibparse.h')
+    except: pass
+
+    os.rename ('y.tab.c', 'bibparse.c')
+    os.rename ('y.tab.h', 'bibparse.h')
+
+
+if rebuild ('biblex.l', ['biblex.c']):
+    print "rebuilding biblex.l"
+
+    os.system ('flex -Pbibtex_parser_ biblex.l')
+
+    try: os.unlink ('biblex.c')
+    except OSError: pass
+    
+    os.rename ('lex.bibtex_parser_.c', 'biblex.c')
+
+    
 
 # Actual compilation
 

@@ -97,6 +97,9 @@ bibtex_field_destroy (BibtexField * field,
 	    bibtex_author_group_destroy (field->field.author);
 	}
 	break;
+
+    default:
+      break;
     }
 
     g_chunk_free (field, field_chunk);
@@ -108,7 +111,6 @@ bibtex_struct_as_field (BibtexStruct * s,
 			BibtexFieldType type) {
 
     BibtexField * field;
-    gchar * tmp;
 
     g_return_val_if_fail (s != NULL, NULL);
 
@@ -146,6 +148,9 @@ bibtex_field_parse (BibtexField * field,
 	field->field.date.month = 0;
 	field->field.date.day   = 0;
 	break;
+
+    default:
+      break;
     }
 
     return field;

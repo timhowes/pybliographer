@@ -59,49 +59,6 @@ typedef enum
 
 #include "bibtex.h"
 
-static BibtexStruct * 
-text_to_struct (gchar * string) {
-    BibtexEntry * entry;
-    BibtexStruct * s;
-    static BibtexSource * source = NULL;
-
-    if (source == NULL) source = bibtex_source_new ();
-
-    /* parse as a string */
-    if (! bibtex_source_string (source, "internal string", string)) {
-	g_error ("can't create string");
-    }
-	
-    entry = bibtex_source_next_entry (source, FALSE);
-
-    if (entry == NULL) {
-	bibtex_error ("can't parse entry `%s'", string);
-	return NULL;
-    }
-
-    s = bibtex_struct_copy (entry->preamble);
-    
-    bibtex_entry_destroy (entry, TRUE);
-
-    return s;
-}
-
-
-static gboolean
-author_needs_quotes (gchar * string) {
-  static gboolean initialized = FALSE;
-  static regex_t and_re;
-  
-  if (! initialized) {
-    initialized = regcomp (& and_re, "[^[:alnum:]]and[^[:alnum:]]", REG_ICASE |
-			   REG_EXTENDED) == 0;
-    g_assert (initialized);
-  }
-
-  return
-    (strpbrk (string, ",") != NULL) || 
-    (regexec (& and_re, string, 0,NULL, 0)  == 0);
-}
 
 
 BibtexField * 

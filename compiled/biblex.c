@@ -791,7 +791,6 @@ YY_RULE_SETUP
 #line 63 "biblex.l"
 {
     /* Gestion du caractere \ */
-    gchar * tmp;
 
     bibtex_parser_lval.text = g_strdup (bibtex_parser_text); 
     bibtex_tmp_string (bibtex_parser_lval.text);
@@ -801,7 +800,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 73 "biblex.l"
+#line 72 "biblex.l"
 {
     if (bibtex_parser_is_content) {
 	/* Word in the text */
@@ -818,7 +817,7 @@ YY_RULE_SETUP
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 87 "biblex.l"
+#line 86 "biblex.l"
 {
     /* Spaces handling */
     char * tmp = bibtex_parser_text;
@@ -839,7 +838,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 106 "biblex.l"
+#line 105 "biblex.l"
 { 
     /* Lecture d'un nombre */
 
@@ -851,7 +850,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 116 "biblex.l"
+#line 115 "biblex.l"
 { 
     /* Lecture d'un nom simple */
 
@@ -863,17 +862,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 125 "biblex.l"
+#line 124 "biblex.l"
 {
     return bibtex_parser_text [0];
 }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 128 "biblex.l"
+#line 127 "biblex.l"
 ECHO;
 	YY_BREAK
-#line 877 "lex.bibtex_parser_.c"
+#line 876 "lex.bibtex_parser_.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1810,7 +1809,7 @@ void bibtex_parser_free (void * ptr )
 #undef YY_DECL_IS_OURS
 #undef YY_DECL
 #endif
-#line 128 "biblex.l"
+#line 127 "biblex.l"
 
 
 

@@ -26,6 +26,8 @@
 #endif
 
 #include <string.h>
+#include <ctype.h>
+
 #include "bibtex.h"
 
 /* --------------------------------------------------
@@ -151,7 +153,6 @@ split_spaces (GList * tokens,
 	      gchar * data,
 	      guint level) {
     gchar * text, * courant, sep;
-    GList * sub = NULL, * tmp;
     gboolean one = TRUE;
     
     text = data;
@@ -196,7 +197,7 @@ tokenify (GList * tokens,
 	  guint level,
 	  GHashTable * dico) {
 
-    GList * tmp, * sublist, * holder;
+    GList * tmp;
     gchar * text, * courant;
     BibtexStruct * tmp_s;
 
@@ -286,10 +287,10 @@ extract_author (BibtexAuthorGroup * authors,
 
 #define SECTION_LENGTH 4
 
-    GList * tokens, * tmp;
-    gchar * text, * tmp_text;
+    GList * tmp;
+    gchar * text;
     BibtexAuthor * author;
-    gint length, i;
+    gint i;
     gint sections, comas;
     GPtrArray * section [SECTION_LENGTH], * array;
     BTGroup * group;
@@ -487,13 +488,11 @@ bibtex_author_parse (BibtexStruct * s,
 
     BibtexAuthorGroup * authors;
     GList * tokens, * aut_elem;
-    gchar * text, * tmp;
-    BibtexAuthor * author;
+    gchar * text;
     gboolean skip;
     GList * target;
     BTGroup * group, * tmp_g;
     gboolean compact, first_pass;
-    gint i;
 
 
     g_return_val_if_fail (s != NULL, NULL);
@@ -524,7 +523,7 @@ bibtex_author_parse (BibtexStruct * s,
 	list = tokens;
 	toremove = NULL;
 	skip = TRUE;
-	target == NULL;
+	target = NULL;
 	
 	/* For every token... */
 	while (list) {

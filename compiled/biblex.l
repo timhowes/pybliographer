@@ -62,7 +62,6 @@ BODY 	 [^{}\\\" \n\t\r~]+
 
 <entry>\\([a-zA-Z]+|[^a-zA-Z]) {
     /* Gestion du caractere \ */
-    gchar * tmp;
 
     bibtex_parser_lval.text = g_strdup (bibtex_parser_text); 
     bibtex_tmp_string (bibtex_parser_lval.text);

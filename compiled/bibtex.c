@@ -26,6 +26,8 @@
 #endif
 
 #include <errno.h>
+#include <string.h>
+
 #include "bibtex.h"
 
 void bibtex_message_handler (const gchar *log_domain G_GNUC_UNUSED,
@@ -91,10 +93,7 @@ add_to_dico (gpointer key, gpointer value, gpointer user) {
 BibtexEntry * 
 bibtex_source_next_entry (BibtexSource * file,
 			  gboolean filter) {
-    int pos, i;
     BibtexEntry * ent;
-    char * ret;
-    GHashTable * tmptable;
 
     int offset;
 
