@@ -2,10 +2,25 @@
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer-0.9.9\n"
-"POT-Creation-Date: 2000-05-12 15:29+ZONE\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#~ # SOME DESCRIPTIVE TITLE.
+#~ # Copyright (C) YEAR Free Software Foundation, Inc.
+#~ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#~ #
+#~ msgid ""
+#~ msgstr ""
+#~ "Project-Id-Version: pybliographer-0.9.9\n"
+"POT-Creation-Date: 2000-05-30 10:05+ZONE\n"
 "PO-Revision-Date: 2000-05-11 16:18+02:00\n"
 "Last-Translator: Zoltán Kóta <kota@szbk.u-szeged.hu>\n"
 "Language-Team: hu <hu@li.org>\n"
@@ -105,7 +120,7 @@ msgstr "`%s' módszer nem biztosít iterátort"
 msgid "key `%s' is malformed"
 msgstr "kulcs `%s' helytelen"
 
-#: .././Pyblio/Format/BibTeX.py:365
+#: .././Pyblio/Format/BibTeX.py:366
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: kulcs `%s' már definiálva van"
 
@@ -709,11 +724,11 @@ msgstr "nincs bejegyzés"
 msgid "can't find the following entries: %s"
 msgstr "a következõ bejegyzések nem találhatók: %s"
 
-#: .././scripts/pybconvert.py:27
+#: .././scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
 msgstr "használat: pybconvert <forrás>..<cél> <bemenet> [kimenet]"
 
-#: .././scripts/pybconvert.py:36
+#: .././scripts/pybconvert.py:38
 msgid "pybconvert: bad conversion format"
 msgstr "pybconvert: rossz konverzió formátum"
 

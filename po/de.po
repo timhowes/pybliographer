@@ -2,10 +2,25 @@
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer-0.9.8\n"
-"POT-Creation-Date: 2000-05-12 15:29+ZONE\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#~ # SOME DESCRIPTIVE TITLE.
+#~ # Copyright (C) YEAR Free Software Foundation, Inc.
+#~ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#~ #
+#~ msgid ""
+#~ msgstr ""
+#~ "Project-Id-Version: pybliographer-0.9.8\n"
+"POT-Creation-Date: 2000-05-30 10:05+ZONE\n"
 "PO-Revision-Date: 2000-05-14\n"
 "Last-Translator: Holger Daszler <holger@daszler.de>\n"
 "Language-Team: de <de@li.org> \n"
@@ -105,7 +120,7 @@ msgstr "Methode `%s' unterstützt keinen Iterator"
 msgid "key `%s' is malformed"
 msgstr "Syntax des Schlüssels `%s' ist falsch"
 
-#: .././Pyblio/Format/BibTeX.py:365
+#: .././Pyblio/Format/BibTeX.py:366
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: Schlüssel `%s' schon definiert"
 
@@ -709,11 +724,11 @@ msgstr "kein Eintrag"
 msgid "can't find the following entries: %s"
 msgstr "kann die folgenden Einträge nicht finden: %s"
 
-#: .././scripts/pybconvert.py:27
+#: .././scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
 msgstr "Benutzung: pybconvert <Quelle>..<Ziel> <Eingabe> [<Ausgabe>]"
 
-#: .././scripts/pybconvert.py:36
+#: .././scripts/pybconvert.py:38
 msgid "pybconvert: bad conversion format"
 msgstr "pybconvert: falsches Konvertierungsformat"
 

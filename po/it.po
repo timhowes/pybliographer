@@ -1,13 +1,28 @@
-# Pybliographer Italian Translation.
-# Copyright (C) 1999, 2000 Free Software Foundation, Inc.
-# Yuri Bongiorno <yurix@tiscalinet.it>, 1999, 2000.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer-0.9.11\n"
-"POT-Creation-Date: 2000-05-12 15:29+ZONE\n"
-"PO-Revision-Date: 2000-04-18 21:40+0100\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#~ # Pybliographer Italian Translation.
+#~ # Copyright (C) 1999, 2000 Free Software Foundation, Inc.
+#~ # Yuri Bongiorno <yurix@tiscalinet.it>, 1999, 2000.
+#~ #
+#~ #, fuzzy
+#~ msgid ""
+#~ msgstr ""
+"Project-Id-Version: pybliographer-1.0.0\n"
+"POT-Creation-Date: 2000-05-30 10:05+ZONE\n"
+"PO-Revision-Date: 2000-05-12 21:40+0100\n"
 "Last-Translator: Yuri Bongiorno <yurix@tiscalinet.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +121,7 @@ msgstr "il metodo `%s' non fornisce un iteratore"
 msgid "key `%s' is malformed"
 msgstr "la chiave `%s' è malformata"
 
-#: .././Pyblio/Format/BibTeX.py:365
+#: .././Pyblio/Format/BibTeX.py:366
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: la chiave `%s' esiste già"
 
@@ -204,7 +219,7 @@ msgstr "Tipo di bibliografia:"
 
 #: .././Pyblio/GnomeUI/Index.py:66
 msgid "Add..."
-msgstr "Aggiungi..."
+msgstr "Aggiunge..."
 
 #: .././Pyblio/GnomeUI/Index.py:67
 msgid "Edit..."
@@ -320,7 +335,7 @@ msgstr "Invia un Bug Report"
 
 #: .././Pyblio/GnomeUI/Document.py:78
 msgid "_Add..."
-msgstr "_Aggiungi..."
+msgstr "_Aggiunge..."
 
 #: .././Pyblio/GnomeUI/Document.py:79
 msgid "_Edit..."
@@ -432,7 +447,7 @@ msgid ""
 "Discard changes ?"
 msgstr ""
 "Il database è stato modificato.\n"
-"Scarto i cambiamenti?"
+"Scartare i cambiamenti?"
 
 #: .././Pyblio/GnomeUI/Document.py:303
 msgid "Merge file"
@@ -464,7 +479,7 @@ msgid ""
 "Try to Save As..."
 msgstr ""
 "E` avvenuto un errore interno durante il salvataggio\n"
-"Prova  Salva come..."
+"Provare  Salva con nome..."
 
 #: .././Pyblio/GnomeUI/Document.py:418
 msgid "Save As..."
@@ -476,7 +491,7 @@ msgid ""
 "Overwrite it ?"
 msgstr ""
 "Il file `%s' esiste già.\n"
-"Lo sovrascrivo ?"
+"Sovrascriverlo ?"
 
 #: .././Pyblio/GnomeUI/Document.py:431
 msgid ""
@@ -487,9 +502,8 @@ msgstr ""
 "%s"
 
 #: .././Pyblio/GnomeUI/Document.py:451
-#, fuzzy
 msgid "Reopen error"
-msgstr "Errore di apertura"
+msgstr "Errore di riapertura"
 
 #: .././Pyblio/GnomeUI/Document.py:492
 msgid ""
@@ -497,11 +511,11 @@ msgid ""
 "Rename and add it anyway ?"
 msgstr ""
 "Una voce chiamata `%s' esiste già.\n"
-"La rinomino e la aggiungo comunque ?"
+"Rinominarla e aggiungerla comunque ?"
 
 #: .././Pyblio/GnomeUI/Document.py:528
 msgid "Really remove all the entries ?"
-msgstr "Rimuovo veramente tutte le voci ?"
+msgstr "Rimuovere veramente tutte le voci ?"
 
 #: .././Pyblio/GnomeUI/Document.py:548
 msgid "Create new entry"
@@ -509,15 +523,15 @@ msgstr "Crea una nuova voce"
 
 #: .././Pyblio/GnomeUI/Document.py:562
 msgid "Really edit %d entries ?"
-msgstr "Modifico veramente le %d voci ?"
+msgstr "Modificare veramente le %d voci ?"
 
 #: .././Pyblio/GnomeUI/Document.py:597
 msgid "Remove all the %d entries ?"
-msgstr "Rimuovo tutte le %d voci ?"
+msgstr "Rimuovere tutte le %d voci ?"
 
 #: .././Pyblio/GnomeUI/Document.py:599
 msgid "Remove entry `%s' ?"
-msgstr "Rimuovo la voce `%s' ?"
+msgstr "Rimuovere la voce `%s' ?"
 
 #: .././Pyblio/GnomeUI/Document.py:657
 msgid ""
@@ -532,7 +546,7 @@ msgid ""
 "Please install bug-buddy\n"
 "to use this feature"
 msgstr ""
-"Per favore installa bug-buddy\n"
+"Per favore installare bug-buddy\n"
 "per usare questa funzione"
 
 #: .././Pyblio/GnomeUI/Document.py:716
@@ -557,7 +571,7 @@ msgstr "Stile di bibliografia:"
 
 #: .././Pyblio/GnomeUI/Format.py:52
 msgid "Select style"
-msgstr "Seleziona lo stile"
+msgstr "Selezionare lo stile"
 
 #: .././Pyblio/GnomeUI/Format.py:58
 msgid "Output format:"
@@ -569,12 +583,11 @@ msgstr "File di output:"
 
 #: .././Pyblio/GnomeUI/Format.py:76
 msgid "Select output file"
-msgstr "Seleziona il file di output"
+msgstr "Selezionare il file di output"
 
 #: .././Pyblio/GnomeUI/Config.py:45
-#, fuzzy
 msgid "Choose your preferences"
-msgstr "Scegli le preferenze"
+msgstr "Scegliere le vostre preferenze"
 
 #: .././Pyblio/GnomeUI/Config.py:93
 msgid ""
@@ -604,7 +617,7 @@ msgstr "Falso"
 
 #: .././Pyblio/GnomeUI/Config.py:390
 msgid "Add"
-msgstr "Aggiungi"
+msgstr "Aggiunge"
 
 #: .././Pyblio/GnomeUI/Config.py:393
 msgid "Update"
@@ -676,7 +689,7 @@ msgstr "Questo è software libero SENZA NESSUNA GARANZIA."
 
 #: .././pybliographer.py:43
 msgid "For details, type `warranty'."
-msgstr "Per i dettagli, digita `warranty'."
+msgstr "Per i dettagli, digitare `warranty'."
 
 #: .././pybliographer.py:110
 msgid "%s: error: can't open file `%s'"
@@ -684,7 +697,7 @@ msgstr "%s: errore: impossibile aprire il file `%s'"
 
 #: .././pybliographer.py:123
 msgid "For help, run %s and type `help' at the prompt"
-msgstr "Per l'aiuto, esegui %s e digita `help' al prompt"
+msgstr "Per l'aiuto, eseguire %s e digitare `help' al prompt"
 
 #: .././pybliographer.py:132
 msgid ""
@@ -712,11 +725,11 @@ msgstr "nessuna voce"
 msgid "can't find the following entries: %s"
 msgstr "impossibile trovare le seguenti voci: %s"
 
-#: .././scripts/pybconvert.py:27
+#: .././scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
 msgstr "uso: pybconvert <source>..<target> <input> [output]"
 
-#: .././scripts/pybconvert.py:36
+#: .././scripts/pybconvert.py:38
 msgid "pybconvert: bad conversion format"
 msgstr "pybconvert: formato di conversione non valido"
 
