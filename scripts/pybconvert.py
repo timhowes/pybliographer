@@ -21,14 +21,16 @@
 # 
 # $Id$
 
-import os, sys, string
+import os, sys, string, gettext
 
-if len (sys.argv) < 3 or len (sys.argv) > 4:
+_ = gettext.gettext
+
+if len (sys.argv) < 4 or len (sys.argv) > 5:
     print _("usage: pybconvert <source>..<target> <input> [output]")
     sys.exit (1)
 
 
-format = sys.argv [1]
+format = sys.argv [2]
 
 try:
     source, target = string.split (format, '..')
@@ -39,13 +41,13 @@ except:
 
 from Pyblio import Open
 
-f_in = sys.argv [2]
+f_in = sys.argv [3]
 
-if len (sys.argv) == 3:
+if len (sys.argv) == 4:
     f_out = sys.stdout
 else:
-    f_out = open (sys.argv [3], 'w')
+    f_out = open (sys.argv [4], 'w')
 
 database = Open.bibopen (f_in, source)
-Open.bibwrite (database, how = target, out = f_out)
+Open.bibwrite (database.iterator (), how = target, out = f_out)
     

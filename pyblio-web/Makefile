@@ -26,6 +26,7 @@ clean:
 
 remote:
 	scp -r *.m4 $(EXTRA) Makefile gobry@pybliographer.sourceforge.net:/home/users/gobry/html
+	ssh gobry@pybliographer.sourceforge.net 'cd html && make install'
 
 .SUFFIXES: .html .m4
 
