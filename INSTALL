@@ -1,0 +1,16 @@
+Simple install procedure
+========================
+
+% gzip -d -c pybliographer-<x.xx>.tar.gz | tar xvf -
+% cd pybliographer-<x.xx>
+% ./configure
+% make
+[become root if necessary]
+% make install
+
+
+For additional configuration options, please run `configure --help'
+
+Once the program is installed, you may want to install a site specific
+configuration file in $(libdir)/pybliographer. Please have a look at
+`pybrc.py' to find an example.

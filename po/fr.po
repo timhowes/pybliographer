@@ -1,0 +1,332 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 1999-11-22 09:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#: Pyblio/GnomeUI/Entry.py:55
+#, c-format
+msgid "Native edition of field `%s'"
+msgstr "Édition du champ `%s' en format natif"
+
+#: Pyblio/GnomeUI/Entry.py:194
+msgid "Edit the field in its Native format"
+msgstr "Éditer le champ dans son format natif"
+
+#: Pyblio/GnomeUI/Entry.py:593
+msgid "Drag an Entry to define a Cross-Reference"
+msgstr "Déplacer une Entrée ici pour définir une référence croisée"
+
+#: Pyblio/GnomeUI/Entry.py:602
+msgid "Remove the current Cross-Reference"
+msgstr "Supprimer la référence croisée"
+
+#: Pyblio/GnomeUI/Entry.py:627
+msgid "Add Extra Field"
+msgstr "Ajouter un champ supplémentaire"
+
+#: Pyblio/GnomeUI/Entry.py:662 Pyblio/GnomeUI/Entry.py:704
+#: Pyblio/GnomeUI/Entry.py:994
+#, c-format
+msgid "Cross-Reference `%s' is unexistant in the database"
+msgstr "La référence croisée `%s' n'existe pas dans cette base"
+
+#: Pyblio/GnomeUI/Entry.py:797
+msgid "Mandatory"
+msgstr "Obligatoire"
+
+#: Pyblio/GnomeUI/Entry.py:800
+msgid "Optional"
+msgstr "Facultatif"
+
+#: Pyblio/GnomeUI/Entry.py:803
+msgid "Extra"
+msgstr "Supplément"
+
+#: Pyblio/GnomeUI/Entry.py:854
+#, c-format
+msgid "Invalid field name `%s'"
+msgstr "Le nom de champ `%s' est incorrect"
+
+#: Pyblio/GnomeUI/Entry.py:859
+#, c-format
+msgid "Key `%s' already defined"
+msgstr "La clé `%s' existe déjà"
+
+#: Pyblio/GnomeUI/Entry.py:947
+#, c-format
+msgid "Invalid identifier `%s'"
+msgstr "L'identificateur `%s' est incorrect"
+
+#: Pyblio/GnomeUI/Entry.py:968
+#, c-format
+msgid "Identifier `%s' already exists"
+msgstr "L'identificateur `%s' existe déjà"
+
+#: Pyblio/GnomeUI/Pybliographic.py:45
+msgid "File"
+msgstr "Fichier"
+
+#: Pyblio/GnomeUI/Pybliographic.py:75
+msgid "Bibliography type:"
+msgstr "Type de bibliographie :"
+
+#: Pyblio/GnomeUI/Pybliographic.py:146
+msgid "Format"
+msgstr "Format"
+
+#: Pyblio/GnomeUI/Pybliographic.py:165
+msgid "Formatting Style:"
+msgstr "Style de format:"
+
+#: Pyblio/GnomeUI/Pybliographic.py:187
+msgid "Output type:"
+msgstr "Type de sortie:"
+
+#: Pyblio/GnomeUI/Pybliographic.py:274
+msgid "Submit a Bug Report"
+msgstr "Envoyer un rapport de Bug"
+
+#: Pyblio/GnomeUI/Pybliographic.py:376
+msgid "Welcome to Pybliographic"
+msgstr "Bienvenue dans Pybliographic"
+
+#: Pyblio/GnomeUI/Pybliographic.py:382
+msgid "New..."
+msgstr "Nouveau..."
+
+#: Pyblio/GnomeUI/Pybliographic.py:384
+msgid "Edit..."
+msgstr "Éditer..."
+
+#: Pyblio/GnomeUI/Pybliographic.py:386 Pyblio/GnomeUI/Search.py:201
+msgid "Delete"
+msgstr "Éffacer"
+
+#: Pyblio/GnomeUI/Pybliographic.py:451
+#, c-format
+msgid "Modified database `%s' [%s, %d]"
+msgstr "Base de données modifiée `%s' [%s, %d]"
+
+#: Pyblio/GnomeUI/Pybliographic.py:455
+#, c-format
+msgid "Database `%s' [%s, %d]"
+msgstr "Base de données `%s' [%s, %d]"
+
+#: Pyblio/GnomeUI/Pybliographic.py:464
+msgid "New file"
+msgstr "Nouveau fichier"
+
+#: Pyblio/GnomeUI/Pybliographic.py:482 Pyblio/GnomeUI/Pybliographic.py:522
+#: Pyblio/GnomeUI/Pybliographic.py:577
+msgid "Database is modified.\n"
+msgstr "Base de données modifiée\n"
+
+#: Pyblio/GnomeUI/Pybliographic.py:483 Pyblio/GnomeUI/Pybliographic.py:523
+msgid "Discard changes ?"
+msgstr "Oublier les modifications ?"
+
+#: Pyblio/GnomeUI/Pybliographic.py:559
+msgid "Open"
+msgstr "Ouvrir"
+
+#: Pyblio/GnomeUI/Pybliographic.py:578
+msgid "Quit without saving ?"
+msgstr "Quitter sans sauver ?"
+
+#: Pyblio/GnomeUI/Pybliographic.py:618
+#, c-format
+msgid "can't save file: %s"
+msgstr "Impossible de sauver le fichier: %s"
+
+#: Pyblio/GnomeUI/Pybliographic.py:627
+msgid "Save As"
+msgstr "Sauver comme"
+
+#: Pyblio/GnomeUI/Pybliographic.py:640 Pyblio/GnomeUI/Pybliographic.py:973
+#, c-format
+msgid ""
+"File `%s' exists.\n"
+"Overwrite it ?"
+msgstr ""
+"Le fichier `%s' existe.\n"
+"Faut-il l'écraser ?"
+
+#: Pyblio/GnomeUI/Pybliographic.py:653 Pyblio/GnomeUI/Pybliographic.py:940
+#, c-format
+msgid ""
+"Can't save file:\n"
+"%s"
+msgstr ""
+"Impossible de sauver le fichier:\n"
+"%s"
+
+#: Pyblio/GnomeUI/Pybliographic.py:664 Pyblio/GnomeUI/Pybliographic.py:671
+#: Pyblio/GnomeUI/Pybliographic.py:678 Pyblio/GnomeUI/Pybliographic.py:809
+msgid "Not yet implemented..."
+msgstr "Pas encore implémenté..."
+
+#: Pyblio/GnomeUI/Pybliographic.py:695
+msgid ""
+"Please, create a new database first.\n"
+"Use File/New for example"
+msgstr ""
+"Veuillez créer une nouvelle base avant tout.\n"
+"Utilisez le menu Fichier/Nouveau pour cela"
+
+#: Pyblio/GnomeUI/Pybliographic.py:702 Pyblio/GnomeUI/Pybliographic.py:734
+#: Pyblio/GnomeUI/Pybliographic.py:783
+msgid "edition is disabled in this database"
+msgstr "L'édition n'est pas autorisée dans cette base"
+
+#: Pyblio/GnomeUI/Pybliographic.py:766 Pyblio/GnomeUI/Pybliographic.py:772
+#, c-format
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr ""
+"Impossible de se connecter à LyX :\n"
+"%s"
+
+#: Pyblio/GnomeUI/Pybliographic.py:793
+#, c-format
+msgid "Really remove entry %s ?"
+msgstr "Voulez-vous supprimer l'entrée `%s' ?"
+
+#: Pyblio/GnomeUI/Pybliographic.py:898
+msgid ""
+"Please install bug-buddy\n"
+"to use this feature"
+msgstr ""
+"Veuillez installer `bug-buddy'\n"
+"pour utiliser cette fonction"
+
+#: Pyblio/GnomeUI/Pybliographic.py:904
+msgid "This program is copyrighted under the GNU GPL"
+msgstr "Ce programme est placé sous la licence GNU GPL"
+
+#: Pyblio/GnomeUI/Pybliographic.py:906
+msgid "Gnome interface to the Pybliographer system."
+msgstr "Une interface graphique pour Pybliographer"
+
+#: Pyblio/GnomeUI/Pybliographic.py:910
+msgid ""
+"Submit a bug report\n"
+" using bug-buddy"
+msgstr ""
+"Envoyer un rapport de Bug\n"
+"en utilisant `bug-buddy'"
+
+#: Pyblio/GnomeUI/Pybliographic.py:913
+msgid "Pybliographer Home Page"
+msgstr "Page principale de Pybliographer"
+
+#: Pyblio/GnomeUI/Pybliographic.py:929
+msgid "Please open a database first"
+msgstr "Veuillez ouvrir une base de données"
+
+#: Pyblio/GnomeUI/Pybliographic.py:953
+msgid "Bibliography"
+msgstr "Bibliographie"
+
+#: Pyblio/GnomeUI/Search.py:121
+msgid "Search"
+msgstr "Chercher"
+
+#: Pyblio/GnomeUI/Search.py:158
+msgid "Field"
+msgstr "Champ"
+
+#: Pyblio/GnomeUI/Search.py:159
+msgid "Pattern"
+msgstr "Valeur"
+
+#: Pyblio/GnomeUI/Search.py:174
+msgid "Simple Search"
+msgstr "Recherche simple"
+
+#: Pyblio/GnomeUI/Search.py:178
+msgid "Search command:"
+msgstr "Commande de recherche :"
+
+#: Pyblio/GnomeUI/Search.py:184
+msgid "Expert Search"
+msgstr "Recherche avancée"
+
+#: Pyblio/GnomeUI/Search.py:216
+msgid "Full database"
+msgstr "Base de donnée complète"
+
+#: Pyblio/GnomeUI/Search.py:221
+msgid "Ready to search !"
+msgstr "Prêt à chercher !"
+
+#: Pyblio/GnomeUI/Search.py:250
+msgid "internal error during evaluation"
+msgstr "Erreur interne durant l'évaluation"
+
+#: Pyblio/GnomeUI/Search.py:299
+#, c-format
+msgid ""
+"while compiling %s\n"
+"error: %s"
+msgstr ""
+"Pendant la compilation de `%s'\n"
+"erreur : %s"
+
+#: Pyblio/GnomeUI/Search.py:344
+#, c-format
+msgid "found %d matches"
+msgstr "%d entrées trouvées"
+
+#: Pyblio/GnomeUI/Search.py:372
+#, c-format
+msgid "%d matches in this node"
+msgstr "%d entrées dans ce noeud"
+
+#: Pyblio/GnomeUI/Utils.py:75
+msgid ""
+"The following errors occured:\n"
+"\n"
+msgstr "Les erreurs suivantes se sont produites :\n\n"
+
+#~ msgid "This is %s, version %s"
+#~ msgstr "Bienvenue dans %s, version %s"
+
+#~ msgid "%s: error: can't open file `%s'"
+#~ msgstr "%s: erreur : impossible d'ouvrir le fichier `%s'"
+
+#~ msgid "For help, run %s and type `help' at the prompt"
+#~ msgstr "Pour de l'aide, tapez %s puis le mot `help' à l'invite"
+
+#~ msgid ""
+#~ "Useful commands:\n"
+#~ "\thelp     to get some help\n"
+#~ "\tquit     to quit\n"
+#~ msgstr ""
+#~ "Commandes utiles :\n"
+#~ "\thelp\tpour obtenir de l'aide\n"
+#~ "\tquit\tpour quitter le programm\n"
+
+#~ msgid "error: field `%s' appears more than once in the definition of `%s'"
+#~ msgstr ""
+#~ "erreur : le champ `%s' apparait plusieurs fois dans la définition de `%s'"
+
+#~ msgid "database `%s' is unknown in this Reference"
+#~ msgstr "la base de données `%s' est inconnue dans cette Reference"
+
+#~ msgid "can't update a database of type Reference"
+#~ msgstr "impossible de mettre à jour une base de données de type Reference"
+
+#~ msgid "warning: can't import %s: %s"
+#~ msgstr "attention: impossible d'importer %s : %s"

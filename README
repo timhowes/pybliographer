@@ -1,0 +1,77 @@
+-*- text -*-
+=================================================================
+
+Pybliographer provides a framework for working with bibliographic
+databases.
+
+For more information, please consult the documentation at:
+
+	http://www.gnome.org/pybliographer
+
+=================================================================
+
+* Installation 
+  ------------
+
+Basically, it should look like :
+
+	./configure && make
+	su
+	make install
+
+You can then run several programs :
+
+  - pybliographic : the graphical interface
+  - pybliographer : the text-based interface and scripting language
+  - pybcheck, pybconvert, pybformat, ... : several useful tools
+
+For more configuration details, have a look at ./INSTALL and try ./configure --help
+
+
+* RedHat & Debian users
+  ---------------------
+
+Please  check  that  python  and  recode  have  their  devel  packages
+installed. For *Debian*, this means that the following packages should
+be present :
+
+	python-base
+	python-dev
+	python-gdk-imlib
+	python-gnome
+	python-gtk
+	python-misc
+	python-net
+	python-tk
+
+(thanks to Yuri Bongiorno for having isolated the minimal required list ;-))
+
+
+* Common problems
+  ---------------
+
+ - If you get a message like "don't know how to open .bib", or some
+   weird error about librecode.so, please try:
+
+	export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
+
+   (assuming recode has been installed in /usr or /usr/local...)
+
+
+ - If the interface locks during search or open operations, upgrade
+   your versions of Gtk (>= 1.2.6) and Gnome-Python (>= 1.0.50).
+
+   As a temporary workaround, create ~/.pybrc.py containing the
+   following lines :
+
+from Pyblio import Config
+
+Config.set ("gnomeui/threads", 0)
+
+   ...or add this to the global configuration file (which is 
+   $prefix/share/pybliographer/pybrc.py)
+
+   
+
+
+

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Pybliographic
+Comment=Bibliographic database editor
+Icon=
+Exec=pybliographic
+Terminal=0
+Type=Application

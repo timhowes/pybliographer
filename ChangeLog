@@ -1,0 +1,521 @@
+1999-11-22  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/struct.c: Small improvement that produces a speedup of 10x ;-)
+
+1999-11-18  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* pybliographer.py, pybrc.py, autogen.sh, configure.in, Makefile.am, AUTHORS:
+	Added i18n + doc generation
+
+	* doc/pyblio.sgml, doc/search.png, doc/gui.sgml, doc/main.png, doc/open.png, doc/edit.png, doc/Makefile.am:
+	Updated doc + added png picts
+
+	* doc/C/Makefile.am, doc/C/topic.dat: Added support for Gnome doc
+
+	* Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Utils.py, Pyblio/GnomeUI/FieldsInfo.py, Pyblio/GnomeUI/Makefile.am, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Database.py, Pyblio/GnomeUI/Entry.py:
+	Internationalization + use of '' for non i18n comments
+
+	* Pyblio/Format/Medline.py, Pyblio/Format/Makefile.am:
+	Added Medline support
+
+	* Pyblio/Makefile.am, Pyblio/TextUI.py, Pyblio/Base.py, Pyblio/LyX.py:
+	Small bug fixes -> entry.name
+
+	* po/cat-id-tbl.c, po/fr.po, po/POTFILES.in: Mise ‡ jour...
+
+1999-11-16  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* macros/gnome-ghttp-check.m4, macros/gnome-gnorba-check.m4, macros/gnome-guile-checks.m4, macros/gnome-libgtop-check.m4, macros/gnome-objc-checks.m4, macros/gnome-orbit-check.m4, macros/gnome-pilot.m4, macros/gnome-print-check.m4, macros/gnome-pthread-check.m4, macros/gnome-support.m4, macros/gnome-undelfs.m4, macros/gnome-vfs.m4, macros/gnome-x-checks.m4, macros/gnome-xml-check.m4, macros/gnome.m4, macros/linger.m4, macros/need-declaration.m4, scripts/pybliographic.py, macros/aclocal-include.m4, macros/ChangeLog, macros/compiler-flags.m4, macros/curses.m4, macros/gnome-bonobo-check.m4, macros/gnome-common.m4, macros/gnome-cxx-check.m4, macros/gnome-fileutils.m4, macros/gnome-gettext.m4, macros/Makefile.am, Pyblio/ConfDir/Base.py, Pyblio/Format/docbook.py, Pyblio/GnomeUI/Database.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Search.py, Pyblio/Style/Utils.py, autogen.sh, configure.in, Makefile.am, pybliographic-logo.png, pybliographic.keys.in, pybliographic.mime, pybliographic.png, pybrc.py, README:
+	Added i18n & patchs
+
+1999-11-09  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/Output/LaTeX.py, Pyblio/Format/BibTeX.py, Pyblio/Format/Refer.py:
+	Removed .name from Entry
+
+	* Pyblio/Fields.py, Pyblio/Formatter.py, Pyblio/Base.py:
+	- Removed .name in the Entry -> only key
+	- improved behavior of Reference ()
+
+	* Pyblio/TextUI.py, Pyblio/Search.py: Added date tester
+
+1999-09-30  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* doc/script.sgml, scripts/Makefile.am, scripts/pybcompact.py, scripts/pybformat.py, scripts/pybtex.py, doc/gui.sgml, Pyblio/GnomeUI/Pybliographic.py, Pyblio/Output/html.py, Pyblio/Output/LaTeX.py, Pyblio/Output/raw.py, Pyblio/Output/text.py, Pyblio/Style/alpha.py, Pyblio/Style/Utils.py, Pyblio/Base.py, Pyblio/ConfDir/DocBook.py, Pyblio/ConfDir/Makefile.am, Pyblio/Fields.py, Pyblio/Formatter.py, Pyblio/TextUI.py, Pyblio/Types.py, configure.in, pybrc.py, TODO:
+	Updated...
+
+1999-09-28  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/Style/Utils.py:
+	Fixed problems with 0 author groups + bad dates
+
+	* configure.in: Jumped to 0.9.4
+
+	* compiled/recodemodule.c, bibtex/struct.c, Pyblio/Style/Utils.py, Pyblio/Format/BibTeX.py, Pyblio/Open.py:
+	Fixed stupid bug
+
+1999-09-27  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/bibtexmodule.c, scripts/pybformat.py, bibtex/struct.c, bibtex/bibtex.h, Pyblio/Style/alpha.py, Pyblio/Style/custom.py, Pyblio/Style/Makefile.am, Pyblio/Style/Utils.py, Pyblio/Output/html.py, Pyblio/Output/LaTeX.py, Pyblio/Output/Makefile.am, Pyblio/Output/raw.py, Pyblio/Output/text.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Utils.py, Pyblio/Format/BibTeX.py, Pyblio/ConfDir/Makefile.am, Pyblio/ConfDir/Style.py, Pyblio/Base.py, Pyblio/Fields.py, Pyblio/Formatter.py, Pyblio/recode.py, pybrc.py:
+	Release 0.9.3
+
+1999-09-24  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/Output/latexutils.py, Pyblio/Output/LaTeX.py:
+	support for LaTeX output
+
+	* doc/pyblio.sgml, doc/script.sgml:
+	updated doc -> crossref handling + shortcuts
+
+	* pybrc.py, configure.in, Makefile.am: updated scripts
+
+	* scripts/Makefile.am, scripts/pybcompact.py: updates
+
+	* scripts/pybformat.py, scripts/pybtex.py:
+	updated latex parsing + embryo of output suport
+
+	* Pyblio/Output/html.py, Pyblio/Output/Makefile.am:
+	- format improvement
+
+	* Pyblio/Format/docbook.py, Pyblio/Format/Refer.py, Pyblio/Format/RefDB.py, Pyblio/Format/Ovid.py, Pyblio/Format/BibTeX.py:
+	- updates of the autoload mechanism
+
+	* Pyblio/Open.py, Pyblio/Makefile.am, Pyblio/Formatter.py, Pyblio/Fields.py, Pyblio/Autoload.py:
+	- updates of the autoload mechanism
+	- small bug fixes (lineage handling, case problems...)
+
+	* Pyblio/Style/alpha.py, Pyblio/Style/Makefile.am:
+	First draft of the first style...
+
+	* Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Database.py:
+	- fixed native edition
+	- fixed crossref behavior
+	- now, search window is updated when a new database is loaded
+
+	* compiled/bibtexmodule.c: - small updates
+
+	* bibtex/testparser.c, bibtex/reverse.c, bibtex/struct.c, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/author.c, bibtex/bibparse.y, bibtex/accents.c:
+	- added tilda support
+	- fixed handling of lineage
+	- fixed case dependance of keys
+
+1999-09-15  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/GnomeUI/Utils.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Pybliographic.py:
+	- Added support for type and key search
+	- bug fixes (test against None fields)
+
+	* Pyblio/ConfDir/GnomeUI.py: Added support for thread conf
+
+	* Pyblio/Types.py, Pyblio/Search.py, Pyblio/TextUI.py:
+	Added support for key and type searches
+
+	* configure.in, README:
+	Added recode-exec-prefix + advices in case of pb with threads
+
+	* bibtex/bibtex.c, bibtex/bibparse.y: Added support for @comment fields
+
+1999-09-02  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* scripts/pybliographic.py, doc/gui.sgml, compiled/recodemodule.c, compiled/Setup.in, Pyblio/Output/docbook.py, Pyblio/Output/html.py, Pyblio/Output/Makefile.am, Pyblio/GnomeUI/Database.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Utils.py, Pyblio/Format/docbook.py, Pyblio/Format/Makefile.am, Pyblio/Format/Refer.py, Pyblio/Format/BibTeX.py, Pyblio/ConfDir/GnomeUI.py, Pyblio/ConfDir/Refer.py, Pyblio/Autoload.py, Pyblio/Base.py, Pyblio/Fields.py, Pyblio/Open.py, Pyblio/recode.py, configure.in, pybrc.py, NEWS:
+	Updated
+
+1999-08-31  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* po/cat-id-tbl.c, po/ChangeLog, po/fr.po, po/Makefile.in.in, po/POTFILES.in:
+	ajout de l'intl
+
+	* intl/explodename.c, intl/finddomain.c, intl/gettext.c, intl/gettext.h, intl/gettextP.h, intl/hash-string.h, intl/intl-compat.c, intl/l10nflist.c, intl/libgettext.h, intl/libintl.h, intl/loadinfo.h, intl/loadmsgcat.c, intl/localealias.c, intl/po2tbl.sed.in, intl/textdomain.c, intl/xopen-msg.sed, intl/bindtextdom.c, intl/cat-compat.c, intl/ChangeLog, intl/dcgettext.c, intl/dgettext.c, intl/Makefile.in, intl/TAGS, intl/VERSION:
+	ajout de lÌntl
+
+	* etc/installer.in: ajout de locale
+
+	* compiled/bibtexmodule.c, compiled/recodemodule.c, compiled/Setup.in, bibtex/accents.c, bibtex/author.c, bibtex/bibparse.y, bibtex/bibtex.c, bibtex/entry.c, bibtex/field.c, bibtex/reverse.c, bibtex/source.c, bibtex/stringutils.c, bibtex/struct.c:
+	utilisation de config.h pour pas emm... intl
+
+	* Pyblio/GnomeUI/Database.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/Base.py:
+	ajout du tri sur les cles
+
+	* pybliographic.desktop, ABOUT-NLS, acconfig.h, configure.in, Makefile.am, pybliographer.py, README:
+	Pre-support for NLS
+
+	* Pyblio/GnomeUI/Search.py:
+	Fixed Delete bug (removing in a for loop the items we loop over...)
+
+	* Pyblio/Format/BibTeX.py: Updated string syntax
+
+1999-08-27  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* scripts/pybcompact.py, scripts/pybliographic.py, scripts/pybcheck.py:
+	added comments
+
+	* compiled/bibtexmodule.c, compiled/Makefile.pre.in: strictness support
+
+	* Pyblio/GnomeUI/Pybliographic.py:
+	added listing of previously opened files
+
+	* Pyblio/Format/BibTeX.py, Pyblio/ConfDir/Makefile.am, Pyblio/ConfDir/BibTeX.py, Pyblio/Config.py, Pyblio/Open.py, Pyblio/Base.py:
+	Configuration for Bibtex strictness
+
+	* configure.in, TODO: update for new version
+
+	* bibtex/testparser.c, bibtex/bibtex.h, bibtex/source.c, bibtex/bibparse.y, bibtex/author.c:
+	- Fixed author bug (when entries look like "and and")
+	- added strictness configuration for comma parsing.
+
+1999-08-26  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/Base.py: Pass properties when searching in Reference
+
+	* Pyblio/GnomeUI/Pybliographic.py, Pyblio/Base.py:
+	Last minute fix -> new_entry on a ref
+
+	* Pyblio/Format/BibTeX.py, Pyblio/Format/Makefile.am, Pyblio/Format/Refer.py, Pyblio/ConfDir/Makefile.am, Pyblio/ConfDir/Refer.py:
+	Config in refer + install the file !
+
+	* pybrc.py, NEWS, TODO: Updated version
+
+	* scripts/pybcheck.py, scripts/pybcompact.py: Ajout de commentaires
+
+	* doc/script.sgml, README, NEWS: Update
+
+	* scripts/pybliographic.py, scripts/pybscript.in, scripts/Makefile.am, scripts/pybcompact.py:
+	Added new script
+
+	* Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/Format/BibTeX.py, pybliographic.desktop, configure.in, Makefile.am:
+	Simple bug fixes
+
+1999-08-25  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* doc/gui.sgml: Updated for crossrefs
+
+	* doc/script.sgml, scripts/pybliographic.py, doc/gui.sgml, doc/pyblio.sgml, compiled/recodemodule.c, compiled/bibtexmodule.c, compiled/Setup.in, Pyblio/GnomeUI/Utils.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Database.py, Pyblio/Format/Ovid.py, Pyblio/Format/RefDB.py, Pyblio/Format/Refer.py, Pyblio/ConfDir/Base.py, Pyblio/Format/BibTeX.py, Pyblio/Fields.py, Pyblio/Open.py, Pyblio/Base.py, pybconvert.py, pybliographer.py, pybrc.py, pybconvert.in, configure.in:
+	- improved edition (crossrefs support + new entry addition)
+	- bug fixes (can save when editing sorted entries, ...)
+
+1999-08-18  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/GnomeUI/Pybliographic.py, Pyblio/Open.py, NEWS:
+	OubliÈ le "new"
+
+	* scripts/pybconvert.py, scripts/pybscript.in: -isolated the script
+
+	* compiled/bibtexmodule.c, compiled/Setup.in, bibtex/source.c, bibtex/reverse.c:
+	- bug fixes (test NULL)
+	- make a real type for bibtex data
+
+	* Pyblio/GnomeUI/Utils.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/FieldsInfo.py, Pyblio/GnomeUI/Makefile.am, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Database.py:
+	Editing capabilities
+
+	* Pyblio/Format/BibTeX.py, Pyblio/Format/Ovid.py, Pyblio/Format/RefDB.py, Pyblio/Format/Refer.py, Pyblio/Fields.py, Pyblio/Open.py, Pyblio/Base.py:
+	Now keys don't contain databases
+
+	* configure.in, pybrc.py: Update
+
+1999-08-16  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/GnomeUI/Pybliographic.py, pybconvert.in, pybconvert.py:
+	back sync
+
+	* Pyblio/GnomeUI/FieldsInfo.py: added fieldsinfo
+
+	* acconfig.h: added acconfig.h
+
+	* scripts/pybscript.in, scripts/pybconvert.py, scripts/pybliographic.py, scripts/pybcheck.py, compiled/recodemodule.c, scripts/Makefile.am, bibtex/reverse.c, compiled/bibtexmodule.c, compiled/Setup.in, bibtex/bibparse.y, bibtex/bibtex.h, bibtex/Makefile.am, Pyblio/GnomeUI/Makefile.am, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Config.py, Pyblio/GnomeUI/Database.py, Pyblio/GnomeUI/Entry.py, Pyblio/Format/RefDB.py, Pyblio/Format/Refer.py, Pyblio/Format/Ovid.py, Pyblio/Format/Makefile.am, Pyblio/ConfDir/Makefile.am, Pyblio/Format/BibTeX.py, Pyblio/ConfDir/Base.py, Pyblio/ConfDir/GnomeUI.py, Pyblio/Makefile.am, Pyblio/Types.py, Pyblio/Config.py, Pyblio/Base.py, pybrc.py, pybliographic.py, pybliographic.in, pybcheck.py, pybliographer.py, pybcheck.in, configure.in, Makefile.am, AUTHORS:
+	sync after home modifs
+
+1999-08-13  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/Format/BibTeX.py, Pyblio/GnomeUI/Search.py, Pyblio/Open.py, pybliographer.py:
+	sync
+
+1999-08-10  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/reverse.c: reverse interpretation of a field structure
+
+	* Pyblio/Output/Makefile.am: Added makefile
+
+	* Pyblio/Format/__init__.pyc: ...oups
+
+	* Pyblio/Format/__init__.pyc, Pyblio/Format/Makefile.am: Added makefile
+
+	* compiled/recodemodule.c, compiled/Setup.in, Pyblio/GnomeUI/Search.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/Search.py, pybliographer.py, pybrc.py, Makefile.am:
+	pre-epfl
+
+1999-08-09  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/GnomeUI/Search.py: Module to search
+
+1999-08-06  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Database.py, Pyblio/Format/BibTeX.py, Pyblio/Search.py, Pyblio/TextUI.py, Pyblio/Types.py, Pyblio/Base.py, Pyblio/Fields.py, Pyblio/Makefile.am, Pyblio/Open.py, Pyblio/Autoload.py:
+	Minor reorganisation (types, search function...)
+
+1999-08-05  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/bibtexmodule.c: empty fields are NULL/Py_None, not ""
+
+	* bibtex/author.c: empty fields are NULL, not ""
+
+	* Pyblio/Format/BibTeX.py, Pyblio/Fields.py:
+	Cache mechanism with control
+
+	* configure.in: Version 0.6 is on the way
+
+1999-08-04  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/bibtex.c, bibtex/bibtex.h, bibtex/field.c, bibtex/source.c, bibtex/testparser.c, compiled/bibtexmodule.c, compiled/Setup.in, Pyblio/Fields.py, Pyblio/Format/BibTeX.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/TextUI.py, Pyblio/Base.py, configure.in, Makefile.am, pybrc.py, TODO:
+	Edition is supported for BibTeX
+
+	* compiled/bibtexparser.c, compiled/recodemodule.c, compiled/bibtexmodule.c, compiled/Setup.in:
+	Use of BibtexSource
+
+	* bibtex/parsername.h, bibtex/source.c, bibtex/stringutils.c, bibtex/struct.c, bibtex/testparser.c, bibtex/accents.c, bibtex/author.c, bibtex/biblex.l, bibtex/bibparse.y, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/entry.c, bibtex/field.c, bibtex/Makefile.am, bibtex/TODO:
+	- prefixed functions from lex/yacc
+	- use of source -> file/string parsing
+
+1999-07-30  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/Makefile.pre.in, Pyblio/Formatter.py, Pyblio/GnomeUI/Config.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/TextUI.py, Makefile.am, pybrc.py, README:
+	Bug fixes pour la version 0.5
+
+	* compiled/Makefile.pre.in, compiled/Setup.in:
+	compilation hors des sources
+
+	* bibtex/bibparse.y, bibtex/bibtex.c:
+	amelioration de la gestion des erreurs
+
+	* Pyblio/Style/__init__.py, Pyblio/Style/Makefile.am, Pyblio/Output/html.py, Pyblio/Output/docbook.py:
+	debut
+
+	* Pyblio/GnomeUI/Makefile.am, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Database.py, Pyblio/GnomeUI/Entry.py, Pyblio/Format/__init__.py, Pyblio/Format/BibTeX.py, Pyblio/Formatter.py, Pyblio/Makefile.am, Pyblio/Open.py, Pyblio/TextUI.py, Pyblio/Fields.py, Pyblio/Autoload.py, Pyblio/Base.py:
+	utilisation des Keys plus gros debugage
+
+	* pybliographic.in, pybliographic.py, pybrc.py, pybcheck.in, pybcheck.py, pybliographer.py, installer.in, configure.in, TODO, Makefile.am:
+	nettoyage des scripts
+
+1999-07-22  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* etc/installer.in: deplacement
+
+	* Pyblio/Output/html.py, compiled/recodemodule.c, Pyblio/Output/docbook.py, compiled/bibtexparser.c, compiled/Setup.in, bibtex/bibtex.c, compiled/Makefile.pre.in, Pyblio/GnomeUI/__init__.py, Pyblio/GnomeUI/Database.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Config.py, Pyblio/Format/RefDB.py, Pyblio/Makefile.am, Pyblio/Open.py, Pyblio/Formatter.py, Pyblio/Format/BibTeX.py, Pyblio/Base.py, pybliographic.py, pybrc.py, pybliographer.py, TODO:
+	...avant reorganisation...
+
+1999-07-20  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/bibtex.h, bibtex/field.c, bibtex/struct.c, bibtex/bibtex.c, bibtex/bibparse.y:
+	- meilleur rÈcupÈration en cas de , manquante
+	- remise ‡ FALSE de bibtex_parser_is_content pour pouvoir reparser un fichier
+
+1999-07-19  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/GnomeUI/__init__.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Makefile.am, Pyblio/GnomeUI/Config.py, Pyblio/GnomeUI/Database.py, Pyblio/Open.py, Pyblio/TextUI.py, Pyblio/Format/BibTeX.py, Pyblio/Makefile.am, Pyblio/Base.py, pybrc.py, pybliographer.py, pybliographic.py, configure.in:
+	Rennomage des bibliotheques
+
+	* bibtex/bibtex.h, bibtex/entry.c, bibtex/bibparse.y, bibtex/bibtex.c, bibtex/biblex.l:
+	amÈlioration du parser (gestion du preamble)
+
+1999-07-16  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* pybliographic.py: standalone pybliographic
+
+	* pybrc.py, pybliographer.py, configure.in, installer.in, Makefile.am:
+	maj avant transfert
+
+	* Pyblio/Output/__init__.py, Pyblio/Output/docbook.py: marchouille
+
+	* compiled/bibtexparser.c, compiled/Setup.in: Added loss
+
+	* bibtex/field.c, bibtex/struct.c, bibtex/testparser.c, bibtex/bibtex.h, bibtex/author.c, bibtex/biblex.l, bibtex/accents.c:
+	Bonne gestion des champs
+
+	* Pyblio/Help.py, Pyblio/Open.py, Pyblio/TextUI.py, Pyblio/Fields.py, Pyblio/Base.py, Pyblio/Makefile.am, Pyblio/Format/BibTeX.py:
+	uniformisation
+
+	* Pyblio/GnomeUI/Makefile.am: new mf
+
+	* Pyblio/GnomeUI/__init__.py, Pyblio/GnomeUI/Config.py, Pyblio/GnomeUI/Entry.py, Pyblio/GnomeUI/Pybliographic.py, Pyblio/GnomeUI/Database.py:
+	Division de l'interface
+
+1999-05-31  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/field.c, bibtex/struct.c, bibtex/testparser.c, bibtex/bibtex.h, bibtex/bibparse.y, bibtex/biblex.l, bibtex/accents.c, bibtex/author.c, bibtex/Makefile.am:
+	Parsing dos not comply with "" and {} yet...
+
+1999-05-27  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/Setup.in, bibtex/logging.h, bibtex/debugging.h, bibtex/author.c, bibtex/Makefile.am, Pyblio/TextUI.py, Pyblio/Base.py, Pyblio/Help.py, Pyblio/Open.py, Pyblio/__init__.py, Pyblio/Makefile.am, Pyblio/Format/BibTeX.py, pybrc.py, pybliographer.py, __init__.py, configure.in, Makefile.am:
+	Before introduction of home made modifications
+
+1999-05-12  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/bibtexparser.c, bibtex/accents.c, bibtex/bibtex.c, __init__.py, Pyblio/Base.py, Pyblio/Fields.py, Pyblio/Format/BibTeX.py, Pyblio/Open.py, Pyblio/TextUI.py, pybrc.py:
+	Basic usability
+
+1999-05-10  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/bibtexparser.c, Pyblio/Base.py, Pyblio/Fields.py, Pyblio/Format/BibTeX.py, TODO:
+	...toward new parser compliance
+
+	* bibtex/testparser.c, bibtex/parsername.h, bibtex/stringutils.c, bibtex/struct.c, bibtex/entry.c, bibtex/field.c, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/biblex.l, bibtex/bibparse.y, bibtex/accents.c, bibtex/Makefile.am:
+	Parsing plus correct des entrÈes o˘ un {} est inclus dans un mot...
+
+	* bibtex/TODO: ...to remind me of what's missing !
+
+1999-05-04  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/testparser.c, bibtex/bibtex.h, bibtex/field.c, bibtex/struct.c, bibtex/accents.c, bibtex/bibparse.y, bibtex/Makefile.am:
+	Fixed :
+	 - some memory leaks
+	 - capitalization for titles and authors
+
+1999-05-03  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/testparser.c, bibtex/bibtex.h, bibtex/entry.c, bibtex/field.c, bibtex/bibparse.y, bibtex/bibtex.c, bibtex/Makefile.am:
+	Avant de passer aux tableaux
+
+	* bibtex/bibtex.c, bibtex/field.c, bibtex/struct.c, bibtex/bibparse.y:
+	Bug fixes before list->array
+
+1999-04-30  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/accents.c, bibtex/biblex.l, bibtex/bibparse.y, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/field.c, bibtex/Makefile.am, bibtex/struct.c, bibtex/testparser.c:
+	Parser ok sauf les majuscules
+
+1999-04-21  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/biblex.l, bibtex/bibparse.y, bibtex/bibtex.h, bibtex/field.c, bibtex/parsername.h, bibtex/struct.c, bibtex/testparser.c, bibtex/Makefile.am:
+	Analalyse des auteurs au format nom, prÈnom...
+
+1999-04-13  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/field.c, bibtex/struct.c, bibtex/testparser.c, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/entry.c, bibtex/bibparse.y, bibtex/accents.c, bibtex/Makefile.am:
+	Creation de Fields pour chaque entrÈe
+	manque encore la dÈcomposition des auteurs
+
+1999-04-07  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/struct.c, bibtex/testparser.c, bibtex/stringutils.c, bibtex/bibtex.h, bibtex/bibtex.c, bibtex/bibparse.y, bibtex/biblex.l, bibtex/Makefile.am:
+	Nouvelle methode de parsage complete...
+
+1999-03-29  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/bibtex.c, bibtex/bibtex.h, bibtex/stringutils.c, bibtex/bibparse.y, bibtex/Makefile.am:
+	apres le week-end...
+
+1999-03-25  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* wstring/wstremul.py, wstring/wstring.py, wstring/iso8859.py, wstring/Makefile.am, wstring/README, compiled/wstrop.c, wstring/AUTHOR, compiled/intl.c, compiled/Makefile.pre.in, compiled/Setup.in, bibtex/stringutils.c, bibtex/testparser.c, bibtex/bibtex.h, bibtex/bibtex.c, bibtex/biblex.l, bibtex/bibparse.y, bibtex/Makefile.am, Pyblio/Open.py, pybliographer.py, Pyblio/Format/BibTeX.py, Pyblio/Help.py, Pyblio/Fields.py, configure.in, Makefile.am, Pyblio/Base.py:
+	Commit avant week-end...
+
+1999-03-09  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/Makefile.pre.in: Added dependancy on the static library
+
+1999-03-02  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/bibparse.y:
+	Pour un champ redÅÈfini, indiquer le nom du champ, pas son contenu !
+
+1998-12-02  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/bibtexparser.c, Pyblio/Output/docbook.py, bibtex/bibtex.h, bibtex/bibparse.y, bibtex/bibtex.c, Pyblio/Open.py, pybrc.py, Pyblio/Base.py, Pyblio/Format/BibTeX.py, pybliographer.py, configure.in, Pyblio/TextUI.py, TODO, Makefile.am:
+	Avant le traitement des auteurs
+
+1998-11-24  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/Format/BibTeX.py:
+	GÈrer la rÈcursivitÈ dans les foreach (pour Èviter les boucles infinies)
+
+1998-11-11  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* compiled/bibtexparser.c, compiled/Setup.in, bibtex/bibtexparser.c, compiled/Makefile.pre.in, bibtex/Makefile.am, Pyblio/Help.py, configure.in, Makefile.am:
+	Utilisation du systËme Python de configuration des modules
+
+1998-11-09  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/Makefile.am: * installation de bibtex.h
+
+	* Pyblio/Format/BibTeX.py, Pyblio/Open.py, pybliographer.py, configure.in, Pyblio/Base.py, Makefile.am, NEWS, Pyblio/TextUI.py, TODO, AUTHORS, ChangeLog, INSTALL:
+	* Completer les fichiers ‡ distribuer
+	* Ajout de pybopen qui dÈcharge basics
+
+1998-10-29  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/Base.py, Pyblio/Format/BibTeX.py, pybliographer.py, configure.in, Pyblio/TextUI.py, TODO, INSTALL, README:
+	Ajustements sur la gestion des " et {} + un peu de doc + function comment
+
+	* bibtex/biblex.l: Suppression des espaces non souhaitÈs
+
+1998-10-28  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/bibtexparser.c, bibtex/stringutils.c, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/biblex.l, bibtex/bibparse.y, bibtex/Makefile.am, pybliographer.py, Pyblio/Format/BibTeX.py, Pyblio/Help.py, configure.in, installer.in, Pyblio/Base.py, Makefile.am, Pyblio/TextUI.py:
+	Rajout des copyrights : version 0.1 ok !
+
+	* bibtex/Makefile.am: Simplification
+
+	* pybrc.py, pybliograph.in, pybliographer.py, Pyblio/Base.py, Pyblio/Format/BibTeX.py, Pyblio/Help.py, configure.in, Pyblio/TextUI.py, TODO, Makefile.am:
+	Utilisation generalisÈe de Reference + Doc sommaire
+
+1998-10-27  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* Pyblio/Base.py, pybliograph.in, configure.in, installer.in, Pyblio/TextUI.py, INSTALL, Makefile.am, README, TODO, COPYING:
+	Package complet et qui fonctionne...
+
+	* bibtex/bibparse.y, bibtex/Makefile.am:
+	Gestion des chiffres seuls + package ok
+
+	* bibtex/bibtex.c, bibtex/Makefile.am, pybliograph.in, pybrc.py, Pyblio/Format/BibTeX.py, Pyblio/Help.py, pybliograph, Makefile.am, Pyblio/Base.py, Pyblio/TextUI.py:
+	Preparation pour distrib
+
+1998-10-26  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* pybrc.py, Pyblio/Base.py, Pyblio/Format/BibTeX.py, Pyblio/TextUI.py, pybliograph:
+	Fonctionnalites supplementaire :
+	 - modification & edition
+	 - sortie plus jolie
+
+	* bibtex/bibtexparser.c, bibtex/stringutils.c, bibtex/bibparse.y, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/Makefile.am:
+	Correction de qqs memory leaks dans la gestion des listes et des references
+	Python
+
+1998-10-23  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/bibtexparser.c, bibtex/bibtex.c:
+	Fonctions pour la bibliotheque
+
+	* bibtex/biblex.l, bibtex/bibparse.y, bibtex/bibtex.h, bibtex/Makefile.am:
+	Version fonctionnelle
+
+	* bibtex.py, configure.in, Makefile.am, Pyblio/Base.py, Pyblio/Format/BibTeX.py, Pyblio/TextUI.py, pybliograph, pybrc.py:
+	Version fonctionnelle avec bibtex
+
+1998-10-16  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/biblex.l: Suppression des \n superflus
+
+	* bibtex/stringutils.c, bibtex/bibtex.h, bibtex/bibparse.y, bibtex/biblex.l:
+	Parser avec @string
+
+	* bibtex/stringutils.c, bibtex/bibtex.h, bibtex/bibparse.y, bibtex/biblex.l, bibtex/Makefile.am:
+	Parsing relativement correct
+
+	* bibtex/stringutils.c, bibtex/bibtex.h, bibtex/bibparse.y, bibtex/biblex.l, bibtex/Makefile.am:
+	Version beta 1 ! Avant incorporation
+
+1998-10-15  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex/biblex.l, bibtex/bibparse.y, bibtex/bibtex.h, bibtex/Makefile.am, bibtex/stringutils.c:
+	Premiere version...
+
+1998-10-13  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
+
+	* bibtex.py, Pyblio/Help.py, pybliograph, pybrc.py:
+	Le nouveau et grandiose pybliograph, version 0.0
+
+	* bibtex.py, Pyblio/Help.py, pybliograph, pybrc.py: New file.
+
+	* Pyblio/Base.py: Le nouveau et grandiose pybliograph, version 0.0
+
+	* Pyblio/Base.py: New file.
+

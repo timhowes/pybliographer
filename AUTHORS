@@ -1,0 +1,10 @@
+- Hervé Dréau <hdreau@cybercable.fr>
+	* internationalization
+	* UI goodies
+	
+- Frédéric Gobry <frederic.gobry@epfl.ch>
+	* core application
+	* Gnome interface
+	
+Travis Oliphant <Oliphant.Travis@mayo.edu>
+	* Ovid parser

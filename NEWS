@@ -1,0 +1,38 @@
+New in 0.9.6 
+
+	* internationalization
+	* Medline support
+	* interaction with LyX (see http://www.lyx.org)
+	* lots of bug fixes and speed improvements
+	* use of bug-buddy
+	* documentation and UI improvements
+
+
+New in 0.9.1 - 1999-09-02
+
+	* fixed HTTP retrieval
+	* added accelerator in entry editor
+	* fixed several bugs (auto-key for new entries,...)
+
+
+New in 0.8 - 1999-08-26
+
+	* bug fixes
+	* configuration for Refer/EndNote format
+
+
+New in 0.7 - 1999-08-25
+
+	* lots of improvements in the graphical UI for edition
+	* support for crossrefs
+
+
+New in 0.6 - 1999-08-18
+
+	* the graphical interface now provides searching and editing
+
+
+New in 0.3 - 1998-11-09
+
+	* Bug fixes
+	* Support for remote files through http/ftp protocols
