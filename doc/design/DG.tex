@@ -1,0 +1,72 @@
+\documentclass[oneside,12pt,a4paper,smallheadings,DIV11]{scrbook}
+\usepackage{pyblio,graphicx,xr,mdwlist,hyperref,titlesec,array,supertabular}
+\usepackage[pdftex,outerbars]{changebar}
+%\includeonly{td-c00}
+% add font styles  like: ,galliard,gillsans, if you like
+\hyphenation{data-base}
+%\rcsInfo $Id$
+\externaldocument[UG.]{UG}
+\externaldocument[RM.]{td-td9}
+\newcommand{\UG}{\textit{Pybliographer User's Guide}}
+\newcommand{\RM}{\textit{Pybliographer Reference Manul}}
+\begin{document}
+
+\title{Pybliographer Development Guide}
+\author{Frédéric Gobry and Peter Schulte-Stracke}
+\maketitle{}
+\pagestyle{headings}
+\bibliographystyle{plain}
+% \begin{abstract}
+%   This document introduces the next development steps for
+%   \textbf{Pybliographer}. Here you find  a task list as well as more
+%   detailed dicussions of related issues and problems.
+% \end{abstract}
+\tableofcontents
+\newpage
+\listoftables
+\listoffigures
+%\reversemarginpar
+%\include{td-lst}
+\include{dgapr}
+
+\part{Overview}
+
+\include{dgc01}
+\include{dgc02}
+\include{dgc03}
+\part{Design Considerations}
+\include{td-gui}
+\include{td-use}
+\include{td-prc}
+\include{td-cnx}
+\include{td-dbm}
+\include{td-cnf}
+\include{td-tec}
+\part{Component Design}
+
+\include{td-ker}
+
+\include{td-coc}
+
+\include{td-sto}
+\include{dgbib}
+\cleardoublepage
+\appendix
+\part{Appendices}
+
+%\include{td-atd}
+
+
+\include{td-afe}
+
+
+
+\nocite{*}
+
+\raggedright
+
+
+\bibliography{pyblio}
+
+
+\end{document}
