@@ -86,5 +86,10 @@ class Entry:
             self.text.insert_defaults (str (entry [f]) + '\n')
 
         self.text.thaw ()
+        return
 
-
+    def clear (self):
+        self.text.delete_text (0, -1)
+        return
+    
+        

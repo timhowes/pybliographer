@@ -43,7 +43,7 @@ class Document (Connector.Publisher):
         
         file_menu = [
             UIINFO_MENU_NEW_ITEM     (_("New"), None, self.new_document),
-            UIINFO_MENU_OPEN_ITEM    (self.open_document),
+            UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
             UIINFO_SEPARATOR,
@@ -81,12 +81,12 @@ class Document (Connector.Publisher):
             ]
         
         toolbar = [
-            UIINFO_ITEM_STOCK(_("Open"),  None, self.open_document,  STOCK_PIXMAP_OPEN),
-            UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,  STOCK_PIXMAP_SAVE),
+            UIINFO_ITEM_STOCK(_("Open"),  None, self.ui_open_document, STOCK_PIXMAP_OPEN),
+            UIINFO_ITEM_STOCK(_("Save"),  None, self.save_document,    STOCK_PIXMAP_SAVE),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,   STOCK_PIXMAP_SEARCH),
+            UIINFO_ITEM_STOCK(_("Find"),  None, self.find_entries,     STOCK_PIXMAP_SEARCH),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK(_("Close"), None, self.close_document, STOCK_PIXMAP_CLOSE),
+            UIINFO_ITEM_STOCK(_("Close"), None, self.close_document,   STOCK_PIXMAP_CLOSE),
             ]
 
         # Put information in Paned windows
@@ -103,6 +103,7 @@ class Document (Connector.Publisher):
         self.index.Subscribe ('delete-entry',   self.delete_entry)
         self.index.Subscribe ('select-entry',   self.update_display)
         self.index.Subscribe ('select-entries', self.freeze_display)
+        self.index.Subscribe ('drag-received',  self.drag_received)
 
         # The text area
         self.display = Entry.Entry ()
@@ -135,14 +136,26 @@ class Document (Connector.Publisher):
         self.data    = database
         self.version = version
         self.changed = 0
-        
-        # fill the Index with the current entries
-        self.index.display (self.data.iterator ())
 
+        self.redisplay_index ()
+        return
+
+
+    def redisplay_index (self, changed = -1):
+        ''' redisplays the index. If changed is specified, set the
+        self.changed status to the given value '''
+        
+        if changed != -1:
+            self.changed = changed
+        
+        self.index.display (self.data.iterator ())
         self.update_status ()
         return
 
+    
     def update_status (self):
+        ''' redisplay status bar according to the current status '''
+        
         if self.data.key is None:
             text = _("New database")
         else:
@@ -153,8 +166,11 @@ class Document (Connector.Publisher):
 
         self.statusbar.set_default (text)
         return
+
     
     def confirm (self):
+        ''' eventually ask for modification cancellation '''
+        
         if self.changed:
             cb = Utils.Callback ()
             self.w.question (_("The database has been modified.\nDiscard changes ?"),
@@ -163,17 +179,31 @@ class Document (Connector.Publisher):
             return cb.answer ()
         
         return 1
+
         
     def new_document (self, * arg):
+        ''' callback corresponding to the "New Document" button '''
+        
         self.issue ('new-document', self)
         return
+
     
-    def open_document (self, * arg):
+    def ui_open_document (self, * arg):
+        ''' callback corresponding to "Open" '''
+        
         if not self.confirm (): return
 
         # get a new file name
         (url, how) = FileSelector.URLFileSelection (_("Open file")).run ()
 
+        if url is None: return
+
+        self.open_document (url, how)
+        return
+
+    
+    def open_document (self, url, how = None):
+        
         Utils.set_cursor (self.w, 'clock')
         
         try:
@@ -186,9 +216,8 @@ class Document (Connector.Publisher):
         Utils.set_cursor (self.w, 'normal')
         
         self.data    = data
-        self.changed = 0
-        self.index.display (self.data.iterator ())
-
+        self.redisplay_index (0)
+        
         # eventually warn interested objects
         self.issue ('open-document', self)
         return
@@ -207,8 +236,8 @@ class Document (Connector.Publisher):
             return
 
         Utils.set_cursor (self.w, 'normal')
-        self.changed = 0
-        self.update_status ()
+
+        self.update_status (0)
         return
     
     
@@ -217,6 +246,8 @@ class Document (Connector.Publisher):
         (url, how) = FileSelector.URLFileSelection (_("Open file"),
                                                     url = FALSE, has_auto = FALSE).run ()
 
+        if url is None: return
+            
         if os.path.exists (url):
             cb = Utils.Callback ()
             self.w.question (_("The file `%s' already exists.\nOverwrite it ?") % url,
@@ -241,8 +272,7 @@ class Document (Connector.Publisher):
             
         Utils.set_cursor (self.w, 'normal')
 
-        self.changed = 0
-        self.update_status ()
+        self.update_status (0)
         return
                                       
     def close_document (self, * arg):
@@ -255,7 +285,23 @@ class Document (Connector.Publisher):
     def exit_application (self, * arg):
         self.issue ('exit-application', self)
         return
-    
+
+    def drag_received (self, entries):
+        for entry in entries:
+            
+            if self.data.has_key (entry.key):
+                cb = Utils.Callback ()
+                self.w.question (_("An entry called `%s' already exists.\nRename and add it anyway ?")
+                                 % entry.key.key, cb.callback)
+
+                if not cb.answer (): continue
+
+            self.changed = 1
+            self.data.add (entry)
+
+        self.redisplay_index ()
+        return
+                
     def cut_entry (self, * arg):
         pass
     
@@ -278,19 +324,39 @@ class Document (Connector.Publisher):
         pass
     
     def delete_entry (self, * arg):
-        pass
+        ''' removes the selected list of items after confirmation '''
+        entries = self.index.selection ()
+        
+        cb = Utils.Callback ()
+        if len (entries) > 1:
+            self.w.question (_("Remove all the %d entries ?")
+                             % len (entries), cb.callback)
+        else:
+            self.w.question (_("Remove entry `%s' ?")
+                             % entries [0].key.key, cb.callback)
+            
+        if not cb.answer (): return
+
+        for entry in entries:
+            del self.data [entry.key]
+            
+        self.redisplay_index (1)
+        return
+    
     
     def find_entries (self, * arg):
         pass
+
     
-    def update_display (self, key):
-        self.display.w.set_sensitive (1)
-        self.display.display (self.data [key])
+    def update_display (self, entry):
+        self.display.display (entry)
         return
+
     
-    def freeze_display (self, keys):
-        self.display.w.set_sensitive (0)
+    def freeze_display (self, entry):
+        self.display.clear ()
         return
+
 
     def update_configuration (self):
         ''' save current informations about the program '''
@@ -306,9 +372,10 @@ class Document (Connector.Publisher):
         config.set_int ('Pybliographer/UI/Paned', height)
         config.sync ()
         return
+
     
     def exec_bug_buddy (self, *args):
-        ''' run bug-buddy with the minimal configuration data '''
+        ''' run bug-buddy in background, with the minimal configuration data '''
         
         # search the program in the current path
         exists = 0
@@ -325,6 +392,7 @@ class Document (Connector.Publisher):
         
         os.system (command)
         return
+
     
     def about (self, *arg):
         about = GnomeAbout ('Pybliographic', self.version,

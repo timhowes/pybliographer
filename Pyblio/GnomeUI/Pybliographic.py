@@ -45,23 +45,26 @@ class Pybliographic:
         # register several callbacks
         doc.Subscribe ('new-document',     self.new_document)
         doc.Subscribe ('close-document',   self.close_document)
-        doc.Subscribe ('open-document',    self.open_document)
         doc.Subscribe ('exit-application', self.exit_application)
 
         self.documents.append (doc)
-        return
+        return doc
 
-    def open_document (self, document):
-        pass
+    def open_document (self, url, how = None):
+        doc = self.new_document ()
+        doc.open_document (url, how)
+        
+        return doc
 
     
     def close_document (self, document):
-
-        if not document.close_document_request ():
-            return
-
+        ''' close one specified document '''
+        
         if len (self.documents) == 1:
             self.exit_application (document)
+            return
+        
+        if not document.close_document_request ():
             return
         
         document.w.destroy ()

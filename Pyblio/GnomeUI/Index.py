@@ -21,16 +21,23 @@
 
 from Pyblio import Fields, Config, Connector
 
+from gnome.ui import *
 from Pyblio.GnomeUI import FieldsInfo, Utils
 from gtk import *
 import GTK, GDK
 
 from string import *
 
-import gettext
+import gettext, cPickle
+
+pickle = cPickle
+del cPickle
 
 _ = gettext.gettext
 
+
+PYBLIOKEY   = 1
+PYBLIOENTRY = 2
 
 class Index (Connector.Publisher):
     ''' Graphical index of an iterator '''
@@ -50,17 +57,20 @@ class Index (Connector.Publisher):
 
         self.access = []
 
-        self.menu = GtkMenu ()
-        self.menu_item = {}
+        self.menu_position = {
+            'add'    : 0,
+            'edit'   : 1,
+            'delete' : 2,
+            }
         
-        self.menu_item ['add']    = \
-                       Utils.popup_add (self.menu, _("Add..."),  self.entry_new)
-        self.menu_item ['edit']   = \
-                       Utils.popup_add (self.menu, _("Edit..."), self.entry_edit)
-        self.menu_item ['remove'] = \
-                       Utils.popup_add (self.menu, _("Delete"),  self.entry_delete)
+        self.menu = GnomePopupMenu ([
+            UIINFO_ITEM_STOCK(_("Add..."), None, self.entry_new,    STOCK_MENU_NEW),
+            UIINFO_ITEM      (_("Edit..."),None, self.entry_edit),
+            UIINFO_ITEM_STOCK(_("Delete"), None, self.entry_delete, STOCK_MENU_TRASH),
+            ])
+        
         self.menu.show ()
-        
+
         # resize the columns
         for c in range (len (self.fields)):
             self.clist.set_column_width (c, FieldsInfo.fieldinfo (
@@ -72,33 +82,66 @@ class Index (Connector.Publisher):
         self.clist.connect ('button_press_event', self.button_press)
 
         # DnD configuration
-        targets = (('application/x-pybliokey', 0, 1),)
-        
-        self.clist.connect ('drag_data_get', self.dnd_drag_data_get)
-        
+        targets = (
+            # request for a Key
+            ('application/x-pybliokey',    0, PYBLIOKEY),
+            # request for a full entry
+            ('application/x-pybliography', 0, PYBLIOENTRY),
+            )
+
+        accept = (
+            ('application/x-pybliography', 0, PYBLIOENTRY),
+            )
+
+        self.clist.drag_dest_set (DEST_DEFAULT_MOTION |
+                                  DEST_DEFAULT_HIGHLIGHT |
+                                  DEST_DEFAULT_DROP,
+                                  accept,
+                                  GDK.ACTION_COPY)
+
+        self.clist.connect ("drag_data_received", self.drag_received)
+
+
         self.clist.drag_source_set (GDK.BUTTON1_MASK | GDK.BUTTON3_MASK,
                                 targets, GDK.ACTION_COPY)
 
+        self.clist.connect ('drag_data_get', self.dnd_drag_data_get)
+        
         return
 
 
-    def set_popup (self, item, value):
+    def set_menu_active (self, item, value):
         ''' This method sets the sensitivity of each popup menu item '''
-        
-        self.menu_item [item].set_sensitive (value)
+
+        self.menu.children () [self.menu_position [item]].set_sensitive (value)
         return
     
-        
-    def dnd_drag_data_get (self, list, context, selection, info, time):
-        # get the current entry
-        row = self.focus_row
-        if row < 0: return
 
-        key = self.access [row]
+    def drag_received (self, * arg):
+        selection = arg [4]
+        info      = arg [5]
+
+        if info == PYBLIOENTRY:
+            entries = pickle.loads (selection.data)
+            self.issue ('drag-received', entries)
+
+        return
+    
+    def dnd_drag_data_get (self, list, context, selection, info, time):
+        ''' send the selected entries as dnd data '''
         
-        if info == 1:
-            # must return a key
-            selection.set (selection.target, 8, str (key))
+        entries = self.selection ()
+        if not entries: return
+        
+        if info == PYBLIOKEY:
+            # must return a set of keys
+            data = join (map (lambda e: str (e.key.base) + '\0' + str (e.key.key), entries), '\0')
+            selection.set (selection.target, 8, data)
+            
+        elif info == PYBLIOENTRY:
+            data = pickle.dumps (entries)
+            selection.set (selection.target, 8, data)
+            
         return
     
     # --------------------------------------------------
@@ -120,7 +163,7 @@ class Index (Connector.Publisher):
             for f in self.fields:
                 if entry.has_key (f):
                     
-                    if entry.type (f) == Fields.AuthorGroup.id:
+                    if entry.type (f) == Fields.AuthorGroup:
                         text = join (map (lambda a: str (a.last), entry [f]), ', ')
                     else:
                         text = str (entry [f])
@@ -129,8 +172,8 @@ class Index (Connector.Publisher):
                 else:
                     row.append ('')
 
-            self.clist.append (row)
-            self.access.append (entry.key)
+            self.clist.append  (row)
+            self.access.append (entry)
 
             entry = iterator.next ()
             
@@ -180,11 +223,26 @@ class Index (Connector.Publisher):
                 couple = self.clist.get_selection_info (event.x, event.y)
                 if couple:
                     self.clist.select_row (couple [0], couple [1])
-                
+
+            # what menu items are accessible ?
+
+            if len (self.clist.selection) == 0:
+                mask = (1, 0, 0)
+            else:
+                mask = (1, 1, 1)
+
+            items = ('add', 'edit', 'delete')
+            for i in range (3):
+                self.set_menu_active (items [i], mask [i])
+
             self.menu.popup (None, None, None, event.button, event.time)
             return
-        
+
+        return
+    
     def entry_new (self, * arg):
+        self.set_menu_active ('add', 0)
+        
         self.issue ('new-entry', map (lambda x, self=self: self.access [x],
                                        self.clist.selection))
         return
