@@ -296,6 +296,11 @@ bib_get_native (PyObject * self, PyObject * args) {
 
     field = field_obj->obj;
 
+    if (field->structure == NULL) {
+      Py_INCREF (Py_None);
+      return Py_None;
+    }
+
     text = bibtex_struct_as_bibtex (field->structure);
     tmp = Py_BuildValue("s", text); 
     g_free (text);

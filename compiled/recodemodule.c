@@ -49,7 +49,7 @@ typedef enum
 #endif /* HAVE_STDBOOL_H */
 
 #include <stdio.h>
-#include <recode.h>
+#include <recodext.h>
 #include <Python.h>
 
 static RECODE_OUTER outer;
@@ -102,6 +102,7 @@ py_new_recoder (PyObject * self, PyObject * args) {
 	return NULL;
 
     request = recode_new_request (outer);
+
     if (request == NULL) {
 	PyErr_SetString (PyExc_IOError, "can't initialize new request");
 	return NULL;
@@ -123,7 +124,10 @@ py_new_recoder (PyObject * self, PyObject * args) {
 static PyObject *
 py_recode (PyObject * self, PyObject * args) {
     char * string;
+    int length;
+
     RECODE_REQUEST request;
+
     PyObject * tmp;
     PyRecodeRequest_Object * req_obj;
 
@@ -131,11 +135,17 @@ py_recode (PyObject * self, PyObject * args) {
 	return NULL;
 
     request = req_obj->obj;
-    
+    length  = strlen (string);
+
+    if (length == 0) {
+      return PyString_FromString ("");
+    }
+
     string = recode_string (request, string);
+
     if (string == NULL) {
-	PyErr_SetString (PyExc_IOError, "can't convert");
-	return NULL;
+      PyErr_SetString (PyExc_IOError, "can't convert");
+      return NULL;
     }
 
     tmp = PyString_FromString (string);
@@ -153,7 +163,7 @@ static PyMethodDef recodeMeth [] = {
 
 void init_recode (void)
 {
-    outer = recode_new_outer (false);
+    outer = recode_new_outer (true);
     if (outer == NULL) return;
 
     (void) Py_InitModule ("_recode", recodeMeth);
