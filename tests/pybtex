@@ -4,8 +4,10 @@
 
 tst_start
 
-run ../scripts/pybtex ${srcdir}/document ${srcdir}/bibtex.bib > /dev/null
-run diff document.bbl document.bbl.ref
+com="../pybliographer -q ${srcdir}/../scripts/pybtex.py"
+
+run ${com} ${srcdir}/document ${srcdir}/bibtex.bib > /dev/null
+run diff document.bbl ${srcdir}/document.bbl.ref
 run rm -f document.bbl
 
 tst_stop

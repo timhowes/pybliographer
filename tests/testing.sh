@@ -11,11 +11,11 @@ run ()
 
 tst_start ()
 {
-    run ln -fs ${srcdir}/../Pyblio ${srcdir}/../pybrc.py ../compiled .
+    run ln -fs ${srcdir}/../Styles/Alpha.xml ${srcdir}/../Pyblio ${srcdir}/../pybrc.py ../compiled .
 }
 
 tst_stop ()
 {
-    run rm -f Pyblio pybrc.py compiled
+    run rm -f Pyblio pybrc.py compiled Alpha.xml
 }
 

@@ -4,8 +4,10 @@
 
 tst_start
 
-run ../scripts/pybformat -o tmp.text ${srcdir}/bibtex.bib 2> /dev/null
-run diff tmp.text bibtex.text
+com="../pybliographer -q ${srcdir}/../scripts/pybformat.py"
+
+run ${com} -o tmp.text ${srcdir}/bibtex.bib 2> /dev/null
+run diff  tmp.text ${srcdir}/bibtex.text
 run rm -f tmp.text
 
 tst_stop

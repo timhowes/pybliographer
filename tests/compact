@@ -4,8 +4,10 @@
 
 tst_start
 
-run ../scripts/pybcompact ${srcdir}/compact ${srcdir}/bibtex.bib > tmp.bib
-run diff tmp.bib compact.bib
+com="../pybliographer -q ${srcdir}/../scripts/pybcompact.py"
+
+run ${com} ${srcdir}/compact ${srcdir}/bibtex.bib > tmp.bib
+run diff tmp.bib ${srcdir}/compact.bib
 run rm -f tmp.bib
 
 tst_stop

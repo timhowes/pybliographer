@@ -29,15 +29,22 @@ TESTS = \
 	$(srcdir)/import-export
 
 EXTRA_DIST =  \
-	format.py		\
-	format.text		\
-	format.raw		\
+	bibtex.bib		\
+	bibtex.text		\
+	broken.bib		\
+	compact.aux		\
+	compact.bib		\
+	document.aux		\
+	document.bbl.ref	\
+	document.tex		\
 	format.html		\
 	format.latex		\
-	bibtex.bib 		\
-	broken.bib 		\
+	format.py		\
+	format.raw		\
+	format.text		\
 	import-export.py	\
-	medline.med 		\
-	ovid.ovid 		\
-	refer.refer 		\
+	medline.med		\
+	ovid.ovid		\
+	refer.refer		\
 	testing.sh
+
