@@ -10,17 +10,27 @@ class Database (object):
     def save (self):
         pass
 
-    def iter (self, filter = None, sort = None,
-              count = None, start = None):
-
-        ''' Returns an iterator to loop over some entries of the
+    def record_get (self, query = None)
+        ''' Returns an iterator to loop over some records of the
         database '''
         pass
+
+    def role_get (self, query = None)
+        ''' Returns an iterator to loop over some roles of the
+        database '''
+        pass
+    
+    def attribute_get (self, query = None)
+        ''' Returns an iterator to loop over some attributes of the
+        database '''
+        pass
+
 
     def __iter__ (self):
         ''' A default iterator that loops over all the entries in
         natural order '''
-        return self.iter ()
+        return self.record_get ()
+
 
 
 
@@ -30,8 +40,19 @@ class Record (object):
 
     def __init__ (self):
         self.attribute = {}
+
+        # these are defined once the object has been registered in the db.
+        self.db = None
+        self.id = None
         return
 
+    def register (self, db):
+        ''' Register the record in the database '''
+        pass
+    
+    def unregister (self):
+        ''' Unregister the record from the database '''
+        pass
 
 
 class Work (Record):
@@ -77,12 +98,32 @@ class Role (object):
     ''' Detailed information about an attribute role. A role can be a
     specialization of another role. '''
     
-    def __init__ (self, role_name, type):
+    def __init__ (self, role_name, type, shared):
+        
+        ''' A role_name is an intern string with the following syntax:
+
+               <domain>:<role>
+
+        The type is a subclass of Attribute. If shared is 1, then a
+        unique attribute can be used in several records for the same role. '''
+        
         self.role  = role_name
         self.type  = type
         self.super = None
-        self.sub = []
+        self.sub   = []
+
+        # these are defined once the object has been registered in the db.
+        self.db = None
+        self.id = None
         return
+
+    def register (self, db):
+        ''' Register the role in the database '''
+        pass
+
+    def unregister (self):
+        ''' Unregister the role from the database '''
+        pass
 
 
 class Attribute (object):
@@ -90,19 +131,24 @@ class Attribute (object):
     ''' The base class of all the attributes of a record '''
 
     def __init__ (self, role_name):
-        self.id = None
+        self.role = role_name
+
+        # these are defined once the object has been registered in the db.
         self.db = None
-        
-        self.role = role
+        self.id = None
         return
 
     def __cmp__ (self, other):
         pass
 
-
-    def insert (self, db):
+    def register (self, db):
+        ''' Register the attribute in the database '''
         pass
-    
+
+    def unregister (self):
+        ''' Unregister the attribute from the database '''
+        pass
+
 
 class Actor (Attribute):
     ''' A Person or Corporate Entity '''
@@ -129,7 +175,12 @@ class Text (Attribute):
         return
 
 
-class Keyword (Attribute):
+class Date (Attribute):
+
+    pass
+
+
+class Concept (Attribute):
 
     ''' A keyword '''
     pass
