@@ -40,7 +40,7 @@ install-data-local:
 		$(INSTALL_DATA) $$file $(DESTDIR)$(pybliographic_helpdir) ; \
 	done
 	@echo "installing PNG files"
-	@for file in $(srcdir)/../*.png ; do \
+	@for file in $(srcdir)/*.png ; do \
 		$(INSTALL_DATA) $$file $(DESTDIR)$(pybliographic_helpdir) ; \
 	done
 
