@@ -2,8 +2,6 @@
 <!DOCTYPE glade-project SYSTEM "http://glade.gnome.org/glade-project-2.0.dtd">
 
 <glade-project>
-  <name>search</name>
-  <program_name>search</program_name>
-  <output_translatable_strings>TRUE</output_translatable_strings>
-  <translatable_strings_file>search-intl.c</translatable_strings_file>
+  <name>test</name>
+  <program_name>test</program_name>
 </glade-project>
