@@ -229,7 +229,7 @@ class Index (Connector.Publisher):
         if type (item) is not type (1):
             item = self.get_item_position (item)
 
-        if item == -1: return
+        if item == -1 or item >= len (self.access): return
         
         self.clist.select_row (item, 0)
         self.set_scroll (item)
