@@ -90,7 +90,6 @@ class BaseField (Connector.Publisher):
         else:
             (self.value, self.loss) = (None, 0)
             self.string = ''
-
         return
 
     
@@ -107,7 +106,40 @@ class BaseField (Connector.Publisher):
         return 1
         
 
-class Entry (BaseField):
+class TextBase (BaseField):
+    ''' Virtual class common to Text and Entry '''
+
+    def setup (self, entry):
+        BaseField.setup (self, entry)
+
+        if self.string and self.string [0] == '@':
+            self.string = ' ' + self.string
+        return
+
+    
+    def update (self, entry):
+        text = string.rstrip (self.edit.get_chars (0, -1))
+        if text == self.string: return 0
+
+        if text == '':
+            del entry [self.field]
+            return 1
+
+        self.update_content (entry, text)
+        return 1
+
+
+    def update_content (self, entry, text):
+        if text [0] == '@' and hasattr (entry, 'set_native'):
+            entry.set_native (self.field, string.lstrip (text [1:]))
+            return
+
+        text = string.lstrip (text)
+        entry [self.field] = Fields.Text (text)
+        return
+
+    
+class Entry (TextBase):
 
     def create_widget (self, h):
         if len (self.string) < 50:
@@ -134,16 +166,7 @@ class Entry (BaseField):
         return 1
 
 
-    def update_content (self, entry, text):
-        if text [0] == '@' and hasattr (entry, 'set_native'):
-            entry.set_native (self.field, text [1:])
-            return
-        
-        entry [self.field] = Fields.Text (text)
-        return
-
-
-class Text (BaseField):
+class Text (TextBase):
     
     def create_widget (self, h):
         w = GtkScrolledWindow ()
@@ -158,15 +181,6 @@ class Text (BaseField):
 
         h.pack_start (w)
         return 1
-
-
-    def update_content (self, entry, text):
-        if text [0] == '@' and hasattr (entry, 'set_native'):
-            entry.set_native (self.field, text [1:])
-            return
-        
-        entry [self.field] = Fields.Text (text)
-        return
 
 
 class AuthorGroup (BaseField):
@@ -387,7 +401,9 @@ class RealEditor (Connector.Publisher):
         
         self.w = GtkVBox ()
         table  = GtkTable (2, 2)
-
+        table.set_border_width (5)
+        table.set_col_spacings (5)
+        
         table.attach (GtkLabel (_("Entry type")),
                       0, 1, 0, 1, yoptions = 0)
         table.attach (GtkLabel (_("Key")),
@@ -426,7 +442,7 @@ class RealEditor (Connector.Publisher):
 
         self.newfield_area = GtkHBox (spacing = 5)
         self.newfield_area.set_border_width (5)
-        self.newfield = GtkEntry ()
+        self.newfield = GnomeEntry ('newfield')
         self.newfield_area.pack_start (self.newfield)
 
         b = GtkButton (_("Create Field"))
@@ -520,7 +536,8 @@ class RealEditor (Connector.Publisher):
 
 
     def create_field (self, * arg):
-        text = string.strip (string.lower (self.newfield.get_text ()))
+        widget = self.newfield.gtk_entry ()
+        text = string.strip (string.lower (widget.get_text ()))
         if text == '': return
         
         self.entry [text] = Fields.Text (_("New text"))
@@ -628,10 +645,14 @@ class Editor (Connector.Publisher):
         self.apply_b = GnomeStockButton (STOCK_BUTTON_APPLY)
         self.apply_b.connect ('clicked', self.apply_changes)
         self.apply_b.show ()
-        
-        self.native_b = GtkButton (_("Native Editing"))
-        self.native_b.connect ('clicked', self.toggle_native)
-        self.native_b.show ()
+
+        # check if the database supports native editing
+        self.has_native = hasattr (database, 'get_native')
+
+        if self.has_native:
+            self.native_b = GtkButton (_("Native Editing"))
+            self.native_b.connect ('clicked', self.toggle_native)
+            self.native_b.show ()
         
         self.close_b = GnomeStockButton (STOCK_BUTTON_CANCEL)
         self.close_b.connect ('clicked', self.close_dialog)
@@ -646,7 +667,7 @@ class Editor (Connector.Publisher):
                                  0)
 
         self.w.action_area.add (self.apply_b)
-        self.w.action_area.add (self.native_b)
+        if self.has_native: self.w.action_area.add (self.native_b)
         self.w.action_area.add (self.close_b)
 
         self.entry       = entry
@@ -665,7 +686,8 @@ class Editor (Connector.Publisher):
         if self.native_mode:
             # real edition
             self.native_mode = FALSE
-            self.native_b.children () [0].set_text (_("Native Editing"))
+            if self.has_native:
+                self.native_b.children () [0].set_text (_("Native Editing"))
 
             if self.editor: self.editor.w.destroy ()
             self.editor = RealEditor (self.database,
@@ -678,7 +700,8 @@ class Editor (Connector.Publisher):
         else:
             # native edition
             self.native_mode = TRUE
-            self.native_b.children () [0].set_text (_("Standard Editing"))
+            if self.has_native:
+                self.native_b.children () [0].set_text (_("Standard Editing"))
             
             if self.editor: self.editor.w.destroy ()
             self.editor = NativeEditor (self.database,
