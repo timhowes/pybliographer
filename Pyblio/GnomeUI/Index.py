@@ -47,7 +47,7 @@ class Index (Connector.Publisher):
         fields = fields or Config.get ('gnome/columns').data
         self.fields = map (lower, fields)
 
-        self.clist = GtkCList (len (fields), fields)
+        self.clist = GtkCList (len (fields), map (lambda x: ' ' + x + ' ', fields))
         self.clist.set_selection_mode (GTK.SELECTION_EXTENDED)
         
         self.w = GtkScrolledWindow ()
@@ -107,7 +107,7 @@ class Index (Connector.Publisher):
         self.selection_buffer = None
         
         self.clist.connect ('selection_received', self.selection_received)
-        self.clist.connect ('selection_get',   self.selection_get)
+        self.clist.connect ('selection_get', self.selection_get)
         self.clist.connect ('selection_clear_event', self.selection_clear)
 
         self.clist.selection_add_target (1, Mime.atom ['STRING'], 0)
@@ -119,6 +119,7 @@ class Index (Connector.Publisher):
     def selection_clear (self, * arg):
         self.selection_buffer = None
         return
+
     
     def selection_received (self, widget, selection, info):
         if selection.length < 0: return
@@ -139,15 +140,17 @@ class Index (Connector.Publisher):
         selection.set (1, 8, text)
         return
 
+
     def selection_copy (self, entries):
         self.clist.selection_owner_set (1, 0)
         self.selection_buffer = entries
         return
 
+
     def selection_paste (self):
-        self.clist.selection_convert (1, Mime.atom [Mime.ENTRY_TYPE],
-                                      0)
+        self.clist.selection_convert (1, Mime.atom [Mime.ENTRY_TYPE], 0)
         return
+
         
     def set_menu_active (self, item, value):
         ''' This method sets the sensitivity of each popup menu item '''
@@ -165,6 +168,7 @@ class Index (Connector.Publisher):
             self.issue ('drag-received', entries)
 
         return
+
     
     def dnd_drag_data_get (self, list, context, selection, info, time):
         ''' send the selected entries as dnd data '''
@@ -298,13 +302,15 @@ class Index (Connector.Publisher):
             return
 
         return
-    
+
+
     def entry_new (self, * arg):
         self.set_menu_active ('add', 0)
         
         self.issue ('new-entry', map (lambda x, self=self: self.access [x],
                                        self.clist.selection))
         return
+
     
     def entry_edit (self, * arg):
         if not self.clist.selection: return
@@ -312,6 +318,7 @@ class Index (Connector.Publisher):
         self.issue ('edit-entry', map (lambda x, self=self: self.access [x],
                                        self.clist.selection))
         return
+
         
     def entry_delete (self, * arg):
         if not self.clist.selection: return
