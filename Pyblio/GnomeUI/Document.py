@@ -36,7 +36,7 @@ from Pyblio import version, Fields, Types
 
 import Pyblio.Style.Utils
 
-import gettext, os, string, copy, types, sys, traceback
+import gettext, os, string, copy, types, sys, traceback, stat
 
 _ = gettext.gettext
 
@@ -167,7 +167,9 @@ class Document (Connector.Publisher):
         self.lyx       = None
         self.changed   = 0
         self.directory = None
-        
+
+        self.modification_date = None
+
         self.redisplay_index ()
         return
 
@@ -395,12 +397,23 @@ class Document (Connector.Publisher):
         # eventually warn interested objects
         self.issue ('open-document', self)
         return
+
     
     def save_document (self, * arg):
         if self.data.key is None:
             self.save_document_as ()
             return
 
+        file = self.data.key.url [2]
+        
+        if self.modification_date:
+            mod_date = os.stat (file) [stat.ST_MTIME]
+            
+            if mod_date > self.modification_date:
+                if not Utils.Callback (_("The database has been externally modified.\nOverwrite changes ?"),
+                                       self.w).answer ():
+                    return
+        
         Utils.set_cursor (self.w, 'clock')
         try:
             try:
@@ -420,6 +433,9 @@ class Document (Connector.Publisher):
 
         Utils.set_cursor (self.w, 'normal')
 
+        # get the current modification date
+        self.modification_date = os.stat (file) [stat.ST_MTIME]
+        
         self.update_status (0)
         return
     
