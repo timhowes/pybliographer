@@ -15,18 +15,18 @@
         <Title></Title>
 	
 	<!-- Common operators -->
-        <Operator name="equal">Matches</>
+        <Operator name="equal">Matches</Operator>
 
 	<!-- A single field entry with its specific operators -->        
         <Field name="author" type="text">
 	  <Title>Author</Title>
-	  <Operator name="like">Like</>
+	  <Operator name="like">Like</Operator>
 	</Field>
 
         <Field name="date" type="date">
 	  <Title>Publication Date</Title>
-	  <Operator name="before">Before</>
-	  <Operator name="after">After</>
+	  <Operator name="before">Before</Operator>
+	  <Operator name="after">After</Operator>
 	</Field>
       </Fields>
 
