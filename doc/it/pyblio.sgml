@@ -18,7 +18,7 @@
 <!Entity ref-sort   System "sort.sgml"> 
 ]>
 
-<Book>
+<Book lang="it">
   <bookinfo>
     <title>Pybliographer</title>
     
