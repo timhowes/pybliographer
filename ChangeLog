@@ -1,3 +1,10 @@
+2003-08-13  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/GnomeUI/Config.py (ConfigDialog.__init__): Now we are
+	using a bold label instead of a frame (Gnome2)
+
+
+
 2003-08-06  Frederic Gobry  <gobry@users.sourceforge.net>
 
 	* configure.ac: now, the build system uses autoconf 2.50 and
@@ -12,6 +19,12 @@
 
 	* Pyblio/GnomeUI/Document.py: fixed the About window and Previous
 	documents menu.
+
+2003-08-04  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
+
+	* Pyblio/GnomeUI/Config.py (BaseConfig.changed): commented out the
+	call to self.prop.changed (originally this was a Property Box)
+	(passim) Changes for gtk-2
 
 2003-08-01  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
