@@ -1,3 +1,7 @@
+2002-01-29  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
+
+	* configure.in: Added "sk" to ALL_LINGUAS.
+
 2002-01-20  Frederic Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/Formats/isifile.py: move the %% extra fields to the end
