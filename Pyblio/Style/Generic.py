@@ -32,7 +32,10 @@ def author_desc (group, coding, initials = 0, reverse = 0):
 
     	coding   : name of the output coding (as requested for recode)
         initials : if = 1, uses initials instead of complete first names
-        reverse  : use Last, First for all the authors, not only the first
+        reverse  :
+        	-1 use First Last format
+        	0  use Last, First, excepted for the first entry
+        	1  use Last, First for all the authors, not only the first
     """
     
     l = len (group)
@@ -47,7 +50,7 @@ def author_desc (group, coding, initials = 0, reverse = 0):
 
         text = ""
 
-        if i == 0 or reverse:
+        if reverse == 1 or (i == 0 and reverse == 0):
             if last:    text = text + last
             if lineage: text = text + ", " + lineage
             if first:   text = text + ", " + first
@@ -165,6 +168,12 @@ def standard_date (entry, coding):
     return text
 
 
+def last_first_full_authors (entry, coding):
+    return author_desc (entry, coding, 0, 1)
+
+def first_last_full_authors (entry, coding):
+    return author_desc (entry, coding, 0, -1)
+
 def full_authors (entry, coding):
     return author_desc (entry, coding, 0, 0)
 
@@ -172,9 +181,19 @@ def full_authors (entry, coding):
 def initials_authors (entry, coding):
     return author_desc (entry, coding, 1, 0)
 
+def first_last_initials_authors (entry, coding):
+    return author_desc (entry, coding, 1, -1)
+
+def last_first_initials_authors (entry, coding):
+    return author_desc (entry, coding, 1, 1)
+
 
 Autoload.register ('style', 'Generic', {
+    'first_last_full_authors'     : first_last_full_authors,
+    'last_first_full_authors'     : last_first_full_authors,
     'full_authors'     : full_authors,
+    'first_last_initials_authors' : first_last_initials_authors,
+    'last_first_initials_authors' : last_first_initials_authors,
     'initials_authors' : initials_authors,
     'string_keys'      : create_string_key,
     'numeric_keys'     : create_numeric_key,
