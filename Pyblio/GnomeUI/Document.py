@@ -54,6 +54,7 @@ class Document (Connector.Publisher):
             UIINFO_MENU_OPEN_ITEM    (self.ui_open_document),
             UIINFO_ITEM              (_("_Merge with..."),None, self.merge_database),
             UIINFO_SUBTREE           (_("Online Query"), [UIINFO_ITEM  (_("PubMed/Medline..."),None, self.query_pubmed),
+                                                          UIINFO_ITEM  (_("SPIRES Server..."),None, self.query_spires),
                                                           UIINFO_ITEM  (_("Z39.50 Server..."),None, self.query_z3950)]),
             UIINFO_MENU_SAVE_ITEM    (self.save_document),
             UIINFO_MENU_SAVE_AS_ITEM (self.save_document_as),
@@ -412,6 +413,7 @@ class Document (Connector.Publisher):
         dlg.button_connect (1, cancel_cb)
         dlg.button_connect (2, help_cb)
         dlg.set_default (0)
+        dlg.set_parent (self.w)
         key_w_combo = GtkCombo () # make it a combo box so that past search entries can be viewed
         key_w_combo.set_popdown_strings (searchhistory)
         key_w = key_w_combo.entry # the query string will be loaded onto key_w assigned here
@@ -624,6 +626,7 @@ class Document (Connector.Publisher):
         dlg.button_connect (1, cancel_cb)
         dlg.button_connect (2, help_cb)
         dlg.set_default (0)
+        dlg.set_parent (self.w)
         adj1   = GtkAdjustment (20, 0, 10000, 1.0, 100.0, 0.0)
         adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
         max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
@@ -694,6 +697,210 @@ class Document (Connector.Publisher):
         hbox6.pack_start (term2_entry)
         dlg.vbox.pack_start (hbox6)
 
+        dlg.show_all ()
+        dlg.run ()
+
+    def query_spires (self, * arg):
+        ''' callback for SPIRES search function '''
+        
+        def search_cb (dummy):
+            server = server_combo_entry.get_text ()
+            author = author_entry.get_text ()
+            title = title_entry.get_text ()
+            citation = citation_entry.get_text ()
+            reportnum = reportnum_entry.get_text ()
+            affiliation = affiliation_entry.get_text ()
+            collaboration = collaboration_entry.get_text ()
+            keywords = keywords_entry.get_text ()
+            country = country_entry.get_text ()
+            eprint = eprint_combo_entry.get_text ()
+            eprint_num = number_entry.get_text ()
+            topcit = topcite_combo_entry.get_text ()
+            url = rpp_combo_entry.get_text ()
+            journal = journal_combo_entry.get_text ()
+            published = published_combo_entry.get_text ()
+            date = date_combo_entry.get_text ()
+            year = year_combo_entry.get_text ()
+            format = 'WWWBRIEFBIBTEX'
+            sort = sort_combo_entry.get_text ()
+                
+            Utils.set_cursor (self.w, 'clock')
+            docurl = Query.spires_query (server,author,title,citation,reportnum,affiliation,collaboration,keywords,country,eprint,eprint_num,topcit,url,journal,published,date,year,format,sort)
+            self.open_document (docurl, 'bibtex', no_name = TRUE)
+            Utils.set_cursor (self.w, 'normal')
+            dlg.close ()
+            return
+
+        def cancel_cb (dummy):
+            dlg.close ()
+            return
+
+        def help_cb (dummy):
+            dlg_help = GnomeDialog (_("Medline/PubMed Online Search Help"), 'Ok')
+            dlg_help.set_parent (self.w)
+            hbox16 = GtkHBox ()
+            instructions = GtkLabel ("o   Search more than 450,000 high-energy physics related articles,\n     including journal papers, preprints, e-prints, technical reports,\n     conference papers and theses, comprehensively indexed\n     by the SLAC and DESY libraries since 1974.")
+            instructions.set_justify (0) # LEFT justify the instructions
+            hbox16.pack_start (instructions)
+            dlg_help.vbox.pack_start (hbox16)
+            dlg_help.show_all ()
+            dlg_help.run_and_close ()
+            return
+
+        dlg = GnomeDialog (_("SPIRES Query"), 'Search', 'Cancel', 'Help')
+        dlg.button_connect (0, search_cb)
+        dlg.button_connect (1, cancel_cb)
+        dlg.button_connect (2, help_cb)
+        dlg.set_default (0)
+        dlg.set_parent (self.w)
+        
+        hbox1 = GtkHBox ()
+        hbox1.pack_start (GtkLabel (_("Query server: "), 0))
+        server_combo = GtkCombo ()
+        server_combo.set_popdown_strings (['UK','USA','Japan','Russia','Germany'])
+        server_combo_entry = server_combo.entry
+        server_combo_entry.set_text ('UK')
+        GtkEditable.set_editable (server_combo_entry,0)
+        hbox1.pack_start (server_combo)
+        dlg.vbox.pack_start (hbox1)
+
+        hbox2 = GtkHBox ()
+        hbox2.pack_start (GtkLabel (_("Author: "), 0))
+        author_entry = GtkEntry ()
+        GtkEditable.set_editable (author_entry, 1)
+        hbox2.pack_start (author_entry)
+        dlg.vbox.pack_start (hbox2)
+
+        hbox3 = GtkHBox ()
+        hbox3.pack_start (GtkLabel (_("Title: "), 0))
+        title_entry = GtkEntry ()
+        GtkEditable.set_editable (title_entry, 1)
+        hbox3.pack_start (title_entry)
+        dlg.vbox.pack_start (hbox3)
+
+        hbox4 = GtkHBox ()
+        hbox4.pack_start (GtkLabel (_("Citation: "), 0))
+        citation_entry = GtkEntry ()
+        GtkEditable.set_editable (citation_entry, 1)
+        hbox4.pack_start (citation_entry)
+        dlg.vbox.pack_start (hbox4)
+        
+        hbox5 = GtkHBox ()
+        hbox5.pack_start (GtkLabel (_("Report Number: "), 0))
+        reportnum_entry = GtkEntry ()
+        GtkEditable.set_editable (reportnum_entry, 1)
+        hbox5.pack_start (reportnum_entry)
+        dlg.vbox.pack_start (hbox5)
+        
+        hbox6 = GtkHBox ()
+        hbox6.pack_start (GtkLabel (_("Affiliation: "), 0))
+        affiliation_entry = GtkEntry ()
+        GtkEditable.set_editable (affiliation_entry,1)
+        hbox6.pack_start (affiliation_entry)
+        dlg.vbox.pack_start (hbox6)
+        
+        hbox7 = GtkHBox ()
+        hbox7.pack_start (GtkLabel (_("Collaboration: "), 0))
+        collaboration_entry = GtkEntry ()
+        GtkEditable.set_editable (collaboration_entry, 1)
+        hbox7.pack_start (collaboration_entry)
+        dlg.vbox.pack_start (hbox7)
+        
+        hbox8 = GtkHBox ()
+        hbox8.pack_start (GtkLabel (_("Keywords: "), 0))
+        keywords_entry = GtkEntry ()
+        GtkEditable.set_editable (keywords_entry, 1)
+        hbox8.pack_start (keywords_entry)
+        dlg.vbox.pack_start (hbox8)
+        
+        hbox9 = GtkHBox ()
+        hbox9.pack_start (GtkLabel (_("Country: "), 0))
+        country_entry = GtkEntry ()
+        GtkEditable.set_editable (country_entry, 1)
+        hbox9.pack_start (country_entry)
+        dlg.vbox.pack_start (hbox9)
+        
+        hbox10 = GtkHBox ()
+        hbox10.pack_start (GtkLabel (_("Eprint: "), 0))
+        eprint_combo = GtkCombo ()
+        eprint_combo.set_popdown_strings (['Any Type','ACC-PHYS','ASTRO-PH','GR-QC','HEP-EX','HEP-LAT','HEP-PH','HEP-TH','NUCL-EX','NUCL-TH','PHYSICS','QUANT-PH'])
+        eprint_combo_entry = eprint_combo.entry
+        eprint_combo_entry.set_text ('Any Type')
+        GtkEditable.set_editable (eprint_combo_entry,0)
+        hbox10.pack_start (eprint_combo)
+        hbox10.pack_start (GtkLabel (_("Number: "), 0))
+        number_entry = GtkEntry ()
+        GtkEditable.set_editable (number_entry, 1)
+        hbox10.pack_start (number_entry)
+        dlg.vbox.pack_start (hbox10)
+        
+        hbox11 = GtkHBox ()
+        hbox11.pack_start (GtkLabel (_("Topcite: "), 0))
+        topcite_combo = GtkCombo ()
+        topcite_combo.set_popdown_strings (['Don\'t care','50+','100+','500+','1000+'])
+        topcite_combo_entry = topcite_combo.entry
+        topcite_combo_entry.set_text ('Don\'t care')
+        GtkEditable.set_editable (topcite_combo_entry,0)
+        hbox11.pack_start (topcite_combo)
+        hbox11.pack_start (GtkLabel (_("In RPP?: "), 0))
+        rpp_combo = GtkCombo ()
+        rpp_combo.set_popdown_strings (['Don\'t care','Yes'])
+        rpp_combo_entry = rpp_combo.entry
+        rpp_combo_entry.set_text ('Don\'t care')
+        GtkEditable.set_editable (rpp_combo_entry,0)
+        hbox11.pack_start (rpp_combo)
+        dlg.vbox.pack_start (hbox11)
+        
+        hbox12 = GtkHBox ()
+        hbox12.pack_start (GtkLabel (_("Journal: "), 0))
+        journal_combo = GtkCombo ()
+        journal_combo.set_popdown_strings (['Any Journal','ACTA PHYS. AUSTR.','ACTA PHYS. POLON.','ANN. POINCARE','ANN. PHYS. (N.Y.)','ASTROPHYS. J.','CAN. J. PHYS.','CLASS. QUANT. GRAV.','COMM. NUCL. PART. PHYS.','COMMUN. MATH. PHYS.','COMMUN. THEOR. PHYS.','COMPUT. PHYS. COMMUN.','CZECH. J. PHYS.','EUROPHYS. LETT.','EUR. PHYS. J.','FIZ. ELEM. CHAST. AT. YADRA','FIZIKA','FORTSCHR. PHYS.','FOUND. PHYS.','GEN. REL. GRAV.','HADRONIC J.','HELV. PHYS. ACTA','HIGH ENERGY PHYS. NUCL. PHYS.','IEEE TRANS. MAGNETICS','IEEE TRANS. NUCL. SCI.','INSTRUM. EXP. TECH.','INT. J. MOD. PHYS.','INT. J. THEOR. PHYS.','JHEP','J. MATH. PHYS.','J. PHYS. - A -','J. PHYS. - G -','J. PHYS. SOC. JAP.','JETP LETT.','LETT. MATH. PHYS.','LETT. NUOVO CIM.','MOD. PHYS. LETT.','New J. Phys.','NUCL. INSTRUM. METH.','NUCL. PHYS.','NUOVO CIM.','PART. ACCEL.','PHYS. ATOM. NUCL.','PHYS. LETT.','PHYS. REPT.','PHYS. REV.','PHYS. REV. LETT.','PHYS. SCRIPTA','PHYSICA','PISMA ZH. EKSP. TEOR. FIZ.','PRAMANA','PROG. PART. NUCL. PHYS.','PROG. THEOR. PHYS.','REPT. MATH. PHYS.','REPT. PROG. PHYS.','REV. MOD. PHYS.','REV. SCI. INSTRUM.','RIV. NUOVO CIM.','RUSS. PHYS. J. (SOV. PHYS. J.)','SOV. J. NUCL. PHYS.','SOV. PHYS. JETP','TEOR. MAT. FIZ.','THEOR. MATH. PHYS.','YAD. FIZ.','Z. PHYS.','ZH. EKSP. TEOR. FIZ.'])
+        journal_combo_entry = journal_combo.entry
+        journal_combo_entry.set_text ('Any Journal')
+        GtkEditable.set_editable (journal_combo_entry,0)
+        hbox12.pack_start (journal_combo)
+        hbox12.pack_start (GtkLabel (_("vol,pg")))
+        volpg_entry = GtkEntry ()
+        GtkEditable.set_editable (volpg_entry, 1)
+        hbox12.pack_start (volpg_entry)
+        dlg.vbox.pack_start (hbox12)
+        
+        hbox13 = GtkHBox ()
+        hbox13.pack_start (GtkLabel (_("Published: "), 0))
+        published_combo = GtkCombo ()
+        published_combo.set_popdown_strings (['Don\'t care','Yes'])
+        published_combo_entry = published_combo.entry
+        published_combo_entry.set_text ('Don\'t care')
+        GtkEditable.set_editable (published_combo_entry,0)
+        hbox13.pack_start (published_combo)
+        dlg.vbox.pack_start (hbox13)
+        
+        hbox14 = GtkHBox ()
+        hbox14.pack_start (GtkLabel (_("Date: "), 0))
+        date_combo = GtkCombo ()
+        date_combo.set_popdown_strings (['Select','During','Before','After'])
+        date_combo_entry = date_combo.entry
+        date_combo_entry.set_text ('Select')
+        GtkEditable.set_editable (date_combo_entry,0)
+        hbox14.pack_start (date_combo)
+        year_combo = GtkCombo ()
+        year_combo.set_popdown_strings (['Any Year','2002','2001','2000','1999','1998','1997','1996','1995','1994','1993','1992','1991','1990','1989','1988','1987','1986','1985','1984','1983','1982','1981','1980','1975','1970','1965','1960'])
+        year_combo_entry = year_combo.entry
+        year_combo_entry.set_text ('Any Year')
+        GtkEditable.set_editable (year_combo_entry,0)
+        hbox14.pack_start (year_combo)
+        dlg.vbox.pack_start (hbox14)
+        
+        hbox15 = GtkHBox ()
+        hbox15.pack_start (GtkLabel (_("Sort by: "), 0))
+        sort_combo = GtkCombo ()
+        sort_combo.set_popdown_strings (['No Sort','Note: Sorting can be slow','Date Order - Descending','Date Order - Ascending','1st Author','Title','1st Author, Title'])
+        sort_combo_entry = sort_combo.entry
+        sort_combo_entry.set_text ('No Sort')
+        GtkEditable.set_editable (sort_combo_entry,0)
+        hbox15.pack_start (sort_combo)
+        dlg.vbox.pack_start (hbox15)
+    
         dlg.show_all ()
         dlg.run ()
 

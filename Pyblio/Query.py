@@ -188,3 +188,42 @@ def z3950_query (server,port,database,displaystart,maxresults,term1,term1attribu
     else:
         print "Not found"
 
+def spires_query (server,author,title,c,reportnum,affiliation,cn,k,cc,eprint,eprint_num,topcit,url,j,ps,date,year,format,sequence):
+    server_dict = {'UK':'http://www-spires.dur.ac.uk/spires/find/hep/www','USA':'http://www.slac.stanford.edu/spires/find/hep/www','Japan':'http://www.yukawa.kyoto-u.ac.jp/spires/find/hep/www','Russia':'http://usparc.ihep.su/spires/find/hep/www','Germany':'http://www-library.desy.de/spires/find/hep/www'}
+    journal_dict = {'Any Journal':'','ACTA PHYS. AUSTR.':'APASA','ACTA PHYS. POLON.':'APPOA','ANN. POINCARE':'AHPAA','ANN. PHYS. (N.Y.)':'APNYA','ASTROPHYS. J.':'ASJOA','CAN. J. PHYS.':'CJPHA','CLASS. QUANT. GRAV.':'CQGRD','COMM. NUCL. PART. PHYS.':'CNPPA','COMMUN. MATH. PHYS.':'CMPHA','COMMUN. THEOR. PHYS.':'CTPMD','COMPUT. PHYS. COMMUN.':'CPHCB','CZECH. J. PHYS.':'CZYPA','EUROPHYS. LETT.':'EULEE','EUR. PHYS. J.':'EPHJA','FIZ. ELEM. CHAST. AT. YADRA':'FECAA','FIZIKA':'FZKAA','FORTSCHR. PHYS.':'FPYKA','FOUND. PHYS.':'FNDPA','GEN. REL. GRAV.':'GRGVA','HADRONIC J.':'HADJM','HELV. PHYS. ACTA':'HPACA','HIGH ENERGY PHYS. NUCL. PHYS.':'KNWLD','IEEE TRANS. MAGNETICS':'IEMGA','IEEE TRANS. NUCL. SCI.':'IETNA','INSTRUM. EXP. TECH.':'INETA','INT. J. MOD. PHYS.':'IMPAE','INT. J. THEOR. PHYS.':'IJTPB','JHEP':'JHEPA','J. MATH. PHYS.':'JMAPA','J. PHYS. - A -':'JPAGB','J. PHYS. - G -':'JPHGB','J. PHYS. SOC. JAP.':'JUPSA','JETP LETT.':'JTPLA','LETT. MATH. PHYS.':'LMPHD','LETT. NUOVO CIM.':'NCLTA','MOD. PHYS. LETT.':'MPLAE','New J. Phys.':'NJP','NUCL. INSTRUM. METH.':'NUIMA','NUCL. PHYS.':'NUPHA','NUOVO CIM.':'NUCIA','PART. ACCEL.':'PLACB','PHYS. ATOM. NUCL.':'PANUE','PHYS. LETT.':'PHLTA','PHYS. REPT.':'PRPLC','PHYS. REV.':'PHRVA','PHYS. REV. LETT.':'PRLTA','PHYS. SCRIPTA':'PHSTB','PHYSICA':'PHYSA','PISMA ZH. EKSP. TEOR. FIZ.':'ZFPRA','PRAMANA':'PRAMC','PROG. PART. NUCL. PHYS.':'PPNPD','PROG. THEOR. PHYS.':'PTPKA','REPT. MATH. PHYS.':'RMHPB','REPT. PROG. PHYS.':'RPPHA','REV. MOD. PHYS.':'RMPHA','REV. SCI. INSTRUM.':'RSINA','RIV. NUOVO CIM.':'RNCIB','RUSS. PHYS. J. (SOV. PHYS. J.)':'SOPJA','SOV. J. NUCL. PHYS.':'SJNCA','SOV. PHYS. JETP':'SPHJA','TEOR. MAT. FIZ.':'TMFZA','THEOR. MATH. PHYS.':'TMPHA','YAD. FIZ.':'YAFIA','Z. PHYS.':'ZEPYA','ZH. EKSP. TEOR. FIZ.':'ZETFA'}
+    seq_sort_dict = {'No Sort':'','Note: Sorting can be slow':'','Date Order - Descending':'ds(d)','Date Order - Ascending':'ds(a)','1st Author':'AU','Title':'T','1st Author, Title':'AU,T'}
+    date_dict = {'Select':'','During':'IN','Before':'BEFORE','After':'AFTER'}
+
+    if eprint == 'Any Type': eprint = ''
+    if topcit == 'Don\'t care': topcit = ''
+    if url == 'Yes':
+        rpp = 'pdg-rpp'
+    else:
+        rpp = ''
+    if ps == 'Don\'t care': ps = ''
+    if year == 'Any Year': year = ''
+    if date == 'Select':
+        date =  date_dict[date]
+    else:
+        date =  date_dict[date] + '&*=' + year
+
+    params = urllib.urlencode ({
+        'AUTHOR' : author,
+        'TITLE' : title,
+        'C' : c,
+        'REPORT-NUM' : reportnum,
+        'AFFILIATION' : affiliation,
+        'cn' : cn,
+        'k' : k,
+        'cc' : cc,
+        'eprint' : '+'+eprint,
+        'eprint' : eprint_num,
+        'topcit' : topcit,
+        'url' : rpp,
+        'j' : journal_dict[j],
+        'ps' : ps,
+        'FORMAT' : format,
+        'SEQUENCE' : seq_sort_dict[sequence]
+        })
+
+    return "%s?%s&date=%s" % (server_dict[server], params, date)
