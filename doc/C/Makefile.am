@@ -27,9 +27,9 @@ EXTRA_DIST = \
 
 pybliographic_helpdir = $(datadir)/gnome/help/pybliographic/C
 
-all: update-doc
+all: book1.html
 
-update-doc: $(SGML)
+book1.html: $(SGML)
 	db2html pyblio.sgml || echo "** can't regenerate documentation"
 
 install-data-local:
