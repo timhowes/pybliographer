@@ -2,11 +2,11 @@ from db import *
 
 db = Database ('test', 1)
 
-c_r = Role ('base:cites', 'Cites', 'wt').register (db)
+Role ('base:cites', 'Cites', 'wt').register (db)
+
+Role ('base:title',  'Title',  'wt').register (db)
 
 a_r = Role ('base:author', 'Author', 'wt').register (db)
-t_r = Role ('base:title',  'Title',  'wt').register (db)
-
 l_r = Role ('base:literal-author', 'Author', 'mt').register (db)
 l_r.parent = a_r
 
@@ -15,15 +15,15 @@ db.commit ()
 w_1   = Work ().register (db)
 title = Text (text = u'Un titre accentué').register (db)
 
-w_1.attr_ins (title, t_r, 1)
+w_1.attr_ins (title, 'base:title', 1)
 
 w_2  = Work ().register (db)
 title = Text (text = u'Un autre titre').register (db)
 
-w_2.attr_ins (title, t_r, 1)
+w_2.attr_ins (title, 'base:title', 1)
 
 # work 1 cites work 2
-w_1.link (w_2, c_r)
+w_1.link (w_2, 'base:cites')
 
 db.commit ()
 

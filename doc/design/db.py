@@ -251,25 +251,25 @@ class Record (object):
     def attr_ins (self, attr, role, index):
         self.db._op.execute ("INSERT INTO attribute (index, role, "
                              "data, record) VALUES (%s, %s, %s, %s)",
-                             index, role.id, attr.id, self.id)
+                             index, role, attr.id, self.id)
         return
         
     def attr_del (self, role, index):
         self.db._op.execute ("DELETE FROM attribute WHERE "
                              "record = %s AND role = % AND index = %s",
-                             self.id, role.id, index)
+                             self.id, role, index)
         return
 
     def link (self, record, role):
         self.db._op.execute ("INSERT INTO record_link (rec_a, role, "
                              "rec_b) VALUES (%s, %s, %s)",
-                             self.id, role.id, record.id)
+                             self.id, role, record.id)
         return
         
     def unlink (self, record, role):
         self.db._op.execute ("DELETE FROM record_link WHERE "
                              "rec_a = %s AND role = %s AND rec_b = %s",
-                             self.id, role.id, record.id)
+                             self.id, role, record.id)
         return
         
     

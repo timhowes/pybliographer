@@ -73,6 +73,17 @@ class Record (object):
         ''' Unlink a Record from another Record, for a specific Role '''
         pass
 
+    def child_ins (self, record):
+        self.link   (record, 'record:below')
+        record.link (self,   'record:above')
+        return
+
+    def child_del (self, record):
+        self.unlink   (record, 'record:below')
+        record.unlink (self,   'record:above')
+        return
+    
+
     def attributes (self):
         ''' Return a list of all the attributes of a Record '''
         return []
