@@ -115,6 +115,7 @@ CharMapping tilda [] = {
 
 StringMapping commands [] = {
     {"backslash", "\\"},
+    {"ss", "ß"},
     {NULL, NULL}
 };
 
