@@ -64,6 +64,7 @@ class URLFileSelection (FileSelection):
         if url:
             hbox = HBox ()
             hbox.set_spacing (5)
+            hbox.set_border_width (5)
             hbox.pack_start (Label ('URL:'), expand = FALSE, fill = FALSE)
             self.url = Entry ()
             hbox.pack_start (self.url)
@@ -72,6 +73,7 @@ class URLFileSelection (FileSelection):
         # type selector
         hbox = HBox ()
         hbox.set_spacing (5)
+        hbox.set_border_width (5)
         hbox.pack_start (Label (_("Bibliography type:")),
                          expand = FALSE, fill = FALSE)
         self.menu = OptionMenu ()
