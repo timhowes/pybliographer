@@ -13,8 +13,7 @@ href="http://lists.sourceforge.net/mailman/listinfo/pybliographer-general">
 pybliographer-general</a> mailing list.</p>
 
 <p>It is also possible to consult the archives from
-<a href="http://www.geocrawler.com/redir-sf.php3?list=pybliographer-general">here</a>.
-
+<a href="http://sourceforge.net/mailarchive/forum.php?forum=pybliographer-general">here</a>.
 ]])
 
 html_footer
