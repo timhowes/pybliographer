@@ -28,4 +28,5 @@ Config.set ('refer/mapping', {
     'X' : ('abstract', 1),
     'W' : ('location', 1),
     'F' : ('label', 1),
+    'O' : ('note', 1),
     })
