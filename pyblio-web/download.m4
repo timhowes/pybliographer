@@ -38,9 +38,6 @@ version <b>1.0.53</b> at least.
 
 <h2>Download pybliographer, version pyblio_last</h2>
 
-Here is a list of <a href="http://www.gnome.org/ftpmirrors.shtml">FTP
-mirrors</a> where you can find pybliographer.
-
 <p>The latest release (<b>pyblio_last</b>) is available in the following
 formats:
 
@@ -66,13 +63,18 @@ m4_ifelse(html_testfile(local_stable/rpm/pybliographer-pyblio_last-1.src.rpm), 0
 )
 </ul>
 
-The official site for latest RPM files is <a
+<p>The official site for latest RPM files is <a
 href="ftp://dirac.cnrs-orleans.fr/pub/pybliographer/">here</a>.  These
 RPM files are kindly provided by <a
-href="mailto:hinsen@cnrs-orleans.fr">Konrad Hinsen</a>.
+href="mailto:hinsen@cnrs-orleans.fr">Konrad Hinsen</a>.</p>
+
+<p>You can also find pybliographer on <a
+href="ftp://ftp.gnome.org/pub/GNOME/stable/sources/pyblio">Gnome
+FTP</a>.</p>
+
 
 <p>Historical  versions   of  pybliographer  are   available  from  <a
-href="pyblio_unstable">here</a>. Don't use them, really.
+href="pyblio_unstable">here</a>. Don't use them, really.</p>
 
 ]])
 

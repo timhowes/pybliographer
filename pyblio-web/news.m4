@@ -1,10 +1,14 @@
 m4_dnl -*- html -*-
 m4_dnl
 m4_dnl --------------------------------------------------
-m4_define(pyblio_last,  [[1.0.0]])m4_dnl
+m4_define(pyblio_last,  [[1.0.1]])m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
 m4_define(pyblio_news, [[
+
+[[  <b>30/05/2000</b>:  bugfix  release  1.0.1  is  out.  It  corrects
+problems with  empty bibtex databases and fixes  the broken pybconvert
+script. The German and Italian translations are also updated]],
 
 [[ <b>18/05/2000</b>: I  plan to setup a FAQ  on pybliographer. If you
 think that  a particular question should  go in it, let  me know! I've
@@ -140,9 +144,9 @@ to create  new front-ends  for the  system: one for  KDE, and  one for
 wxWindows.]]
 
 ]]
-)
+)m4_dnl
 m4_dnl
-m4_define(latest_news,
+m4_define(latest_news,m4_dnl
 <li> $1
 <li> $2
 <li> $3
@@ -153,9 +157,9 @@ m4_define(latest_news,
 <li> $8
 <li> $9
 <li> $10
-)
+)m4_dnl
 m4_dnl
 m4_define(all_the_news, [[m4_ifelse($#, 0, , $#, 1, [[<li> $1]],
 [[<li> $1
 all_the_news(m4_shift($@))]])
-]])
+]])m4_dnl

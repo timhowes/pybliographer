@@ -3,7 +3,7 @@ m4_dnl -*- html -*-
 html_header(Pybliographer - FAQ)
 
 m4_define(faq_item, [[<li><b>$1</b>
-<br>$2]])
+<br>$2]])m4_dnl
 
 html_summary(faq, summary.m4, [[
 
@@ -35,7 +35,12 @@ faq_item([[Pybliograph(ic|er)  complains  about  a missing  gettext.py
 !]], [[Check that  you installed gnome-python with the  same prefix as
 python.]])
 
-</li>
+faq_item([[The Close button of the search menu behaves as the Search
+button]],[[Check that you have installed gnome-python 1.0.53 at least,
+and that the <b>installation prefix</b> is the same as the one used
+for python (usually /usr on Linux systems).]])
+
+</ul>
 ]])
 
 html_footer

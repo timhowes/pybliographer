@@ -9,8 +9,7 @@ m4_dnl
 m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
-m4_define(html_header,m4_dnl
-[[<html>
+m4_define(html_header,[[<html>
 <head>
 <title> $1 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=latin-1">
@@ -29,6 +28,8 @@ m4_define(html_footer,m4_dnl
 <img src="anybrowser.png" width="88"
  height="31" alt="Best Seen with ANY Browser" border="0"></a>
 m4_dnl<p align="center">Thanks to the GNOME Project for hosting these pages</p>
+<p align="center">Thanks to <a href="http://sourceforge.net">SourceForge</a> 
+for hosting these pages</p>
 <p align="right">Send your comments to 
 <a href="mailto:frederic.gobry@epfl.ch">Frédéric Gobry</a>
 <br><small>Last update: html_date</small>
@@ -36,13 +37,13 @@ m4_dnl<p align="center">Thanks to the GNOME Project for hosting these pages</p>
 m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
-m4_define(html_item_summary, [[m4_ifelse(html_current_item, $1, $3, $2)]])
+m4_define(html_item_summary, [[m4_ifelse(html_current_item, $1, $3, $2)]])m4_dnl
 m4_dnl
-m4_define(html_summary, 
+m4_define(html_summary,m4_dnl
 [[<table><tbody>
 <tr><td bgcolor="#eeeeff" align="left" valign="top">
-m4_define([[html_current_item]], $1)
-m4_include($2)
+m4_define([[html_current_item]], $1)m4_dnl
+m4_include($2)m4_dnl
 </td><td align="left">
 $3
 </td></tbody></table>]]) m4_dnl
@@ -52,5 +53,5 @@ m4_dnl
 m4_dnl -----
 m4_dnl
 m4_define(html_testfile, [[m4_syscmd(ls $1 >/dev/null 2>&1)m4_sysval]])m4_dnl
-m4_define(html_filesize, [[m4_regexp(m4_esyscmd(ls -lh $1 2> /dev/null | awk '{print $ 5;}'),.*,\&)]])m4_dnl
+m4_define(html_filesize, [[m4_regexp(m4_esyscmd(ls -lh $1 2>/dev/null|awk '{print $ 5;}'),.*,\&)]])m4_dnl
 m4_define(html_date, [[m4_esyscmd(date +%d/%m/%Y)]])m4_dnl

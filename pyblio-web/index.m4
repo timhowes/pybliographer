@@ -28,6 +28,10 @@ provides  powerful editing  capabilities, a  nice  hierarchical search
 mechanism,  direct insertion  of references  into  <b>LyX</b> (version
 1.0.x), and more.
 
+<p>The project is currently hosted on <a
+href="http://sourceforge.net">SourceForge</a>, at the following <a
+href="http://sourceforge.net/project/?group_id=4825">location</a>.
+
 <hr>
 
 <a name="new"> 
