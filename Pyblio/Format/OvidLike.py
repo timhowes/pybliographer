@@ -133,7 +133,7 @@ class OvidLike (Iterator.Iterator):
             if type == KeywordField:
                 text = string.strip (dict [key])
                 if entry.has_key (name):
-                    text = str (entry [name]) + ', ' + text
+                    text = str (entry [name]) + '  ' + text
                     
                 entry [name] = Fields.Text (text)
                 continue
