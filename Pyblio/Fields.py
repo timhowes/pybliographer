@@ -199,6 +199,10 @@ class AuthorGroup:
 
     def __getitem__ (self, pos):
         return self.authors [pos]
+        
+            
+    def __getslice__ (self, pos, end):
+        return self.authors [pos:end]
 
     def __setitem__ (self, pos, val):
         self.authors [pos] = val
@@ -305,7 +309,13 @@ class Date:
                 self.text = '%d/%d/%d' % (self.day, self.month, self.year)
 
             elif self.year and self.month:
-                self.text = '%d/%d' % (self.month, self.year)
+                try:
+                    self.text = '%d/%d' % (self.month, self.year)
+                except:
+                    import traceback
+                    print 'FEHLER:', self.month, self.year, type(
+                        self.month), type(self.year )
+                    traceback.print_exc()
             
             elif self.year:
                 self.text = str (self.year)
@@ -315,7 +325,9 @@ class Date:
                 
         return self.text
 
-
+    def isostring(self):
+        return '%4d' % self.year
+        
     def format (self, fmt = 'latin1'):
         ''' Returns the fields in a given format '''
         ft = get_formatter (fmt)
@@ -325,7 +337,12 @@ class Date:
         else: year = None
 
         if self.month:
-            month = ft (str (self.month))
+            try:
+                month = ft (str (self.month))
+            except:
+                import traceback
+                print 'FEHLER:', self.month
+                traceback.print_exc()
         else: month = None
 
         if self.day:
