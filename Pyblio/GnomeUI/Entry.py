@@ -71,7 +71,7 @@ class HTMLEntry:
 
         self.text.write (content, self.header)
         
-        self.text.write (content, '<font color="#0000ff"><h1> [' +
+        self.text.write (content, ('<font color="#0000ff"><h1>%s [' % entry.type.name) +
                          html (str (entry.key.key)) + '] </h1></font>')
         
         dico = entry.keys ()
@@ -192,7 +192,6 @@ class ClassicEntry:
     def clear (self):
         self.text.delete_text (0, -1)
         return
-
 
 if has_gtkhtml:
     html = recode.recode ("latin1..html")
