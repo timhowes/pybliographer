@@ -2,6 +2,7 @@
 Name=Pybliographic
 Comment=Bibliographic database editor
 Comment[fr]=иditeur de bases de donnИes bibliographiques
+Comment[uk]=Редактор б╕бл╕ограф╕чно╖ бази даних
 Icon=pybliographic.png
 Exec=pybliographic
 Terminal=0
