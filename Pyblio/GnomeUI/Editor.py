@@ -104,7 +104,7 @@ class BaseField (Connector.Publisher):
 
     
     def update (self, entry):
-        text = string.strip (self.edit.get_chars (0, -1))
+        text = string.strip (self.edit.get_chars (0, -1)).encode ('latin-1')
 
         if text == self.string: return 0
 
@@ -128,7 +128,7 @@ class TextBase (BaseField):
 
     
     def update (self, entry):
-        text = string.rstrip (self.edit.get_chars (0, -1))
+        text = string.rstrip (self.edit.get_chars (0, -1)).encode ('latin-1')
         if text == self.string: return 0
 
         if text == '':
@@ -154,9 +154,11 @@ class Entry (TextBase):
     def create_widget (self, h):
         if len (self.string) < 50:
             self.edit = gtk.Entry ()
-            self.edit.set_text (self.string)
+            self.edit.set_text (self.string.decode ('latin-1'))
             self.edit.set_editable (True)
             self.edit.show ()
+
+            self.buff = None
             
             h.pack_start (self.edit)
             return 0
@@ -165,10 +167,13 @@ class Entry (TextBase):
         w.set_policy (gtk.POLICY_NEVER,
                       gtk.POLICY_AUTOMATIC)
         
-        self.edit = gtk.Text ()
+        self.edit = gtk.TextView ()
         self.edit.set_editable (True)
-        self.edit.insert_defaults (self.string)
-        self.edit.set_word_wrap (True)
+        self.edit.set_wrap_mode (gtk.WRAP_WORD)
+
+        self.buff = self.edit.get_buffer ()
+        self.buff.set_text (self.string.decode ('latin-1'))
+
         self.edit.show ()
         
         w.add (self.edit)
@@ -176,6 +181,26 @@ class Entry (TextBase):
         
         h.pack_start (w)
         return 1
+
+
+    def update (self, entry):
+        if self.buff:
+            text = self.buff.get_text (self.buff.get_start_iter (),
+                                       self.buff.get_end_iter ())
+            text = string.rstrip (text).encode ('latin-1')
+        else:
+            text = string.rstrip \
+                   (self.edit.get_chars (0, -1)).encode ('latin-1')
+            
+        if text == self.string: return 0
+
+        if text == '':
+            del entry [self.field]
+            return 1
+
+        self.update_content (entry, text)
+        return 1
+
 
 
 class Text (TextBase):
@@ -189,8 +214,7 @@ class Text (TextBase):
         self.edit.set_wrap_mode (gtk.WRAP_WORD)
 
         self.buff = self.edit.get_buffer ()
-        
-        self.buff.set_text (self.string)
+        self.buff.set_text (self.string.decode ('latin-1'))
 
         self.edit.show ()
         w.add (self.edit)
@@ -203,7 +227,7 @@ class Text (TextBase):
     def update (self, entry):
         text = self.buff.get_text (self.buff.get_start_iter (),
                                    self.buff.get_end_iter ())
-        text = string.rstrip (text)
+        text = string.rstrip (text).encode ('latin-1')
         
         if text == self.string: return 0
 
@@ -225,7 +249,7 @@ class AuthorGroup (BaseField):
         self.edit.set_editable (True)
 
         self.buff = self.edit.get_buffer ()
-        self.buff.set_text (self.string)
+        self.buff.set_text (self.string.decode ('latin-1'))
         self.edit.show ()
         w.add (self.edit)
         w.show ()
@@ -237,7 +261,7 @@ class AuthorGroup (BaseField):
     def update (self, entry):
         text = self.buff.get_text (self.buff.get_start_iter (),
                                    self.buff.get_end_iter ())
-        text = string.strip (text)
+        text = string.strip (text).encode ('latin-1')
         
         if text == self.string: return 0
 
@@ -293,7 +317,7 @@ class Date (BaseField):
         self.day.set_max_length (2)
 
         if self.initial [0]:
-            self.day.set_text (str (self.initial [0]))
+            self.day.set_text (str (self.initial [0]).decode ('latin-1'))
         hbox.pack_start (self.day)
         hbox.pack_start (gtk.Label (_("Day")), False, False)
         
@@ -302,7 +326,7 @@ class Date (BaseField):
         self.month.set_max_length (2)
 
         if self.initial [1]:
-            self.month.set_text (str (self.initial [1]))
+            self.month.set_text (str (self.initial [1]).decode ('latin-1'))
         hbox.pack_start (self.month)
         hbox.pack_start (gtk.Label (_("Month")), False, False)
         
@@ -311,7 +335,7 @@ class Date (BaseField):
         self.year.set_size_request (width / 3, height)
 
         if self.initial [2]:
-            self.year.set_text (str (self.initial [2]))
+            self.year.set_text (str (self.initial [2]).decode ('latin-1'))
         hbox.pack_start (self.year)
         hbox.pack_start (gtk.Label (_("Year")), False, False)
 
@@ -334,7 +358,7 @@ class Date (BaseField):
     def update (self, entry):
         (day, month, year) = (None, None, None)
         
-        text = string.strip (self.day.get_chars (0, -1))
+        text = string.strip (self.day.get_chars (0, -1)).encode ('latin-1')
         if text != '':
             try: day = int (text)
             except ValueError:
@@ -342,7 +366,7 @@ class Date (BaseField):
                                   self.day.get_toplevel ()).show ()
                 return -1
         
-        text = string.strip (self.month.get_chars (0, -1))
+        text = string.strip (self.month.get_chars (0, -1)).encode ('latin-1')
         if text != '':
             try: month = int (text)
             except ValueError, err:
@@ -350,7 +374,7 @@ class Date (BaseField):
                                   self.day.get_toplevel ()).show ()
                 return -1
         
-        text = string.strip (self.year.get_chars (0, -1))
+        text = string.strip (self.year.get_chars (0, -1)).encode ('latin-1')
         if text != '':
             try: year = int (text)
             except ValueError: 
@@ -382,7 +406,7 @@ class Reference (BaseField):
 
         self.edit = gtk.Entry ()
         self.edit.set_editable (False)
-        self.edit.set_text (self.string)
+        self.edit.set_text (self.string.decode ('latin-1'))
         self.edit.show ()
         self.edit.drag_dest_set (DEST_DEFAULT_MOTION |
                                  DEST_DEFAULT_HIGHLIGHT |
@@ -435,7 +459,7 @@ class URL (BaseField):
     def create_widget (self, h):
         self.edit = gtk.Entry ()
         self.edit.set_editable (True)
-        self.edit.set_text (self.string)
+        self.edit.set_text (self.string.decode ('latin-1'))
         self.edit.show ()
 
         h.pack_start (self.edit)
@@ -685,7 +709,7 @@ class NativeEditor (Connector.Publisher):
         iter = self.buff.get_start_iter ()
         mono = self.buff.create_tag ('body', family = 'Monospace')
 
-        self.buff.insert_with_tags (iter, self.original, mono)
+        self.buff.insert_with_tags (iter, self.original.decode ('latin-1'), mono)
         return
 
 
@@ -694,7 +718,7 @@ class NativeEditor (Connector.Publisher):
 
         new  = None
         text = self.buff.get_text (self.buff.get_start_iter (),
-                                   self.buff.get_end_iter ())
+                                   self.buff.get_end_iter ()).encode ('latin-1')
         try:
             new = self.database.create_native (text)
             

@@ -93,7 +93,7 @@ class Entry:
             if entry.has_key (field):
 
                 n = f.name + ': '
-                t = str (entry [field]) + '\n'
+                t = str (entry [field]).decode ('latin-1') + '\n'
                 
                 si = iter.get_offset ()
 
@@ -119,7 +119,7 @@ class Entry:
         
         for f in dico:
             n = f + ': '
-            t = str (entry [f]) + '\n'
+            t = str (entry [f]).decode ('latin-1') + '\n'
             
             si = iter.get_offset ()
             

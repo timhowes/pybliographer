@@ -301,7 +301,7 @@ class Index (Connector.Publisher):
                     else:
                         text = str (entry [f])
                         
-                    row.append (text)
+                    row.append (text.decode ('latin-1'))
                 else:
                     row.append ('')
 
