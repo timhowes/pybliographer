@@ -226,8 +226,8 @@ class SearchDialog (GnomeDialog, Connector.Publisher):
             except:
                 etype, value, tb = sys.exc_info ()
 		traceback.print_exception (etype, value, tb)
-                dialog = GnomeErrorDialog (_("internal error during evaluation"))
-                dialog.run_and_close ()
+                dialog = GnomeErrorDialog (_("internal error during evaluation"),
+                                           parent = self)
                 return
 
             test = user_global ['tester']
