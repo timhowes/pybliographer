@@ -81,14 +81,14 @@ class BibTextField (Text):
 	return Text.format (self, fmt)
 
 
-class Entry (Base.Entry):
+class Entry (Base.Entry2):
     ''' This class holds a BibTeX entry and keeps a reference on
     its parser '''
 
-    id = 'BibTeX'
+    id_x = 'BibTeX'
 
     def __init__ (self, key, fieldtype, content, parser, line):
-	Base.Entry.__init__ (self, key, fieldtype, content)
+	Base.Entry2.__init__ (self, key, fieldtype, content)
 
 	self.__text = {}
 	self.parser = parser
@@ -317,7 +317,7 @@ class BibtexIterator (Iterator.Iterator):
         
 	fieldtype  = Types.get_entry (fieldtype)
 	entry = Entry (key, fieldtype, object, self.parser, line)
-
+        
 	return entry
 	
 		
@@ -329,6 +329,7 @@ class DataBase (Base.DataBase):
 	''' Initialisation '''
 
 	Base.DataBase.__init__ (self, basename)
+        self.key = basename
 	self.__parsefile__ ()
 	return
 
@@ -371,8 +372,9 @@ class DataBase (Base.DataBase):
                         errors.append (_("%s:%d: key `%s' already defined") % (
                             str (self.key), entry.line, entry.key.key))
                     else:
-                        self.dict [entry.key] = entry
-                
+                        #self.dict [entry.key] = entry
+                        self.add (entry)
+                entry.add_journal(final=1)
         except Exceptions.ParserError, err:
             errors.append (str (err))
 
@@ -380,7 +382,8 @@ class DataBase (Base.DataBase):
             try:
                 entry = iter.next ()
             except Exceptions.ParserError, err:
-                errors.append (str (err))
+                print `err`
+                errors.append (`err`)#str (err))
                 continue
 
             if entry is None: break
@@ -392,7 +395,8 @@ class DataBase (Base.DataBase):
                     errors.append (_("%s:%d: key `%s' already defined") % (
                         str (self.key), entry.line, entry.key.key))
                 else:
-                    self.dict [entry.key] = entry
+                    #self.dict [entry.key] = entry
+                    self.add (entry) 
 
         
 	if len (errors) > 0:
@@ -481,7 +485,19 @@ def entry_write (entry, output):
     monthlist  = range (0, 12)
     for key in convert.keys ():
         monthlist [convert [key] - 1] = key
+    ##################################################
+    perso = getattr(entry, 'perso', [])
+    for p in perso:
+        author = []
+        editor = []
+        if p.has_relator('author'):
+            author.append(Prosopon.person.form(p,2))
+        elif p.has_relator('editor'):
+            author.append(Prosopon.person.form(p,2))
+        dico['_perso'] = string.join(author+editor, '; ')
 
+
+    ##################################################
     if native:
 	# loop over all the fields
 	for field in entry.keys ():
@@ -539,8 +555,9 @@ def entry_write (entry, output):
 	if not dico.has_key (field): continue
 
 	output.write ('  %-14s = ' % f.name)
-        output.write (Utils.format (dico [field],
+        try:output.write (Utils.format (dico [field],
                                     75, 19, 19) [19:] + ',\n')
+        except: print dico[field]
 	del dico [field]
 
     for f in dico.keys ():
@@ -574,6 +591,7 @@ def writer (it, output):
     refere = {}
     entry  = it.first ()
     while entry:
+        print entry, entry.key.base
         if isinstance (entry, Entry):
 	    header [entry.key.base] = entry
             
@@ -618,7 +636,7 @@ def opener (url, check):
     ''' This methods returns a new BibTeX database given a URL '''
 
     base = None
-
+    #print "BIBTEX OPENER: url=%s, check=%s" %(url, check)
     if (not check) or url.url [2] [-4:] == '.bib':
 	base = DataBase (url)
 
