@@ -255,20 +255,21 @@ class Pybliographic (GnomeApp):
         self.main_box = GtkVBox()
         self.set_contents (self.main_box)
         self.main_box.show()
-        
+
         file_menu = [
-            UIINFO_ITEM_STOCK ('New', None, self.file_new, STOCK_MENU_NEW),
-            UIINFO_ITEM_STOCK ('Open', None, self.file_open, STOCK_MENU_OPEN),
-            UIINFO_ITEM_STOCK ('Save', None, self.file_save, STOCK_MENU_SAVE),
-            UIINFO_ITEM_STOCK ('Save As...', None, self.file_save_as,
+            UIINFO_ITEM_STOCK (_("New"), None, self.file_new, STOCK_MENU_NEW),
+            UIINFO_ITEM_STOCK (_("Open"), None, self.file_open, STOCK_MENU_OPEN),
+            UIINFO_ITEM_STOCK (_("Save"), None, self.file_save, STOCK_MENU_SAVE),
+            UIINFO_ITEM_STOCK (_("Save As..."), None, self.file_save_as,
                                STOCK_MENU_SAVE_AS),
             UIINFO_SEPARATOR,
+            UIINFO_SUBTREE (_("Previous Documents"), []),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK ('Quit', None, self.file_exit, STOCK_MENU_QUIT),
+            UIINFO_ITEM_STOCK (_("Quit"), None, self.file_exit, STOCK_MENU_QUIT),
             ]
         
         help_menu = [
-            UIINFO_ITEM_STOCK('About...', None, self.help_about,
+            UIINFO_ITEM_STOCK(_("About..."), None, self.help_about,
                               STOCK_MENU_ABOUT),
             UIINFO_HELP ('pybliographic'),
             UIINFO_ITEM_STOCK (_("Submit a Bug Report"), None, self.exec_bug_buddy,
@@ -276,58 +277,58 @@ class Pybliographic (GnomeApp):
             ]
 
         edit_menu = [
-            UIINFO_ITEM_STOCK('Copy', None, self.edit_copy, STOCK_MENU_COPY),
-            UIINFO_ITEM_STOCK('Cut', None, self.edit_cut, STOCK_MENU_CUT),
-            UIINFO_ITEM_STOCK('Paste', None, self.edit_paste,
+            UIINFO_ITEM_STOCK(_("Copy"), None, self.edit_copy, STOCK_MENU_COPY),
+            UIINFO_ITEM_STOCK(_("Cut"), None, self.edit_cut, STOCK_MENU_CUT),
+            UIINFO_ITEM_STOCK(_("Paste"), None, self.edit_paste,
                               STOCK_MENU_PASTE),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK('New...', None, self.edit_new, STOCK_MENU_NEW),
-            UIINFO_ITEM('Edit...', None, self.edit_entry, None),
-            UIINFO_ITEM_STOCK('Delete', None, self.edit_delete,
+            UIINFO_ITEM_STOCK(_("New..."), None, self.edit_new, STOCK_MENU_NEW),
+            UIINFO_ITEM(_("Edit..."), None, self.edit_entry, None),
+            UIINFO_ITEM_STOCK(_("Delete"), None, self.edit_delete,
                               STOCK_MENU_TRASH),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK('Search...', None, self.edit_search,
+            UIINFO_ITEM_STOCK(_("Search..."), None, self.edit_search,
                               STOCK_MENU_SEARCH),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM ('Sort by Key', None,  self.sort_by_key),
-            UIINFO_ITEM ('Sort by Type', None, self.sort_by_type),
+            UIINFO_ITEM (_("Sort by Key"), None,  self.sort_by_key),
+            UIINFO_ITEM (_("Sort by Type"), None, self.sort_by_type),
             ]
 
         format_menu = [
-            UIINFO_ITEM_STOCK('Cite in LyX', None, self.edit_insert_lyx,
+            UIINFO_ITEM_STOCK(_("Cite in LyX"), None, self.edit_insert_lyx,
                               STOCK_MENU_CONVERT),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK('Format', None, self.format_entries,
+            UIINFO_ITEM_STOCK(_("Format"), None, self.format_entries,
                               STOCK_MENU_SAVE),
-            UIINFO_ITEM_STOCK('Format As...', None, self.format_entries_as,
+            UIINFO_ITEM_STOCK(_("Format As..."), None, self.format_entries_as,
                               STOCK_MENU_SAVE_AS),
             ]
         
         config_menu = [
-            UIINFO_ITEM_STOCK('Preferences...', None, self.configure_prefs,
+            UIINFO_ITEM_STOCK(_("Preferences..."), None, self.configure_prefs,
                               STOCK_MENU_PREF),
             ]
         
         menus = [
-            UIINFO_SUBTREE('File', file_menu),
-            UIINFO_SUBTREE('Edit', edit_menu),
-            UIINFO_SUBTREE('Configure', config_menu),
-            UIINFO_SUBTREE('Formatting', format_menu),
-            UIINFO_SUBTREE('Help', help_menu)
+            UIINFO_SUBTREE(_("File"), file_menu),
+            UIINFO_SUBTREE(_("Edit"), edit_menu),
+            UIINFO_SUBTREE(_("Configure"), config_menu),
+            UIINFO_SUBTREE(_("Formatting"), format_menu),
+            UIINFO_SUBTREE(_("Help"), help_menu)
             ]
         
         toolbar = [
-            UIINFO_ITEM_STOCK('Open', None, self.file_open,
+            UIINFO_ITEM_STOCK(_("Open"), None, self.file_open,
                               STOCK_PIXMAP_OPEN),
-            UIINFO_ITEM_STOCK('Save', None, self.file_save,
+            UIINFO_ITEM_STOCK(_("Save"), None, self.file_save,
                               STOCK_PIXMAP_SAVE),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK('Search', None, self.edit_search,
+            UIINFO_ITEM_STOCK(_("Search"), None, self.edit_search,
                               STOCK_PIXMAP_SEARCH),
-            UIINFO_ITEM_STOCK('Cite', None, self.edit_insert_lyx,
+            UIINFO_ITEM_STOCK(_("Cite"), None, self.edit_insert_lyx,
                               STOCK_PIXMAP_CONVERT),
             UIINFO_SEPARATOR,
-            UIINFO_ITEM_STOCK('Exit', None, self.file_exit,
+            UIINFO_ITEM_STOCK(_("Exit"), None, self.file_exit,
                               STOCK_PIXMAP_QUIT),
             ]
         
@@ -415,15 +416,12 @@ class Pybliographic (GnomeApp):
             def opener (widget, self = self, file = file):
                 self.open (file)
                 return
+
+            shortfile = file
             
-            if len (file) > 20:
-                s = os.path.split (file)
-                shortfile = '...' + s [0] [-10:] + '/' + s [1]
-            else:
-                shortfile = file
-            
-            self.insert_menus ("File/<Separator>", [
-                UIINFO_ITEM (shortfile, None, opener)])
+            self.insert_menus (_("File") + "/" +
+                               _("Previous Documents") + "/",
+                               [UIINFO_ITEM (shortfile, None, opener)])
 
         # add the file on top of the list
         self.opened_files.append (file)
