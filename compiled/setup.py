@@ -65,31 +65,31 @@ def rebuild (src, deps):
     return False
 
 
+def rename (src, dst):
+
+    try: os.unlink (dst)
+    except OSError: pass
+
+    os.rename (src, dst)
+    return
+
+
 if rebuild ('bibparse.y', ['bibparse.c',
                            'bibparse.h']):
-    print "rebuild bibparse.y"
+    print "rebuilding from bibparse.y"
 
     os.system ('bison -y -d -t -p bibtex_parser_ bibparse.y')
 
-    try: os.unlink ('bibparse.c')
-    except: pass
-    
-    try: os.unlink ('bibparse.h')
-    except: pass
-
-    os.rename ('y.tab.c', 'bibparse.c')
-    os.rename ('y.tab.h', 'bibparse.h')
+    rename ('y.tab.c', 'bibparse.c')
+    rename ('y.tab.h', 'bibparse.h')
 
 
 if rebuild ('biblex.l', ['biblex.c']):
-    print "rebuilding biblex.l"
+    print "rebuilding from biblex.l"
 
     os.system ('flex -Pbibtex_parser_ biblex.l')
 
-    try: os.unlink ('biblex.c')
-    except OSError: pass
-    
-    os.rename ('lex.bibtex_parser_.c', 'biblex.c')
+    rename ('lex.bibtex_parser_.c', 'biblex.c')
 
     
 
