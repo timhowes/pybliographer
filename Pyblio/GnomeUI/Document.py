@@ -415,7 +415,7 @@ class Document (Connector.Publisher):
     
     def save_document_as (self, * arg):
         # get a new file name
-        (url, how) = FileSelector.URLFileSelection (_("Open file"),
+        (url, how) = FileSelector.URLFileSelection (_("Save As..."),
                                                     url = FALSE, has_auto = FALSE).run ()
 
         if url is None: return
@@ -440,9 +440,19 @@ class Document (Connector.Publisher):
         
         if self.data.key is None:
             # we wrote an anonymous database. Lets reopen it !
-            self.data = Open.bibopen (url, how = how)
-            self.redisplay_index ()
+            try:
+                self.data = Open.bibopen (url, how = how)
+                
+            except (Exceptions.ParserError,
+                    Exceptions.FormatError,
+                    Exceptions.FileError), error:
+                    
+                Utils.set_cursor (self.w, 'normal')
+                Utils.error_dialog (_("Reopen error"), error,
+                                    parent = self.w)
+                return
             
+            self.redisplay_index ()
             self.issue ('open-document', self)
             
         Utils.set_cursor (self.w, 'normal')
