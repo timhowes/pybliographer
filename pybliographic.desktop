@@ -10,6 +10,7 @@ Comment[fi]=Bibliografiatietokannan muokkaustyökalu
 Comment[fr]=Éditeur de bases de données bibliographiques
 Comment[sv]=Redigerinsgprogram för bibliografidatabaser
 Comment[hu]=Bibliográfiai adatbáziskezelõ
-Icon=pyExec=pybliographic
+Icon=pybliographic.png
+Exec=pybliographic
 Terminal=0
 Type=Application
