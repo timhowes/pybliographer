@@ -1,3 +1,7 @@
+2003-11-01  Danilo Segan  <dsegan@gmx.net>
+
+	* configure.in (ALL_LINGUAS): Added "sr" and "sr@Latn".
+
 2003-05-06  Peter Schulte-Stracke  <Peter.Schulte-Stracke@t-online.de>
 
 	* Pyblio/Base.py (Entry, Entry2): minor changes, has now DBObject
