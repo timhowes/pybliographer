@@ -21,9 +21,11 @@
 
 
 from types import *
-from Pyblio import Autoload, Fields, Help
+from Pyblio import Autoload, Fields, Help, Exceptions
 
-import urlparse, urllib, traceback, os, sys, tempfile, string
+import urlparse, urllib, traceback, os, sys, tempfile, string, gettext
+
+_ = gettext.gettext
 
 
 def url_to_local (url):
@@ -92,8 +94,7 @@ def bibopen (entity, how = None):
 		if opener:
 			base = opener (url, 0)
 		else:
-			raise IOError, \
-			      "method `%s' provides no opener" % how
+			raise Exceptions.FormatError (_("method `%s' provides no opener") % how)
 		
 		return base
 	
@@ -109,7 +110,7 @@ def bibopen (entity, how = None):
 	base = simple_try (url, how)
 
 	if base is None:
-		raise IOError, "don't know how to open `" + entity + "'"
+		raise Exceptions.FormatError (_("don't know how to open `%s'") % entity)
 
 	return base
 

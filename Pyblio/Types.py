@@ -20,126 +20,93 @@
 # $Id$
 
 import string
-from Pyblio import Config
+from Pyblio import Config, Fields
 
-# Available field types
-TypeText   = 0
-TypeAuthor = 1
-TypeTitle  = 2
-TypeDate   = 3
-TypeURL    = 4
-TypeRef    = 5
 
 def get_entry (entry, has_default = 1):
-	''' Returns an entry description given its name '''
-	
-	entries = Config.get ("base/entries").data
+    ''' Returns an entry description given its name '''
 
-	if entries.has_key (entry):
-		return entries [entry]
+    entries = Config.get ("base/entries").data
 
-	if has_default:
-		return EntryDescription (entry)
+    if entries.has_key (entry):
+	return entries [entry]
 
-	return None
+    if has_default:
+	return EntryDescription (entry)
 
-
-class Description:
-	''' Generic Holder for information related to Field/Entry
-	descriptions '''
-    
-	def __init__ (self, name):
-		self.name       = name
-		self.__items__  = {}
-		return
-    
-	def __getattr__ (self, attr):
-		raise AttributeError, "no attribute `%s' in Description" % (attr)
-
-	def __setattr__ (self, attr, value):
-		self.__dict__ [attr] = value
-		return
-    
-	def __getitem__ (self, item):
-		return self.__items__ [item]
-	
-	def __setitem__ (self, item, value):
-		self.__items__ [item] = value
-		return
-    
-	def has_key (self, field):
-		return self.__items__.has_key (field)
-	
-	def __hash__ (self):
-		return hash (self.name)
+    return None
 
 
-class FieldDescription (Description):
-	''' Available informations for a given field type '''
-    
-	def __init__ (self, name, type = TypeText):
-        
-		Description.__init__ (self, name)
-		self.type = type
-		return
+class FieldDescription:
+    ''' Available informations for a given field type '''
 
-    
-class EntryDescription (Description):
-	''' Informations on a given entry '''
-    
-	def __init__ (self, name):
-		Description.__init__ (self, name)
-		
-		self.__dict__ ['mandatory'] = []
-		self.__dict__ ['optional']  = []
-		self.__dict__ ['lcfields']  = {}
-		return
+    def __init__ (self, name, type = Fields.Text.id):
+	self.name = name
+	self.type = type
+	return
 
-	def __str__ (self):
-		return "<EntryDescription `%s'>" % self.name
-	
-	def __getattr__ (self, attr):
-		if attr == 'fields':
-			return self.mandatory + self.optional
-		
-		return Description.__getattr__ (self, attr)
-
-	def __setattr__ (self, attr, value):
-
-		if attr == 'mandatory' or attr == 'optional':
-			self.__dict__ [attr] = value
-			self.__dict__ ['lcfields'] = {}
-            
-			for f in self.fields:
-				self.__dict__ ['lcfields'] [string.lower (f.name)] = f
-
-		else:
-			Description.__setattr__ (self, attr, value)
-			
-		return
-	
-	def __call__ (entry, field):
-		''' Return a field type given its name and the entry it
-		belongs to '''
-	
-		fields = Config.get ("base/fields").data
-
-		if entry and entry.has_key (field):
-			return entry [field].type
-	
-		if fields.has_key (field):
-			return fields [field].type
-	
-		return TypeText
+    def __str__ (self):
+	return "<FieldDescription `%s'>" % self.name
 
 
-	def __getitem__ (self, item):
-		return self.__dict__ ['lcfields'] [item]
+class EntryDescription:
+    ''' Informations on a given entry '''
 
-	def __setitem__ (self, item, value):
-		self.__dict__ ['lcfields'] [item] = value
-		return
-	
-	def has_key (self, field):
-		return self.__dict__ ['lcfields'].has_key (field)
+    def __init__ (self, name):
+	self.name       = name
+
+	self.__dict__ ['mandatory'] = []
+	self.__dict__ ['optional']  = []
+	return
+
+    def __str__ (self):
+	return "<EntryDescription `%s'>" % self.name
+
+
+    def __getattr__ (self, attr):
+	if attr == 'fields':
+	    return self.mandatory + self.optional
+
+	raise AttributeError, 'no such attribute: %s' % attr
+
+    def __setattr__ (self, attr, value):
+
+	if attr == 'mandatory' or attr == 'optional':
+	    self.__dict__ [attr] = value
+	    self.__dict__ ['lcfields'] = {}
+
+	    for f in self.fields:
+		self.__dict__ ['lcfields'] [string.lower (f.name)] = f
+
+	    return
+
+	self.__dict__ [attr] = value
+	return
+
+    def __call__ (entry, field):
+	''' Return a field type given its name and the entry it
+	belongs to '''
+
+	fields = Config.get ("base/fields").data
+
+	if entry and entry.has_key (field):
+	    return entry [field].type
+
+	if fields.has_key (field):
+	    return fields [field].type
+
+	return Fields.Text.id
+
+
+    def __getitem__ (self, item):
+	return self.__dict__ ['lcfields'] [item]
+
+
+    def __setitem__ (self, item, value):
+	self.__dict__ ['lcfields'] [item] = value
+	return
+
+
+    def has_key (self, field):
+	return self.__dict__ ['lcfields'].has_key (field)
 

@@ -42,7 +42,7 @@ def get_formatter (format):
 
 class Author:
     ''' Fine description of an author '''
-    
+
     def __init__ (self, copy = None, strict = 0):
         ''' Initialize an author from a string or an other Author '''
 
@@ -335,7 +335,7 @@ class Date:
 
 class Text:
     ''' This class holds all the other fields (not an Author or a Date) '''
-    
+
     def __init__ (self, text):
         self.text = text
         return
@@ -431,3 +431,11 @@ class Reference:
 
         return map (ft, self.list)
 
+
+# Warning: these values correspond to the bibtex module
+Text.id        = 0
+AuthorGroup.id = 1
+Date.id        = 3
+
+Reference.id   = 4
+URL.id         = 5

@@ -20,7 +20,7 @@
 # $Id$
 
 from string import *
-import re, copy
+import re, copy, os
 import Pyblio.Help
 from types import *
 
@@ -156,19 +156,11 @@ class DataBase:
 
     ''' This class represents a full bibliographic database.  It
     also looks like a dictionnary, each key being an instance of
-    class Key.
+    class Key. '''
 
-    A database *has* to be stored somewhere, under a given
-    format. '''
-
-
-    # a default database provides no editing facilities
-    # (as it cannot be saved)
     properties = {}
 
-    id      = 'VirtualDB'
-    __keyid = 0
-
+    id = 'VirtualDB'
 
     def __init__ (self, url):
 	''' Open the database referenced by the URL '''
@@ -184,7 +176,7 @@ class DataBase:
 	if self.properties.has_key (prop):
 	    return self.properties [prop]
 
-	return 0
+	return 1
 
 
     def add (self, entry):
@@ -267,5 +259,18 @@ class DataBase:
     def update (self):
 	''' Updates the Entries stored in the database '''
 	
-	raise IOError, _("no update method defined")
+	if self.key.url [0] != 'file':
+	    raise IOError, "can't update the remote database `%s'" % self.url
+
+	name = self.key.url [2]
+
+	# backup file
+	os.rename (name, name + '.bak')
+
+	tmpfile = open (name, 'w')
+
+	Open.bibwrite (self.iterator (), out = tmpfile, how = self.id)
+	tmpfile.close ()
+
+        return
 
