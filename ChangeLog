@@ -3,6 +3,12 @@
 	* Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Document.py: use of the
 	virtual fields -key- and -type- in the index list.
 
+	* Pyblio/Style/Generic.py: fixed numeric_keys.
+
+	* Pyblio/GnomeUI/Search.py: add the search term to the history
+	when the user clicked on search (and didn't use Enter to validate
+	its choice).
+	
 2000-08-28  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.in: Added no to ALL_LINGUAS.

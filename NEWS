@@ -1,5 +1,12 @@
 -*- text -*-
 
+New in 1.0.5  - 2000-09-
+
+        * saving of searched words
+	* formatting now respects the order in the index window
+	* display of key/type in the index window
+
+
 New in 1.0.4  - 2000-07-27
 
 	* fixed bugs in strict bibtex parsing
