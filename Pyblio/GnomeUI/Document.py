@@ -331,8 +331,69 @@ class Document (Connector.Publisher):
 
         if not self.confirm (): return
 
-        def dlg_cb_2 (dummy): return
+        def search_cb (dummy):
+            keyword  = string.strip (key_w.get_text ())
+            maxcount = max_w.get_value_as_int ()
+            displaystart = disp_s.get_value_as_int ()
+            field = field_combo_entry.get_text ()
+            abstract = checkbutton1.get_active ()
+            epubahead = checkbutton2.get_active ()
+            pubtype = pub_type_combo_entry.get_text ()
+            language = lang_combo_entry.get_text ()
+            subset = subset_combo_entry.get_text ()
+            agerange = age_range_combo_entry.get_text ()
+            humananimal = human_animal_combo_entry.get_text ()
+            gender = gender_combo_entry.get_text ()
+            entrezdate = entrez_date_combo_entry.get_text ()
+            pubdate = pub_date_combo_entry.get_text ()
+            fromdate = from_date_entry.get_text ()
+            todate = to_date_entry.get_text ()
 
+            # Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
+            while searchhistory.count(keyword) > 0: searchhistory.remove(keyword)
+            for x in range(len(searchhistory)): searchhistory[x] = searchhistory[x] + '\n'
+        
+            if keyword == "":
+                dlg.close ()
+                return
+            else: # save keyword to medline search history if it's a valid keyword
+                if len(searchhistory) < 10: # I only want a maximum of the 10 most recent keywords
+                    searchhistory.insert(0,keyword+'\n') # I don't want to append to the list, I want to add the most recent search term at the top of the list
+                else:
+                    del searchhistory[9] # essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
+                    searchhistory.insert(0,keyword+'\n')
+                try:
+                    if not os.path.exists(os.path.expanduser('~')+'/.pybliographer'):
+                        os.mkdir(os.path.expanduser('~')+'/.pybliographer')
+                    pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches','w') # save the search history
+                    pybsearchhis.writelines(searchhistory)
+                    pybsearchhis.close()
+                except IOError:
+                    print "Can't save search history."
+                
+                # Call the actual function to do the search and then return the results into url: 16 parameters passed altogether
+                Utils.set_cursor (self.w, 'clock')
+                url = Query.medline_query (keyword,maxcount,displaystart,field,abstract,epubahead,pubtype,language,subset,agerange,humananimal,gender,entrezdate,pubdate,fromdate,todate)
+                Utils.set_cursor (self.w, 'normal')
+                self.open_document (url, 'medline', no_name = TRUE) #actual call to open doc
+                dlg.close ()
+                return
+
+        def cancel_cb (dummy): return
+
+        def help_cb (dummy):            # Print partial instructions on use of the limits
+            dlg_help = GnomeDialog (_("Medline/PubMed Online Search Help"), 'Ok')
+            hbox2 = GtkHBox ()
+            instructions = GtkLabel ("o   Leave options below unchanged if you do not want your search limited.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Boolean operators AND, OR, NOT must be in upper case.\no   If search fields tags are used, enclose in square brackets with no space\n     between the search term and the tag, e.g., rubella[ti].\no   Search limits may exclude \"in process\" and \"publisher supplied\" citations.\no   For more help goto: http://www.ncbi.nlm.nih.gov:80/entrez/query/static/help/pmhelp.html")
+            instructions.set_justify (0) # LEFT justify the instructions
+            hbox2.pack_start (instructions)
+            dlg_help.vbox.pack_start (hbox2)
+            dlg_help.set_close (1)
+            dlg_help.show_all ()
+            dlg_help.run_and_close ()
+            return
+
+        # Functions are defined above (callbacks for each button). The search interface is designed below and drawn.
         # Load up the past search queries by reading the file .pybsearchhis in the user's home directory; otherwise, the list will be empty via the searchhistory = [''] command
         try:
             pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches', 'r')
@@ -345,9 +406,13 @@ class Document (Connector.Publisher):
         for x in range(0,len(searchhistory)):
             searchhistory[x] = string.replace(searchhistory[x],'\n','') 
 
-        dlg = GnomeOkCancelDialog (_("Enter your Medline query"), dlg_cb_2, self.w)
-        key_w_combo = GtkCombo() # make it a combo box so that past search entries can be viewed
-        key_w_combo.set_popdown_strings(searchhistory)
+        dlg = GnomeDialog (_("Online PubMed/Medline Query"), 'Search', 'Cancel', 'Help')
+        dlg.button_connect (0, search_cb)
+        dlg.button_connect (1, cancel_cb)
+        dlg.button_connect (2, help_cb)
+        dlg.set_default (0)
+        key_w_combo = GtkCombo () # make it a combo box so that past search entries can be viewed
+        key_w_combo.set_popdown_strings (searchhistory)
         key_w = key_w_combo.entry # the query string will be loaded onto key_w assigned here
         key_w.set_text ('') # the entry should be empty; if this option is not set, the first list item will show instead
         key_w.set_editable (TRUE)
@@ -356,7 +421,7 @@ class Document (Connector.Publisher):
         max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
         disp_s = GtkSpinButton (adj=adj2, digits=0) # disp_s is the starting number of the entry to begin displaying; e.g. if for a certain query there is a total of 550 results, if the max_w is set to 100 and the disp_s is set to 400, there will be 100 results shown starting from result number 400 and ending at 499
 
-        hbox1 = GtkHBox()
+        hbox1 = GtkHBox ()
         hbox1.pack_start (GtkLabel (_("Search PubMed for: ")))
         hbox1.pack_start (key_w_combo)
         hbox1.pack_start (GtkLabel (_("Maximum number\nof results: ")))
@@ -365,18 +430,9 @@ class Document (Connector.Publisher):
         hbox1.pack_start (disp_s)
         dlg.vbox.pack_start (hbox1)
         
-        hseparator1 = GtkHSeparator()
+        hseparator1 = GtkHSeparator ()
         dlg.vbox.pack_start (hseparator1)
 
-        # Print partial instructions on use of the limits
-        hbox2 = GtkHBox()
-        instructions = GtkLabel ("o   Leave options below unchanged if you do not want your search limited.\no   Use the \"All Fields\" pull-down menu to specify a field.\no   Boolean operators AND, OR, NOT must be in upper case.\no   If search fields tags are used, enclose in square brackets with no space\n     between the search term and the tag, e.g., rubella[ti].\no   Search limits may exclude \"in process\" and \"publisher supplied\" citations.\no   For more help goto: http://www.ncbi.nlm.nih.gov:80/entrez/query/static/help/pmhelp.html")
-        instructions.set_justify (0) # LEFT justify the instructions
-        hbox2.pack_start (instructions)
-        dlg.vbox.pack_start (hbox2)
-
-        hseparator2 = GtkHSeparator()
-        dlg.vbox.pack_start (hseparator2)
         dlg.vbox.pack_start (GtkLabel (_("Limited to:")))
 
         # Below are all the limits allowable. All entries are not editable, except for the date entries.
@@ -464,50 +520,7 @@ class Document (Connector.Publisher):
         dlg.vbox.pack_start (hbox8)
         
         dlg.show_all ()
-        dlg.run_and_close ()
-        
-        keyword  = string.strip (key_w.get_text ())
-        maxcount = max_w.get_value_as_int ()
-        displaystart = disp_s.get_value_as_int ()
-        field = field_combo_entry.get_text ()
-        abstract = checkbutton1.get_active ()
-        epubahead = checkbutton2.get_active ()
-        pubtype = pub_type_combo_entry.get_text ()
-        language = lang_combo_entry.get_text ()
-        subset = subset_combo_entry.get_text ()
-        agerange = age_range_combo_entry.get_text ()
-        humananimal = human_animal_combo_entry.get_text ()
-        gender = gender_combo_entry.get_text ()
-        entrezdate = entrez_date_combo_entry.get_text ()
-        pubdate = pub_date_combo_entry.get_text ()
-        fromdate = from_date_entry.get_text ()
-        todate = to_date_entry.get_text ()
-
-        # Add an ending newline character to each query listed in the search history. This makes sure that when each item is written to the file, a separator is also written so that when read again later in another query (by readlines()), it is properly separated into the searchhistory list
-        while searchhistory.count(keyword) > 0: searchhistory.remove(keyword)
-        for x in range(len(searchhistory)): searchhistory[x] = searchhistory[x] + '\n'
-        
-        if keyword == "": return
-        else: # save keyword to medline search history if it's a valid keyword
-            if len(searchhistory) < 10: # I only want a maximum of the 10 most recent keywords
-                searchhistory.insert(0,keyword+'\n') # I don't want to append to the list, I want to add the most recent search term at the top of the list
-            else:
-                del searchhistory[9] # essentially remove the 10th item before adding the most recent search query, I just want the 10 past search histories saved
-                searchhistory.insert(0,keyword+'\n')
-            try:
-                if not os.path.exists(os.path.expanduser('~')+'/.pybliographer'):
-                    os.mkdir(os.path.expanduser('~')+'/.pybliographer')
-                pybsearchhis = open(os.path.expanduser('~')+'/.pybliographer/medlinesearches','w') # save the search history
-                pybsearchhis.writelines(searchhistory)
-                pybsearchhis.close()
-            except IOError:
-                print "Can't save search history."
-
-        # Call the actual function to do the search and then return the results into url: 16 parameters passed altogether
-        url = Query.medline_query (keyword,maxcount,displaystart,field,abstract,epubahead,pubtype,language,subset,agerange,humananimal,gender,entrezdate,pubdate,fromdate,todate)
-
-        self.open_document (url, 'medline', no_name = TRUE)
-        return
+        dlg.run ()
 
     def query_z3950server (self, * arg):
         ''' callback corresponding to the "Query a Z39.50 Server..." button '''
@@ -516,13 +529,15 @@ class Document (Connector.Publisher):
 
         def dlg_cb_2 (dummy): return
 
+        def help_cb (dummy): return
+
         try:
             if not os.path.exists(os.path.expanduser('~')+'/.pybliographer'):
                 os.mkdir(os.path.expanduser('~')+'/.pybliographer')
                 fd = open(os.path.expanduser('~')+'/.pybliographer/zservers','w')
                 fd.writelines(['Library of Congress|z3950.loc.gov|7090|Voyager\n', 'Aberdeen University|library.abdn.ac.uk|210|dynix\n', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS\n'])
                 fd.close()
-            if not os.path.exists(os.path.expanduser('~')+'/.pybliographer/zservers'): # this isn't really the correct use of os.path.exists, since I'm actually seeing if the file zserver exists 
+            if not os.path.exists(os.path.expanduser('~')+'/.pybliographer/zservers'): # this isn't really the correct use of os.path.exists? since I'm actually seeing if the _file_ zserver exists 
                 fd = open(os.path.expanduser('~')+'/.pybliographer/zservers','w')
                 fd.writelines(['Library of Congress|z3950.loc.gov|7090|Voyager\n', 'Aberdeen University|library.abdn.ac.uk|210|dynix\n', 'Bibsys.no|z3950.bibsys.no|2100|BIBSYS\n'])
                 fd.close()
@@ -547,7 +562,9 @@ class Document (Connector.Publisher):
             server['Database'+`i`] = string.replace (linespl[3], '\n', '')
             i = i+1
         
-        dlg = GnomeOkCancelDialog (_("Enter your query"), dlg_cb_2, self.w)
+        dlg = GnomeOkCancelDialog (_("Enter your query"), dlg_cb_2, parent = self.w)
+        dlg.append_button ('Help')
+        dlg.button_connect (2, help_cb)
         adj1   = GtkAdjustment (20, 0, 10000, 1.0, 100.0, 0.0)
         adj2   = GtkAdjustment (1, 0, 10000, 1.0, 100.0, 0.0)
         max_w = GtkSpinButton (adj=adj1, digits=0) # max_w is the max number of returns the user wants
@@ -639,6 +656,7 @@ class Document (Connector.Publisher):
         else:
             connectcount = 1
             accesscomplete = FALSE
+            Utils.set_cursor (self.w, 'clock')
             while connectcount < 5 and not accesscomplete:
                 try:
                     query_result = Query.z3950_query (serveraddress,port,database,displaystart,maxresults,term1,term1attribute,term2,term2attribute,operator)
@@ -650,20 +668,15 @@ class Document (Connector.Publisher):
                         self.open_document (pybzsearchfile,'bibtex',no_name = TRUE)
                         accesscomplete = TRUE
                     else:
-                        ####################################################################################################
-                        #eventually this will be replaced with a popup window informing the user that there were no results#
-                        ####################################################################################################
-                        #pybzsearchfile = tempfile.mktemp('.bib')
-                        #pybzsearch = open(pybzsearchfile,'w')
-                        #pybzsearch.writelines('No results\n') 
-                        #pybzsearch.close()
+                        Utils.error_dialog (_("No Results Found"), "No results matched your query", parent = self.w)
                         accesscomplete = TRUE
                 except (EOFError, NameError):
                     print "Can't connect to server " +serveraddress +". Attempt " + `connectcount+1` + "."  #debugging
                     connectcount = connectcount + 1
                 except AssertionError, errmessage:
-                    print errmessage
+                    Utils.error_dialog (_("Search Error"), errmessage, parent = self.w)
                     accesscomplete = TRUE
+            Utils.set_cursor (self.w, 'normal')
             return
 
     def merge_database (self, * arg):
