@@ -122,11 +122,11 @@ extern "C" {
     */
 
     typedef struct {
-	BibtexFieldType    type;
-	BibtexStruct *     structure;
-
 	gboolean converted;
 	gboolean loss;
+
+	BibtexFieldType    type;
+	BibtexStruct *     structure;
 
 	gchar * text;
 
@@ -142,14 +142,14 @@ extern "C" {
     */
 
     typedef struct {
-	gchar * type;
-	gchar * name;
-	
 	int length;
 	int offset;
 
 	int start_line;
 
+	gchar * type;
+	gchar * name;
+	
 	BibtexStruct * preamble;
 
 	GHashTable * table;
@@ -168,6 +168,14 @@ extern "C" {
     BibtexSourceType;
 
     typedef struct {
+	gboolean eof, error;
+	gboolean strict;
+
+	int line;
+	int offset;
+
+	int debug;
+
 	BibtexSourceType type;
 
 	gchar * name;
@@ -177,15 +185,8 @@ extern "C" {
 	    gchar * string;
 	} source;
 
-	int line;
-	int offset;
-
 	GHashTable * table;
 	gpointer buffer;
-
-	int debug;
-	gboolean eof, error;
-	gboolean strict;
     }
     BibtexSource;
 
