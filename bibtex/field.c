@@ -82,7 +82,7 @@ bibtex_field_destroy (BibtexField * field,
 
     g_return_if_fail (field != NULL);
     
-    if (value) {
+    if (value && field->structure) {
 	bibtex_struct_destroy (field->structure, TRUE);
     }
 
