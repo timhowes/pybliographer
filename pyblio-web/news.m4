@@ -1,12 +1,18 @@
 m4_dnl -*- html -*-
 m4_dnl
 m4_dnl --------------------------------------------------
-m4_define(pyblio_last,  [[1.0.6]])m4_dnl
+m4_define(pyblio_last,  [[1.0.7]])m4_dnl
 m4_dnl --------------------------------------------------
 m4_dnl
 m4_define(news_item,[[[[<dt><i>$1</i><dd>$2]]]])m4_dnl
 m4_dnl
 m4_define(pyblio_news, [[
+
+news_item([[21/11/2000]], [[Version 1.0.7 is out. I added a test so
+that a file won't be overwritten if it has been modified outside of
+pybliographic. In addition, Dominique Burget helped to improve the
+Ovid parser. Finally, the remaining problems for bibtex conversion
+should be now fixed.]]),
 
 news_item([[17/10/2000]], [[We are at 1.0.6. A few bug fixes (for
 Refer to BibTeX conversion), the ability to compile with Python 2.0,
