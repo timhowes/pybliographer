@@ -129,6 +129,8 @@ StringMapping commands [] = {
     {"AA", "Å"},
     {"guillemotleft",    "«"},
     {"guillemotright",   "»"},
+    {"flqq",             "«"},
+    {"frqq",             "»"},
     {"guilsingleft",     "<"},
     {"guilsingright",    ">"},
     {"textquestiondown", "¿"},
