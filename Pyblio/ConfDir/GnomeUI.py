@@ -11,15 +11,22 @@ tooltips are enabled """)
 
 Config.define ('gnomeui/monospaced', """ A monospaced font, for native edition """)
 
+Config.define ('gnomeui/native-as-default', """ Should we edit the
+entries in their native format by default ? """)
+
+Config.define ('gnomeui/searched', """ List of searchable fields """)
 
 # --------------------------------------------------
 from Pyblio.GnomeUI import Utils, Editor
 import gtk
 
+Config.set ('gnomeui/searched', ['Author', 'Title', 'Abstract', 'Date'])
+
 Config.set ('gnomeui/monospaced',
             gtk.load_font ('-*-*-*-r-normal-*-*-*-*-*-c-*-iso8859-1'))
 
 Config.set ('gnomeui/tooltips', 1)
+Config.set ('gnomeui/native-as-default', 0)
 
 h = Config.get ('base/fields').data
 

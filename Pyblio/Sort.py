@@ -19,6 +19,8 @@
 # 
 # $Id$
 
+from Pyblio import Types
+
 class Sort:
     ''' This class defines the methods used to sort a database '''
     
@@ -80,5 +82,5 @@ class FieldSort:
         try:
             return entry [self.field]
         except KeyError:
-            return entry.type (self.field) ('')
+            return Types.get_field (self.field).type ('')
         

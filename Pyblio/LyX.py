@@ -25,7 +25,7 @@ _ = gettext.gettext
 
 from Pyblio import Config
 
-class LyXclient:
+class LyXClient:
     def __init__ (self):
         self.pin = None
         self.pout = None
