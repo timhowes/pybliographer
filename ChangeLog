@@ -1,3 +1,8 @@
+2000-10-20  Martin Norbäck  <d95mback@dtek.chalmers.se>
+
+	* pybliographic.desktop: added Swedish description
+	* configure.in: added da, pt_BR and sv to ALL_LINGUAS
+
 2000-10-15  Yukihiro Nakai  <nakai@gnome.gr.jp>
 
 	* configure.in: Add ja to ALL_LINGUAS

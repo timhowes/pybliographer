@@ -2,11 +2,13 @@
 Name=Pybliographic
 Name[da]=Pybliografer
 Name[ja]=Pybliographer
+Name[sv]=Pybliographer
 Comment=Bibliographic database editor
 Comment[da]=Editor for bibliografiske databaser
 Comment[fr]=Éditeur de bases de données bibliographiques
 Comment[ja]=Ê¸¸¥¥Ç¡¼¥¿¥Ù¡¼¥¹¥¨¥Ç¥£¥¿
 Comment[pt_BR]=Editor de banco de dados bibliográfico
+Comment[sv]=Redigeringsprogram för bibliografidatabaser
 Comment[uk]=òÅÄÁËÔÏÒ Â¦ÂÌ¦ÏÇÒÁÆ¦ŞÎÏ§ ÂÁÚÉ ÄÁÎÉÈ
 Icon=pybliographic.png
 Exec=pybliographic
