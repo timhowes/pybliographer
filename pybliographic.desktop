@@ -1,7 +1,9 @@
 [Desktop Entry]
 Name=Pybliographic
+Name[da]=Pybliografer
 Name[ja]=Pybliographer
 Comment=Bibliographic database editor
+Comment[da]=Editor for bibliografiske databaser
 Comment[fr]=Éditeur de bases de données bibliographiques
 Comment[ja]=Ê¸¸¥¥Ç¡¼¥¿¥Ù¡¼¥¹¥¨¥Ç¥£¥¿
 Comment[pt_BR]=Editor de banco de dados bibliográfico
