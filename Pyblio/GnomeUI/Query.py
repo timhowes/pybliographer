@@ -21,10 +21,15 @@
 
 ''' Manage the generic query interface. '''
 
-from libglade import GladeXML
-from Pyblio import version
+from gtk import *
+from gnome.ui import *
 
-import os
+from libglade import GladeXML
+from Pyblio import version, Exceptions
+from Pyblio.BaseQuery import Connection
+from Pyblio.GnomeUI import Utils
+
+import os, pickle
 
 path = os.path.join ('Pyblio', 'GnomeUI', 'query.glade')
 
@@ -35,21 +40,131 @@ if not os.path.exists (path):
 class QueryUI:
 
     def __init__ (self, parent = None):
-
-        xml = GladeXML (path, 'query')
-        xml.signal_autoconnect ({ 'search' : self.search,
-                                  'cancel' : self.cancel })
+        self.xml = GladeXML (path, 'query')
+        self.xml.signal_autoconnect ({ 'search' : self.search,
+                                       'cancel' : self.cancel,
+                                       'edit'   : self.cnx_edit })
         
-        self.w = xml.get_widget ('query')
+        self.w_search = self.xml.get_widget ('query')
+        self.w_cnx    = None
 
-        if parent: self.w.set_parent (parent)
+        if parent:
+            self.w_search.set_parent (parent)
 
-        self.w.show_all ()
+        # get the previous connection settings
+        self.file = os.path.expanduser ('~/.pybliographer/connections')
+        self.load ()
+        
+        # ...and display them in the dropdown menu
+        menu = self.xml.get_widget ('query_option').get_menu ()
+
+        for cnx in self.cnx:
+            menu.append (GtkMenuItem (cnx.name))
+        
+        self.w_search.show ()
         return
 
+    def load (self):
+        if os.path.exists (self.file):
+            self.cnx = pickle.load (open (self.file, 'r'))
+        else:
+            self.cnx = []
+        return
+
+    def save (self):
+        pickle.dump (self.cnx, open (self.file, 'w'))
+        return
+        
     def search (self, * arg):
-        print arg
+        
+        if self.w_cnx:
+            self.w_cnx.destroy ()
+        self.w_search.destroy ()
+        return
 
     def cancel (self, * arg):
-        print arg
-                
+        if self.w_cnx:
+            self.w_cnx.destroy ()
+        self.w_search.destroy ()
+        return
+
+
+    def cnx_validate (self, * arg):
+        self.save ()
+        
+        self.w_cnx.destroy ()
+        self.w_cnx = None
+        return
+
+    def cnx_cancel (self, * arg):
+        # reload the default list
+        self.load ()
+
+        self.w_cnx.destroy ()
+        self.w_cnx = None
+        return
+
+    def cnx_entry (self, * arg):
+        file = arg [0].get_text ()
+
+        try:
+            cnx = Connection (file)
+        except Exceptions.SyntaxError, msg:
+            w = GnomeErrorDialog ("In the XML Connection '%s':\n%s" %
+                                  (os.path.basename (file), msg),
+                                  parent = self.w_cnx)
+            w.show_all ()
+
+        self.cnx.insert (0, cnx)
+        self.cnx_update ()
+        return
+
+    def cnx_update (self):
+        list = self.x_cnx.get_widget ('cnx_list')
+        list.freeze ()
+        list.clear ()
+
+        for cnx in self.cnx:
+            list.append ((cnx.name.encode ('latin-1'),
+                          cnx.type.encode ('latin-1'),
+                          cnx.host.encode ('latin-1')))
+
+        list.thaw ()
+        return
+
+    def cnx_delete (self, * arg):
+        list = self.x_cnx.get_widget ('cnx_list')
+        row = list.selection [0]
+        list.remove (row)
+        
+        del self.cnx [row]
+        return
+    
+
+    def cnx_edit (self, * arg):
+        if self.w_cnx: return
+
+        self.x_cnx = GladeXML (path, 'connections')
+
+        self.x_cnx.signal_autoconnect ({ 'validate'  : self.cnx_validate,
+                                         'cancel'    : self.cnx_cancel,
+                                         'cnx_entry' : self.cnx_entry,
+                                         'delete'    : self.cnx_delete,
+                                         })
+        
+        self.w_cnx = self.x_cnx.get_widget ('connections')
+
+        accelerator = GtkAccelGroup ()
+        self.w_cnx.add_accel_group (accelerator)
+
+        # the invisible delete button
+        delete = self.x_cnx.get_widget ('delete')
+        delete.add_accelerator ('clicked', accelerator,
+                                GDK.D, GDK.CONTROL_MASK, 0)
+
+        self.cnx_update ()
+        
+        self.w_cnx.set_parent (self.w_search)
+        self.w_cnx.show ()
+        return
+        

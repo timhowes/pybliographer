@@ -21,6 +21,8 @@
 
 import string
 
+import xml.sax
+
 from xml.dom import minidom
 
 from Pyblio import Exceptions
@@ -31,7 +33,12 @@ class Query:
     ''' A base query class that must be derived by each search
     connection family '''
 
-    pass
+    def __init__ (self, host, parameters):
+        ''' Create a connection with a remote server  '''
+        pass
+
+    def search (self, args):
+        pass
 
 
 def getString (element):
@@ -50,38 +57,44 @@ class Connection:
 
     def __init__ (self, description):
 
-        dom  = minidom.parse (open (description, 'r'))
+        try:
+            dom  = minidom.parse (open (description, 'r'))
+        except xml.sax.SAXParseException:
+            raise Exceptions.SyntaxError ('Cannot parse the XML file')
+        
         root = dom.documentElement
         
         if string.lower (root.nodeName) != 'pyblioquery':
-            raise Exceptions.ParserError ('invalid XML file')
+            raise Exceptions.SyntaxError ('invalid XML file')
 
         cnx = root.getElementsByTagName ('Connection') [0]
         
         try:
-            cnx_type = cnx.attributes ['type'].value
+            self.type = cnx.attributes ['type'].value
         except KeyError:
-            raise Exceptions.ParserError ('missing type in connection')
+            raise Exceptions.SyntaxError ('missing type in connection')
 
         self.name = getString (cnx.getElementsByTagName ('Name') [0])
-        
-        host = getString (cnx.getElementsByTagName ('Host') [0])
+        self.host = getString (cnx.getElementsByTagName ('Host') [0])
 
-        args = {}
+        self.args = {}
 
         for param in cnx.getElementsByTagName ('Parameter'):
             key = param.attributes ['name'].value
             val = getString (param)
 
-            args [key] = val
+            self.args [key] = val
 
-            
-        query = Autoload.get_by_name ('query', cnx_type).data
+        return
+
+    def engine (self):
+        
+        query = Autoload.get_by_name ('query', self.type).data
+        
         if query is None:
-            raise Exceptions.ParserError ('unknown query module: %s' %
+            raise Exceptions.SyntaxError ('unknown query module: %s' %
                                           cnx_type)
 
-        self.engine = query (host, args)
-        return
+        return query (self.host, self.args)
             
         

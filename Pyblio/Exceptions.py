@@ -53,6 +53,9 @@ class SimpleError:
 class FormatError (SimpleError):
     pass
 
+class SyntaxError (SimpleError):
+    pass
+
 
 class FileError (SimpleError):
     pass
