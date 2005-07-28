@@ -386,7 +386,7 @@ msgstr "_Asetukset"
 
 #: Pyblio/GnomeUI/Document.py:103
 msgid "_Help"
-msgstr "_Ohje"
+msgstr "O_hje"
 
 #: Pyblio/GnomeUI/Document.py:107
 msgid "Open"
