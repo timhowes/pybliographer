@@ -1,4 +1,8 @@
-2005-03-16  Adam Weinberger  <adamw@gnome.org>
+2006-01-28  Clytie Siddall <clytie@riverland.net.au>
+
+	* configure.in	Added vi in ALL_LINGUAS line.
+	
+	2005-03-16  Adam Weinberger  <adamw@gnome.org>
 
 	* configure.in: Added en_CA to ALL_LINGUAS.
 
@@ -174,11 +178,11 @@
 
 	* configure.in: Added "sk" to ALL_LINGUAS.
 
-2001-12-07  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+2001-12-07  Frï¿½dï¿½ric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/GnomeUI: implemented an incremental search.
 
-2001-12-05  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+2001-12-05  Frï¿½dï¿½ric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/GnomeUI: added a "Add" button in the toolbar, and added a
 	default sort method for the entries. This default can be set from
@@ -187,7 +191,7 @@
 	* Pyblio/Format/Medline.py: fixed problem with authors without
 	first names (like "et al.").
 
-2001-11-28  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+2001-11-28  Frï¿½dï¿½ric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/GnomeUI: added Medline Query interface
 	* Pyblio/Format/Medline.py: consider first names as set of
@@ -200,7 +204,7 @@
 	Rudmann.
 	
 	
-2001-10-24  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+2001-10-24  Frï¿½dï¿½ric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/GnomeUI/Editor.py: added . as a valid character for a
 	field key.
@@ -209,7 +213,7 @@
 	* Pyblio/GnomeUI/Index.py: possibility to copy/paste entry keys
 	instead of content.
 
-2001-10-17  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+2001-10-17  Frï¿½dï¿½ric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/Fields.py: remove white space around URLs
 	
@@ -219,18 +223,18 @@
 	lib.  From Andreas Schwab.
 	* compiled/Makefile.pre.in (Setup): Ditto.
 
-2001-06-26  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+2001-06-26  Frï¿½dï¿½ric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/Format/BibTeX.py: fixed order of referenced/referencing entries
 
-2001-06-25  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+2001-06-25  Frï¿½dï¿½ric Gobry  <frederic.gobry@smartdata.ch>
 
 	* Pyblio/Format: added isifile from Peter Schulte-Stracke
 	* bibtex/reverse.c: better analyze of author output
 	* Pyblio/Base.py: update files by creating a temporary buffer
 	* Pyblio/GnomeUI/Entry.py: use of GtkHTML when available
 
-2001-03-28  Frédéric Gobry  <frederic.gobry@smartdata.ch>
+2001-03-28  Frï¿½dï¿½ric Gobry  <frederic.gobry@smartdata.ch>
 
 	* configure.in: handled the case where no DISPLAY is available
 	during configuration (this breaks importing gtk)
@@ -254,7 +258,7 @@
 	* bibtex/accents.c: completed latin1 set
 	* bibtex/author.c: parsing of "template" authors, like {, and ,}
 
-2000-11-30  Martin Norbäck  <d95mback@dtek.chalmers.se>
+2000-11-30  Martin Norbï¿½ck  <d95mback@dtek.chalmers.se>
 
 	* pybliographer.desktop: Added Swedish translation
 
@@ -348,7 +352,7 @@
 
 2000-07-18  Fred  <fred@lithpc10.epfl.ch>
 
-	* bibtex/accents.c, bibtex/bibparse.y: parsing of ß and of
+	* bibtex/accents.c, bibtex/bibparse.y: parsing of ï¿½ and of
 	@comment in strict mode
 
 	* Pyblio/GnomeUI/Index.py, Pyblio/GnomeUI/Document.py: select an
@@ -978,7 +982,7 @@
 	* Pyblio/Makefile.am, Pyblio/TextUI.py, Pyblio/Base.py, Pyblio/LyX.py:
 	Small bug fixes -> entry.name
 
-	* po/cat-id-tbl.c, po/fr.po, po/POTFILES.in: Mise à jour...
+	* po/cat-id-tbl.c, po/fr.po, po/POTFILES.in: Mise ï¿½ jour...
 
 1999-11-16  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
@@ -1082,7 +1086,7 @@
 	ajout de l'intl
 
 	* intl/explodename.c, intl/finddomain.c, intl/gettext.c, intl/gettext.h, intl/gettextP.h, intl/hash-string.h, intl/intl-compat.c, intl/l10nflist.c, intl/libgettext.h, intl/libintl.h, intl/loadinfo.h, intl/loadmsgcat.c, intl/localealias.c, intl/po2tbl.sed.in, intl/textdomain.c, intl/xopen-msg.sed, intl/bindtextdom.c, intl/cat-compat.c, intl/ChangeLog, intl/dcgettext.c, intl/dgettext.c, intl/Makefile.in, intl/TAGS, intl/VERSION:
-	ajout de líntl
+	ajout de lï¿½ntl
 
 	* etc/installer.in: ajout de locale
 
@@ -1152,7 +1156,7 @@
 1999-08-18  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* Pyblio/GnomeUI/Pybliographic.py, Pyblio/Open.py, NEWS:
-	Oublié le "new"
+	Oubliï¿½ le "new"
 
 	* scripts/pybconvert.py, scripts/pybscript.in: -isolated the script
 
@@ -1260,8 +1264,8 @@
 1999-07-20  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* bibtex/bibtex.h, bibtex/field.c, bibtex/struct.c, bibtex/bibtex.c, bibtex/bibparse.y:
-	- meilleur récupération en cas de , manquante
-	- remise à FALSE de bibtex_parser_is_content pour pouvoir reparser un fichier
+	- meilleur rï¿½cupï¿½ration en cas de , manquante
+	- remise ï¿½ FALSE de bibtex_parser_is_content pour pouvoir reparser un fichier
 
 1999-07-19  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
@@ -1269,7 +1273,7 @@
 	Rennomage des bibliotheques
 
 	* bibtex/bibtex.h, bibtex/entry.c, bibtex/bibparse.y, bibtex/bibtex.c, bibtex/biblex.l:
-	amélioration du parser (gestion du preamble)
+	amï¿½lioration du parser (gestion du preamble)
 
 1999-07-16  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
@@ -1314,7 +1318,7 @@
 	...toward new parser compliance
 
 	* bibtex/testparser.c, bibtex/parsername.h, bibtex/stringutils.c, bibtex/struct.c, bibtex/entry.c, bibtex/field.c, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/biblex.l, bibtex/bibparse.y, bibtex/accents.c, bibtex/Makefile.am:
-	Parsing plus correct des entrées où un {} est inclus dans un mot...
+	Parsing plus correct des entrï¿½es oï¿½ un {} est inclus dans un mot...
 
 	* bibtex/TODO: ...to remind me of what's missing !
 
@@ -1341,13 +1345,13 @@
 1999-04-21  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* bibtex/biblex.l, bibtex/bibparse.y, bibtex/bibtex.h, bibtex/field.c, bibtex/parsername.h, bibtex/struct.c, bibtex/testparser.c, bibtex/Makefile.am:
-	Analalyse des auteurs au format nom, prénom...
+	Analalyse des auteurs au format nom, prï¿½nom...
 
 1999-04-13  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* bibtex/field.c, bibtex/struct.c, bibtex/testparser.c, bibtex/bibtex.c, bibtex/bibtex.h, bibtex/entry.c, bibtex/bibparse.y, bibtex/accents.c, bibtex/Makefile.am:
-	Creation de Fields pour chaque entrée
-	manque encore la décomposition des auteurs
+	Creation de Fields pour chaque entrï¿½e
+	manque encore la dï¿½composition des auteurs
 
 1999-04-07  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
@@ -1371,7 +1375,7 @@
 1999-03-02  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* bibtex/bibparse.y:
-	Pour un champ redéfini, indiquer le nom du champ, pas son contenu !
+	Pour un champ redï¿½ï¿½fini, indiquer le nom du champ, pas son contenu !
 
 1998-12-02  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
@@ -1381,27 +1385,27 @@
 1998-11-24  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* Pyblio/Format/BibTeX.py:
-	Gérer la récursivité dans les foreach (pour éviter les boucles infinies)
+	Gï¿½rer la rï¿½cursivitï¿½ dans les foreach (pour ï¿½viter les boucles infinies)
 
 1998-11-11  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* compiled/bibtexparser.c, compiled/Setup.in, bibtex/bibtexparser.c, compiled/Makefile.pre.in, bibtex/Makefile.am, Pyblio/Help.py, configure.in, Makefile.am:
-	Utilisation du système Python de configuration des modules
+	Utilisation du systï¿½me Python de configuration des modules
 
 1998-11-09  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* bibtex/Makefile.am: * installation de bibtex.h
 
 	* Pyblio/Format/BibTeX.py, Pyblio/Open.py, pybliographer.py, configure.in, Pyblio/Base.py, Makefile.am, NEWS, Pyblio/TextUI.py, TODO, AUTHORS, ChangeLog, INSTALL:
-	* Completer les fichiers à distribuer
-	* Ajout de pybopen qui décharge basics
+	* Completer les fichiers ï¿½ distribuer
+	* Ajout de pybopen qui dï¿½charge basics
 
 1998-10-29  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
 	* Pyblio/Base.py, Pyblio/Format/BibTeX.py, pybliographer.py, configure.in, Pyblio/TextUI.py, TODO, INSTALL, README:
 	Ajustements sur la gestion des " et {} + un peu de doc + function comment
 
-	* bibtex/biblex.l: Suppression des espaces non souhaités
+	* bibtex/biblex.l: Suppression des espaces non souhaitï¿½s
 
 1998-10-28  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
@@ -1411,7 +1415,7 @@
 	* bibtex/Makefile.am: Simplification
 
 	* pybrc.py, pybliograph.in, pybliographer.py, Pyblio/Base.py, Pyblio/Format/BibTeX.py, Pyblio/Help.py, configure.in, Pyblio/TextUI.py, TODO, Makefile.am:
-	Utilisation generalisée de Reference + Doc sommaire
+	Utilisation generalisï¿½e de Reference + Doc sommaire
 
 1998-10-27  Frederic Gobry, EPFL DI-LITH  <gobry@lithsun15.nisplus.lith.di.epfl.ch>
 
