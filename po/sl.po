@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: pybliographer master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=pybliographer&component=general\n"
 "POT-Creation-Date: 2010-09-11 16:41+0000\n"
-"PO-Revision-Date: 2010-09-12 12:58+0100\n"
-"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
+"PO-Revision-Date: 2010-09-12 19:13+0100\n"
+"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1244,6 +1244,7 @@ msgstr ""
 "       -F noga, --footer=footer\t določi datoteko noge\n"
 "       -l 'izhod', --list='output'\t razvrsti razpoložljive možnosti zapisa izhoda\n"
 "       -h, --help\t\t\t prikaže to sporočilo pomoči\n"
+"    "
 
 #: ../scripts/pybformat.py:48
 #, python-format
