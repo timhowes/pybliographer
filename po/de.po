@@ -1219,6 +1219,7 @@ msgstr ""
 "      -l 'output', --list='output'\tAlle verfügbaren Ausgabeformate "
 "auflisten\n"
 "      -h, --help\t\t\tDiese Hilfe anzeigen\n"
+"    "
 
 #: ../scripts/pybformat.py:48
 #, python-format
