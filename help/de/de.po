@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer master\n"
+"Project-Id-Version: pybliographer help master\n"
 "POT-Creation-Date: 2010-09-11 16:41+0000\n"
-"PO-Revision-Date: 2010-09-12 18:00+0100\n"
+"PO-Revision-Date: 2010-09-13 22:24+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -555,6 +555,10 @@ msgid ""
 "admissible bibliography file in order to open it always on startup, if no "
 "files are specified on the command line. Example:"
 msgstr ""
+"Es ist möglich, die Umgebungsvariable PYBLIOGRAPHER_DATABASE auf eine "
+"erreichbare Bibliografiedatei zu setzen, um diese immer beim Start der "
+"Anwendung zu öffnen, fallskeine Dateien in der Befehlszeile angegeben werden. "
+"Beispiel:"
 
 #: C/pybliographer.xml:282(prompt) C/pybliographer.xml:283(prompt)
 #: C/pybliographer.xml:287(prompt) C/pybliographer.xml:886(prompt)
@@ -593,6 +597,15 @@ msgid ""
 "direct queries on Medline, and saving selected references in different "
 "formats are also possible."
 msgstr ""
+"Die grafische Benutzeroberfläche wird »pybliographic« genannt. Sie bietet "
+"einen einfachen Zugang zu den meistgenutzten Funktionen der zugrunde "
+"liegenden Engine »pybliographer« und ermöglicht Ihnen das Suchen, Sortieren "
+"und Ändern bibliografischer Einträge. Weiterhin ist das direkte Einfügen von "
+"Referenzen in <ulink type=\"http\" url=\"http://www.lyx.org/"
+"\"><application>Lyx </application></ulink> und <ulink type=\"http\" url="
+"\"http://kile.sourceforge.net/\"><application>Kile</application></ulink> "
+"möglich, direktes Abfragen von Medline und das Speichern ausgewählter "
+"Referenzen in anderen Formaten, falls möglich."
 
 #: C/pybliographer.xml:310(title)
 msgid "Creating a new database"
@@ -604,6 +617,9 @@ msgid ""
 "database. The type of this database will be determined when you will save it "
 "the first time."
 msgstr ""
+"Wenn pybliographic geöffnet wird, können Sie unmittelbar mit dem Erstellen "
+"einer neuen Datenbank beginnen. Der Typ der Datenbank wird festgelegt, sobald "
+"Sie sie zum ersten Mal speichern."
 
 #: C/pybliographer.xml:316(para)
 msgid ""
@@ -612,12 +628,19 @@ msgid ""
 "<guibutton>Add</guibutton> toolbar button or click with the right button in "
 "the list window and select <guibutton>Add</guibutton>."
 msgstr ""
+"Über den Menüeintrag <menuchoice><guimenu>Bearbeiten</"
+"guimenu><guimenuitem>Hinzufügen</guimenuitem></menuchoice> oder direkt über "
+"den Werkzeugleistenknopf <guibutton>Hinzufügen</guibutton> können Sie einen "
+"neuen Eintrag hinzufügen. Alternativ klicken Sie mit der rechten Maustaste in "
+"das Listenfenster und wählen Sie <guibutton>Hinzufügen</guibutton>."
 
 #: C/pybliographer.xml:323(para)
 msgid ""
 "You will find more information on the main window's usage in <xref linkend="
 "\"gui-navigate\"/>."
 msgstr ""
+"Weitere Informationen über die Verwendung des Hauptfensters finden Sie in "
+"<xref linkend=\"gui-navigate\"/>."
 
 #: C/pybliographer.xml:329(title) C/pybliographer.xml:338(title)
 msgid "Opening a database"
@@ -630,6 +653,10 @@ msgid ""
 "<menuchoice><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></"
 "menuchoice>."
 msgstr ""
+"Um eine vorhandene Datenbank zu öffnen, klicken Sie auf den "
+"Werkzeugleistenknopf <guibutton>Öffnen</guibutton> oder öffnen Sie das Menü "
+"<guimenu>Datei</guimenu> und wählen Sie <menuchoice><guimenu>Datei</"
+"guimenu><guimenuitem>Öffnen</guimenuitem></menuchoice>."
 
 #: C/pybliographer.xml:345(phrase)
 msgid "Shows Pybliographer open file window."
@@ -642,6 +669,11 @@ msgid ""
 "existing database, the type can be guessed if you select <guibutton>- "
 "According to file suffix -</guibutton>."
 msgstr ""
+"Ein Dateiauswahldialog wird geöffnet (siehe <xref linkend=\"figopen\"/>), in "
+"welchem Sie eine Datei auswählen können. Der Datenbanktyp kann ebenfalls "
+"ausgewählt werden. Beim Öffnen einer vorhandenen Datenbank können Sie den "
+"Datenbanktyp automatisch bestimmen lassen, wenn Sie <guibutton>Der "
+"Dateiendung entsprechend</guibutton> wählen."
 
 #: C/pybliographer.xml:356(para)
 msgid ""
@@ -651,6 +683,11 @@ msgid ""
 "<menuchoice><guimenu>File</guimenu><guimenuitem>Open Location</guimenuitem></"
 "menuchoice> menu item."
 msgstr ""
+"Ebenso wie eine lokale Datei lässt sich auch eine Datei an einem entfernten "
+"Ort öffnen, indem Sie die Adresse der Datei (z.B. http://meine.seite/pyblio."
+"bib) im Dialog <guilabel>Ort öffnen</guilabel> eingeben. Diesen Dialog "
+"erreichen Sie im Menü <menuchoice><guimenu>Datei</guimenu><guimenuitem>Ort "
+"öffnen</guimenuitem></menuchoice>"
 
 #: C/pybliographer.xml:365(title)
 msgid "Navigating in the entries"
@@ -664,12 +701,20 @@ msgid ""
 "<menuchoice><guimenu> Settings</guimenu><guimenuitem>Preferences</"
 "guimenuitem></menuchoice> menu item."
 msgstr ""
+"Sobald Sie eine Datenbank geöffnet oder mit dem Erstellen einer neuen "
+"Datenbank begonnen haben, wird im Hauptfenster (siehe <xref linkend=\"figmain"
+"\"/>) eine Liste aller Einträge im oberen Teil angezeigt. Im Menü "
+"<menuchoice><guimenu>Einstellungen</guimenu><guimenuitem>Einstellungen</"
+"guimenuitem></menuchoice> können Sie die hier anzuzeigenden Felder "
+"konfigurieren."
 
 #: C/pybliographer.xml:375(para)
 msgid ""
 "It is possible to display two types of combined fields: <emphasis>-author/"
 "editor</emphasis> and <emphasis>-author/title-</emphasis>."
 msgstr ""
+"Zwei Typen von Feldkombinationen können angezeigt werden: <emphasis>-author/"
+"editor</emphasis> und <emphasis>-author/title-</emphasis>."
 
 #: C/pybliographer.xml:380(para)
 msgid ""
@@ -677,6 +722,9 @@ msgid ""
 "window. It is also possible to use the arrow keys to navigate in the upper "
 "list."
 msgstr ""
+"Durch Anklicken eines Eintrags wird dessen Inhalt vollständig im unteren Teil "
+"des Fensters angezeigt. Sie können auch die Pfeiltasten verwenden, um durch "
+"die obere Liste zu navigieren."
 
 #: C/pybliographer.xml:385(para)
 msgid ""
@@ -692,6 +740,19 @@ msgid ""
 "marked with an icon at the left edge of the item in the upper part of the "
 "main window (see <xref linkend=\"figmain\"/>)."
 msgstr ""
+"Falls ein Eintrag ein <emphasis>URL</emphasis>-Feld enthält, wird durch "
+"Anklicken deskleinen Knopfes neben der Adresse die entsprechende Anwendung "
+"zum Anzeigen des Zielobjekts geöffnet, beispielsweise ein PDF-Betrachter, "
+"wenn es sich um eine PDF-Datei handelt, oder ein Webbrowser für eine HTTP-"
+"Adresse. In <xref linkend=\"gui-edit\"/> wird beschrieben, wie Sie ein "
+"solches URL-Feld zu einem Eintrag hinzufügen können. Alternativ können Sie "
+"die Adresse über das Menü <menuchoice><guimenu>Ansicht</"
+"guimenu><guisubmenu>Ressource</guisubmenu></menuchoice> oder das "
+"<menuchoice><guimenu>Ressource</guimenu></menuchoice>-Kontextmenü der "
+"Eintragsliste. Falls ein Eintrag einen oder mehrere anzeigbare Felder (wie "
+"URL) mit anzeigbaren Ressourcen enthält, wird dieser mit einem Symbol links "
+"neben dem Eintrag im oberen Teil des Hauptfensters markiert (siehe <xref "
+"linkend=\"figmain\"/>)."
 
 #: C/pybliographer.xml:400(para)
 msgid ""
@@ -699,6 +760,10 @@ msgid ""
 "resources in the 'Resource' tab under the <menuchoice><guimenu>Settings</"
 "guimenu><guimenuitem>Preferences</guimenuitem></menuchoice> menu."
 msgstr ""
+"Im Reiter »Ressource« des über <menuchoice><guimenu>Einstellungen</"
+"guimenu><guimenuitem>Einstellungen</guimenuitem></menuchoice> zu öffnenden "
+"Fensters können Sie die anzeigbaren Felder und die Anwendungen zum Betrachten "
+"der Ressourcen konfigurieren."
 
 #: C/pybliographer.xml:407(para)
 msgid ""
@@ -746,12 +811,17 @@ msgid ""
 "Note that some of these menu options can be disabled for a given database or "
 "entry, provided that the corresponding action can't be performed."
 msgstr ""
+"Beachten Sie, dass einige dieser Menüeinträge für eine bestimmte Datenbank "
+"oder eine bestimmte Datenbank nicht verfügbar sein könnten. Das zeigt an, "
+"dass die entsprechende Aktion nicht ausgeführt werden kann."
 
 #: C/pybliographer.xml:450(para)
 msgid ""
 "By clicking on the column titles of the list, you'll sort the entries "
 "according to the corresponding field."
 msgstr ""
+"Durch Anklicken der Spaltenüberschriften in der Liste sortieren Sie die "
+"Einträge entsprechend dem korrespondierenden Feld."
 
 #: C/pybliographer.xml:455(title)
 msgid "Searching"
@@ -773,7 +843,7 @@ msgstr "Der Suchdialog"
 
 #: C/pybliographer.xml:473(phrase)
 msgid "Shows Pybliographer search dialog."
-msgstr ""
+msgstr "Zeigt den Suchdialog von Pybliographer."
 
 #: C/pybliographer.xml:480(title)
 msgid "Simple searches"
@@ -789,11 +859,11 @@ msgstr ""
 
 #: C/pybliographer.xml:491(title)
 msgid "Expert searches"
-msgstr ""
+msgstr "Erweiterte Suchvorgänge"
 
 #: C/pybliographer.xml:493(para)
 msgid "An expert search is an expression that looks like:"
-msgstr ""
+msgstr "Eine erweiterte Suchanfrage ist ein Ausdruck, der etwa so aussieht:"
 
 #: C/pybliographer.xml:495(programlisting)
 #, no-wrap
@@ -811,24 +881,30 @@ msgstr ""
 
 #: C/pybliographer.xml:505(para)
 msgid "There are other commands available for this type of search:"
-msgstr ""
+msgstr "Es sind weitere Befehle für diesen Suchtyp verfügbar:"
 
 #: C/pybliographer.xml:510(para)
 msgid ""
 "<command>has_key(<varname>keyname</varname>)</command> searches on a key name."
 msgstr ""
+"<command>has_key(<varname>keyname</varname>)</command> sucht nach einem "
+"Schlüsselnamen."
 
 #: C/pybliographer.xml:514(para)
 msgid ""
 "<command>has_type(<varname>typename</varname>)</command> searches for entries "
 "of a given type name."
 msgstr ""
+"<command>has_type(<varname>typename</varname>)</command> sucht nach Einträgen "
+"des angegebenen Typs."
 
 #: C/pybliographer.xml:518(para)
 msgid ""
 "<command>any_has(<varname>value</varname>)</command> searches for the given "
 "value in all the fields of an entry."
 msgstr ""
+"<command>any_has(<varname>value</varname>)</command> sucht nach dem "
+"angegebenen Wert in allen Feldern eines Eintrags."
 
 #: C/pybliographer.xml:523(para)
 msgid ""
@@ -836,6 +912,10 @@ msgid ""
 "<varname>month</varname>, <varname>day</varname>)</command> searches for "
 "entries where the specified date field is older than the specified date."
 msgstr ""
+"<command>before(<varname>field</varname>, <varname>year</varname>, "
+"<varname>month</varname>, <varname>day</varname>)</command> sucht nach "
+"Einträgen, bei denen der Zeitstempel des Datumsfeldes älter ist als das "
+"angegebene Datum."
 
 #: C/pybliographer.xml:530(para)
 msgid ""
@@ -843,6 +923,10 @@ msgid ""
 "<varname>month</varname>, <varname>day</varname>)</command>searches for "
 "entries where the specified date field is younger than the specified date."
 msgstr ""
+"<command>after(<varname>field</varname>, <varname>year</varname>, "
+"<varname>month</varname>, <varname>day</varname>)</command> sucht nach "
+"Einträgen, bei denen der Zeitstempel des Datumsfeldes jünger ist als das "
+"angegebene Datum."
 
 #: C/pybliographer.xml:540(title)
 msgid "Hierarchical searches"
@@ -854,6 +938,10 @@ msgid ""
 "makes it convenient to select a specific author, and then browse its "
 "publications for example."
 msgstr ""
+"Nach einer Suche werden nur die ausgewählten Einträge im Hauptfenster "
+"angezeigt. Dadurch ist es auf bequeme Weise möglich, beispielsweise einen "
+"bestimmten Autor auszuwählen und dann nur dessen Veröffentlichungen zu "
+"durchsuchen."
 
 #: C/pybliographer.xml:546(para)
 msgid ""
@@ -863,12 +951,21 @@ msgid ""
 "the articles written by a certain Nostradamus, you'll be able to select only "
 "those whose title contains the word eclipse."
 msgstr ""
+"Zusätzlich werden die Ergebnisse aller Suchvorgänge in einer Baumansicht "
+"unterhalb des Suchformulars bewahrt. Dadurch kann eine neue Suche zur "
+"Eingrenzung einer vorherigen Suche verwendet werden. Wenn Sie beispielsweise "
+"den Eintrag dieser Baumansicht zu allen Artikeln eines gewissen Nostradamus "
+"auswählen, dann können Sie anschließend nur diejenigen Titel auswählen, die "
+"das Wort »eclipse« enthalten."
 
 #: C/pybliographer.xml:553(para)
 msgid ""
 "Right-clicking in this tree pops up a contextual menu that allows you to "
 "remove unuseful searches."
 msgstr ""
+"Ein Klick mit der rechten Maustaste in dieser Baumansicht öffnet ein "
+"Kontextmenü, das Ihnen das Löschen nicht mehr benutzter Suchvorgänge "
+"ermöglicht."
 
 #: C/pybliographer.xml:556(para)
 msgid ""
@@ -876,6 +973,10 @@ msgid ""
 "<emphasis>Full database</emphasis> item at the top of the search tree, or "
 "push the 'Esc' button on the keyboard when you are in the main window."
 msgstr ""
+"Um wiederum die vollständige Liste der Datenbankeinträge anzeigen zu lassen, "
+"klicken Sie auf den Eintrag <emphasis>Gesamte Datenbank</emphasis> am oberen "
+"Ende des Suchbaums oder drücken Sie die »Esc«-Taste, sofern Sie sich im "
+"Hauptfenster befinden."
 
 #: C/pybliographer.xml:565(title)
 msgid "Sorting"
@@ -883,19 +984,23 @@ msgstr "Sortieren"
 
 #: C/pybliographer.xml:577(para)
 msgid "Nothing means the field is not in use."
-msgstr ""
+msgstr "Nichts bedeutet, dass das Feld nicht benutzt wird."
 
 #: C/pybliographer.xml:580(para)
 msgid ""
 "A <symbol>triangle</symbol>-like symbol means sort in <emphasis>ascending "
 "order</emphasis>."
 msgstr ""
+"Ein nach oben weisendes Dreiecksymbol zeigt an, dass die Sortierung in "
+"<emphasis>aufsteigender</emphasis> Reihenfolge geschieht."
 
 #: C/pybliographer.xml:584(para)
 msgid ""
 "An <symbol>upside down triangle</symbol>-like symbol means sort in "
 "<emphasis>descending order</emphasis>."
 msgstr ""
+"Ein auf der Spitze stehendes Dreiecksymbol zeigt an, dass die Sortierung in "
+"<emphasis>absteigender</emphasis> Reihenfolge geschieht."
 
 #: C/pybliographer.xml:567(para)
 msgid ""
@@ -957,6 +1062,9 @@ msgid ""
 "contained. To avoid this, consider using native editing (see <xref linkend="
 "\"gui-edit-native\"/>)."
 msgstr ""
+"Falls Sie einen solchen Eintrag bearbeiten, könnten enthaltene zusätzliche "
+"Informationen verloren gehen. Um dies zu vermeiden, sollten Sie die native "
+"Bearbeitung verwenden (siehe <xref linkend=\"gui-edit-native\"/>)."
 
 #: C/pybliographer.xml:645(para)
 msgid ""
@@ -976,6 +1084,8 @@ msgid ""
 "In addition to the standard fields, you can create your own fields using the "
 "<guibutton>Create Field</guibutton> button."
 msgstr ""
+"Zusätzlich zu den Standardfeldern können Sie mit dem Knopf <guibutton>Feld "
+"erstellen</guibutton> eigene Felder anlegen."
 
 #: C/pybliographer.xml:660(para)
 msgid ""
@@ -989,7 +1099,7 @@ msgstr ""
 
 #: C/pybliographer.xml:671(title)
 msgid "The Edition window - Optional fields"
-msgstr ""
+msgstr "Das Bearbeitungsfenster - Optional Felder"
 
 #: C/pybliographer.xml:678(phrase)
 msgid "Shows the optional fields containing URL."
@@ -1000,28 +1110,36 @@ msgid ""
 "The following keyboard shortcuts are available during edition (in addition to "
 "the standard ones provided by Gtk):"
 msgstr ""
+"Die folgenden Tastenkürzel sind während der Bearbeitung verfügbar, zusätzlich "
+"zu den Standard-Tastenkürzeln in GTK:"
 
 #: C/pybliographer.xml:689(para)
 msgid ""
 "<keycombo><keycap>Ctrl</keycap><keycap>TAB</keycap></keycombo> to jump to the "
 "next field"
 msgstr ""
+"<keycombo><keycap>Strg</keycap><keycap>Tab</keycap></keycombo> springt zum "
+"nächsten Feld"
 
 #: C/pybliographer.xml:694(para)
 msgid ""
 "<keycombo><keycap>Shift</keycap><keycap>TAB</keycap></keycombo> to jump to "
 "the previous field"
 msgstr ""
+"<keycombo><keycap>Umschalttaste</keycap><keycap>Tab</keycap></keycombo> "
+"springt zum vorigen Feld"
 
 #: C/pybliographer.xml:699(para)
 msgid ""
 "<keycombo><keycap>Ctrl</keycap><keycap>Enter</keycap></keycombo> to accept "
 "the modifications"
 msgstr ""
+"<keycombo><keycap>Strg</keycap><keycap>Eingabetaste</keycap></keycombo> "
+"wendet die Änderungen an"
 
 #: C/pybliographer.xml:704(para)
 msgid "<keycap>Esc</keycap> to cancel the edition"
-msgstr ""
+msgstr "<keycap>Esc</keycap> bricht die Bearbeitung ab"
 
 #: C/pybliographer.xml:708(para)
 msgid ""
@@ -1057,7 +1175,7 @@ msgstr ""
 
 #: C/pybliographer.xml:741(title)
 msgid "Using pybliographic with <application>LyX</application>"
-msgstr ""
+msgstr "Verwendung von pybliographic mit <application>LyX</application>"
 
 #: C/pybliographer.xml:743(para)
 msgid ""
@@ -1092,10 +1210,13 @@ msgid ""
 "practically in the same way, since <application>Kile </application> can also "
 "read <emphasis>lyx pipe</emphasis>."
 msgstr ""
+"Praktisch ebenso kann pybliographic mit <application>Kile</application> (&gt;"
+"= 1.6) interagieren, da <application>Kile </application> auch <emphasis>lyx "
+"pipe</emphasis> lesen kann."
 
 #: C/pybliographer.xml:773(title)
 msgid "Saving selected entries in different formats"
-msgstr ""
+msgstr "Speichern ausgewählter Einträge in verschiedenen Formaten"
 
 #: C/pybliographer.xml:775(para)
 msgid ""
@@ -1159,10 +1280,12 @@ msgid ""
 "Under the <menuchoice><guimenu>Settings</guimenu></menuchoice> menu, you can "
 "find some options to customize pybliographer."
 msgstr ""
+"Im Menü <menuchoice><guimenu>Einstellungen</guimenu></menuchoice> finden Sie "
+"folgende Optionen zum Anpassen von Pybliographer."
 
 #: C/pybliographer.xml:839(title)
 msgid "Entry types and field names configuration"
-msgstr ""
+msgstr "Konfiguration der Eintragstypen und Feldnamen"
 
 #: C/pybliographer.xml:842(title)
 msgid "Configuration of fields and entry types"
@@ -1171,6 +1294,8 @@ msgstr "Konfiguration der Felder und Eintragstypen"
 #: C/pybliographer.xml:849(phrase)
 msgid "Shows Pybliographer fields and entry types configuration dialog."
 msgstr ""
+"Zeigt den Konfigurationsdialog der Eintragstypen und Feldnamen in "
+"Pybliographer."
 
 #: C/pybliographer.xml:856(para)
 msgid ""
@@ -1203,6 +1328,8 @@ msgstr "Die Befehlszeilenschnittstelle"
 #: C/pybliographer.xml:883(para)
 msgid "To start Pybliographer in command line mode, type the following command:"
 msgstr ""
+"Um Pybliographer im Befehlszeilenmodus zu starten, geben Sie folgenden Befehl "
+"ein:"
 
 #: C/pybliographer.xml:885(screen)
 #, no-wrap
@@ -1226,12 +1353,16 @@ msgid ""
 "To get some help about how to use Pybliographer in this mode, type "
 "<command>help</command> at the pybliographer prompt."
 msgstr ""
+"Um Hilfe zur Verwendung von Pybliographer in diesem Modus zu erhalten, geben "
+"Sie <command>help</command> an der Eingabeaufforderung von Pybliographer ein."
 
 #: C/pybliographer.xml:901(para)
 msgid ""
 "The next example shows how to open a database and make a simple search in it. "
 "See the following commands and the output:"
 msgstr ""
+"Das nächste Beispiel zeigt das Öffnen einer Datenbank und die Ausführung "
+"einer einfachen Suche. Beachten Sie die folgenden Befehle und deren Ausgabe:"
 
 #: C/pybliographer.xml:903(screen)
 #, no-wrap
@@ -1245,12 +1376,22 @@ msgid ""
 "  &gt;&gt; \n"
 "  "
 msgstr ""
+"\n"
+"  &gt;&gt; db = bibopen (\"database.bib\")\n"
+"  &gt;&gt; iterator = search (db, 'author = Mantsch')\n"
+"  &gt;&gt; ls (iterator)\n"
+"  The Use and Misuse of FTIR Spectro  Jackson, Michael; Mantsc  [JM95            ]\n"
+"  Phospholipid phase transitions in   Mantsch, H. H.; McElhane  [MM01            ]\n"
+"  &gt;&gt; \n"
+"  "
 
 #: C/pybliographer.xml:911(para)
 msgid ""
 "To see the complete entries listed by the command <command>ls (iterator)</"
 "command>:"
 msgstr ""
+"So lassen Sie die gesamten mit dem Befehl <command>ls (iterator)</command> "
+"aufgelisteten Einträge an:"
 
 #: C/pybliographer.xml:913(screen)
 #, no-wrap
@@ -1299,6 +1440,8 @@ msgstr ""
 #: C/pybliographer.xml:954(para)
 msgid "To execute a script written for pybliographer, simply run"
 msgstr ""
+"Um ein für Pybliographer geschriebenes Skript auszuführen, rufen Sie "
+"Folgendes auf:"
 
 #: C/pybliographer.xml:957(command)
 msgid "pybliographer [--quiet]"
@@ -1341,6 +1484,10 @@ msgid ""
 "tools. They are quite short and should be readable with basical knowledge of "
 "<productname>python</productname>."
 msgstr ""
+"Einige Skripte werden bereits mit Pybliographer mitgeliefert, sowohl einfache "
+"Beispiele als auch nutzbare Werkzeuge. Sie sind recht knapp gehalten und "
+"sollten mit etwas Basiswissen in <productname>python</productname> "
+"verständlich sein."
 
 #: C/pybliographer.xml:978(title)
 msgid "pybcheck"
@@ -1351,6 +1498,8 @@ msgid ""
 "This tool takes a list of files or directory, and check if they are valid "
 "(syntax, no entries with the same key,...)"
 msgstr ""
+"Dieses Werkzeug überprüft anhand einer Liste von Dateien oder Ordnern, ob "
+"diese korrekt sind (Syntax, keine Einträge mit dem gleichen Schlüssel usw.)."
 
 #: C/pybliographer.xml:986(para)
 msgid ""
@@ -1388,13 +1537,15 @@ msgstr "pybconvert"
 
 #: C/pybliographer.xml:1018(para)
 msgid "This tool converts from one bibliographic format to another."
-msgstr ""
+msgstr "Dieses Werkzeug wandelt ein Pybliographer-Format in ein anderes um."
 
 #: C/pybliographer.xml:1022(para)
 msgid ""
 "The general syntax is pretty simple. To convert from Refer to BibTeX for "
 "example, just run:"
 msgstr ""
+"Die grundlegende Syntax ist erfreulich einfach. Um beispielsweise Refer in "
+"BibTex umzuwandeln, führen Sie Folgendes aus:"
 
 #: C/pybliographer.xml:1026(replaceable)
 msgid "toto.refer"
@@ -1428,11 +1579,11 @@ msgstr ""
 
 #: C/pybliographer.xml:1039(para) C/pybliographer.xml:1124(para)
 msgid "The general form of the command is"
-msgstr ""
+msgstr "Die grundlegende Form des Befehls lautet:"
 
 #: C/pybliographer.xml:1041(filename)
 msgid "database..."
-msgstr ""
+msgstr "Datenbank..."
 
 #: C/pybliographer.xml:1040(screen)
 #, no-wrap
@@ -1441,6 +1592,9 @@ msgid ""
 "\t<placeholder-1/><placeholder-2/> [options] <placeholder-3/>\n"
 "      "
 msgstr ""
+"\n"
+"\t<placeholder-1/><placeholder-2/> [Optionen] <placeholder-3/>\n"
+"      "
 
 #: C/pybliographer.xml:1044(para)
 msgid ""
@@ -1564,7 +1718,7 @@ msgstr "textfile"
 
 #: C/pybliographer.xml:1126(filename)
 msgid "bibfiles..."
-msgstr ""
+msgstr "bib-Dateien..."
 
 #: C/pybliographer.xml:1125(screen)
 #, no-wrap
@@ -1612,13 +1766,15 @@ msgstr ""
 
 #: C/pybliographer.xml:1160(title)
 msgid "Some concepts"
-msgstr ""
+msgstr "Einige Konzepte"
 
 #: C/pybliographer.xml:1162(para)
 msgid ""
 "This section describes some basic classes and ideas that are useful to "
 "understand how pybliographer works."
 msgstr ""
+"Dieser Abschnitt beschreibt einige grundlegende Klassen und Ideen, die Ihnen "
+"das Verständnis dessen erleichtern sollen, wie Pybliographer funktioniert."
 
 #: C/pybliographer.xml:1165(para)
 msgid ""
@@ -1631,7 +1787,7 @@ msgstr ""
 #: C/pybliographer.xml:1170(programlisting)
 #, no-wrap
 msgid "from Pyblio import Open"
-msgstr ""
+msgstr "from Pyblio import Open"
 
 #: C/pybliographer.xml:1172(para)
 msgid ""
@@ -1659,6 +1815,9 @@ msgid ""
 "This object must be unique over the whole application, and is composed of a "
 "database part and an entry part."
 msgstr ""
+"<symbol>Key.Key</symbol> ist das Objekt, das einen Eintrag eindeutig "
+"identifiziert. Dieses Objekt muss in der gesamten Anwendung eindeutig sein "
+"und besteht aus einem Datenbankteil und einem Eintragsteil."
 
 #: C/pybliographer.xml:1194(para)
 msgid ""
@@ -1694,14 +1853,17 @@ msgid ""
 "py</filename>. It serves as a bootstrap for the general configuration "
 "mechanism, and defines:"
 msgstr ""
+"Die erste zu parsende Datei ist <filename>${prefix}/share/pybliographer/pybrc."
+"py</filename>. Sie dient als Bootstrap für den allgemeinen "
+"Konfigurationsmechanismus und definiert:"
 
 #: C/pybliographer.xml:1231(para)
 msgid "the available input and output formats"
-msgstr ""
+msgstr "die verfügbaren Eingabe- und Ausgabeformate"
 
 #: C/pybliographer.xml:1235(para)
 msgid "where to find the configuration directories."
-msgstr ""
+msgstr "den Ort der Konfigurationsordner"
 
 #: C/pybliographer.xml:1239(para)
 msgid ""
@@ -1709,6 +1871,10 @@ msgid ""
 "For example, if a method requires some configuration data for the bibtex "
 "module, it will import the corresponding file in this directory."
 msgstr ""
+"Ein Konfigurationsordner enthält eine Liste von Dateien, die bei Bedarf "
+"eingelesen werden. Wenn beispielsweise eine Methode einige "
+"Konfigurationsdaten für das BibTex-Modul benötigt, wird die entsprechende "
+"Datei in diesen Ordner importiert."
 
 #: C/pybliographer.xml:1244(para)
 msgid ""
@@ -1717,6 +1883,11 @@ msgid ""
 "configuration file. In addition, the program imports only what is needed, "
 "decreasing its startup time."
 msgstr ""
+"Dieser Mechanismus erlaubt mehr Flexibilität zum Hinzufügen neuer Formate: "
+"Das neue Format kann mit einer Standardkonfiguration installiert werden, ohne "
+"die globale Konfigurationsdatei zu ändern. Außerdem importiert das Programm "
+"nur das, was wirklich nötig ist, wodurch wiederum die Startzeit verringert "
+"wird."
 
 #: C/pybliographer.xml:1250(para)
 msgid ""
@@ -1738,7 +1909,7 @@ msgstr ""
 
 #: C/pybliographer.xml:1272(title)
 msgid "Creating new Styles"
-msgstr ""
+msgstr "Erstellen neuer Stile"
 
 #: C/pybliographer.xml:1274(para)
 msgid ""
@@ -1768,7 +1939,7 @@ msgstr ""
 
 #: C/pybliographer.xml:1289(title)
 msgid "Global formatting"
-msgstr ""
+msgstr "Globale Formatierung"
 
 #: C/pybliographer.xml:1291(para)
 msgid ""
@@ -1815,23 +1986,27 @@ msgstr ""
 #: C/pybliographer.xml:1319(programlisting)
 #, no-wrap
 msgid "Autoload.preregister ('style','Generic','Pyblio.Style.Generic')"
-msgstr ""
+msgstr "Autoload.preregister ('style','Generic','Pyblio.Style.Generic')"
 
 #: C/pybliographer.xml:1316(para)
 msgid ""
 "Such a module has to be declared in the <filename>pybrc.py</filename> file, "
 "by a line like: <placeholder-1/>"
 msgstr ""
+"Solch ein Modul muss in der Datei <filename>pybrc.py</filename> deklariert "
+"werden, durch eine Zeile wie: <placeholder-1/>"
 
 #: C/pybliographer.xml:1322(para)
 msgid ""
 "The precise definition of the formatting functions is better explained by "
 "looking at the code of <filename>Generic.py</filename> for example."
 msgstr ""
+"Die genaue Definition der Formatierungsfunktionen wird besser verständlich im "
+"Code von beispielsweise <filename>Generic.py</filename>."
 
 #: C/pybliographer.xml:1329(title)
 msgid "Bibliography definition"
-msgstr ""
+msgstr "Definition der Bibliografie "
 
 #: C/pybliographer.xml:1331(para)
 msgid ""
