@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=pybliographer&component=general\n"
 "POT-Creation-Date: 2010-09-07 12:41+0000\n"
-"PO-Revision-Date: 2010-09-13 22:28+0100\n"
+"PO-Revision-Date: 2010-09-16 21:34+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,22 +37,22 @@ msgstr "Boolean"
 
 #: ../Pyblio/Config.py:240
 msgid "Integer"
-msgstr "Integer"
+msgstr "Ganzzahl"
 
 #: ../Pyblio/Config.py:242
 #, python-format
 msgid "Integer under %d"
-msgstr "Integer unter %d"
+msgstr "Ganzzahl unter %d"
 
 #: ../Pyblio/Config.py:244
 #, python-format
 msgid "Integer over %d"
-msgstr "Integer über %d"
+msgstr "Ganzzahl über %d"
 
 #: ../Pyblio/Config.py:246
 #, python-format
 msgid "Integer between %d and %d"
-msgstr "Integer zwischen %d und %d"
+msgstr "Ganzzahl zwischen %d und %d"
 
 #: ../Pyblio/Config.py:258
 #, python-format
@@ -111,7 +111,7 @@ msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
-"Einige Änderungen erfordern den Neustart von »Pybliographer«\n"
+"Einige Änderungen erfordern den Neustart von »Pybliographer«,\n"
 "um korrekt übernommen zu werden"
 
 #: ../Pyblio/GnomeUI/Config.py:429
@@ -182,12 +182,12 @@ msgstr "Aktuelle Datei speichern"
 #: ../Pyblio/GnomeUI/Document.py:161
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:8
 msgid "Merge With..."
-msgstr "Zusammenführen mit…"
+msgstr "Zusammenführen mit …"
 
 #: ../Pyblio/GnomeUI/Document.py:162
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:7
 msgid "Medline Query..."
-msgstr "Medline-Abfrage…"
+msgstr "Medline-Abfrage …"
 
 #: ../Pyblio/GnomeUI/Document.py:170
 msgid "Add a new entry"
@@ -196,12 +196,12 @@ msgstr "Neuen Eintrag hinzufügen"
 #: ../Pyblio/GnomeUI/Document.py:174
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:12
 msgid "S_ort..."
-msgstr "S_ortieren…"
+msgstr "S_ortieren …"
 
 #: ../Pyblio/GnomeUI/Document.py:175
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:2
 msgid "Cite..."
-msgstr "Zitat…"
+msgstr "Zitat …"
 
 #: ../Pyblio/GnomeUI/Document.py:175
 msgid "Cite key(s)"
@@ -210,12 +210,12 @@ msgstr "Schlüssel zitieren"
 #: ../Pyblio/GnomeUI/Document.py:176
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:6
 msgid "Format..."
-msgstr "Format…"
+msgstr "Format …"
 
 #: ../Pyblio/GnomeUI/Document.py:178
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:4
 msgid "Fields..."
-msgstr "Felder…"
+msgstr "Felder …"
 
 #: ../Pyblio/GnomeUI/Document.py:180
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:5
@@ -236,7 +236,7 @@ msgstr "Schnellsuche"
 
 #: ../Pyblio/GnomeUI/Document.py:319
 msgid "Unnamed bibliographic database"
-msgstr "Unbenannte bibliographische Datenbank"
+msgstr "Unbenannte bibliografische Datenbank"
 
 #: ../Pyblio/GnomeUI/Document.py:402
 #, python-format
@@ -253,7 +253,7 @@ msgid ""
 "Error while parsing `%s':\n"
 "%s"
 msgstr ""
-"Fehler beim Parsen »%s«:\n"
+"Fehler beim Verarbeiten von »%s«:\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Document.py:439
@@ -465,7 +465,7 @@ msgid ""
 "Can't display documentation:\n"
 "%s"
 msgstr ""
-"Konnte Dokumentation nicht anzeigen:\n"
+"Dokumentation konnte nicht angezeigt werden:\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Document.py:1227
@@ -496,7 +496,7 @@ msgstr "Text"
 
 #: ../Pyblio/GnomeUI/Editor.py:133 ../Pyblio/GnomeUI/Editor.py:1003
 msgid "Error in native string parsing"
-msgstr "Fehler beim »Stringparsen«"
+msgstr "Fehler bei der Verarbeitung der nativen Zeichenkette"
 
 #: ../Pyblio/GnomeUI/Editor.py:312
 msgid "Day"
@@ -534,7 +534,7 @@ msgstr "[ Eintrag hierher ziehen ]"
 
 #: ../Pyblio/GnomeUI/Editor.py:502
 msgid "Browse..."
-msgstr "Durchsuchen…"
+msgstr "Durchsuchen …"
 
 #: ../Pyblio/GnomeUI/Editor.py:525
 msgid "Select file"
@@ -592,8 +592,8 @@ msgstr "Schlüssel »%s« ist bereits vorhanden"
 #, python-format
 msgid "The `%s' field contains a non Latin-1 symbol"
 msgstr ""
-"Das »%s«-Feld enthält ein Zeichen, dass nicht im Latin-1 Zeichensatz "
-"enthalten ist"
+"Das »%s«-Feld enthält ein Zeichen, das nicht im Latin-1 Zeichensatz enthalten "
+"ist"
 
 #: ../Pyblio/GnomeUI/Editor.py:996
 msgid "Your text contains non Latin-1 symbols"
@@ -606,7 +606,7 @@ msgstr "Eintrag bearbeiten"
 
 #: ../Pyblio/GnomeUI/Editor.py:1037 ../Pyblio/GnomeUI/Editor.py:1102
 msgid "Native Editing"
-msgstr "Bearbeitung von Native"
+msgstr "Native Bearbeitung"
 
 #: ../Pyblio/GnomeUI/Editor.py:1125
 msgid "Standard Editing"
@@ -634,7 +634,7 @@ msgid ""
 "Cannot open URL:\n"
 "%s"
 msgstr ""
-"URL konnte nicht geöffnet werden:\n"
+"Adresse konnte nicht geöffnet werden:\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Fields.py:38
@@ -648,7 +648,7 @@ msgstr "Langer Text"
 #: ../Pyblio/GnomeUI/Fields.py:41 ../Pyblio/GnomeUI/glade/config1.glade.h:16
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:21
 msgid "URL"
-msgstr "URL"
+msgstr "Adresse"
 
 #: ../Pyblio/GnomeUI/Fields.py:42
 msgid "Reference"
@@ -692,7 +692,7 @@ msgstr "Datei"
 #: ../Pyblio/GnomeUI/FileSelector.py:76
 #: ../Pyblio/GnomeUI/glade/openurl.glade.h:2
 msgid "Bibliography type:"
-msgstr "Bibliographietyp:"
+msgstr "Bibliografietyp:"
 
 #: ../Pyblio/GnomeUI/FileSelector.py:93 ../Pyblio/GnomeUI/OpenURL.py:61
 msgid " - According to file suffix - "
@@ -772,7 +772,7 @@ msgstr "Einträge"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:9
 msgid "FIELDS DEFINITION"
-msgstr "FELD DEFINITION"
+msgstr "FELD-DEFINITION"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:10
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:8
@@ -818,7 +818,7 @@ msgstr ""
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:1
 msgid "Bibliography style:"
-msgstr "Bibliographiestil:"
+msgstr "Bibliografiestil:"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:2
 msgid "Format entries"
@@ -885,8 +885,8 @@ msgid ""
 "Search \n"
 "PubMed for:"
 msgstr ""
-"Durchsuche \n"
-"PubMed nach:"
+"PubMed \n"
+"durchsuchen nach:"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:14
 msgid ""
@@ -894,7 +894,7 @@ msgid ""
 "result number:"
 msgstr ""
 "Auflistung beginnen \n"
-"bei Resultat Nummer:"
+"bei Ergebnis Nummer:"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:16
 msgid "To:"
@@ -946,15 +946,15 @@ msgstr "Einstellungen"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:15
 msgid "_Add..."
-msgstr "Hinzu_fügen…"
+msgstr "Hinzu_fügen …"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:16
 msgid "_Delete..."
-msgstr "_Löschen…"
+msgstr "_Löschen …"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:17
 msgid "_Edit..."
-msgstr "_Bearbeiten…"
+msgstr "_Bearbeiten …"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:18
 msgid "_New"
@@ -999,12 +999,12 @@ msgstr "Als Vorgabe setzen"
 #: ../Pyblio/LyX.py:37
 #, python-format
 msgid "no input pipe `%s'"
-msgstr "keine Eingabe-Pipe »%s«"
+msgstr "keine Eingabeweiterleitung »%s«"
 
 #: ../Pyblio/LyX.py:43
 #, python-format
 msgid "no output pipe `%s'"
-msgstr "keine Ausgabe-Pipe »%s«"
+msgstr "keine Ausgabeweiterleitung »%s«"
 
 # wie kann man "opener" richtig(!!) übersetzen?
 #: ../Pyblio/Open.py:96
@@ -1038,7 +1038,7 @@ msgstr ""
 
 #: ../Pyblio/Resource.py:81
 msgid "Determining Mime Type ... "
-msgstr "MIME-Typ wird bestimmt…"
+msgstr "MIME-Typ wird bestimmt …"
 
 #: ../Pyblio/Resource.py:86
 #, python-format
@@ -1058,7 +1058,7 @@ msgstr ""
 
 #: ../Pyblio/Resource.py:98
 msgid "Accessing resource ..."
-msgstr "Zugriff auf die Ressource wird ausgeführt…"
+msgstr "Zugriff auf die Ressource wird ausgeführt …"
 
 #: ../Pyblio/Resource.py:116
 #, python-format
@@ -1077,7 +1077,7 @@ msgstr ""
 
 #: ../Pyblio/Resource.py:137
 msgid "Starting application ..."
-msgstr "Anwendung wird gestartet…"
+msgstr "Anwendung wird gestartet …"
 
 #: ../Pyblio/Resource.py:140
 msgid "No application to view resource"
@@ -1124,12 +1124,12 @@ msgstr "Dies ist freie Software OHNE JEDE GARANTIE."
 
 #: ../pybliographer.py:48
 msgid "For details, type `warranty'."
-msgstr "Für Details, wählen Sie »warranty«."
+msgstr "Für Details, geben Sie »warranty« ein."
 
 #: ../pybliographer.py:111 ../pybliographer.py:163
 #, python-format
 msgid "%s: error: can't open file `%s'"
-msgstr "%s: Fehler: kann Datei »%s« nicht öffnen"
+msgstr "%s: Fehler: Datei »%s« kann nicht geöffnet werden"
 
 #: ../pybliographer.py:124
 #, python-format
@@ -1149,15 +1149,15 @@ msgstr ""
 #. save history
 #: ../pybliographic.desktop.in.h:1
 msgid "Bibliography Manager"
-msgstr "Bibliographieverwaltung"
+msgstr "Bibliografieverwaltung"
 
 #: ../pybliographic.desktop.in.h:2
 msgid "Manage bibliographic databases"
-msgstr "Bibliographische Datenbanken verwalten"
+msgstr "Bibliografische Datenbanken verwalten"
 
 #: ../pybliographic.desktop.in.h:3
 msgid "Pybliographic Bibliography Manager"
-msgstr "Pybliographic Bibliographie-Verwaltung"
+msgstr "Pybliographic Bibliografie-Verwaltung"
 
 #: ../scripts/pybcheck.py:31
 msgid "usage: pybcheck <file | directory>..."
@@ -1184,7 +1184,7 @@ msgstr "kein Eintrag"
 #: ../scripts/pybcompact.py:162 ../scripts/pybtext.py:240
 #, python-format
 msgid "can't find the following entries: %s"
-msgstr "die folgenden Einträge können nicht gefunden werden: %s"
+msgstr "Die folgenden Einträge können nicht gefunden werden: %s"
 
 #: ../scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
