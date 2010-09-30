@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-11 18:40+0200\n"
-"PO-Revision-Date: 2010-09-04 12:33+0100\n"
+"POT-Creation-Date: 2010-09-30 12:53+0200\n"
+"PO-Revision-Date: 2010-09-29 12:33+0100\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -1217,9 +1217,7 @@ msgstr "brug: pybconvert <kilde>..<mål> <inddata> [uddata]"
 msgid "pybconvert: error: bad conversion format"
 msgstr "pybconvert: fejl: dårligt konverteringsformat"
 
-# engelsk fejl version må da være version og ikke hjælpebesked.
 #: ../scripts/pybformat.py:34
-#, fuzzy
 msgid ""
 "usage: pybformat [options] <database...>\n"
 "\n"
@@ -1242,8 +1240,7 @@ msgstr ""
 "      -H header, --header=teksthoved\tdefinerer en teksthovedfil\n"
 "      -F footer, --footer=fodnote\tdefinerer en fodnotefil\n"
 "      -l 'output', --list='uddata'\tviser de tilgængelige uddataformater\n"
-"      -h, --help\t\t\tvis denne hjælpebesked\n"
-"      -v, --version\t\t\tvis versionsnummeret\n"
+"      -h, --help\t\t\tvis denne hjælpetekst\n"
 "    "
 
 #: ../scripts/pybformat.py:48
