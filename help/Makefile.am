@@ -36,5 +36,5 @@ DOC_FIGURES =	figures/edit.png	\
 		figures/search.png	\
 		figures/sort.png
 
-DOC_LINGUAS = de
+DOC_LINGUAS = de es
 
