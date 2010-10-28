@@ -25,12 +25,31 @@
     Pybliographer Bibliography manager
   </title>
 
-  <section id="usage" style="2column">
-    <title>Usage</title>
+  <section id="preface" style="2column">
+    <title>Preface</title>
   </section>
 
-  <section id="advanced" style="2column">
-    <title>Advanced usage</title>
+  <section id="gettingstarted" style="2column">
+    <title>Getting Started</title>
   </section>
 
+  <section id="gui" style="2column">
+    <title>The Graphical Interface</title>
+  </section>
+
+  <section id="cli" style="2column">
+    <title>The Command Line Interface</title>
+  </section>
+
+  <section id="scritpting" style="2column">
+    <title>The Scripting Language</title>
+  </section>
+
+  <section id="custom" style="2column">
+    <title>Customization</title>
+  </section>
+
+  <section id="newstyles" style="2column">
+    <title>Creating New Styles</title>
+  </section>
 </page>
