@@ -26,4 +26,42 @@
      <p><app>Pybliographer</app> was originally written by 
      Frédéric Gobry. Many thanks to all contributors for their fruitful
      work.</p>
+
+     <p><em>Contributions:</em></p>
+
+	<list>
+	 <item><p>Yuri Bongiorno</p><desc>Documentation, translations</desc></item>
+	 <item><p>Hervé Dréau</p><desc>Internationalization, UI goodies</desc></item>
+	 <item><p>Frédéric Gobry</p><desc>Project maintainer, core application, Gnome
+                interface, documentation</desc></item>
+	 <item><p>Zoltán Kóta</p><desc>Documentation, packaging, ui code
+		</desc></item>
+	 <item><p>Travis Oliphant</p><desc>Original Ovid parser</desc></item>
+	 <item><p>Darrell Rudmann</p><desc>APA 4th edition style</desc></item>
+	 <item><p>Peter Schulte-Stracke</p><desc>Application design,
+		requirement docs, import and ui code</desc></item>
+	 <item><p>John Vu</p><desc>Medline database parser</desc></item>
+	</list>
+          
+    <p>
+     Thanks to everyone who helped out with the bug tracking process.
+    </p>
+      <p>
+       Many thanks also to the Documentation Translators and the Gnome 
+       Translation Teams.
+      </p>
+    <p>
+      This manual was written with the help of the 
+	<link href="http://live.gnome.org/DocumentationProject" type="http">GNOME
+	Documentation Project</link>.
+    </p>         
+    <p>
+      If you contributed to this project but do not see your name here, 
+      please contact the project maintainer and he'll list you.
+    </p>
+   <p>
+      For more information please visit the
+      <app>Pybliographer</app> <link href="http://pybliographer.org/"
+	 type="http">website</link>.
+   </p>
 </page>

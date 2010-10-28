@@ -1,0 +1,70 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="guide"
+      id="gettingstarted">
+
+  <info>
+    <link type="guide" xref="index#usage"/>
+    <revision pkgversion="3.0" version="0.1" date="2010-10-24" status="incomplete"/>
+    <desc>
+      Your first steps in <app>Pybliographer</app>.
+    </desc>
+    <credit type="author">
+      <name>Zolt&#225;n K&#243;ta</name>
+      <email>zoltank@gmail.com</email>
+    </credit>
+    <credit type="author">
+      <name>Fr&#233;d&#233;ric Gobry</name>
+      <email>frederic.gobry@epfl.ch</email>
+    </credit>
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>    
+  </info>
+
+	<title>Getting Started</title>
+
+	 <section>
+	  <title>What is <app>Pybliographer</app>?</title>
+	   <p>
+	   Pybliographer  is a  tool for  working  with bibliographic
+	   databases. It provides a general framework that can be used to
+	   manipulate these databases  with a simple graphical interface,
+	   but  that  can  also be  easily  extended  by  the mean  of  a
+	   scripting language, to fit a wide range of needs.
+	   </p>
+	 </section>
+
+	 <section>
+	  <title>How to start <app>Pybliographer</app>?</title>
+	   <p>
+	    You can start <app>Pybliographer</app> in the following ways:
+	   </p>
+	    <list>
+	     <item><p>Graphical mode</p>
+	      <desc>	
+	       To start <app>Pybliographer</app> in graphical mode from a
+	       command line, type the following command, then press
+	       <key>Return</key>: <cmd>pybliographic</cmd>.
+	       For more information on the graphical interface, see
+                <link xref="gui"/>.
+	      </desc>
+	     </item>
+	     <item><p>Command line mode</p>
+	      <desc>
+	       You can start <app>Pybliographic</app> also in command
+	       line mode by typing the following command followed by pressing
+	       <key>Return</key>: <cmd>pybliographer</cmd>.
+	      </desc>
+	     </item>
+	     <item><p>From the GNOME menu</p>
+	      <desc>
+	       If the desktop file of the package is correctly installed in
+	       your sytem, you can find a launcher under the GNOME menu to
+	       start the graphical interface of <app>Pybliographer</app>.
+	      </desc>
+	     </item>
+	    </list>
+	 </section>
+
+</page>

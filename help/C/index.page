@@ -29,16 +29,8 @@
     <title>Preface</title>
   </section>
 
-  <section id="gettingstarted" style="2column">
-    <title>Getting Started</title>
-  </section>
-
-  <section id="gui" style="2column">
-    <title>The Graphical Interface</title>
-  </section>
-
-  <section id="cli" style="2column">
-    <title>The Command Line Interface</title>
+  <section id="usage" style="2column">
+    <title>Usage</title>
   </section>
 
   <section id="scritpting" style="2column">
