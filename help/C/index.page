@@ -33,7 +33,7 @@
     <title>Usage</title>
   </section>
 
-  <section id="scritpting" style="2column">
+  <section id="scripting" style="2column">
     <title>The Scripting Language</title>
   </section>
 
@@ -44,4 +44,5 @@
   <section id="newstyles" style="2column">
     <title>Creating New Styles</title>
   </section>
+
 </page>
