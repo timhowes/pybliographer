@@ -7,11 +7,7 @@
     <link type="guide" xref="gui"/>
     <revision pkgversion="3.0" version="0.1" date="2010-10-24" status="incomplete"/>
     <desc>
-<<<<<<< HEAD
-      How to open an existing database..
-=======
-      How to open an existing database.
->>>>>>> Fixed some bugs in *.page files
+    How to open an existing database.
     </desc>
     <credit type="author">
       <name>Zolt&#225;n K&#243;ta</name>
