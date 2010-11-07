@@ -37,12 +37,4 @@
     <title>The Scripting Language</title>
   </section>
 
-  <section id="custom" style="2column">
-    <title>Customization</title>
-  </section>
-
-  <section id="newstyles" style="2column">
-    <title>Creating New Styles</title>
-  </section>
-
 </page>

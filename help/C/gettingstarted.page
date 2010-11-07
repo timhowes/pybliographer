@@ -47,14 +47,15 @@
 	       command line, type the following command, then press
 	       <key>Return</key>: <cmd>pybliographic</cmd>.
 	       For more information on the graphical interface, see
-                <link xref="gui"/>.
+               <link xref="gui"/>.
 	      </desc>
 	     </item>
 	     <item><p>Command line mode</p>
 	      <desc>
 	       You can start <app>Pybliographic</app> also in command
 	       line mode by typing the following command followed by pressing
-	       <key>Return</key>: <cmd>pybliographer</cmd>.
+	       <key>Return</key>: <cmd>pybliographer</cmd>. For more
+	       information, see <link xref="command-line"/>.
 	      </desc>
 	     </item>
 	     <item><p>From the GNOME menu</p>
@@ -66,17 +67,6 @@
 	     </item>
 	    </list>
 
-    <p>It is possible to set the PYBLIOGRAPHER_DATABASE environment variable to an 
-    admissible bibliography file in order to open it always on startup, if no files are
-    specified on the command line. Example:</p>
-    <screen>
-    <output>bash$ </output><input>export PYBLIOGRAPHER_DATABASE=<var>my/database.bib</var></input>
-    <output>bash$ </output><input>pybliographic</input>
-    </screen>
-    <p>It is equivalent to</p>
-    <screen>
-    <output>bash$ </output><input>pybliographic <var>my/database.bib</var></input>
-    </screen>
 	 </section>
 
 </page>

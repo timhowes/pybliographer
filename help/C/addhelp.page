@@ -23,11 +23,12 @@
   </info>
 
 	<title>Additional Help Sources</title>
-	<p>For additional information, please, visit the Pybliographer
-	website at 
-	<link href="http://pybliographer.org/" type="http">http://pybliographer.org</link>.
- 	There is a mailing list also, where you can get answers for your
-	questions, you can report bugs, etc.
+	<p>For additional information, please, visit the  
+	<link href="http://pybliographer.org/" type="http">Pybliographer
+	website</link>.
+ 	There is a <link href="http://pybliographer.org/Mailing_lists"
+        type="http">mailing list</link> also, where you can get answers
+        for your questions, you can report bugs, etc.
 	</p> 
       
 </page>
