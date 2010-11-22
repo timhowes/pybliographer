@@ -4,7 +4,7 @@
       id="gui-settings">
 
   <info>
-    <link type="guide" xref="gui"/>
+    <link type="guide" xref="index#advusage"/>
     <revision pkgversion="3.0" version="0.1" date="2010-10-24" status="incomplete"/>
     <desc>
       How to customize this application to match your needs.
@@ -30,7 +30,7 @@
   <section id="gui-settings-fields">
     <title>Entry types and field names configuration</title>
 
-    <p><media id="figfields" type="image" mime="image/png" src="figures/fields.png">
+    <p><media type="image" mime="image/png" src="figures/fields.png">
     Configuration of fields and entry types
     </media></p>
 
@@ -38,9 +38,10 @@
     </guiseq> menu item, it is possible to add or remove fields, to set their
     type, and to define which fields should be associated with a given type of 
     entry. In addition, the mandatory and optional fields are also can
-    be varied. In <link xref="figfields"/>, as an example, the association of
-    the Article entry type can be seen.</p>
+    be varied. In the window displayed above, as an example, the association of
+    the <em>Article</em> entry type can be seen.</p>
     </section>
+
     <section id="gui-settings-pref">
     <title>Preferences</title>
 

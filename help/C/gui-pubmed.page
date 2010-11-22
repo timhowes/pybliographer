@@ -27,14 +27,14 @@
     <p>With <app>Pybliographic</app>, it is possible to perform a Medline search.
     To use this option, click on the <guiseq><gui>File</gui><gui>Medline query...
     </gui></guiseq> menu item. The upcoming window is represented in
-    <link xref="figmed" />.</p>
+    the picture below.</p>
 
     <p><media type="image" mime="image/png" src="figures/medline.png">
     Medline query
     </media></p>
 
      <p>The keyword, you are looking for, should be written into the 
-     <em>Search PubMed for</em> field. As it can be seen in <link xref="figmed" />,
+     <em>Search PubMed for</em> field. As it can be seen in the picture above,
      a number of options (limitations) can be set, which can help to obtain
      an optimal search result. The matched references, resulted in by the query,
      appear in the main window as a new database.</p>

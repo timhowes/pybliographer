@@ -28,7 +28,7 @@
       For searching you can use the quick search entry of the toolbar or the
       search dialog. To open the search dialog, click on <guiseq><gui>Edit</gui>
       <gui>Search</gui></guiseq> in the menu. The dialog that appears (see
-      <link xref="figsearch"/>) displays a search form at the top.</p>
+      the picture below) displays a search form at the top.</p>
 
     <p><media type="image" mime="image/png" src="figures/search.png">
     The Search dialog

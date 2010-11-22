@@ -31,7 +31,7 @@
     The Edition window
     </media></p>
       
-      <p>The edition window is represented in <link xref="figedit" />.
+      <p>The edition window is represented in the figure above.
       On the right of each field, a symbol indicates if <app>Pybliographer</app>
       has been able to render all the information given in that  field. For
       example, a BibTeX field containing an unknown command name cannot
@@ -42,7 +42,7 @@
     <note type="warning">
       <p>If you edit such an  entry, you can loose  the additional
       information it  contained. To avoid this,  consider using native
-      editing (see <link xref="gui-edit-native" />).</p>
+      editing (see <link xref="gui-edit#gui-edit-native" />).</p>
     </note>
 
     <p>To edit the entries, simply type the corresponding text, without
@@ -64,7 +64,7 @@
       <em>URL</em> field with a given type of entry, it is 
       possible to assign an url to an entry (e.g. the 
       location of the pdf version of an article or the address of a 
-      website). See <link xref="figediturl" />. More information about 
+      website). See the window below. More information about 
       the association of fields can be found in 
       <link xref="gui-settings" />.</p>
     </note>

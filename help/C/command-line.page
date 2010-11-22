@@ -4,7 +4,7 @@
       id="command-line">
 
   <info>
-    <link type="guide" xref="index#usage"/>
+    <link type="guide" xref="index#advusage"/>
     <revision pkgversion="3.0" version="0.1" date="2010-10-24" status="incomplete"/>
     <desc>
       Using <app>Pybliographer</app> with a terminal.
@@ -80,19 +80,6 @@
     Volume         57
   --More--
   </screen>
-
-
-    <p>It is possible to set the PYBLIOGRAPHER_DATABASE environment variable to
-    an admissible bibliography file in order to open it always on startup,
-    if no files are specified on the command line. Example:</p>
-    <screen>
-    <output>bash$ </output><input>export PYBLIOGRAPHER_DATABASE=<var>my/database.bib</var></input>
-    <output>bash$ </output><input>pybliographic</input>
-    </screen>
-    <p>It is equivalent to</p>
-    <screen>
-    <output>bash$ </output><input>pybliographic <var>my/database.bib</var></input>
-    </screen>
 
 
 </page>

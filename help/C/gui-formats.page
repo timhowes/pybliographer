@@ -25,8 +25,8 @@
     <title>Saving selected entries in different formats</title>
 
     <p>Selected entries can be saved in different formats using  
-    the <guiseq><gui>Cite</gui><gui>Format...</gui></guiseq> menu item
-   (<link xref="figformat" />).
+    the <guiseq><gui>Cite</gui><gui>Format...</gui></guiseq> menu item,
+    see the following window:
     </p>
 
     <p><media type="image" mime="image/png" src="figures/format.png">
@@ -38,7 +38,7 @@
     to a bibliographic style, either in HTML, LaTeX, Raw or Text format. 
     The <app>Pybliographer</app> package contains some bibliographic styles,
     but own styles can also be created easily. See also 
-    <link xref="script-scripting-existing-pybformat" />.</p> 
+    <link xref="scripting-existing#script-scripting-existing-pybformat" />.</p> 
     
   </page>
 

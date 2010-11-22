@@ -4,7 +4,7 @@
       id="gui-styles">
 
   <info>
-    <link type="guide" xref="gui"/>
+    <link type="guide" xref="index#advusage"/>
     <revision pkgversion="3.0" version="0.1" date="2010-10-24" status="incomplete"/>
     <desc>
       Creating your own styles for <app>Pybliographer</app>.
@@ -52,14 +52,14 @@
       functions, grouped in a module. Let's consider the following
       example:</p>
     
-<code>
+<screen><code>
   &lt;module name="generic">
     &lt;define field="author">full_authors&lt;/define>
     &lt;define field="editor">first_last_full_authors&lt;/define>
     &lt;define field="date">european_date&lt;/define>
     &lt;define method="keys">string_keys&lt;/define>
   &lt;/module>
-</code>
+</code></screen>
 
     <p>In this example, we require that the
     <em>author</em> fields should be formatted by the
@@ -67,10 +67,10 @@
     <file>generic</file> module.</p>
 
     <p>Such a module has to be declared in the
-    <file>pybrc.py</file> file, by a line like:
+    <file>pybrc.py</file> file, by a line like:</p>
 
-<code>Autoload.preregister ('style','Generic','Pyblio.Style.Generic')</code>
-</p>
+    <screen><code>Autoload.preregister ('style','Generic','Pyblio.Style.Generic')</code>
+</screen>
 
     <p>The precise definition of the formatting functions is better
     explained by looking at the code of <file>Generic.py</file> for example.</p>

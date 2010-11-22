@@ -32,7 +32,7 @@
     Opening a database
     </media></p> 
    
-    <p>A file selection dialog will pop up (see <link xref="figopen"/>) and
+    <p>A file selection dialog will pop up (see the picture above) and
       let you select a file. The type of the database can also be selected.
       Opening an existing database, the type can be guessed if you select
       <gui>- According to file suffix -</gui>.
