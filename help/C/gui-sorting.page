@@ -30,7 +30,7 @@
     <gui>Edit</gui><gui>Sort</gui></guiseq>). This menu, displayed in
     the picture below, gives a list of fields which can be used as sort       
     criterions, plus a flag indicating how they are currently used. By clicking
-    twice on the item, it is possible to choose how the field will be used:
+    twice on the item, it is possible to choose how the field will be used:</p>
       <list>
 	<item>
 	  <p>Nothing means the field is not in use.</p>
@@ -44,7 +44,7 @@
              means sort in <em>descending order</em>.</p>
 	</item>
       </list>
-    </p>
+
     <p>The order in which the sorting is performed depends on the
     order in the list. To modify this order, simply drag and drop an
     item to change its position. To make this sort order default, it 

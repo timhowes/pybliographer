@@ -49,15 +49,6 @@
 	       For more information on the graphical interface, see
                <link xref="gui"/>.
 	      </p>
-	   </section>
-
-	   <section>
-		<title>Command line mode</title>
-	      <p>
-	       You can start <app>Pybliographic</app> also in command
-	       line mode by typing the following command followed by pressing
-	       <key>Return</key>: <cmd>pybliographer</cmd>. For more
-	       information, see <link xref="command-line"/>.</p>
 
 	       <p>It is possible to set the PYBLIOGRAPHER_DATABASE environment
 	       variable to an admissible bibliography file in order to open it
@@ -65,13 +56,23 @@
 	       Example:</p>
 
 	       <screen>
-    	<output>bash$ </output><input>export PYBLIOGRAPHER_DATABASE=<var>my/database.bib</var></input>
-    	<output>bash$ </output><input>pybliographic</input>
-    	</screen>
-    	<p>It is equivalent to</p>
-    	<screen>
-    	<output>bash$ </output><input>pybliographic <var>my/database.bib</var></input>
-    	</screen>
+    	       <output>bash$ </output><input>export PYBLIOGRAPHER_DATABASE=<var>my/database.bib</var></input>
+    	       <output>bash$ </output><input>pybliographic</input>
+    	       </screen>
+    	       <p>It is equivalent to</p>
+    	       <screen>
+    	       <output>bash$ </output><input>pybliographic <var>my/database.bib</var></input>
+    	       </screen>
+
+	   </section>
+
+	   <section>
+		<title>Command line mode</title>
+	      <p>
+	       You can start <app>Pybliographer</app> also in command
+	       line mode by typing the following command followed by pressing
+	       <key>Return</key>: <cmd>pybliographer</cmd>. For more
+	       information, see <link xref="command-line"/>.</p>
 
 	     </section>
 

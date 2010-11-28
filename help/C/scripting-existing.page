@@ -109,7 +109,7 @@
 	  <p><cmd>--format=...</cmd> or <cmd>-f ...</cmd>: specify an
 	  output format (HTML, LaTeX, Raw, Text, Textau, Textnum). Default is
 	  Text. (Textau and Textnum are just slightly modified versions of Text. 
-          See <link xref="script-scripting-existing-pybtext" /> for more 
+          See <link xref="#script-scripting-existing-pybtext" /> for more 
           details.)</p>
 	</item>
 	<item>
