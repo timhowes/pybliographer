@@ -6,7 +6,8 @@
   <info>
     <title type="link">Pybliographer manual</title>
     <title type="text">Pybliographer Bibliography manager</title>
-    <revision pkgversion="3.0" version="0.1" date="2010-10-24" status="incomplete"/>
+    <revision pkgversion="1.2.14" version="0.1" date="2010-05-04" status="incomplete"/>
+    <revision pkgversion="1.2.15" version="0.2" date="2010-11-29" status="final"/>
     <credit type="author">
       <name>Zolt&#225;n K&#243;ta</name>
       <email>zoltank@gmail.com</email>
