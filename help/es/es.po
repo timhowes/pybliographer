@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2010-12-05 18:30+0000\n"
-"PO-Revision-Date: 2010-12-11 19:30+0100\n"
+"POT-Creation-Date: 2010-12-11 18:31+0000\n"
+"PO-Revision-Date: 2010-12-15 22:18+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -569,7 +569,7 @@ msgstr ""
 
 #: C/license.page:26(em)
 msgid "To share"
-msgstr ""
+msgstr "Compartir"
 
 #: C/license.page:27(p)
 msgid "To copy, distribute and transmit the work."
@@ -577,11 +577,11 @@ msgstr ""
 
 #: C/license.page:30(em)
 msgid "To remix"
-msgstr ""
+msgstr "Hacer obras derivadas"
 
 #: C/license.page:31(p)
 msgid "To adapt the work."
-msgstr ""
+msgstr "Adaptar el trabajo."
 
 #: C/license.page:34(p)
 msgid "Under the following conditions:"
@@ -600,7 +600,7 @@ msgstr ""
 
 #: C/license.page:47(em)
 msgid "Share Alike"
-msgstr ""
+msgstr "Compartir igual"
 
 #: C/license.page:48(p)
 msgid ""
@@ -702,7 +702,7 @@ msgstr ""
 
 #: C/gui-styles.page:26(title)
 msgid "New Styles"
-msgstr ""
+msgstr "Estilos nuevos"
 
 #: C/gui-styles.page:28(p)
 msgid ""
@@ -732,7 +732,7 @@ msgstr ""
 
 #: C/gui-styles.page:43(title)
 msgid "Global formatting"
-msgstr ""
+msgstr "Formateado global"
 
 #: C/gui-styles.page:45(p)
 msgid ""
@@ -761,6 +761,13 @@ msgid ""
 "    &lt;define method=\"keys\"&gt;string_keys&lt;/define&gt;\n"
 "  &lt;/module&gt;\n"
 msgstr ""
+"\n"
+"  &lt;module name=\"generic\"&gt;\n"
+"    &lt;define field=\"author\"&gt;full_authors&lt;/define&gt;\n"
+"    &lt;define field=\"editor\"&gt;first_last_full_authors&lt;/define&gt;\n"
+"    &lt;define field=\"date\"&gt;european_date&lt;/define&gt;\n"
+"    &lt;define method=\"keys\"&gt;string_keys&lt;/define&gt;\n"
+"  &lt;/module&gt;\n"
 
 #: C/gui-styles.page:65(p)
 msgid ""
@@ -874,7 +881,7 @@ msgstr ""
 
 #: C/gui-styles.page:151(title)
 msgid "Future of the format"
-msgstr ""
+msgstr "Futuro del formato"
 
 #: C/gui-styles.page:153(p)
 msgid ""
@@ -933,7 +940,7 @@ msgstr ""
 
 #: C/gui-sorting.page:55(media)
 msgid "The Sort dialog"
-msgstr ""
+msgstr "El diálogo «Ordenar»"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -1015,7 +1022,7 @@ msgstr "El diálogo «Buscar»"
 
 #: C/gui-searching.page:39(title)
 msgid "Simple searches"
-msgstr ""
+msgstr "Búsquedas simples"
 
 #: C/gui-searching.page:41(p)
 msgid ""
@@ -1027,7 +1034,7 @@ msgstr ""
 
 #: C/gui-searching.page:49(title)
 msgid "Expert searches"
-msgstr ""
+msgstr "Búsquedas avanzadas"
 
 #: C/gui-searching.page:51(p)
 msgid "An expert search is an expression that looks like:"
@@ -1082,7 +1089,7 @@ msgstr ""
 
 #: C/gui-searching.page:91(title)
 msgid "Hierarchical searches"
-msgstr ""
+msgstr "Búsquedas jerárquicas"
 
 #: C/gui-searching.page:93(p)
 msgid ""
@@ -1137,7 +1144,7 @@ msgstr ""
 
 #: C/gui-pubmed.page:33(media)
 msgid "Medline query"
-msgstr ""
+msgstr "Consulta Medline"
 
 #: C/gui-pubmed.page:37(p)
 msgid ""
@@ -1154,7 +1161,7 @@ msgstr ""
 
 #: C/gui.page:26(title)
 msgid "The Graphical Interface"
-msgstr ""
+msgstr "La interfaz gráfica"
 
 #: C/gui.page:28(p)
 msgid ""
@@ -1180,7 +1187,7 @@ msgstr ""
 
 #: C/gui-opening.page:26(title) C/gui-opening.page:32(media)
 msgid "Opening a database"
-msgstr ""
+msgstr "Abrir una base de datos"
 
 #: C/gui-opening.page:28(p)
 msgid ""
