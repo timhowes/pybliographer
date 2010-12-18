@@ -2,15 +2,15 @@
 # Spanish translation for pybliographer.
 # Copyright (C) 2010 pybliographer's COPYRIGHT HOLDER
 # This file is distributed under the same license as the pybliographer package.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2010-12-11 18:31+0000\n"
-"PO-Revision-Date: 2010-12-15 22:18+0100\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"POT-Creation-Date: 2010-12-15 21:19+0000\n"
+"PO-Revision-Date: 2010-12-17 13:31+0100\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: C/whatsnew.page:10(desc)
 msgid "New features in <app>Pybliographer</app> 1.2.14."
-msgstr ""
+msgstr "Nuevas funcionalidades en <app>Pybliographer</app> 1.2.14."
 
 #: C/whatsnew.page:14(name) C/typcon.page:14(name)
 #: C/scripting-writeown.page:14(name) C/scripting-existing.page:14(name)
@@ -96,7 +96,7 @@ msgstr "Creative Commons Compartir Igual 3.0"
 
 #: C/whatsnew.page:26(title)
 msgid "What's New in Pybliographer 1.2.14"
-msgstr ""
+msgstr "Lo nuevo de Pybliographer 1.2.14"
 
 #: C/whatsnew.page:27(p)
 msgid ""
@@ -147,11 +147,11 @@ msgstr ""
 
 #: C/typcon.page:39(p)
 msgid "<gui>Buttons</gui> you can click"
-msgstr ""
+msgstr "<gui>Botones</gui> que puede pulsar"
 
 #: C/typcon.page:40(input)
 msgid "Anything you type in"
-msgstr ""
+msgstr "Cualquier cosa que escriba"
 
 #: C/typcon.page:43(p)
 msgid ""
@@ -191,11 +191,11 @@ msgstr ""
 
 #: C/scripting-writeown.page:10(desc)
 msgid "Writing your own scripts."
-msgstr ""
+msgstr "Escribir sus propios scripts."
 
 #: C/scripting-writeown.page:26(title)
 msgid "Writing your own scripts"
-msgstr ""
+msgstr "Escribir sus propios scripts"
 
 #: C/scripting-writeown.page:28(p)
 msgid ""
@@ -367,7 +367,7 @@ msgstr "bash$"
 
 #: C/scripting-existing.page:94(var)
 msgid "[options] database..."
-msgstr ""
+msgstr "[opciones] base de datos..."
 
 #: C/scripting-existing.page:97(p)
 msgid ""
@@ -417,7 +417,7 @@ msgstr ""
 
 #: C/scripting-existing.page:136(title)
 msgid "pybtex"
-msgstr ""
+msgstr "pybtex"
 
 #: C/scripting-existing.page:139(p)
 msgid ""
@@ -443,6 +443,9 @@ msgid ""
 "\t<output>bash$ </output><cmd>pybtex</cmd> <file>latexfile</file> [<file>bibtexfiles</file>...]\n"
 "      "
 msgstr ""
+"\n"
+"\t<output>bash$ </output><cmd>pybtex</cmd> <file>archivo-latex</file> [<file>archivos-bibtex</file>...]\n"
+"      "
 
 #: C/scripting-existing.page:154(title)
 msgid "pybtext"
@@ -529,7 +532,7 @@ msgstr "pybliographer [--quiet]"
 
 #: C/scripting-basics.page:38(var)
 msgid "myscript.py"
-msgstr ""
+msgstr "myscript.py"
 
 #: C/scripting-basics.page:41(p)
 msgid "You can alternatively start your script by"
@@ -544,6 +547,11 @@ msgid ""
 "      <var>...rest of your script...</var>\n"
 "    "
 msgstr ""
+"\n"
+"      #!/ruta/de/pybliographer\n"
+"\n"
+"      <var>...resto de su script...</var>\n"
+"    "
 
 #: C/scripting-basics.page:47(p)
 msgid "and make it executable."
@@ -585,7 +593,7 @@ msgstr "Adaptar el trabajo."
 
 #: C/license.page:34(p)
 msgid "Under the following conditions:"
-msgstr ""
+msgstr "Bajo las siguientes condiciones:"
 
 #: C/license.page:39(em)
 msgid "Attribution"
@@ -597,6 +605,9 @@ msgid ""
 "licensor (but not in any way that suggests that they endorse you or your use "
 "of the work)."
 msgstr ""
+"Debe reconocer los créditos de la obra de la manera especificada por el "
+"autor o el licenciador (pero no de una manera que sugiera que tiene su apoyo "
+"o apoyan el uso que hace de su obra)."
 
 #: C/license.page:47(em)
 msgid "Share Alike"
@@ -877,7 +888,7 @@ msgstr ""
 
 #: C/gui-styles.page:147(p)
 msgid "The existing style files are a good source of examples."
-msgstr ""
+msgstr "Los archivos de estilo existentes son una buena fuente de ejemplos."
 
 #: C/gui-styles.page:151(title)
 msgid "Future of the format"
@@ -1001,7 +1012,7 @@ msgstr "@@image: 'figures/search.png'; md5=584e9a19da7d5bc43929fd7926c3602b"
 
 #: C/gui-searching.page:10(desc)
 msgid "How to find a certain entry in the database."
-msgstr ""
+msgstr "Cómo encontrar una entrada determinada en la base de datos."
 
 #: C/gui-searching.page:26(title)
 msgid "Searching"
