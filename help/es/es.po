@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2010-12-15 21:19+0000\n"
-"PO-Revision-Date: 2010-12-17 13:31+0100\n"
+"POT-Creation-Date: 2010-12-18 13:02+0000\n"
+"PO-Revision-Date: 2010-12-21 11:33+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -332,6 +332,8 @@ msgid ""
 "The general syntax is pretty simple. To convert from Refer to BibTeX for "
 "example, just run:"
 msgstr ""
+"La sintaxis general es muy sencilla. Por ejemplo, para convertir de Refer a "
+"BibTeX ejecute:"
 
 #: C/scripting-existing.page:78(screen)
 #, no-wrap
@@ -354,6 +356,9 @@ msgid ""
 "outputs it in a specific format (like HTML, LaTeX,...) as it should appear "
 "in a document."
 msgstr ""
+"Este script genera una bibliografía siguiendo un estilo bibliográfico, y lo "
+"genera en un formato específico (similar a HTML, LaTeX, …) como debería "
+"aparecer en un documento."
 
 #: C/scripting-existing.page:92(p) C/scripting-existing.page:176(p)
 msgid "The general form of the command is"
@@ -555,11 +560,11 @@ msgstr ""
 
 #: C/scripting-basics.page:47(p)
 msgid "and make it executable."
-msgstr ""
+msgstr "y hágalo ejecutable."
 
 #: C/license.page:9(desc)
 msgid "Legal information."
-msgstr ""
+msgstr "Información legal."
 
 #: C/license.page:12(title)
 msgid "License"
@@ -573,7 +578,7 @@ msgstr ""
 
 #: C/license.page:21(p)
 msgid "You are free:"
-msgstr ""
+msgstr "Es libre de:"
 
 #: C/license.page:26(em)
 msgid "To share"
@@ -581,7 +586,7 @@ msgstr "Compartir"
 
 #: C/license.page:27(p)
 msgid "To copy, distribute and transmit the work."
-msgstr ""
+msgstr "Copiar, distribuir y transmitir el trabajo."
 
 #: C/license.page:30(em)
 msgid "To remix"
@@ -979,7 +984,7 @@ msgstr "Tipos de entradas y configuración de nombres de campos"
 
 #: C/gui-settings.page:34(media)
 msgid "Configuration of fields and entry types"
-msgstr ""
+msgstr "Configuración de campos y tipos de entrada"
 
 #: C/gui-settings.page:38(p)
 msgid ""
@@ -1139,7 +1144,7 @@ msgstr "@@image: 'figures/medline.png'; md5=09532a6de80c9c22b06efefb6401558c"
 
 #: C/gui-pubmed.page:10(desc)
 msgid "Using Pubmed for your searches."
-msgstr ""
+msgstr "Usar Pubmed en sus búsquedas."
 
 #: C/gui-pubmed.page:26(title)
 msgid "Searching in PubMed"
@@ -1194,7 +1199,7 @@ msgstr "@@image: 'figures/open.png'; md5=ad69c2047262f00a361f1ac860773b8a"
 
 #: C/gui-opening.page:10(desc)
 msgid "How to open an existing database."
-msgstr ""
+msgstr "Cómo abrir una base de datos existente."
 
 #: C/gui-opening.page:26(title) C/gui-opening.page:32(media)
 msgid "Opening a database"
@@ -1300,11 +1305,11 @@ msgstr ""
 
 #: C/gui-navigating.page:81(p)
 msgid "add a new entry"
-msgstr ""
+msgstr "añadir una entrada nueva"
 
 #: C/gui-navigating.page:84(p)
 msgid "edit the currently selected items"
-msgstr ""
+msgstr "editar los elementos seleccionados actualmente"
 
 #: C/gui-navigating.page:87(p)
 msgid "view the resource associated with the selected item"
@@ -1312,7 +1317,7 @@ msgstr ""
 
 #: C/gui-navigating.page:90(p)
 msgid "delete the currently selected items"
-msgstr ""
+msgstr "eliminar los elementos seleccionados actualmente"
 
 #: C/gui-navigating.page:94(p)
 msgid ""
@@ -1349,7 +1354,7 @@ msgstr ""
 
 #: C/gui-formats.page:33(media)
 msgid "Formatting entries"
-msgstr ""
+msgstr "Formatear entradas"
 
 #: C/gui-formats.page:38(p)
 msgid ""
@@ -1459,6 +1464,8 @@ msgstr ""
 msgid ""
 "<keyseq><key>Ctrl</key><key>Enter</key></keyseq> to accept the modifications"
 msgstr ""
+"<keyseq><key>Ctrl</key><key>Intro</key></keyseq> para aceptar las "
+"modificaciones"
 
 #: C/gui-edit.page:97(p)
 msgid "<key>Esc</key> to cancel the edition"
@@ -1498,11 +1505,11 @@ msgstr ""
 
 #: C/gui-creating.page:10(desc)
 msgid "How to create a new database."
-msgstr ""
+msgstr "Cómo crear una base de datos nueva."
 
 #: C/gui-creating.page:26(title)
 msgid "Creating a new database"
-msgstr ""
+msgstr "Crea una base de datos nueva"
 
 #: C/gui-creating.page:28(p)
 msgid ""
@@ -1530,11 +1537,11 @@ msgstr ""
 
 #: C/gettingstarted.page:26(title)
 msgid "Getting Started"
-msgstr ""
+msgstr "Primeros pasos"
 
 #: C/gettingstarted.page:29(title)
 msgid "What is <app>Pybliographer</app>?"
-msgstr ""
+msgstr "¿Qué es <app>Pybliographer</app>?"
 
 #: C/gettingstarted.page:30(p)
 msgid ""
@@ -1546,7 +1553,7 @@ msgstr ""
 
 #: C/gettingstarted.page:40(title)
 msgid "How to start <app>Pybliographer</app>?"
-msgstr ""
+msgstr "¿Cómo iniciar <app>Pybliographer</app>?"
 
 #: C/gettingstarted.page:41(p)
 msgid "You can start <app>Pybliographer</app> in the following ways:"
