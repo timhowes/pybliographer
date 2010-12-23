@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2010-12-18 13:02+0000\n"
-"PO-Revision-Date: 2010-12-21 11:33+0100\n"
+"POT-Creation-Date: 2010-12-22 18:36+0000\n"
+"PO-Revision-Date: 2010-12-23 15:37+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1059,7 +1059,7 @@ msgstr ""
 #: C/gui-searching.page:53(code)
 #, no-wrap
 msgid "has('author','name') | -has('title','test')"
-msgstr ""
+msgstr "has('author','name') | -has('title','test')"
 
 #: C/gui-searching.page:55(p)
 msgid ""
@@ -1454,11 +1454,13 @@ msgstr ""
 msgid ""
 "<keyseq><key>Ctrl</key><key>TAB</key></keyseq> to jump to the next field"
 msgstr ""
+"<keyseq><key>Ctrl</key><key>Tab</key></keyseq> para saltar al siguiente campo"
 
 #: C/gui-edit.page:87(p)
 msgid ""
 "<keyseq><key>Shift</key><key>TAB</key></keyseq> to jump to the previous field"
 msgstr ""
+"<keyseq><key>Shift</key><key>Tab</key></keyseq> para saltar al campo anterior"
 
 #: C/gui-edit.page:92(p)
 msgid ""
@@ -1469,7 +1471,7 @@ msgstr ""
 
 #: C/gui-edit.page:97(p)
 msgid "<key>Esc</key> to cancel the edition"
-msgstr ""
+msgstr "<key>Esc</key> para cancelar la edición"
 
 #: C/gui-edit.page:101(p)
 msgid ""
@@ -1517,6 +1519,9 @@ msgid ""
 "a new database. The type of this database will be determined when you will "
 "save it the first time."
 msgstr ""
+"Cuando se abre <app>Pybliographic</app> puede empezar inmediatamente a crear "
+"una base de datos nueva. El tipo de esta base de datos se determinará cuando "
+"la guarde por primera vez."
 
 #: C/gui-creating.page:32(p)
 msgid ""
@@ -1580,7 +1585,7 @@ msgstr ""
 
 #: C/gettingstarted.page:60(var) C/gettingstarted.page:65(var)
 msgid "my/database.bib"
-msgstr ""
+msgstr "my/database.bib"
 
 #: C/gettingstarted.page:60(input)
 msgid "export PYBLIOGRAPHER_DATABASE=<placeholder-1/>"
@@ -1600,7 +1605,7 @@ msgstr "pybliographic <placeholder-1/>"
 
 #: C/gettingstarted.page:71(title)
 msgid "Command line mode"
-msgstr ""
+msgstr "Modo línea de comandos"
 
 #: C/gettingstarted.page:72(p)
 msgid ""
@@ -1612,7 +1617,7 @@ msgstr ""
 
 #: C/gettingstarted.page:81(title)
 msgid "From the GNOME menu"
-msgstr ""
+msgstr "Desde el menú de GNOME"
 
 #: C/gettingstarted.page:82(p)
 msgid ""
@@ -1640,7 +1645,7 @@ msgstr ""
 
 #: C/customization.page:35(title)
 msgid "Files involved"
-msgstr ""
+msgstr "Archivos involucrados"
 
 #: C/customization.page:37(p)
 msgid ""
@@ -1651,11 +1656,11 @@ msgstr ""
 
 #: C/customization.page:43(p)
 msgid "the available input and output formats"
-msgstr ""
+msgstr "los formatos de entrada y salida disponibles"
 
 #: C/customization.page:47(p)
 msgid "where to find the configuration directories."
-msgstr ""
+msgstr "donde encontrar las carpetas de configuración."
 
 #: C/customization.page:51(p)
 msgid ""
@@ -1784,11 +1789,11 @@ msgstr ""
 
 #: C/addhelp.page:10(desc)
 msgid "Where you can get additional help."
-msgstr ""
+msgstr "Donde puede obtener ayuda adicional."
 
 #: C/addhelp.page:26(title)
 msgid "Additional Help Sources"
-msgstr ""
+msgstr "Fuentes de ayuda adicional"
 
 #: C/addhelp.page:27(p)
 msgid ""
@@ -1801,7 +1806,7 @@ msgstr ""
 
 #: C/about.page:10(desc)
 msgid "Information about <app>Pybliographer</app>."
-msgstr ""
+msgstr "Información acerca de <app>Pybliographer</app>."
 
 #: C/about.page:26(title)
 msgid "Authors"
@@ -1812,6 +1817,8 @@ msgid ""
 "<app>Pybliographer</app> was originally written by Frédéric Gobry. Many "
 "thanks to all contributors for their fruitful work."
 msgstr ""
+"Frédéric Gobry escribió <app>Pybliographer</app>. Muchas gracias a todos los "
+"que han contribuido por su fructífero trabajo."
 
 #: C/about.page:31(em)
 msgid "Contributions:"
@@ -1819,11 +1826,11 @@ msgstr "Contribuciones:"
 
 #: C/about.page:34(p)
 msgid "Yuri Bongiorno"
-msgstr ""
+msgstr "Yuri Bongiorno"
 
 #: C/about.page:34(desc)
 msgid "Documentation, translations"
-msgstr ""
+msgstr "Documentación, traducciones"
 
 #: C/about.page:35(p)
 msgid "Hervé Dréau"
@@ -1836,10 +1843,12 @@ msgstr ""
 #: C/about.page:36(desc)
 msgid "Project maintainer, core application, Gnome interface, documentation"
 msgstr ""
+"Mantenedor del proyecto, núcleo de la aplicación, interfaz de GNOME, "
+"documentación"
 
 #: C/about.page:38(desc)
 msgid "Documentation, packaging, ui code"
-msgstr ""
+msgstr "Documentación, empaquetado, código de la IU"
 
 #: C/about.page:40(p)
 msgid "Travis Oliphant"
@@ -1851,7 +1860,7 @@ msgstr ""
 
 #: C/about.page:41(p)
 msgid "Darrell Rudmann"
-msgstr ""
+msgstr "Darrell Rudmann"
 
 #: C/about.page:41(desc)
 msgid "APA 4th edition style"
@@ -1859,7 +1868,7 @@ msgstr ""
 
 #: C/about.page:42(p)
 msgid "Peter Schulte-Stracke"
-msgstr ""
+msgstr "Peter Schulte-Stracke"
 
 #: C/about.page:42(desc)
 msgid "Application design, requirement docs, import and ui code"
