@@ -3,13 +3,13 @@
 # Copyright (C) 2010 pybliographer's COPYRIGHT HOLDER
 # This file is distributed under the same license as the pybliographer package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2010-12-22 18:36+0000\n"
-"PO-Revision-Date: 2010-12-23 15:37+0100\n"
+"POT-Creation-Date: 2010-12-23 19:11+0000\n"
+"PO-Revision-Date: 2011-01-01 12:53+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "Aplicaciones"
 
 #: C/typcon.page:32(p)
 msgid "<cmd>Commands</cmd> you type at the command line"
-msgstr ""
+msgstr "<cmd>Comandos</cmd> que escribe en la línea de comandos"
 
 #: C/typcon.page:33(file)
 msgid "Filenames"
@@ -138,6 +138,7 @@ msgstr "Texto reemplazable"
 msgid ""
 "<gui>Labels</gui> for buttons and other portions of the graphical interface"
 msgstr ""
+"<gui>Etiquetas</gui> para botones y otras porciones de la interfaz gráfica"
 
 #: C/typcon.page:37(p)
 msgid ""
@@ -181,7 +182,7 @@ msgstr ""
 
 #: C/typcon.page:65(title)
 msgid "Example Warning"
-msgstr ""
+msgstr "Ejemplo de advertencia"
 
 #: C/typcon.page:66(p)
 msgid ""
@@ -387,6 +388,10 @@ msgid ""
 "This can be a full path to an existing XML file, or a name which will be "
 "searched in the standard places. Default is Alpha."
 msgstr ""
+"<cmd>--style=...</cmd> o <cmd>-s ...</cmd>: especifica un estilo "
+"bibliográfico. Éste puede ser una ruta completa a un archivo XML existente o "
+"a un nombre que se buscará en los lugares habituales. El predeterminado es "
+"«Alpha»."
 
 #: C/scripting-existing.page:110(p)
 msgid ""
@@ -395,30 +400,43 @@ msgid ""
 "Textnum are just slightly modified versions of Text. See <link xref="
 "\"#script-scripting-existing-pybtext\"/> for more details.)"
 msgstr ""
+"<cmd>--format=...</cmd> o <cmd>-f ...</cmd>: especifica un formato de salida "
+"(HTML, LaTeX, Raw, Text, Textau, Textnum). El predeterminado es «Text». "
+"(Textau y Textnum son versiones ligeramente modificadas de Text. Consulte la "
+"<link xref=\"#script-scripting-existing-pybtext\"/> para obtener más "
+"detalles.)"
 
 #: C/scripting-existing.page:117(p)
 msgid ""
 "<cmd>--output=...</cmd> or <cmd>-o ...</cmd>: specify an output filename. "
 "STDOUT is the default."
 msgstr ""
+"<cmd>--output=...</cmd> o <cmd>-o ...</cmd>: especificar un nombre de "
+"archivo de salida. El predeterminado es la salida estándar (STDOUT)."
 
 #: C/scripting-existing.page:121(p)
 msgid ""
 "<cmd>--header=...</cmd> or <cmd>-H ...</cmd>: defines a file that will be "
 "prepended to the output file."
 msgstr ""
+"<cmd>--header=...</cmd> o <cmd>-H ...</cmd>: define un archivo que se "
+"antepondrá al archivo de salida."
 
 #: C/scripting-existing.page:125(p)
 msgid ""
 "<cmd>--footer=...</cmd> or <cmd>-F ...</cmd>: defines a file that will be "
 "appended to the output file."
 msgstr ""
+"<cmd>--footer=...</cmd> o <cmd>-F ...</cmd>: define un archivo que se "
+"añadirá al archivo de salida."
 
 #: C/scripting-existing.page:129(p)
 msgid ""
 "<cmd>--list=output</cmd> or <cmd>-l output</cmd>: lists the available output "
 "formats"
 msgstr ""
+"<cmd>--list=output</cmd> o <cmd>-l output</cmd>: lista los formatos de "
+"salida disponibles"
 
 #: C/scripting-existing.page:136(title)
 msgid "pybtex"
@@ -487,6 +505,9 @@ msgid ""
 "\t<output>bash$ </output><cmd>pybtext</cmd> [-o outputfile] [-s style] <file>textfile</file> <file>bibfiles...</file>\n"
 "      "
 msgstr ""
+"\n"
+"\t<output>bash$ </output><cmd>pybtext</cmd> [-o archivo_de_salida] [-s style] <file>archivo_de_texto</file> <file>archivos_bib...</file>\n"
+"      "
 
 #: C/scripting-existing.page:181(p)
 msgid ""
@@ -1562,7 +1583,7 @@ msgstr "¿Cómo iniciar <app>Pybliographer</app>?"
 
 #: C/gettingstarted.page:41(p)
 msgid "You can start <app>Pybliographer</app> in the following ways:"
-msgstr ""
+msgstr "Puede iniciar <app>Pybliographer</app> de las siguientes maneras:"
 
 #: C/gettingstarted.page:45(title)
 msgid "Graphical mode"
@@ -1686,7 +1707,7 @@ msgstr ""
 
 #: C/customization.page:69(title)
 msgid "The <sys>Config</sys> module"
-msgstr ""
+msgstr "El módulo <sys>Config</sys>"
 
 #: C/customization.page:71(p)
 msgid ""
@@ -1697,17 +1718,19 @@ msgstr ""
 
 #: C/command-line.page:10(desc)
 msgid "Using <app>Pybliographer</app> with a terminal."
-msgstr ""
+msgstr "Usar <app>Pybliographer</app> en una terminal."
 
 #: C/command-line.page:26(title)
 msgid "The command line interface"
-msgstr ""
+msgstr "La interfaz de la línea de comandos"
 
 #: C/command-line.page:28(p)
 msgid ""
 "To start <app>Pybliographer</app> in command line mode, type the following "
 "command:"
 msgstr ""
+"Para iniciar <app>Pybliographer</app> en una línea de comandos, escriba el "
+"siguiente comando:"
 
 #: C/command-line.page:30(screen)
 #, no-wrap
@@ -1885,30 +1908,40 @@ msgstr ""
 #: C/about.page:47(p)
 msgid "Thanks to everyone who helped out with the bug tracking process."
 msgstr ""
+"Gracias a todos los que han ayudado con el proceso de seguimiento de errores."
 
 #: C/about.page:50(p)
 msgid ""
 "Many thanks also to the Documentation Translators and the Gnome Translation "
 "Teams."
 msgstr ""
+"Gracias también a los traductores de la documentación y a los equipos de "
+"traducción de GNOME."
 
 #: C/about.page:54(p)
 msgid ""
 "This manual was written with the help of the <link href=\"http://live.gnome."
 "org/DocumentationProject\" type=\"http\">GNOME Documentation Project</link>."
 msgstr ""
+"Este manual se ha escrito con la ayuda del <link href=\"http://live.gnome."
+"org/DocumentationProject\" type=\"http\">Proyecto de documentación de GNOME</"
+"link>."
 
 #: C/about.page:59(p)
 msgid ""
 "If you contributed to this project but do not see your name here, please "
 "contact the project maintainer and he'll list you."
 msgstr ""
+"Si ha contribuido con este proyecto pero no ve su nombre aquí, contacte con "
+"el mantenedor del proyecto y él le incluirá en la lista"
 
 #: C/about.page:63(p)
 msgid ""
 "For more information please visit the <link href=\"http://pybliographer.org/"
 "\" type=\"http\"><app>Pybliographer</app> website</link>."
 msgstr ""
+"Para más información, visite la <link href=\"http://pybliographer.org/\" "
+"type=\"http\">página web de <app>Pybliographer</app></link>."
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
 #: C/index.page:0(None)
