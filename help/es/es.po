@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2010-12-23 19:11+0000\n"
-"PO-Revision-Date: 2011-01-01 12:53+0100\n"
+"POT-Creation-Date: 2011-01-01 11:56+0000\n"
+"PO-Revision-Date: 2011-01-04 13:31+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,11 @@ msgid ""
 "source tarball of pybliographer, or the default doc directory of your "
 "distribution (e.g. <file>/usr/share/doc/pybliographer</file>)."
 msgstr ""
+"Puede encontrar una lista de errores corregidos y de características en los "
+"archivos <file>NEWS</file> y <file>ChangeLog</file>, proporcionados con el "
+"paquete. Consulte el paquete de código fuente de pybliographer o la carpeta "
+"de documentación predeterminada de su distribución (ej. <file>/usr/share/doc/"
+"pybliographer</file>)."
 
 #: C/typcon.page:10(desc)
 msgid "Typographical conventions used in this documentation."
@@ -214,6 +219,8 @@ msgid ""
 "This section describes some basic classes and ideas that are useful to "
 "understand how <app>Pybliographer</app> works."
 msgstr ""
+"Esta sección describe algunas clases e ideas básicas, útiles para entender "
+"como trabaja <app>Pybliographer</app>."
 
 #: C/scripting-writeown.page:39(p)
 msgid ""
@@ -232,6 +239,8 @@ msgid ""
 "The <em>Base</em> module contains some of the most basical classes used in "
 "the application:"
 msgstr ""
+"El módulo <em>Base</em> contiene algunas de clases más básicas usadas en la "
+"aplicación:"
 
 #: C/scripting-writeown.page:51(p)
 msgid ""
@@ -239,12 +248,18 @@ msgid ""
 "fields. It behaves like a hash table which returns the content of a field "
 "given its name"
 msgstr ""
+"<em>Base.Entry</em> representa una entrada bibliográfica específica, con "
+"todos sus campos. Se comporta como una tabla indexada que devuelve el "
+"contenido de un campo a partir de su nombre"
 
 #: C/scripting-writeown.page:56(p)
 msgid ""
 "<em>Base.DataBase</em> is the class from which every database type inherits. "
 "It behaves like a hash table that returns a Base.Entry given a Base.Key"
 msgstr ""
+"<em>Base.DataBase</em> es la clase de la que heredan todos los tipos de "
+"bases de datos. Se comporta como una tabla indexada que devuelve un valor "
+"«Base.Entry» a partir de un valor «Base.Key» dado."
 
 #: C/scripting-writeown.page:62(p)
 msgid ""
@@ -252,6 +267,9 @@ msgid ""
 "object must be unique over the whole application, and is composed of a "
 "database part and an entry part."
 msgstr ""
+"<em>Key.Key</em> es el objeto que identifica inequívocamente a una entrada. "
+"Este objeto debe ser único en toda la aplicación, y se compone de una de "
+"base de datos y de una entrada."
 
 #: C/scripting-writeown.page:67(p)
 msgid ""
@@ -279,6 +297,9 @@ msgid ""
 "as useful tools. They are quite short and should be readable with basical "
 "knowledge of <app>Python</app>."
 msgstr ""
+"Algunos scripts se proporcionan con <app>Pybliographer</app>, como ejemplos "
+"y herramientas útiles. Son bastante cortos y deberían entenderse con un "
+"conocimiento básico de <app>Python</app>."
 
 #: C/scripting-existing.page:33(title)
 msgid "pybcheck"
@@ -308,6 +329,8 @@ msgid ""
 "This tool extracts the citations made in a LaTeX document and generates a "
 "BibTeX file containing them."
 msgstr ""
+"Esta herramienta extrae las citas hechas en un documento LaTeX y genera un "
+"archivo BibTeX que las contiene."
 
 #: C/scripting-existing.page:57(p)
 msgid ""
@@ -326,7 +349,7 @@ msgstr "pybconvert"
 
 #: C/scripting-existing.page:71(p)
 msgid "This tool converts from one bibliographic format to another."
-msgstr ""
+msgstr "Esta herramienta convierte de un formato bibliográfico a otro."
 
 #: C/scripting-existing.page:75(p)
 msgid ""
@@ -363,7 +386,7 @@ msgstr ""
 
 #: C/scripting-existing.page:92(p) C/scripting-existing.page:176(p)
 msgid "The general form of the command is"
-msgstr ""
+msgstr "El formato general del comando es"
 
 #: C/scripting-existing.page:94(output) C/scripting-basics.page:38(output)
 #: C/gettingstarted.page:60(output) C/gettingstarted.page:61(output)
@@ -457,7 +480,7 @@ msgstr ""
 
 #: C/scripting-existing.page:147(p)
 msgid "The form of the command is"
-msgstr ""
+msgstr "El formato del comando es"
 
 #: C/scripting-existing.page:148(screen)
 #, no-wrap
@@ -536,7 +559,7 @@ msgstr ""
 
 #: C/scripting-basics.page:26(title)
 msgid "Basics"
-msgstr ""
+msgstr "Conceptos básicos"
 
 #: C/scripting-basics.page:28(p)
 msgid ""
@@ -551,6 +574,8 @@ msgstr ""
 #: C/scripting-basics.page:35(p)
 msgid "To execute a script written for <app>Pybliographer</app>, simply run"
 msgstr ""
+"Para ejecutar un guión escrito para <app>Pybliographer</app>, simplemente "
+"ejecute"
 
 #: C/scripting-basics.page:38(cmd)
 msgid "pybliographer [--quiet]"
@@ -644,6 +669,8 @@ msgid ""
 "If you alter, transform, or build upon this work, you may distribute the "
 "resulting work only under the same, similar or a compatible license."
 msgstr ""
+"Si altera, transforma o modifica esta obra, sólo puede distribuir la obra "
+"resultante bajo la misma licencia, una similar o una compatible."
 
 #: C/license.page:54(p)
 msgid ""
@@ -652,6 +679,10 @@ msgid ""
 "link>, or read the full <link href=\"http://creativecommons.org/licenses/by-"
 "sa/3.0/\">Commons Deed</link>."
 msgstr ""
+"Para ver el texto completo de la licencia consulte la <link href=\"http://"
+"creativecommons.org/licenses/by-sa/3.0/legalcode\">página web de Creative "
+"Commons</link> o lea el <link href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Escrito de Commons</link>."
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -693,11 +724,11 @@ msgstr "El lenguaje de «scripting»"
 
 #: C/gui-usinglyx.page:10(desc)
 msgid "Interaction with the <app>LyX</app> document processor."
-msgstr ""
+msgstr "Interacción con el procesador de documentos <app>LyX</app>."
 
 #: C/gui-usinglyx.page:26(title)
 msgid "Using <app>Pybliographic</app> with <app>LyX</app>"
-msgstr ""
+msgstr "Usar <app>Pybliographic</app> con <app>LyX</app>"
 
 #: C/gui-usinglyx.page:28(p)
 msgid ""
@@ -822,7 +853,7 @@ msgstr ""
 #: C/gui-styles.page:73(code)
 #, no-wrap
 msgid "Autoload.preregister ('style','Generic','Pyblio.Style.Generic')"
-msgstr ""
+msgstr "Autoload.preregister ('style','Generic','Pyblio.Style.Generic')"
 
 #: C/gui-styles.page:76(p)
 msgid ""
@@ -936,7 +967,7 @@ msgstr "@@image: 'figures/sort.png'; md5=c7a4506cb27428d7b2a0d10b9d3a98b2"
 
 #: C/gui-sorting.page:10(desc)
 msgid "Customize the sort order of the entries."
-msgstr ""
+msgstr "Personalizar el orden de colocación de las entradas."
 
 #: C/gui-sorting.page:26(title)
 msgid "Sorting"
@@ -960,6 +991,8 @@ msgstr ""
 #: C/gui-sorting.page:40(p)
 msgid "A <em>triangle</em>-like symbol means sort in <em>ascending order</em>."
 msgstr ""
+"Un símbolo similar a un <em>triángulo</em> significa colocar en <em>orden "
+"ascendente</em>."
 
 #: C/gui-sorting.page:44(p)
 msgid ""
