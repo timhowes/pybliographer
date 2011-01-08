@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2011-01-01 11:56+0000\n"
-"PO-Revision-Date: 2011-01-04 13:31+0100\n"
+"POT-Creation-Date: 2011-01-06 09:56+0000\n"
+"PO-Revision-Date: 2011-01-08 11:09+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -122,6 +122,7 @@ msgstr "Convenciones tipográficas"
 #: C/typcon.page:27(p)
 msgid "In this book, we'll mark some words with special typography:"
 msgstr ""
+"En este libro, marcaremos algunas palabras con una tipografía especial:"
 
 #: C/typcon.page:31(app)
 msgid "Applications"
@@ -150,6 +151,8 @@ msgid ""
 "Menu selections look like this: <guiseq><gui>Menu </gui><gui>Submenu</"
 "gui><gui>Menu Item</gui></guiseq>"
 msgstr ""
+"Las selecciones de menú se parecen a esto: <guiseq><gui>Menú</"
+"gui><gui>Submenú</gui><gui>Elemento del menú</gui></guiseq>"
 
 #: C/typcon.page:39(p)
 msgid "<gui>Buttons</gui> you can click"
@@ -209,6 +212,10 @@ msgid ""
 "look at the existing scripts. Trying to adapt them to fit your personal "
 "needs can be a good way of testing what you read."
 msgstr ""
+"Para empezar a escribir su propio script, puede leer lo que viene a "
+"continuación y echar un vistazo a los scripts existentes. Intentar "
+"adaptarlos para que se ajusten a sus necesidades personales puede ser una "
+"buena de probar lo que ha leído"
 
 #: C/scripting-writeown.page:34(title)
 msgid "Some concepts"
@@ -310,6 +317,8 @@ msgid ""
 "This tool takes a list of files or directory, and check if they are valid "
 "(syntax, no entries with the same key,...)"
 msgstr ""
+"Esta herramienta coge una lista de de archivos o carpetas y comprueba si son "
+"válidos (sintaxis, que no haya entradas con la misma clave, etc.)"
 
 #: C/scripting-existing.page:40(p)
 msgid ""
@@ -502,6 +511,8 @@ msgid ""
 "This tool processes a text file containing citations and appends a "
 "bibliography according to a given style."
 msgstr ""
+"Esta herramienta procesa un archivo de texto que contenga citas y añade una "
+"bibliografía siguiendo un estilo dado."
 
 #: C/scripting-existing.page:161(p)
 msgid ""
@@ -555,7 +566,7 @@ msgstr ""
 
 #: C/scripting-basics.page:10(desc)
 msgid "Basic information about scripting with <app>Pybliographer</app>."
-msgstr ""
+msgstr "Información básica sobre scripts con <app>Pybliographer</app>."
 
 #: C/scripting-basics.page:26(title)
 msgid "Basics"
@@ -587,7 +598,7 @@ msgstr "myscript.py"
 
 #: C/scripting-basics.page:41(p)
 msgid "You can alternatively start your script by"
-msgstr ""
+msgstr "Alternativamente puede iniciar su script"
 
 #: C/scripting-basics.page:42(screen)
 #, no-wrap
@@ -766,7 +777,7 @@ msgstr ""
 
 #: C/gui-styles.page:10(desc)
 msgid "Creating your own styles for <app>Pybliographer</app>."
-msgstr ""
+msgstr "Crear sus propios estilos para <app>Pybliographer</app>."
 
 #: C/gui-styles.page:26(title)
 msgid "New Styles"
@@ -880,6 +891,8 @@ msgid ""
 "This tag specifies the current display style, among <em>bold, italic, "
 "slanted, emph</em>."
 msgstr ""
+"Esta etiqueta especifica el estilo de visualización actual, entre <em>bold, "
+"italic, slanted, emph</em>."
 
 #: C/gui-styles.page:97(p)
 msgid "&lt;inentry name=\"<var>entryname</var>\"&gt;"
@@ -986,7 +999,7 @@ msgstr ""
 
 #: C/gui-sorting.page:37(p)
 msgid "Nothing means the field is not in use."
-msgstr ""
+msgstr "Nada indica que el campo no está en uso."
 
 #: C/gui-sorting.page:40(p)
 msgid "A <em>triangle</em>-like symbol means sort in <em>ascending order</em>."
@@ -1020,7 +1033,7 @@ msgstr "@@image: 'figures/fields.png'; md5=12bf133c7494df1eba6d1ab878609df3"
 
 #: C/gui-settings.page:10(desc)
 msgid "How to change settings and preferences."
-msgstr ""
+msgstr "Cómo cambiar configuraciones y preferencias."
 
 #: C/gui-settings.page:26(title)
 msgid "Configuration"
@@ -1031,6 +1044,8 @@ msgid ""
 "Under the <guiseq><gui>Settings</gui></guiseq> menu, you can find some "
 "options to customize <app>Pybliographer</app>."
 msgstr ""
+"En el menú <guiseq><gui>Configuración</gui></guiseq> puede encontrar algunas "
+"opciones para personalizar <app>Pybliographer</app>."
 
 #: C/gui-settings.page:32(title)
 msgid "Entry types and field names configuration"
@@ -1108,7 +1123,7 @@ msgstr "Búsquedas avanzadas"
 
 #: C/gui-searching.page:51(p)
 msgid "An expert search is an expression that looks like:"
-msgstr ""
+msgstr "Una búsqueda avanzada es una expresión similar a:"
 
 #: C/gui-searching.page:53(code)
 #, no-wrap
@@ -1125,11 +1140,12 @@ msgstr ""
 
 #: C/gui-searching.page:60(p)
 msgid "There are other commands available for this type of search:"
-msgstr ""
+msgstr "Hay otros comandos disponibles para este tipo de búsqueda:"
 
 #: C/gui-searching.page:65(p)
 msgid "<cmd>has_key(<var>keyname</var>)</cmd> searches on a key name."
 msgstr ""
+"<cmd>has_key(<var>keyname</var>)</cmd> busca en el nombre de una clave."
 
 #: C/gui-searching.page:69(p)
 msgid ""
