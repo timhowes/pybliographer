@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2011-01-06 09:56+0000\n"
-"PO-Revision-Date: 2011-01-08 11:09+0100\n"
+"POT-Creation-Date: 2011-01-10 10:56+0000\n"
+"PO-Revision-Date: 2011-01-20 10:28+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -147,8 +147,11 @@ msgstr ""
 "<gui>Etiquetas</gui> para botones y otras porciones de la interfaz gráfica"
 
 #: C/typcon.page:37(p)
+#| msgid ""
+#| "Menu selections look like this: <guiseq><gui>Menu </gui><gui>Submenu</"
+#| "gui><gui>Menu Item</gui></guiseq>"
 msgid ""
-"Menu selections look like this: <guiseq><gui>Menu </gui><gui>Submenu</"
+"Menu selections look like this: <guiseq><gui>Menu</gui><gui>Submenu</"
 "gui><gui>Menu Item</gui></guiseq>"
 msgstr ""
 "Las selecciones de menú se parecen a esto: <guiseq><gui>Menú</"
@@ -182,7 +185,7 @@ msgstr "Nota"
 
 #: C/typcon.page:56(p)
 msgid "Notes will look like this."
-msgstr ""
+msgstr "La notas se parecen a esto."
 
 #: C/typcon.page:61(p)
 msgid "We'll have warnings, in cases where you should be careful:"
@@ -289,10 +292,18 @@ msgid ""
 "database for example) and return a new one which will only iterate on a "
 "subset of the entries, according to a search criterion."
 msgstr ""
+"Un <em>Iterador</em> es un objeto que proporciona una vía de acceso a una "
+"secuencia de elementos en orden. Estos iteradores se usan ampliamente en "
+"<app>Pybliographer</app> porque ocultan el mecanismo de acceso subyacente y "
+"proporcionan el mismo acceso a cualquier base de datos. También son "
+"adecuados para filtrados transparentes y ordenación de entradas: la clase "
+"<em>Selection.Selection</em>, por ejemplo, toma un iterador (en una base de "
+"datos, por ejemplo) y devuelve uno nuevo que sólo itera sobre un subconjunto "
+"de entradas, de acuerdo con el criterio de búsqueda."
 
 #: C/scripting-existing.page:10(desc)
 msgid "How to use the scripts shipped with <app>Pybliographer</app>."
-msgstr ""
+msgstr "Cómo usar los scripts proporcionados con <app>Pybliographer</app>."
 
 #: C/scripting-existing.page:26(title)
 msgid "Existing scripts"
@@ -486,6 +497,9 @@ msgid ""
 "corresponding entries from the specified BibTeX databases creates a LaTeX "
 "<file>.bbl</file> file."
 msgstr ""
+"Esta herramienta lee un archivo <file>.aux</file> de LaTeX, extrae las "
+"entradas correspondientes de las bases de datos de BibTeX y crea un archivo "
+"<file>.bbl</file> de LaTeX."
 
 #: C/scripting-existing.page:147(p)
 msgid "The form of the command is"
@@ -550,6 +564,11 @@ msgid ""
 "file> is the name of the file to be processed and <file>bibfiles</file> is "
 "one or more bibliographic database file."
 msgstr ""
+"Este comando sin opciones usará el estilo denominado <em>Abbrev</em> y "
+"<file>archivo_de_texto.pyb</file> como archivo de salida que procesar. "
+"<file>archivo_de_texto</file> es el nombre del archivo que procesar y "
+"<file>archivos_bib</file> son uno o más archivos de bases de datos "
+"bibliográficas."
 
 #: C/scripting-existing.page:187(p)
 msgid ""
@@ -581,6 +600,12 @@ msgid ""
 "<app>Pybliographic</app>, is itself a simple script on top of "
 "<app>Pybliographer</app>."
 msgstr ""
+"<app>Pybliographer</app> es, de hecho, un conjunto de clases y funciones "
+"escritas en python, y esto proporciona un acceso sencillo y homogéneo a "
+"bases de datos bibliográficas. Por lo tanto, es posible escribir scripts en "
+"python que hagan uso de estas funciones especializadas. La interfaz gráfica, "
+"<app>Pybliographer</app>, es en sí un sencillo script sobre "
+"<app>Pybliographer</app>."
 
 #: C/scripting-basics.page:35(p)
 msgid "To execute a script written for <app>Pybliographer</app>, simply run"
@@ -632,6 +657,8 @@ msgid ""
 "This work is distributed under a CreativeCommons Attribution-Share Alike 3.0 "
 "Unported license."
 msgstr ""
+"Este trabajo está distribuido bajo una licencia sin soporte CreativeCommons "
+"Compartir-Igual 3.0."
 
 #: C/license.page:21(p)
 msgid "You are free:"
@@ -774,6 +801,9 @@ msgid ""
 "practically in the same way, since <app>Kile</app> can also read <em>lyx "
 "pipe</em>."
 msgstr ""
+"<app>Pybliographic</app> puede interactuar con <app>Kile</app> (&gt;= 1.6) "
+"prácticamente de la misma manera, ya que <app>Kile</app> también puede leer "
+"<em>tuberías lyx</em>."
 
 #: C/gui-styles.page:10(desc)
 msgid "Creating your own styles for <app>Pybliographer</app>."
@@ -820,6 +850,10 @@ msgid ""
 "article starts with the article title in bold, followed by the authors "
 "names, etc."
 msgstr ""
+"El archivo de estilo XML describe cómo se organizan los diferentes campos de "
+"datos para crear un estilo bibliográfico. Por ejemplo, puede especificar que "
+"un artículo empieza con el título del artículo en negrita, seguido de los "
+"nombres de los autores, etc."
 
 #: C/gui-styles.page:50(p)
 msgid ""
@@ -854,6 +888,9 @@ msgid ""
 "formatted by the <code>full_authors()</code> function, located in the "
 "<file>generic</file> module."
 msgstr ""
+"En este ejemplo, se requiere que los campos <em>autor</em> estén formateados "
+"con la función <code>full_authors()</code>, ubicada en el módulo "
+"<file>generic</file>."
 
 #: C/gui-styles.page:70(p)
 msgid ""
@@ -1100,6 +1137,12 @@ msgid ""
 "gui><gui>Search</gui></guiseq> in the menu. The dialog that appears (see the "
 "picture below) displays a search form at the top."
 msgstr ""
+"<app>Pybliographic</app> ofrece un potente mecanismo de búsqueda. Para "
+"buscar, puede usar la entrada de búsqueda rápida en la barra de herramientas "
+"o el diálogo de búsqueda. Para abrir el diálogo de búsqueda, pulse en "
+"<guiseq><gui>Editar</gui><gui>Buscar</gui></guiseq> en el menú. El diálogo "
+"que aparece (vela la siguiente imagen) muestra un formulario de búsqueda en "
+"la parte superior."
 
 #: C/gui-searching.page:34(media)
 msgid "The Search dialog"
@@ -1152,6 +1195,8 @@ msgid ""
 "<cmd>has_type(<var>typename</var>)</cmd> searches for entries of a given "
 "type name."
 msgstr ""
+"<cmd>has_type(<var>typename</var>)</cmd> busca entradas de un nombre de tipo "
+"dado."
 
 #: C/gui-searching.page:73(p)
 msgid ""
@@ -1310,7 +1355,7 @@ msgstr ""
 
 #: C/gui-navigating.page:26(title)
 msgid "Navigating in the entries"
-msgstr ""
+msgstr "Navegar por las entradas"
 
 #: C/gui-navigating.page:28(p)
 msgid ""
@@ -1383,7 +1428,7 @@ msgstr "editar los elementos seleccionados actualmente"
 
 #: C/gui-navigating.page:87(p)
 msgid "view the resource associated with the selected item"
-msgstr ""
+msgstr "ver el recurso asociado al elemento seleccionado"
 
 #: C/gui-navigating.page:90(p)
 msgid "delete the currently selected items"
@@ -1875,6 +1920,11 @@ msgid ""
 "list</link> also, where you can get answers for your questions, you can "
 "report bugs, etc."
 msgstr ""
+"Para obtener información adicional, visite el <link href=\"http://"
+"pybliographer.org/\" type=\"http\">sitio web de Pybliographer</link>. "
+"También hay una <link href=\"http://pybliographer.org/Mailing_lists\" type="
+"\"http\">lista de correo</link>, donde puede encontrar respuestas a sus "
+"preguntas, informar de errores, etc."
 
 #: C/about.page:10(desc)
 msgid "Information about <app>Pybliographer</app>."
