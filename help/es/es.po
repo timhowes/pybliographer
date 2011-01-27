@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
-"POT-Creation-Date: 2011-01-10 10:56+0000\n"
-"PO-Revision-Date: 2011-01-20 10:28+0100\n"
+"POT-Creation-Date: 2011-01-20 19:23+0000\n"
+"PO-Revision-Date: 2011-01-27 18:26+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -147,9 +147,6 @@ msgstr ""
 "<gui>Etiquetas</gui> para botones y otras porciones de la interfaz gráfica"
 
 #: C/typcon.page:37(p)
-#| msgid ""
-#| "Menu selections look like this: <guiseq><gui>Menu </gui><gui>Submenu</"
-#| "gui><gui>Menu Item</gui></guiseq>"
 msgid ""
 "Menu selections look like this: <guiseq><gui>Menu</gui><gui>Submenu</"
 "gui><gui>Menu Item</gui></guiseq>"
@@ -177,7 +174,7 @@ msgstr "Consejo"
 
 #: C/typcon.page:48(p)
 msgid "Tips and bits of extra information will look like this."
-msgstr ""
+msgstr "Lo consejos y los fragmentos de información adicional se verán así."
 
 #: C/typcon.page:55(title)
 msgid "Note"
@@ -200,6 +197,8 @@ msgid ""
 "This is what a warning looks like. If there's a chance you'll run into "
 "trouble, we'll warn you beforehand."
 msgstr ""
+"Así es una advertencia. Si hay una posibilidad de que se meta en problemas, "
+"le advertiremos previamente."
 
 #: C/scripting-writeown.page:10(desc)
 msgid "Writing your own scripts."
@@ -240,9 +239,9 @@ msgid ""
 msgstr ""
 
 #: C/scripting-writeown.page:44(screen)
-#, no-wrap
+#, fuzzy, no-wrap
 msgid "from Pyblio import Open"
-msgstr ""
+msgstr "importar Open desde Pyblio"
 
 #: C/scripting-writeown.page:46(p)
 msgid ""
@@ -339,6 +338,11 @@ msgid ""
 "command <cmd>pybcheck <var>yourfiles</var></cmd>, and use the middle button "
 "of the mouse to jump into the faulty file."
 msgstr ""
+"Es posible usar su salida directamente en un búfer de compilación de emacs, "
+"para saltar directamente a los errores encontrados. Para hacerlo, escriba "
+"<keyseq><key>M</key><key>x</key></keyseq><cmd>compile</cmd>, y el comando "
+"<cmd>pybcheck <var>yourfiles</var></cmd>, y use el botón central para saltar "
+"al archivo que ha fallado."
 
 #: C/scripting-existing.page:49(title)
 msgid "pybcompact"
@@ -545,6 +549,9 @@ msgid ""
 "text editor or terminal by <em>copy and paste </em> or <em>drag and drop</"
 "em>."
 msgstr ""
+"Las claves de las entradas seleccionadas se puede copiar fácilmente desde "
+"pybliographer en un editor de texto o en una terminal usando <em>copiar y "
+"pegar</em> o <em>arrastrar y soltar</em>."
 
 #: C/scripting-existing.page:177(screen)
 #, no-wrap
@@ -785,6 +792,11 @@ msgid ""
 "clicking the <gui>Cite</gui> toolbar button, or selecting the "
 "<guiseq><gui>Cite</gui><gui>Cite...</gui></guiseq> menu item."
 msgstr ""
+"Entonces, en <app>Pybliographic</app>, es posible seleccionar una o varias "
+"entradas e insertar sus referencias en un <app>LyX</app> en ejecución, "
+"simplemente pulsando el botón <gui>Cita</gui> de la barra de herramientas, o "
+"seleccionando el elemento de menú <guiseq><gui>Cita</gui><gui>Cita…</gui></"
+"guiseq>."
 
 #: C/gui-usinglyx.page:41(p)
 msgid ""
@@ -794,6 +806,11 @@ msgid ""
 "necessary to use <cmd>bibtex</cmd> as described in the <app>LyX</app> "
 "documentation."
 msgstr ""
+"Por el momento, es trabajo del usuario el asegurarse de que inserta las "
+"entradas correspondientes a la base de datos usada actualmente. "
+"<app>Pybliographic</app> no maneja el trabajo de generación de una "
+"bibliografía completa; por lo tanto, es necesario usar <cmd>bibtex</cmd> "
+"como se describe en la documentación de <app>LyX</app>."
 
 #: C/gui-usinglyx.page:47(p)
 msgid ""
@@ -908,6 +925,8 @@ msgid ""
 "The precise definition of the formatting functions is better explained by "
 "looking at the code of <file>Generic.py</file> for example."
 msgstr ""
+"La definición precisa de las funciones de formateado se explica mejor "
+"mirando, por ejemplo, el código de <file>Generic.py</file>."
 
 #: C/gui-styles.page:82(title)
 msgid "Bibliography definition"
@@ -940,6 +959,8 @@ msgid ""
 "This tag encloses a block that is only to appear in entries of type "
 "<var>entryname</var>."
 msgstr ""
+"Esta etiqueta encierra un bloque que sólo aparece en las entradas de tipo "
+"<var>entryname</var>."
 
 #: C/gui-styles.page:104(p)
 msgid "&lt;notinentry name=\"<var>entryname</var>\"&gt;"
@@ -950,6 +971,8 @@ msgid ""
 "This tag encloses a block that is only to appear in entries that are "
 "<em>not</em> of type <var>entryname</var>."
 msgstr ""
+"Esta etiqueta encierra un bloque que sólo aparece en las entradas que "
+"<em>no</em> son de tipo <var>entryname</var>."
 
 #: C/gui-styles.page:112(p)
 msgid "&lt;infield name=\"<var>fieldname</var>\"&gt;"
@@ -960,6 +983,8 @@ msgid ""
 "This tag encloses a block that only appears when the specified "
 "<var>fieldname</var> field exists in the current entry."
 msgstr ""
+"Esta etiqueta encierra un bloque que sólo aparece en las entradas que cuando "
+"el campo <var>fieldname</var> especificado existe en la entrada actual."
 
 #: C/gui-styles.page:121(p)
 msgid "&lt;notinfield name=\"<var>fieldname</var>\"&gt;"
@@ -970,6 +995,9 @@ msgid ""
 "This tag encloses a block that only appears when the specified "
 "<var>fieldname</var> field <em>does not</em> exist in the current entry."
 msgstr ""
+"Esta etiqueta encierra un bloque que sólo aparece en las entradas que cuando "
+"el campo <var>fieldname</var>especificado <em>no</em> existe en la entrada "
+"actual."
 
 #: C/gui-styles.page:129(p)
 msgid "&lt;content <var>name=</var>\"<var>fieldname</var>\"/&gt;"
@@ -981,6 +1009,9 @@ msgid ""
 "in a &lt;infield&gt; block) or the content of the field specified as "
 "attribute."
 msgstr ""
+"Esta etiqueta vacía se reemplaza con el contenido del campo actual (cuando "
+"se sitúa en un bloque &lt;infield&gt;) o el contenido del campo especificado "
+"como atributo."
 
 #: C/gui-styles.page:137(p)
 msgid "&lt;separator&gt;"
@@ -992,6 +1023,10 @@ msgid ""
 "It is a convenient way to add a delimiter after a series of fields without "
 "being worried of the special case when the fields are not defined."
 msgstr ""
+"El contenido de esta etiqueta se evalúa a nada cuando no hay texto publicado "
+"hasta ahora. Es una forma conveniente de añadir un delimitador después de "
+"una serie de campos sin preocuparse del caso especial cuando los campos no "
+"están definidos."
 
 #: C/gui-styles.page:147(p)
 msgid "The existing style files are a good source of examples."
@@ -1049,6 +1084,8 @@ msgid ""
 "An <em>upside down triangle</em>-like symbol means sort in <em>descending "
 "order</em>."
 msgstr ""
+"Un símbolo de un <em>triángulo invertido</em> significa ordenación "
+"<em>descendente</em>."
 
 #: C/gui-sorting.page:49(p)
 msgid ""
@@ -1288,7 +1325,7 @@ msgstr ""
 
 #: C/gui.page:10(desc)
 msgid "Explanations about the graphical interface of <app>Pybliographer</app>."
-msgstr ""
+msgstr "Explicaciones sobre la interfaz gráfica de <app>Pybliographer</app>."
 
 #: C/gui.page:26(title)
 msgid "The Graphical Interface"
@@ -1305,6 +1342,14 @@ msgid ""
 "on Medline, and saving selected references in different formats are also "
 "possible."
 msgstr ""
+"La interfaz gráfica se llama <app>Pybliographic</app>. Proporciona un acceso "
+"simple a la mayoría de las funciones comunes del motor subyacente, "
+"<app>Pybliographer</app>, y le permite buscar, ordenar y modificar entradas "
+"bibliográficas. Por otra parte, también son posibles las inserciones "
+"directas o referencias en <link href=\"http://www.lyx.org/\" type=\"http"
+"\"><app>Lyx</app></link> y <link href=\"http://kile.sourceforge.net/\" type="
+"\"http\"><app>Kile</app></link>, consultas directas en Medline y guardar "
+"referencias seleccionadas en diferentes formatos."
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -1872,6 +1917,7 @@ msgstr ""
 msgid ""
 "To see the complete entries listed by the command <cmd>ls (iterator)</cmd>:"
 msgstr ""
+"Ver las entradas completas listadas por el comando <cmd>ls (iterator)</cmd>:"
 
 #: C/command-line.page:58(screen)
 #, no-wrap
@@ -1995,6 +2041,8 @@ msgstr "Peter Schulte-Stracke"
 #: C/about.page:42(desc)
 msgid "Application design, requirement docs, import and ui code"
 msgstr ""
+"Diseño de aplicaciones, documentos de requisitos, importación y código de la "
+"IU"
 
 #: C/about.page:44(p)
 msgid "John Vu"
@@ -2002,7 +2050,7 @@ msgstr "John Vu"
 
 #: C/about.page:44(desc)
 msgid "Medline database parser"
-msgstr ""
+msgstr "Analizador de bases de datos Medline"
 
 #: C/about.page:47(p)
 msgid "Thanks to everyone who helped out with the bug tracking process."
