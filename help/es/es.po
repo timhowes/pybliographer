@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer.help.master\n"
 "POT-Creation-Date: 2011-01-20 19:23+0000\n"
-"PO-Revision-Date: 2011-01-27 18:26+0100\n"
+"PO-Revision-Date: 2011-01-28 17:44+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgstr "La notas se parecen a esto."
 
 #: C/typcon.page:61(p)
 msgid "We'll have warnings, in cases where you should be careful:"
-msgstr ""
+msgstr "Tendremos advertencias, para los casos en que deba tener cuidado:"
 
 #: C/typcon.page:65(title)
 msgid "Example Warning"
@@ -428,6 +428,9 @@ msgid ""
 "create a bibliography in <em>Text</em> format. Several options are available "
 "to create these documents:"
 msgstr ""
+"Este comando sin opciones usará el estilo denominado <em>alfa</em> para "
+"crear una bibliografía en formato <em>Texto</em>. Hay disponibles varias "
+"opciones para crear estos documentos:"
 
 #: C/scripting-existing.page:104(p)
 msgid ""
@@ -784,6 +787,13 @@ msgid ""
 "guiseq> dialog of LyX. The same path should be given in <app>Pybliographer</"
 "app>'s settings (the default value is <file>~/.lyx/lyxpipe)</file>."
 msgstr ""
+"Es posible usar <app>Pybliographer</app> directamente para insertar "
+"referencias bibliográficas en <app>LyX</app>. Esto se hace a través del "
+"<em>servidor</em> <app>LyX</app>. La ruta del servidor <app>LyX</app> se "
+"puede definir en el diálogo <guiseq><gui>Herramientas</"
+"gui><gui>Preferencias</gui></guiseq> de Lyx. Se debe poner la misma en la "
+"configuración de <app>Pybliographer</app> (el valor predeterminado es "
+"<file>~/.lyx/lyxpipe)</file>."
 
 #: C/gui-usinglyx.page:36(p)
 msgid ""
@@ -835,6 +845,8 @@ msgid ""
 "It is possible to describe your own bibliography style, by writing a simple "
 "XML file. The XML file should have the following header:"
 msgstr ""
+"Es posible describir su propio estilo bibliográfico escribiendo un sencillo "
+"archivo XML. El archivo XML debería tener la siguiente cabecera:"
 
 #: C/gui-styles.page:32(screen)
 #, no-wrap
@@ -1240,6 +1252,8 @@ msgid ""
 "<cmd>any_has(<var>value</var>)</cmd> searches for the given value in all the "
 "fields of an entry."
 msgstr ""
+"<cmd>any_has(<var>value</var>)</cmd> busca el valor dado en todos los "
+"valores de una entrada."
 
 #: C/gui-searching.page:78(p)
 msgid ""
@@ -1247,6 +1261,9 @@ msgid ""
 "var>)</cmd> searches for entries where the specified date field is older "
 "than the specified date."
 msgstr ""
+"<cmd>before(<var>field</var>, <var>year</var>, <var>month</var>, <var>day</"
+"var>)</cmd> busca entradas donde la fecha del campo especificado sea "
+"anterior a la fecha especificada."
 
 #: C/gui-searching.page:83(p)
 msgid ""
@@ -1396,7 +1413,7 @@ msgstr "@@image: 'figures/main.png'; md5=bf9ce1d3e626213520d3220eb46558dd"
 
 #: C/gui-navigating.page:10(desc)
 msgid "Explanations about the navigation in the database."
-msgstr ""
+msgstr "Explicaciones sobre la navegación en la base de datos."
 
 #: C/gui-navigating.page:26(title)
 msgid "Navigating in the entries"
@@ -1415,6 +1432,8 @@ msgid ""
 "It is possible to display two types of combined fields: <em>-author/editor</"
 "em> and <em>-author/title-</em>."
 msgstr ""
+"Es posible mostrar dos tipos dos tipos de campos combinados: <em>-autor/"
+"editor</em> y <em>-autor/título-</em>."
 
 #: C/gui-navigating.page:40(p)
 msgid ""
@@ -1499,11 +1518,11 @@ msgstr "@@image: 'figures/format.png'; md5=734464fc1276ef9b3f2bc8cb34f2504e"
 
 #: C/gui-formats.page:10(desc)
 msgid "Other file formats which you can also use."
-msgstr ""
+msgstr "Otros formatos de archivo que también puede usar"
 
 #: C/gui-formats.page:26(title)
 msgid "Saving selected entries in different formats"
-msgstr ""
+msgstr "Guardar las entradas seleccionadas el diferentes formatos"
 
 #: C/gui-formats.page:28(p)
 msgid ""
@@ -1511,6 +1530,9 @@ msgid ""
 "<guiseq><gui>Cite</gui><gui>Format...</gui></guiseq> menu item, see the "
 "following window:"
 msgstr ""
+"Las entradas seleccionadas se pueden guardar en diferentes formatos usando "
+"el elemento de menú <guiseq><gui>Cita</gui><gui>Formato…</gui></guiseq>, vea "
+"la siguiente ventana:"
 
 #: C/gui-formats.page:33(media)
 msgid "Formatting entries"
@@ -1589,6 +1611,8 @@ msgid ""
 "In addition to the standard fields, you can create your own fields using the "
 "<gui>Create Field</gui> button."
 msgstr ""
+"Además de los campos estándar, puede crear sus propios campos usando el "
+"botón <gui>Crear campo</gui>."
 
 #: C/gui-edit.page:63(p)
 msgid ""
@@ -1602,7 +1626,7 @@ msgstr ""
 
 #: C/gui-edit.page:73(media)
 msgid "The Edition window - Optional fields"
-msgstr ""
+msgstr "La ventana «Edición»: campos opcionales"
 
 #: C/gui-edit.page:77(p)
 msgid ""
@@ -1695,10 +1719,12 @@ msgid ""
 "You will find more information on the main window's usage in <link xref="
 "\"gui-navigating\"/>."
 msgstr ""
+"Encontrará más información en el uso de la ventana principal en <link xref="
+"\"gui-navigating\"/>."
 
 #: C/gettingstarted.page:10(desc)
 msgid "Your first steps in <app>Pybliographer</app>."
-msgstr ""
+msgstr "Sus primeros pasos en <app>Pybliographer</app>."
 
 #: C/gettingstarted.page:26(title)
 msgid "Getting Started"
@@ -1788,7 +1814,7 @@ msgstr ""
 
 #: C/customization.page:10(desc)
 msgid "How to customize this application to match your needs."
-msgstr ""
+msgstr "Como personalizar esta aplicación para ajustarse a sus necesidades."
 
 #: C/customization.page:26(title)
 msgid "Advanced Configuration"
@@ -1893,12 +1919,17 @@ msgid ""
 "To get some help about how to use <app>Pybliographer</app> in this mode, "
 "type <cmd>help</cmd> at the <app>Pybliographer</app> prompt."
 msgstr ""
+"Para obtener ayuda sobre cómo usar <app>Pybliographer</app> en este modo, "
+"escriba <cmd>help</cmd> aen el símbolo del sistema de <app>Pybliographer</"
+"app>."
 
 #: C/command-line.page:46(p)
 msgid ""
 "The next example shows how to open a database and make a simple search in "
 "it. See the following commands and the output:"
 msgstr ""
+"El siguiente ejemplo muestra cómo abrir una base de datos y hacer una "
+"búsqueda sencilla en ella. Vea los siguientes comandos y la salida:"
 
 #: C/command-line.page:48(screen)
 #, no-wrap
@@ -2024,7 +2055,7 @@ msgstr "Travis Oliphant"
 
 #: C/about.page:40(desc)
 msgid "Original Ovid parser"
-msgstr ""
+msgstr "Analizador Ovid original"
 
 #: C/about.page:41(p)
 msgid "Darrell Rudmann"
@@ -2032,7 +2063,7 @@ msgstr "Darrell Rudmann"
 
 #: C/about.page:41(desc)
 msgid "APA 4th edition style"
-msgstr ""
+msgstr "Estilo de edición APA 4th"
 
 #: C/about.page:42(p)
 msgid "Peter Schulte-Stracke"
