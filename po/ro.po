@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the pybliographer package.
 # Andrei <cristy_hereg93@yahoo.com>, 2010.
 # Master <cristy_hereg93@yahoo.com>, 2010.
+# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=pybliographer&component=general\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=pyblio"
+"grapher&component=general\n"
 "POT-Creation-Date: 2011-02-08 12:37+0000\n"
-"PO-Revision-Date: 2010-12-19 00:00+0300\n"
-"Last-Translator: Master <cristy_hereg93@yahoo.com>\n"
-"Language-Team: ROMANIAN TEAM\n"
+"PO-Revision-Date: 2011-03-19 01:33+0200\n"
+"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
+"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Virtaal 0.6.1\n"
@@ -70,7 +71,7 @@ msgstr "Tuplu (%s)"
 #: ../Pyblio/Config.py:299
 #, python-format
 msgid "List (%s)"
-msgstr "Lista (%s)"
+msgstr "Listă (%s)"
 
 #: ../Pyblio/Config.py:324
 #, python-format
@@ -102,12 +103,12 @@ msgstr "în %s"
 #: ../Pyblio/Format/BibTeX.py:323 ../Pyblio/Format/BibTeX.py:371
 #, python-format
 msgid "key `%s' is malformed"
-msgstr "cheia `%s' este malformată"
+msgstr "cheia „%s” este malformată"
 
 #: ../Pyblio/Format/BibTeX.py:340 ../Pyblio/Format/BibTeX.py:359
 #, python-format
 msgid "%s:%d: key `%s' already defined"
-msgstr "%s:%d: cheia `%s' este definită deja"
+msgstr "%s:%d: cheia „%s” este deja definită"
 
 #: ../Pyblio/GnomeUI/Config.py:147 ../Pyblio/GnomeUI/Fields.py:417
 msgid ""
@@ -139,7 +140,7 @@ msgstr "Cheie:"
 
 #: ../Pyblio/GnomeUI/Config.py:563
 msgid "Value:"
-msgstr "Valoarea:"
+msgstr "Valoare:"
 
 #. id     stock            label         accel   tooltip   callback
 #: ../Pyblio/GnomeUI/Document.py:145
@@ -190,7 +191,7 @@ msgstr "Îmbină cu..."
 #: ../Pyblio/GnomeUI/Document.py:162
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:7
 msgid "Medline Query..."
-msgstr ""
+msgstr "Interogare Medline..."
 
 #: ../Pyblio/GnomeUI/Document.py:170
 msgid "Add a new entry"
@@ -208,7 +209,7 @@ msgstr "Citează..."
 
 #: ../Pyblio/GnomeUI/Document.py:175
 msgid "Cite key(s)"
-msgstr "Citat chei"
+msgstr "Citează chei"
 
 #: ../Pyblio/GnomeUI/Document.py:176
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:6
@@ -247,7 +248,7 @@ msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
 msgstr ""
-"nu s-a putu deschide `%s' pentru scriere:\n"
+"nu s-a putut deschide „%s” pentru scriere:\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Document.py:423
@@ -256,7 +257,7 @@ msgid ""
 "Error while parsing `%s':\n"
 "%s"
 msgstr ""
-"Eroare în timp ce se analiza „%s”:\n"
+"Eroare în timp ce se parsa „%s”:\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Document.py:439
@@ -265,30 +266,30 @@ msgstr "Bază de date nouă"
 
 #: ../Pyblio/GnomeUI/Document.py:447 ../Pyblio/GnomeUI/Document.py:451
 msgid "[no entry]"
-msgstr ""
+msgstr "[nicio intrare]"
 
 #: ../Pyblio/GnomeUI/Document.py:448
 msgid "[1 entry]"
-msgstr ""
+msgstr "[o intrare]"
 
 #: ../Pyblio/GnomeUI/Document.py:449
 #, python-format
 msgid "[%d entries]"
-msgstr ""
+msgstr "[%d intrări]"
 
 #: ../Pyblio/GnomeUI/Document.py:452
 #, python-format
 msgid "[%d/1 entry]"
-msgstr ""
+msgstr "[%d/1 intrare]"
 
 #: ../Pyblio/GnomeUI/Document.py:453
 #, python-format
 msgid "[%d/%d entries]"
-msgstr ""
+msgstr "[%d/%d intrări]"
 
 #: ../Pyblio/GnomeUI/Document.py:458
 msgid "[modified]"
-msgstr ""
+msgstr "[modificată]"
 
 #: ../Pyblio/GnomeUI/Document.py:461
 #, python-format
@@ -331,7 +332,7 @@ msgstr "Îmbină fișier"
 
 #: ../Pyblio/GnomeUI/Document.py:547 ../Pyblio/GnomeUI/Document.py:634
 msgid "Open error"
-msgstr "Deschide eroare"
+msgstr "Deschide eroarea"
 
 #: ../Pyblio/GnomeUI/Document.py:571
 msgid "Merge status"
@@ -347,8 +348,7 @@ msgid ""
 "An autosave file was found which is newer than the original file.\n"
 "Do you want to restore it?"
 msgstr ""
-"Un fișier autosalvat a fost gasit și care este mai nou decât fișierul "
-"original.\n"
+"Un fișier autosalvat a fost găsit și este mai nou decât fișierul original.\n"
 "Doriți să-l restaurați?"
 
 #: ../Pyblio/GnomeUI/Document.py:655 ../Pyblio/GnomeUI/Document.py:796
@@ -358,7 +358,7 @@ msgid ""
 "Unable to remove autosave file `%s':\n"
 "%s"
 msgstr ""
-"Imposibil de eliminat fișierul autosalvat „%s”:\n"
+"Nu s-a putut elimina fișierul autosalvat „%s”:\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Document.py:706
@@ -385,7 +385,7 @@ msgid ""
 "Try to Save As..."
 msgstr ""
 "A apărut o eroare internă în timpul salvării\n"
-"Încercați varianta Salvează ca.."
+"Încercați varianta „Salvează ca..”"
 
 #: ../Pyblio/GnomeUI/Document.py:757
 msgid "Save As..."
@@ -398,7 +398,7 @@ msgid ""
 "Overwrite it ?"
 msgstr ""
 "Fișierul „%s” există deja.\n"
-"Doriți să fie suprascris ?"
+"Doriți să fie suprascris?"
 
 #: ../Pyblio/GnomeUI/Document.py:770
 #, python-format
@@ -420,30 +420,30 @@ msgid ""
 "Rename and add it anyway ?"
 msgstr ""
 "Intrarea numită „%s” există deja.\n"
-"Redenumiți și adăugați în orice caz ?"
+"Redenumiți și adăugați în orice caz?"
 
 #: ../Pyblio/GnomeUI/Document.py:918
 msgid "Really remove all the entries ?"
-msgstr "Sigur eliminați toate intrările ?"
+msgstr "Sigur eliminați toate intrările?"
 
 #: ../Pyblio/GnomeUI/Document.py:938
 msgid "Create new entry"
-msgstr "Creează intrare nouă"
+msgstr "Creează o intrare nouă"
 
 #: ../Pyblio/GnomeUI/Document.py:952
 #, python-format
 msgid "Really edit %d entries ?"
-msgstr "Sigur editați %d intrările ?"
+msgstr "Sigur editați %d intrări?"
 
 #: ../Pyblio/GnomeUI/Document.py:998
 #, python-format
 msgid "Remove all the %d entries ?"
-msgstr "Eliminați toate %d intrari ?"
+msgstr "Eliminați toate %d intrări?"
 
 #: ../Pyblio/GnomeUI/Document.py:1000
 #, python-format
 msgid "Remove entry `%s' ?"
-msgstr "Eliminați intrarea „%s” ?"
+msgstr "Eliminați intrarea „%s”?"
 
 #: ../Pyblio/GnomeUI/Document.py:1019
 msgid ""
@@ -515,15 +515,15 @@ msgstr "An"
 
 #: ../Pyblio/GnomeUI/Editor.py:355
 msgid "Invalid day field in date"
-msgstr ""
+msgstr "Câmpul zi incorect în dată"
 
 #: ../Pyblio/GnomeUI/Editor.py:363
 msgid "Invalid month field in date"
-msgstr ""
+msgstr "Câmpul lună incorect în dată"
 
 #: ../Pyblio/GnomeUI/Editor.py:371
 msgid "Invalid year field in date"
-msgstr ""
+msgstr "Câmpul an incorect în dată"
 
 #. A delete button
 #: ../Pyblio/GnomeUI/Editor.py:419 ../Pyblio/GnomeUI/Search.py:86
@@ -568,7 +568,7 @@ msgstr "Înainte"
 
 #: ../Pyblio/GnomeUI/Editor.py:728 ../Pyblio/GnomeUI/Fields.py:451
 msgid "Mandatory"
-msgstr "Mandatar"
+msgstr "Obligatoriu"
 
 #: ../Pyblio/GnomeUI/Editor.py:728 ../Pyblio/GnomeUI/Fields.py:452
 msgid "Optional"
@@ -584,12 +584,12 @@ msgstr "Suplimentar"
 
 #: ../Pyblio/GnomeUI/Editor.py:909
 msgid "Invalid key format"
-msgstr "Format cheie nevalid"
+msgstr "Format de cheie nevalid"
 
 #: ../Pyblio/GnomeUI/Editor.py:917
 #, python-format
 msgid "Key `%s' already exists"
-msgstr "Cheia „%s” există deja"
+msgstr "Cheia „%s” deja există"
 
 #: ../Pyblio/GnomeUI/Editor.py:934
 #, python-format
@@ -678,12 +678,12 @@ msgstr "Asociate"
 
 #: ../Pyblio/GnomeUI/Fields.py:321
 msgid "Please, select an entry type from previous page."
-msgstr "Selectați un tip de intrare de la pagina anterioară."
+msgstr "Selectați un tip de intrare de pe pagina anterioară."
 
 #: ../Pyblio/GnomeUI/Fields.py:332
 #, python-format
 msgid "Fields associated with <b>%s</b> entry type"
-msgstr "Câmpurile asociate cu <b>%s</b> tipuri de intrare"
+msgstr "Câmpurile asociate cu tipul de intrare <b>%s</b>"
 
 #: ../Pyblio/GnomeUI/FileSelector.py:39
 msgid "File"
@@ -696,7 +696,7 @@ msgstr "Tipul bibliografiei:"
 
 #: ../Pyblio/GnomeUI/FileSelector.py:93 ../Pyblio/GnomeUI/OpenURL.py:61
 msgid " - According to file suffix - "
-msgstr " - Potrivit dosarului sufix - "
+msgstr " - Potrivit fișierului sufix - "
 
 #. The root of the search tree is the full database
 #: ../Pyblio/GnomeUI/Search.py:71
@@ -719,11 +719,11 @@ msgstr ""
 #. These are additional search fields
 #: ../Pyblio/GnomeUI/Sort.py:97
 msgid "[Entry Type]"
-msgstr ""
+msgstr "[Tip de intrare]"
 
 #: ../Pyblio/GnomeUI/Sort.py:98
 msgid "[Key Value]"
-msgstr ""
+msgstr "[Valoare cheie]"
 
 #: ../Pyblio/GnomeUI/Utils.py:193
 msgid "The following errors occured:\n"
@@ -740,7 +740,7 @@ msgstr "Acesta este Pybliographic %s [Python %s, Gtk %s, PyGTK %s]"
 #: ../Pyblio/GnomeUI/glade/openurl.glade.h:1
 #: ../Pyblio/GnomeUI/glade/search.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:2
 msgid "<b>Entry type</b>"
@@ -748,12 +748,12 @@ msgstr "<b>Tip de intrare</b>"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:3
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:4
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:2
 msgid "Association"
-msgstr "Asociare"
+msgstr "Asociere"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:5
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:3
@@ -794,7 +794,7 @@ msgstr "domenii standard"
 
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:7
 msgid "Entry types and field names configuration"
-msgstr ""
+msgstr "Configurare tipuri de intrare şi nume de câmpuri"
 
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:9
 msgid "Information for <b>Article</b> entry type"
@@ -810,8 +810,8 @@ msgid ""
 "\n"
 msgstr ""
 "Selectează un tip de intrare și specifică \n"
-"asociația (mandatar și\n"
-"opțional) câmpurile de pe pagina următoare.\n"
+"câmpurile asociate (obligatorii și\n"
+"opționale) de pe pagina următoare.\n"
 "\n"
 "\n"
 "\n"
@@ -834,7 +834,7 @@ msgstr "Format de ieșire:"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:5
 msgid "Save Formatted as"
-msgstr "Salvați formatate ca"
+msgstr "Salvați formatat ca"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:6
 msgid "Style Selection"
@@ -858,11 +858,11 @@ msgid ""
 "of results:"
 msgstr ""
 "Numărul maxim\n"
-"de rezulate:"
+"de rezultate:"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:7
 msgid "Medline Query"
-msgstr "Medline Query"
+msgstr "Interogare Medline"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:8
 msgid ""
@@ -910,7 +910,7 @@ msgstr ""
 
 #: ../Pyblio/GnomeUI/glade/openurl.glade.h:3
 msgid "Enter the location (URI) of the file you would like to open:"
-msgstr "Introdu locația (URI) a fișierului pe care dorești să-l deschizi:"
+msgstr "Introduceți locația (URI) a fișierului pe care doriți să-l deschideți:"
 
 #: ../Pyblio/GnomeUI/glade/openurl.glade.h:4
 msgid "Open Location"
@@ -918,7 +918,7 @@ msgstr "Deschide locație"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:1
 msgid "Cite"
-msgstr "Citat"
+msgstr "Citează"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:3
 msgid "Contents"
@@ -999,22 +999,22 @@ msgstr "Definiți ca implicit"
 #: ../Pyblio/LyX.py:37
 #, python-format
 msgid "no input pipe `%s'"
-msgstr "nici o conexiune de intrare „%s”"
+msgstr "nicio conexiune de intrare „%s”"
 
 #: ../Pyblio/LyX.py:43
 #, python-format
 msgid "no output pipe `%s'"
-msgstr "nici o conexiune de ieșire „%s”"
+msgstr "nicio conexiune de ieșire „%s”"
 
 #: ../Pyblio/Open.py:96
 #, python-format
 msgid "method `%s' provides no opener"
-msgstr "metoda `%s' nu oferă nici o deschidere"
+msgstr "metoda „%s” nu oferă nicio deschidere"
 
 #: ../Pyblio/Open.py:104 ../Pyblio/Open.py:151
 #, python-format
 msgid "File `%s' does not exist"
-msgstr "Fișierul `%s' nu există"
+msgstr "Fișierul „%s” nu există"
 
 #: ../Pyblio/Open.py:115 ../Pyblio/Open.py:162
 #, python-format
@@ -1024,7 +1024,7 @@ msgstr "nu știe cum să-l deschidă „%s”"
 #: ../Pyblio/Open.py:143
 #, python-format
 msgid "method `%s' provides no iterator"
-msgstr "metoda `%s' nu oferă nici un iterator"
+msgstr "metoda „%s” nu oferă niciun iterator"
 
 #: ../Pyblio/Resource.py:77
 #, python-format
@@ -1032,8 +1032,8 @@ msgid ""
 "Warning: This URL is marked as Invalid or Approximate: %s\n"
 "Continue?"
 msgstr ""
-"Atenție: Acest URL is marked as Invalid or Approximate: %s\n"
-"Continue?"
+"Atenție: Acest URL este macat ca nevalid sau aproximativ: %s\n"
+"Doriți să continuați?"
 
 #: ../Pyblio/Resource.py:81
 msgid "Determining Mime Type ... "
@@ -1079,7 +1079,7 @@ msgstr "Se pornește aplicația ..."
 
 #: ../Pyblio/Resource.py:140
 msgid "No application to view resource"
-msgstr "Nici o aplicație pentru a vizualiza resursele"
+msgstr "Nicio aplicație pentru a vizualiza resursele"
 
 #: ../Pyblio/Resource.py:141
 #, python-format
@@ -1089,15 +1089,14 @@ msgid ""
 "Please consider adding one.\n"
 "URL: %s"
 msgstr ""
-"Pentru tipul mime %s, nici o intrare nu a fost găsită în\n"
-"opțiune de configurare a resurselor / telespectatori.\n"
-"Please consider adding one.\n"
+"Pentru tipul mime %s, nicio intrare nu a fost găsită în\n"
+"opțiune de configurare a resurselor/telespectatori.\n"
 "URL: %s"
 
 #: ../Pyblio/Style/Parser.py:261
 #, python-format
 msgid "missing '%s' attribute"
-msgstr "lipsă '%s' atribut"
+msgstr "lipsă atribut „%s”"
 
 #: ../Pyblio/Style/Parser.py:271
 #, python-format
@@ -1116,11 +1115,11 @@ msgstr "Aceasta este %s, versiunea %s"
 
 #: ../pybliographer.py:47 ../pybliographer.py:54
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
-msgstr "Acesta este un software gratuit cu absolui nici o garantie."
+msgstr "Acesta este un software gratuit cu absolut nicio garanție."
 
 #: ../pybliographer.py:48
 msgid "For details, type `warranty'."
-msgstr "Pentru detalii, tastează `warranty'."
+msgstr "Pentru detalii, tastați „warranty”."
 
 #: ../pybliographer.py:111 ../pybliographer.py:163
 #, python-format
@@ -1130,7 +1129,7 @@ msgstr "%s: eroare: nu se poate deschide „%s”"
 #: ../pybliographer.py:124
 #, python-format
 msgid "For help, run %s and type `help' at the prompt"
-msgstr "Pentru ajutor, rulează %s și tastează `help' la solicitare"
+msgstr "Pentru ajutor, rulați %s și tastați „help” la prompt"
 
 #: ../pybliographer.py:133
 msgid ""
@@ -1139,8 +1138,8 @@ msgid ""
 "\tquit     to quit\n"
 msgstr ""
 "Comenzi utile:\n"
-"\tajutor     pentru a primii ajutor\n"
-"\tieși       pentru a ieșii\n"
+"\thelp     pentru a primi ajutor\n"
+"\tquit     pentru a ieși\n"
 
 #. save history
 #: ../pybliographic.desktop.in.h:1
@@ -1162,7 +1161,7 @@ msgstr "utilizare: pybcheck <file | directory>..."
 #: ../scripts/pybcheck.py:60
 #, python-format
 msgid "file `%s' is ok [%d entries]"
-msgstr "fișierul `%s' este ok [%d intrări]"
+msgstr "fișierul „%s” este ok [%d intrări]"
 
 #: ../scripts/pybcompact.py:30
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
@@ -1175,12 +1174,12 @@ msgstr "pybcompact: eroare: %s\n"
 
 #: ../scripts/pybcompact.py:99
 msgid "no entry"
-msgstr "nici o intrare"
+msgstr "nicio intrare"
 
 #: ../scripts/pybcompact.py:162 ../scripts/pybtext.py:240
 #, python-format
 msgid "can't find the following entries: %s"
-msgstr "nu s-a putut găsii intrarea căutată: %s"
+msgstr "nu s-a putut găsi intrarea căutată: %s"
 
 #: ../scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
@@ -1261,7 +1260,7 @@ msgstr "format de ieșire necunoscut „%s”"
 #: ../scripts/pybtext.py:94
 #, python-format
 msgid "can't find style `%s'"
-msgstr "nu s-a putut găsii stilul „%s”"
+msgstr "nu s-a putut găsi stilul „%s”"
 
 #: ../scripts/pybformat.py:152
 #, python-format
@@ -1281,7 +1280,7 @@ msgstr "nu se poate deschide baza de date: %s"
 #: ../scripts/pybformat.py:190
 #, python-format
 msgid "can't open footer `%s': %s"
-msgstr "nu se poate deschide subolul „%s”: %s"
+msgstr "nu se poate deschide nota de subsol „%s”: %s"
 
 #: ../scripts/pybtex.py:34
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
@@ -1300,7 +1299,7 @@ msgstr "pybtex: atenție: următoarele taste nu au fost rezolvate"
 #. If the LaTeX document declares no style...
 #: ../scripts/pybtex.py:64
 msgid "no style defined"
-msgstr "nici un stil definit"
+msgstr "niciun stil definit"
 
 #: ../scripts/pybtext.py:41
 msgid "usage: pybtext [-o outputfile] [-s style] <textfile> <bibfiles...>"
@@ -1328,7 +1327,7 @@ msgstr "Un fișier cu același nume există deja: „%s”"
 
 #: ../scripts/pybtext.py:178
 msgid "no citation found"
-msgstr "nici un citat găsit"
+msgstr "niciun citat găsit"
 
 #: ../scripts/pybtext.py:193
 #, python-format
@@ -1338,7 +1337,7 @@ msgstr "pybtext: utilizând stilul „%s”, formatul „%s”\n"
 #: ../scripts/pybtext.py:316
 #, python-format
 msgid "can't create `%s'"
-msgstr "nu se poate creea „%s”"
+msgstr "nu se poate crea „%s”"
 
 #: ../scripts/pybtext.py:342
 #, python-format
