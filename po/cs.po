@@ -341,7 +341,7 @@ msgstr "Stav sloučení"
 #. get a new file name
 #: ../Pyblio/GnomeUI/Document.py:581
 msgid "Open file"
-msgstr "Otevřít soubor"
+msgstr "Otevření souboru"
 
 #: ../Pyblio/GnomeUI/Document.py:619
 msgid ""
@@ -605,7 +605,7 @@ msgstr "Váš text obsahuje symboly mimo Latin-1"
 
 #: ../Pyblio/GnomeUI/Editor.py:1023
 msgid "Edit entry"
-msgstr "Upravit záznam"
+msgstr "Úprava záznamu"
 
 #: ../Pyblio/GnomeUI/Editor.py:1037 ../Pyblio/GnomeUI/Editor.py:1102
 msgid "Native Editing"
