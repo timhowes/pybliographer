@@ -991,7 +991,7 @@ msgstr "Jednoduché hledání"
 
 #: ../Pyblio/GnomeUI/glade/sort.glade.h:1
 msgid "Select sort criterions"
-msgstr "Vyberte kráká kritéria"
+msgstr "Vyberte kritéria řazení"
 
 #: ../Pyblio/GnomeUI/glade/sort.glade.h:2
 msgid "Set as default"
