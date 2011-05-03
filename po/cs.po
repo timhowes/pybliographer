@@ -675,7 +675,7 @@ msgstr "Dostupné"
 
 #: ../Pyblio/GnomeUI/Fields.py:310
 msgid "Associated"
-msgstr "Související"
+msgstr "Přidružení"
 
 #: ../Pyblio/GnomeUI/Fields.py:321
 msgid "Please, select an entry type from previous page."
@@ -684,7 +684,7 @@ msgstr "Vyberte prosím typ položky na předchozí straně."
 #: ../Pyblio/GnomeUI/Fields.py:332
 #, python-format
 msgid "Fields associated with <b>%s</b> entry type"
-msgstr "Pole asociovaná s typem pole <b>%s</b>"
+msgstr "Pole přidružená k typu pole <b>%s</b>"
 
 #: ../Pyblio/GnomeUI/FileSelector.py:39
 msgid "File"
@@ -967,7 +967,7 @@ msgstr "Zavřít"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:3
 msgid "Expert Search"
-msgstr "Hledání pro experty"
+msgstr "Pokročilé hledání"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:4
 msgid "Field"
@@ -1118,7 +1118,7 @@ msgstr "Toto je %s, verze %s"
 
 #: ../pybliographer.py:47 ../pybliographer.py:54
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
-msgstr "Toto je free software ABSOLUTNĚ BEZ ZÁRUKY."
+msgstr "Toto je svobodný software ABSOLUTNĚ BEZ ZÁRUKY."
 
 #: ../pybliographer.py:48
 msgid "For details, type `warranty'."
