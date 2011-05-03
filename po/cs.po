@@ -677,7 +677,7 @@ msgstr "Dostupné"
 
 #: ../Pyblio/GnomeUI/Fields.py:310
 msgid "Associated"
-msgstr "Přidružení"
+msgstr "Přidruženo"
 
 #: ../Pyblio/GnomeUI/Fields.py:321
 msgid "Please, select an entry type from previous page."
@@ -756,7 +756,7 @@ msgstr "A"
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:4
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:2
 msgid "Association"
-msgstr "Souvislost"
+msgstr "Přidružení"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:5
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:3
@@ -812,8 +812,8 @@ msgid ""
 "\n"
 "\n"
 msgstr ""
-"Vyberte typ záznamu a určete jemu\n"
-"přiřazená (povinná a nepovinná)\n"
+"Vyberte typ záznamu a určete k němu\n"
+"přidružená (povinná a nepovinná)\n"
 "pole na následující straně.\n"
 "\n"
 "\n"
