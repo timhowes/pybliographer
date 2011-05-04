@@ -586,7 +586,7 @@ msgstr "Přídavné"
 
 #: ../Pyblio/GnomeUI/Editor.py:909
 msgid "Invalid key format"
-msgstr "Neplatný formát klíček"
+msgstr "Neplatný formát klíče"
 
 #: ../Pyblio/GnomeUI/Editor.py:917
 #, python-format
