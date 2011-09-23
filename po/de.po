@@ -2,16 +2,16 @@
 # Copyright (C) 2005 Free Software Foundation, Inc.
 # Christian Meyer <linux@chrisime.de>, 2000.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
-# Mario Blättermann <mariobl@gnome.org>, 2008, 2010.
+# Mario Blättermann <mariobl@freenet.de>, 2008, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=pybliographer&component=general\n"
-"POT-Creation-Date: 2010-09-07 12:41+0000\n"
-"PO-Revision-Date: 2010-09-16 21:34+0100\n"
-"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
+"product=pybliographer&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-09-22 13:25+0000\n"
+"PO-Revision-Date: 2011-09-23 23:42+0100\n"
+"Last-Translator: Mario Blättermann <mariobl@freenet.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,11 +29,11 @@ msgstr "Wert von »%s« sollte vom Typ %s sein"
 
 #: ../Pyblio/Config.py:212
 msgid "String"
-msgstr "String"
+msgstr "Zeichenkette"
 
 #: ../Pyblio/Config.py:221
 msgid "Boolean"
-msgstr "Boolean"
+msgstr "Boolescher Wert"
 
 #: ../Pyblio/Config.py:240
 msgid "Integer"
@@ -321,25 +321,30 @@ msgstr ""
 msgid "Your query returned no result"
 msgstr "Die Abfrage lieferte kein Ergebnis"
 
+#. error
+#: ../Pyblio/GnomeUI/Document.py:528
+msgid "An error occured during Medline Query"
+msgstr "Ein Fehler ist bei der Medline-Abfrage aufgetreten"
+
 #. get a new file name
-#: ../Pyblio/GnomeUI/Document.py:534
+#: ../Pyblio/GnomeUI/Document.py:538
 msgid "Merge file"
 msgstr "Datei zusammenführen"
 
-#: ../Pyblio/GnomeUI/Document.py:546 ../Pyblio/GnomeUI/Document.py:632
+#: ../Pyblio/GnomeUI/Document.py:551 ../Pyblio/GnomeUI/Document.py:638
 msgid "Open error"
 msgstr "Fehler beim Öffnen"
 
-#: ../Pyblio/GnomeUI/Document.py:570
+#: ../Pyblio/GnomeUI/Document.py:575
 msgid "Merge status"
 msgstr "Status der Zusammenführung"
 
 #. get a new file name
-#: ../Pyblio/GnomeUI/Document.py:581
+#: ../Pyblio/GnomeUI/Document.py:586
 msgid "Open file"
 msgstr "Datei öffnen"
 
-#: ../Pyblio/GnomeUI/Document.py:619
+#: ../Pyblio/GnomeUI/Document.py:624
 msgid ""
 "An autosave file was found which is newer than the original file.\n"
 "Do you want to restore it?"
@@ -348,8 +353,8 @@ msgstr ""
 "Originaldatei ist.\n"
 "Möchten Sie diese Datei wiederherstellen?"
 
-#: ../Pyblio/GnomeUI/Document.py:653 ../Pyblio/GnomeUI/Document.py:794
-#: ../Pyblio/GnomeUI/Document.py:854
+#: ../Pyblio/GnomeUI/Document.py:659 ../Pyblio/GnomeUI/Document.py:800
+#: ../Pyblio/GnomeUI/Document.py:860
 #, python-format
 msgid ""
 "Unable to remove autosave file `%s':\n"
@@ -358,7 +363,7 @@ msgstr ""
 "Löschen der automatisch gespeicherten Datei »%s« fehlgeschlagen:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:704
+#: ../Pyblio/GnomeUI/Document.py:710
 #, python-format
 msgid ""
 "Error during autosaving:\n"
@@ -367,7 +372,7 @@ msgstr ""
 "Fehler während des automatischen Speicherns:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:732
+#: ../Pyblio/GnomeUI/Document.py:738
 #, python-format
 msgid ""
 "Unable to save `%s':\n"
@@ -376,7 +381,7 @@ msgstr ""
 "»%s« kann nicht gespeichert werden:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:740
+#: ../Pyblio/GnomeUI/Document.py:746
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -384,11 +389,11 @@ msgstr ""
 "Ein interner Fehler trat während des Speicherns auf\n"
 "Probieren Sie »Speichern unter…«"
 
-#: ../Pyblio/GnomeUI/Document.py:755
-msgid "Save As..."
-msgstr "Speichern unter…"
-
 #: ../Pyblio/GnomeUI/Document.py:761
+msgid "Save As..."
+msgstr "Speichern unter …"
+
+#: ../Pyblio/GnomeUI/Document.py:767
 #, python-format
 msgid ""
 "The file `%s' already exists.\n"
@@ -397,7 +402,7 @@ msgstr ""
 "Die Datei »%s« existiert bereits.\n"
 "Überschreiben?"
 
-#: ../Pyblio/GnomeUI/Document.py:768
+#: ../Pyblio/GnomeUI/Document.py:774
 #, python-format
 msgid ""
 "During opening:\n"
@@ -406,11 +411,11 @@ msgstr ""
 "Während des Öffnens:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:806
+#: ../Pyblio/GnomeUI/Document.py:812
 msgid "Reopen error"
 msgstr "Fehler beim erneuten Öffnen"
 
-#: ../Pyblio/GnomeUI/Document.py:879
+#: ../Pyblio/GnomeUI/Document.py:885
 #, python-format
 msgid ""
 "An entry called `%s' already exists.\n"
@@ -419,30 +424,30 @@ msgstr ""
 "Ein Eintrag mit dem Namen »%s« existiert bereits.\n"
 "Trotzdem umbenennen und hinzufügen ?"
 
-#: ../Pyblio/GnomeUI/Document.py:916
+#: ../Pyblio/GnomeUI/Document.py:922
 msgid "Really remove all the entries ?"
 msgstr "Wirklich alle Einträge entfernen ?"
 
-#: ../Pyblio/GnomeUI/Document.py:936
+#: ../Pyblio/GnomeUI/Document.py:942
 msgid "Create new entry"
 msgstr "Neuen Eintrag erstellen"
 
-#: ../Pyblio/GnomeUI/Document.py:950
+#: ../Pyblio/GnomeUI/Document.py:956
 #, python-format
 msgid "Really edit %d entries ?"
-msgstr "Wirklich %d Einträge bearbeiten ?"
+msgstr "Wirklich %d Einträge bearbeiten?"
 
-#: ../Pyblio/GnomeUI/Document.py:996
+#: ../Pyblio/GnomeUI/Document.py:1002
 #, python-format
 msgid "Remove all the %d entries ?"
-msgstr "Alle %d Einträge entfernen ?"
+msgstr "Alle %d Einträge entfernen?"
 
-#: ../Pyblio/GnomeUI/Document.py:998
+#: ../Pyblio/GnomeUI/Document.py:1004
 #, python-format
 msgid "Remove entry `%s' ?"
-msgstr "Eintrag »%s« entfernen ?"
+msgstr "Eintrag »%s« entfernen?"
 
-#: ../Pyblio/GnomeUI/Document.py:1017
+#: ../Pyblio/GnomeUI/Document.py:1023
 msgid ""
 "your search text must contain\n"
 "latin-1 characters only"
@@ -450,7 +455,7 @@ msgstr ""
 "Ihre Suche darf nur\n"
 "latin-1-Zeichen enthalten"
 
-#: ../Pyblio/GnomeUI/Document.py:1096 ../Pyblio/GnomeUI/Document.py:1104
+#: ../Pyblio/GnomeUI/Document.py:1102 ../Pyblio/GnomeUI/Document.py:1110
 #, python-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -459,7 +464,7 @@ msgstr ""
 "Es kann keine Verbindung zu LyX hergestellt werden:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:1219
+#: ../Pyblio/GnomeUI/Document.py:1225
 #, python-format
 msgid ""
 "Can't display documentation:\n"
@@ -468,19 +473,19 @@ msgstr ""
 "Dokumentation konnte nicht angezeigt werden:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:1227
+#: ../Pyblio/GnomeUI/Document.py:1233
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Dieses Programm steht unter der GNU GPL"
 
-#: ../Pyblio/GnomeUI/Document.py:1228
+#: ../Pyblio/GnomeUI/Document.py:1234
 msgid "GNOME interface to the Pybliographer system."
 msgstr "GNOME-Schnittstelle zum Pybliographer-System."
 
-#: ../Pyblio/GnomeUI/Document.py:1239
+#: ../Pyblio/GnomeUI/Document.py:1245
 msgid "GNOME Translation Team"
 msgstr "GNOME-Übersetzungsteam"
 
-#: ../Pyblio/GnomeUI/Document.py:1244
+#: ../Pyblio/GnomeUI/Document.py:1250
 msgid "Pybliographer Home Page"
 msgstr "Pybliographer-Homepage"
 
@@ -530,7 +535,7 @@ msgstr "Löschen"
 #: ../Pyblio/GnomeUI/Editor.py:430 ../Pyblio/GnomeUI/Editor.py:443
 #: ../Pyblio/GnomeUI/Editor.py:446
 msgid "[ Drop an Entry here ]"
-msgstr "[ Eintrag hierher ziehen ]"
+msgstr "[Eintrag hierher ziehen]"
 
 #: ../Pyblio/GnomeUI/Editor.py:502
 msgid "Browse..."
@@ -592,13 +597,13 @@ msgstr "Schlüssel »%s« ist bereits vorhanden"
 #, python-format
 msgid "The `%s' field contains a non Latin-1 symbol"
 msgstr ""
-"Das »%s«-Feld enthält ein Zeichen, das nicht im Latin-1 Zeichensatz enthalten "
+"Das »%s«-Feld enthält ein Zeichen, das nicht im Latin-1-Zeichensatz enthalten "
 "ist"
 
 #: ../Pyblio/GnomeUI/Editor.py:996
 msgid "Your text contains non Latin-1 symbols"
 msgstr ""
-"Der Text enthält Zeichen, die nicht im Latin-1 Zeichensatz enthalten sind."
+"Der Text enthält Zeichen, die nicht im Latin-1-Zeichensatz enthalten sind."
 
 #: ../Pyblio/GnomeUI/Editor.py:1023
 msgid "Edit entry"
@@ -713,7 +718,7 @@ msgid ""
 "while compiling %s\n"
 "error: %s"
 msgstr ""
-"Beim Compilieren von »%s«\n"
+"Beim Kompilieren von »%s«\n"
 "Fehler: %s"
 
 #. These are additional search fields
@@ -1188,7 +1193,7 @@ msgstr "Die folgenden Einträge können nicht gefunden werden: %s"
 
 #: ../scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
-msgstr "Benutzung: pybconvert <Quelle>..<Ziel> <Eingabe> [Ausgabe]"
+msgstr "Aufruf: pybconvert <Quelle>..<Ziel> <Eingabe> [Ausgabe]"
 
 #: ../scripts/pybconvert.py:38
 msgid "pybconvert: error: bad conversion format"
@@ -1288,7 +1293,7 @@ msgstr "Fuß »%s« konnte nicht geöffnet werden: %s"
 
 #: ../scripts/pybtex.py:34
 msgid "usage: pybtex <latexfile> [bibtexfiles...]"
-msgstr "Benutzung: pybtex <latex-Datei> [bibtex-Dateien…]"
+msgstr "Aufruf: pybtex <latex-Datei> [bibtex-Dateien…]"
 
 #: ../scripts/pybtex.py:38
 #, python-format
