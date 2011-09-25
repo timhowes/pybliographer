@@ -1,0 +1,1350 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=pybliographer&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-04-10 08:22+0000\n"
+"PO-Revision-Date: 2011-09-25 17:14+0300\n"
+"Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
+"Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lv\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: ../Pyblio/Autoload.py:78
+#, python-format
+msgid "warning: can't import %s: %s"
+msgstr "brīdinājums: nevar importēt %s: %s"
+
+#: ../Pyblio/Config.py:52
+#, python-format
+msgid "value of `%s' should be of type %s"
+msgstr "`%s' vērtībai jābūt ar tipu %s"
+
+#: ../Pyblio/Config.py:212
+msgid "String"
+msgstr "Virkne"
+
+#: ../Pyblio/Config.py:221
+msgid "Boolean"
+msgstr "Loģiskais datu tips"
+
+#: ../Pyblio/Config.py:240
+msgid "Integer"
+msgstr "Vesels skaitlis"
+
+#: ../Pyblio/Config.py:242
+#, python-format
+msgid "Integer under %d"
+msgstr "Vesels skaitlis zem %d"
+
+#: ../Pyblio/Config.py:244
+#, python-format
+msgid "Integer over %d"
+msgstr "Vesels skaitlis virs %d"
+
+#: ../Pyblio/Config.py:246
+#, python-format
+msgid "Integer between %d and %d"
+msgstr "Vesels skaitlis starp %d un %d"
+
+#: ../Pyblio/Config.py:258
+#, python-format
+msgid "Element in `%s'"
+msgstr "Elements iekš `%s'"
+
+#: ../Pyblio/Config.py:278
+#, python-format
+msgid "Tuple (%s)"
+msgstr "Kortežs (%s)"
+
+#: ../Pyblio/Config.py:299
+#, python-format
+msgid "List (%s)"
+msgstr "Saraksts (%s)"
+
+#: ../Pyblio/Config.py:324
+#, python-format
+msgid "Dictionary (%s, %s)"
+msgstr "Vārdnīca (%s, %s)"
+
+#: ../Pyblio/Config.py:344
+#, python-format
+msgid "warning: could not restore setting %r to %r: %s"
+msgstr "brīdinājums: nevarēja atjaunot iestatījumu %r uz %r: %s"
+
+#: ../Pyblio/Fields.py:261
+msgid "Illegal year value"
+msgstr "Neatļauta gada vērtība"
+
+#: ../Pyblio/Fields.py:265
+msgid "Illegal month value"
+msgstr "Neatļauta mēneša vērtība"
+
+#: ../Pyblio/Fields.py:269
+msgid "Illegal day value"
+msgstr "Neatļauta dienas vērtība"
+
+#: ../Pyblio/Fields.py:510
+#, python-format
+msgid "in %s"
+msgstr "iekš %s"
+
+#: ../Pyblio/Format/BibTeX.py:323 ../Pyblio/Format/BibTeX.py:371
+#, python-format
+msgid "key `%s' is malformed"
+msgstr "atslēga `%s' ir slikti formatēta"
+
+#: ../Pyblio/Format/BibTeX.py:340 ../Pyblio/Format/BibTeX.py:359
+#, python-format
+msgid "%s:%d: key `%s' already defined"
+msgstr "%s:%d: atslēga `%s' jau ir definēta"
+
+#: ../Pyblio/GnomeUI/Config.py:147 ../Pyblio/GnomeUI/Fields.py:417
+msgid ""
+"Some changes require to restart Pybliographic\n"
+"to be correctly taken into account"
+msgstr ""
+"Dažas izmaiņas pieprasa Pybliographic pārstartēšanu,\n"
+"lai tās tiktu pareizi ņemtas vērtā"
+
+#: ../Pyblio/GnomeUI/Config.py:429
+msgid "Add"
+msgstr "Pievienot"
+
+#: ../Pyblio/GnomeUI/Config.py:432
+msgid "Update"
+msgstr "Atjaunināt"
+
+#: ../Pyblio/GnomeUI/Config.py:435 ../Pyblio/GnomeUI/Config.py:549
+msgid "Remove"
+msgstr "Izņemt"
+
+#: ../Pyblio/GnomeUI/Config.py:546
+msgid "Set"
+msgstr "Iestatīt"
+
+#: ../Pyblio/GnomeUI/Config.py:561
+msgid "Key:"
+msgstr "Atslēga:"
+
+#: ../Pyblio/GnomeUI/Config.py:563
+msgid "Value:"
+msgstr "Vērtība:"
+
+#. id     stock            label         accel   tooltip   callback
+#: ../Pyblio/GnomeUI/Document.py:145
+msgid "_File"
+msgstr "_Fails"
+
+#: ../Pyblio/GnomeUI/Document.py:146 ../Pyblio/GnomeUI/Document.py:195
+msgid "_Edit"
+msgstr "R_ediģēt"
+
+#: ../Pyblio/GnomeUI/Document.py:147
+msgid "_View"
+msgstr "_Skats"
+
+#: ../Pyblio/GnomeUI/Document.py:148
+msgid "_Cite"
+msgstr "_Citāts"
+
+#: ../Pyblio/GnomeUI/Document.py:149
+msgid "_Settings"
+msgstr "Ie_statījumi"
+
+#: ../Pyblio/GnomeUI/Document.py:150
+msgid "_Help"
+msgstr "_Palīdzība"
+
+#: ../Pyblio/GnomeUI/Document.py:151
+msgid "Recent documents"
+msgstr "Nesen izmantotie dokumenti"
+
+#: ../Pyblio/GnomeUI/Document.py:154
+msgid "Open a file"
+msgstr "Atvērt failu"
+
+#: ../Pyblio/GnomeUI/Document.py:155
+msgid "Open _Location"
+msgstr "Atvērt _vietu"
+
+#: ../Pyblio/GnomeUI/Document.py:156
+msgid "Save the current file"
+msgstr "Saglabāt pašreizējo failu"
+
+#: ../Pyblio/GnomeUI/Document.py:161
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:8
+msgid "Merge With..."
+msgstr "Apvienot ar..."
+
+#: ../Pyblio/GnomeUI/Document.py:162
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:7
+msgid "Medline Query..."
+msgstr "Medline vaicājums..."
+
+#: ../Pyblio/GnomeUI/Document.py:170
+msgid "Add a new entry"
+msgstr "Pievienot jaunu ierakstu"
+
+#: ../Pyblio/GnomeUI/Document.py:174
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:12
+msgid "S_ort..."
+msgstr "_Kārtot..."
+
+#: ../Pyblio/GnomeUI/Document.py:175
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:2
+msgid "Cite..."
+msgstr "Citēt..."
+
+#: ../Pyblio/GnomeUI/Document.py:175
+msgid "Cite key(s)"
+msgstr "Citāta atslēga(-s)"
+
+#: ../Pyblio/GnomeUI/Document.py:176
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:6
+msgid "Format..."
+msgstr "Formāts..."
+
+#: ../Pyblio/GnomeUI/Document.py:178
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:4
+msgid "Fields..."
+msgstr "Lauki..."
+
+#: ../Pyblio/GnomeUI/Document.py:180
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:5
+msgid "Forget all changes"
+msgstr "Aizmirst visas izmaiņas"
+
+#: ../Pyblio/GnomeUI/Document.py:183
+msgid "_Resource"
+msgstr "_Resurss"
+
+#: ../Pyblio/GnomeUI/Document.py:194
+msgid "_About"
+msgstr "P_ar"
+
+#: ../Pyblio/GnomeUI/Document.py:245
+msgid "Quick search"
+msgstr "Ātrā meklēšana"
+
+#: ../Pyblio/GnomeUI/Document.py:319
+msgid "Unnamed bibliographic database"
+msgstr "Nenosaukta bibliogrāfijas datubāze"
+
+#: ../Pyblio/GnomeUI/Document.py:402
+#, python-format
+msgid ""
+"can't open file `%s' for writing:\n"
+"%s"
+msgstr ""
+"nevar atvērt failu `%s' rakstīšanai:\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Document.py:423
+#, python-format
+msgid ""
+"Error while parsing `%s':\n"
+"%s"
+msgstr ""
+"Kļūda, parsējot `%s':\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Document.py:439
+msgid "New database"
+msgstr "Jauna datubāze"
+
+#: ../Pyblio/GnomeUI/Document.py:447 ../Pyblio/GnomeUI/Document.py:451
+msgid "[no entry]"
+msgstr "[nav ieraksta]"
+
+#: ../Pyblio/GnomeUI/Document.py:448
+msgid "[1 entry]"
+msgstr "[1 ieraksts]"
+
+#: ../Pyblio/GnomeUI/Document.py:449
+#, python-format
+msgid "[%d entries]"
+msgstr "[%d ieraksti]"
+
+#: ../Pyblio/GnomeUI/Document.py:452
+#, python-format
+msgid "[%d/1 entry]"
+msgstr "[%d/1 ieraksts]"
+
+#: ../Pyblio/GnomeUI/Document.py:453
+#, python-format
+msgid "[%d/%d entries]"
+msgstr "[%d/%d ieraksti]"
+
+#: ../Pyblio/GnomeUI/Document.py:458
+msgid "[modified]"
+msgstr "[pārveidots]"
+
+#: ../Pyblio/GnomeUI/Document.py:461
+#, python-format
+msgid "view limited to: %s"
+msgstr "skats ierobežots līdz: %s"
+
+#: ../Pyblio/GnomeUI/Document.py:474
+msgid ""
+"The database has been modified.\n"
+"Discard changes?"
+msgstr ""
+"Datubāze tika izmainīta.\n"
+"Izmest izmaiņas?"
+
+#: ../Pyblio/GnomeUI/Document.py:478
+msgid ""
+"The database has been modified.\n"
+"Save changes?"
+msgstr ""
+"Datubāze tika izmainīta.\n"
+"Saglabāt izmaiņas?"
+
+#: ../Pyblio/GnomeUI/Document.py:495
+msgid ""
+"The database has been externally modified.\n"
+"Overwrite changes ?"
+msgstr ""
+"Datubāze tika izmainīta no ārpuses.\n"
+"Pārrakstīt izmaiņas?"
+
+#. no result.
+#: ../Pyblio/GnomeUI/Document.py:524
+msgid "Your query returned no result"
+msgstr "Vaicājums neatgrieza rezultātus"
+
+#. get a new file name
+#: ../Pyblio/GnomeUI/Document.py:534
+msgid "Merge file"
+msgstr "Apvienot failu"
+
+#: ../Pyblio/GnomeUI/Document.py:547 ../Pyblio/GnomeUI/Document.py:634
+msgid "Open error"
+msgstr "Atvēršanas kļūda"
+
+#: ../Pyblio/GnomeUI/Document.py:571
+msgid "Merge status"
+msgstr "Apvienošanas status"
+
+#. get a new file name
+#: ../Pyblio/GnomeUI/Document.py:582
+msgid "Open file"
+msgstr "Atvērt failu"
+
+#: ../Pyblio/GnomeUI/Document.py:620
+msgid ""
+"An autosave file was found which is newer than the original file.\n"
+"Do you want to restore it?"
+msgstr ""
+"Tika atrasts automātiskās saglabāšanas fails, kas ir jaunāks par "
+"oriģinālo failu.\n"
+"Vai vēlaties to atjaunot?"
+
+#: ../Pyblio/GnomeUI/Document.py:655 ../Pyblio/GnomeUI/Document.py:796
+#: ../Pyblio/GnomeUI/Document.py:856
+#, python-format
+msgid ""
+"Unable to remove autosave file `%s':\n"
+"%s"
+msgstr ""
+"Nevarēja izņemt automātiskās saglabāšanas failu `%s':\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Document.py:706
+#, python-format
+msgid ""
+"Error during autosaving:\n"
+"%s"
+msgstr ""
+"Kļūda, automātiski saglabājot:\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Document.py:734
+#, python-format
+msgid ""
+"Unable to save `%s':\n"
+"%s"
+msgstr ""
+"Neizdevās saglabāt `%s':\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Document.py:742
+msgid ""
+"An internal error occured during saving\n"
+"Try to Save As..."
+msgstr ""
+"Saglabājot gadījās iekšēja kļūda\n"
+"Mēģiniet Saglabāt kā..."
+
+#: ../Pyblio/GnomeUI/Document.py:757
+msgid "Save As..."
+msgstr "Saglabāt kā..."
+
+#: ../Pyblio/GnomeUI/Document.py:763
+#, python-format
+msgid ""
+"The file `%s' already exists.\n"
+"Overwrite it ?"
+msgstr ""
+"Fails `%s' jau eksistē.\n"
+"To pārrakstīt?"
+
+#: ../Pyblio/GnomeUI/Document.py:770
+#, python-format
+msgid ""
+"During opening:\n"
+"%s"
+msgstr ""
+"Atverot:\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Document.py:808
+msgid "Reopen error"
+msgstr "Atkal-atvēršanas kļūda"
+
+#: ../Pyblio/GnomeUI/Document.py:881
+#, python-format
+msgid ""
+"An entry called `%s' already exists.\n"
+"Rename and add it anyway ?"
+msgstr ""
+"Ieraksts ar nosaukumu `%s' jau eksistē.\n"
+"Tomēr pārsaukt un pievienot?"
+
+#: ../Pyblio/GnomeUI/Document.py:918
+msgid "Really remove all the entries ?"
+msgstr "Tiešam izņemt visus ierakstus?"
+
+#: ../Pyblio/GnomeUI/Document.py:938
+msgid "Create new entry"
+msgstr "Izveidot jaunu ierakstu"
+
+#: ../Pyblio/GnomeUI/Document.py:952
+#, python-format
+msgid "Really edit %d entries ?"
+msgstr "Tiešām rediģēt %d ierakstus?"
+
+#: ../Pyblio/GnomeUI/Document.py:998
+#, python-format
+msgid "Remove all the %d entries ?"
+msgstr "Izņemt visus %d ierakstus?"
+
+#: ../Pyblio/GnomeUI/Document.py:1000
+#, python-format
+msgid "Remove entry `%s' ?"
+msgstr "Izņemt ierakstu `%s' ?"
+
+#: ../Pyblio/GnomeUI/Document.py:1019
+msgid ""
+"your search text must contain\n"
+"latin-1 characters only"
+msgstr ""
+"meklējamais teksts drīkst saturēt tikai \n"
+"latin-1 rakstzīmes"
+
+#: ../Pyblio/GnomeUI/Document.py:1098 ../Pyblio/GnomeUI/Document.py:1106
+#, python-format
+msgid ""
+"Can't connect to LyX:\n"
+"%s"
+msgstr ""
+"Nevar savienoties ar LyX:\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Document.py:1221
+#, python-format
+msgid ""
+"Can't display documentation:\n"
+"%s"
+msgstr ""
+"Nevar attēlot dokumentāciju:\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Document.py:1229
+msgid "This program is copyrighted under the GNU GPL"
+msgstr "Šī programma ir licencēta ar GNU GPL licenci"
+
+#: ../Pyblio/GnomeUI/Document.py:1230
+msgid "GNOME interface to the Pybliographer system."
+msgstr "GNOME saskarne Pybliographer sistēmai."
+
+#: ../Pyblio/GnomeUI/Document.py:1241
+msgid "GNOME Translation Team"
+msgstr "GNOME tulkotāju komanda"
+
+#: ../Pyblio/GnomeUI/Document.py:1246
+msgid "Pybliographer Home Page"
+msgstr "Pybliographer tīmekļa vietne"
+
+#: ../Pyblio/GnomeUI/Editor.py:35
+msgid "Last Name, First Name"
+msgstr "Uzvārds, vārds"
+
+#: ../Pyblio/GnomeUI/Editor.py:36 ../Pyblio/GnomeUI/Editor.py:1292
+#: ../Pyblio/GnomeUI/Fields.py:39 ../Pyblio/GnomeUI/glade/config1.glade.h:14
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:19
+msgid "Text"
+msgstr "Teksts"
+
+#: ../Pyblio/GnomeUI/Editor.py:133 ../Pyblio/GnomeUI/Editor.py:1003
+msgid "Error in native string parsing"
+msgstr "Kļūdu vietējā virknes analizē"
+
+#: ../Pyblio/GnomeUI/Editor.py:312
+msgid "Day"
+msgstr "Diena"
+
+#: ../Pyblio/GnomeUI/Editor.py:321
+msgid "Month"
+msgstr "Mēnesis"
+
+#: ../Pyblio/GnomeUI/Editor.py:330
+msgid "Year"
+msgstr "Gads"
+
+#: ../Pyblio/GnomeUI/Editor.py:355
+msgid "Invalid day field in date"
+msgstr "Nederīgs dienas lauks datumā"
+
+#: ../Pyblio/GnomeUI/Editor.py:363
+msgid "Invalid month field in date"
+msgstr "Nederīgs mēneša lauks datumā"
+
+#: ../Pyblio/GnomeUI/Editor.py:371
+msgid "Invalid year field in date"
+msgstr "Nederīgs gada lauks datumā"
+
+#. A delete button
+#: ../Pyblio/GnomeUI/Editor.py:419 ../Pyblio/GnomeUI/Search.py:86
+msgid "Delete"
+msgstr "Dzēst"
+
+#: ../Pyblio/GnomeUI/Editor.py:430 ../Pyblio/GnomeUI/Editor.py:443
+#: ../Pyblio/GnomeUI/Editor.py:446
+msgid "[ Drop an Entry here ]"
+msgstr "[ Nometiet ierakstu šeit ]"
+
+#: ../Pyblio/GnomeUI/Editor.py:502
+msgid "Browse..."
+msgstr "Pārlūkot..."
+
+#: ../Pyblio/GnomeUI/Editor.py:525
+msgid "Select file"
+msgstr "Izvēlieties failu"
+
+#: ../Pyblio/GnomeUI/Editor.py:549 ../Pyblio/GnomeUI/Fields.py:236
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:8
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:6
+msgid "Entry type"
+msgstr "Ieraksta tips"
+
+#: ../Pyblio/GnomeUI/Editor.py:551
+msgid "Key"
+msgstr "Atslēga"
+
+#: ../Pyblio/GnomeUI/Editor.py:600
+msgid "Create Field"
+msgstr "Izveidot lauku"
+
+#. navigation buttons
+#: ../Pyblio/GnomeUI/Editor.py:605
+msgid "Back"
+msgstr "Atpakaļ"
+
+#: ../Pyblio/GnomeUI/Editor.py:608
+msgid "Next"
+msgstr "Nākamais"
+
+#: ../Pyblio/GnomeUI/Editor.py:728 ../Pyblio/GnomeUI/Fields.py:451
+msgid "Mandatory"
+msgstr "Obligāts"
+
+#: ../Pyblio/GnomeUI/Editor.py:728 ../Pyblio/GnomeUI/Fields.py:452
+msgid "Optional"
+msgstr "Neobligāts"
+
+#: ../Pyblio/GnomeUI/Editor.py:728 ../Pyblio/GnomeUI/Editor.py:1207
+msgid "Notes"
+msgstr "Piezimes"
+
+#: ../Pyblio/GnomeUI/Editor.py:728
+msgid "Extra"
+msgstr "Papildu"
+
+#: ../Pyblio/GnomeUI/Editor.py:909
+msgid "Invalid key format"
+msgstr "Nederīgs atslēgas formāts"
+
+#: ../Pyblio/GnomeUI/Editor.py:917
+#, python-format
+msgid "Key `%s' already exists"
+msgstr "Atslēga `%s' jau eksistē"
+
+#: ../Pyblio/GnomeUI/Editor.py:934
+#, python-format
+msgid "The `%s' field contains a non Latin-1 symbol"
+msgstr "Lauks `%s' satur simbolus, kas nav Latin-1"
+
+#: ../Pyblio/GnomeUI/Editor.py:996
+msgid "Your text contains non Latin-1 symbols"
+msgstr "Jūsu teksts satur simbolus, kas nav Latin-1"
+
+#: ../Pyblio/GnomeUI/Editor.py:1023
+msgid "Edit entry"
+msgstr "Rediģēt ierakstu"
+
+#: ../Pyblio/GnomeUI/Editor.py:1037 ../Pyblio/GnomeUI/Editor.py:1102
+msgid "Native Editing"
+msgstr "Vietējā rediģēšana"
+
+#: ../Pyblio/GnomeUI/Editor.py:1125
+msgid "Standard Editing"
+msgstr "Standarta rediģēšana"
+
+#: ../Pyblio/GnomeUI/Editor.py:1229
+msgid "mandatory"
+msgstr "obligāts"
+
+#: ../Pyblio/GnomeUI/Editor.py:1295
+msgid "Enter text here"
+msgstr "Ievadīt tekstu šeit"
+
+#: ../Pyblio/GnomeUI/Editor.py:1347
+msgid "New Annotation Name"
+msgstr "Jauns anotācijas nosaukums"
+
+#: ../Pyblio/GnomeUI/Editor.py:1353
+msgid "Name of the new annotation:"
+msgstr "Jauns anotācijas nosaukums:"
+
+#: ../Pyblio/GnomeUI/Entry.py:114
+#, python-format
+msgid ""
+"Cannot open URL:\n"
+"%s"
+msgstr ""
+"Nevar atvērt URL:\n"
+"%s"
+
+#: ../Pyblio/GnomeUI/Fields.py:38
+msgid "Authors"
+msgstr "Autori"
+
+#: ../Pyblio/GnomeUI/Fields.py:40
+msgid "Long Text"
+msgstr "Garš teksts"
+
+#: ../Pyblio/GnomeUI/Fields.py:41 ../Pyblio/GnomeUI/glade/config1.glade.h:16
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:21
+msgid "URL"
+msgstr "URL"
+
+#: ../Pyblio/GnomeUI/Fields.py:42
+msgid "Reference"
+msgstr "Atsauce"
+
+#: ../Pyblio/GnomeUI/Fields.py:43
+msgid "Date"
+msgstr "Datums"
+
+#: ../Pyblio/GnomeUI/Fields.py:124 ../Pyblio/GnomeUI/glade/config1.glade.h:11
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:10
+msgid "Name"
+msgstr "Nosaukums"
+
+#: ../Pyblio/GnomeUI/Fields.py:127 ../Pyblio/GnomeUI/glade/config1.glade.h:15
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:20
+msgid "Type"
+msgstr "Tips"
+
+#: ../Pyblio/GnomeUI/Fields.py:300
+msgid "Available"
+msgstr "Pieejams"
+
+#: ../Pyblio/GnomeUI/Fields.py:310
+msgid "Associated"
+msgstr "Asociēts"
+
+#: ../Pyblio/GnomeUI/Fields.py:321
+msgid "Please, select an entry type from previous page."
+msgstr "Lūdzu, izvēlieties ieraksta tipu no iepriekšējās lapas."
+
+#: ../Pyblio/GnomeUI/Fields.py:332
+#, python-format
+msgid "Fields associated with <b>%s</b> entry type"
+msgstr "Lauki, kas ir asociēti ar <b>%s</b> ieraksta tipu"
+
+#: ../Pyblio/GnomeUI/FileSelector.py:39
+msgid "File"
+msgstr "Fails"
+
+#: ../Pyblio/GnomeUI/FileSelector.py:76
+#: ../Pyblio/GnomeUI/glade/openurl.glade.h:2
+msgid "Bibliography type:"
+msgstr "Bibliogrāfijas tips:"
+
+#: ../Pyblio/GnomeUI/FileSelector.py:93 ../Pyblio/GnomeUI/OpenURL.py:61
+msgid " - According to file suffix - "
+msgstr " - Pēc faila sufiksa - "
+
+#. The root of the search tree is the full database
+#: ../Pyblio/GnomeUI/Search.py:71
+msgid "Full database"
+msgstr "Pilna datubāze"
+
+#: ../Pyblio/GnomeUI/Search.py:142
+msgid "internal error during evaluation"
+msgstr "iekšēja kļūda novērtēšanas laikā"
+
+#: ../Pyblio/GnomeUI/Search.py:196
+#, python-format
+msgid ""
+"while compiling %s\n"
+"error: %s"
+msgstr ""
+"kļūda, kompilējot %s\n"
+"kļūda: %s"
+
+#. These are additional search fields
+#: ../Pyblio/GnomeUI/Sort.py:97
+msgid "[Entry Type]"
+msgstr "[Ieraksta tips]"
+
+#: ../Pyblio/GnomeUI/Sort.py:98
+msgid "[Key Value]"
+msgstr "[Atslēgas vērtība]"
+
+#: ../Pyblio/GnomeUI/Utils.py:193
+msgid "The following errors occured:\n"
+msgstr "Gadījās sekojošās kļūdas:\n"
+
+#: ../Pyblio/GnomeUI/__init__.py:45
+#, python-format
+msgid "This is Pybliographic %s [Python %s, Gtk %s, PyGTK %s]"
+msgstr "Šis ir Pybliographic %s [Python %s, Gtk %s, PyGTK %s]"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:1
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:1
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:1
+#: ../Pyblio/GnomeUI/glade/openurl.glade.h:1
+#: ../Pyblio/GnomeUI/glade/search.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:2
+msgid "<b>Entry type</b>"
+msgstr "<b>Ieraksta tips</b>"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:3
+msgid "A"
+msgstr "A"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:4
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:2
+msgid "Association"
+msgstr "Asociācija"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:5
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:3
+msgid "Datum"
+msgstr "Datums"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:6
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:4
+msgid "Editor"
+msgstr "Redaktors"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:7
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:5
+msgid "Entries"
+msgstr "Ieraksti"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:9
+msgid "FIELDS DEFINITION"
+msgstr "LAUKU DEFINĪCIJA"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:10
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:8
+msgid "Fields "
+msgstr "Lauki "
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:12
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:11
+msgid "Name "
+msgstr "Nosaukums "
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:13
+msgid "Pybliographer Configuration"
+msgstr "Pybliographer konfigurācija"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:17
+msgid "standard fields"
+msgstr "standarta lauki"
+
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:7
+msgid "Entry types and field names configuration"
+msgstr "Ierakstu tipu un failu nosaukumu konfigurācija"
+
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:9
+msgid "Information for <b>Article</b> entry type"
+msgstr "Informācija <b>Raksts</b> ieraksta tipam"
+
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:12
+msgid ""
+"Select an entry type and specify \n"
+"its associated (mandatory and\n"
+"optional) fields on the next page.\n"
+"\n"
+"\n"
+"\n"
+msgstr ""
+"Izvēlieties ieraksta tipu un norādiet\n"
+"tā asociētos (obligātos un neobligātos)\n"
+"laukus nākamajā lapā.\n"
+"\n"
+"\n"
+"\n"
+
+#: ../Pyblio/GnomeUI/glade/format.glade.h:1
+msgid "Bibliography style:"
+msgstr "Bibliogrāfijas stils:"
+
+#: ../Pyblio/GnomeUI/glade/format.glade.h:2
+msgid "Format entries"
+msgstr "Formāta ieraksti"
+
+#: ../Pyblio/GnomeUI/glade/format.glade.h:3
+msgid "Output file:"
+msgstr "Izvades fails:"
+
+#: ../Pyblio/GnomeUI/glade/format.glade.h:4
+msgid "Output format:"
+msgstr "Izvades formāts:"
+
+#: ../Pyblio/GnomeUI/glade/format.glade.h:5
+msgid "Save Formatted as"
+msgstr "Saglabāt formatēto kā"
+
+#: ../Pyblio/GnomeUI/glade/format.glade.h:6
+msgid "Style Selection"
+msgstr "Stila izvēle"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:2
+msgid "Enter your Medline Query"
+msgstr "Ievadiet savu Medline vaicājumu"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:3
+msgid "From:"
+msgstr "No:"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:4
+msgid "Limited to:"
+msgstr "Ierobežots līdz:"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:5
+msgid ""
+"Maximum number\n"
+"of results:"
+msgstr ""
+"Maksimālais\n"
+"rezultātu skaits:"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:7
+msgid "Medline Query"
+msgstr "Medline vaicājums"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:8
+msgid ""
+"Only items \n"
+"ahead of print"
+msgstr ""
+"Tikai vienumi\n"
+"pirms publicēšanas"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:10
+msgid ""
+"Only items \n"
+"with abstracts"
+msgstr ""
+"Tikai vienumi\n"
+"ar anotācijām"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:12
+msgid ""
+"Search \n"
+"PubMed for:"
+msgstr ""
+"PubMed \n"
+"meklēt:"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:14
+msgid ""
+"Starting listing at\n"
+"result number:"
+msgstr ""
+"Sāk uzskaitījumu no\n"
+"rezultāta numura:"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:16
+msgid "To:"
+msgstr "Līdz:"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:17
+msgid ""
+"Use the format YYYY/MM/DD\n"
+"Month and day are optional."
+msgstr ""
+"Lietot formātu YYYY/MM/DD\n"
+"Mēneši un dienas ir neobligāti."
+
+#: ../Pyblio/GnomeUI/glade/openurl.glade.h:3
+msgid "Enter the location (URI) of the file you would like to open:"
+msgstr "Ievadiet atrašanās vietu (URI) failam, ko vēlaties atvērt:"
+
+#: ../Pyblio/GnomeUI/glade/openurl.glade.h:4
+msgid "Open Location"
+msgstr "Atvērt vietu"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:1
+msgid "Cite"
+msgstr "Citēt"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:3
+msgid "Contents"
+msgstr "Saturs"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:9
+msgid "Open File"
+msgstr "Atvērt failu"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:10
+msgid "Previous Documents"
+msgstr "Iepriekšējie dokumenti"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:11
+msgid "Pybliographer"
+msgstr "Pybliographer"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:13
+msgid "Save File"
+msgstr "Saglabāt failu"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:14
+msgid "Settings"
+msgstr "Iestatījumi"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:15
+msgid "_Add..."
+msgstr "_Pievienot..."
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:16
+msgid "_Delete..."
+msgstr "_Dzēst..."
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:17
+msgid "_Edit..."
+msgstr "R_ediģēt..."
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:18
+msgid "_New"
+msgstr "Jau_ns"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:2
+msgid "Close"
+msgstr "Aizvērt"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:3
+msgid "Expert Search"
+msgstr "Eksperta meklēšana"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:4
+msgid "Field"
+msgstr "Lauks"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:5
+msgid "Pattern"
+msgstr "Struktūra"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:6
+msgid "Query"
+msgstr "Vaicājums"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:7
+msgid "Search"
+msgstr "Meklēt"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:8
+msgid "Simple Search"
+msgstr "Vienkārša meklēšana"
+
+#: ../Pyblio/GnomeUI/glade/sort.glade.h:1
+msgid "Select sort criterions"
+msgstr "Izvēlēties kārtošanas kritērijus"
+
+#: ../Pyblio/GnomeUI/glade/sort.glade.h:2
+msgid "Set as default"
+msgstr "Iestatīt kā noklusēto"
+
+#: ../Pyblio/LyX.py:37
+#, python-format
+msgid "no input pipe `%s'"
+msgstr "nav ievades konveijera `%s'"
+
+#: ../Pyblio/LyX.py:43
+#, python-format
+msgid "no output pipe `%s'"
+msgstr "nav izvades konveijera `%s'"
+
+#: ../Pyblio/Open.py:96
+#, python-format
+msgid "method `%s' provides no opener"
+msgstr "metode `%s' nepiegādā atvērēju"
+
+#: ../Pyblio/Open.py:104 ../Pyblio/Open.py:151
+#, python-format
+msgid "File `%s' does not exist"
+msgstr "Fails `%s' neeksistē"
+
+#: ../Pyblio/Open.py:115 ../Pyblio/Open.py:162
+#, python-format
+msgid "don't know how to open `%s'"
+msgstr "nezin, kā atvērt `%s'"
+
+#: ../Pyblio/Open.py:143
+#, python-format
+msgid "method `%s' provides no iterator"
+msgstr "metode `%s' nepiegādā iteratoru"
+
+#: ../Pyblio/Resource.py:77
+#, python-format
+msgid ""
+"Warning: This URL is marked as Invalid or Approximate: %s\n"
+"Continue?"
+msgstr ""
+"Brīdinājums: Šis URL ir marķēts kā Nederīgs vai Aptuvens: %s\n"
+"Turpināt?"
+
+#: ../Pyblio/Resource.py:81
+msgid "Determining Mime Type ... "
+msgstr "Nosaka Mime tipu ... "
+
+#: ../Pyblio/Resource.py:86
+#, python-format
+msgid "Cannot determine mime type for item %s "
+msgstr "Nevar noteikt mime tipu vienumam %s "
+
+#: ../Pyblio/Resource.py:87
+#, python-format
+msgid ""
+"URL in question is: %s\n"
+"You should check the url or path given for errors.\n"
+"Details: %s"
+msgstr ""
+"URL ir: %s\n"
+"Jums jāpārbauda, vai dotajā url vai norādītajā ceļā ir kļūdas.\n"
+"Sīkāka informācija: %s"
+
+#: ../Pyblio/Resource.py:98
+msgid "Accessing resource ..."
+msgstr "Piekļūst resursam..."
+
+#: ../Pyblio/Resource.py:116
+#, python-format
+msgid "IOError for item %s: cannot uncompress resource."
+msgstr "IO kļūda vienumam %s: nevar atspiest resursu."
+
+#: ../Pyblio/Resource.py:117
+#, python-format
+msgid ""
+"URL: %s\n"
+"Details: %s"
+msgstr ""
+"URL: %s\n"
+"Sīkāka informācija: %s"
+
+#: ../Pyblio/Resource.py:137
+msgid "Starting application ..."
+msgstr "Palaiž lietotni ..."
+
+#: ../Pyblio/Resource.py:140
+msgid "No application to view resource"
+msgstr "Nav lietotnes, lai skatītu resursu"
+
+#: ../Pyblio/Resource.py:141
+#, python-format
+msgid ""
+"For mime type %s, no entry found in \n"
+"configuration option resource/viewers.\n"
+"Please consider adding one.\n"
+"URL: %s"
+msgstr ""
+"Mime tipam %s netika atrasti ieraksti \n"
+"konfigurācijas opcijā resurss/skatītāji.\n"
+"Lūdzu, apsveriet tā pievienošanu.\n"
+"URL: %s"
+
+#: ../Pyblio/Style/Parser.py:261
+#, python-format
+msgid "missing '%s' attribute"
+msgstr "trūkst '%s' atribūts"
+
+#: ../Pyblio/Style/Parser.py:271
+#, python-format
+msgid "invalid opening tag: %s"
+msgstr "nederīga atverošā birka: %s"
+
+#: ../Pyblio/Style/Parser.py:281
+#, python-format
+msgid "invalid closing tag: %s"
+msgstr "nederīga aizverošā birka: %s"
+
+#: ../pybliographer.py:43
+#, python-format
+msgid "This is %s, version %s"
+msgstr "Šis ir %s, versija %s"
+
+#: ../pybliographer.py:47 ../pybliographer.py:54
+msgid "This is free software with ABSOLUTELY NO WARRANTY."
+msgstr "Šī brīvā programma ir BEZ JEBKĀDĀM GARANTIJĀM."
+
+#: ../pybliographer.py:48
+msgid "For details, type `warranty'."
+msgstr "Lai uzzinātu vairāk, rakstiet `warranty'."
+
+#: ../pybliographer.py:111 ../pybliographer.py:163
+#, python-format
+msgid "%s: error: can't open file `%s'"
+msgstr "%s: kļūda: nevar atvērt failu `%s'"
+
+#: ../pybliographer.py:124
+#, python-format
+msgid "For help, run %s and type `help' at the prompt"
+msgstr "Lai saņemtu palīdzību, izpildiet %s un uzvednē rakstiet `help'"
+
+#: ../pybliographer.py:133
+msgid ""
+"Useful commands:\n"
+"\thelp     to get some help\n"
+"\tquit     to quit\n"
+msgstr ""
+"Noderīgas komandas:\n"
+"\thelp     lai saņemtu palīdzību\n"
+"\tquit     lai izietu\n"
+
+#. save history
+#: ../pybliographic.desktop.in.h:1
+msgid "Bibliography Manager"
+msgstr "Bibliogrāfijas pārvaldnieks"
+
+#: ../pybliographic.desktop.in.h:2
+msgid "Manage bibliographic databases"
+msgstr "Pārvaldi bibliogrāfijas datubāzes"
+
+#: ../pybliographic.desktop.in.h:3
+msgid "Pybliographic Bibliography Manager"
+msgstr "Pybliographic bibliogrāfijas pārvaldnieks"
+
+#: ../scripts/pybcheck.py:31
+msgid "usage: pybcheck <file | directory>..."
+msgstr "lietošana: pybcheck <fails | mape>..."
+
+#: ../scripts/pybcheck.py:60
+#, python-format
+msgid "file `%s' is ok [%d entries]"
+msgstr "fails `%s' ir kārtībā [%d ieraksti]"
+
+#: ../scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr "lietošana: pybcompact <latexfails> <bibtexfaili...>"
+
+#: ../scripts/pybcompact.py:34
+#, python-format
+msgid "pybcompact: error: %s\n"
+msgstr "pybcompact: kļūda: %s\n"
+
+#: ../scripts/pybcompact.py:99
+msgid "no entry"
+msgstr "nav ieraksta"
+
+#: ../scripts/pybcompact.py:162 ../scripts/pybtext.py:240
+#, python-format
+msgid "can't find the following entries: %s"
+msgstr "nevar atrast sekojošo ierakstu: %s"
+
+#: ../scripts/pybconvert.py:29
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr "lietošana: pybconvert <avots>..<mērķis> <ievade> [izvade]"
+
+#: ../scripts/pybconvert.py:38
+msgid "pybconvert: error: bad conversion format"
+msgstr "pybconvert: kļūda: slikts konversācijas formāts"
+
+#: ../scripts/pybformat.py:34
+msgid ""
+"usage: pybformat [options] <database...>\n"
+"\n"
+"    options:\n"
+"      -o file, --output=file\t\tspecify an output filename\n"
+"      -s style, --style=style\t\tspecify a bibliography style\n"
+"      -f format, --format=format\tspecify an output format\n"
+"      -H header, --header=header\tdefines a header file\n"
+"      -F footer, --footer=footer\tdefines a footer file\n"
+"      -l 'output', --list='output'\tlists the available output formats\n"
+"      -h, --help\t\t\tshow this help message\n"
+"    "
+msgstr ""
+"lietošana: pybformat [opcijas] <datubāze...>\n"
+"\n"
+"    options:\n"
+"      -o fails, --output=fails\t\tnorāda izvades faila nosaukumu\n"
+"      -s stils, --style=stils\t\tnorāda bibliogrāfijas stilu\n"
+"      -f formāts, --format=formāts\tnorāda izvades formātu\n"
+"      -H galvene, --header=galvene\tdefinē galvenes failu\n"
+"      -F kājene, --footer=kājene\tdefinē kājenes failu\n"
+"      -l 'output', --list='output'\tizdrukā pieejamos izvades formātus\n"
+"      -h, --help\t\t\tparāda šo palīdzības ziņojumu\n"
+"    "
+
+#: ../scripts/pybformat.py:48
+#, python-format
+msgid "pybformat: error: %s\n"
+msgstr "pybformat: kļūda: %s\n"
+
+#: ../scripts/pybformat.py:54
+#, python-format
+msgid "pybformat: warning: %s\n"
+msgstr "pybformat: brīdinājums: %s\n"
+
+#: ../scripts/pybformat.py:93 ../scripts/pybtext.py:252
+#: ../scripts/pybtext.py:278 ../scripts/pybtext.py:321
+#, python-format
+msgid "can't open `%s': %s"
+msgstr "nevar atvērt `%s': %s"
+
+#: ../scripts/pybformat.py:100
+#, python-format
+msgid "unknown list `%s'"
+msgstr "nezināms saraksts `%s'"
+
+#: ../scripts/pybformat.py:103
+#, python-format
+msgid "pybformat: available values for `%s':"
+msgstr "pybformat: `%s' pieejamās vērtības:"
+
+#: ../scripts/pybformat.py:107
+#, python-format
+msgid "empty value list `%s'"
+msgstr "tukšs vērtību saraksts `%s'"
+
+#: ../scripts/pybformat.py:129
+msgid "too few arguments"
+msgstr "pārāk maz parametru"
+
+#: ../scripts/pybformat.py:136 ../scripts/pybtext.py:117
+#, python-format
+msgid "unknown output format `%s'"
+msgstr "nezināms izvades formāts `%s'"
+
+#: ../scripts/pybformat.py:149 ../scripts/pybtex.py:86
+#: ../scripts/pybtext.py:94
+#, python-format
+msgid "can't find style `%s'"
+msgstr "nevar atrast stilu `%s'"
+
+#: ../scripts/pybformat.py:152
+#, python-format
+msgid "pybformat: using style `%s', format `%s'\n"
+msgstr "pybformat: izmanto stilu `%s', formāts `%s'\n"
+
+#: ../scripts/pybformat.py:167
+#, python-format
+msgid "can't open header `%s': %s"
+msgstr "nevar atvērt apstrādātāju `%s': %s"
+
+#: ../scripts/pybformat.py:175
+#, python-format
+msgid "can't open database: %s"
+msgstr "nevar atvērt datubāzi: %s"
+
+#: ../scripts/pybformat.py:190
+#, python-format
+msgid "can't open footer `%s': %s"
+msgstr "nevar atvērt kājeni `%s': %s"
+
+#: ../scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr "lietošana: pybtex <latexfails> [bibtexfaili...]"
+
+#: ../scripts/pybtex.py:38
+#, python-format
+msgid "pybtex: error: %s\n"
+msgstr "pybtex: kļūda: %s\n"
+
+#. warn the user that some entries were not found
+#: ../scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr "pybtex: brīdinājums: sekojošās atslēgas netika atrisinātas"
+
+#. If the LaTeX document declares no style...
+#: ../scripts/pybtex.py:64
+msgid "no style defined"
+msgstr "nav definētu stilu"
+
+#: ../scripts/pybtext.py:41
+msgid "usage: pybtext [-o outputfile] [-s style] <textfile> <bibfiles...>"
+msgstr ""
+"lietošana: pybtext [-o izvadesfails] [-s stils] <tekstafails> <bibfaili...>"
+
+#: ../scripts/pybtext.py:45
+#, python-format
+msgid "pybtext: error: %s\n"
+msgstr "pybtext: kļūda: %s\n"
+
+#: ../scripts/pybtext.py:50
+#, python-format
+msgid "pybtext: warning: %s\n"
+msgstr "pybtext: brīdinājums: %s\n"
+
+#: ../scripts/pybtext.py:124
+#, python-format
+msgid "File already exists: `%s'"
+msgstr "Fails jau eksistē: `%s'"
+
+#: ../scripts/pybtext.py:127
+#, python-format
+msgid "A file with the same name already exists: `%s'"
+msgstr "Fails ar tādu pašu nosaukumu jau eksistē: `%s'"
+
+#: ../scripts/pybtext.py:178
+msgid "no citation found"
+msgstr "nav atrastu citātu"
+
+#: ../scripts/pybtext.py:193
+#, python-format
+msgid "pybtext: using style `%s', format `%s'\n"
+msgstr "pybtext: lieto stilu `%s', formāts `%s'\n"
+
+#: ../scripts/pybtext.py:316
+#, python-format
+msgid "can't create `%s'"
+msgstr "nevar izveidot `%s'"
+
+#: ../scripts/pybtext.py:342
+#, python-format
+msgid "can't remove `%s'"
+msgstr "nevar izņemt `%s'"
+
+#: ../scripts/pybtext.py:344
+msgid "Done"
+msgstr "Pabeigts"
+
