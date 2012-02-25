@@ -1,0 +1,2434 @@
+# French translation for pybliographer's doc.
+# Copyright (C) 2010-12 pybliographer's COPYRIGHT HOLDER
+# This file is distributed under the same license as the pybliographer package.
+# Alain Lojewski <allomervan@gmail.com>, 2010,2012
+# Bruno Brouard <annoa.b@gmail.com>, 2012
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pybliographer master doc \n"
+"POT-Creation-Date: 2012-01-19 11:45+0000\n"
+"PO-Revision-Date: 2012-02-22 15:18+0100\n"
+"Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
+"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: C/whatsnew.page:10(desc)
+msgid "New features in <app>Pybliographer</app> 1.2.15."
+msgstr "Nouveautés de <app>Pybliographer</app> 1.2.15."
+
+#: C/whatsnew.page:14(name) C/typcon.page:14(name)
+#: C/scripting-writeown.page:14(name) C/scripting-existing.page:14(name)
+#: C/scripting-basics.page:14(name) C/index.page:12(name)
+#: C/gui-usinglyx.page:14(name) C/gui-styles.page:14(name)
+#: C/gui-sorting.page:14(name) C/gui-settings.page:14(name)
+#: C/gui-searching.page:14(name) C/gui-pubmed.page:14(name)
+#: C/gui.page:14(name) C/gui-opening.page:14(name)
+#: C/gui-navigating.page:14(name) C/gui-formats.page:14(name)
+#: C/gui-edit.page:14(name) C/gui-creating.page:14(name)
+#: C/gettingstarted.page:14(name) C/customization.page:14(name)
+#: C/command-line.page:14(name) C/addhelp.page:14(name) C/about.page:14(name)
+#: C/about.page:38(p)
+msgid "Zoltán Kóta"
+msgstr "Zoltán Kóta"
+
+#: C/whatsnew.page:15(email) C/typcon.page:15(email)
+#: C/scripting-writeown.page:15(email) C/scripting-existing.page:15(email)
+#: C/scripting-basics.page:15(email) C/index.page:13(email)
+#: C/gui-usinglyx.page:15(email) C/gui-styles.page:15(email)
+#: C/gui-sorting.page:15(email) C/gui-settings.page:15(email)
+#: C/gui-searching.page:15(email) C/gui-pubmed.page:15(email)
+#: C/gui.page:15(email) C/gui-opening.page:15(email)
+#: C/gui-navigating.page:15(email) C/gui-formats.page:15(email)
+#: C/gui-edit.page:15(email) C/gui-creating.page:15(email)
+#: C/gettingstarted.page:15(email) C/customization.page:15(email)
+#: C/command-line.page:15(email) C/addhelp.page:15(email)
+#: C/about.page:15(email)
+msgid "zoltank@gmail.com"
+msgstr "zoltank@gmail.com"
+
+#: C/whatsnew.page:18(name) C/typcon.page:18(name)
+#: C/scripting-writeown.page:18(name) C/scripting-existing.page:18(name)
+#: C/scripting-basics.page:18(name) C/index.page:16(name)
+#: C/gui-usinglyx.page:18(name) C/gui-styles.page:18(name)
+#: C/gui-sorting.page:18(name) C/gui-settings.page:18(name)
+#: C/gui-searching.page:18(name) C/gui-pubmed.page:18(name)
+#: C/gui.page:18(name) C/gui-opening.page:18(name)
+#: C/gui-navigating.page:18(name) C/gui-formats.page:18(name)
+#: C/gui-edit.page:18(name) C/gui-creating.page:18(name)
+#: C/gettingstarted.page:18(name) C/customization.page:18(name)
+#: C/command-line.page:18(name) C/addhelp.page:18(name) C/about.page:18(name)
+#: C/about.page:36(p)
+msgid "Frédéric Gobry"
+msgstr "Frédéric Gobry"
+
+#: C/whatsnew.page:19(email) C/typcon.page:19(email)
+#: C/scripting-writeown.page:19(email) C/scripting-existing.page:19(email)
+#: C/scripting-basics.page:19(email) C/index.page:17(email)
+#: C/gui-usinglyx.page:19(email) C/gui-styles.page:19(email)
+#: C/gui-sorting.page:19(email) C/gui-settings.page:19(email)
+#: C/gui-searching.page:19(email) C/gui-pubmed.page:19(email)
+#: C/gui.page:19(email) C/gui-opening.page:19(email)
+#: C/gui-navigating.page:19(email) C/gui-formats.page:19(email)
+#: C/gui-edit.page:19(email) C/gui-creating.page:19(email)
+#: C/gettingstarted.page:19(email) C/customization.page:19(email)
+#: C/command-line.page:19(email) C/addhelp.page:19(email)
+#: C/about.page:19(email)
+msgid "frederic.gobry@epfl.ch"
+msgstr "frederic.gobry@epfl.ch"
+
+#: C/whatsnew.page:22(p) C/typcon.page:22(p) C/scripting-writeown.page:22(p)
+#: C/scripting-existing.page:22(p) C/scripting-basics.page:22(p)
+#: C/index.page:20(p) C/gui-usinglyx.page:22(p) C/gui-styles.page:22(p)
+#: C/gui-sorting.page:22(p) C/gui-settings.page:22(p)
+#: C/gui-searching.page:22(p) C/gui-pubmed.page:22(p) C/gui.page:22(p)
+#: C/gui-opening.page:22(p) C/gui-navigating.page:22(p)
+#: C/gui-formats.page:22(p) C/gui-edit.page:22(p) C/gui-creating.page:22(p)
+#: C/gettingstarted.page:22(p) C/customization.page:22(p)
+#: C/command-line.page:22(p) C/addhelp.page:22(p) C/about.page:22(p)
+msgid "Creative Commons Share Alike 3.0"
+msgstr "Licence Créative Commons des Conditions Initiales à l'Identique 3.0"
+
+#: C/whatsnew.page:26(title)
+msgid "What's New in Pybliographer 1.2.15"
+msgstr "Quoi de neuf dans Pybliographer 1.2.15"
+
+#: C/whatsnew.page:27(p)
+msgid ""
+"You can find a list of bugs fixed and features added in the <file>NEWS</"
+"file> and <file>ChangeLog</file> files supplied with the package. See the "
+"source tarball of pybliographer, or the default doc directory of your "
+"distribution (e.g. <file>/usr/share/doc/pybliographer</file>)."
+msgstr ""
+"Vous pouvez trouver une liste des bogues corrigés et des nouvelles "
+"caractéristiques dans les fichiers <file>NEWS</file> et <file>ChangeLog</"
+"file> fournis avec votre distribution. Référez-vous à l'archive (tarball) "
+"des fichiers de pybliographer, ou au répertoire doc par défaut de votre "
+"distribution (par ex. <file>/usr/share/doc/pybliographer</file>)."
+
+#: C/typcon.page:10(desc)
+msgid "Typographical conventions used in this documentation."
+msgstr "Conventions typographiques utilisées dans cette documentation."
+
+#: C/typcon.page:26(title)
+msgid "Typographical Conventions"
+msgstr "Conventions typographiques"
+
+#: C/typcon.page:27(p)
+msgid "In this book, we'll mark some words with special typography:"
+msgstr ""
+"Dans ce manuel, nous attribuons à quelques termes une typographie spéciale :"
+
+#: C/typcon.page:31(app)
+msgid "Applications"
+msgstr "Applications"
+
+#: C/typcon.page:32(p)
+msgid "<cmd>Commands</cmd> you type at the command line"
+msgstr "<cmd>Commandes</cmd> à saisir en ligne de commande"
+
+#: C/typcon.page:33(file)
+msgid "Filenames"
+msgstr "Noms de fichiers"
+
+#: C/typcon.page:34(var)
+msgid "Replaceable text"
+msgstr "Texte modifiable"
+
+#: C/typcon.page:35(p)
+msgid ""
+"<gui>Labels</gui> for buttons and other portions of the graphical interface"
+msgstr ""
+"<gui>Étiquettes</gui> pour les boutons et autres parties de l'interface "
+"graphique"
+
+#: C/typcon.page:37(p)
+msgid ""
+"Menu selections look like this: <guiseq><gui>Menu</gui><gui>Submenu</"
+"gui><gui>Menu Item</gui></guiseq>"
+msgstr ""
+"Les parcours dans les menus ressemblent à ceci : <guiseq><gui>Menu</"
+"gui><gui>Sous-menu</gui><gui>Élément du Menu</gui></guiseq>"
+
+#: C/typcon.page:39(p)
+msgid "<gui>Buttons</gui> you can click"
+msgstr "<gui>Boutons</gui> que vous pouvez cliquer"
+
+#: C/typcon.page:40(input)
+msgid "Anything you type in"
+msgstr "Tout ce que vous saisissez"
+
+#: C/typcon.page:43(p)
+msgid ""
+"We'll provide assorted bits of additional information in tips and notes as "
+"well."
+msgstr ""
+"Nous donnons aussi des éléments d'informations dans des astuces et des notes."
+
+#: C/typcon.page:47(title)
+msgid "Tip"
+msgstr "Astuces"
+
+#: C/typcon.page:48(p)
+msgid "Tips and bits of extra information will look like this."
+msgstr ""
+"Les astuces et éléments d'informations supplémentaires ressemblent à ceci."
+
+#: C/typcon.page:55(title)
+msgid "Note"
+msgstr "Note"
+
+#: C/typcon.page:56(p)
+msgid "Notes will look like this."
+msgstr "Les notes ressemblent à ceci."
+
+#: C/typcon.page:61(p)
+msgid "We'll have warnings, in cases where you should be careful:"
+msgstr "Il y a des messages d'alerte appelant à votre vigilance :"
+
+#: C/typcon.page:65(title)
+msgid "Example Warning"
+msgstr "Exemple de message d'alerte"
+
+#: C/typcon.page:66(p)
+msgid ""
+"This is what a warning looks like. If there's a chance you'll run into "
+"trouble, we'll warn you beforehand."
+msgstr ""
+"Voici ce à quoi ressemble un message d'alerte. Au cas où vous risqueriez de "
+"vous mettre en situation délicate, nous vous avertissons à l'avance."
+
+#: C/scripting-writeown.page:10(desc)
+msgid "Writing your own scripts."
+msgstr "Écrire vos propres scripts."
+
+#: C/scripting-writeown.page:26(title)
+msgid "Writing your own scripts"
+msgstr "Écriture de vos propres scripts"
+
+#: C/scripting-writeown.page:28(p)
+msgid ""
+"To start writing your own script, you can read what follows, and then have a "
+"look at the existing scripts. Trying to adapt them to fit your personal "
+"needs can be a good way of testing what you read."
+msgstr ""
+"Pour commencer à écrire vos propres scripts, lisez ce qui suit et allez "
+"ensuite consulter ceux qui existent déjà. Les adapter à vos besoins "
+"personnels est une bonne manière de tester votre compréhension de ce "
+"chapitre."
+
+#: C/scripting-writeown.page:34(title)
+msgid "Some concepts"
+msgstr "Quelques concepts"
+
+#: C/scripting-writeown.page:36(p)
+msgid ""
+"This section describes some basic classes and ideas that are useful to "
+"understand how <app>Pybliographer</app> works."
+msgstr ""
+"Cette section décrit quelques classes et idées de base utiles pour "
+"comprendre le fonctionnement de <app>Pybliographer</app>."
+
+#: C/scripting-writeown.page:39(p)
+msgid ""
+"In the following, all the modules that will be refered to belong to the "
+"<em>Pyblio</em> domain. So, to access the members of the <em>Open</em> "
+"module, you'll have to write at the beginning of your script something like"
+msgstr ""
+"Dans ce qui suit, tous les modules référencés appartiennent au domaine "
+"<em>Pyblio</em>. Donc, pour accéder aux membres du module <em>Open</em>, "
+"vous devez commencer votre script par quelque chose comme"
+
+#: C/scripting-writeown.page:44(screen)
+#, no-wrap
+msgid "from Pyblio import Open"
+msgstr "from Pyblio import Open"
+
+#: C/scripting-writeown.page:46(p)
+msgid ""
+"The <em>Base</em> module contains some of the most basical classes used in "
+"the application:"
+msgstr ""
+"Le module <em>Base</em> contient quelques-unes des classes les plus "
+"élémentaires utilisées dans l'application :"
+
+#: C/scripting-writeown.page:51(p)
+msgid ""
+"<em>Base.Entry</em> represents a specific bibliographic entry, with all its "
+"fields. It behaves like a hash table which returns the content of a field "
+"given its name"
+msgstr ""
+"<em>Base.Entry</em> représente l'entrée spécifique d'une bibliothèque avec "
+"tous ses champs. Elle se comporte comme une table de hachage qui renvoie le "
+"contenu d'un champ à partir de son nom"
+
+#: C/scripting-writeown.page:56(p)
+msgid ""
+"<em>Base.DataBase</em> is the class from which every database type inherits. "
+"It behaves like a hash table that returns a Base.Entry given a Base.Key"
+msgstr ""
+"<em>Base.DataBase</em> est la classe dont chaque type de base de données "
+"hérite. Elle se comporte comme une table de hachage qui renvoie une Base."
+"Entry à partir de sa Base.Key"
+
+#: C/scripting-writeown.page:62(p)
+msgid ""
+"<em>Key.Key</em> is the object that uniquely identifies an entry. This "
+"object must be unique over the whole application, and is composed of a "
+"database part and an entry part."
+msgstr ""
+"<em>Key.Key</em> est l'objet qui identifie de manière unique une entrée. Il "
+"doit être unique dans toute l'application et est composé pour partie d'une "
+"base de donnée et pour partie d'une entrée."
+
+#: C/scripting-writeown.page:67(p)
+msgid ""
+"An <em>Iterator</em> is an object that provides a way to access a sequence "
+"of items in order. These iterators are used extensively in "
+"<app>Pybliographer</app>, because they hide the underlying access mechanism, "
+"and provide the same access on any database. They are also perfectly suited "
+"for implementing transparent filtering and sorting of entries: the "
+"<em>Selection.Selection</em> class for example takes an iterator (on a "
+"database for example) and return a new one which will only iterate on a "
+"subset of the entries, according to a search criterion."
+msgstr ""
+"Un <em>Itérateur</em> est un objet qui fournit un moyen d'accéder à une "
+"séquence d'éléments dans l'ordre. Ces itérateurs sont intensivement utilisés "
+"dans <app>Pybliographer</app>, car ils masquent le mécanisme d'accès sous-"
+"jacent et donnent le même moyen d'accès à n'importe quelle base de données. "
+"Ils sont aussi parfaitement adaptés à la mise en place de filtrages et de "
+"tris transparents des entrées : par exemple, la classe <em>Selection."
+"Selection</em> prend un itérateur (sur une base de données par exemple) et "
+"en retourne un autre qui ne fera des itérations que sur un sous-ensemble des "
+"entrées, selon un critère de recherche."
+
+#: C/scripting-existing.page:10(desc)
+msgid "How to use the scripts shipped with <app>Pybliographer</app>."
+msgstr "Comment utiliser les scripts inclus dans <app>Pybliographer</app>."
+
+#: C/scripting-existing.page:26(title)
+msgid "Existing scripts"
+msgstr "Scripts existants"
+
+#: C/scripting-existing.page:28(p)
+msgid ""
+"Some scripts are provided with <app>Pybliographer</app>, both as example and "
+"as useful tools. They are quite short and should be readable with basical "
+"knowledge of <app>Python</app>."
+msgstr ""
+"Certains scripts sont déjà inclus dans <app>Pybliographer</app>, aussi bien "
+"comme exemples que comme utilitaires. Ils sont assez courts et devraient "
+"être lisibles en ayant seulement une compréhension basique du langage "
+"<app>Python</app>."
+
+#: C/scripting-existing.page:33(title)
+msgid "pybcheck"
+msgstr "pybcheck"
+
+#: C/scripting-existing.page:36(p)
+msgid ""
+"This tool takes a list of files or directory, and check if they are valid "
+"(syntax, no entries with the same key,...)"
+msgstr ""
+"Ce script prend une liste de fichiers ou de dossiers et s'assure qu'ils sont "
+"valides (syntaxe, pas d'entrée avec la même clé,...)"
+
+#: C/scripting-existing.page:40(p)
+msgid ""
+"It is possible to use its output directly in an emacs compile buffer, in "
+"order to jump directly to the encountered errors. To do so, type "
+"<keyseq><key>M</key><key>x</key></keyseq><cmd>compile</cmd>, then the "
+"command <cmd>pybcheck <var>yourfiles</var></cmd>, and use the middle button "
+"of the mouse to jump into the faulty file."
+msgstr ""
+"Vous pouvez utiliser directement sa sortie dans un tampon de compilation "
+"emacs pour se rendre directement aux erreurs. Saisissez <keyseq><key>M</"
+"key><key>x</key></keyseq><cmd>compile</cmd>, puis la commande <cmd>pybcheck "
+"<var>vosfichiers</var></cmd> et déplacez-vous vers les fichiers erronés en "
+"appuyant sur le bouton central de la souris."
+
+#: C/scripting-existing.page:49(title)
+msgid "pybcompact"
+msgstr "pybcompact"
+
+#: C/scripting-existing.page:52(p)
+msgid ""
+"This tool extracts the citations made in a LaTeX document and generates a "
+"BibTeX file containing them."
+msgstr ""
+"Ce script extrait les citations d'un document LaTeX et génère un fichier "
+"BibTeX les contenant."
+
+#: C/scripting-existing.page:57(p)
+msgid ""
+"Usually, one stores its bibliographies in one or several large BibTeX files, "
+"and lets <cmd>bibtex</cmd> extract the entries used in a LaTeX document. But "
+"it is sometime convenient to create a self-contained package (for example to "
+"share it in native form with somebody else, or to store it), with a "
+"minimalistic BibTeX file holding exactly the entries used in LaTeX. This "
+"tool does exactly that: it reads a LaTeX <file>.aux</file> file, and extract "
+"from the specified BibTeX databases the corresponding entries."
+msgstr ""
+"Normalement, vos bibliographies sont enregistrées dans un ou plusieurs gros "
+"fichiers BibTeX et <cmd>bibtex</cmd> extrait les entrées utilisées dans le "
+"document LaTeX. Mais il est parfois plus aisé de créer un ensemble autonome "
+"sous forme d'un fichier minimaliste contenant exactement les entrées "
+"utilisées en LaTeX (par exemple pour en partager les sources avec quelqu'un "
+"d'autre ou pour le sauvegarder). C'est bien le rôle de ce script : il lit "
+"les fichiers <file>.aux</file> LaTeX et extrait les entrées correspondantes "
+"des bases de données BibTeX spécifiées."
+
+#: C/scripting-existing.page:68(title)
+msgid "pybconvert"
+msgstr "pybconvert"
+
+#: C/scripting-existing.page:71(p)
+msgid "This tool converts from one bibliographic format to another."
+msgstr "Ce script convertit une bibliographie d'un format à un autre."
+
+#: C/scripting-existing.page:75(p)
+msgid ""
+"The general syntax is pretty simple. To convert from Refer to BibTeX for "
+"example, just run:"
+msgstr ""
+"La syntaxe générale est relativement simple. Pour convertir de Refer en "
+"BibTeX par exemple, exécutez simplement :"
+
+#: C/scripting-existing.page:78(screen)
+#, no-wrap
+msgid ""
+"\n"
+"\t<output>bash$ </output><cmd>pybconvert</cmd> refer..bibtex <var>toto.refer</var> <var>toto.bib</var>\n"
+"      "
+msgstr ""
+"\n"
+"\t<output>bash$ </output><cmd>pybconvert</cmd> refer..bibtex <var>toto.refer</var> <var>toto.bib</var>\n"
+"      "
+
+#: C/scripting-existing.page:84(title) C/scripting-existing.page:94(cmd)
+msgid "pybformat"
+msgstr "pybformat"
+
+#: C/scripting-existing.page:87(p)
+msgid ""
+"This script generates a bibliography according to a bibliographic style, and "
+"outputs it in a specific format (like HTML, LaTeX,...) as it should appear "
+"in a document."
+msgstr ""
+"Ce script génère une bibliographie en fonction d'un style bibliographique et "
+"retourne le résultat dans un format spécifique (comme HTML, LaTeX...) tel "
+"qu'elle doit s'afficher dans un document."
+
+#: C/scripting-existing.page:92(p) C/scripting-existing.page:176(p)
+msgid "The general form of the command is"
+msgstr "La syntaxe générale de la commande est"
+
+#: C/scripting-existing.page:94(output) C/scripting-basics.page:38(output)
+#: C/gettingstarted.page:60(output) C/gettingstarted.page:61(output)
+#: C/gettingstarted.page:65(output)
+msgid "bash$"
+msgstr "bash$"
+
+#: C/scripting-existing.page:94(var)
+msgid "[options] database..."
+msgstr "[options] base2données..."
+
+#: C/scripting-existing.page:97(p)
+msgid ""
+"This command without options will use the style called <em>alpha</em> to "
+"create a bibliography in <em>Text</em> format. Several options are available "
+"to create these documents:"
+msgstr ""
+"Cette commande sans option utilise le style appelé <em>alpha</em> pour créer "
+"une bibliographie au format <em>Text</em>. Plusieurs options sont "
+"disponibles pour créer ces documents :"
+
+#: C/scripting-existing.page:104(p)
+msgid ""
+"<cmd>--style=...</cmd> or <cmd>-s ...</cmd>: specify a bibliography style. "
+"This can be a full path to an existing XML file, or a name which will be "
+"searched in the standard places. Default is Alpha."
+msgstr ""
+"<cmd>--style=...</cmd> ou <cmd>-s ...</cmd> : spécifie un style de "
+"bibliographie. Cela peut être un chemin absolu vers un fichier XML existant, "
+"ou un nom qui pourra être recherché dans les emplacements standards. Le "
+"style par défaut est Alpha."
+
+#: C/scripting-existing.page:110(p)
+msgid ""
+"<cmd>--format=...</cmd> or <cmd>-f ...</cmd>: specify an output format "
+"(HTML, LaTeX, Raw, Text, Textau, Textnum). Default is Text. (Textau and "
+"Textnum are just slightly modified versions of Text. See <link xref="
+"\"#script-scripting-existing-pybtext\"/> for more details.)"
+msgstr ""
+"<cmd>--format=...</cmd> ou <cmd>-f ...</cmd> : spécifie un format de sortie "
+"(HTML, LaTeX, Raw, Text, Textau, Textnum). Le format par défaut est Text "
+"(Textau et Textnum ne sont que des versions légèrement modifiées de Text, "
+"consultez <link xref=\"#script-scripting-existing-pybtext\"/> pour plus de "
+"détails)."
+
+#: C/scripting-existing.page:117(p)
+msgid ""
+"<cmd>--output=...</cmd> or <cmd>-o ...</cmd>: specify an output filename. "
+"STDOUT is the default."
+msgstr ""
+"<cmd>--output=...</cmd> ou <cmd>-o ...</cmd> : spécifie un nom de fichier de "
+"sortie. STDOUT est la sortie par défaut."
+
+#: C/scripting-existing.page:121(p)
+msgid ""
+"<cmd>--header=...</cmd> or <cmd>-H ...</cmd>: defines a file that will be "
+"prepended to the output file."
+msgstr ""
+"<cmd>--header=...</cmd> ou <cmd>-H ...</cmd> : définit un fichier qui sera "
+"ajouté en tête du fichier de sortie."
+
+#: C/scripting-existing.page:125(p)
+msgid ""
+"<cmd>--footer=...</cmd> or <cmd>-F ...</cmd>: defines a file that will be "
+"appended to the output file."
+msgstr ""
+"<cmd>--footer=...</cmd> ou <cmd>-F ...</cmd> : définit un fichier qui sera "
+"ajouté à la fin du fichier de sortie."
+
+#: C/scripting-existing.page:129(p)
+msgid ""
+"<cmd>--list=output</cmd> or <cmd>-l output</cmd>: lists the available output "
+"formats"
+msgstr ""
+"<cmd>--list=output</cmd> ou <cmd>-l output</cmd> : affiche les formats de "
+"sortie disponibles"
+
+#: C/scripting-existing.page:136(title)
+msgid "pybtex"
+msgstr "pybtex"
+
+#: C/scripting-existing.page:139(p)
+msgid ""
+"This tool searches for the citations in a LaTeX document and generates a "
+"LaTeX bibliography file."
+msgstr ""
+"Ce script recherche les citations dans un document LaTeX et génère un "
+"fichier bibliographique de LaTeX."
+
+#: C/scripting-existing.page:143(p)
+msgid ""
+"This tool reads a LaTeX <file>.aux</file> file, and extracting the "
+"corresponding entries from the specified BibTeX databases creates a LaTeX "
+"<file>.bbl</file> file."
+msgstr ""
+"Ce script lit un fichier <file>.aux</file> LaTeX et crée un fichier <file>."
+"bbl</file> LaTeX en extrayant les entrées correspondantes de la base de "
+"données BibTeX spécifiée."
+
+#: C/scripting-existing.page:147(p)
+msgid "The form of the command is"
+msgstr "La syntaxe de la commande est"
+
+#: C/scripting-existing.page:148(screen)
+#, no-wrap
+msgid ""
+"\n"
+"\t<output>bash$ </output><cmd>pybtex</cmd> <file>latexfile</file> [<file>bibtexfiles</file>...]\n"
+"      "
+msgstr ""
+"\n"
+"\t<output>bash$ </output><cmd>pybtex</cmd> <file>fichierlatex</file> [<file>fichiersbibtex</file>...]\n"
+"      "
+
+#: C/scripting-existing.page:154(title)
+msgid "pybtext"
+msgstr "pybtext"
+
+#: C/scripting-existing.page:157(p)
+msgid ""
+"This tool processes a text file containing citations and appends a "
+"bibliography according to a given style."
+msgstr ""
+"Ce script traite un fichier texte contenant des citations et ajoute en fin "
+"de fichier une bibliographie en fonction d'un style donné."
+
+#: C/scripting-existing.page:161(p)
+msgid ""
+"The script searches for citations like [key] or [key1,key2...] in a text "
+"file (for example: ...This is a text fragment with citations [AKM95,MPJ+03] "
+"inserted from pybliographer...). First, according to the keys found in the "
+"text file, it generates a reference list. Using an appropriate style (see "
+"below), it replaces the database keys in the text body with the new keys "
+"generated by the style module, and finally it appends the reference list to "
+"the text resulting a new file."
+msgstr ""
+"Le script recherche des citations comme [clé] ou [clé1,clé2...] dans un "
+"fichier texte (par exemple : ...Voici un fragment de texte avec des "
+"citations [AKM95,MPJ+03] insérées depuis pybliographer...). Pour commencer, "
+"en fonction des clés trouvées dans le fichier texte, il génère une liste de "
+"référence. Puis, en utilisant un style approprié (voir ci-dessous), il "
+"remplace les clés de la base de données dans le corps du texte par les "
+"nouvelles clés générées par le module de style et enfin, il ajoute en fin de "
+"fichier la liste de références au texte, en créant un nouveau fichier."
+
+#: C/scripting-existing.page:171(p)
+msgid ""
+"The keys of selected entries can be copied easily from pybliographer into a "
+"text editor or terminal by <em>copy and paste </em> or <em>drag and drop</"
+"em>."
+msgstr ""
+"Les clés des entrées sélectionnées peuvent être copiées facilement depuis "
+"pybliographer vers un éditeur de texte ou dans un terminal par la méthode du "
+"<em>copier-coller</em> ou du <em>glisser-déposer</em>."
+
+#: C/scripting-existing.page:177(screen)
+#, no-wrap
+msgid ""
+"\n"
+"\t<output>bash$ </output><cmd>pybtext</cmd> [-o outputfile] [-s style] <file>textfile</file> <file>bibfiles...</file>\n"
+"      "
+msgstr ""
+"\n"
+"\t<output>bash$ </output><cmd>pybtext</cmd> [-o fichier2sortie] [-s style] <file>fichierTexte</file> <file>fichiersBib...</file>\n"
+"      "
+
+#: C/scripting-existing.page:181(p)
+msgid ""
+"This command without the options will use the style called <em>Abbrev</em> "
+"and <file>textfile.pyb</file> as outputfile for processing. <file>textfile</"
+"file> is the name of the file to be processed and <file>bibfiles</file> is "
+"one or more bibliographic database file."
+msgstr ""
+"Cette commande sans option utilise le style appelé <em>Abbrev</em> et le "
+"fichier de sortie <file>textfile.pyb</file> pour le traitement. "
+"<file>fichierTexte</file> est le nom du fichier à traiter et "
+"<file>fichiersBib</file> un ou plusieurs fichiers de base de données "
+"bibliographiques."
+
+#: C/scripting-existing.page:187(p)
+msgid ""
+"There are three different <em>styles</em> which are designed for pybtext. "
+"Using <em>abbrvbib</em> results in keys as they are defined in the database. "
+"With the style <em>abbrvau</em>, author-year type keys (e.g. Jackson et al., "
+"2004) can be generated. Using <em>abbrvnum</em>, the script produces a "
+"simple numbered list. For abbrvau and abbrvnum, the formats Textau and "
+"Textnum are used, respectively. They are just simple modifications of the "
+"Text format, optimized for these styles. Using other styles (Alpha, Abbrev "
+"or apa4e), the text body is not processed, but the reference list is "
+"appended in the form that corresponds to the used style."
+msgstr ""
+"Il existe trois <em>styles</em> différents conçus pour pybtext. "
+"L'utilisation de <em>abbrvbib</em> donne des clés telles qu'elles sont "
+"définies dans la base de données. Avec le style <em>abbrvau</em>, vous "
+"pouvez générer des clés de type auteur-année (par ex. Jackson et al., 2004). "
+"Avec <em>abbrvnum</em>, le script ne crée qu'une simple liste numérotée. Les "
+"styles abbrvau et abbrvnum utilisent respectivement les formats Textau et "
+"Textnum. Ce ne sont que de simples modifications du format Text optimisées "
+"pour ces styles.  En utilisant d'autres formats (Alpha, Abbrev ou apa4e), le "
+"corps du texte n'est pas traité, mais la liste de référence est ajoutée sous "
+"la forme qui correspond au style utilisé."
+
+#: C/scripting-basics.page:10(desc)
+msgid "Basic information about scripting with <app>Pybliographer</app>."
+msgstr ""
+"Informations de base sur l'écriture de scripts avec <app>Pybliographer</app>."
+
+#: C/scripting-basics.page:26(title)
+msgid "Basics"
+msgstr "Les bases"
+
+#: C/scripting-basics.page:28(p)
+msgid ""
+"<app>Pybliographer</app> is in fact a simple set of classes and functions "
+"written in python, and that provides with a simple and homogenous access to "
+"bibliographic databases. Therefore, it is possible to write python scripts "
+"that make use of these specialized functions. The graphical interface, "
+"<app>Pybliographic</app>, is itself a simple script on top of "
+"<app>Pybliographer</app>."
+msgstr ""
+"<app>Pybliographer</app> n'est en fait qu'un simple ensemble de classes et "
+"de fonctions écrites en Python, qui permettent un accès facile et homogène "
+"aux bases de données bibliographiques. Il est donc possible d'écrire ses "
+"propres scripts python qui utilisent ces fonctions spéciales. L'interface "
+"graphique <app>Pybliographic</app>, n'est elle-même qu'un simple script au "
+"dessus de <app>Pybliographer</app>."
+
+#: C/scripting-basics.page:35(p)
+msgid "To execute a script written for <app>Pybliographer</app>, simply run"
+msgstr "Pour lancer un script écrit pour <app>Pybliographer</app>, exécutez"
+
+# bug : Bruno : manque un espace
+#: C/scripting-basics.page:38(cmd)
+msgid "pybliographer [--quiet]"
+msgstr "pybliographer [--quiet] "
+
+#: C/scripting-basics.page:38(var)
+msgid "myscript.py"
+msgstr "myscript.py"
+
+#: C/scripting-basics.page:41(p)
+msgid "You can alternatively start your script by"
+msgstr "Vous pouvez aussi commencer votre fichier script par la ligne"
+
+#: C/scripting-basics.page:42(screen)
+#, no-wrap
+msgid ""
+"\n"
+"      #!/path/to/pybliographer\n"
+"\n"
+"      <var>...rest of your script...</var>\n"
+"    "
+msgstr ""
+"\n"
+"      #!/chemin/vers/pybliographer\n"
+"\n"
+"      <var>...reste de votre script...</var>\n"
+"    "
+
+#: C/scripting-basics.page:47(p)
+msgid "and make it executable."
+msgstr "et le rendre exécutable."
+
+#: C/license.page:9(desc)
+msgid "Legal information."
+msgstr "Informations légales."
+
+#: C/license.page:12(title)
+msgid "License"
+msgstr "Licence"
+
+#: C/license.page:13(p)
+msgid ""
+"This work is distributed under a CreativeCommons Attribution-Share Alike 3.0 "
+"Unported license."
+msgstr ""
+"Cette œuvre est distribuée sous licence Creative Commons Paternité-Partage "
+"des Conditions Initiales à l'Identique 3.0."
+
+#: C/license.page:21(p)
+msgid "You are free:"
+msgstr "Vous êtes libre :"
+
+#: C/license.page:26(em)
+msgid "To share"
+msgstr "de partager"
+
+#: C/license.page:27(p)
+msgid "To copy, distribute and transmit the work."
+msgstr "de reproduire, distribuer et communiquer cette création."
+
+#: C/license.page:30(em)
+msgid "To remix"
+msgstr "de modifier"
+
+#: C/license.page:31(p)
+msgid "To adapt the work."
+msgstr "d'adapter cette création,"
+
+#: C/license.page:34(p)
+msgid "Under the following conditions:"
+msgstr "selon les conditions suivantes :"
+
+#: C/license.page:39(em)
+msgid "Attribution"
+msgstr "Paternité"
+
+#: C/license.page:40(p)
+msgid ""
+"You must attribute the work in the manner specified by the author or "
+"licensor (but not in any way that suggests that they endorse you or your use "
+"of the work)."
+msgstr ""
+"Vous devez citer le nom de l'auteur original de la manière indiquée par "
+"l'auteur de l'œuvre ou le titulaire des droits qui vous confère cette "
+"autorisation (mais pas d'une manière qui suggérerait qu'ils vous soutiennent "
+"ou approuvent votre utilisation de l'œuvre)."
+
+#: C/license.page:47(em)
+msgid "Share Alike"
+msgstr "Partage des conditions initiales à l'identique"
+
+#: C/license.page:48(p)
+msgid ""
+"If you alter, transform, or build upon this work, you may distribute the "
+"resulting work only under the same, similar or a compatible license."
+msgstr ""
+"Si vous modifiez, transformez ou adaptez cette création, vous n'avez le "
+"droit de distribuer la création qui en résulte que sous un contrat identique "
+"à celui-ci."
+
+#: C/license.page:54(p)
+msgid ""
+"For the full text of the license, see the <link href=\"http://"
+"creativecommons.org/licenses/by-sa/3.0/legalcode\">CreativeCommons website</"
+"link>, or read the full <link href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\">Commons Deed</link>."
+msgstr ""
+"Pour prendre connaissance du texte complet de la licence, consultez le <link "
+"href=\"http://creativecommons.org/licenses/by-sa/3.0/legalcode\">site Web "
+"CreativeCommons</link> ou lisez in extenso le <link href=\"http://"
+"creativecommons.org/licenses/by-sa/3.0/\">contrat Commons</link>."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/index.page:25(None)
+msgid "@@image: 'figures/logo.png'; md5=c888cd1f42ad752bb1f156fe56e7ae86"
+msgstr "@@image: 'figures/logo.png'; md5=c888cd1f42ad752bb1f156fe56e7ae86"
+
+#: C/index.page:7(title)
+msgid "Pybliographer manual"
+msgstr "Manuel utilisateur de Pybliographer"
+
+#: C/index.page:8(title)
+msgid "Pybliographer Bibliography manager"
+msgstr "Gestionnaire de bibliographies Pybliographer"
+
+#: C/index.page:24(title)
+msgid ""
+"<media type=\"image\" mime=\"image/png\" src=\"figures/logo.png"
+"\">Pybliographer logo</media> Pybliographer Bibliography manager"
+msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"figures/logo.png\">Logo de "
+"Pybliographer</media> Gestionnaire de bibliographies Pybliographer"
+
+#: C/index.page:30(title)
+msgid "Preface"
+msgstr "Préface"
+
+#: C/index.page:34(title)
+msgid "Usage"
+msgstr "Utilisation"
+
+#: C/index.page:38(title)
+msgid "Advanced Usage"
+msgstr "Utilisation avancée"
+
+#: C/index.page:42(title)
+msgid "The Scripting Language"
+msgstr "Le langage de script"
+
+#: C/gui-usinglyx.page:10(desc)
+msgid "Interaction with the <app>LyX</app> document processor."
+msgstr ""
+"Interaction avec le logiciel de traitement de documents <app>LyX</app>."
+
+#: C/gui-usinglyx.page:26(title)
+msgid "Using <app>Pybliographic</app> with <app>LyX</app>"
+msgstr "Utilisation de <app>Pybliographic</app> avec <app>LyX</app>"
+
+#: C/gui-usinglyx.page:28(p)
+msgid ""
+"It is possible to directly use <app>Pybliographer</app> in order to insert "
+"bibliographic references into <app>LyX</app>. It is done through the "
+"<app>LyX</app><em>server</em>. The path of the <app>LyX</app> server pipe "
+"can be defined in the <guiseq><gui>Tools</gui><gui>Preferences</gui></"
+"guiseq> dialog of LyX. The same path should be given in <app>Pybliographer</"
+"app>'s settings (the default value is <file>~/.lyx/lyxpipe)</file>."
+msgstr ""
+"Vous pouvez utiliser directement <app>Pybliographer</app> pour insérer des "
+"références bibliographiques dans <app>LyX</app>. Cela est faisable par "
+"l'intermédiaire du <em>serveur</em> <app>LyX</app>. Définissez le chemin du "
+"tube du <em>serveur</em><app>LyX</app> dans la boîte de dialogue "
+"<guiseq><gui>Outils</gui><gui>Préférences</gui></guiseq> de LyX. Le même "
+"chemin doit être défini dans les paramètres de <app>Pybliographer</app> (la "
+"valeur par défaut est <file>~/.lyx/lyxpipe</file>)."
+
+#: C/gui-usinglyx.page:36(p)
+msgid ""
+"Then, in <app>Pybliographic</app>, it is possible to select one or several "
+"entries and insert their references into a running <app>LyX</app> simply by "
+"clicking the <gui>Cite</gui> toolbar button, or selecting the "
+"<guiseq><gui>Cite</gui><gui>Cite...</gui></guiseq> menu item."
+msgstr ""
+"Puis, dans <app>Pybliographic</app>, sélectionnez une ou plusieurs entrées "
+"et insérez leurs références dans la fenêtre ouverte de <app>LyX</app> en "
+"cliquant simplement sur le bouton <gui>Citer</gui> de la barre d'outils, ou "
+"en sélectionnant l'élément <guiseq><gui>Citer</gui><gui>Citer...</gui></"
+"guiseq> du menu."
+
+#: C/gui-usinglyx.page:41(p)
+msgid ""
+"For the moment, it is the user's job to ensure that he/she inserts entries "
+"corresponding to the actual database being used. <app>Pybliographic</app> "
+"does not handle the full job of bibliography generation; therefore it is "
+"necessary to use <cmd>bibtex</cmd> as described in the <app>LyX</app> "
+"documentation."
+msgstr ""
+"Pour l'instant, c'est à l'utilisateur de s'assurer qu'il insère bien des "
+"entrées correspondantes à la base de données actuellement utilisée. "
+"<app>Pybliographic</app> ne prend pas en charge tout le processus de "
+"génération de la bibliographie ; vous devez donc utiliser <cmd>bibtex</cmd> "
+"comme expliqué dans la documentation de <app>LyX</app>."
+
+#: C/gui-usinglyx.page:47(p)
+msgid ""
+"<app>Pybliographic</app> can interact with <app>Kile</app> (&gt;= 1.6) "
+"practically in the same way, since <app>Kile</app> can also read <em>lyx "
+"pipe</em>."
+msgstr ""
+"<app>Pybliographic</app> peut interagir pratiquement de la même façon avec "
+"<app>Kile</app> (&gt;= 1.6), car <app>Kile</app> sait aussi lire le <em>tube "
+"de LyX</em>."
+
+#: C/gui-styles.page:10(desc)
+msgid "Creating your own styles for <app>Pybliographer</app>."
+msgstr "Créer vos propres styles pour <app>Pybliographer</app>."
+
+#: C/gui-styles.page:26(title)
+msgid "New Styles"
+msgstr "Nouveaux styles"
+
+#: C/gui-styles.page:28(p)
+msgid ""
+"It is possible to describe your own bibliography style, by writing a simple "
+"XML file. The XML file should have the following header:"
+msgstr ""
+"Vous pouvez décrire votre propre style bibliographique en écrivant un simple "
+"fichier XML. Le fichier XML doit comporter cet en-tête :"
+
+#: C/gui-styles.page:32(screen)
+#, no-wrap
+msgid ""
+"\n"
+"      &lt;?xml version=\"1.0\"?&gt;\n"
+"    "
+msgstr ""
+"\n"
+"      &lt;?xml version=\"1.0\"?&gt;\n"
+"    "
+
+#: C/gui-styles.page:36(p)
+msgid ""
+"The whole description should fit in a &lt;bibstyle&gt; pair of tags, whose "
+"content is shortly described in this section. It is suggested that the "
+"interested users look at the corresponding DTD, which describes the allowed "
+"syntax in details. This DTD can be found in the same directory as the "
+"default style files."
+msgstr ""
+"La description complète doit être insérée entre la paire de balises &lt;"
+"bibstyle&gt; dont la description est brièvement évoquée dans ce chapitre. "
+"Nous vous invitons à regarder le DTD correspondant, qui décrit en détail la "
+"syntaxe autorisée. Ce DTD se trouve dans le même répertoire que les fichiers "
+"de style par défaut."
+
+#: C/gui-styles.page:43(title)
+msgid "Global formatting"
+msgstr "Formatage global"
+
+#: C/gui-styles.page:45(p)
+msgid ""
+"The XML style file describes how the different data fields are organized in "
+"order to create a bibliographic style. For example, it can specify that an "
+"article starts with the article title in bold, followed by the authors "
+"names, etc."
+msgstr ""
+"Le fichier de style XML décrit la manière dont les différents champs de "
+"données sont organisés pour créer un style bibliographique. Il peut, par "
+"exemple, spécifier qu'un article commence avec un titre en caractères gras, "
+"suivi par les noms des auteurs, etc."
+
+#: C/gui-styles.page:50(p)
+msgid ""
+"In its current incarnation, the XML format can however not describe lower-"
+"level informations, like how an author's name should be output. This is done "
+"by pointing to a set of python functions, grouped in a module. Let's "
+"consider the following example:"
+msgstr ""
+"Dans ce schéma, le format XML ne peut cependant pas décrire des informations "
+"d'un niveau inférieur, comme la façon dont doit être affiché le nom de "
+"l'auteur. Cela est faisable en pointant vers un ensemble de fonctions "
+"Python, regroupées dans un module. Regardons l'exemple suivant :"
+
+#: C/gui-styles.page:56(code)
+#, no-wrap
+msgid ""
+"\n"
+"  &lt;module name=\"generic\"&gt;\n"
+"    &lt;define field=\"author\"&gt;full_authors&lt;/define&gt;\n"
+"    &lt;define field=\"editor\"&gt;first_last_full_authors&lt;/define&gt;\n"
+"    &lt;define field=\"date\"&gt;european_date&lt;/define&gt;\n"
+"    &lt;define method=\"keys\"&gt;string_keys&lt;/define&gt;\n"
+"  &lt;/module&gt;\n"
+msgstr ""
+"\n"
+"  &lt;module name=\"generic\"&gt;\n"
+"    &lt;define field=\"author\"&gt;full_authors&lt;/define&gt;\n"
+"    &lt;define field=\"editor\"&gt;first_last_full_authors&lt;/define&gt;\n"
+"    &lt;define field=\"date\"&gt;european_date&lt;/define&gt;\n"
+"    &lt;define method=\"keys\"&gt;string_keys&lt;/define&gt;\n"
+"  &lt;/module&gt;\n"
+
+#: C/gui-styles.page:65(p)
+msgid ""
+"In this example, we require that the <em>author</em> fields should be "
+"formatted by the <code>full_authors()</code> function, located in the "
+"<file>generic</file> module."
+msgstr ""
+"Dans cet exemple, nous demandons que les champs <em>author</em> (auteur) "
+"soient formatés par la fonction <code>full_authors()</code> située dans le "
+"module <file>generic</file>."
+
+#: C/gui-styles.page:70(p)
+msgid ""
+"Such a module has to be declared in the <file>pybrc.py</file> file, by a "
+"line like:"
+msgstr ""
+"Ce type de module doit être déclaré dans le fichier <file>pybrc.py</file> "
+"sous la forme d'une ligne de ce type :"
+
+#: C/gui-styles.page:73(code)
+#, no-wrap
+msgid "Autoload.preregister ('style','Generic','Pyblio.Style.Generic')"
+msgstr "Autoload.preregister ('style','Generic','Pyblio.Style.Generic')"
+
+#: C/gui-styles.page:76(p)
+msgid ""
+"The precise definition of the formatting functions is better explained by "
+"looking at the code of <file>Generic.py</file> for example."
+msgstr ""
+"Vous aurez une idée plus précise sur l'explication des fonctions de "
+"formatage en regardant le code du fichier <file>Generic.py</file>, par "
+"exemple."
+
+#: C/gui-styles.page:82(title)
+msgid "Bibliography definition"
+msgstr "Définition d'une bibliographie"
+
+#: C/gui-styles.page:84(p)
+msgid ""
+"Once the basic formatting definitions have been specified, it is possible to "
+"describe the aspect of the actual bibliographies with following tags:"
+msgstr ""
+"Une fois les définitions basiques de formatage spécifiées, vous pouvez "
+"décrire l'aspect qu'auront les bibliographies réelles à l'aide des balises "
+"suivantes :"
+
+#: C/gui-styles.page:90(p)
+msgid "&lt;style name=\"<var>stylename</var>\"&gt;"
+msgstr "&lt;style name=\"<var>stylename</var>\"&gt;"
+
+#: C/gui-styles.page:92(p)
+msgid ""
+"This tag specifies the current display style, among <em>bold, italic, "
+"slanted, emph</em>."
+msgstr ""
+"Cette balise définit le style d'affichage actuel, parmi <em>bold, italic, "
+"slanted, emph</em>."
+
+#: C/gui-styles.page:97(p)
+msgid "&lt;inentry name=\"<var>entryname</var>\"&gt;"
+msgstr "&lt;inentry name=\"<var>entryname</var>\"&gt;"
+
+#: C/gui-styles.page:99(p)
+msgid ""
+"This tag encloses a block that is only to appear in entries of type "
+"<var>entryname</var>."
+msgstr ""
+"Cette balise entoure un bloc qui ne doit s'afficher que lorsqu'il s'agit "
+"d'entrées du type <var>entryname</var>."
+
+#: C/gui-styles.page:104(p)
+msgid "&lt;notinentry name=\"<var>entryname</var>\"&gt;"
+msgstr "&lt;notinentry name=\"<var>entryname</var>\"&gt;"
+
+#: C/gui-styles.page:106(p)
+msgid ""
+"This tag encloses a block that is only to appear in entries that are "
+"<em>not</em> of type <var>entryname</var>."
+msgstr ""
+"Cette balise entoure un bloc qui ne doit s'afficher que lorsqu'il s'agit "
+"d'entrées qui <em>ne sont pas</em> du type <var>entryname</var>."
+
+#: C/gui-styles.page:112(p)
+msgid "&lt;infield name=\"<var>fieldname</var>\"&gt;"
+msgstr "&lt;infield name=\"<var>fieldname</var>\"&gt;"
+
+#: C/gui-styles.page:114(p)
+msgid ""
+"This tag encloses a block that only appears when the specified "
+"<var>fieldname</var> field exists in the current entry."
+msgstr ""
+"Cette balise entoure un bloc qui ne s'affiche que lorsque le champ "
+"<var>fieldname</var> existe dans l'entrée actuelle."
+
+#: C/gui-styles.page:121(p)
+msgid "&lt;notinfield name=\"<var>fieldname</var>\"&gt;"
+msgstr "&lt;notinfield name=\"<var>fieldname</var>\"&gt;"
+
+#: C/gui-styles.page:123(p)
+msgid ""
+"This tag encloses a block that only appears when the specified "
+"<var>fieldname</var> field <em>does not</em> exist in the current entry."
+msgstr ""
+"Cette balise entoure un bloc qui ne s'affiche que lorsque le champ "
+"<var>fieldname</var> <em>n'existe pas</em> dans l'entrée actuelle."
+
+#: C/gui-styles.page:129(p)
+msgid "&lt;content <var>name=</var>\"<var>fieldname</var>\"/&gt;"
+msgstr "&lt;content <var>name=</var>\"<var>fieldname</var>\"/&gt;"
+
+#: C/gui-styles.page:131(p)
+msgid ""
+"This empty tag is replaced by the content of the current field (when placed "
+"in a &lt;infield&gt; block) or the content of the field specified as "
+"attribute."
+msgstr ""
+"Cette balise vide est remplacée par la valeur du champ actuel (quand il est "
+"placé dans un bloc &lt;infield&gt;), ou par le contenu du champ défini comme "
+"attribut."
+
+#: C/gui-styles.page:137(p)
+msgid "&lt;separator&gt;"
+msgstr "&lt;separator&gt;"
+
+#: C/gui-styles.page:139(p)
+msgid ""
+"This tag's content evaluates to nothing when no text has been issued so far. "
+"It is a convenient way to add a delimiter after a series of fields without "
+"being worried of the special case when the fields are not defined."
+msgstr ""
+"Le contenu de cette balise s'évalue à rien tant qu'aucun texte n'a été émis. "
+"C'est une manière pratique d'ajouter un séparateur après une série de champs "
+"sans s'inquiéter du cas spécial où les champs ne sont pas définis."
+
+#: C/gui-styles.page:147(p)
+msgid "The existing style files are a good source of examples."
+msgstr "Les fichiers de style existants sont une bonne source d'exemples."
+
+#: C/gui-styles.page:151(title)
+msgid "Future of the format"
+msgstr "Devenir du format"
+
+#: C/gui-styles.page:153(p)
+msgid ""
+"In the future, this rudimentary format will most likely be replaced with an "
+"XSL-based mechanism, which should encompass both the XML definition and the "
+"python modules, thus providing standalone style files, parsable by any XSL "
+"parser."
+msgstr ""
+"Dans le futur, ce format rudimentaire va certainement être remplacé par un "
+"mécanisme basé sur du XSL, qui devrait englober la définition XML et les "
+"modules Python, donnant ainsi des fichiers de style autonomes et analysables "
+"par n'importe quel analyseur syntaxique XSL."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-sorting.page:55(None)
+msgid "@@image: 'figures/sort.png'; md5=c7a4506cb27428d7b2a0d10b9d3a98b2"
+msgstr ""
+
+#: C/gui-sorting.page:10(desc)
+msgid "Customize the sort order of the entries."
+msgstr "Personnaliser l'ordre de tri des entrées."
+
+#: C/gui-sorting.page:26(title)
+msgid "Sorting"
+msgstr "Tri"
+
+#: C/gui-sorting.page:28(p)
+msgid ""
+"Clicking on the title of each column in the main index provides some "
+"rudimentary way of sorting a database. A much powerful method is to open the "
+"sort dialog (in <guiseq><gui>Edit</gui><gui>Sort</gui></guiseq>). This menu, "
+"displayed in the picture below, gives a list of fields which can be used as "
+"sort criterions, plus a flag indicating how they are currently used. By "
+"clicking twice on the item, it is possible to choose how the field will be "
+"used:"
+msgstr ""
+"Cliquer sur l'en-tête de chaque colonne dans l'index principal est une "
+"manière rudimentaire de trier une base de données. Une méthode beaucoup plus "
+"performante consiste à ouvrir la boîte de dialogue de tri (dans "
+"<guiseq><gui>Édition</gui><gui>Trier</gui></guiseq>). Ce menu, qui est "
+"illustré ci-dessous, affiche une liste de champs qui peuvent servir de "
+"critères de tri, ainsi qu'un drapeau indiquant leur statut actuel. En "
+"cliquant deux fois sur l'élément, vous pouvez choisir la façon dont le champ "
+"sera utilisé :"
+
+#: C/gui-sorting.page:37(p)
+msgid "Nothing means the field is not in use."
+msgstr "rien signifie que le champ n'est pas utilisé,"
+
+#: C/gui-sorting.page:40(p)
+msgid "A <em>triangle</em>-like symbol means sort in <em>ascending order</em>."
+msgstr ""
+"un symbole <em>triangle</em> signifie que le tri est en <em>mode ascendant</"
+"em>,"
+
+#: C/gui-sorting.page:44(p)
+msgid ""
+"An <em>upside down triangle</em>-like symbol means sort in <em>descending "
+"order</em>."
+msgstr ""
+"un symbole <em>triangle</em> à l'envers signifie que le tri est en <em>mode "
+"descendant</em>."
+
+#: C/gui-sorting.page:49(p)
+msgid ""
+"The order in which the sorting is performed depends on the order in the "
+"list. To modify this order, simply drag and drop an item to change its "
+"position. To make this sort order default, it can be saved by clicking on "
+"the <gui>Set as default</gui> button."
+msgstr ""
+"L'ordre dans lequel le tri s'effectue dépend de l'ordre de la liste. Pour "
+"modifier cet ordre, faites glisser et déposez un élément avec la souris pour "
+"le déplacer. Pour définir ce mode de tri par défaut, enregistrez-le en "
+"cliquant sur le bouton <gui>Définir par défaut</gui>."
+
+#: C/gui-sorting.page:55(media)
+msgid "The Sort dialog"
+msgstr "La boîte de dialogue de tri"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-settings.page:34(None)
+msgid "@@image: 'figures/fields.png'; md5=12bf133c7494df1eba6d1ab878609df3"
+msgstr ""
+
+#: C/gui-settings.page:10(desc)
+msgid "How to change settings and preferences."
+msgstr "Modifier les paramètres et les préférences."
+
+#: C/gui-settings.page:26(title)
+msgid "Configuration"
+msgstr "Configuration"
+
+#: C/gui-settings.page:28(p)
+msgid ""
+"Under the <guiseq><gui>Settings</gui></guiseq> menu, you can find some "
+"options to customize <app>Pybliographer</app>."
+msgstr ""
+"Dans le menu <guiseq><gui>Paramètres</gui></guiseq>, vous trouverez quelques "
+"options pour personnaliser <app>Pybliographer</app>."
+
+#: C/gui-settings.page:32(title)
+msgid "Entry types and field names configuration"
+msgstr "Configuration des types d'entrées et des noms de champs"
+
+#: C/gui-settings.page:34(media)
+msgid "Configuration of fields and entry types"
+msgstr "Configuration des champs et des types d'entrée"
+
+#: C/gui-settings.page:38(p)
+msgid ""
+"Selecting the <guiseq><gui>Settings</gui><gui>Fields</gui></guiseq> menu "
+"item, it is possible to add or remove fields, to set their type, and to "
+"define which fields should be associated with a given type of entry. In "
+"addition, the mandatory and optional fields are also can be varied. In the "
+"window displayed above, as an example, the association of the <em>Article</"
+"em> entry type can be seen."
+msgstr ""
+"Choisissez <guiseq><gui>Paramètres</gui><gui>Champs</gui></guiseq> dans le "
+"menu pour ajouter ou enlever des champs, pour définir leur type et définir "
+"quels champs doivent être associés à un type d'entrée donné. Vous pouvez "
+"aussi modifier les champs optionnels et obligatoires. L'illustration de "
+"l'exemple ci-dessus montre les associations pour le type d'entrée "
+"<em>Article</em>."
+
+#: C/gui-settings.page:47(title)
+msgid "Preferences"
+msgstr "Préférences"
+
+#: C/gui-settings.page:49(p)
+msgid ""
+"Clicking on the <guiseq><gui>Settings</gui><gui>Preferences</gui></guiseq> "
+"menu item, a lot of configuration options can be controlled. Such options "
+"are, for instance, settings of the different type of bibliographic database "
+"formats, autosave, size of history, default editing mode, the default type "
+"of a newly created entry, and resource configuration."
+msgstr ""
+"Cliquez sur <guiseq><gui>Paramètres</gui><gui>Préférences</gui></guiseq> "
+"dans le menu pour contrôler beaucoup d'options de configuration. Parmi ces "
+"options, il y a par exemple, des paramètres pour formater différents types "
+"de bases de données bibliographiques, pour l'enregistrement automatique, "
+"pour définir la taille de l'historique, pour déterminer un mode d'édition "
+"par défaut, pour définir le type par défaut d'une entrée nouvellement créée "
+"et la configuration des ressources."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-searching.page:34(None)
+msgid "@@image: 'figures/search.png'; md5=584e9a19da7d5bc43929fd7926c3602b"
+msgstr ""
+
+#: C/gui-searching.page:10(desc)
+msgid "How to find a certain entry in the database."
+msgstr "Rechercher une entrée spécifique dans la base de données."
+
+#: C/gui-searching.page:26(title)
+msgid "Searching"
+msgstr "Recherche"
+
+#: C/gui-searching.page:28(p)
+msgid ""
+"<app>Pybliographic</app> offers a quite powerful searching mechanism. For "
+"searching you can use the quick search entry of the toolbar or the search "
+"dialog. To open the search dialog, click on <guiseq><gui>Edit</"
+"gui><gui>Search</gui></guiseq> in the menu. The dialog that appears (see the "
+"picture below) displays a search form at the top."
+msgstr ""
+"<app>Pybliographic</app> propose un outil de recherche vraiment performant. "
+"Pour faire une recherche, utilisez le champ de saisie « Recherche rapide » de "
+"la barre d'outils ou la boîte de dialogue « Rechercher ». Pour ouvrir celle-"
+"ci, cliquez sur <guiseq><gui>Édition</gui><gui>Rechercher</gui></guiseq> "
+"dans le menu. Dans la boîte de dialogue qui s'affiche (voir l'illustration "
+"ci-dessous) apparaît un formulaire de recherche."
+
+#: C/gui-searching.page:34(media)
+msgid "The Search dialog"
+msgstr "La boîte de dialogue de recherche"
+
+#: C/gui-searching.page:39(title)
+msgid "Simple searches"
+msgstr "Recherche simple"
+
+#: C/gui-searching.page:41(p)
+msgid ""
+"With a simple search, you can select the field that will be searched and you "
+"can specify a regular expression to be matched. <gui>- any field -</gui> "
+"means that all the existing fields will be searched. This is usually more "
+"time-consuming."
+msgstr ""
+"Utilisez cette option pour sélectionner le champ à rechercher et saisissez "
+"un motif à trouver. <gui>- tous les champs -</gui> signifie que la recherche "
+"se fera dans tous les champs existants. Ce choix est le plus long au point "
+"de vue temps de recherche."
+
+#: C/gui-searching.page:49(title)
+msgid "Expert searches"
+msgstr "Recherche avancée"
+
+#: C/gui-searching.page:51(p)
+msgid "An expert search is an expression that looks like:"
+msgstr "Une recherche avancée se présente sous la forme :"
+
+#: C/gui-searching.page:53(code)
+#, no-wrap
+msgid "has('author','name') | -has('title','test')"
+msgstr "has('author','nom') | -has('title','test')"
+
+#: C/gui-searching.page:55(p)
+msgid ""
+"Such an expression means: select the entries where the field <em>author</em> "
+"matches <em>name</em>, or (symbol <em>|</em>) where the field <em>title</em> "
+"does <em>not</em> match <em>test</em>. The boolean <var>and</var> is noted "
+"<em>&amp;</em>."
+msgstr ""
+"Une telle expression signifie : sélectionner les entrées dont le champ "
+"<em>author</em> correspond au champ <em>nom</em> ou (c'est le symbole <em>|</"
+"em>) dont le champ <em>title</em> <em>ne</em> correspond <em>pas</em> au "
+"texte <em>test</em>. L'expression booléenne <var>et</var> se note <em>&amp;</"
+"em>."
+
+#: C/gui-searching.page:60(p)
+msgid "There are other commands available for this type of search:"
+msgstr "Il existe d'autres commandes disponibles pour ce type de recherche :"
+
+#: C/gui-searching.page:65(p)
+msgid "<cmd>has_key(<var>keyname</var>)</cmd> searches on a key name."
+msgstr ""
+"<cmd>has_key(<var>keyname</var>)</cmd> effectue la recherche sur un nom de "
+"clé."
+
+#: C/gui-searching.page:69(p)
+msgid ""
+"<cmd>has_type(<var>typename</var>)</cmd> searches for entries of a given "
+"type name."
+msgstr ""
+"<cmd>has_type(<var>typename</var>)</cmd> recherche des entrées pour un nom "
+"de type donné."
+
+#: C/gui-searching.page:73(p)
+msgid ""
+"<cmd>any_has(<var>value</var>)</cmd> searches for the given value in all the "
+"fields of an entry."
+msgstr ""
+"<cmd>any_has(<var>valeur</var>)</cmd> recherche la valeur donnée dans tous "
+"les champs d'une entrée."
+
+#: C/gui-searching.page:78(p)
+msgid ""
+"<cmd>before(<var>field</var>, <var>year</var>, <var>month</var>, <var>day</"
+"var>)</cmd> searches for entries where the specified date field is older "
+"than the specified date."
+msgstr ""
+"<cmd>before(<var>champ</var>, <var>année</var>, <var>mois</var>, <var>jour</"
+"var>)</cmd> recherche des entrées dont le champ date spécifié est antérieur "
+"à la date saisie."
+
+#: C/gui-searching.page:83(p)
+msgid ""
+"<cmd>after(<var>field</var>, <var>year</var>, <var>month</var>, <var>day</"
+"var>)</cmd> searches for entries where the specified date field is younger "
+"than the specified date."
+msgstr ""
+"<cmd>after(<var>champ</var>, <var>année</var>, <var>mois</var>, <var>jour</"
+"var>)</cmd> recherche des entrées dont le champ date spécifié est postérieur "
+"à la date saisie."
+
+#: C/gui-searching.page:91(title)
+msgid "Hierarchical searches"
+msgstr "Recherches hiérarchiques"
+
+#: C/gui-searching.page:93(p)
+msgid ""
+"After a search, only the selected items are displayed in the main window. It "
+"makes it convenient to select a specific author, and then browse its "
+"publications for example."
+msgstr ""
+"Après une recherche, seuls les éléments trouvés sont affichés dans la "
+"fenêtre principale. Il est ensuite facile de sélectionner un auteur "
+"spécifique et de consulter ses publications, par exemple."
+
+#: C/gui-searching.page:97(p)
+msgid ""
+"In addition, the results of all the searches are kept in the tree located "
+"below the search form. Therefore, a new search can be a refinement of a "
+"previous one. If you select the tree item corresponding for example to all "
+"the articles written by a certain Nostradamus, you'll be able to select only "
+"those whose title contains the word eclipse."
+msgstr ""
+"De plus, les résultats de toutes les recherches sont stockées sous forme "
+"arborescente en-dessous du formulaire de recherche. Il est donc ensuite "
+"possible d'affiner une recherche précédente. Par exemple, si vous "
+"sélectionnez l'arborescence correspondant aux articles écrits par un certain "
+"Nostradamus, vous pourrez sélectionner seulement ceux dont le titre contient "
+"le terme « éclipse »."
+
+#: C/gui-searching.page:104(p)
+msgid ""
+"Right-clicking in this tree pops up a contextual menu that allows you to "
+"remove unuseful searches."
+msgstr ""
+"Un clic droit sur l'arborescence vous permet de supprimer les recherches "
+"inutiles."
+
+#: C/gui-searching.page:107(p)
+msgid ""
+"To select the full list of database entries again, just click on the "
+"<gui>Full database</gui> item at the top of the search tree, or push the "
+"'Esc' button on the keyboard when you are in the main window."
+msgstr ""
+"Pour sélectionner à nouveau la liste complète des entrées de la base de "
+"données, cliquez sur l'élément <gui>Base de données complète</gui> au sommet "
+"de l'arborescence, ou appuyez sur la touche « Échap » de votre clavier quand "
+"la fenêtre principale est active."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-pubmed.page:33(None)
+msgid "@@image: 'figures/medline.png'; md5=09532a6de80c9c22b06efefb6401558c"
+msgstr ""
+
+#: C/gui-pubmed.page:10(desc)
+msgid "Using Pubmed for your searches."
+msgstr "Utiliser Pubmed pour vos recherches."
+
+#: C/gui-pubmed.page:26(title)
+msgid "Searching in PubMed"
+msgstr "Recherche dans Pubmed"
+
+#: C/gui-pubmed.page:28(p)
+msgid ""
+"With <app>Pybliographic</app>, it is possible to perform a Medline search. "
+"To use this option, click on the <guiseq><gui>File</gui><gui>Medline "
+"query... </gui></guiseq> menu item. The upcoming window is represented in "
+"the picture below."
+msgstr ""
+"Avec <app>Pybliographic</app>, vous pouvez effectuer une recherche sur "
+"Medline. Pour utiliser cette option, cliquez sur <guiseq><gui>Fichier</"
+"gui><gui>Rechercher sur Medline...</gui></guiseq> dans le menu. La fenêtre "
+"illustrée ci-dessous s'affiche."
+
+#: C/gui-pubmed.page:33(media)
+msgid "Medline query"
+msgstr "Recherche Medline"
+
+#: C/gui-pubmed.page:37(p)
+msgid ""
+"The keyword, you are looking for, should be written into the <em>Search "
+"PubMed for</em> field. As it can be seen in the picture above, a number of "
+"options (limitations) can be set, which can help to obtain an optimal search "
+"result. The matched references, resulted in by the query, appear in the main "
+"window as a new database."
+msgstr ""
+"Saisissez le mot-clé\t de votre recherche dans le champ <em>Recherche avec "
+"PubMed pour</em>. L'illustration ci-dessus vous montre les options "
+"(limitations) qui peuvent être définies afin d'optimiser votre recherche. "
+"Les références correspondantes à la recherche s'affichent ensuite dans la "
+"fenêtre principale sous forme d'une nouvelle base de données."
+
+#: C/gui.page:10(desc)
+msgid "Explanations about the graphical interface of <app>Pybliographer</app>."
+msgstr "Explications sur l'interface graphique de <app>Pybliographer</app>."
+
+#: C/gui.page:26(title)
+msgid "The Graphical Interface"
+msgstr "L'interface graphique"
+
+#: C/gui.page:28(p)
+msgid ""
+"The graphical user interface is called <app>Pybliographic</app>. It provides "
+"a simple access to the most common features of the underlying engine, "
+"<app>Pybliographer</app> and lets you search, sort and modify bibliographic "
+"entries. Moreover, direct insertion of references into <link href=\"http://"
+"www.lyx.org/\" type=\"http\"><app>Lyx</app></link> and <link href=\"http://"
+"kile.sourceforge.net/\" type=\"http\"><app>Kile</app></link>, direct queries "
+"on Medline, and saving selected references in different formats are also "
+"possible."
+msgstr ""
+"L'interface graphique utilisateur se nomme <app>Pybliographic</app>. Elle "
+"donne un accès simple aux fonctions les plus courantes du moteur sous-jacent "
+"<app>Pybliographer</app> et vous permet de rechercher, trier et modifier des "
+"entrées bibliographiques. De plus, elle autorise l'insertion directe de "
+"références dans <link href=\"http://www.lyx.org/\" type=\"http\"><app>Lyx</"
+"app></link> et dans <link href=\"http://kile.sourceforge.net/\" type=\"http"
+"\"><app>Kile</app></link>, des recherches directes sur Medline et "
+"l'enregistrement des références sélectionnées sous différents formats."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-opening.page:32(None)
+msgid "@@image: 'figures/open.png'; md5=ad69c2047262f00a361f1ac860773b8a"
+msgstr ""
+
+#: C/gui-opening.page:10(desc)
+msgid "How to open an existing database."
+msgstr "Ouvrir une base de données existante."
+
+#: C/gui-opening.page:26(title) C/gui-opening.page:32(media)
+msgid "Opening a database"
+msgstr "Ouverture d'une base de données"
+
+#: C/gui-opening.page:28(p)
+msgid ""
+"To open an existing database, click on the <gui>Open</gui> toolbar button or "
+"go in the <gui>File</gui> menu, and select <guiseq><gui>File</gui><gui>Open</"
+"gui></guiseq>."
+msgstr ""
+"Pour ouvrir une base de données existante, cliquez sur le bouton "
+"<gui>Ouvrir</gui> de la barre d'outils, ou utilisez le menu "
+"<guiseq><gui>Fichier</gui><gui>Ouvrir</gui></guiseq>."
+
+#: C/gui-opening.page:36(p)
+msgid ""
+"A file selection dialog will pop up (see the picture above) and let you "
+"select a file. The type of the database can also be selected. Opening an "
+"existing database, the type can be guessed if you select <gui>- According to "
+"file suffix -</gui>."
+msgstr ""
+"Une boîte de dialogue de sélection de fichiers s'affiche (voir "
+"l'illustration ci-dessus) et vous permet de choisir un fichier. Vous pouvez "
+"aussi définir le type de base de données affiché. Lors de l'ouverture d'une "
+"base de données son type peut être deviné si vous sélectionnez <gui>- "
+"suivant le suffixe du fichier -</gui>."
+
+#: C/gui-opening.page:41(p)
+msgid ""
+"It is also possible to open a file at a remote location (as well as a local "
+"file) by typing the URI of the file (e.g. <var>http://my.remote.site/ pyblio."
+"bib</var>) using the <gui>Open Location</gui> dialog, which can be invoked "
+"by the <guiseq><gui>File</gui><gui>Open Location</gui></guiseq> menu item."
+msgstr ""
+"Vous pouvez aussi ouvrir un fichier d'un emplacement distant (ainsi qu'un "
+"fichier local) en saisissant l'URI du fichier (par ex. <var>http://mon.site."
+"distant/pyblio.bib</var>) dans la boîte de dialogue <gui>Ouvrir "
+"l'emplacement</gui> qui peut être ouverte grâce au menu "
+"<guiseq><gui>Fichier</gui><gui>Ouvrir un emplacement</gui></guiseq>."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-navigating.page:72(None)
+msgid "@@image: 'figures/main.png'; md5=bf9ce1d3e626213520d3220eb46558dd"
+msgstr ""
+
+#: C/gui-navigating.page:10(desc)
+msgid "Explanations about the navigation in the database."
+msgstr "Se déplacer dans la base de données."
+
+#: C/gui-navigating.page:26(title)
+msgid "Navigating in the entries"
+msgstr "Navigation parmi les entrées"
+
+#: C/gui-navigating.page:28(p)
+msgid ""
+"Once you have opened a database, or started to create a new one, the main "
+"window (see the picture below) displays a list of all the entries on the top "
+"part of it. The fields displayed here can be configured under the "
+"<guiseq><gui>Settings</gui><gui>Preferences</gui></guiseq> menu item."
+msgstr ""
+"Une fois qu'une base de données est ouverte, ou que vous en créez une "
+"nouvelle, la fenêtre principale (voir l'illustration ci-dessous) affiche une "
+"liste de toutes les entrées dans sa partie supérieure. Vous pouvez "
+"configurer les champs affichés à cet emplacement à partir du menu "
+"<guiseq><gui>Paramètres</gui><gui>Préférences</gui></guiseq>."
+
+#: C/gui-navigating.page:35(p)
+msgid ""
+"It is possible to display two types of combined fields: <em>-author/editor</"
+"em> and <em>-author/title-</em>."
+msgstr ""
+"Vous pouvez afficher deux types de champs combinés : <em>-auteur/éditeur</"
+"em> et <em>-auteur/titre-</em>."
+
+#: C/gui-navigating.page:40(p)
+msgid ""
+"Clicking on an entry displays its full content on the lower part of the "
+"window. It is also possible to use the arrow keys to navigate in the upper "
+"list."
+msgstr ""
+"Sélectionner une entrée affiche tout son contenu dans la partie inférieure "
+"de la fenêtre. Utilisez les touches fléchées pour vous déplacer dans la "
+"partie supérieure."
+
+#: C/gui-navigating.page:45(p)
+msgid ""
+"If an entry contains an <em>URL</em> field, clicking on the small button "
+"next to the url, the appropriate application is launched to view the target "
+"object (e.g. PDF viewer for pdf files, web browser for http address). See "
+"<link xref=\"gui-edit\"/> about how to add an URL field to an entry. "
+"Alternatively, you can open the URL with the help of the <guiseq><gui>View</"
+"gui><gui>Resource</gui></guiseq> submenu item or the <guiseq><gui>Resource</"
+"gui></guiseq> pop up menu provided for the item list. If an item contains "
+"one or more viewable fields (like url) containing viewable resources, it is "
+"marked with an icon at the left edge of the item in the upper part of the "
+"main window (see the picture below)."
+msgstr ""
+"Si une entrée contient un champ <em>URL</em>, cliquez sur le petit bouton à "
+"côté de l'URL pour ouvrir l'application appropriée et afficher l'objet cible "
+"(comme le visionneur de PDF pour ouvrir des fichiers PDF, un navigateur Web "
+"pour des adresses HTTP). Consultez la section <link xref=\"gui-edit\"/> pour "
+"apprendre à ajouter un champ URL à une entrée. Vous pouvez aussi ouvrir "
+"l'URL à partir du menu <guiseq><gui>Affichage</gui><gui>Ressource</gui></"
+"guiseq> ou du menu contextuel <guiseq><gui>Ressource</gui></guiseq> des "
+"éléments de la liste. Si un élément contient un ou plusieurs champs "
+"affichables (comme une URL), des ressources affichables, il est marqué d'une "
+"icône à sa gauche dans la partie supérieure de la fenêtre (voir "
+"l'illustration ci-dessous)."
+
+#: C/gui-navigating.page:58(p)
+msgid ""
+"You can set the viewable fields and the applications used to view the "
+"resources in the <gui>Resource</gui> tab under the <guiseq><gui>Settings</"
+"gui><gui>Preferences</gui></guiseq> menu."
+msgstr ""
+"Vous pouvez définir les champs affichables et les applications permettant "
+"d'afficher les ressources dans l'onglet <gui>Ressource</gui> du menu "
+"<guiseq><gui>Paramètres</gui><gui>Préférences</gui></guiseq>."
+
+#: C/gui-navigating.page:65(p)
+msgid ""
+"Clicking on an entry while pressing the <key>Shift</key> key extends the "
+"selection to the clicked entry. A click while pressing the <key>Control</"
+"key> key toggles the entry without altering the state of the rest of the "
+"selection. With copy and paste, or by drag and drop you can copy one or more "
+"selected entries into a new window or database."
+msgstr ""
+"Si vous cliquez sur une entrée en maintenant la touche <key>Maj</key> "
+"enfoncée, vous étendez la sélection jusqu'à l'entrée cliquée. Si vous "
+"cliquez sur une entrée en maintenant la touche <key>Ctrl</key> enfoncée, "
+"vous basculez l'état de cette entrée sans modifier le reste de la sélection. "
+"Vous pouvez copier une ou plusieurs sélections dans une nouvelle fenêtre ou "
+"une nouvelle base de données par la méthode du copier-coller ou du glisser-"
+"déposer."
+
+#: C/gui-navigating.page:72(media)
+msgid "The main window"
+msgstr "La fenêtre principale"
+
+#: C/gui-navigating.page:76(p)
+msgid ""
+"Clicking the right button of the mouse in the list opens a contextual menu. "
+"With this menu you can:"
+msgstr "Un clic droit dans la liste ouvre le menu contextuel qui vous permet :"
+
+#: C/gui-navigating.page:81(p)
+msgid "add a new entry"
+msgstr "d'ajouter une nouvelle entrée,"
+
+#: C/gui-navigating.page:84(p)
+msgid "edit the currently selected items"
+msgstr "de modifier les éléments sélectionnés,"
+
+#: C/gui-navigating.page:87(p)
+msgid "view the resource associated with the selected item"
+msgstr "d'afficher les ressources associées à l'élément sélectionné,"
+
+#: C/gui-navigating.page:90(p)
+msgid "delete the currently selected items"
+msgstr "de supprimer les éléments sélectionnés."
+
+#: C/gui-navigating.page:94(p)
+msgid ""
+"Note that some of these menu options can be disabled for a given database or "
+"entry, provided that the corresponding action can't be performed."
+msgstr ""
+"Veuillez noter que certaines de ces options peuvent être indisponibles pour "
+"certaines bases de données ou entrées si les actions correspondantes ne "
+"peuvent pas être appliquées."
+
+#: C/gui-navigating.page:98(p)
+msgid ""
+"By clicking on the column titles of the list, you'll sort the entries "
+"according to the corresponding field."
+msgstr ""
+"Cliquez sur l'en-tête d'une colonne de la liste pour trier les entrées en "
+"fonction du champ correspondant."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-formats.page:33(None)
+msgid "@@image: 'figures/format.png'; md5=734464fc1276ef9b3f2bc8cb34f2504e"
+msgstr ""
+
+#: C/gui-formats.page:10(desc)
+msgid "Other file formats which you can also use."
+msgstr "Autres formats de fichiers utilisables."
+
+#: C/gui-formats.page:26(title)
+msgid "Saving selected entries in different formats"
+msgstr "Enregistrement des entrées sélectionnées dans différents formats"
+
+#: C/gui-formats.page:28(p)
+msgid ""
+"Selected entries can be saved in different formats using the "
+"<guiseq><gui>Cite</gui><gui>Format...</gui></guiseq> menu item, see the "
+"following window:"
+msgstr ""
+"Vous pouvez enregistrer les entrées sélectionnées dans différents formats à "
+"partir du menu <guiseq><gui>Citer</gui><gui>Format...</gui></guiseq> (voir "
+"l'illustration ci-dessous)."
+
+#: C/gui-formats.page:33(media)
+msgid "Formatting entries"
+msgstr "Formatage des entrées"
+
+#: C/gui-formats.page:38(p)
+msgid ""
+"As a result, a formatted output file is generated according to a "
+"bibliographic style, either in HTML, LaTeX, Raw or Text format. The "
+"<app>Pybliographer</app> package contains some bibliographic styles, but own "
+"styles can also be created easily. See also <link xref=\"scripting-"
+"existing#script-scripting-existing-pybformat\"/>."
+msgstr ""
+"Par conséquent, un fichier de sortie formaté est généré en fonction d'un "
+"style bibliographique, au format HTML, LaTeX, Raw ou Text. Le paquet "
+"<app>Pybliographer</app> contient quelques styles bibliographiques, mais "
+"vous pouvez facilement créer vos propres styles. Consultez la section sur "
+"<link xref=\"scripting-existing#script-scripting-existing-pybformat\"/>."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-edit.page:31(None)
+msgid "@@image: 'figures/edit.png'; md5=8c5c88ea0416f223dad77ad0c5d498f4"
+msgstr ""
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/gui-edit.page:73(None)
+msgid "@@image: 'figures/edit2.png'; md5=899d1d9761324f427bea18eba973c66d"
+msgstr ""
+
+#: C/gui-edit.page:10(desc)
+msgid "Editing entries."
+msgstr "Modifier des entrées."
+
+#: C/gui-edit.page:25(title)
+msgid "Editing"
+msgstr "Modification"
+
+#: C/gui-edit.page:28(title)
+msgid "Basic editing"
+msgstr "Modification de base"
+
+#: C/gui-edit.page:31(media)
+msgid "The Edition window"
+msgstr "La fenêtre de modification"
+
+#: C/gui-edit.page:35(p)
+msgid ""
+"The edition window is represented in the figure above. On the right of each "
+"field, a symbol indicates if <app>Pybliographer</app> has been able to "
+"render all the information given in that field. For example, a BibTeX field "
+"containing an unknown command name cannot be correctly represented. In that "
+"case, <app>Pybliographer</app> provides a fake representation, and indicates "
+"it was not able to do a good job on this field by setting a red symbol on "
+"its right, instead of a green one."
+msgstr ""
+"L'illustration ci-dessus montre la fenêtre de modification. À droite de "
+"chaque champ, un symbole vert indique que <app>Pybliographer</app> a pu "
+"restituer correctement toutes les informations contenues dans ce champ. Par "
+"exemple, un champ BibTeX contenant un nom de commande inconnu ne peut pas "
+"être correctement représenté. Dans ce cas, <app>Pybliographer</app> affiche "
+"une représentation factice et indique son incapacité de faire du bon travail "
+"à l'aide de ce champ en utilisant un symbole rouge, au lieu d'un symbole "
+"vert."
+
+#: C/gui-edit.page:44(p)
+msgid ""
+"If you edit such an entry, you can loose the additional information it "
+"contained. To avoid this, consider using native editing (see <link xref="
+"\"gui-edit#gui-edit-native\"/>)."
+msgstr ""
+"Si vous tentez de modifier une telle entrée, vous risquez de perdre les "
+"informations non représentées qu'elle contient. Pour éviter cela, envisagez "
+"plutôt d'utiliser la méthode native de modification (consultez <link xref="
+"\"gui-edit#gui-edit-native\"/>)."
+
+#: C/gui-edit.page:49(p)
+msgid ""
+"To edit the entries, simply type the corresponding text, without any "
+"consideration for the database format being used. For example, with "
+"<app>BibTeX</app>, don't add any <em>{</em> or special characters to "
+"influence the result, as they will be quoted by the system. For fields "
+"requiring names (like author and editor), use the following format: type one "
+"name per line, in the <em>last name, lineage, first name</em> order. If an "
+"author or editor field has too many names, you can end the list of names "
+"with <em>others</em>; the standard bibtex styles convert this to <em>et al</"
+"em>."
+msgstr ""
+"Pour modifier une entrée, saisissez le texte correspondant sans tenir compte "
+"du format utilisé par la base de données. Par exemple, avec <app>BibTeX</"
+"app>, n'ajoutez aucune <em>{</em> ou caractères spéciaux pour influencer le "
+"résultat car ils seront mis entre parenthèses par le système. Pour les "
+"champs requérant un nom (comme auteur ou éditeur), utilisez le format "
+"suivant : saisissez un nom par ligne, dans l'ordre <em>nom, parenté, prénom</"
+"em>. Si un champ auteur ou éditeur possède trop de noms, terminez-le par "
+"<em>others</em> ; les styles standards de BibTeX convertissent cela en "
+"<em>et al</em>."
+
+#: C/gui-edit.page:59(p)
+msgid ""
+"In addition to the standard fields, you can create your own fields using the "
+"<gui>Create Field</gui> button."
+msgstr ""
+"Vous pouvez ajouter vos propres champs aux champs standards avec le bouton "
+"<gui>Créer un champ</gui>."
+
+#: C/gui-edit.page:63(p)
+msgid ""
+"You can customize the mandatory and optional fields for the different type "
+"of entries. For example, associating the <em>URL</em> field with a given "
+"type of entry, it is possible to assign an url to an entry (e.g. the "
+"location of the pdf version of an article or the address of a website). See "
+"the window below. More information about the association of fields can be "
+"found in <link xref=\"gui-settings\"/>."
+msgstr ""
+"Vous pouvez personnaliser les champs obligatoires et optionnels de chaque "
+"type d'entrée. Par exemple, en associant le champ <em>URL</em> à un type "
+"d'entrée donné, vous pouvez attribuer un URL à une entrée (par ex. l'endroit "
+"où se trouve la version PDF d'un article ou l'adresse d'un site Web). "
+"Consultez l'illustration ci-dessous. Vous trouverez plus d'informations sur "
+"les associations de champs dans la section <link xref=\"gui-settings\"/>."
+
+#: C/gui-edit.page:73(media)
+msgid "The Edition window - Optional fields"
+msgstr "La fenêtre de modification - champs optionnels"
+
+#: C/gui-edit.page:77(p)
+msgid ""
+"The following keyboard shortcuts are available during edition (in addition "
+"to the standard ones provided by Gtk):"
+msgstr ""
+"En plus des raccourcis clavier standards de Gtk, les raccourcis suivants "
+"sont disponibles pendant la modification :"
+
+#: C/gui-edit.page:82(p)
+msgid ""
+"<keyseq><key>Ctrl</key><key>TAB</key></keyseq> to jump to the next field"
+msgstr "<keyseq><key>Ctrl</key><key>Tab</key></keyseq> va au champ suivant,"
+
+#: C/gui-edit.page:87(p)
+msgid ""
+"<keyseq><key>Shift</key><key>TAB</key></keyseq> to jump to the previous field"
+msgstr "<keyseq><key>Maj</key><key>Tab</key></keyseq> va au champ précédent,"
+
+#: C/gui-edit.page:92(p)
+msgid ""
+"<keyseq><key>Ctrl</key><key>Enter</key></keyseq> to accept the modifications"
+msgstr ""
+"<keyseq><key>Ctrl</key><key>Entrée</key></keyseq> confirme les modifications,"
+
+#: C/gui-edit.page:97(p)
+msgid "<key>Esc</key> to cancel the edition"
+msgstr "<key>Échap</key> annule la modification."
+
+#: C/gui-edit.page:101(p)
+msgid ""
+"To specify a crossreference to another entry, just drag the entry from the "
+"main list to the <gui>Crossreference</gui> field. To remove a "
+"crossreference, drag an empty selection on the field. To unselect all the "
+"entries, you might need to use the <key>Control</key> key, while clicking on "
+"the entry."
+msgstr ""
+"Pour définir une référence croisée avec une autre entrée, faites glisser "
+"l'entrée de la liste principale vers le champ <gui>Référence croisée</gui>. "
+"Pour supprimer une référence croisée, faites glissez une sélection vide dans "
+"le champ. Pour désélectionner toutes les entrées, vous pouvez utiliser la "
+"touche <key>Ctrl</key> pendant que vous cliquez sur l'entrée."
+
+#: C/gui-edit.page:109(title)
+msgid "Native editing"
+msgstr "Modification native"
+
+#: C/gui-edit.page:111(p)
+msgid ""
+"For databases like BibTeX that provide a specific syntax (called <em>native</"
+"em> syntax), it is possible to directly edit the entry in this format. Just "
+"click the button called <gui>Native Editing</gui> at the bottom of the "
+"window and type the entry in its native form."
+msgstr ""
+"Avec des bases de données BibTeX qui fournissent une syntaxe spécifique "
+"(appelée <em>syntaxe native</em>), vous pouvez directement modifier l'entrée "
+"dans ce format. Cliquez sur le bouton <gui>Édition native</gui> au bas de la "
+"fenêtre et saisissez l'entrée sous sa forme native."
+
+#: C/gui-edit.page:118(p)
+msgid ""
+"It is also possible to type native commands in the normal editing window. "
+"For example, if you want to use special LaTeX commands like <cmd>\\textbf</"
+"cmd> in a title, you can type them directly in the <gui>Title</gui> field by "
+"preceding the text with a <em>@</em> symbol (as the first character). After "
+"that symbol, you have to use all the BibTeX conventions (braces, "
+"backslashes,...), as none of them will be escaped or modified by "
+"<app>Pybliographer</app>."
+msgstr ""
+"Vous pouvez aussi saisir des commandes natives dans la fenêtre de "
+"modification normale. Par exemple, si vous voulez utiliser une commande "
+"spéciale LaTeX comme <cmd>\\textbf</cmd> dans un titre, saisissez la "
+"directement dans le champ <gui>Titre</gui> en la faisant précéder par le "
+"symbole <em>@</em> (comme premier caractère). Après ce symbole, vous devez "
+"utiliser toutes les conventions BibTeX usuelles (accolades, antislashs "
+"(barres obliques inverses)...), car aucune ne sera échappée ni modifiée par "
+"<app>Pybliographer</app>."
+
+#: C/gui-creating.page:10(desc)
+msgid "How to create a new database."
+msgstr "Créer une nouvelle base de données."
+
+#: C/gui-creating.page:26(title)
+msgid "Creating a new database"
+msgstr "Création d'une nouvelle base de données"
+
+#: C/gui-creating.page:28(p)
+msgid ""
+"When <app>Pybliographic</app> is opened, you can immediately begin to create "
+"a new database. The type of this database will be determined when you will "
+"save it the first time."
+msgstr ""
+"Dès que vous ouvrez <app>Pybliographic</app>, vous pouvez tout de suite "
+"commencer à créer une nouvelle base de données. Vous en déterminerez le type "
+"au moment de son premier enregistrement."
+
+#: C/gui-creating.page:32(p)
+msgid ""
+"To add a new entry, you can use the <guiseq><gui>Edit</gui><gui>Add</gui></"
+"guiseq> menu, directly the <gui>Add</gui> toolbar button or click with the "
+"right button in the list window and select <gui>Add</gui>."
+msgstr ""
+"Pour ajouter une nouvelle entrée, cliquez sur le bouton <gui>Ajouter</gui> "
+"de la barre d'outils, allez dans le menu <guiseq><gui>Édition</"
+"gui><gui>Ajouter</gui></guiseq>, ou bien faites un clic droit dans la "
+"fenêtre et sélectionnez <gui>Ajouter</gui>."
+
+#: C/gui-creating.page:38(p)
+msgid ""
+"You will find more information on the main window's usage in <link xref="
+"\"gui-navigating\"/>."
+msgstr ""
+"Vous trouverez davantage d'informations sur l'utilisation de la fenêtre "
+"principale dans la section <link xref=\"gui-navigating\"/>."
+
+#: C/gettingstarted.page:10(desc)
+msgid "Your first steps in <app>Pybliographer</app>."
+msgstr "Premiers pas avec <app>Pybliographer</app>."
+
+#: C/gettingstarted.page:26(title)
+msgid "Getting Started"
+msgstr "Premiers pas"
+
+#: C/gettingstarted.page:29(title)
+msgid "What is <app>Pybliographer</app>?"
+msgstr "Présentation de <app>Pybliographer</app>"
+
+#: C/gettingstarted.page:30(p)
+msgid ""
+"Pybliographer is a tool for working with bibliographic databases. It "
+"provides a general framework that can be used to manipulate these databases "
+"with a simple graphical interface, but that can also be easily extended by "
+"the mean of a scripting language, to fit a wide range of needs."
+msgstr ""
+"Pybliographer est une application de traitement de bases de données "
+"bibliographiques. Il fournit une structure générale qui vous permet de "
+"manipuler ces bases de données à partir d'une interface graphique simple, "
+"mais qui peut facilement être étoffée par l'écriture de scripts pour "
+"correspondre à une large catégorie de besoins."
+
+#: C/gettingstarted.page:40(title)
+msgid "How to start <app>Pybliographer</app>?"
+msgstr "Démarrage de <app>Pybliographer</app>"
+
+#: C/gettingstarted.page:41(p)
+msgid "You can start <app>Pybliographer</app> in the following ways:"
+msgstr "Vous pouvez démarrer <app>Pybliographer</app> des manières suivantes :"
+
+#: C/gettingstarted.page:45(title)
+msgid "Graphical mode"
+msgstr "En mode graphique"
+
+#: C/gettingstarted.page:46(p)
+msgid ""
+"To start <app>Pybliographer</app> in graphical mode from a command line, "
+"type the following command, then press <key>Return</key>: "
+"<cmd>pybliographic</cmd>. For more information on the graphical interface, "
+"see <link xref=\"gui\"/>."
+msgstr ""
+"Pour démarrer <app>Pybliographer</app> en mode graphique dans un terminal, "
+"saisissez la commande suivante et appuyez sur <key>Entrée</key> : "
+"<cmd>pybliographic</cmd>. Pour plus d'informations sur l'interface "
+"graphique, consultez la section sur <link xref=\"gui\"/>."
+
+#: C/gettingstarted.page:54(p)
+msgid ""
+"It is possible to set the PYBLIOGRAPHER_DATABASE environment variable to an "
+"admissible bibliography file in order to open it always on startup, if no "
+"files are specified on the command line. Example:"
+msgstr ""
+"Vous pouvez affecter la variable d'environnement PYBLIOGRAPHER_DATABASE à un "
+"fichier bibliographique valide qui sera toujours ouvert au démarrage si "
+"aucun fichier n'est spécifié dans la ligne de commande. Par exemple : "
+
+# : Bruno : presence de / bizarre
+#: C/gettingstarted.page:60(var) C/gettingstarted.page:65(var)
+msgid "my/database.bib"
+msgstr "my/database.bib"
+
+#: C/gettingstarted.page:60(input)
+msgid "export PYBLIOGRAPHER_DATABASE=<placeholder-1/>"
+msgstr "export PYBLIOGRAPHER_DATABASE=<placeholder-1/>"
+
+#: C/gettingstarted.page:61(input)
+msgid "pybliographic"
+msgstr "pybliographic"
+
+#: C/gettingstarted.page:63(p)
+msgid "It is equivalent to"
+msgstr "Cela est équivalent à"
+
+#: C/gettingstarted.page:65(input)
+msgid "pybliographic <placeholder-1/>"
+msgstr "pybliographic <placeholder-1/>"
+
+#: C/gettingstarted.page:71(title)
+msgid "Command line mode"
+msgstr "En mode ligne de commande"
+
+#: C/gettingstarted.page:72(p)
+msgid ""
+"You can start <app>Pybliographer</app> also in command line mode by typing "
+"the following command followed by pressing <key>Return</key>: "
+"<cmd>pybliographer</cmd>. For more information, see <link xref=\"command-line"
+"\"/>."
+msgstr ""
+"Pour démarrer <app>Pybliographer</app> en mode ligne de commande, saisissez "
+"la commande suivante : <cmd>pybliographer</cmd> et appuyez sur <key>Entrée</"
+"key>. Pour plus d'informations, consultez la section sur <link xref="
+"\"command-line\"/>."
+
+#: C/gettingstarted.page:81(title)
+msgid "From the GNOME menu"
+msgstr "À partir du menu GNOME"
+
+#: C/gettingstarted.page:82(p)
+msgid ""
+"If the <file>*.desktop</file> file of the package is correctly installed in "
+"your sytem, you can find a launcher under the GNOME menu to start the "
+"graphical interface of <app>Pybliographer</app>."
+msgstr ""
+"Si le fichier <file>*.desktop</file> du paquet est correctement installé sur "
+"votre système, vous trouverez un lanceur dans le menu GNOME pour démarrer "
+"l'interface graphique de <app>Pybliographer</app>."
+
+#: C/customization.page:10(desc)
+msgid "How to customize this application to match your needs."
+msgstr "Pour adapter cette application à vos besoins."
+
+#: C/customization.page:26(title)
+msgid "Advanced Configuration"
+msgstr "Configuration avancée"
+
+#: C/customization.page:28(p)
+msgid ""
+"The configuration system is heavily based on <app>Python</app>'s module "
+"system. The configuration files are standard <app>Pybliographer</app> "
+"scripts (that is, python code making use of <app>Pybliographer</app> extra "
+"classes and functions), whose single special feature is to be automatically "
+"parsed at startup or when needed."
+msgstr ""
+"Le système de configuration est grandement basé sur le système de modules de "
+"<app>Python</app>. Les fichiers de configuration sont des scripts standards "
+"de <app>Pybliographer</app> (c'est-à-dire du code python qui utilise des "
+"fonctions et classes supplémentaires de <app>Pybliographer</app>) dont la "
+"fonction principale est d'être automatiquement consultés au démarrage ou en "
+"cas de besoin."
+
+#: C/customization.page:35(title)
+msgid "Files involved"
+msgstr "Les fichiers concernés"
+
+#: C/customization.page:37(p)
+msgid ""
+"The first file to be parsed is <file>${prefix}/share/pybliographer/pybrc.py "
+"</file>. It serves as a bootstrap for the general configuration mechanism, "
+"and defines:"
+msgstr ""
+"Le premier fichier à être consulté est <file>${prefix}/share/pybliographer/"
+"pybrc.py </file>. Il sert à initialiser le mécanisme général de "
+"configuration et définit :"
+
+#: C/customization.page:43(p)
+msgid "the available input and output formats"
+msgstr "les formats d'entrée et de sortie disponibles,"
+
+#: C/customization.page:47(p)
+msgid "where to find the configuration directories."
+msgstr "où rechercher les répertoires de configuration."
+
+#: C/customization.page:51(p)
+msgid ""
+"A configuration directory holds a list of files which are parsed when "
+"needed. For example, if a method requires some configuration data for the "
+"bibtex module, it will import the corresponding file in this directory."
+msgstr ""
+"Un répertoire de configuration contient une liste de fichiers qui sont "
+"consultables en cas de besoin. Par exemple, si une méthode requiert des "
+"données de configuration pour le module bibtex, elle importe les fichiers "
+"correspondants de ce dossier."
+
+#: C/customization.page:56(p)
+msgid ""
+"This mechanism allows more flexibility to add new formats: the new format "
+"can be installed with a default configuration without messing with the "
+"global configuration file. In addition, the program imports only what is "
+"needed, decreasing its startup time."
+msgstr ""
+"Ce mécanisme autorise plus de flexibilité pour ajouter de nouveaux formats : "
+"le nouveau format peut être installé avec la configuration par défaut, sans "
+"interférer avec le fichier de configuration globale. En plus, le programme "
+"n'importe que ce qui lui est nécessaire, diminuant ainsi son temps de "
+"chargement."
+
+#: C/customization.page:62(p)
+msgid ""
+"Finally, if the user provides a file called <file>.pybrc.py</file> in its "
+"home directory, this file is then parsed. Of course it can also define a "
+"private configuration directory, and override what has been defined before."
+msgstr ""
+"Enfin, si vous créez un fichier nommé <file>.pybrc.py</file> dans votre "
+"dossier personnel, il sera ensuite consulté. Bien sûr, vous pouvez aussi "
+"définir un répertoire de configuration privé et outrepasser ce qui a été "
+"défini avant."
+
+#: C/customization.page:69(title)
+msgid "The <sys>Config</sys> module"
+msgstr "Le module <sys>Config</sys>"
+
+#: C/customization.page:71(p)
+msgid ""
+"All the data that can be configured should be handled by the so-called "
+"<sys>Config</sys> module. It provides a standard interface to set/get and "
+"document configuration items."
+msgstr ""
+"Toutes les données qui peuvent être configurées devraient être prises en "
+"charge par le module appelé <sys>Config</sys>. Il fournit une interface "
+"standard pour définir/obtenir et documenter les éléments de configuration."
+
+#: C/command-line.page:10(desc)
+msgid "Using <app>Pybliographer</app> with a terminal."
+msgstr "Utiliser <app>Pybliographer</app> à partir d'un terminal."
+
+#: C/command-line.page:26(title)
+msgid "The command line interface"
+msgstr "L'interface en ligne de commande"
+
+#: C/command-line.page:28(p)
+msgid ""
+"To start <app>Pybliographer</app> in command line mode, type the following "
+"command:"
+msgstr ""
+"Pour lancer <app>Pybliographer</app> à partir d'un terminal, saisissez la "
+"commande suivante :"
+
+#: C/command-line.page:30(screen)
+#, no-wrap
+msgid ""
+"\n"
+"  <output>bash$ </output><input>pybliographer</input>\n"
+"  This is pybliographer, version 1.2.12\n"
+"  Copyright (C) 1998-2004 Frederic GOBRY\n"
+"  This is free software with ABSOLUTELY NO WARRANTY.\n"
+"  For details, type `warranty'.\n"
+"  Useful commands:\n"
+"         help     to get some help\n"
+"         quit     to quit\n"
+"                                                                                \n"
+"  &gt;&gt;\n"
+"  "
+msgstr ""
+"\n"
+"  <output>bash$ </output><input>pybliographer</input>\n"
+"Ceci est pybliographer, version 1.2.14\n"
+"Copyright (C) 1998-2004 Frederic GOBRY\n"
+"Ceci est un logiciel libre, sans AUCUNE GARANTIE.\n"
+"Pour plus de détails, saisissez « warranty ».\n"
+"Commandes utiles :\n"
+"          help    obtenir de l'aide\n"
+"          quit    pour quitter le programme\n"
+"                                                                                \n"
+"  &gt;&gt;\n"
+"  "
+
+#: C/command-line.page:43(p)
+msgid ""
+"To get some help about how to use <app>Pybliographer</app> in this mode, "
+"type <cmd>help</cmd> at the <app>Pybliographer</app> prompt."
+msgstr ""
+"Pour consulter l'aide de <app>Pybliographer</app> dans ce mode, saisissez "
+"<cmd>help</cmd> à l'invite de <app>Pybliographer</app>."
+
+#: C/command-line.page:46(p)
+msgid ""
+"The next example shows how to open a database and make a simple search in "
+"it. See the following commands and the output:"
+msgstr ""
+"L'exemple suivant montre comment ouvrir une base de données et y faire une "
+"recherche simple. Consultez les commandes suivantes et leur retour :"
+
+#: C/command-line.page:48(screen)
+#, no-wrap
+msgid ""
+"\n"
+"  &gt;&gt; db = bibopen (\"database.bib\")\n"
+"  &gt;&gt; iterator = search (db, 'author = Mantsch')\n"
+"  &gt;&gt; ls (iterator)\n"
+"  The Use and Misuse of FTIR Spectro  Jackson, Michael; Mantsc  [JM95            ]\n"
+"  Phospholipid phase transitions in   Mantsch, H. H.; McElhane  [MM01            ]\n"
+"  &gt;&gt; \n"
+"  "
+msgstr ""
+"\n"
+"  &gt;&gt; db = bibopen (\"database.bib\")\n"
+"  &gt;&gt; iterator = search (db, 'author = Mantsch')\n"
+"  &gt;&gt; ls (iterator)\n"
+"  The Use and Misuse of FTIR Spectro  Jackson, Michael; Mantsc  [JM95            ]\n"
+"  Phospholipid phase transitions in   Mantsch, H. H.; McElhane  [MM01            ]\n"
+"  &gt;&gt; \n"
+"  "
+
+#: C/command-line.page:56(p)
+msgid ""
+"To see the complete entries listed by the command <cmd>ls (iterator)</cmd>:"
+msgstr ""
+"Pour afficher toutes les entrées listées par la commande <cmd>ls (iterator)</"
+"cmd> :"
+
+#: C/command-line.page:58(screen)
+#, no-wrap
+msgid ""
+"\n"
+"  &gt;&gt; more (iterator)\n"
+"  Article [JM95]\n"
+"  ----------------------------------------------------------------------\n"
+"    Author         Jackson, Michael; Mantsch, Henry H.\n"
+"    Title          The Use and Misuse of FTIR Spectroscopy in the\n"
+"                   Determination of Protein Structure\n"
+"    Journal        Critical Reviews in Biochemistry and Molecular Biology\n"
+"    Date           1995\n"
+"    Volume         30\n"
+"    Number         2\n"
+"    Pages          95-120\n"
+"    keywords       infrared spectroscopy; proteins; secondary structure;\n"
+"                   quantitation\n"
+"    comments       Review\n"
+" \n"
+"  Article [MM01]\n"
+"  ----------------------------------------------------------------------\n"
+"    Author         Mantsch, H. H.; McElhaney, R. N.\n"
+"    Title          Phospholipid phase transitions in model and biological\n"
+"                   membranes as studied by infrared spectroscopy\n"
+"    Journal        Chemistry and Physics of Lipids\n"
+"    Date           1991\n"
+"    Volume         57\n"
+"  --More--\n"
+"  "
+msgstr ""
+"\n"
+"  &gt;&gt; more (iterator)\n"
+"  Article [JM95]\n"
+"  ----------------------------------------------------------------------\n"
+"    Author         Jackson, Michael; Mantsch, Henry H.\n"
+"    Title          The Use and Misuse of FTIR Spectroscopy in the\n"
+"                   Determination of Protein Structure\n"
+"    Journal        Critical Reviews in Biochemistry and Molecular Biology\n"
+"    Date           1995\n"
+"    Volume         30\n"
+"    Number         2\n"
+"    Pages          95-120\n"
+"    keywords       infrared spectroscopy; proteins; secondary structure;\n"
+"                   quantitation\n"
+"    comments       Review\n"
+" \n"
+"  Article [MM01]\n"
+"  ----------------------------------------------------------------------\n"
+"    Author         Mantsch, H. H.; McElhaney, R. N.\n"
+"    Title          Phospholipid phase transitions in model and biological\n"
+"                   membranes as studied by infrared spectroscopy\n"
+"    Journal        Chemistry and Physics of Lipids\n"
+"    Date           1991\n"
+"    Volume         57\n"
+"  --More--\n"
+"  "
+
+#: C/addhelp.page:10(desc)
+msgid "Where you can get additional help."
+msgstr "Pour obtenir davantage d'aide."
+
+#: C/addhelp.page:26(title)
+msgid "Additional Help Sources"
+msgstr "Sources d'aide additionnelles"
+
+#: C/addhelp.page:27(p)
+msgid ""
+"For additional information, please, visit the <link href=\"http://"
+"pybliographer.org/\" type=\"http\">Pybliographer website</link>. There is a "
+"<link href=\"http://pybliographer.org/Mailing_lists\" type=\"http\">mailing "
+"list</link> also, where you can get answers for your questions, you can "
+"report bugs, etc."
+msgstr ""
+"Pour de plus amples informations, veuillez consulter le <link href=\"http://"
+"pybliographer.org/\" type=\"http\">Site Web de Pybliographer</link>. Il "
+"existe aussi une <link href=\"http://pybliographer.org/Mailing_lists\" type="
+"\"http\">liste de diffusion</link> sur laquelle vous pourrez obtenir des "
+"réponses à vos questions, rapporter des bogues, etc."
+
+#: C/about.page:10(desc)
+msgid "Information about <app>Pybliographer</app>."
+msgstr "Informations sur <app>Pybliographer</app>."
+
+#: C/about.page:26(title)
+msgid "Authors"
+msgstr "Auteurs"
+
+#: C/about.page:27(p)
+msgid ""
+"<app>Pybliographer</app> was originally written by Frédéric Gobry. Many "
+"thanks to all contributors for their fruitful work."
+msgstr ""
+"À l'origine, <app>Pybliographer</app> a été écrit par Frédéric Gobry. Merci "
+"à tous les contributeurs pour leur fructueux travail."
+
+#: C/about.page:31(em)
+msgid "Contributions:"
+msgstr "Contributeurs :"
+
+#: C/about.page:34(p)
+msgid "Yuri Bongiorno"
+msgstr "Yuri Bongiorno"
+
+#: C/about.page:34(desc)
+msgid "Documentation, translations"
+msgstr "Documentation, traductions"
+
+#: C/about.page:35(p)
+msgid "Hervé Dréau"
+msgstr "Hervé Dréau"
+
+#: C/about.page:35(desc)
+msgid "Internationalization, UI goodies"
+msgstr "Internationalisation, améliorations UI"
+
+#: C/about.page:36(desc)
+msgid "Project maintainer, core application, Gnome interface, documentation"
+msgstr ""
+"Mainteneur du projet, application du noyau, interface GNOME, documentation"
+
+#: C/about.page:38(desc)
+msgid "Documentation, packaging, ui code"
+msgstr "Documentation, paquetage, code ui"
+
+#: C/about.page:40(p)
+msgid "Travis Oliphant"
+msgstr "Travis Oliphant"
+
+#: C/about.page:40(desc)
+msgid "Original Ovid parser"
+msgstr "Analyseur Ovid original"
+
+#: C/about.page:41(p)
+msgid "Darrell Rudmann"
+msgstr "Darrell Rudmann"
+
+#: C/about.page:41(desc)
+msgid "APA 4th edition style"
+msgstr "Style APA 4e édition"
+
+#: C/about.page:42(p)
+msgid "Peter Schulte-Stracke"
+msgstr "Peter Schulte-Stracke"
+
+#: C/about.page:42(desc)
+msgid "Application design, requirement docs, import and ui code"
+msgstr ""
+"Apparence de l'application, documentations opérationnelles, code pour les "
+"importations et code ui"
+
+#: C/about.page:44(p)
+msgid "John Vu"
+msgstr "John Vu"
+
+#: C/about.page:44(desc)
+msgid "Medline database parser"
+msgstr "Analyseur de base de données Medline"
+
+#: C/about.page:47(p)
+msgid "Thanks to everyone who helped out with the bug tracking process."
+msgstr "Merci à tous ceux qui ont aidé à corriger les bogues."
+
+#: C/about.page:50(p)
+msgid ""
+"Many thanks also to the Documentation Translators and the Gnome Translation "
+"Teams."
+msgstr ""
+"Merci aux traducteurs de la documentation et à l'équipe de traduction de "
+"GNOME."
+
+#: C/about.page:54(p)
+msgid ""
+"This manual was written with the help of the <link href=\"http://live.gnome."
+"org/DocumentationProject\" type=\"http\">GNOME Documentation Project</link>."
+msgstr ""
+"Ce manuel a été écrit avec l'aide du <link href=\"http://live.gnome.org/"
+"DocumentationProject\" type=\"http\">Projet de documentation GNOME</link>."
+
+#: C/about.page:59(p)
+msgid ""
+"If you contributed to this project but do not see your name here, please "
+"contact the project maintainer and he'll list you."
+msgstr ""
+"Si vous avez contribué à ce projet mais que vous ne trouvez pas votre nom "
+"ici, merci de contacter le mainteneur du projet et il vous ajoutera à la "
+"liste."
+
+#: C/about.page:63(p)
+msgid ""
+"For more information please visit the <link href=\"http://pybliographer.org/"
+"\" type=\"http\"><app>Pybliographer</app> website</link>."
+msgstr ""
+"Pour de plus amples informations, veuillez consulter le <link href=\"http://"
+"pybliographer.org/\" type=\"http\">site Web de <app>Pybliographer</app></"
+"link>."
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/index.page:0(None)
+msgid "translator-credits"
+msgstr ""
+"Alain Lojewski, <allomervans@gmail.com>, 2010, 2012\n"
+"Bruno Brouard <annoa.b@gmail.com>, 2012"
