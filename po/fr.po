@@ -1,28 +1,30 @@
 # French translation of Pybliographer.
-# Copyright (C) 2003-2006 Free Software Foundation, Inc.
+# Copyright (C) 2003-2012 Free Software Foundation, Inc.
 # This file is distributed under the same license as the pybliographer package.
 #
 # Frederic Gobry <gobry@pybliographer.org>, 2003.
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2006.
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
+# Bruno Brouard <annoa.b@gmail.com>, 2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer-1.1.93\n"
+"Project-Id-Version: pybliographer\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=pybliographer&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-22 13:25+0000\n"
-"PO-Revision-Date: 2007-05-01 11:02+0200\n"
-"Last-Translator: Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
-"Language-Team: GNOME French team <gnomefr@traduc.org>\n"
+"POT-Creation-Date: 2012-01-19 11:45+0000\n"
+"PO-Revision-Date: 2012-02-22 23:11+0100\n"
+"Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
+"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../Pyblio/Autoload.py:78
 #, python-format
 msgid "warning: can't import %s: %s"
-msgstr "avertissement, impossible d'importer %s : %s"
+msgstr "avertissement : impossible d'importer %s : %s"
 
 #: ../Pyblio/Config.py:52
 #, python-format
@@ -79,7 +81,7 @@ msgstr "Dictionnaire (%s, %s)"
 #: ../Pyblio/Config.py:344
 #, python-format
 msgid "warning: could not restore setting %r to %r: %s"
-msgstr "avertissement, impossible de restaurer les paramètres %r à %r : %s"
+msgstr "avertissement : impossible de restaurer les paramètres %r à %r : %s"
 
 #: ../Pyblio/Fields.py:261
 msgid "Illegal year value"
@@ -113,8 +115,8 @@ msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
 msgstr ""
-"Certains changements nécessitent de redémarrer Pybliographic\n"
-"pour être correctement pris en compte"
+"Il est nécessaire de redémarrer Pybliographic pour que\n"
+"certains changements soient correctement pris en compte"
 
 #: ../Pyblio/GnomeUI/Config.py:429
 msgid "Add"
@@ -207,7 +209,7 @@ msgstr "Citer..."
 
 #: ../Pyblio/GnomeUI/Document.py:175
 msgid "Cite key(s)"
-msgstr "Clés des références"
+msgstr "Cite des clés"
 
 #: ../Pyblio/GnomeUI/Document.py:176
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:6
@@ -315,7 +317,7 @@ msgid ""
 "The database has been externally modified.\n"
 "Overwrite changes ?"
 msgstr ""
-"Cette base de données a été changée en dehors du programme.\n"
+"Cette base de données a été modifiée par un autre programme.\n"
 "Écraser les changements ?"
 
 #. no result.
@@ -331,7 +333,7 @@ msgstr "Une erreur s'est produite durant la recherche Medline"
 #. get a new file name
 #: ../Pyblio/GnomeUI/Document.py:538
 msgid "Merge file"
-msgstr "Fusionner le fichier"
+msgstr "Fusionner un fichier"
 
 #: ../Pyblio/GnomeUI/Document.py:551 ../Pyblio/GnomeUI/Document.py:638
 msgid "Open error"
@@ -388,7 +390,7 @@ msgid ""
 "Try to Save As..."
 msgstr ""
 "Une erreur interne s'est produite à l'enregistrement\n"
-"Essayez Enregistrer sous..."
+"Essayez le menu Enregistrer sous..."
 
 #: ../Pyblio/GnomeUI/Document.py:761
 msgid "Save As..."
@@ -427,7 +429,7 @@ msgstr ""
 
 #: ../Pyblio/GnomeUI/Document.py:922
 msgid "Really remove all the entries ?"
-msgstr "Voulez-vous supprimer toutes les entrées ?"
+msgstr "Voulez-vous vraiment supprimer toutes les entrées ?"
 
 #: ../Pyblio/GnomeUI/Document.py:942
 msgid "Create new entry"
@@ -436,12 +438,12 @@ msgstr "Créer une nouvelle entrée"
 #: ../Pyblio/GnomeUI/Document.py:956
 #, python-format
 msgid "Really edit %d entries ?"
-msgstr "Voulez-vous éditer %d entrées ?"
+msgstr "Voulez-vous vraiment modifier les %d entrées ?"
 
 #: ../Pyblio/GnomeUI/Document.py:1002
 #, python-format
 msgid "Remove all the %d entries ?"
-msgstr "Supprimer toutes les %d entrées ?"
+msgstr "Voulez-vous supprimer toutes les %d entrées ?"
 
 #: ../Pyblio/GnomeUI/Document.py:1004
 #, python-format
@@ -465,7 +467,7 @@ msgstr ""
 "Impossible de se connecter à LyX :\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:1225
+#: ../Pyblio/GnomeUI/Document.py:1226
 #, python-format
 msgid ""
 "Can't display documentation:\n"
@@ -474,25 +476,25 @@ msgstr ""
 "Impossible d'afficher la documentation :\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:1233
+#: ../Pyblio/GnomeUI/Document.py:1234
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Ce programme est soumis à la licence GNU GPL"
 
-#: ../Pyblio/GnomeUI/Document.py:1234
+#: ../Pyblio/GnomeUI/Document.py:1235
 msgid "GNOME interface to the Pybliographer system."
 msgstr "Une interface graphique GNOME pour le système Pybliographer."
 
-#: ../Pyblio/GnomeUI/Document.py:1245
+#: ../Pyblio/GnomeUI/Document.py:1246
 msgid "GNOME Translation Team"
 msgstr "L'équipe de traduction de GNOME"
 
-#: ../Pyblio/GnomeUI/Document.py:1250
+#: ../Pyblio/GnomeUI/Document.py:1251
 msgid "Pybliographer Home Page"
 msgstr "Page d'accueil de Pybliographer"
 
 #: ../Pyblio/GnomeUI/Editor.py:35
 msgid "Last Name, First Name"
-msgstr "Nom de famille, prénom"
+msgstr "Nom, prénom"
 
 #: ../Pyblio/GnomeUI/Editor.py:36 ../Pyblio/GnomeUI/Editor.py:1292
 #: ../Pyblio/GnomeUI/Fields.py:39 ../Pyblio/GnomeUI/glade/config1.glade.h:14
@@ -625,11 +627,11 @@ msgstr "Saisissez le texte ici"
 
 #: ../Pyblio/GnomeUI/Editor.py:1347
 msgid "New Annotation Name"
-msgstr "Nouveau nom d'annotation"
+msgstr "Nouveau nom de note"
 
 #: ../Pyblio/GnomeUI/Editor.py:1353
 msgid "Name of the new annotation:"
-msgstr "Nom de la nouvelle annotation :"
+msgstr "Nom de la nouvelle note :"
 
 #: ../Pyblio/GnomeUI/Entry.py:114
 #, python-format
@@ -655,7 +657,7 @@ msgstr "URL"
 
 #: ../Pyblio/GnomeUI/Fields.py:42
 msgid "Reference"
-msgstr "Références..."
+msgstr "Référence"
 
 #: ../Pyblio/GnomeUI/Fields.py:43
 msgid "Date"
@@ -681,7 +683,7 @@ msgstr "Associé"
 
 #: ../Pyblio/GnomeUI/Fields.py:321
 msgid "Please, select an entry type from previous page."
-msgstr "Choisissez un type d'entrée dans l'onglet précédent."
+msgstr "Sélectionnez un type d'entrée dans l'onglet précédent."
 
 #: ../Pyblio/GnomeUI/Fields.py:332
 #, python-format
@@ -749,11 +751,11 @@ msgstr "*"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:2
 msgid "<b>Entry type</b>"
-msgstr "Type d'entrée"
+msgstr "<b>Type d'entrée</b>"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:3
 msgid "A"
-msgstr "A"
+msgstr "À"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:4
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:2
@@ -763,7 +765,7 @@ msgstr "Association"
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:5
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:3
 msgid "Datum"
-msgstr "Valeur"
+msgstr "Donnée"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:6
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:4
@@ -782,12 +784,12 @@ msgstr "DÉFINITION DES CHAMPS"
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:10
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:8
 msgid "Fields "
-msgstr "Champs"
+msgstr "Champs "
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:12
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:11
 msgid "Name "
-msgstr "Nom"
+msgstr "Nom "
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:13
 msgid "Pybliographer Configuration"
@@ -823,7 +825,7 @@ msgstr ""
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:1
 msgid "Bibliography style:"
-msgstr "Type de bibliographie :"
+msgstr "Style de bibliographie :"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:2
 msgid "Format entries"
@@ -875,7 +877,7 @@ msgid ""
 "ahead of print"
 msgstr ""
 "Seulement les éléments\n"
-"prévus pour publication"
+"avant publication"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:10
 msgid ""
@@ -890,8 +892,8 @@ msgid ""
 "Search \n"
 "PubMed for:"
 msgstr ""
-"Recherche avec\n"
-"PubMed pour :"
+"Rechercher dans\n"
+"PubMed :"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:14
 msgid ""
@@ -910,16 +912,16 @@ msgid ""
 "Use the format YYYY/MM/DD\n"
 "Month and day are optional."
 msgstr ""
-"Utiliser le format AAAA/MM/JJ,\n"
-"le mois et le jour étant facultatifs."
+"Utiliser le format AAAA/MM/JJ\n"
+"le mois et le jour sont facultatifs."
 
 #: ../Pyblio/GnomeUI/glade/openurl.glade.h:3
 msgid "Enter the location (URI) of the file you would like to open:"
-msgstr "Saisissez l'emplacement (URI) du fichier que vous voulez ouvrir :"
+msgstr "Saisissez l'emplacement (URI) du fichier à ouvrir :"
 
 #: ../Pyblio/GnomeUI/glade/openurl.glade.h:4
 msgid "Open Location"
-msgstr "Ouvrir l'emplacement"
+msgstr "Ouvrir un emplacement"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:1
 msgid "Cite"
@@ -987,7 +989,7 @@ msgstr "Recherche"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:7
 msgid "Search"
-msgstr "Chercher"
+msgstr "Rechercher"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:8
 msgid "Simple Search"
@@ -999,7 +1001,7 @@ msgstr "Sélection des critères de tri"
 
 #: ../Pyblio/GnomeUI/glade/sort.glade.h:2
 msgid "Set as default"
-msgstr "Appliquer par défaut"
+msgstr "Définir par défaut"
 
 #: ../Pyblio/LyX.py:37
 #, python-format
@@ -1014,7 +1016,7 @@ msgstr "pas de tube de sortie « %s »"
 #: ../Pyblio/Open.py:96
 #, python-format
 msgid "method `%s' provides no opener"
-msgstr "pas de fonction d'ouverture dans « %s »"
+msgstr "pas de fonction d'ouverture dans la méthode « %s »"
 
 #: ../Pyblio/Open.py:104 ../Pyblio/Open.py:151
 #, python-format
@@ -1037,12 +1039,12 @@ msgid ""
 "Warning: This URL is marked as Invalid or Approximate: %s\n"
 "Continue?"
 msgstr ""
-"Avertissement : cette URL est marqué comme invalide ou approximatif %s\n"
+"Avertissement : cet URL est marqué comme invalide ou approximatif %s\n"
 "Voulez-vous continuer ?"
 
 #: ../Pyblio/Resource.py:81
 msgid "Determining Mime Type ... "
-msgstr "Détection en cours du type mime..."
+msgstr "Détection du type mime..."
 
 #: ../Pyblio/Resource.py:86
 #, python-format
@@ -1062,7 +1064,7 @@ msgstr ""
 
 #: ../Pyblio/Resource.py:98
 msgid "Accessing resource ..."
-msgstr "Accès à la ressource en cours..."
+msgstr "Accès à la ressource..."
 
 #: ../Pyblio/Resource.py:116
 #, python-format
@@ -1114,7 +1116,7 @@ msgstr "balise d'ouverture non valide : %s"
 #: ../Pyblio/Style/Parser.py:281
 #, python-format
 msgid "invalid closing tag: %s"
-msgstr "Balise fermante non valide : %s"
+msgstr "balise de fermeture non valide : %s"
 
 #: ../pybliographer.py:43
 #, python-format
@@ -1169,7 +1171,7 @@ msgstr "utilisation : pybcheck <fichier | répertoire>..."
 #: ../scripts/pybcheck.py:60
 #, python-format
 msgid "file `%s' is ok [%d entries]"
-msgstr "le fichier « %s » est valide (%d entrées)"
+msgstr "le fichier « %s » est valide [%d entrées]"
 
 #: ../scripts/pybcompact.py:30
 msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
@@ -1178,7 +1180,7 @@ msgstr "utilisation : pybcompact <fichier latex> <fichiers bibtex...>"
 #: ../scripts/pybcompact.py:34
 #, python-format
 msgid "pybcompact: error: %s\n"
-msgstr "pybcompact : erreur, %s\n"
+msgstr "pybcompact : erreur : %s\n"
 
 #: ../scripts/pybcompact.py:99
 msgid "no entry"
@@ -1191,11 +1193,11 @@ msgstr "impossible de trouver les entrées suivantes : %s"
 
 #: ../scripts/pybconvert.py:29
 msgid "usage: pybconvert <source>..<target> <input> [output]"
-msgstr "utilisation : pybconvert <source>..<cible> <entrée> [<sortie>]"
+msgstr "utilisation : pybconvert <source>..<cible> <entrée> [sortie]"
 
 #: ../scripts/pybconvert.py:38
 msgid "pybconvert: error: bad conversion format"
-msgstr "pybconvert : erreur, mauvaise format de conversion"
+msgstr "pybconvert : erreur : mauvais format de conversion"
 
 #: ../scripts/pybformat.py:34
 msgid ""
@@ -1215,10 +1217,11 @@ msgstr ""
 "\n"
 "    options :\n"
 "     -o fichier, --output=fichier\t\tindique un fichier de sortie\n"
-"     -s style, --style=\t\tindique un style bibliographique\n"
+"     -s style, --style=\t\tindique un style de bibliographie\n"
 "     -f format, --format=format\tindique un format de sortie\n"
 "     -H en-tête, --header=en-tête\tindique un fichier d'en-tête\n"
-"     -F pied-de-page, --footer=pied-de-page\tindique un pied de page\n"
+"     -F pied-de-page, --footer=pied-de-page\tindique un fichier pied de "
+"page\n"
 "     -l 'sortie', --list='sortie'\tliste les formats de sortie disponibles\n"
 "     -h, --help\t\t\taffiche ce message d'aide\n"
 "    "
@@ -1226,12 +1229,12 @@ msgstr ""
 #: ../scripts/pybformat.py:48
 #, python-format
 msgid "pybformat: error: %s\n"
-msgstr "pybformat : erreur, %s\n"
+msgstr "pybformat : erreur : %s\n"
 
 #: ../scripts/pybformat.py:54
 #, python-format
 msgid "pybformat: warning: %s\n"
-msgstr "pybformat : avertissement, %s\n"
+msgstr "pybformat : avertissement : %s\n"
 
 #: ../scripts/pybformat.py:93 ../scripts/pybtext.py:252
 #: ../scripts/pybtext.py:278 ../scripts/pybtext.py:321
@@ -1267,7 +1270,7 @@ msgstr "format de sortie inconnu « %s »"
 #: ../scripts/pybtext.py:94
 #, python-format
 msgid "can't find style `%s'"
-msgstr "Impossible de trouver le style « %s »"
+msgstr "impossible de trouver le style « %s »"
 
 #: ../scripts/pybformat.py:152
 #, python-format
@@ -1296,12 +1299,12 @@ msgstr "utilisation : pybtex <fichier latex> [fichiers bibtex...]"
 #: ../scripts/pybtex.py:38
 #, python-format
 msgid "pybtex: error: %s\n"
-msgstr "pybtex : erreur, %s\n"
+msgstr "pybtex : erreur : %s\n"
 
 #. warn the user that some entries were not found
 #: ../scripts/pybtex.py:59
 msgid "pybtex: warning: the following keys were not resolved"
-msgstr "pybtex : avertissement, les clés suivantes n'ont pas été trouvées"
+msgstr "pybtex : avertissement : les clés suivantes n'ont pas été trouvées"
 
 #. If the LaTeX document declares no style...
 #: ../scripts/pybtex.py:64
@@ -1312,17 +1315,17 @@ msgstr "pas de style défini"
 msgid "usage: pybtext [-o outputfile] [-s style] <textfile> <bibfiles...>"
 msgstr ""
 "utilisation : pybtext [-o fichier de sortie] [-s style] <fichier texte> "
-"<fichiers bibtex...>"
+"<fichiers bib...>"
 
 #: ../scripts/pybtext.py:45
 #, python-format
 msgid "pybtext: error: %s\n"
-msgstr "pybtex : erreur, %s\n"
+msgstr "pybtex : erreur : %s\n"
 
 #: ../scripts/pybtext.py:50
 #, python-format
 msgid "pybtext: warning: %s\n"
-msgstr "pybtext : avertissement, %s\n"
+msgstr "pybtext : avertissement : %s\n"
 
 #: ../scripts/pybtext.py:124
 #, python-format
@@ -1332,7 +1335,7 @@ msgstr "Le fichier « %s » existe déjà"
 #: ../scripts/pybtext.py:127
 #, python-format
 msgid "A file with the same name already exists: `%s'"
-msgstr "Un fichier ayant le même style existe déjà : « %s »"
+msgstr "Un fichier portant le même nom existe déjà : « %s »"
 
 #: ../scripts/pybtext.py:178
 msgid "no citation found"
