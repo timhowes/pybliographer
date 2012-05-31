@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: pybliographer.HEAD.es\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=pybliographer&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-22 13:25+0000\n"
+"POT-Creation-Date: 2011-09-22 15:38+0000\n"
 "PO-Revision-Date: 2011-09-22 17:34+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
@@ -90,11 +90,11 @@ msgstr "Valor de año ilegal"
 
 #: ../Pyblio/Fields.py:265
 msgid "Illegal month value"
-msgstr "Valor de mes inválido"
+msgstr "Valor de mes no válido"
 
 #: ../Pyblio/Fields.py:269
 msgid "Illegal day value"
-msgstr "Valor de día inválido"
+msgstr "Valor de día no válido"
 
 #: ../Pyblio/Fields.py:510
 #, python-format
@@ -326,7 +326,6 @@ msgstr "Su consulta no devolvió ningún resultado"
 
 #. error
 #: ../Pyblio/GnomeUI/Document.py:528
-#| msgid "Enter your Medline Query"
 msgid "An error occured during Medline Query"
 msgstr "Ocurrió un error durante la consulta Medline"
 
@@ -521,15 +520,15 @@ msgstr "Año"
 
 #: ../Pyblio/GnomeUI/Editor.py:355
 msgid "Invalid day field in date"
-msgstr "Campo de día inválido en la fecha"
+msgstr "Campo de día no válido en la fecha"
 
 #: ../Pyblio/GnomeUI/Editor.py:363
 msgid "Invalid month field in date"
-msgstr "Campo de mes inválido en la fecha"
+msgstr "Campo de mes no válido en la fecha"
 
 #: ../Pyblio/GnomeUI/Editor.py:371
 msgid "Invalid year field in date"
-msgstr "Campo de año inválido en la fecha"
+msgstr "Campo de año no válido en la fecha"
 
 #. A delete button
 #: ../Pyblio/GnomeUI/Editor.py:419 ../Pyblio/GnomeUI/Search.py:86
@@ -590,7 +589,7 @@ msgstr "Extra"
 
 #: ../Pyblio/GnomeUI/Editor.py:909
 msgid "Invalid key format"
-msgstr "Formato de clave inválido"
+msgstr "Formato de clave no válido"
 
 #: ../Pyblio/GnomeUI/Editor.py:917
 #, python-format
@@ -1109,12 +1108,12 @@ msgstr "falta el atributo «%s»"
 #: ../Pyblio/Style/Parser.py:271
 #, python-format
 msgid "invalid opening tag: %s"
-msgstr "etiqueta de apertura inválida: %s"
+msgstr "etiqueta de apertura no válida: %s"
 
 #: ../Pyblio/Style/Parser.py:281
 #, python-format
 msgid "invalid closing tag: %s"
-msgstr "etiqueta de cierre inválida: %s"
+msgstr "etiqueta de cierre no válida: %s"
 
 #: ../pybliographer.py:43
 #, python-format
