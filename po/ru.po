@@ -5,14 +5,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pybliographer\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=pybliographer&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-04-01 15:58+0000\n"
-"PO-Revision-Date: 2011-08-01 23:30+0300\n"
-"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=pybliographer&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-09-11 11:15+0000\n"
+"PO-Revision-Date: 2012-12-25 14:49+0400\n"
+"Last-Translator: Aleksej Kabanov <ak099@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../Pyblio/Autoload.py:78
 #, python-format
@@ -94,21 +97,18 @@ msgid "in %s"
 msgstr "в %s"
 
 # .././Pyblio/Format/BibTeX.py:345 :403
-#: ../Pyblio/Format/BibTeX.py:323
-#: ../Pyblio/Format/BibTeX.py:371
+#: ../Pyblio/Format/BibTeX.py:323 ../Pyblio/Format/BibTeX.py:371
 #, python-format
 msgid "key `%s' is malformed"
 msgstr "Ключ «%s» некорректен"
 
 # .././Pyblio/Format/BibTeX.py:366 :387
-#: ../Pyblio/Format/BibTeX.py:340
-#: ../Pyblio/Format/BibTeX.py:359
+#: ../Pyblio/Format/BibTeX.py:340 ../Pyblio/Format/BibTeX.py:359
 #, python-format
 msgid "%s:%d: key `%s' already defined"
 msgstr "%s:%d: ключ \"%s\" уже определен"
 
-#: ../Pyblio/GnomeUI/Config.py:147
-#: ../Pyblio/GnomeUI/Fields.py:417
+#: ../Pyblio/GnomeUI/Config.py:147 ../Pyblio/GnomeUI/Fields.py:417
 msgid ""
 "Some changes require to restart Pybliographic\n"
 "to be correctly taken into account"
@@ -125,8 +125,7 @@ msgid "Update"
 msgstr "Обновить"
 
 # .././Pyblio/GnomeUI/Config.py:438 :536 .././Pyblio/GnomeUI/Fields.py:95 :225
-#: ../Pyblio/GnomeUI/Config.py:435
-#: ../Pyblio/GnomeUI/Config.py:549
+#: ../Pyblio/GnomeUI/Config.py:435 ../Pyblio/GnomeUI/Config.py:549
 msgid "Remove"
 msgstr "Удалить"
 
@@ -148,8 +147,7 @@ msgstr "Значение:"
 msgid "_File"
 msgstr "Файл"
 
-#: ../Pyblio/GnomeUI/Document.py:146
-#: ../Pyblio/GnomeUI/Document.py:195
+#: ../Pyblio/GnomeUI/Document.py:146 ../Pyblio/GnomeUI/Document.py:195
 msgid "_Edit"
 msgstr "Правка"
 
@@ -187,12 +185,12 @@ msgid "Save the current file"
 msgstr "Сохранить текущий файл"
 
 #: ../Pyblio/GnomeUI/Document.py:161
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:8
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:3
 msgid "Merge With..."
 msgstr "Объединить с…"
 
 #: ../Pyblio/GnomeUI/Document.py:162
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:7
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:4
 msgid "Medline Query..."
 msgstr "Запрос Medline…"
 
@@ -201,12 +199,12 @@ msgid "Add a new entry"
 msgstr "Добавить новую запись"
 
 #: ../Pyblio/GnomeUI/Document.py:174
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:12
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:9
 msgid "S_ort..."
 msgstr "Отсортировать..."
 
 #: ../Pyblio/GnomeUI/Document.py:175
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:2
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:11
 msgid "Cite..."
 msgstr "Цитировать…"
 
@@ -215,17 +213,17 @@ msgid "Cite key(s)"
 msgstr "Ключ(и)"
 
 #: ../Pyblio/GnomeUI/Document.py:176
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:6
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:12
 msgid "Format..."
 msgstr "Формат…"
 
 #: ../Pyblio/GnomeUI/Document.py:178
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:4
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:14
 msgid "Fields..."
 msgstr "Поля…"
 
 #: ../Pyblio/GnomeUI/Document.py:180
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:5
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:15
 msgid "Forget all changes"
 msgstr "Забыть все изменения"
 
@@ -268,8 +266,7 @@ msgid "New database"
 msgstr "Новая база данных"
 
 # .././Pyblio/GnomeUI/Document.py:270 :274
-#: ../Pyblio/GnomeUI/Document.py:447
-#: ../Pyblio/GnomeUI/Document.py:451
+#: ../Pyblio/GnomeUI/Document.py:447 ../Pyblio/GnomeUI/Document.py:451
 msgid "[no entry]"
 msgstr "[нет записей]"
 
@@ -330,27 +327,31 @@ msgstr ""
 msgid "Your query returned no result"
 msgstr "Запрос не вернул результата"
 
+#. error
+#: ../Pyblio/GnomeUI/Document.py:528
+msgid "An error occured during Medline Query"
+msgstr "Возникла ошибка во время запроса Medline"
+
 #. get a new file name
-#: ../Pyblio/GnomeUI/Document.py:534
+#: ../Pyblio/GnomeUI/Document.py:538
 msgid "Merge file"
 msgstr "Объединить файл"
 
 # .././Pyblio/GnomeUI/Document.py:319 :379
-#: ../Pyblio/GnomeUI/Document.py:547
-#: ../Pyblio/GnomeUI/Document.py:634
+#: ../Pyblio/GnomeUI/Document.py:551 ../Pyblio/GnomeUI/Document.py:638
 msgid "Open error"
 msgstr "Ошибка открытия"
 
-#: ../Pyblio/GnomeUI/Document.py:571
+#: ../Pyblio/GnomeUI/Document.py:575
 msgid "Merge status"
 msgstr "Состояние объединения"
 
 #. get a new file name
-#: ../Pyblio/GnomeUI/Document.py:582
+#: ../Pyblio/GnomeUI/Document.py:586
 msgid "Open file"
 msgstr "Открыть файл"
 
-#: ../Pyblio/GnomeUI/Document.py:620
+#: ../Pyblio/GnomeUI/Document.py:624
 msgid ""
 "An autosave file was found which is newer than the original file.\n"
 "Do you want to restore it?"
@@ -358,9 +359,8 @@ msgstr ""
 "Найден файл автосохранения, который является более новым, чем исходный.\n"
 "Хотите восстановить его?"
 
-#: ../Pyblio/GnomeUI/Document.py:655
-#: ../Pyblio/GnomeUI/Document.py:796
-#: ../Pyblio/GnomeUI/Document.py:856
+#: ../Pyblio/GnomeUI/Document.py:659 ../Pyblio/GnomeUI/Document.py:800
+#: ../Pyblio/GnomeUI/Document.py:860
 #, python-format
 msgid ""
 "Unable to remove autosave file `%s':\n"
@@ -369,7 +369,7 @@ msgstr ""
 "Не удалось удалить файл автосохранения «%s»:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:706
+#: ../Pyblio/GnomeUI/Document.py:710
 #, python-format
 msgid ""
 "Error during autosaving:\n"
@@ -378,7 +378,7 @@ msgstr ""
 "Ошибка автосохранения:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:734
+#: ../Pyblio/GnomeUI/Document.py:738
 #, python-format
 msgid ""
 "Unable to save `%s':\n"
@@ -387,7 +387,7 @@ msgstr ""
 "Невозможно сохранить \"%s\":\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:742
+#: ../Pyblio/GnomeUI/Document.py:746
 msgid ""
 "An internal error occured during saving\n"
 "Try to Save As..."
@@ -395,11 +395,11 @@ msgstr ""
 "При сохранении возникла внутренняя ошибка\n"
 "Попробуйте \"Сохранить как...\""
 
-#: ../Pyblio/GnomeUI/Document.py:757
+#: ../Pyblio/GnomeUI/Document.py:761
 msgid "Save As..."
 msgstr "Сохранить как..."
 
-#: ../Pyblio/GnomeUI/Document.py:763
+#: ../Pyblio/GnomeUI/Document.py:767
 #, python-format
 msgid ""
 "The file `%s' already exists.\n"
@@ -408,7 +408,7 @@ msgstr ""
 "Файл \"%s\" уже существует.\n"
 "Переписать его?"
 
-#: ../Pyblio/GnomeUI/Document.py:770
+#: ../Pyblio/GnomeUI/Document.py:774
 #, python-format
 msgid ""
 "During opening:\n"
@@ -417,11 +417,11 @@ msgstr ""
 "При открытии:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:808
+#: ../Pyblio/GnomeUI/Document.py:812
 msgid "Reopen error"
 msgstr "Ошибка повторного открытия"
 
-#: ../Pyblio/GnomeUI/Document.py:881
+#: ../Pyblio/GnomeUI/Document.py:885
 #, python-format
 msgid ""
 "An entry called `%s' already exists.\n"
@@ -430,30 +430,30 @@ msgstr ""
 "Запись с названием \"%s\" уже существует.\n"
 "Переименовать и добавить в любом случае?"
 
-#: ../Pyblio/GnomeUI/Document.py:918
+#: ../Pyblio/GnomeUI/Document.py:922
 msgid "Really remove all the entries ?"
 msgstr "Действительно удалить все записи?"
 
-#: ../Pyblio/GnomeUI/Document.py:938
+#: ../Pyblio/GnomeUI/Document.py:942
 msgid "Create new entry"
 msgstr "Создать новую запись"
 
-#: ../Pyblio/GnomeUI/Document.py:952
+#: ../Pyblio/GnomeUI/Document.py:956
 #, python-format
 msgid "Really edit %d entries ?"
 msgstr "Действительно исправить %d записей?"
 
-#: ../Pyblio/GnomeUI/Document.py:998
+#: ../Pyblio/GnomeUI/Document.py:1002
 #, python-format
 msgid "Remove all the %d entries ?"
 msgstr "Удалить все %d записей?"
 
-#: ../Pyblio/GnomeUI/Document.py:1000
+#: ../Pyblio/GnomeUI/Document.py:1004
 #, python-format
 msgid "Remove entry `%s' ?"
 msgstr "Удалить запись \"%s\"?"
 
-#: ../Pyblio/GnomeUI/Document.py:1019
+#: ../Pyblio/GnomeUI/Document.py:1023
 msgid ""
 "your search text must contain\n"
 "latin-1 characters only"
@@ -462,8 +462,7 @@ msgstr ""
 "только символы в кодировке latin-1"
 
 # .././Pyblio/GnomeUI/Document.py:661 :668
-#: ../Pyblio/GnomeUI/Document.py:1098
-#: ../Pyblio/GnomeUI/Document.py:1106
+#: ../Pyblio/GnomeUI/Document.py:1102 ../Pyblio/GnomeUI/Document.py:1110
 #, python-format
 msgid ""
 "Can't connect to LyX:\n"
@@ -472,7 +471,7 @@ msgstr ""
 "Невозможно подключиться к LyX:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:1221
+#: ../Pyblio/GnomeUI/Document.py:1226
 #, python-format
 msgid ""
 "Can't display documentation:\n"
@@ -481,19 +480,19 @@ msgstr ""
 "Не удалось открыть документацию:\n"
 "%s"
 
-#: ../Pyblio/GnomeUI/Document.py:1229
+#: ../Pyblio/GnomeUI/Document.py:1234
 msgid "This program is copyrighted under the GNU GPL"
 msgstr "Эта программа защищена лицензией GNU GPL"
 
-#: ../Pyblio/GnomeUI/Document.py:1230
+#: ../Pyblio/GnomeUI/Document.py:1235
 msgid "GNOME interface to the Pybliographer system."
 msgstr "Интерфейс GNOME к системе Pybliographer."
 
-#: ../Pyblio/GnomeUI/Document.py:1241
+#: ../Pyblio/GnomeUI/Document.py:1246
 msgid "GNOME Translation Team"
 msgstr "Команда перевода GNOME"
 
-#: ../Pyblio/GnomeUI/Document.py:1246
+#: ../Pyblio/GnomeUI/Document.py:1251
 msgid "Pybliographer Home Page"
 msgstr "Домашняя страница Pybliographer"
 
@@ -501,16 +500,13 @@ msgstr "Домашняя страница Pybliographer"
 msgid "Last Name, First Name"
 msgstr "Фамилия, Имя"
 
-#: ../Pyblio/GnomeUI/Editor.py:36
-#: ../Pyblio/GnomeUI/Editor.py:1292
-#: ../Pyblio/GnomeUI/Fields.py:39
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:14
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:19
+#: ../Pyblio/GnomeUI/Editor.py:36 ../Pyblio/GnomeUI/Editor.py:1292
+#: ../Pyblio/GnomeUI/Fields.py:39 ../Pyblio/GnomeUI/glade/config1.glade.h:10
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:9
 msgid "Text"
 msgstr "Текст"
 
-#: ../Pyblio/GnomeUI/Editor.py:133
-#: ../Pyblio/GnomeUI/Editor.py:1003
+#: ../Pyblio/GnomeUI/Editor.py:133 ../Pyblio/GnomeUI/Editor.py:1003
 msgid "Error in native string parsing"
 msgstr "Ошибка в анализе естественной строки"
 
@@ -539,13 +535,11 @@ msgid "Invalid year field in date"
 msgstr "Неверное поле года в дате"
 
 #. A delete button
-#: ../Pyblio/GnomeUI/Editor.py:419
-#: ../Pyblio/GnomeUI/Search.py:86
+#: ../Pyblio/GnomeUI/Editor.py:419 ../Pyblio/GnomeUI/Search.py:86
 msgid "Delete"
 msgstr "Удалить"
 
-#: ../Pyblio/GnomeUI/Editor.py:430
-#: ../Pyblio/GnomeUI/Editor.py:443
+#: ../Pyblio/GnomeUI/Editor.py:430 ../Pyblio/GnomeUI/Editor.py:443
 #: ../Pyblio/GnomeUI/Editor.py:446
 msgid "[ Drop an Entry here ]"
 msgstr "[ Перетащите сюда запись ]"
@@ -558,10 +552,9 @@ msgstr "Обзор…"
 msgid "Select file"
 msgstr "Выбрать файл"
 
-#: ../Pyblio/GnomeUI/Editor.py:549
-#: ../Pyblio/GnomeUI/Fields.py:236
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:8
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:6
+#: ../Pyblio/GnomeUI/Editor.py:549 ../Pyblio/GnomeUI/Fields.py:236
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:12
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:11
 msgid "Entry type"
 msgstr "Тип записи"
 
@@ -582,18 +575,15 @@ msgstr "Назад"
 msgid "Next"
 msgstr "Далее"
 
-#: ../Pyblio/GnomeUI/Editor.py:728
-#: ../Pyblio/GnomeUI/Fields.py:451
+#: ../Pyblio/GnomeUI/Editor.py:728 ../Pyblio/GnomeUI/Fields.py:451
 msgid "Mandatory"
 msgstr "Обязательное"
 
-#: ../Pyblio/GnomeUI/Editor.py:728
-#: ../Pyblio/GnomeUI/Fields.py:452
+#: ../Pyblio/GnomeUI/Editor.py:728 ../Pyblio/GnomeUI/Fields.py:452
 msgid "Optional"
 msgstr "Необязательное"
 
-#: ../Pyblio/GnomeUI/Editor.py:728
-#: ../Pyblio/GnomeUI/Editor.py:1207
+#: ../Pyblio/GnomeUI/Editor.py:728 ../Pyblio/GnomeUI/Editor.py:1207
 msgid "Notes"
 msgstr "Примечания"
 
@@ -624,8 +614,7 @@ msgid "Edit entry"
 msgstr "Правка записи"
 
 # .././Pyblio/GnomeUI/Editor.py:698 :739
-#: ../Pyblio/GnomeUI/Editor.py:1037
-#: ../Pyblio/GnomeUI/Editor.py:1102
+#: ../Pyblio/GnomeUI/Editor.py:1037 ../Pyblio/GnomeUI/Editor.py:1102
 msgid "Native Editing"
 msgstr "Естественная правка"
 
@@ -667,9 +656,8 @@ msgstr "Авторы"
 msgid "Long Text"
 msgstr "Длинный текст"
 
-#: ../Pyblio/GnomeUI/Fields.py:41
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:16
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:21
+#: ../Pyblio/GnomeUI/Fields.py:41 ../Pyblio/GnomeUI/glade/config1.glade.h:9
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:8
 msgid "URL"
 msgstr "URL"
 
@@ -681,15 +669,13 @@ msgstr "Ссылка"
 msgid "Date"
 msgstr "Дата"
 
-#: ../Pyblio/GnomeUI/Fields.py:124
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:11
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:10
+#: ../Pyblio/GnomeUI/Fields.py:124 ../Pyblio/GnomeUI/glade/config1.glade.h:7
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:6
 msgid "Name"
 msgstr "Название"
 
-#: ../Pyblio/GnomeUI/Fields.py:127
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:15
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:20
+#: ../Pyblio/GnomeUI/Fields.py:127 ../Pyblio/GnomeUI/glade/config1.glade.h:6
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:5
 msgid "Type"
 msgstr "Тип"
 
@@ -716,12 +702,11 @@ msgid "File"
 msgstr "Файл"
 
 #: ../Pyblio/GnomeUI/FileSelector.py:76
-#: ../Pyblio/GnomeUI/glade/openurl.glade.h:2
+#: ../Pyblio/GnomeUI/glade/openurl.glade.h:4
 msgid "Bibliography type:"
 msgstr "Тип библиографии:"
 
-#: ../Pyblio/GnomeUI/FileSelector.py:93
-#: ../Pyblio/GnomeUI/OpenURL.py:61
+#: ../Pyblio/GnomeUI/FileSelector.py:93 ../Pyblio/GnomeUI/OpenURL.py:61
 msgid " - According to file suffix - "
 msgstr " - В соответствии с расширением файла - "
 
@@ -762,70 +747,66 @@ msgid "This is Pybliographic %s [Python %s, Gtk %s, PyGTK %s]"
 msgstr "Pybliographic версии %s [Python — %s, Gtk — %s, PyGTK — %s]"
 
 #: ../Pyblio/GnomeUI/glade/config1.glade.h:1
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:1
-#: ../Pyblio/GnomeUI/glade/medline.glade.h:1
-#: ../Pyblio/GnomeUI/glade/openurl.glade.h:1
-#: ../Pyblio/GnomeUI/glade/search.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:2
-msgid "<b>Entry type</b>"
-msgstr "<b>Тип записи</b>"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:3
-msgid "A"
-msgstr "A"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:4
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:2
-msgid "Association"
-msgstr "Связь"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:5
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:3
-msgid "Datum"
-msgstr "Данные"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:6
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:4
-msgid "Editor"
-msgstr "Редактор"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:7
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:5
-msgid "Entries"
-msgstr "Записи"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:9
-msgid "FIELDS DEFINITION"
-msgstr "ОПРЕДЕЛЕНИЕ ПОЛЕЙ"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:10
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:8
-msgid "Fields "
-msgstr "Поля"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:12
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:11
-msgid "Name "
-msgstr "Название"
-
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:13
 msgid "Pybliographer Configuration"
 msgstr "Настройка Pybliographer"
 
-#: ../Pyblio/GnomeUI/glade/config1.glade.h:17
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:2
+msgid "FIELDS DEFINITION"
+msgstr "ОПРЕДЕЛЕНИЕ ПОЛЕЙ"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:3
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:2
+msgid "Name "
+msgstr "Название"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:4
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:3
+msgid "Editor"
+msgstr "Редактор"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:5
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:4
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:5
+#: ../Pyblio/GnomeUI/glade/openurl.glade.h:3
+#: ../Pyblio/GnomeUI/glade/search.glade.h:5
+msgid "*"
+msgstr "*"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:8
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:7
+msgid "Datum"
+msgstr "Данные"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:11
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:10
+msgid "Fields "
+msgstr "Поля"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:13
+msgid "A"
+msgstr "A"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:14
 msgid "standard fields"
 msgstr "стандартные поля"
 
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:7
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:15
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:19
+msgid "Entries"
+msgstr "Записи"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:16
+msgid "<b>Entry type</b>"
+msgstr "<b>Тип записи</b>"
+
+#: ../Pyblio/GnomeUI/glade/config1.glade.h:17
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:21
+msgid "Association"
+msgstr "Связь"
+
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:1
 msgid "Entry types and field names configuration"
 msgstr "Настройка типов записей и названий полей"
-
-#: ../Pyblio/GnomeUI/glade/fields1.glade.h:9
-msgid "Information for <b>Article</b> entry type"
-msgstr "Информация для типа записи <b>Статья</b>"
 
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:12
 msgid ""
@@ -843,43 +824,51 @@ msgstr ""
 "\n"
 "\n"
 
-#: ../Pyblio/GnomeUI/glade/format.glade.h:1
-msgid "Bibliography style:"
-msgstr "Стиль библиографии:"
+#: ../Pyblio/GnomeUI/glade/fields1.glade.h:20
+msgid "Information for <b>Article</b> entry type"
+msgstr "Информация для типа записи <b>Статья</b>"
 
-#: ../Pyblio/GnomeUI/glade/format.glade.h:2
+#: ../Pyblio/GnomeUI/glade/format.glade.h:1
 msgid "Format entries"
 msgstr "Формат записей"
 
-#: ../Pyblio/GnomeUI/glade/format.glade.h:3
-msgid "Output file:"
-msgstr "Файл вывода:"
+#: ../Pyblio/GnomeUI/glade/format.glade.h:2
+msgid "Bibliography style:"
+msgstr "Стиль библиографии:"
 
-#: ../Pyblio/GnomeUI/glade/format.glade.h:4
+#: ../Pyblio/GnomeUI/glade/format.glade.h:3
 msgid "Output format:"
 msgstr "Формат вывода:"
+
+#: ../Pyblio/GnomeUI/glade/format.glade.h:4
+msgid "Style Selection"
+msgstr "Стиль выделения"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:5
 msgid "Save Formatted as"
 msgstr "Сохранить отформатированным как"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:6
-msgid "Style Selection"
-msgstr "Стиль выделения"
+msgid "Output file:"
+msgstr "Файл вывода:"
+
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:1
+msgid "Medline Query"
+msgstr "Запрос Medline"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:2
 msgid "Enter your Medline Query"
 msgstr "Введите запрос Medline"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:3
-msgid "From:"
-msgstr "От:"
+msgid ""
+"Search \n"
+"PubMed for:"
+msgstr ""
+"Поиск по\n"
+"PubMed:"
 
-#: ../Pyblio/GnomeUI/glade/medline.glade.h:4
-msgid "Limited to:"
-msgstr "Ограничено до:"
-
-#: ../Pyblio/GnomeUI/glade/medline.glade.h:5
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:6
 msgid ""
 "Maximum number\n"
 "of results:"
@@ -887,17 +876,13 @@ msgstr ""
 "Максимальное количество\n"
 "результатов:"
 
-#: ../Pyblio/GnomeUI/glade/medline.glade.h:7
-msgid "Medline Query"
-msgstr "Запрос Medline"
-
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:8
 msgid ""
-"Only items \n"
-"ahead of print"
+"Starting listing at\n"
+"result number:"
 msgstr ""
-"Только готовящиеся\n"
-"к печати"
+"Список начинается\n"
+"с номера результата:"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:10
 msgid ""
@@ -909,25 +894,21 @@ msgstr ""
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:12
 msgid ""
-"Search \n"
-"PubMed for:"
+"Only items \n"
+"ahead of print"
 msgstr ""
-"Поиск по\n"
-"PubMed:"
+"Только готовящиеся\n"
+"к печати"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:14
-msgid ""
-"Starting listing at\n"
-"result number:"
-msgstr ""
-"Список начинается\n"
-"с номера результата:"
+msgid "From:"
+msgstr "От:"
 
-#: ../Pyblio/GnomeUI/glade/medline.glade.h:16
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:15
 msgid "To:"
 msgstr "До:"
 
-#: ../Pyblio/GnomeUI/glade/medline.glade.h:17
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:16
 msgid ""
 "Use the format YYYY/MM/DD\n"
 "Month and day are optional."
@@ -935,87 +916,91 @@ msgstr ""
 "Используйте формат ГГГГ/ММ/ДД\n"
 "Месяц и день указывать необязательно."
 
-#: ../Pyblio/GnomeUI/glade/openurl.glade.h:3
-msgid "Enter the location (URI) of the file you would like to open:"
-msgstr "Введите адрес (URI) файла, который нужно открыть:"
+#: ../Pyblio/GnomeUI/glade/medline.glade.h:18
+msgid "Limited to:"
+msgstr "Ограничено до:"
 
-#: ../Pyblio/GnomeUI/glade/openurl.glade.h:4
+#: ../Pyblio/GnomeUI/glade/openurl.glade.h:1
 msgid "Open Location"
 msgstr "Открыть местоположение"
 
+#: ../Pyblio/GnomeUI/glade/openurl.glade.h:2
+msgid "Enter the location (URI) of the file you would like to open:"
+msgstr "Введите адрес (URI) файла, который нужно открыть:"
+
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:1
-msgid "Cite"
-msgstr "Цитата"
-
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:3
-msgid "Contents"
-msgstr "Содержание"
-
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:9
-msgid "Open File"
-msgstr "Открыть файл"
-
-# .././Pyblio/GnomeUI/Document.py:193 :207
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:10
-msgid "Previous Documents"
-msgstr "Предыдущие документы"
-
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:11
 msgid "Pybliographer"
 msgstr "Pybliographer"
 
-# :207
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:13
-msgid "Save File"
-msgstr "Сохранить файл"
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:2
+msgid "_New"
+msgstr "Новая"
 
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:14
-msgid "Settings"
-msgstr "Параметры"
+# .././Pyblio/GnomeUI/Document.py:193 :207
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:5
+msgid "Previous Documents"
+msgstr "Предыдущие документы"
 
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:15
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:6
 msgid "_Add..."
 msgstr "Добавить..."
 
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:16
-msgid "_Delete..."
-msgstr "_Удалить…"
-
-#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:17
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:7
 msgid "_Edit..."
 msgstr "Правка..."
 
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:8
+msgid "_Delete..."
+msgstr "_Удалить…"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:10
+msgid "Cite"
+msgstr "Цитата"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:13
+msgid "Settings"
+msgstr "Параметры"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:16
+msgid "Contents"
+msgstr "Содержание"
+
+#: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:17
+msgid "Open File"
+msgstr "Открыть файл"
+
+# :207
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:18
-msgid "_New"
-msgstr "Новая"
+msgid "Save File"
+msgstr "Сохранить файл"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:1
+msgid "Search"
+msgstr "Поиск"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:2
 msgid "Close"
 msgstr "Закрыть"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:3
-msgid "Expert Search"
-msgstr "Экспертный поиск"
-
-#: ../Pyblio/GnomeUI/glade/search.glade.h:4
 msgid "Field"
 msgstr "Поле"
 
-#: ../Pyblio/GnomeUI/glade/search.glade.h:5
+#: ../Pyblio/GnomeUI/glade/search.glade.h:4
 msgid "Pattern"
 msgstr "Шаблон"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:6
+msgid "Simple Search"
+msgstr "Простой поиск"
+
+#: ../Pyblio/GnomeUI/glade/search.glade.h:7
 msgid "Query"
 msgstr "Запрос"
 
-#: ../Pyblio/GnomeUI/glade/search.glade.h:7
-msgid "Search"
-msgstr "Поиск"
-
 #: ../Pyblio/GnomeUI/glade/search.glade.h:8
-msgid "Simple Search"
-msgstr "Простой поиск"
+msgid "Expert Search"
+msgstr "Экспертный поиск"
 
 #: ../Pyblio/GnomeUI/glade/sort.glade.h:1
 msgid "Select sort criterions"
@@ -1041,15 +1026,13 @@ msgid "method `%s' provides no opener"
 msgstr "метод «%s» не предоставляет функцию открывания"
 
 # .././Pyblio/Open.py:105 :151
-#: ../Pyblio/Open.py:104
-#: ../Pyblio/Open.py:151
+#: ../Pyblio/Open.py:104 ../Pyblio/Open.py:151
 #, python-format
 msgid "File `%s' does not exist"
 msgstr "Файл \"%s\" не существует"
 
 # .././Pyblio/Open.py:116 :162
-#: ../Pyblio/Open.py:115
-#: ../Pyblio/Open.py:162
+#: ../Pyblio/Open.py:115 ../Pyblio/Open.py:162
 #, python-format
 msgid "don't know how to open `%s'"
 msgstr "не известно как открыть \"%s\""
@@ -1148,8 +1131,7 @@ msgid "This is %s, version %s"
 msgstr "Это %s, версия %s"
 
 # .././pybliographer.py:42 :49
-#: ../pybliographer.py:47
-#: ../pybliographer.py:54
+#: ../pybliographer.py:47 ../pybliographer.py:54
 msgid "This is free software with ABSOLUTELY NO WARRANTY."
 msgstr "Это свободное программное обеспечение БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ."
 
@@ -1158,8 +1140,7 @@ msgid "For details, type `warranty'."
 msgstr "Для подробностей, наберите \"warranty\"."
 
 # .././pybliographer.py:110 :158
-#: ../pybliographer.py:111
-#: ../pybliographer.py:163
+#: ../pybliographer.py:111 ../pybliographer.py:163
 #, python-format
 msgid "%s: error: can't open file `%s'"
 msgstr "%s: ошибка: невозможно открыть файл \"%s\""
@@ -1181,16 +1162,16 @@ msgstr ""
 
 #. save history
 #: ../pybliographic.desktop.in.h:1
+msgid "Pybliographic Bibliography Manager"
+msgstr "Pybliographic — менеджер библиографии"
+
+#: ../pybliographic.desktop.in.h:2
 msgid "Bibliography Manager"
 msgstr "Менеджер Bibliography"
 
-#: ../pybliographic.desktop.in.h:2
+#: ../pybliographic.desktop.in.h:3
 msgid "Manage bibliographic databases"
 msgstr "Управление библиографическими базами данных"
-
-#: ../pybliographic.desktop.in.h:3
-msgid "Pybliographic Bibliography Manager"
-msgstr "Pybliographic — менеджер библиографии"
 
 #: ../scripts/pybcheck.py:31
 msgid "usage: pybcheck <file | directory>..."
@@ -1215,8 +1196,7 @@ msgstr "pybcompact: ошибка: %s\n"
 msgid "no entry"
 msgstr "нет записей"
 
-#: ../scripts/pybcompact.py:162
-#: ../scripts/pybtext.py:240
+#: ../scripts/pybcompact.py:162 ../scripts/pybtext.py:240
 #, python-format
 msgid "can't find the following entries: %s"
 msgstr "не удалось найти следующие записи: %s"
@@ -1250,8 +1230,10 @@ msgstr ""
 "      -s стиль, --style=style\t\tустановить библиографический стиль\n"
 "      -f формат, --format=format\tустановить формат вывода\n"
 "      -H заголовок, --header=header\tопределяет заголовочный файл\n"
-"      -F нижний_колонтитул, --footer=footer\tопределяет файл нижнего колонтитула\n"
-"      -l 'вывод', --list='output'\tпоказать список доступных форматов вывода\n"
+"      -F нижний_колонтитул, --footer=footer\tопределяет файл нижнего "
+"колонтитула\n"
+"      -l 'вывод', --list='output'\tпоказать список доступных форматов "
+"вывода\n"
 "      -h, --help\t\t\tпоказать это сообщение\n"
 "    "
 
@@ -1265,10 +1247,8 @@ msgstr "pybformat: ошибка %s\n"
 msgid "pybformat: warning: %s\n"
 msgstr "pybformat: внимание: %s\n"
 
-#: ../scripts/pybformat.py:93
-#: ../scripts/pybtext.py:252
-#: ../scripts/pybtext.py:278
-#: ../scripts/pybtext.py:321
+#: ../scripts/pybformat.py:93 ../scripts/pybtext.py:252
+#: ../scripts/pybtext.py:278 ../scripts/pybtext.py:321
 #, python-format
 msgid "can't open `%s': %s"
 msgstr "не удалось открыть «%s»: %s"
@@ -1292,14 +1272,12 @@ msgstr "список значений «%s» пуст"
 msgid "too few arguments"
 msgstr "слишком много аргументов"
 
-#: ../scripts/pybformat.py:136
-#: ../scripts/pybtext.py:117
+#: ../scripts/pybformat.py:136 ../scripts/pybtext.py:117
 #, python-format
 msgid "unknown output format `%s'"
 msgstr "неизвестный формат вывода «%s»"
 
-#: ../scripts/pybformat.py:149
-#: ../scripts/pybtex.py:86
+#: ../scripts/pybformat.py:149 ../scripts/pybtex.py:86
 #: ../scripts/pybtext.py:94
 #, python-format
 msgid "can't find style `%s'"
@@ -1346,7 +1324,8 @@ msgstr "стиль не определен"
 
 #: ../scripts/pybtext.py:41
 msgid "usage: pybtext [-o outputfile] [-s style] <textfile> <bibfiles...>"
-msgstr "usage: pybtext [-o файл_вывода] [-s стиль] <текстовый_файл> <bib-файлы…>"
+msgstr ""
+"usage: pybtext [-o файл_вывода] [-s стиль] <текстовый_файл> <bib-файлы…>"
 
 #: ../scripts/pybtext.py:45
 #, python-format
@@ -1390,4 +1369,3 @@ msgstr "не удалось удалить «%s»"
 #: ../scripts/pybtext.py:344
 msgid "Done"
 msgstr "Готово"
-
