@@ -19,8 +19,7 @@
 # 
 # 
 
-from gnome import ui
-import gtk
+from gi.repository import Gtk
 
 from Pyblio.GnomeUI import Utils
 
@@ -117,7 +116,7 @@ class MedlineUI (Utils.GladeWindow):
 
         ret = self._w_medline.run ()
 
-        if ret != gtk.RESPONSE_OK:
+        if ret != Gtk.ResponseType.OK:
             self._w_medline.destroy ()
             return None
 

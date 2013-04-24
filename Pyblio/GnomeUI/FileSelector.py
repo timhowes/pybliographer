@@ -20,17 +20,17 @@
 # 
 
 import string, os, urlparse
+import gettext
+_ = gettext.gettext
 
-from gnome import ui
-
-import gtk
+from gi.repository import Gtk, GObject, Gdk
 
 from Pyblio import Open, Types, Base, Fields, Config, Autoload
 
 from Pyblio.GnomeUI import Utils
 
 
-class URLFileSelection (gtk.FileChooserDialog):
+class URLFileSelection (Gtk.FileChooserDialog):
     ''' Extended file selection dialog, with an URL field and a type
     selector. '''
 
@@ -40,19 +40,19 @@ class URLFileSelection (gtk.FileChooserDialog):
                  modal = True, has_auto = True, is_save = False,
                  directory = None, show_type=True):
 
-        gtk.FileChooserDialog.__init__ (self)
+        GObject.GObject.__init__ (self)
 
-        accelerator = gtk.AccelGroup ()
+        accelerator = Gtk.AccelGroup ()
         self.add_accel_group (accelerator)
 
-        b = self.add_button (gtk.STOCK_OK, gtk.RESPONSE_OK)
-        b.add_accelerator ('clicked', accelerator, gtk.keysyms.Return, 0, 0)
+        b = self.add_button (Gtk.STOCK_OK, Gtk.ResponseType.OK)
+        b.add_accelerator ('clicked', accelerator, Gdk.KEY_Return, 0, 0)
 
-        b = self.add_button (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
-        b.add_accelerator ('clicked', accelerator, gtk.keysyms.Escape, 0, 0)
+        b = self.add_button (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT)
+        b.add_accelerator ('clicked', accelerator, Gdk.KEY_Escape, 0, 0)
 
         if is_save:
-            self.set_action(gtk.FILE_CHOOSER_ACTION_SAVE)
+            self.set_action(Gtk.FileChooserAction.SAVE)
 
         self.set_local_only (False)
 
@@ -70,15 +70,15 @@ class URLFileSelection (gtk.FileChooserDialog):
 	
 	if show_type:
 	    # type selector
-	    hbox = gtk.HBox ()
+	    hbox = Gtk.HBox ()
 	    hbox.set_spacing (5)
 	    hbox.set_border_width (5)
-	    hbox.pack_start (gtk.Label (_("Bibliography type:")),
-			     expand = False, fill = False)
+	    hbox.pack_start (Gtk.Label(label=_("Bibliography type:")),
+			     expand=False, fill=False, padding=False)
 
-	    self.menu = gtk.combo_box_new_text ()
+	    self.menu = Gtk.ComboBoxText ()
 
-	    hbox.pack_start (self.menu)
+	    hbox.pack_start (self.menu, False, False, False)
 
 	    self.set_extra_widget (hbox)
 
@@ -115,12 +115,12 @@ class URLFileSelection (gtk.FileChooserDialog):
         
 
     def run (self):
-        ret = gtk.FileSelection.run (self)
+        ret = Gtk.FileChooserDialog.run (self)
 
         file = self.get_filename ()
         self.destroy ()
 
-        if ret != gtk.RESPONSE_OK: return (None, None)
+        if ret != Gtk.ResponseType.OK: return (None, None)
         
         URLFileSelection.defaultdir = os.path.dirname (file)
             

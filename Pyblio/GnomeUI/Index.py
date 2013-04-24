@@ -33,8 +33,9 @@
 from Pyblio import Config, Connector, Fields, Resource
 from Pyblio import Types, Sort, userformat, version
 
-from gnome import ui
-import gobject, gtk, gtk.gdk, os.path, pango
+from gi.repository import GObject, Gtk, Gdk, GdkPixbuf, Pango
+
+import os.path
 
 from Pyblio.GnomeUI import FieldsInfo, Mime, Utils
 
@@ -62,20 +63,20 @@ class Index (Connector.Publisher):
         fields = fields or Config.get ('gnome/columns').data
         self.fields = map (lower, fields)
 
-        self.model = apply (gtk.ListStore,
-                            (gobject.TYPE_STRING,) * len (fields) + (gobject.TYPE_OBJECT,))
+        self.model = apply (Gtk.ListStore,
+                            (GObject.TYPE_STRING,) * len (fields) + (GObject.TYPE_OBJECT,))
 
-        self.list = gtk.TreeView ()
+        self.list = Gtk.TreeView ()
         self.list.set_model (self.model)
         self.selinfo = self.list.get_selection ()
-        self.selinfo.set_mode (gtk.SELECTION_MULTIPLE)
+        self.selinfo.set_mode (Gtk.SelectionMode.MULTIPLE)
 
         i = 0
-        self.gvpixbuf = gtk.gdk.pixbuf_new_from_file(
+        self.gvpixbuf = GdkPixbuf.Pixbuf.new_from_file(
             os.path.join (version.datadir, 'pixmaps', 'pybliographic-viewer.png'))
         if True:
-            rend = gtk.CellRendererPixbuf ()
-            col = gtk.TreeViewColumn ('P', rend, pixbuf = len(fields))
+            rend = Gtk.CellRendererPixbuf ()
+            col = Gtk.TreeViewColumn ('P', rend, pixbuf = len(fields))
             col.set_fixed_width (22)
             self.list.append_column (col)
             i += 1
@@ -83,9 +84,9 @@ class Index (Connector.Publisher):
         i, self.prefix_columns =  0, i
 
         for f in fields:
-            renderer = gtk.CellRendererText ()
-            renderer.set_property ('ellipsize', pango.ELLIPSIZE_END)
-            col = gtk.TreeViewColumn (f, renderer, text=i)
+            renderer = Gtk.CellRendererText ()
+            renderer.set_property ('ellipsize', Pango.EllipsizeMode.END)
+            col = Gtk.TreeViewColumn (f, renderer, text=i)
             col.set_resizable (True)
             col.set_clickable (True)
 
@@ -97,16 +98,16 @@ class Index (Connector.Publisher):
             w = Utils.config.get_int (k)
 
             if w:
-                col.set_sizing (gtk.TREE_VIEW_COLUMN_FIXED)
+                col.set_sizing (Gtk.TreeViewColumnSizing.FIXED)
                 col.set_fixed_width (w)
             col.connect ('clicked', self.click_column, i)
 
             self.list.append_column (col)
             i = i + 1
 
-        self.w = gtk.ScrolledWindow ()
+        self.w = Gtk.ScrolledWindow ()
 
-        self.w.set_policy (gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.w.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.w.add (self.list)
 
         self.access = []
@@ -130,14 +131,15 @@ class Index (Connector.Publisher):
             (Mime.SYM_ENTRY,  0, Mime.ENTRY),
             )
 
-        self.list.drag_dest_set (gtk.DEST_DEFAULT_ALL, accept,
-                                 gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
-        self.list.connect ("drag_data_received", self.drag_received)
+        # FIXME: Port drag-and-drop to Gtk3
+        #self.list.drag_dest_set (Gtk.DestDefaults.ALL, accept,
+        #                         Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
+        #self.list.connect ("drag_data_received", self.drag_received)
 
 
-        self.list.drag_source_set (gtk.gdk.BUTTON1_MASK | gtk.gdk.BUTTON3_MASK,
-                                   targets, gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
-        self.list.connect ('drag_data_get', self.dnd_drag_data_get)
+        #self.list.drag_source_set (Gdk.ModifierType.BUTTON1_MASK | Gdk.ModifierType.BUTTON3_MASK,
+        #                           targets, Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
+        #self.list.connect ('drag_data_get', self.dnd_drag_data_get)
 
         # Copy/Paste configuration
 
@@ -151,17 +153,18 @@ class Index (Connector.Publisher):
         # the clipboard, and the primary. Therefore, we should be able
         # to paste into every kind of editor/application.
 
-        self.list.selection_add_target ("PRIMARY",
-                                        Mime.SYM_STRING,
-                                        Mime.STRING)
+        # FIXME: Port to Gtk3
+        #self.list.selection_add_target ("PRIMARY",
+        #                                Mime.SYM_STRING,
+        #                                Mime.STRING)
 
-        self.list.selection_add_target ("CLIPBOARD",
-                                        Mime.SYM_STRING,
-                                        Mime.STRING)
+        #self.list.selection_add_target ("CLIPBOARD",
+        #                                Mime.SYM_STRING,
+        #                                Mime.STRING)
 
-        self.list.selection_add_target (Mime.SYM_APP,
-                                        Mime.SYM_ENTRY,
-                                        Mime.ENTRY)
+        #self.list.selection_add_target (Mime.SYM_APP,
+        #                                Mime.SYM_ENTRY,
+        #                                Mime.ENTRY)
         return
 
 
@@ -267,7 +270,7 @@ class Index (Connector.Publisher):
         else:
             return
 
-        if context.action == gtk.gdk.ACTION_MOVE:
+        if context.action == Gdk.DragAction.MOVE:
             self.issue ('drag-moved', entries)
 
         return
@@ -368,9 +371,11 @@ class Index (Connector.Publisher):
 
             iter = self.model.append  ()
 
-            apply (self.model.set, [iter] + row)
+            print [iter], row
+            # apply (self.model.set, [iter] + row)
+            self.model.set([iter] + row)
 
-            self.access.append (entry)
+            # self.access.append (entry)
 
             entry = iterator.next ()
 
@@ -440,10 +445,10 @@ class Index (Connector.Publisher):
 
         entries = []
 
-        def retrieve (model, path, iter):
+        def retrieve (model, path, iter, entries):
             entries.append (self.access [path [0]])
 
-        self.selinfo.selected_foreach (retrieve)
+        self.selinfo.selected_foreach (retrieve, entries)
 
         return entries
 
@@ -458,7 +463,7 @@ class Index (Connector.Publisher):
     def button_press (self, clist, event, *arg):
         ''' handler for double-click and right mouse button '''
 
-        if not (event.type == gtk.gdk.BUTTON_PRESS and
+        if not (event.type == Gdk.EventType.BUTTON_PRESS and
                 event.button == 3): return
 
         self._w_popup.popup (None, None, None, event.button, event.time)

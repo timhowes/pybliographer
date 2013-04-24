@@ -23,15 +23,15 @@
 
 ''' This module defines a Document class '''
 
-import gobject
+from gi.repository import GObject
 
-from gnome import ui
+# from gnome import ui
+from gettext import gettext as _
+# import gnome
+from gi.repository import Gtk
+# import Gtk.glade
 
-import gnome
-import gtk
-import gtk.glade
-
-from gtk import gdk
+from gi.repository import Gdk
 
 from Pyblio.GnomeUI import Editor, Entry, FileSelector, Format
 from Pyblio.GnomeUI import Index, OpenURL, Search, Utils
@@ -133,12 +133,12 @@ class Document (Connector.Publisher):
     
     def __init__ (self, database):
 
-        self.uim = gtk.UIManager ()
+        self.uim = Gtk.UIManager ()
 
         self.recents = None
         self.viewables = None
 	
-        self.actiongroup = gtk.ActionGroup ('Main')
+        self.actiongroup = Gtk.ActionGroup ('Main')
         
         self.actiongroup.add_actions ([
             # id     stock            label         accel   tooltip   callback
@@ -150,50 +150,50 @@ class Document (Connector.Publisher):
             ('HelpMenu', None,            _('_Help')),
             ('Recent', None, _('Recent documents')),
             
-            ('New',  gtk.STOCK_NEW,   None,         None,   None,     self.new_document),
-            ('Open', gtk.STOCK_OPEN,  None,         None,   _('Open a file'), self.ui_open_document),
+            ('New',  Gtk.STOCK_NEW,   None,         None,   None,     self.new_document),
+            ('Open', Gtk.STOCK_OPEN,  None,         None,   _('Open a file'), self.ui_open_document),
             ('Open_URL', None, _('Open _Location'), '<control>l',   None, self.ui_open_location),
-            ('Save', gtk.STOCK_SAVE,  None,         None,   _('Save the current file'), self.save_document),
-            ('Save_As', gtk.STOCK_SAVE_AS,  None,         None,   None,     self.save_document_as),
-            ('Close', gtk.STOCK_CLOSE,  None,         None,   None,     self.close_document),
-            ('Quit', gtk.STOCK_QUIT,  None,         None,   None,     self.exit_application),
+            ('Save', Gtk.STOCK_SAVE,  None,         None,   _('Save the current file'), self.save_document),
+            ('Save_As', Gtk.STOCK_SAVE_AS,  None,         None,   None,     self.save_document_as),
+            ('Close', Gtk.STOCK_CLOSE,  None,         None,   None,     self.close_document),
+            ('Quit', Gtk.STOCK_QUIT,  None,         None,   None,     self.exit_application),
 
             ('Merge',   None, _('Merge With...'),    '<control>g',  None, self.merge_database),
             ('Medline', None, _('Medline Query...'), '<control>m',  None, self.query_database),
 
 
 
-            ('Cut', gtk.STOCK_CUT,  None,         None,   None,     self.cut_entry),
-            ('Copy', gtk.STOCK_COPY,  None,         None,   None,     self.copy_entry),
-            ('Paste', gtk.STOCK_PASTE,  None,         None,   None,     self.paste_entry),
-            ('Clear', gtk.STOCK_CLEAR,  None,         None,   None,     self.clear_entries),
-            ('Add', gtk.STOCK_ADD,  None,   '<shift><control>n',  _('Add a new entry'), self.add_entry),
-            ('Delete', gtk.STOCK_DELETE,  None,         None,   None,     self.delete_entry),
-            ('Find', gtk.STOCK_FIND,  None,         None,   None,     self.find_entries),
+            ('Cut', Gtk.STOCK_CUT,  None,         None,   None,     self.cut_entry),
+            ('Copy', Gtk.STOCK_COPY,  None,         None,   None,     self.copy_entry),
+            ('Paste', Gtk.STOCK_PASTE,  None,         None,   None,     self.paste_entry),
+            ('Clear', Gtk.STOCK_CLEAR,  None,         None,   None,     self.clear_entries),
+            ('Add', Gtk.STOCK_ADD,  None,   '<shift><control>n',  _('Add a new entry'), self.add_entry),
+            ('Delete', Gtk.STOCK_DELETE,  None,         None,   None,     self.delete_entry),
+            ('Find', Gtk.STOCK_FIND,  None,         None,   None,     self.find_entries),
             
             ('Sort', None, _('S_ort...'), None,  None, self.sort_entries),
-            ('Cite', gtk.STOCK_JUMP_TO,   _('Cite...'), None,  _('Cite key(s)'), self.lyx_cite),
-            ('Format', gtk.STOCK_EXECUTE, _('Format...'), None,  None, self.format_entries),
+            ('Cite', Gtk.STOCK_JUMP_TO,   _('Cite...'), None,  _('Cite key(s)'), self.lyx_cite),
+            ('Format', Gtk.STOCK_EXECUTE, _('Format...'), None,  None, self.format_entries),
 
             ('Fields', None, _('Fields...'), None,  None, self.set_fields),
-            ('Preferences', gtk.STOCK_PREFERENCES,  None,         None,   None,     self.set_preferences),
+            ('Preferences', Gtk.STOCK_PREFERENCES,  None,         None,   None,     self.set_preferences),
             ('Forget', None, _('Forget all changes'),     None,   None,     self.forget_changes_cb),
             
-            ('Contents', gtk.STOCK_HELP, None,   None,   None,     self.on_documentation),
+            ('Contents', Gtk.STOCK_HELP, None,   None,   None,     self.on_documentation),
 	    ('ViewResource', None, _('_Resource'), None, None, self.view_entry),
             ])
 
-        if gtk.pygtk_version >= (2,6,0):
+        if True: # Gtk.pygtk_version >= (2,6,0):
             self.actiongroup.add_actions ([
-                ('About', gtk.STOCK_ABOUT, None,   None,   None,     self.about),
-                ('Edit', gtk.STOCK_EDIT,  None, '<shift><control>o',   None,     self.edit_entry),
+                ('About', Gtk.STOCK_ABOUT, None,   None,   None,     self.about),
+                ('Edit', Gtk.STOCK_EDIT,  None, '<shift><control>o',   None,     self.edit_entry),
                 ])
 
-        else:
-            self.actiongroup.add_actions ([
-                ('About', None, _('_About'),   None,   None,     self.about),
-                ('Edit', None,  _('_Edit'),    '<shift><control>o', None,    self.edit_entry),
-                ])
+        #else:
+        #    self.actiongroup.add_actions ([
+        #        ('About', None, _('_About'),   None,   None,     self.about),
+        #        ('Edit', None,  _('_Edit'),    '<shift><control>o', None,    self.edit_entry),
+        #        ])
             
         prev = self.actiongroup.get_action ('Recent')
         
@@ -207,44 +207,48 @@ class Document (Connector.Publisher):
 
         self.uim.ensure_update ()
 
-        gp = os.path.join(Utils.glade_root, 'pyblio.glade')
+        gp = os.path.join(Utils.glade_root, 'pyblio.ui')
         
-        self.xml = gtk.glade.XML (gp, 'main', domain = 'pybliographer')
-        self.xml.signal_autoconnect (self)
+        self.xml = Gtk.Builder()
+        self.xml.set_translation_domain('pybliographer')
+        self.xml.add_from_file(gp)
+        self.xml.connect_signals(self)
+        #self.xml = Gtk.glade.XML (gp, 'main', domain = 'pybliographer')
+        #self.xml.signal_autoconnect (self)
 
-        self.w = self.xml.get_widget ('main')
-        self.paned = self.xml.get_widget ('main_pane')
+        self.w = self.xml.get_object ('main')
+        self.paned = self.xml.get_object ('main_pane')
 
-        self.w.set_menus (self.uim.get_widget ('/Menubar'))
-        self.w.set_toolbar (self.uim.get_widget ('/Toolbar'))
+        #self.w.set_menus (self.uim.get_object ('/Menubar'))
+        #self.w.set_toolbar (self.uim.get_object ('/Toolbar'))
 
         self.w.add_accel_group (self.uim.get_accel_group ())
 
-        self.w.add_events (gdk.KEY_PRESS_MASK)
+        self.w.add_events (Gdk.EventMask.KEY_PRESS_MASK)
         
-        self.w_save_btn = self.xml.get_widget ('_w_save_btn')
-        self.w_save_mnu = self.xml.get_widget ('_w_save_mnu')
+        self.w_save_btn = self.xml.get_object ('_w_save_btn')
+        self.w_save_mnu = self.xml.get_object ('_w_save_mnu')
 
         # We manually add a simple search area
         t = self.uim.get_widget ('/Toolbar')
-        h = gtk.HBox()
+        h = Gtk.HBox()
 
-        i = gtk.Image()
-        i.set_from_stock(gtk.STOCK_FIND, gtk.ICON_SIZE_LARGE_TOOLBAR)
-        h.pack_start(i, False, False)
+        i = Gtk.Image()
+        i.set_from_stock(Gtk.STOCK_FIND, Gtk.IconSize.LARGE_TOOLBAR)
+        h.pack_start(i, False, False, False)
 
         # create a tooltips object
-##      self.toolbartips = gtk.Tooltips()
+##      self.toolbartips = Gtk.Tooltips()
 
-        self.quick_search = gtk.Entry()
+        self.quick_search = Gtk.Entry()
         self.quick_search.connect('activate', self.simple_search)
-        h.pack_start(self.quick_search, False, False)
+        h.pack_start(self.quick_search, False, False, False)
 ##      self.toolbartips.set_tip(self.quick_search, _('Quick search'))
 
         if Config.get ('gnome/tooltips').data:
             self.quick_search.set_tooltip_text (_('Quick search'))
 
-        i = gtk.ToolItem()
+        i = Gtk.ToolItem()
         i.add(h)
         t.insert(i, -1)
         
@@ -271,7 +275,7 @@ class Document (Connector.Publisher):
         self.paned.add2 (self.display.w)
 
         # Status bar
-        self.statusbar = self.xml.get_widget ('statusbar')
+        self.statusbar = self.xml.get_object ('statusbar')
         
         # set window size
         ui_width  = Utils.config.get_int ('/apps/pybliographic/ui/width') or -1
@@ -350,7 +354,7 @@ class Document (Connector.Publisher):
             self.uim.remove_action_group (self.recents)
 
         self.recents_mid = []
-        self.recents = gtk.ActionGroup ('Recent')
+        self.recents = Gtk.ActionGroup ('Recent')
 
         self.uim.insert_action_group (self.recents, 1)
 
@@ -362,13 +366,13 @@ class Document (Connector.Publisher):
 
             self.recents_mid.append (mid)
             
-            action = gtk.Action (str (mid), quoted, None, None)
+            action = Gtk.Action (str (mid), quoted, None, None)
             self.recents.add_action (action)
 
             action.connect ('activate', self._history_open_cb, item)
         
             self.uim.add_ui (mid, '/Menubar/File/Recent', str (mid),
-                             str (mid), gtk.UI_MANAGER_MENUITEM, False)
+                             str (mid), Gtk.UIManagerItemType.MENUITEM, False)
 
         return
 
@@ -462,7 +466,10 @@ class Document (Connector.Publisher):
 
         self.actiongroup.get_action ('Save').set_property ('sensitive', self.changed)
 
-        self.statusbar.set_default (text)
+        # FIXME: Check port to Gtk3
+        # self.statusbar.set_default (text)
+        ctx_id = self.statusbar.get_context_id('default')
+        self.statusbar.push (ctx_id, text)
         return
 
     
@@ -642,7 +649,7 @@ class Document (Connector.Publisher):
 
         # remove the old autosave object
         if self.data.key is not None and self.source_id:
-            gobject.source_remove (self.source_id)
+            GObject.source_remove (self.source_id)
 
         # remove old autosave file if exists
         if self.data.key:
@@ -686,7 +693,7 @@ class Document (Connector.Publisher):
         # create autosave object if needed
         if Config.get ('base/autosave').data:
     	    savetimeout = Config.get ('base/autosave interval').data
-            self.source_id = gobject.timeout_add (savetimeout * 60 * 1000, self.autosave, url, self.data.id)
+            self.source_id = GObject.timeout_add (savetimeout * 60 * 1000, self.autosave, url, self.data.id)
 
         return
 
@@ -783,7 +790,7 @@ class Document (Connector.Publisher):
 
         # remove the old autosave object
         if self.data.key is not None and self.source_id:
-            gobject.source_remove (self.source_id)
+            GObject.source_remove (self.source_id)
 
         # remove old autosave file
         if self.data.key:
@@ -825,7 +832,7 @@ class Document (Connector.Publisher):
         # create the new autosave object if needed
         if Config.get ('base/autosave').data:
             savetimeout = Config.get ('base/autosave interval').data
-            self.source_id = gobject.timeout_add (savetimeout * 60 * 1000, self.autosave, url, self.data.id)
+            self.source_id = GObject.timeout_add (savetimeout * 60 * 1000, self.autosave, url, self.data.id)
 
         return
 
@@ -843,7 +850,7 @@ class Document (Connector.Publisher):
         answer = self.confirm ()
         # remove autosave object with closing
         if answer and self.source_id:
-            gobject.source_remove (self.source_id)
+            GObject.source_remove (self.source_id)
 
         # remove old autosave file
         if answer and self.data.key:
@@ -1137,7 +1144,7 @@ class Document (Connector.Publisher):
 	    self.uim.remove_action_group (self.viewables)
 
 	self.viewables_id = []
-	self.viewables = gtk.ActionGroup ('Viewables')
+	self.viewables = Gtk.ActionGroup ('Viewables')
 	self.uim.insert_action_group (self.viewables, 1)
 	
 	viewables = Resource.get_viewables (entry)
@@ -1147,21 +1154,21 @@ class Document (Connector.Publisher):
 	    text = u"%s   %s" % (key.upper (), value)
 	    mergeid = self.uim.new_merge_id ()
 	    self.viewables_id.append (mergeid)
-	    action = gtk.Action (str(mergeid), text, None, None)
+	    action = Gtk.Action (str(mergeid), text, None, None)
 	    self.viewables.add_action (action)
 	    action.connect ('activate', self.view_entry, (entry, key, url, value))
 
 	    self.uim.add_ui (mergeid, '/Menubar/ViewMenu/ViewResource', str(mergeid), 
-			     str(mergeid), gtk.UI_MANAGER_MENUITEM, False)
+			     str(mergeid), Gtk.UIManagerItemType.MENUITEM, False)
 	    self.uim.add_ui (mergeid, '/Popup/ViewResource', str(mergeid), 
-			     str(mergeid), gtk.UI_MANAGER_MENUITEM, False)
+			     str(mergeid), Gtk.UIManagerItemType.MENUITEM, False)
 	return
     
     def key_pressed (self, app, event):
 
         # filter out special keys
         
-        if event.keyval == gtk.keysyms.Escape:
+        if event.keyval == Gdk.KEY_Escape:
             # the Esc key restores view to "all entries"
             self.limit_view (None, None)
             self.quick_search.set_text('')
@@ -1202,9 +1209,9 @@ class Document (Connector.Publisher):
         
         # Save the graphical aspect of the interface
         # 1.- Window size
-        alloc = self.w.get_allocation ()
-        Utils.config.set_int ('/apps/pybliographic/ui/width',  alloc [2])
-        Utils.config.set_int ('/apps/pybliographic/ui/height', alloc [3])
+        width, height = self.w.get_size ()
+        Utils.config.set_int ('/apps/pybliographic/ui/width',  width)
+        Utils.config.set_int ('/apps/pybliographic/ui/height', height)
 
         # 2.- Proportion between list and text
         height = self.paned.get_position ()
@@ -1216,13 +1223,13 @@ class Document (Connector.Publisher):
         return
 
     def on_documentation (self, *args):
-        import gobject
+        from gi.repository import GObject
 
-        timestamp = gtk.gdk.CURRENT_TIME
+        timestamp = Gdk.CURRENT_TIME
         try:
-            gtk.show_uri (None, "ghelp:pybliographer", timestamp)
+            Gtk.show_uri (None, "ghelp:pybliographer", timestamp)
             
-        except gobject.GError, msg:
+        except GObject.GError, msg:
             self.w.error (_("Can't display documentation:\n%s") % msg)
             
         return

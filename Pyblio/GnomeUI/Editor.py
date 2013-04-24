@@ -23,8 +23,12 @@
 #   entry editor for more than 50 chars
 # added: Note taking widget
 
-import copy, gobject, gtk, re, string
-from gnome import ui
+from gettext import gettext as _
+
+from gi.repository import GObject, Gtk
+# import copy, gobject, gtk, re, string
+import copy, re, string
+# from gnome import ui
 
 from Pyblio import Base, Config, Connector, Exceptions, Fields, Key, Types
 from Pyblio.GnomeUI import Common, Compat, FieldsInfo, FileSelector, Mime, Utils
@@ -45,10 +49,10 @@ class BaseField(Connector.Publisher):
     ''' common class to each specialized field editor '''
     
     def __init__(self, entry, field, content, j):
-        self.w = gtk.VBox()
+        self.w = Gtk.VBox()
 
-        h = gtk.HBox(spacing=5)
-        self.w.pack_start(gtk.Label(field), False, False)
+        h = Gtk.HBox(spacing=5)
+        self.w.pack_start(Gtk.Label(field, True, True, 0), False, False)
 
         field = string.lower(field)
         self.field = field
@@ -57,14 +61,14 @@ class BaseField(Connector.Publisher):
         self.edit = None
         expand = self.create_widget(h)
         
-        img = gtk.Image()
+        img = Gtk.Image()
         
         if self.loss:
-            img.set_from_stock(gtk.STOCK_CANCEL,
-                               gtk.ICON_SIZE_BUTTON)
+            img.set_from_stock(Gtk.STOCK_CANCEL,
+                               Gtk.IconSize.BUTTON)
         else:
-            img.set_from_stock(gtk.STOCK_APPLY,
-                               gtk.ICON_SIZE_BUTTON)
+            img.set_from_stock(Gtk.STOCK_APPLY,
+                               Gtk.IconSize.BUTTON)
         
         h.pack_start(img, False, False)
         
@@ -73,17 +77,17 @@ class BaseField(Connector.Publisher):
 
         flag = 0
         if expand:
-            flag = gtk.EXPAND | gtk.FILL
+            flag = Gtk.AttachOptions.EXPAND | Gtk.AttachOptions.FILL
         content.attach(self.w, 0, 1, j, j + 1, yoptions=flag)
 
     def key_handler (self, widget, ev):
-        if ev.keyval == gtk.gdk.Return and \
-           ev.state  == gtk.gdk.CONTROL_MASK:
+        if ev.keyval == Gdk.Return and \
+           ev.state  == Gdk.ModifierType.CONTROL_MASK:
             widget.emit_stop_by_name ('key_press_event')
             self.issue ('apply')
         
-        elif ev.keyval == gtk.gdk.Tab and \
-           ev.state  == gtk.gdk.CONTROL_MASK:
+        elif ev.keyval == Gdk.Tab and \
+           ev.state  == Gdk.ModifierType.CONTROL_MASK:
             widget.emit_stop_by_name ('key_press_event')
             self.issue ('next')
 
@@ -144,7 +148,7 @@ class Entry (TextBase):
 
     def create_widget (self, h):
         if len (self.string) < 50:
-            self.edit = gtk.Entry ()
+            self.edit = Gtk.Entry ()
             self.edit.set_text(self.string.decode('latin-1'))
             self.edit.set_editable (True)
             self.edit.show ()
@@ -154,13 +158,13 @@ class Entry (TextBase):
             h.pack_start (self.edit)
             return 0
 
-        w = gtk.ScrolledWindow ()
-        w.set_policy (gtk.POLICY_NEVER,
-                      gtk.POLICY_AUTOMATIC)
+        w = Gtk.ScrolledWindow ()
+        w.set_policy (Gtk.PolicyType.NEVER,
+                      Gtk.PolicyType.AUTOMATIC)
         
-        self.edit = gtk.TextView ()
+        self.edit = Gtk.TextView ()
         self.edit.set_editable (True)
-        self.edit.set_wrap_mode (gtk.WRAP_WORD)
+        self.edit.set_wrap_mode (Gtk.WrapMode.WORD)
 
         self.buff = self.edit.get_buffer ()
         self.buff.set_text(self.string.decode('latin-1'))
@@ -196,12 +200,12 @@ class Entry (TextBase):
 class Text (TextBase):
     
     def create_widget (self, h):
-        w = gtk.ScrolledWindow ()
-        w.set_policy (gtk.POLICY_NEVER,
-                      gtk.POLICY_AUTOMATIC)
-        self.edit = gtk.TextView ()
+        w = Gtk.ScrolledWindow ()
+        w.set_policy (Gtk.PolicyType.NEVER,
+                      Gtk.PolicyType.AUTOMATIC)
+        self.edit = Gtk.TextView ()
         self.edit.set_editable (True)
-        self.edit.set_wrap_mode (gtk.WRAP_WORD)
+        self.edit.set_wrap_mode (Gtk.WrapMode.WORD)
 
         self.buff = self.edit.get_buffer ()
         self.buff.set_text (self.string.decode('latin-1'))
@@ -231,11 +235,11 @@ class Text (TextBase):
 class AuthorGroup (BaseField):
     
     def create_widget (self, h):
-        w = gtk.ScrolledWindow ()
-        w.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        w = Gtk.ScrolledWindow ()
+        w.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         
-        self.edit = gtk.TextView ()
-        self.edit.set_wrap_mode (gtk.WRAP_WORD)
+        self.edit = Gtk.TextView ()
+        self.edit.set_wrap_mode (Gtk.WrapMode.WORD)
         self.edit.set_editable (True)
 
         self.buff = self.edit.get_buffer ()
@@ -299,9 +303,9 @@ class AuthorGroup (BaseField):
 class Date (BaseField):
     
     def create_widget (self, h):
-        hbox = gtk.HBox (False, 5)
+        hbox = Gtk.HBox (False, 5)
 
-        self.day = gtk.Entry ()
+        self.day = Gtk.Entry ()
         (width, height) = self.day.size_request ()
         self.day.set_size_request (width / 4, height)
         self.day.set_max_length (2)
@@ -309,25 +313,25 @@ class Date (BaseField):
         if self.initial [0]:
             self.day.set_text (str (self.initial [0]).decode ('latin-1'))
         hbox.pack_start (self.day)
-        hbox.pack_start (gtk.Label (_("Day")), False, False)
+        hbox.pack_start (Gtk.Label(label=_("Day")), False, False)
         
-        self.month = gtk.Entry ()
+        self.month = Gtk.Entry ()
         self.month.set_size_request (width / 4, height)
         self.month.set_max_length (2)
 
         if self.initial [1]:
             self.month.set_text (str (self.initial [1]).decode ('latin-1'))
         hbox.pack_start (self.month)
-        hbox.pack_start (gtk.Label (_("Month")), False, False)
+        hbox.pack_start (Gtk.Label(label=_("Month")), False, False)
         
-        self.year = gtk.Entry ()
+        self.year = Gtk.Entry ()
         self.year.set_max_length (4)
         self.year.set_size_request (width / 3, height)
 
         if self.initial [2]:
             self.year.set_text (str (self.initial [2]).decode ('latin-1'))
         hbox.pack_start (self.year)
-        hbox.pack_start (gtk.Label (_("Year")), False, False)
+        hbox.pack_start (Gtk.Label(label=_("Year")), False, False)
 
         hbox.show_all ()
         h.pack_start (hbox)
@@ -394,10 +398,10 @@ class Reference (BaseField):
             (Mime.SYM_KEY, 0, Mime.KEY),
             )
 
-        box = gtk.HBox ()
+        box = Gtk.HBox ()
         box.set_border_width (5)
         
-        self.edit = gtk.Label ()
+        self.edit = Gtk.Label ()
         self.edit.justify = False
 
         self.edit.set_line_wrap (True)
@@ -406,9 +410,9 @@ class Reference (BaseField):
         #self.edit.set_editable (True)
         self.edit.set_text (self.string)
         
-        self.edit.drag_dest_set (gtk.DEST_DEFAULT_ALL,
+        self.edit.drag_dest_set (Gtk.DestDefaults.ALL,
                                  accept,
-                                 gtk.gdk.ACTION_COPY)
+                                 Gdk.DragAction.COPY)
         
         self.edit.connect ('drag_data_received', self.drag_received)
         
@@ -416,7 +420,7 @@ class Reference (BaseField):
         h.pack_start (box)
 
         # A delete button
-        button = gtk.Button (_('Delete'), gtk.STOCK_DELETE)
+        button = Gtk.Button (_('Delete'), Gtk.STOCK_DELETE)
         button.connect ('clicked', self._delete)
         
         h.pack_start (button, False, False)
@@ -493,13 +497,13 @@ class URL (BaseField):
 ##      h.pack_start (self.edit)
 	self.newurl = None
 
-	self.box = gtk.HBox (spacing=6)
-	self.edit = gtk.Entry ()
+	self.box = Gtk.HBox (spacing=6)
+	self.edit = Gtk.Entry ()
 	self.edit.set_editable (True)
 	self.old_url = self.string.decode ('latin-1')
 	self.edit.set_text (self.old_url)
 	self.box.pack_start (self.edit)
-	self.button = gtk.Button (_('Browse...'))
+	self.button = Gtk.Button (_('Browse...'))
 	self.button.connect ("clicked", self.cb_clicked)
 	self.box.pack_start (self.button, False)
 	h.pack_start (self.box)
@@ -541,17 +545,17 @@ class RealEditor (Connector.Publisher):
 
         self.fields.sort ()
         
-        self.w = gtk.VBox ()
-        table  = gtk.Table (2, 2)
+        self.w = Gtk.VBox ()
+        table  = Gtk.Table (2, 2)
         table.set_border_width (5)
         table.set_col_spacings (5)
         
-        table.attach (gtk.Label (_("Entry type")),
+        table.attach (Gtk.Label(label=_("Entry type")),
                       0, 1, 0, 1, yoptions = 0)
-        table.attach (gtk.Label (_("Key")),
+        table.attach (Gtk.Label(label=_("Key")),
                       1, 2, 0, 1, yoptions = 0)
 
-        self.key = gtk.Entry ()
+        self.key = Gtk.Entry ()
         self.key.set_editable (True)
         
         if self.entry.key:
@@ -562,12 +566,12 @@ class RealEditor (Connector.Publisher):
 
         # The list store will hold both the identifier and the type of
         # each entry
-        liststore = gtk.ListStore (gobject.TYPE_STRING,
-                                   gobject.TYPE_PYOBJECT)
+        liststore = Gtk.ListStore (GObject.TYPE_STRING,
+                                   GObject.TYPE_PYOBJECT)
 
-        self.menu = gtk.ComboBox (liststore)
+        self.menu = Gtk.ComboBox (liststore)
 
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
 
         self.menu.pack_start (cell, True)
         self.menu.add_attribute (cell, 'text', 0)
@@ -591,21 +595,21 @@ class RealEditor (Connector.Publisher):
         table.show_all ()
         self.w.pack_start (table, False, False)
 
-        self.newfield_area = gtk.HBox (spacing = 5)
+        self.newfield_area = Gtk.HBox (spacing = 5)
         self.newfield_area.set_border_width (5)
         self.newfield = ui.Entry ('newfield')
         
         self.newfield_area.pack_start (self.newfield)
 
-        b = gtk.Button (_("Create Field"))
+        b = Gtk.Button (_("Create Field"))
         b.connect ('clicked', self.create_field)
         self.newfield_area.pack_start (b)
 
         # navigation buttons
-        self.backward_b = gtk.Button(_('Back'))
+        self.backward_b = Gtk.Button(_('Back'))
         self.backward_b.connect ('clicked', self.back_cb)
         self.newfield_area.pack_start (self.backward_b)
-        self.forward_b = gtk.Button(_('Next'))
+        self.forward_b = Gtk.Button(_('Next'))
         self.forward_b.connect ('clicked', self.next_cb)
         self.newfield_area.pack_start (self.forward_b)
         
@@ -614,7 +618,7 @@ class RealEditor (Connector.Publisher):
         self.newfield_area.show_all ()
         
         # Notebook
-        self.notebook = gtk.Notebook ()
+        self.notebook = Gtk.Notebook ()
         self.notebook.show ()
         self.notebook.connect ('switch-page', self.switch_page_cb)
         
@@ -673,15 +677,15 @@ class RealEditor (Connector.Publisher):
             node = self.lt_nodes [self.lt_current]
             key = node['key']
             if self.entry.has_key(key) and self.entry[key]:
-                dialog = gtk.MessageDialog(
-                    self.w.get_toplevel(), gtk.DIALOG_DESTROY_WITH_PARENT,
-                    gtk.MESSAGE_WARNING, gtk.BUTTONS_OK_CANCEL,
+                dialog = Gtk.MessageDialog(
+                    self.w.get_toplevel(), Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.WARNING, Gtk.ButtonsType.OK_CANCEL,
                     "Text will be lost if you click OK.")
                 dialog.set_transient_for (self.dialogue.w)
                 rc = dialog.run()
                 dialog.destroy()
                 
-                if rc == gtk.RESPONSE_CANCEL:
+                if rc == Gtk.ResponseType.CANCEL:
                     return
             self.lt_delete (self.lt_current)
 
@@ -732,7 +736,7 @@ class RealEditor (Connector.Publisher):
         self.content = []
 
         for i in range (len(names)):
-            label   = gtk.Label (names [i])
+            label   = Gtk.Label(label=names [i])
             if   i == 0:
                 table = [x.name.lower() for x
                          in self.entry.type.mandatory
@@ -767,10 +771,10 @@ class RealEditor (Connector.Publisher):
     def add_type1_widget (self, label, table, pos):
         
         if len (table) == 0: return
-        scroll = gtk.ScrolledWindow ()
-        scroll.set_policy (gtk.POLICY_AUTOMATIC,
-                           gtk.POLICY_AUTOMATIC)
-        content = gtk.Table (1, len (table))
+        scroll = Gtk.ScrolledWindow ()
+        scroll.set_policy (Gtk.PolicyType.AUTOMATIC,
+                           Gtk.PolicyType.AUTOMATIC)
+        content = Gtk.Table (1, len (table))
         scroll.add_with_viewport (content)
 
         j = 0
@@ -963,12 +967,12 @@ class NativeEditor(Connector.Publisher):
 
         self.original = database.get_native(entry)
 
-        self.w = gtk.ScrolledWindow()
-        self.w.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.w = Gtk.ScrolledWindow()
+        self.w.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         
-        self.w_txt = gtk.TextView()
+        self.w_txt = Gtk.TextView()
         self.w_txt.set_editable(True)
-        self.w_txt.set_wrap_mode(gtk.WRAP_WORD)
+        self.w_txt.set_wrap_mode(Gtk.WrapMode.WORD)
         
         self.w.add(self.w_txt)
 
@@ -1015,7 +1019,7 @@ class Editor(Connector.Publisher):
     with no key.
     """
     def __init__(self, database, entry, parent=None, title=None):
-        self.w = gtk.Dialog()
+        self.w = Gtk.Dialog()
         self.w.set_resizable(True)
         
         if title: self.w.set_title(title)
@@ -1026,7 +1030,7 @@ class Editor(Connector.Publisher):
 
         if parent: self.w.set_transient_for(parent)
 
-        self.apply_b = gtk.Button(stock=gtk.STOCK_APPLY)
+        self.apply_b = Gtk.Button(stock=Gtk.STOCK_APPLY)
         self.apply_b.connect('clicked', self.apply_changes)
         self.apply_b.show()
 
@@ -1034,31 +1038,31 @@ class Editor(Connector.Publisher):
         self.has_native = hasattr(database, 'get_native')
 
         if self.has_native:
-            self.native_b = gtk.Button(_("Native Editing"))
+            self.native_b = Gtk.Button(_("Native Editing"))
             self.native_b.connect('clicked', self.toggle_native)
             self.native_b.show()
         
-        self.close_b = gtk.Button(stock=gtk.STOCK_CANCEL)
+        self.close_b = Gtk.Button(stock=Gtk.STOCK_CANCEL)
         self.close_bid = self.close_b.connect(
             'clicked', self.close_dialog)
         self.close_b.show()
 
         # Use Escape to abort, Ctrl-Return to accept
-        accelerator = gtk.AccelGroup()
+        accelerator = Gtk.AccelGroup()
         self.w.add_accel_group(accelerator)
 
         self.close_b.add_accelerator(
-            'clicked', accelerator, gtk.keysyms.Escape, 0, 0)
+            'clicked', accelerator, Gdk.KEY_Escape, 0, 0)
         self.apply_b.add_accelerator(
-            'clicked', accelerator, gtk.keysyms.Return,
-            gtk.gdk.CONTROL_MASK, 0)
+            'clicked', accelerator, Gdk.KEY_Return,
+            Gdk.ModifierType.CONTROL_MASK, 0)
 
         # for use with annotations
-        self.del_b = gtk.Button(stock=gtk.STOCK_DELETE)
+        self.del_b = Gtk.Button(stock=Gtk.STOCK_DELETE)
         self.del_b.connect ('clicked', self.del_cb, None)
         self.del_b.set_sensitive(False)
         self.w.action_area.add(self.del_b)
-        self.new_b = gtk.Button(stock=gtk.STOCK_NEW)
+        self.new_b = Gtk.Button(stock=Gtk.STOCK_NEW)
         self.new_b.connect('clicked', self.add_cb, None)
         self.new_b.set_sensitive(False)
         self.w.action_area.add(self.new_b)
@@ -1133,7 +1137,7 @@ class Editor(Connector.Publisher):
         self.editor.Subscribe('apply', self.apply_changes)
         self.editor.Subscribe('next',  self.next_item)
         
-        self.w.vbox.pack_start(self.editor.w)
+        self.w.vbox.pack_start(self.editor.w, True, True, 0)
 
         # set window size
         if ui_width != -1 and ui_height != -1:
@@ -1203,10 +1207,10 @@ class LT_Widget_1:
         self.dialogue = dialogue
         self.node = None
         
-        self.page = gtk.ScrolledWindow ()
-        self.label = gtk.Label (_('Notes'))
-        self.page.set_policy (gtk.POLICY_AUTOMATIC,
-                              gtk.POLICY_AUTOMATIC)
+        self.page = Gtk.ScrolledWindow ()
+        self.label = Gtk.Label(label=_('Notes'))
+        self.page.set_policy (Gtk.PolicyType.AUTOMATIC,
+                              Gtk.PolicyType.AUTOMATIC)
         self.display_list (self.entry, self.editor.lt_nodes)
 
         self.page.set_data ('pyblio-owner', self)
@@ -1217,12 +1221,12 @@ class LT_Widget_1:
         #self.enable_buttons()
 
     def display_list (self, entry, nodes):
-        content = gtk.VBox()
+        content = Gtk.VBox()
         for i in range (len(nodes)):
             node = nodes[i]
             key = node['key'] 
-            vbox =  gtk.VBox()
-            anno_label = gtk.Label()
+            vbox =  Gtk.VBox()
+            anno_label = Gtk.Label()
             anno_label.set_alignment (0, 0.5)
             if node.get('mandatory', False):
                 l = '<b>%s</b>  <span color="red">%s</span>' %(
@@ -1236,12 +1240,12 @@ class LT_Widget_1:
             else:                  t = ''
 
             l = min (len(t), 150)
-            text_label = gtk.Label(t[0:l])
+            text_label = Gtk.Label(label=t[0:l])
             text_label.set_line_wrap (True)
             text_label.set_size_request ( 500, 45) ##  XXX
             text_label.set_alignment (0.1, .2)
             vbox.pack_start (text_label)
-            ebox = gtk.Button()
+            ebox = Gtk.Button()
             ebox.add (vbox)
             ebox.connect ('clicked', self.lt_select_detail, i)
             content.pack_start(ebox, False, False)
@@ -1273,16 +1277,16 @@ class LT_Widget_2:
         self.position = position + 1
         self.dialogue = dialogue
         self.node = None
-        self.page = gtk.ScrolledWindow()
-        self.page.set_policy (gtk.POLICY_AUTOMATIC,
-                              gtk.POLICY_AUTOMATIC)
-        self.buff = gtk.TextBuffer()
-        self.content = gtk.TextView(self.buff)
-        self.label = gtk.Label()
+        self.page = Gtk.ScrolledWindow()
+        self.page.set_policy (Gtk.PolicyType.AUTOMATIC,
+                              Gtk.PolicyType.AUTOMATIC)
+        self.buff = Gtk.TextBuffer()
+        self.content = Gtk.TextView(self.buff)
+        self.label = Gtk.Label()
         self.page.add(self.content)
         self.content.grab_focus()
         self.page.set_data ('pyblio-owner', self)
-        self.content.set_wrap_mode (gtk.WRAP_WORD)
+        self.content.set_wrap_mode (Gtk.WrapMode.WORD)
         self.buff.connect('changed', self.changed_cb)
         self.hidden = True
         
@@ -1343,17 +1347,17 @@ class LT_Widget_2:
 class  LT_Dialog_1     :
 
     def __init__ (self, parent=None):
-        self.dialog = gtk.Dialog(
+        self.dialog = Gtk.Dialog(
             _('New Annotation Name'), parent, 0,
-            (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
-             gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+            (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT,
+             Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT))
         self.dialog.vbox.set_border_width (24)
         self.dialog.vbox. pack_start (
-            gtk.Label (
+            Gtk.Label(label=
             _('Name of the new annotation:')),
             True, True, 6)
         
-        self.options = gtk.combo_box_new_text ()
+        self.options = Gtk.ComboBoxText ()
 
         self.dialog.vbox.pack_start (self.options, True, True, 12)
         self.fields = [ x for x in Config.get ('base/fields').data
@@ -1364,7 +1368,7 @@ class  LT_Dialog_1     :
         self.options.set_active (0)
 
         self.options.connect ('changed', self.changed)
-        self.dialog.set_default_response(gtk.RESPONSE_ACCEPT)
+        self.dialog.set_default_response(Gtk.ResponseType.ACCEPT)
         self.value = self.fields[0]
 
     def changed (self, *args):
@@ -1374,7 +1378,7 @@ class  LT_Dialog_1     :
     def run (self):
         self.dialog.show_all()
         r = self.dialog.run()
-        if r == gtk.RESPONSE_ACCEPT:
+        if r == Gtk.ResponseType.ACCEPT:
             name= self.value
         else:
             name = None

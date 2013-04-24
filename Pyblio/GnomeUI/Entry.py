@@ -19,10 +19,7 @@
 # 
 # 
 
-from gtk import *
-from gnome import ui
-
-import pango, gnome, gobject
+from gi.repository import Gdk, Gtk, Pango, GObject
 
 import string
 
@@ -36,29 +33,29 @@ class Entry:
     def __init__ (self):
         ''' Create the graphical widget '''
         
-        self.text = TextView ()
+        self.text = Gtk.TextView ()
         self.buff = self.text.get_buffer ()
 
         self.tag = {}
         
         self.tag ['title'] = \
                  self.buff.create_tag ('title',
-                                       weight = pango.WEIGHT_BOLD)
+                                       weight = Pango.Weight.BOLD)
         self.tag ['field'] = \
                  self.buff.create_tag ('field',
                                        indent = -20,
-                                       style = pango.STYLE_OBLIQUE)
+                                       style = Pango.Style.OBLIQUE)
         self.tag ['body'] = \
                  self.buff.create_tag ('body',
                                        left_margin = 20)
 
-        self.w = ScrolledWindow ()
-        self.w.set_policy (POLICY_AUTOMATIC, POLICY_AUTOMATIC)
+        self.w = Gtk.ScrolledWindow ()
+        self.w.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.w.add (self.text)
 
         self.text.set_editable (False)
         self.text.set_cursor_visible (False)
-        self.text.set_wrap_mode (WRAP_WORD)
+        self.text.set_wrap_mode (Gtk.WrapMode.WORD)
         self.text.set_left_margin (5)
         self.text.set_right_margin (5)
         
@@ -97,14 +94,14 @@ class Entry:
 
             anchor = self.buff.create_child_anchor (iter)
             
-            button = Button ('...')
+            button = Gtk.Button ('...')
             button.show ()
 
             def url_open (w, url):
                 try:
-                    gnome.url_show (url)
+                    Gtk.show_uri(None, url, Gdk.CURRENT_TIME)
                     
-                except gobject.GError, msg:
+                except GObject.GError, msg:
 
                     d = MessageDialog (None,
                                        DIALOG_MODAL |

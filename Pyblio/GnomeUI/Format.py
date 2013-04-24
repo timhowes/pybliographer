@@ -21,8 +21,8 @@
 
 ''' Defines a Dialog to format a subset of entries as a bibliography '''
 
-import gtk
-from gnome import ui
+from gi.repository import Gtk
+# from gnome import ui
 
 import string, os
 
@@ -52,7 +52,7 @@ class FormatDialog (Connector.Publisher, Utils.GladeWindow):
         Utils.GladeWindow.__init__ (self, parent)
 
         # Fill the output format drop-down menu
-        menu = gtk.Menu ()
+        menu = Gtk.Menu ()
         self._w_menu.set_menu (menu)
         
         outlist = Autoload.available ('output')

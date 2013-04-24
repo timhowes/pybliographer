@@ -27,7 +27,7 @@ bibliography '''
 # cleaning up
 
 
-import gobject, gtk
+from gi.repository import GObject, Gtk
 
 import copy, os, re, string
 
@@ -60,7 +60,7 @@ class FieldsDialog (Utils.GladeWindow):
         self.dialog = self.xml.get_widget ('fields1')
         self.w = self.xml.get_widget ('notebook')
 
-##      tooltips = gtk.Tooltips ()
+##      tooltips = Gtk.Tooltips ()
 ##      tooltips.enable ()
         
         self.warning = 0
@@ -120,17 +120,17 @@ class FieldsDialog (Utils.GladeWindow):
     def init_page_1 (self):
         
         self.fields1 = self.xml.get_widget('f_list_1')
-        rend = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(_('Name'), rend, text = 0)
+        rend = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(_('Name'), rend, text = 0)
         self.fields1.append_column(col)
-        rend = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(_('Type'), rend, text = 1)
+        rend = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(_('Type'), rend, text = 1)
         self.fields1.append_column(col)
         
-        self.fm = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
-        self.sfm = gtk.TreeModelSort(self.fm)
-        self.sfm.set_sort_column_id(2, gtk.SORT_ASCENDING)
+        self.fm = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING,
+                                GObject.TYPE_STRING, GObject.TYPE_PYOBJECT)
+        self.sfm = Gtk.TreeModelSort(self.fm)
+        self.sfm.set_sort_column_id(2, Gtk.SortType.ASCENDING)
         self.fields1.set_model(self.sfm)
         self.s1 = self.fields1.get_selection()
         self.s1.connect ('changed', self.list_1_select)
@@ -141,7 +141,7 @@ class FieldsDialog (Utils.GladeWindow):
         
         self.name1 = self.xml.get_widget('name1')
         self.menu1 = self.xml.get_widget('type1')
-        menu = gtk.Menu ()
+        menu = Gtk.Menu ()
         self.menu1.set_menu (menu)
         self.menu_items = _typename.keys ()
         for item in self.menu_items:
@@ -223,17 +223,17 @@ class FieldsDialog (Utils.GladeWindow):
                 # PAGE 2
 
         self.entries2 = self.xml.get_widget('e_list_2')
-        self.em = gtk.ListStore(gobject.TYPE_STRING,
-                                gobject.TYPE_PYOBJECT,
-                                gobject.TYPE_STRING )
+        self.em = Gtk.ListStore(GObject.TYPE_STRING,
+                                GObject.TYPE_PYOBJECT,
+                                GObject.TYPE_STRING )
         self.entries = copy.copy (Config.get ('base/entries').data)
         for i in self.entries.itervalues():
             self.em.append ((i.name, i, i.name.lower()))
-        self.sem = gtk.TreeModelSort(self.em)
-        self.sem.set_sort_column_id(2, gtk.SORT_ASCENDING)
+        self.sem = Gtk.TreeModelSort(self.em)
+        self.sem.set_sort_column_id(2, Gtk.SortType.ASCENDING)
         self.entries2.set_model(self.sem)
-        rend = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(_('Entry type'), rend, text = 0)
+        rend = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(_('Entry type'), rend, text = 0)
         self.entries2.append_column(col)
         self.name2 = self.xml.get_widget('name2')
         self.s2 = self.entries2.get_selection()
@@ -296,25 +296,25 @@ class FieldsDialog (Utils.GladeWindow):
         
         self.flist3a = self.xml.get_widget ('f_list_3a')
         self.flist3a.set_model (self.sfm)       
-        rend = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(_('Available'), rend, text = 0)
+        rend = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(_('Available'), rend, text = 0)
         self.flist3a.append_column(col)
         self.s3a = self.flist3a.get_selection()
         self.label3 = self.xml.get_widget ('entry_type_label')
         self.flist3b = self.xml.get_widget ('f_list_3b')
-        rend = gtk.CellRendererToggle()
+        rend = Gtk.CellRendererToggle()
         rend.connect('toggled', self.toggle_mandatory)
-        col = gtk.TreeViewColumn('X', rend, active = 1)
+        col = Gtk.TreeViewColumn('X', rend, active = 1)
         self.flist3b.append_column(col)
-        rend = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(_('Associated'), rend, text = 2)
+        rend = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(_('Associated'), rend, text = 2)
         self.flist3b.append_column(col)
-        self.sm = gtk.ListStore(gobject.TYPE_STRING,
-                                gobject.TYPE_BOOLEAN,
-                                gobject.TYPE_STRING,
-                                gobject.TYPE_PYOBJECT)
-        self.ssm = gtk.TreeModelSort(self.sm)
-        self.ssm.set_sort_column_id(0, gtk.SORT_ASCENDING)
+        self.sm = Gtk.ListStore(GObject.TYPE_STRING,
+                                GObject.TYPE_BOOLEAN,
+                                GObject.TYPE_STRING,
+                                GObject.TYPE_PYOBJECT)
+        self.ssm = Gtk.TreeModelSort(self.sm)
+        self.ssm.set_sort_column_id(0, Gtk.SortType.ASCENDING)
         self.flist3b.set_model(self.ssm)
         self.s3b = self.flist3b.get_selection()
         self.label3.set_markup (

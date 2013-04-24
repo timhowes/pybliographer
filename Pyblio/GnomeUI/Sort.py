@@ -23,8 +23,9 @@
 
 import os, string
 
-import gtk, gobject
-from gnome import ui
+from gi.repository import Gtk, GObject
+# import gtk, gobject
+# from gnome import ui
 
 from Pyblio import Connector, Sort, Config, version
 from Pyblio.GnomeUI import Utils
@@ -57,27 +58,27 @@ class SortDialog (Connector.Publisher, Utils.GladeWindow):
         
         Utils.GladeWindow.__init__ (self, parent)
 
-        self._model = gtk.ListStore (gtk.gdk.Pixbuf, str, gobject.TYPE_PYOBJECT, int)
+        self._model = Gtk.ListStore (GdkPixbuf.Pixbuf, str, GObject.TYPE_PYOBJECT, int)
         self._w_tree.set_model (self._model)
 
 
         # Only the first two rows are visibles, the others are for
         # internal bookkeeping.
         
-        col = gtk.TreeViewColumn ('Direction', gtk.CellRendererPixbuf (), pixbuf = 0)
+        col = Gtk.TreeViewColumn ('Direction', Gtk.CellRendererPixbuf (), pixbuf = 0)
         self._w_tree.append_column (col)
 
-        col = gtk.TreeViewColumn ('Field', gtk.CellRendererText (), text = 1)
+        col = Gtk.TreeViewColumn ('Field', Gtk.CellRendererText (), text = 1)
         self._w_tree.append_column (col)
 
         self._w_sort.show ()
 
         self._icon = {0: None}
 
-        for id, stock in ((1, gtk.STOCK_GO_UP), (-1, gtk.STOCK_GO_DOWN)):
+        for id, stock in ((1, Gtk.STOCK_GO_UP), (-1, Gtk.STOCK_GO_DOWN)):
                           
             self._icon [id] = self._w_tree.render_icon (stock_id = stock,
-                                                        size = gtk.ICON_SIZE_MENU,
+                                                        size = Gtk.IconSize.MENU,
                                                         detail = None)
         
 

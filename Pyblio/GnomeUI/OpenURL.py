@@ -21,9 +21,9 @@
 
 ''' Defines a Dialog to open URL '''
 
-import gobject
-import gtk
-from gnome import ui
+from gi.repository import GObject
+from gi.repository import Gtk
+# from gnome import ui
 
 import string, os
 
@@ -44,10 +44,10 @@ class OpenDialog (Connector.Publisher, Utils.GladeWindow):
 
         Utils.GladeWindow.__init__ (self, parent)
 
-        liststore = gtk.ListStore (gobject.TYPE_STRING)
+        liststore = Gtk.ListStore (GObject.TYPE_STRING)
         menu = self._w_combobox
         menu.set_model (liststore)
-        cell = gtk.CellRendererText()
+        cell = Gtk.CellRendererText()
         menu.pack_start(cell, True)
         menu.add_attribute(cell, 'text', 0)
 
@@ -82,7 +82,7 @@ class OpenDialog (Connector.Publisher, Utils.GladeWindow):
     def run (self):
         ret = self._w_openurl.run ()
 
-        if ret != gtk.RESPONSE_OK:
+        if ret != Gtk.ResponseType.OK:
             self._w_openurl.destroy ()
             return (None, None)
 

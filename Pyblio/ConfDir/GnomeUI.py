@@ -1,7 +1,7 @@
 from Pyblio import Config, Fields
 from Pyblio.GnomeUI import Utils, Editor
 
-import gtk
+from gi.repository import Gtk
 
 Config.define ('gnomeui/default', """ Graphical description of the
 default field. """)
@@ -45,8 +45,8 @@ Config.define ('gnomeui/multiline',
 
 
 
-Config.set ('gnomeui/monospaced',
-            gtk.gdk.Font ('-*-*-*-r-normal-*-*-*-*-*-c-*-iso8859-1'))
+#Config.set ('gnomeui/monospaced',
+#            gtk.gdk.Font ('-*-*-*-r-normal-*-*-*-*-*-c-*-iso8859-1'))
 
 
 
@@ -58,7 +58,7 @@ Fields.URL.widget         = Editor.URL
 Fields.Reference.widget   = Editor.Reference
 
 Fields.Date.widget        = Editor.Date
-Fields.Date.justification = gtk.JUSTIFY_RIGHT
+Fields.Date.justification = Gtk.JUSTIFY_RIGHT
 
 for f, w in (('author', 150),
              ('editor', 150),

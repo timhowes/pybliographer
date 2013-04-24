@@ -26,7 +26,7 @@ import copy, os, stat
 from Pyblio.GnomeUI import Document, Utils
 from Pyblio import Base, Config
 
-from gtk import *
+from gi.repository import Gtk
 
 class Pybliographic:
     ''' Main class holding all the documents and performing
@@ -139,6 +139,6 @@ class Pybliographic:
             doc.w.destroy ()
             self.documents.remove (doc)
 
-        main_quit ()
+        Gtk.main_quit ()
         return
     

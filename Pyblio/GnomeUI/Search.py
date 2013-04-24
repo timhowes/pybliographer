@@ -24,8 +24,9 @@
 
 import os
 
-from gnome import ui
-import gtk, gobject
+# from gnome import ui
+# import gtk, gobject
+from gi.repository import Gtk, GObject
 
 import string, re, sys, traceback, copy
 
@@ -58,11 +59,11 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
         # the tree model contains a string that explains the query,
         # and a python object representing the actual query.
         
-        self._model = gtk.TreeStore (str, gobject.TYPE_PYOBJECT)
+        self._model = Gtk.TreeStore (str, GObject.TYPE_PYOBJECT)
         self._w_tree.set_model (self._model)
 
         # the view does not display the python column, of course.
-        col = gtk.TreeViewColumn ('field', gtk.CellRendererText (), text = 0)
+        col = Gtk.TreeViewColumn ('field', Gtk.CellRendererText (), text = 0)
         self._w_tree.append_column (col)
 
         self._w_tree.expand_all ()
@@ -82,7 +83,7 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
                                           [' - type - ', ' - key - '])
 
         # connect a menu to the right button
-        self.menu = gtk.Menu ()
+        self.menu = Gtk.Menu ()
         self.delete_button = Utils.popup_add (self.menu, _("Delete"),
                                               self.search_delete)
         self.menu.show ()
@@ -136,9 +137,9 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
                 etype, value, tb = sys.exc_info ()
 		traceback.print_exception (etype, value, tb)
 
-                d = gtk.MessageDialog (self._w_search,
-                                       gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
-                                       gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                d = Gtk.MessageDialog (self._w_search,
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT | Gtk.DialogFlags.MODAL,
+                                       Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
                                        _("internal error during evaluation"))
                 d.run ()
                 d.destroy ()
@@ -190,9 +191,9 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
                     error = 1
                 
             if error:
-                d = gtk.MessageDialog (self._w_search,
-                                       gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
-                                       gtk.MESSAGE_ERROR, gtk.BUTTONS_OK,
+                d = Gtk.MessageDialog (self._w_search,
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT | Gtk.DialogFlags.MODAL,
+                                       Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
                                        _("while compiling %s\nerror: %s") %
                                        (match, err [0]))
                 d.run ()
@@ -244,7 +245,7 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
 
         ''' Called when the user right-clicks in the query tree '''
         
-        if (event.type != gtk.gdk.BUTTON_PRESS or
+        if (event.type != Gdk.EventType.BUTTON_PRESS or
             event.button != 3): return
         
         self.menu.popup (None, None, None, event.button, event.time)

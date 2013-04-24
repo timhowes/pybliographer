@@ -27,22 +27,23 @@ Compatability module
 """
 
 # gnome-python (2.x)
-try:
-    from gnome.ui import gnome_error_dialog_parented
-except ImportError:
-    from gnome.ui import error_dialog_parented as gnome_error_dialog_parented
-
-error_dialog_parented = gnome_error_dialog_parented
+#try:
+#    from gnome.ui import gnome_error_dialog_parented
+#except ImportError:
+#    from gnome.ui import error_dialog_parented as gnome_error_dialog_parented
+#
+#error_dialog_parented = gnome_error_dialog_parented
+error_dialog_parented = str
 
 
 # gnome-python (2.x)
-try:
-    import gnomevfs
-except ImportError:
-    import gnome.vfs as gnomevfs
+#try:
+#    import gnomevfs
+#except ImportError:
+#    import gnome.vfs as gnomevfs
 
-get_mime_type = gnomevfs.get_mime_type
-
+#get_mime_type = gnomevfs.get_mime_type
+get_mime_type = str
 
 
 # Local Variables:

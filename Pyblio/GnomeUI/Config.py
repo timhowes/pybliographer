@@ -22,8 +22,7 @@
 # TO DO:
 # List view troubles
 
-import gobject, gtk, gtk.glade
-import gnome.ui 
+from gi.repository import GObject, Gtk
 
 import copy, os.path, re, string   
 
@@ -49,11 +48,11 @@ class ConfigDialog (Utils.GladeWindow):
         self.dialog = self.xml.get_widget ('config1')
         content = self.xml.get_widget ('dialog-vbox1')
 
-        self.w = gtk.Notebook ()
+        self.w = Gtk.Notebook ()
 
         content.pack_start (self.w)
 
-##      tooltips = gtk.Tooltips ()
+##      tooltips = Gtk.Tooltips ()
 ##      tooltips.enable ()
         
         self.warning = 0
@@ -71,7 +70,7 @@ class ConfigDialog (Utils.GladeWindow):
             keys  = Config.keys_in_domain (string.lower (dom))
             keys.sort ()
 
-            table = gtk.VBox (spacing=6)
+            table = Gtk.VBox (spacing=6)
             table.set_border_width (12)
             
             for item in keys:
@@ -80,12 +79,12 @@ class ConfigDialog (Utils.GladeWindow):
                     continue
 
                 nice  = string.capitalize (string.split (item, '/') [1])
-                label = gtk.Label()
+                label = Gtk.Label()
                 label.set_use_markup(True)
 
                 label.set_markup('<b>%s</b>' % (nice))
                 label.set_alignment(xalign=0.5, yalign=0)
-                hbox = gtk.HBox (spacing = 12)
+                hbox = Gtk.HBox (spacing = 12)
                 hbox.pack_start (label,False)
                 
                 desc  = data.description
@@ -96,11 +95,11 @@ class ConfigDialog (Utils.GladeWindow):
                 # Create the edition widget...
                 edit = data.type.w (data.type, self, item, help_text=desc)
                 if edit.allow_help:
-                    label = gtk.Label ()
+                    label = Gtk.Label ()
                     label.set_line_wrap (True)
                     label.set_text(desc)
                     hbox.pack_start(label, False)
-                hbox = gtk.HBox (spacing = 6)
+                hbox = Gtk.HBox (spacing = 6)
                 hbox.set_border_width (6)
                 
                 cw [item] = edit
@@ -115,12 +114,12 @@ class ConfigDialog (Utils.GladeWindow):
                 # items should not be spread vertically, however 
             if cw:
                 # Put the complete table in a scrolled window
-                scroll = gtk.ScrolledWindow ()
-                scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+                scroll = Gtk.ScrolledWindow ()
+                scroll.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
                 
                 scroll.add_with_viewport (table)
                 
-                self.w.append_page (scroll, gtk.Label (dom))
+                self.w.append_page (scroll, Gtk.Label(label=dom))
                 self.page.append (cw)
 
         self.show()
@@ -203,7 +202,7 @@ class StringConfig (BaseConfig):
     def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
         BaseConfig.__init__ (self, dtype, props, key, parent)
         
-        self.w = gtk.Entry ()
+        self.w = Gtk.Entry ()
         
         if self.key:
             text = Config.get (key).data
@@ -240,8 +239,8 @@ class IntegerConfig (StringConfig):
             vmin = 0
             vmax = +100
             
-        adj = gtk.Adjustment (0, vmin, vmax, 1, 10, 0)
-        self.w = gtk.SpinButton (adj, 1, 0)
+        adj = Gtk.Adjustment (0, vmin, vmax, 1, 10, 0)
+        self.w = Gtk.SpinButton (adj, 1, 0)
         
         if self.key:
             value = Config.get (key).data
@@ -274,8 +273,8 @@ class BooleanConfig (BaseConfig):
     def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
         BaseConfig.__init__ (self, dtype, props, key, parent)
         self.allow_help = False
-        self.w = gtk.HBox (spacing=6)
-        self.button = gtk.CheckButton ()
+        self.w = Gtk.HBox (spacing=6)
+        self.button = Gtk.CheckButton ()
         self.w.pack_start (self.button, False)
 
         if self.key:
@@ -283,10 +282,10 @@ class BooleanConfig (BaseConfig):
             self.button.set_active(value)
         
         self.button.connect  ('clicked', self.update, True)
-        description = gtk.Label()
+        description = Gtk.Label()
         description.set_use_markup(True)
         description.set_line_wrap(True)
-        description.set_justify(gtk.JUSTIFY_LEFT) #default?
+        description.set_justify(Gtk.Justification.LEFT) #default?
         description.set_markup('%s' % (help_text))
         description.set_alignment(xalign=0.5, yalign=0.5)
         self.w.pack_start (description, False, True)
@@ -317,7 +316,7 @@ class ElementConfig (BaseConfig):
             data = str(Config.get (key).data)
         else: data = ''
 
-        self.m = gtk.combo_box_new_text ()
+        self.m = Gtk.ComboBoxText ()
         self.items = dtype.get ()
 
         ix = 0
@@ -331,7 +330,7 @@ class ElementConfig (BaseConfig):
         self.m.set_active (select)
         self.m.connect ('changed', self.update, True)
         
-        self.w = gtk.HBox(spacing = 12)
+        self.w = Gtk.HBox(spacing = 12)
         self.w.pack_start(self.m, True, True, padding=12)
         self.w.show_all ()
         return
@@ -349,7 +348,7 @@ class TupleConfig (BaseConfig):
 
     def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
         BaseConfig.__init__ (self, dtype, props, key, parent)
-        self.w = gtk.VBox (spacing = 6)
+        self.w = Gtk.VBox (spacing = 6)
         self.sub = []
 
         self.resize = False
@@ -404,19 +403,19 @@ class ListConfig (BaseConfig):
     
     def __init__ (self, dtype, props, key=None, parent=None,  help_text=''):
         BaseConfig.__init__ (self, dtype, props, key, parent)
-        self.w = gtk.VBox (spacing = 6)
-        h = gtk.HBox (spacing = 6)
-        scroll = gtk.ScrolledWindow ()
-        scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.w = Gtk.VBox (spacing = 6)
+        h = Gtk.HBox (spacing = 6)
+        scroll = Gtk.ScrolledWindow ()
+        scroll.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
-        self.m = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
-        self.v = gtk.TreeView(self.m)
+        self.m = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_PYOBJECT)
+        self.v = Gtk.TreeView(self.m)
         self.v.set_reorderable (True)
         self.v.set_headers_visible (False)
-        rend = gtk.CellRendererText ()
-        col = gtk.TreeViewColumn ('', rend, text=0)
+        rend = Gtk.CellRendererText ()
+        col = Gtk.TreeViewColumn ('', rend, text=0)
         col.set_resizable(True)
-        #col.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        #col.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col.set_min_width(200)
         self.v.append_column (col)
         self.s = self.v.get_selection()
@@ -424,15 +423,15 @@ class ListConfig (BaseConfig):
         
         scroll.add (self.v)
         h.pack_start (scroll, True, True)
-        bbox = gtk.VButtonBox ()
+        bbox = Gtk.VButtonBox ()
 
-        button = gtk.Button (_("Add"))
+        button = Gtk.Button (_("Add"))
         bbox.pack_start (button)
         button.connect ('clicked', self.add_cb)
-        button = gtk.Button (_("Update"))
+        button = Gtk.Button (_("Update"))
         bbox.pack_start (button)
         button.connect ('clicked', self.update_cb)
-        button = gtk.Button (_("Remove"))
+        button = Gtk.Button (_("Remove"))
         bbox.pack_start (button)
         button.connect ('clicked', self.remove_cb)
 
@@ -514,25 +513,25 @@ class DictConfig (BaseConfig):
     
     def __init__ (self, dtype, props, key=None, parent=None, help_text=''):
         BaseConfig.__init__ (self, dtype, props, key, parent)
-        self.w = gtk.VBox (spacing = 6)
-        h = gtk.HBox (spacing = 6)
-        scroll = gtk.ScrolledWindow ()
-        scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.w = Gtk.VBox (spacing = 6)
+        h = Gtk.HBox (spacing = 6)
+        scroll = Gtk.ScrolledWindow ()
+        scroll.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
-        self.m = gtk.ListStore(gobject.TYPE_STRING,
-                               gobject.TYPE_STRING,
-                               gobject.TYPE_PYOBJECT)
-        self.v = gtk.TreeView(self.m)
+        self.m = Gtk.ListStore(GObject.TYPE_STRING,
+                               GObject.TYPE_STRING,
+                               GObject.TYPE_PYOBJECT)
+        self.v = Gtk.TreeView(self.m)
 
-        rend = gtk.CellRendererText()
-        col = gtk.TreeViewColumn('Key', rend, text=0)
+        rend = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn('Key', rend, text=0)
         col.set_resizable(True)
-        #col.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        #col.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         col.set_min_width(100)
         self.v.append_column(col)
        
-        rend = gtk.CellRendererText()
-        col = gtk.TreeViewColumn('Value', rend, text=1)
+        rend = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn('Value', rend, text=1)
         self.v.append_column(col)
 
         self.s = self.v.get_selection()
@@ -541,26 +540,26 @@ class DictConfig (BaseConfig):
         scroll.add (self.v)
         h.pack_start (scroll, True, True)
 
-        bbox = gtk.VButtonBox ()
+        bbox = Gtk.VButtonBox ()
 
-        button = gtk.Button (_("Set"))
+        button = Gtk.Button (_("Set"))
         bbox.pack_start (button)
         button.connect ('clicked', self.update_cb)
-        button = gtk.Button (_("Remove"))
+        button = Gtk.Button (_("Remove"))
         bbox.pack_start (button)
         button.connect ('clicked', self.remove_cb)
 
         h.pack_start (bbox, False, False)
         self.w.pack_start (h)
-        self.w.pack_start (gtk.HSeparator (), expand = False, fill = False)
+        self.w.pack_start (Gtk.HSeparator (), expand = False, fill = False)
         
         # Bottom
-        table = gtk.Table (2, 2, homogeneous = False)
+        table = Gtk.Table (2, 2, homogeneous = False)
         table.set_row_spacings (6)
         table.set_col_spacings (6)
-        table.attach (gtk.Label (_("Key:")), 0, 1, 0, 1,
+        table.attach (Gtk.Label(label=_("Key:")), 0, 1, 0, 1,
                       xoptions = 0, yoptions = 0)
-        table.attach (gtk.Label (_("Value:")), 0, 1, 1, 2,
+        table.attach (Gtk.Label(label=_("Value:")), 0, 1, 1, 2,
                       xoptions = 0, yoptions = 0)
 
         self.keyw   = dtype.key.w (dtype.key, props, parent=self)
