@@ -83,8 +83,9 @@ class Index (Connector.Publisher):
         i, self.prefix_columns =  0, i
 
         for f in fields:
-            col = gtk.TreeViewColumn (f, gtk.CellRendererText (),
-                                      text = i)
+            renderer = gtk.CellRendererText ()
+            renderer.set_property ('ellipsize', pango.ELLIPSIZE_END)
+            col = gtk.TreeViewColumn (f, renderer, text=i)
             col.set_resizable (True)
             col.set_clickable (True)
 
