@@ -43,13 +43,9 @@ def _vnum (t):
     return string.join (map (str, t), '.')
 
 ui_version = _("This is Pybliographic %s [Python %s, Gtk %s]") % (
-    version.version, _vnum (sys.version_info [:3]),
-    _vnum (Gtk._version))
+    version.version, _vnum (sys.version_info [:3]), Gtk._version)
 
 # clean up our garbage
 sys.argv = sys.argv [:2] + files
 
 del sys, files
-
-# Gtk.glade.bindtextdomain ("pybliographer", version.localedir)
-

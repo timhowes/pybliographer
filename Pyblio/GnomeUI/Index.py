@@ -322,35 +322,30 @@ class Index (Connector.Publisher):
         # clear the access table
         self.access = []
 
-        Utils.set_cursor (self.w, 'clock')
+        #Utils.set_cursor (self.w, 'clock')
 
         self.model.clear ()
 
         for entry in iterator:
             row = []
-
             i = 0
 
             for f in self.fields:
-                row.append (i)
-                i = i + 1
+                text = ''
 
                 if f == '-key-':
-                    row.append ((str (entry.key.key)).decode ('latin-1'))
+                    text = str(entry.key.key).decode('latin-1')
 
                 elif f == '-type-':
-                    row.append (str (entry.type.name)) ## ascii
+                    text = str(entry.type.name)
 
                 elif f == '-author/editor-':
-                    row.append (userformat.author_editor_format
-                                (entry).decode ('latin-1'))
+                    text = userformat.author_editor_format(entry).decode ('latin-1')
 
                 elif f == '-author/title-':
-                    row.append (userformat.author_title_format
-                                (entry).decode ('latin-1'))
+                    text = userformat.author_title_format(entry).decode ('latin-1')
 
                 elif entry.has_key (f):
-
                     if Types.get_field (f).type == Fields.AuthorGroup:
                         text = join (map (lambda a: str (a.last), entry [f]), ', ')
                     elif Types.get_field (f).type == Fields.Date:
@@ -358,28 +353,28 @@ class Index (Connector.Publisher):
                     else:
                         text = str (entry [f])
 
-                    row.append (text.decode ('latin-1'))
-                else:
-                    row.append ('')
+                    text = text.decode ('latin-1')
+
+                row.append((i, text))
+                i = i + 1
 
             if True:
-                row.append (i)
                 if Resource.is_viewable (entry):
-                    row.append (self.gvpixbuf)
+                    row.append((i, self.gvpixbuf))
                 else:
-                    row.append (None)
+                    row.append((i, None))
 
             iter = self.model.append  ()
 
-            print [iter], row
-            # apply (self.model.set, [iter] + row)
-            self.model.set([iter] + row)
+            for k, v in row:
+                if v is not None:
+                    self.model.set_value(iter, k, v)
 
-            # self.access.append (entry)
+            self.access.append (entry)
 
             entry = iterator.next ()
 
-        Utils.set_cursor (self.w, 'normal')
+        #Utils.set_cursor (self.w, 'normal')
         return
 
 
@@ -446,7 +441,8 @@ class Index (Connector.Publisher):
         entries = []
 
         def retrieve (model, path, iter, entries):
-            entries.append (self.access [path [0]])
+            indices = path.get_indices ()
+            entries.append (self.access [indices [0]])
 
         self.selinfo.selected_foreach (retrieve, entries)
 

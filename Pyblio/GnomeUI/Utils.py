@@ -23,11 +23,7 @@
 
 import os
 
-from gi.repository import Gtk, Pango, Gdk
-# import gtk, pango
-# import Gtk.glade
-
-# from gnome import ui
+from gi.repository import Gtk, Pango, Gdk, GConf
 
 from Pyblio import Config, version
 

@@ -25,7 +25,6 @@
 import os
 
 # from gnome import ui
-# import gtk, gobject
 from gi.repository import Gtk, GObject
 
 import string, re, sys, traceback, copy

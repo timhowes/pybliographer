@@ -2,8 +2,8 @@
 #
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 # 	   
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -28,10 +28,7 @@ from gi.repository import GObject
 # from gnome import ui
 from gettext import gettext as _
 # import gnome
-from gi.repository import Gtk
-# import Gtk.glade
-
-from gi.repository import Gdk
+from gi.repository import Gtk, Gdk
 
 from Pyblio.GnomeUI import Editor, Entry, FileSelector, Format
 from Pyblio.GnomeUI import Index, OpenURL, Search, Utils
@@ -201,7 +198,7 @@ class Document (Connector.Publisher):
         prev.set_property ('hide-if-empty', False)
 
         view_action = self.actiongroup.get_action ('ViewResource')
-	view_action.set_property ('hide-if-empty', False)
+        view_action.set_property ('hide-if-empty', False)
         self.uim.insert_action_group (self.actiongroup, 0)
         self.uim.add_ui_from_string (uim_content)
 
@@ -213,14 +210,19 @@ class Document (Connector.Publisher):
         self.xml.set_translation_domain('pybliographer')
         self.xml.add_from_file(gp)
         self.xml.connect_signals(self)
-        #self.xml = Gtk.glade.XML (gp, 'main', domain = 'pybliographer')
-        #self.xml.signal_autoconnect (self)
 
         self.w = self.xml.get_object ('main')
         self.paned = self.xml.get_object ('main_pane')
 
-        #self.w.set_menus (self.uim.get_object ('/Menubar'))
-        #self.w.set_toolbar (self.uim.get_object ('/Toolbar'))
+        box = self.xml.get_object ('grid')
+        menubar = self.uim.get_widget ('/Menubar')
+        toolbar = self.uim.get_widget ('/Toolbar')
+        box.attach (menubar, 0, 0, 1, 1)
+        box.attach (toolbar, 0, 1, 1, 1)
+        
+        prev = self.xml.get_object ('previous_documents')
+        prev.set_property ('is-important', True)
+        prev.set_property ('hide-if-empty', False)
 
         self.w.add_accel_group (self.uim.get_accel_group ())
 
@@ -230,7 +232,6 @@ class Document (Connector.Publisher):
         self.w_save_mnu = self.xml.get_object ('_w_save_mnu')
 
         # We manually add a simple search area
-        t = self.uim.get_widget ('/Toolbar')
         h = Gtk.HBox()
 
         i = Gtk.Image()
@@ -250,7 +251,7 @@ class Document (Connector.Publisher):
 
         i = Gtk.ToolItem()
         i.add(h)
-        t.insert(i, -1)
+        toolbar.insert(i, -1)
         
         i.show_all()
         
@@ -361,7 +362,7 @@ class Document (Connector.Publisher):
         for item in history:
             # Display name in the menu
             quoted   = string.replace (item [0], '_', '__')
-        
+
             mid = self.uim.new_merge_id ()
 
             self.recents_mid.append (mid)

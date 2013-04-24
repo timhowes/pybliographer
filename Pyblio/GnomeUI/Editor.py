@@ -26,9 +26,7 @@
 from gettext import gettext as _
 
 from gi.repository import GObject, Gtk
-# import copy, gobject, gtk, re, string
 import copy, re, string
-# from gnome import ui
 
 from Pyblio import Base, Config, Connector, Exceptions, Fields, Key, Types
 from Pyblio.GnomeUI import Common, Compat, FieldsInfo, FileSelector, Mime, Utils

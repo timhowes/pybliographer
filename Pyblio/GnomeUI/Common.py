@@ -37,7 +37,6 @@ RESPONSE_COPY = 1
 RESPONSE_VIEW = 2
 
 from gi.repository import GObject, Gtk, Gdk, Pango
-# import gobject, gtk, Gtk.gdk, pango, sys
 import sys
 
 from  Pyblio import Fields, Resource

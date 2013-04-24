@@ -58,7 +58,7 @@ Fields.URL.widget         = Editor.URL
 Fields.Reference.widget   = Editor.Reference
 
 Fields.Date.widget        = Editor.Date
-Fields.Date.justification = Gtk.JUSTIFY_RIGHT
+Fields.Date.justification = Gtk.Justification.RIGHT
 
 for f, w in (('author', 150),
              ('editor', 150),
@@ -73,7 +73,7 @@ for f, w in (('author', 150),
     h [f].width = w
     
 
-Config.set ('gnomeui/default',  (150, gtk.JUSTIFY_LEFT, Editor.Entry))
+Config.set ('gnomeui/default',  (150, Gtk.Justification.LEFT, Editor.Entry))
 
 multi = {}
 

@@ -43,7 +43,6 @@ elif pyblio_path:
 else:
     main.new_document ()
 
-# import gtk
 from gi.repository import Gtk
 
 Gtk.main ()

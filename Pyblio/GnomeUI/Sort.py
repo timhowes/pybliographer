@@ -24,7 +24,6 @@
 import os, string
 
 from gi.repository import Gtk, GObject
-# import gtk, gobject
 # from gnome import ui
 
 from Pyblio import Connector, Sort, Config, version
