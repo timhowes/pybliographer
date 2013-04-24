@@ -349,6 +349,8 @@ class Index (Connector.Publisher):
                     
                     if Types.get_field (f).type == Fields.AuthorGroup:
                         text = join (map (lambda a: str (a.last), entry [f]), ', ')
+                    elif Types.get_field (f).type == Fields.Date:
+                        text = str (entry [f].year)
                     else:
                         text = str (entry [f])
                         
