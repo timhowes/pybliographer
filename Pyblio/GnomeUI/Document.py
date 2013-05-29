@@ -25,9 +25,7 @@
 
 from gi.repository import GObject
 
-# from gnome import ui
 from gettext import gettext as _
-# import gnome
 from gi.repository import Gtk, Gdk
 
 from Pyblio.GnomeUI import Editor, Entry, FileSelector, Format
@@ -1234,31 +1232,32 @@ class Document (Connector.Publisher):
             self.w.error (_("Can't display documentation:\n%s") % msg)
             
         return
-    
-    def about (self, *arg):
-        
-        about = ui.About ('Pybliographic',
-                          version.version,
-                          _("This program is copyrighted under the GNU GPL"),
-                          _("GNOME interface to the Pybliographer system."),
-                          ['Hervé Dréau',
-                           'Frédéric Gobry',
-                           'Zoltán Kóta',
-                           'Travis Oliphant',
-                           'Darrell Rudmann',
-                           'Peter Schulte-Stracke',
-                           'John Vu'],
-                          ['Yuri Bongiorno',
-                           'Frédéric Gobry',
-                           'Zoltán Kóta'],
-                          _('GNOME Translation Team'))
 
-        about.set_transient_for (self.w)
+    def about (self, *arg):
+        authors = ['Hervé Dréau',
+                   'Frédéric Gobry',
+                   'Zoltán Kóta',
+                   'Travis Oliphant',
+                   'Darrell Rudmann',
+                   'Peter Schulte-Stracke',
+                   'John Vu',
+                   'Germán Poo-Caamaño']
+        documentors = ['Yuri Bongiorno',
+                       'Frédéric Gobry',
+                       'Zoltán Kóta']
+        translators = _('GNOME Translation Team')
         
-        link = ui.HRef ('http://www.pybliographer.org/',
-                        _("Pybliographer Home Page"))
-        link.show ()
-        about.vbox.pack_start (link)
+        about = Gtk.AboutDialog(
+                        parent=self.w,
+                        program_name='Pybliographic',
+                        version=version.version,
+                        website='http://www.pybliographer.org/',
+                        comments=_("GNOME interface to the Pybliographer system."),
+                        license_type=Gtk.License.GPL_2_0,
+                        authors=authors,
+                        documenters=documentors,
+                        translator_credits=translators)
+
+        about.connect('response', lambda w, b: w.destroy())
         about.show()
-        return
 
