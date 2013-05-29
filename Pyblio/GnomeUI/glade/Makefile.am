@@ -3,7 +3,7 @@ appicondir = $(datadir)/pixmaps
 
 glade_DATA = 					\
 	fields1.glade				\
-	pyblio.glade 				\
+	pyblio.ui 				\
 	search.glade 				\
 	sort.glade 				\
 	format.glade				\
@@ -11,9 +11,9 @@ glade_DATA = 					\
 	config1.glade				\
 	openurl.glade
 
-EXTRA_DIST = $(glade_DATA) pyblio.glade.in
+EXTRA_DIST = $(glade_DATA) pyblio.ui.in
 
-pyblio.glade: pyblio.glade.in Makefile
+pyblio.ui: pyblio.ui.in Makefile
 	sed -e 's^\@icondir\@^$(appicondir)^g' 		\
-	< $(srcdir)/pyblio.glade.in > pyblio.glade.tmp 	\
-	&& mv pyblio.glade.tmp pyblio.glade
+	< $(srcdir)/pyblio.ui.in > pyblio.ui.tmp 	\
+	&& mv pyblio.ui.tmp pyblio.ui
