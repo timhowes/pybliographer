@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 # 	   
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -23,8 +24,7 @@
 
 import os, string
 
-from gi.repository import Gtk, GObject
-# from gnome import ui
+from gi.repository import Gtk, GObject, GdkPixbuf
 
 from Pyblio import Connector, Sort, Config, version
 from Pyblio.GnomeUI import Utils
@@ -36,19 +36,17 @@ del cPickle
 
 
 class SortDialog (Connector.Publisher, Utils.GladeWindow):
-
     """ Provide a configuration dialog for sorting the main index.
     Emit a 'sort-data' signal when the user chooses new sort options.
     """
 
    # This dialog is described as a glade XML file
-    gladeinfo = { 'file': 'sort.glade',
+    gladeinfo = { 'file': 'sort.ui',
                   'root': '_w_sort',
                   'name': 'sort'
                   }
     
-    def __init__ (self, sort, parent = None):
-
+    def __init__(self, sort, parent=None):
         """ Create the dialog.
 
           - current_sort: the current sorting options
@@ -57,28 +55,28 @@ class SortDialog (Connector.Publisher, Utils.GladeWindow):
         
         Utils.GladeWindow.__init__ (self, parent)
 
-        self._model = Gtk.ListStore (GdkPixbuf.Pixbuf, str, GObject.TYPE_PYOBJECT, int)
-        self._w_tree.set_model (self._model)
+        self._model = Gtk.ListStore(GdkPixbuf.Pixbuf, str, GObject.TYPE_PYOBJECT, int)
+        self._w_tree.set_model(self._model)
 
 
         # Only the first two rows are visibles, the others are for
         # internal bookkeeping.
         
-        col = Gtk.TreeViewColumn ('Direction', Gtk.CellRendererPixbuf (), pixbuf = 0)
+        col = Gtk.TreeViewColumn('Direction', Gtk.CellRendererPixbuf(), pixbuf=0)
         self._w_tree.append_column (col)
 
-        col = Gtk.TreeViewColumn ('Field', Gtk.CellRendererText (), text = 1)
-        self._w_tree.append_column (col)
+        col = Gtk.TreeViewColumn('Field', Gtk.CellRendererText(), text=1)
+        self._w_tree.append_column(col)
 
-        self._w_sort.show ()
+        self._w_sort.show()
 
         self._icon = {0: None}
 
         for id, stock in ((1, Gtk.STOCK_GO_UP), (-1, Gtk.STOCK_GO_DOWN)):
                           
-            self._icon [id] = self._w_tree.render_icon (stock_id = stock,
-                                                        size = Gtk.IconSize.MENU,
-                                                        detail = None)
+            self._icon [id] = self._w_tree.render_icon(stock_id = stock,
+                                                       size = Gtk.IconSize.MENU,
+                                                       detail = None)
         
 
         # Gather the current sort info for all the available

@@ -5,7 +5,7 @@ glade_DATA = 					\
 	fields1.glade				\
 	pyblio.ui 				\
 	search.glade 				\
-	sort.glade 				\
+	sort.ui 				\
 	format.ui				\
 	medline.glade 				\
 	config1.glade				\
