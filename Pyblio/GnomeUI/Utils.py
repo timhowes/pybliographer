@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
-# 	   
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
+# 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2 
@@ -53,7 +54,6 @@ class Callback:
 glade_root = os.path.join(os.path.dirname(__file__), 'glade')
 
 class GladeWindow:
-
     ''' A Helper class that builds a graphical interface provided by a
     Glade XML file. This class binds the methods with
     signal_autoconnect, and imports wigets whose name starts with _w_
@@ -68,9 +68,7 @@ class GladeWindow:
 
         glade_file  : name of the glade file (with no directory info)
         root_widget : name of the root widget
-
     '''
-
 
     # This is a class variable that contains the file name to load for
     # each instance of a subclass.
@@ -80,45 +78,49 @@ class GladeWindow:
                   'name': None
                   }
 
-    def __init__ (self, parent = None, window = None):
-        
-        gp = os.path.join(glade_root, self.gladeinfo ['file'])
-        self.xml = Gtk.glade.XML (gp, window, domain = "pybliographer")
-        self.xml.signal_autoconnect (self)
+    def __init__(self, parent=None, window=None):
+        gp = os.path.join(glade_root, self.gladeinfo['file'])
+        self.xml = Gtk.Builder()
+        self.xml.set_translation_domain('pybliographer')
+        self.xml.add_from_file(gp)
+        self.xml.connect_signals(self)
 
-        for w in self.xml.get_widget_prefix ('_w_'):
-            setattr (self, w.name, w)
+        for w in self.xml.get_objects():
+            if isinstance(w, Gtk.Buildable):
+                name = Gtk.Buildable.get_name(w)
+                if name.startswith('_w_'):
+                    setattr(self, name, w)
 
         # Set the parent window. The root widget is not necessarily
         # exported as an instance attribute.
-        root = self.xml.get_widget (self.gladeinfo ['root'])
-        cfg  = '/apps/pybliographic/%s/' % self.gladeinfo ['name']
+        root = self.xml.get_object(self.gladeinfo['root'])
+        cfg  = '/apps/pybliographic/%s/' % self.gladeinfo['name']
         
-        w = config.get_int (cfg + 'width')  or -1
-        h = config.get_int (cfg + 'height') or -1
+        w = config.get_int(cfg + 'width')  or -1
+        h = config.get_int(cfg + 'height') or -1
 
         if w != -1 and h != -1:
-            root.set_default_size (w, h)
-            root.resize (w, h)
+            root.set_default_size(w, h)
+            root.resize(w, h)
         
         if parent:
-            root.set_transient_for (parent)
+            root.set_transient_for(parent)
             
         return
 
-    def size_save (self):
-        root = self.xml.get_widget (self.gladeinfo ['root'])
-        cfg  = '/apps/pybliographic/%s/' % self.gladeinfo ['name']
+    def size_save(self):
+        root = self.xml.get_object(self.gladeinfo['root'])
+        cfg  = '/apps/pybliographic/%s/' % self.gladeinfo['name']
 
-        w, h = root.get_size ()
+        w, h = root.get_size()
 
-        config.set_int (cfg + 'width',  w)
-        config.set_int (cfg + 'height', h)
+        config.set_int(cfg + 'width',  w)
+        config.set_int(cfg + 'height', h)
 
         return
     
     
-config = GConf.Client.get_default ()
+config = GConf.Client.get_default()
 
 cursor = {
     'clock' : Gdk.Cursor.new(Gdk.CursorType.WATCH),
