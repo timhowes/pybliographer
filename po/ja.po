@@ -383,11 +383,11 @@ msgid ""
 "Try to Save As..."
 msgstr ""
 "保存するときに内部エラーが発生しました\n"
-"別名で保存してください..."
+"「名前を付けて保存」を試してください..."
 
 #: ../Pyblio/GnomeUI/Document.py:761
 msgid "Save As..."
-msgstr "別名で保存..."
+msgstr "名前を付けて保存..."
 
 #: ../Pyblio/GnomeUI/Document.py:767
 #, python-format
