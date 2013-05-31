@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 # 	   
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -23,7 +24,6 @@
 
 from gi.repository import GObject
 from gi.repository import Gtk
-# from gnome import ui
 
 import string, os
 
@@ -35,37 +35,37 @@ class OpenDialog (Connector.Publisher, Utils.GladeWindow):
 
     """ Class implementing the Open Location dialog """
 
-    gladeinfo = { 'file': 'openurl.glade',
+    gladeinfo = { 'file': 'openurl.ui',
                   'root': '_w_openurl',
                   'name': 'openurl'
                   }
 
-    def __init__ (self, parent = None, has_auto = True):
+    def __init__(self, parent=None, has_auto=True):
 
-        Utils.GladeWindow.__init__ (self, parent)
+        Utils.GladeWindow.__init__(self, parent)
 
-        liststore = Gtk.ListStore (GObject.TYPE_STRING)
+        liststore = Gtk.ListStore(GObject.TYPE_STRING)
         menu = self._w_combobox
-        menu.set_model (liststore)
+        menu.set_model(liststore)
         cell = Gtk.CellRendererText()
         menu.pack_start(cell, True)
         menu.add_attribute(cell, 'text', 0)
 
-        liste = Autoload.available ('format')
+        liste = Autoload.available('format')
         liste.sort ()
 
         self.formats = [ None ]
 
         if has_auto:
-            iter = liststore.append ()
+            iter = liststore.append()
             liststore.set (iter, 0, _(' - According to file suffix - '))
             self.ftype = None
         else:
-            self.ftype = liste [0]
+            self.ftype = liste[0]
 
         for avail in liste:
-            iter = liststore.append ()
-            liststore.set (iter, 0, avail)
+            iter = liststore.append()
+            liststore.set(iter, 0, avail)
 
         self.formats += liste
 
@@ -74,20 +74,20 @@ class OpenDialog (Connector.Publisher, Utils.GladeWindow):
         return
 
 
-    def menu_select (self, widget):
-        self.ftype = self.formats [widget.get_active ()]
+    def menu_select(self, widget):
+        self.ftype = self.formats [widget.get_active()]
         return
 
 
-    def run (self):
-        ret = self._w_openurl.run ()
+    def run(self):
+        ret = self._w_openurl.run()
 
         if ret != Gtk.ResponseType.OK:
-            self._w_openurl.destroy ()
+            self._w_openurl.destroy()
             return (None, None)
 
-        url = self._w_url.get_text ()
+        url = self._w_url.get_text()
 
-        self._w_openurl.destroy ()
+        self._w_openurl.destroy()
 
         return (url, self.ftype)
