@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
-# 	   
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2 
@@ -24,8 +25,7 @@
 
 import os
 
-# from gnome import ui
-from gi.repository import Gtk, GObject
+from gi.repository import Gdk, Gtk, GObject
 
 import string, re, sys, traceback, copy
 
@@ -46,72 +46,71 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
     
     '''
 
-    gladeinfo = { 'name': 'search',
-                  'file': 'search.glade',
-                  'root': '_w_search'
+    gladeinfo = { 'file': 'search.ui',
+                  'root': '_w_search',
+                  'name': 'search'
                   }
     
-    def __init__ (self, parent = None):
-
-        Utils.GladeWindow.__init__ (self, parent)
+    def __init__(self, parent=None):
+        Utils.GladeWindow.__init__(self, parent)
 
         # the tree model contains a string that explains the query,
         # and a python object representing the actual query.
         
-        self._model = Gtk.TreeStore (str, GObject.TYPE_PYOBJECT)
-        self._w_tree.set_model (self._model)
+        self._model = Gtk.TreeStore(str, GObject.TYPE_PYOBJECT)
+        self._w_tree.set_model(self._model)
 
         # the view does not display the python column, of course.
-        col = Gtk.TreeViewColumn ('field', Gtk.CellRendererText (), text = 0)
-        self._w_tree.append_column (col)
+        col = Gtk.TreeViewColumn('field', Gtk.CellRendererText(), text=0)
+        self._w_tree.append_column(col)
 
-        self._w_tree.expand_all ()
+        self._w_tree.expand_all()
         
         # The root of the search tree is the full database
-        self._model.append (None, (_("Full database"), None))
+        self._model.append(None, (_("Full database"), None))
 
 
         # Monitor the selected items
-        self._selection = self._w_tree.get_selection ()
-        self._selection.connect ('changed', self.selection)
-        
-        # fill the combo containing the available fields
-        self._w_field.set_popdown_strings ([' - any field - '] +
-                                          list (Config.get
-                                                ('gnome/searched').data) +
-                                          [' - type - ', ' - key - '])
+        self._selection = self._w_tree.get_selection()
+        self._selection.connect('changed', self.selection)
+
+        field_items = [' - any field - '] + \
+                      list(Config.get('gnome/searched').data) + \
+                      [' - type - ', ' - key - ']
+        for fields in field_items:
+            self._w_field.append_text(fields)
+
+        self._w_field.set_active(0)
 
         # connect a menu to the right button
-        self.menu = Gtk.Menu ()
-        self.delete_button = Utils.popup_add (self.menu, _("Delete"),
-                                              self.search_delete)
-        self.menu.show ()
+        self.menu = Gtk.Menu()
+        self.delete_button = Utils.popup_add(self.menu, _("Delete"),
+                                             self.search_delete)
 
         # We are set up.
-        self.show ()
-        return
+        self.show()
 
 
-    def show (self):
+    def show(self):
         ''' Invoked to show the interface again when it has been closed '''
         
-        self._w_search.show ()
+        self._w_search.show()
         return
 
 
-    def close_cb (self, widget):
+    def close_cb(self, widget):
         ''' Invoked to hide the interface when clicking on "Close" '''
 
-        self.size_save ()
-        self._w_search.hide ()
+        self.size_save()
+        self._w_search.hide()
         return
     
 
-    def apply_cb (self, widget):
+    def apply_cb(self, widget):
 
         ''' Construct the new query and add it to the query tree '''
         
-        page = self._w_notebook.get_current_page ()
+        page = self._w_notebook.get_current_page()
 
         name = None
         
@@ -128,29 +127,29 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
                 'after' :    TextUI.after,
                 }
             
-            search = self._w_expert_text.get_text ().encode ('latin-1')
+            search = self._w_expert.get_active_text().encode('latin-1')
             
             try:
                 exec ('tester = ' + search, user_global)
             except:
-                etype, value, tb = sys.exc_info ()
-		traceback.print_exception (etype, value, tb)
+                etype, value, tb = sys.exc_info()
+                traceback.print_exception(etype, value, tb)
 
-                d = Gtk.MessageDialog (self._w_search,
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT | Gtk.DialogFlags.MODAL,
-                                       Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
-                                       _("internal error during evaluation"))
-                d.run ()
-                d.destroy ()
+                d = Gtk.MessageDialog(self._w_search,
+                                      Gtk.DialogFlags.DESTROY_WITH_PARENT | Gtk.DialogFlags.MODAL,
+                                      Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
+                                      _("internal error during evaluation"))
+                d.run()
+                d.destroy()
                 return
 
-            test = user_global ['tester']
+            test = user_global['tester']
 
         # Simple Search
         elif page == 0:
             
-            field = self._w_field_text.get_text ().lower ()
-            match = self._w_pattern_text.get_text ()
+            field = self._w_field.get_active_text().lower()
+            match = self._w_pattern.get_active_text()
             
             if match == '': return
 
@@ -158,7 +157,7 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
 
             if field == ' - any field - ' or field == '':
                 try:
-                    test = Search.AnyTester (match.encode ('latin-1'))
+                    test = Search.AnyTester(match.encode('latin-1'))
                 except re.error, err:
                     error = 1
                     
@@ -166,37 +165,37 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
 
             elif field == ' - type - ':
                 # get the type description
-                the_type = Types.get_entry (string.lower (match), 0)
+                the_type = Types.get_entry(string.lower(match), 0)
 
                 if the_type is None:
                     err = ['No such Entry type']
                     error = 1
                 else:
                     try:
-                        test = Search.TypeTester (the_type)
+                        test = Search.TypeTester(the_type)
                     except re.error, err:
                         error = 1
 
             elif field == ' - key - ':
                 try:
-                    test = Search.KeyTester (match)
+                    test = Search.KeyTester(match)
                 except re.error, err:
                     error = 1
 
             else:
                 try:
-                    test = Search.Tester (field, match)
+                    test = Search.Tester(field, match)
                 except re.error, err:
                     error = 1
                 
             if error:
-                d = Gtk.MessageDialog (self._w_search,
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT | Gtk.DialogFlags.MODAL,
-                                       Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
-                                       _("while compiling %s\nerror: %s") %
-                                       (match, err [0]))
-                d.run ()
-                d.destroy ()
+                d = Gtk.MessageDialog(self._w_search,
+                                      Gtk.DialogFlags.DESTROY_WITH_PARENT | Gtk.DialogFlags.MODAL,
+                                      Gtk.MessageType.ERROR, Gtk.ButtonsType.OK,
+                                      _("while compiling %s\nerror: %s") %
+                                      (match, err [0]))
+                d.run()
+                d.destroy()
                 return
             
         # No search
@@ -204,69 +203,69 @@ class SearchDialog (Connector.Publisher, Utils.GladeWindow):
             return
 
         if name is None:
-            name = str (test)
+            name = str(test)
 
         # Get the path to the query being refined
-        s, iter = self._selection.get_selected ()
-        if iter is None: iter = s.get_iter ((0,))
+        s, parent = self._selection.get_selected()
+        if parent is None: parent = s.get_iter((0,))
 
-        i = s.get_path (iter)
+        parent_path = s.get_path(parent)
 
         # If we are refining a previous query, build the new query as
         # a logical and of the previous and new query.
         
-        current = self._model [i] [1]
+        current = self._model[parent_path][1]
         if current: test = current & test
 
         # Add the new query in the tree and ensure it is visible and selected.
-        iter = self._model.append (iter, (name, test))
-        path = s.get_path (iter)
+        child = self._model.append(parent, (name, test))
+        path = s.get_path(child)
         
-        self._w_tree.expand_row (path [:-1], True)
-        self._selection.select_path (path)
+        self._w_tree.expand_row(parent_path, True)
+        self._selection.select_path(path)
         return
 
     
-    def selection (self, *arg):
+    def selection(self, *arg):
 
         ''' Called when the user clicks on a specific query '''
         
-        s, i = self._selection.get_selected ()
+        s, i = self._selection.get_selected()
         if i is None: return
         
-        data = self._model [s.get_path (i)]
+        data = self._model[s.get_path (i)]
 
-        self.issue ('search-data', * data)
+        self.issue('search-data', * data)
         return
 
     
-    def popup_menu (self, w, event, *arg):
+    def popup_menu(self, w, event, *arg):
 
         ''' Called when the user right-clicks in the query tree '''
         
         if (event.type != Gdk.EventType.BUTTON_PRESS or
             event.button != 3): return
         
-        self.menu.popup (None, None, None, event.button, event.time)
+        self.menu.popup (None, None, None, None, event.button, event.time)
 
         # Only allow removal when a valid query is selected
-        s, i = self._selection.get_selected ()
-        self.delete_button.set_sensitive (i is not None and
-                                          s [i][1] is not None)
+        s, i = self._selection.get_selected()
+        self.delete_button.set_sensitive(i is not None and
+                                         s [i][1] is not None)
         return
     
 
-    def search_delete (self, *arg):
+    def search_delete(self, *arg):
         
         ''' Called when the user deletes a query in the tree '''
 
-        s, i = self._selection.get_selected ()
+        s, i = self._selection.get_selected()
         if i is None: return
 
         # Do not allow removal of the root.
         if s [i][1] is None: return
         
-        self._model.remove (i)
+        self._model.remove(i)
         return
 
 
