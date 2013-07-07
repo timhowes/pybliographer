@@ -8,7 +8,7 @@ glade_DATA = 					\
 	sort.ui 				\
 	format.ui				\
 	medline.glade 				\
-	config1.glade				\
+	config1.ui				\
 	openurl.glade
 
 EXTRA_DIST = $(glade_DATA) pyblio.ui.in

@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 # 	   
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -36,21 +37,21 @@ _cpt = re.compile ('\s+')
 class ConfigDialog (Utils.GladeWindow):
 
     gladeinfo = {
-        'file': 'config1.glade',
+        'file': 'config1.ui',
         'root': 'config1',
         'name': 'configuration'
         }
 
     def __init__ (self, parent = None):
 
-        Utils.GladeWindow.__init__ (self, parent, window = 'config1')
+        Utils.GladeWindow.__init__ (self, parent)
 
-        self.dialog = self.xml.get_widget ('config1')
-        content = self.xml.get_widget ('dialog-vbox1')
+        self.dialog = self.xml.get_object('config1')
+        content = self.xml.get_object('dialog-vbox1')
 
         self.w = Gtk.Notebook ()
 
-        content.pack_start (self.w)
+        content.pack_start (self.w, True, True, 0)
 
 ##      tooltips = Gtk.Tooltips ()
 ##      tooltips.enable ()
@@ -85,32 +86,32 @@ class ConfigDialog (Utils.GladeWindow):
                 label.set_markup('<b>%s</b>' % (nice))
                 label.set_alignment(xalign=0.5, yalign=0)
                 hbox = Gtk.HBox (spacing = 12)
-                hbox.pack_start (label,False)
+                hbox.pack_start(label, False, True, 0)
                 
                 desc  = data.description
                 desc  = string.translate (desc, _map)
                 desc  = string.strip (_cpt.sub (' ', desc))
 
-                table.pack_start (hbox, False)
+                table.pack_start (hbox, False, True, 0)
                 # Create the edition widget...
                 edit = data.type.w (data.type, self, item, help_text=desc)
                 if edit.allow_help:
                     label = Gtk.Label ()
                     label.set_line_wrap (True)
                     label.set_text(desc)
-                    hbox.pack_start(label, False)
+                    hbox.pack_start(label, False, True, 0)
                 hbox = Gtk.HBox (spacing = 6)
                 hbox.set_border_width (6)
                 
                 cw [item] = edit
-                hbox.pack_start (edit.w, False)
+                hbox.pack_start (edit.w, False, True, 0)
 
 
 ##                     tooltips.set_tip (button, desc)
 
                 table.pack_start (hbox,
-                                  expand = edit.resize,
-                                  fill   = edit.resize)
+                                  expand=edit.resize,
+                                  fill  =edit.resize, padding=0)
                 # items should not be spread vertically, however 
             if cw:
                 # Put the complete table in a scrolled window
@@ -128,7 +129,7 @@ class ConfigDialog (Utils.GladeWindow):
     def on_close1 (self, w):
 
         self.size_save ()
-        self.dialog.hide_all()
+        self.dialog.hide()
 
     def show (self):
         self.dialog.show_all()
@@ -240,7 +241,8 @@ class IntegerConfig (StringConfig):
             vmax = +100
             
         adj = Gtk.Adjustment (0, vmin, vmax, 1, 10, 0)
-        self.w = Gtk.SpinButton (adj, 1, 0)
+        self.w = Gtk.SpinButton()
+        self.w.configure(adj, 1, 0)
         
         if self.key:
             value = Config.get (key).data
@@ -275,7 +277,7 @@ class BooleanConfig (BaseConfig):
         self.allow_help = False
         self.w = Gtk.HBox (spacing=6)
         self.button = Gtk.CheckButton ()
-        self.w.pack_start (self.button, False)
+        self.w.pack_start (self.button, False, True, 0)
 
         if self.key:
             value = Config.get (key).data
@@ -288,7 +290,7 @@ class BooleanConfig (BaseConfig):
         description.set_justify(Gtk.Justification.LEFT) #default?
         description.set_markup('%s' % (help_text))
         description.set_alignment(xalign=0.5, yalign=0.5)
-        self.w.pack_start (description, False, True)
+        self.w.pack_start (description, False, True, 0)
         
         self.w.show_all ()
         return
@@ -361,9 +363,7 @@ class TupleConfig (BaseConfig):
                 self.resize = True
 
         for w in self.sub:
-            self.w.pack_start (w.w,
-                               expand = w.resize,
-                               fill   = w.resize)
+            self.w.pack_start (w.w, expand=w.resize, fill=w.resize, padding=0)
         
         if key:
             data = Config.get (key).data
@@ -422,30 +422,29 @@ class ListConfig (BaseConfig):
         self.s.connect ('changed', self.select_cb)
         
         scroll.add (self.v)
-        h.pack_start (scroll, True, True)
+        h.pack_start (scroll, True, True, 0)
         bbox = Gtk.VButtonBox ()
 
         button = Gtk.Button (_("Add"))
-        bbox.pack_start (button)
+        bbox.pack_start (button, True, True, 0)
         button.connect ('clicked', self.add_cb)
         button = Gtk.Button (_("Update"))
-        bbox.pack_start (button)
+        bbox.pack_start (button, True, True, 0)
         button.connect ('clicked', self.update_cb)
         button = Gtk.Button (_("Remove"))
-        bbox.pack_start (button)
+        bbox.pack_start (button, True, True, 0)
         button.connect ('clicked', self.remove_cb)
 
         self.m.connect ('row-changed', self._on_reordering)
         self.w.connect ('hide', self._on_leave)
         
-        h.pack_end (bbox, False)
-        self.w.pack_start (h, True)
+        h.pack_end (bbox, False, True, 0)
+        self.w.pack_start (h, True, True, 0)
 
         # Bottom
         self.subw = dtype.subtype.w (dtype.subtype, props, parent=self)
-        self.w.pack_start (self.subw.w,
-                           expand = self.subw.resize,
-                           fill   = self.subw.resize)
+        self.w.pack_start (self.subw.w, expand=self.subw.resize,
+                           fill=self.subw.resize, padding=0)
         if self.key:
             data = Config.get (self.key).data
             self.set (data)
@@ -538,20 +537,21 @@ class DictConfig (BaseConfig):
         self.s.connect ('changed', self.select_cb)
         
         scroll.add (self.v)
-        h.pack_start (scroll, True, True)
+        h.pack_start (scroll, True, True, 0)
 
         bbox = Gtk.VButtonBox ()
 
         button = Gtk.Button (_("Set"))
-        bbox.pack_start (button)
+        bbox.pack_start (button, True, True, 0)
         button.connect ('clicked', self.update_cb)
         button = Gtk.Button (_("Remove"))
-        bbox.pack_start (button)
+        bbox.pack_start (button, True, True, 0)
         button.connect ('clicked', self.remove_cb)
 
-        h.pack_start (bbox, False, False)
-        self.w.pack_start (h)
-        self.w.pack_start (Gtk.HSeparator (), expand = False, fill = False)
+        h.pack_start (bbox, False, False, 0)
+        self.w.pack_start (h, True, True, 0)
+        self.w.pack_start(Gtk.HSeparator(), expand=False, fill=False,
+                          padding=0)
         
         # Bottom
         table = Gtk.Table (2, 2, homogeneous = False)
@@ -576,7 +576,7 @@ class DictConfig (BaseConfig):
             table.attach (self.valuew.w, 1, 2, 1, 2,
                           yoptions = 0)
             
-        self.w.pack_start (table)
+        self.w.pack_start (table, True, True, 0)
         self.dict = {}
         
         if self.key:
