@@ -25,7 +25,7 @@
 
 from gettext import gettext as _
 
-from gi.repository import GObject, Gtk
+from gi.repository import GObject, Gtk, Gdk
 import copy, re, string
 
 from Pyblio import Base, Config, Connector, Exceptions, Fields, Key, Types
@@ -50,7 +50,8 @@ class BaseField(Connector.Publisher):
         self.w = Gtk.VBox()
 
         h = Gtk.HBox(spacing=5)
-        self.w.pack_start(Gtk.Label(field, True, True, 0), False, False)
+        # self.w.pack_start(Gtk.Label(field, True, True, 0), False, False)
+        self.w.pack_start(Gtk.Label(field), False, False, 0)
 
         field = string.lower(field)
         self.field = field
@@ -68,9 +69,9 @@ class BaseField(Connector.Publisher):
             img.set_from_stock(Gtk.STOCK_APPLY,
                                Gtk.IconSize.BUTTON)
         
-        h.pack_start(img, False, False)
+        h.pack_start(img, False, False, 0)
         
-        self.w.pack_start(h, expand, expand)
+        self.w.pack_start(h, expand, expand, 0)
         self.w.show_all()
 
         flag = 0
@@ -153,7 +154,7 @@ class Entry (TextBase):
 
             self.buff = None
             
-            h.pack_start (self.edit)
+            h.pack_start(self.edit, True, True, 0)
             return 0
 
         w = Gtk.ScrolledWindow ()
@@ -172,14 +173,14 @@ class Entry (TextBase):
         w.add (self.edit)
         w.show ()
         
-        h.pack_start (w)
+        h.pack_start(w, True, True, 0)
         return 1
 
 
     def update (self, entry):
         if self.buff:
             text = self.buff.get_text (self.buff.get_start_iter (),
-                                       self.buff.get_end_iter ())
+                                       self.buff.get_end_iter (), True)
             text = string.rstrip (text).encode('latin-1')
         else:
             text = string.rstrip \
@@ -212,13 +213,13 @@ class Text (TextBase):
         w.add (self.edit)
         w.show ()
 
-        h.pack_start (w)
+        h.pack_start(w, True, True, 0)
         return 1
 
 
     def update (self, entry):
         text = self.buff.get_text (self.buff.get_start_iter (),
-                                   self.buff.get_end_iter ())
+                                   self.buff.get_end_iter (), True)
         text = string.rstrip (text).encode ('latin-1')
         
         if text == self.string: return 0
@@ -246,13 +247,13 @@ class AuthorGroup (BaseField):
         w.add (self.edit)
         w.show ()
 
-        h.pack_start (w)
+        h.pack_start(w, True, True, 0)
         return 1
 
 
     def update (self, entry):
         text = self.buff.get_text (self.buff.get_start_iter (),
-                                   self.buff.get_end_iter ())
+                                   self.buff.get_end_iter (), True)
         text = string.strip (text).encode('latin-1')
         
         if text == self.string: return 0
@@ -304,35 +305,35 @@ class Date (BaseField):
         hbox = Gtk.HBox (False, 5)
 
         self.day = Gtk.Entry ()
-        (width, height) = self.day.size_request ()
-        self.day.set_size_request (width / 4, height)
+        #(width, height) = self.day.size_request ()
+        #self.day.set_size_request (width / 4, height)
         self.day.set_max_length (2)
 
         if self.initial [0]:
             self.day.set_text (str (self.initial [0]).decode ('latin-1'))
-        hbox.pack_start (self.day)
-        hbox.pack_start (Gtk.Label(label=_("Day")), False, False)
+        hbox.pack_start (self.day, False, False, 0)
+        hbox.pack_start (Gtk.Label(label=_("Day")), False, False, 0)
         
         self.month = Gtk.Entry ()
-        self.month.set_size_request (width / 4, height)
-        self.month.set_max_length (2)
+        #self.month.set_size_request (width / 4, height)
+        #self.month.set_max_length (2)
 
         if self.initial [1]:
             self.month.set_text (str (self.initial [1]).decode ('latin-1'))
-        hbox.pack_start (self.month)
-        hbox.pack_start (Gtk.Label(label=_("Month")), False, False)
+        hbox.pack_start (self.month, False, False, 0)
+        hbox.pack_start (Gtk.Label(label=_("Month")), False, False, 0)
         
         self.year = Gtk.Entry ()
         self.year.set_max_length (4)
-        self.year.set_size_request (width / 3, height)
+        # self.year.set_size_request (width / 3, height)
 
         if self.initial [2]:
             self.year.set_text (str (self.initial [2]).decode ('latin-1'))
-        hbox.pack_start (self.year)
-        hbox.pack_start (Gtk.Label(label=_("Year")), False, False)
+        hbox.pack_start (self.year, False, False, 0)
+        hbox.pack_start (Gtk.Label(label=_("Year")), False, False, 0)
 
         hbox.show_all ()
-        h.pack_start (hbox)
+        h.pack_start (hbox, True, True, 0)
         return 0
 
 
@@ -414,14 +415,14 @@ class Reference (BaseField):
         
         self.edit.connect ('drag_data_received', self.drag_received)
         
-        box.pack_start (self.edit, True, True)
-        h.pack_start (box)
+        box.pack_start (self.edit, True, True, 0)
+        h.pack_start(box, True, True, 0)
 
         # A delete button
         button = Gtk.Button (_('Delete'), Gtk.STOCK_DELETE)
         button.connect ('clicked', self._delete)
         
-        h.pack_start (button, False, False)
+        h.pack_start(button, False, False, 0)
         
         box.show_all ()
         return 0
@@ -500,11 +501,11 @@ class URL (BaseField):
 	self.edit.set_editable (True)
 	self.old_url = self.string.decode ('latin-1')
 	self.edit.set_text (self.old_url)
-	self.box.pack_start (self.edit)
+	self.box.pack_start(self.edit, True, True, 0)
 	self.button = Gtk.Button (_('Browse...'))
 	self.button.connect ("clicked", self.cb_clicked)
-	self.box.pack_start (self.button, False)
-	h.pack_start (self.box)
+	self.box.pack_start(self.button, False, True, 0)
+	h.pack_start(self.box, True, True, 0)
         return 0
   
 ##    def update (self, entry):
@@ -543,7 +544,8 @@ class RealEditor (Connector.Publisher):
 
         self.fields.sort ()
         
-        self.w = Gtk.VBox ()
+        self.w = Gtk.Box ()
+        self.w.set_orientation(Gtk.Orientation.VERTICAL)
         table  = Gtk.Table (2, 2)
         table.set_border_width (5)
         table.set_col_spacings (5)
@@ -564,10 +566,11 @@ class RealEditor (Connector.Publisher):
 
         # The list store will hold both the identifier and the type of
         # each entry
-        liststore = Gtk.ListStore (GObject.TYPE_STRING,
-                                   GObject.TYPE_PYOBJECT)
+        liststore = Gtk.ListStore(GObject.TYPE_STRING,
+                                  GObject.TYPE_PYOBJECT)
 
-        self.menu = Gtk.ComboBox (liststore)
+        self.menu = Gtk.ComboBox()
+        self.menu.set_model(liststore)
 
         cell = Gtk.CellRendererText()
 
@@ -591,36 +594,37 @@ class RealEditor (Connector.Publisher):
         self.menu.connect ("changed", self.menu_select)
         
         table.show_all ()
-        self.w.pack_start (table, False, False)
+        self.w.pack_start (table, False, False, 0)
 
         self.newfield_area = Gtk.HBox (spacing = 5)
         self.newfield_area.set_border_width (5)
-        self.newfield = ui.Entry ('newfield')
+        # FIXMEgpoo
+        #self.newfield = ui.Entry ('newfield')
         
-        self.newfield_area.pack_start (self.newfield)
+        #self.newfield_area.pack_start (self.newfield)
 
-        b = Gtk.Button (_("Create Field"))
-        b.connect ('clicked', self.create_field)
-        self.newfield_area.pack_start (b)
+        #b = Gtk.Button (_("Create Field"))
+        #b.connect ('clicked', self.create_field)
+        #self.newfield_area.pack_start (b)
 
         # navigation buttons
         self.backward_b = Gtk.Button(_('Back'))
         self.backward_b.connect ('clicked', self.back_cb)
-        self.newfield_area.pack_start (self.backward_b)
+        #self.newfield_area.pack_start (self.backward_b)
         self.forward_b = Gtk.Button(_('Next'))
         self.forward_b.connect ('clicked', self.next_cb)
-        self.newfield_area.pack_start (self.forward_b)
+        #self.newfield_area.pack_start (self.forward_b)
         
-        self.w.pack_start (self.newfield_area, False, False)       
+        #self.w.pack_start (self.newfield_area, False, False)
 
-        self.newfield_area.show_all ()
+        #self.newfield_area.show_all ()
         
         # Notebook
         self.notebook = Gtk.Notebook ()
         self.notebook.show ()
         self.notebook.connect ('switch-page', self.switch_page_cb)
         
-        self.w.pack_start (self.notebook)
+        self.w.pack_start(self.notebook, True, True, 0)
         self.w.show_all ()
 
         self.lt_init (self.entry, self.fields)
@@ -990,7 +994,7 @@ class NativeEditor(Connector.Publisher):
         new  = None
         text = self.buff.get_text(
             self.buff.get_start_iter(),
-            self.buff.get_end_iter())
+            self.buff.get_end_iter(), True)
         try:
             text = text.encode('latin-1')
         except UnicodeError:
@@ -1232,7 +1236,7 @@ class LT_Widget_1:
             else:
                 l = "<b>%s</b>" %(key)
             anno_label.set_markup(l)
-            vbox.pack_start (anno_label)
+            vbox.pack_start(anno_label, True, True, 0)
             
             if entry.has_key(key): t = str (entry[key]).decode ('latin-1')
             else:                  t = ''
@@ -1242,11 +1246,11 @@ class LT_Widget_1:
             text_label.set_line_wrap (True)
             text_label.set_size_request ( 500, 45) ##  XXX
             text_label.set_alignment (0.1, .2)
-            vbox.pack_start (text_label)
+            vbox.pack_start (text_label, True, True, 0)
             ebox = Gtk.Button()
             ebox.add (vbox)
             ebox.connect ('clicked', self.lt_select_detail, i)
-            content.pack_start(ebox, False, False)
+            content.pack_start(ebox, False, False, 0)
 
         page_child = self.page.get_child()
         if page_child:
@@ -1279,7 +1283,8 @@ class LT_Widget_2:
         self.page.set_policy (Gtk.PolicyType.AUTOMATIC,
                               Gtk.PolicyType.AUTOMATIC)
         self.buff = Gtk.TextBuffer()
-        self.content = Gtk.TextView(self.buff)
+        self.content = Gtk.TextView()
+        self.content.set_buffer(self.buff)
         self.label = Gtk.Label()
         self.page.add(self.content)
         self.content.grab_focus()
@@ -1310,7 +1315,7 @@ class LT_Widget_2:
             start, end = self.buff.get_bounds()
             
             key = self.node['key']
-            text = self.buff.get_text (start, end).encode ('latin-1')
+            text = self.buff.get_text (start, end, True).encode ('latin-1')
             if text.strip():
                 self.entry[key] = Fields.LongText(text)
             else:
@@ -1334,7 +1339,7 @@ class LT_Widget_2:
 
         start, end = self.buff.get_bounds()
         key = self.node['key']
-        self.entry[key].text = self.buff.get_text (start, end).encode ('latin-1')
+        self.entry[key].text = self.buff.get_text (start, end, True).encode ('latin-1')
         
 
     def enable_buttons (self):
