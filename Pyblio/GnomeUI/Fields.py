@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 # 	   
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -47,7 +48,7 @@ class FieldsDialog (Utils.GladeWindow):
 
     gladeinfo = {
 
-        'file': 'fields1.glade',
+        'file': 'fields1.ui',
         'name': 'fields',
         'root': 'fields1'
         
@@ -57,12 +58,13 @@ class FieldsDialog (Utils.GladeWindow):
 
         Utils.GladeWindow.__init__ (self, parent)
         
-        self.dialog = self.xml.get_widget ('fields1')
-        self.w = self.xml.get_widget ('notebook')
+        self.dialog = self.xml.get_object('fields1')
+        self.w = self.xml.get_object('notebook')
 
 ##      tooltips = Gtk.Tooltips ()
 ##      tooltips.enable ()
         
+        self.menu_items = []
         self.warning = 0
         self.parent = parent
         self.init_page_1()
@@ -77,7 +79,7 @@ class FieldsDialog (Utils.GladeWindow):
         self.dialog.show_all ()
 
     def on_close (self, w):
-        self.dialog.hide_all()
+        self.dialog.hide()
         self.size_save ()
         return
     
@@ -119,7 +121,7 @@ class FieldsDialog (Utils.GladeWindow):
 
     def init_page_1 (self):
         
-        self.fields1 = self.xml.get_widget('f_list_1')
+        self.fields1 = self.xml.get_object('f_list_1')
         rend = Gtk.CellRendererText()
         col = Gtk.TreeViewColumn(_('Name'), rend, text = 0)
         self.fields1.append_column(col)
@@ -129,7 +131,7 @@ class FieldsDialog (Utils.GladeWindow):
         
         self.fm = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING,
                                 GObject.TYPE_STRING, GObject.TYPE_PYOBJECT)
-        self.sfm = Gtk.TreeModelSort(self.fm)
+        self.sfm = Gtk.TreeModelSort(model=self.fm)
         self.sfm.set_sort_column_id(2, Gtk.SortType.ASCENDING)
         self.fields1.set_model(self.sfm)
         self.s1 = self.fields1.get_selection()
@@ -139,15 +141,20 @@ class FieldsDialog (Utils.GladeWindow):
             self.fm.append((item.name,
                             _typename [item.type], key, item)) 
         
-        self.name1 = self.xml.get_widget('name1')
-        self.menu1 = self.xml.get_widget('type1')
-        menu = Gtk.Menu ()
-        self.menu1.set_menu (menu)
-        self.menu_items = _typename.keys ()
-        for item in self.menu_items:
-            Utils.popup_add (menu, _typename [item], self.select_menu, item)
-        self.menu1.set_history (0)
-        self.current_menu = self.menu_items [0]
+        self.name1 = self.xml.get_object('name1')
+        self.menu1 = self.xml.get_object('type1')
+        
+        name_store = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_PYOBJECT)
+        for k, v in sorted(_typename.items(), key=lambda x: x[1]):
+            name_store.append([v, k])
+        self.menu1.set_model(name_store)
+        self.menu1.set_entry_text_column(0)
+        renderer_text = Gtk.CellRendererText()
+        self.menu1.pack_start(renderer_text, True)
+        self.menu1.add_attribute(renderer_text, "text", 0)
+        self.menu1.set_active(0)
+        self.menu_items = [x[1] for x in name_store]
+        self.current_menu = self.menu_items[0]
         self.check()
 
     def page1_add (self, *args):
@@ -157,7 +164,7 @@ class FieldsDialog (Utils.GladeWindow):
             'new field', _typename[t], '_new field_',
             description))
         if iter:
-            s_iter = self.sfm.convert_child_iter_to_iter(None, iter)
+            s_iter = self.sfm.convert_child_iter_to_iter(iter)
             s_path = self.sfm.get_path(s_iter)
             self.fields1.scroll_to_cell(s_path)
             self.s1.select_iter(s_iter)
@@ -167,7 +174,7 @@ class FieldsDialog (Utils.GladeWindow):
     def page1_rm (self, *args):
         m, iter = self.s1.get_selected()
         if iter:
-            p = self.sfm.convert_iter_to_child_iter(None, iter)
+            p = self.sfm.convert_iter_to_child_iter(iter)
             #print 'SELF:FM[P][2]:', self.fm[p] [2]
             try: del self.fields [self.fm[p][2]]
             except KeyError: pass
@@ -178,12 +185,11 @@ class FieldsDialog (Utils.GladeWindow):
     def list_1_select (self, sel):
         m, iter = sel.get_selected()
         if iter:
-            p = self.sfm.convert_iter_to_child_iter(None, iter)
+            p = self.sfm.convert_iter_to_child_iter(iter)
             data = self.fm[p]
             self.name1.set_text(self.fm[p][0])
             try:
-                self.menu1.set_history (
-                    self.menu_items.index(self.fm[p][3].type))
+                self.menu1.set_active(self.menu_items.index(self.fm[p][3].type))
             except ValueError:
                 print self.menu_items, self.fm[p][0], self.fm[p][2]
 
@@ -191,7 +197,7 @@ class FieldsDialog (Utils.GladeWindow):
         sel = self.fields1.get_selection()
         m, iter = sel.get_selected()
         if iter:
-            p = self.sfm.convert_iter_to_child_iter(None, iter)
+            p = self.sfm.convert_iter_to_child_iter(iter)
             oldname = self.fm[p][2]
             newname = self.name1.get_text()
             try: del self.fields [oldname]
@@ -204,11 +210,14 @@ class FieldsDialog (Utils.GladeWindow):
             self.change_fields()
 
     def on_type1_changed (self, *args):
-        x = self.menu_items[self.menu1.get_history()]
+        if len(self.menu_items) <= 0:
+            return
+
+        x = self.menu_items[self.menu1.get_active()]
         sel = self.fields1.get_selection()
         m, iter = sel.get_selected()
         if iter:
-            p = self.sfm.convert_iter_to_child_iter(None, iter)
+            p = self.sfm.convert_iter_to_child_iter(iter)
             #print 'TYP!', args, x, sel, m, iter
             self.fm[p] [1] = _typename[x]
             self.fm[p] [3].type = x
@@ -222,20 +231,20 @@ class FieldsDialog (Utils.GladeWindow):
     def init_page_2 (self):
                 # PAGE 2
 
-        self.entries2 = self.xml.get_widget('e_list_2')
+        self.entries2 = self.xml.get_object('e_list_2')
         self.em = Gtk.ListStore(GObject.TYPE_STRING,
                                 GObject.TYPE_PYOBJECT,
                                 GObject.TYPE_STRING )
         self.entries = copy.copy (Config.get ('base/entries').data)
         for i in self.entries.itervalues():
             self.em.append ((i.name, i, i.name.lower()))
-        self.sem = Gtk.TreeModelSort(self.em)
+        self.sem = Gtk.TreeModelSort(model=self.em)
         self.sem.set_sort_column_id(2, Gtk.SortType.ASCENDING)
         self.entries2.set_model(self.sem)
         rend = Gtk.CellRendererText()
         col = Gtk.TreeViewColumn(_('Entry type'), rend, text = 0)
         self.entries2.append_column(col)
-        self.name2 = self.xml.get_widget('name2')
+        self.name2 = self.xml.get_object('name2')
         self.s2 = self.entries2.get_selection()
         self.s2.connect('changed', self.elist_select)
         self.check()
@@ -255,7 +264,7 @@ class FieldsDialog (Utils.GladeWindow):
         self.check()
         m, iter = self.s2.get_selected()
         if iter:
-            p = self.sem.convert_iter_to_child_iter(None, iter)
+            p = self.sem.convert_iter_to_child_iter(iter)
             del self.entries [self.em[p] [2]]
             self.em.remove(p)
             Config.set_and_save('base/entries', self.entries)
@@ -267,7 +276,7 @@ class FieldsDialog (Utils.GladeWindow):
     def list_2_select (self, sel):
         m, iter = sel.get_selected()
         if iter:
-            p = self.sem.convert_iter_to_child_iter(None, iter)
+            p = self.sem.convert_iter_to_child_iter(iter)
             self.name2.set_text (self.em[p] [0])
             self.page3_setup (self.em[p] [1])
         self.check()
@@ -276,7 +285,7 @@ class FieldsDialog (Utils.GladeWindow):
         sel = self.entries2.get_selection()
         m, iter = sel.get_selected()
         if iter:
-            p = self.sem.convert_iter_to_child_iter(None, iter)
+            p = self.sem.convert_iter_to_child_iter(iter)
             newname = self.name2.get_text()
             try: del self.entries [self.em[p][2]]
             except KeyError: print 'Keyerror', self.em[
@@ -294,14 +303,14 @@ class FieldsDialog (Utils.GladeWindow):
 
     def init_page_3 (self):
         
-        self.flist3a = self.xml.get_widget ('f_list_3a')
+        self.flist3a = self.xml.get_object ('f_list_3a')
         self.flist3a.set_model (self.sfm)       
         rend = Gtk.CellRendererText()
         col = Gtk.TreeViewColumn(_('Available'), rend, text = 0)
         self.flist3a.append_column(col)
         self.s3a = self.flist3a.get_selection()
-        self.label3 = self.xml.get_widget ('entry_type_label')
-        self.flist3b = self.xml.get_widget ('f_list_3b')
+        self.label3 = self.xml.get_object ('entry_type_label')
+        self.flist3b = self.xml.get_object ('f_list_3b')
         rend = Gtk.CellRendererToggle()
         rend.connect('toggled', self.toggle_mandatory)
         col = Gtk.TreeViewColumn('X', rend, active = 1)
@@ -313,7 +322,7 @@ class FieldsDialog (Utils.GladeWindow):
                                 GObject.TYPE_BOOLEAN,
                                 GObject.TYPE_STRING,
                                 GObject.TYPE_PYOBJECT)
-        self.ssm = Gtk.TreeModelSort(self.sm)
+        self.ssm = Gtk.TreeModelSort(model=self.sm)
         self.ssm.set_sort_column_id(0, Gtk.SortType.ASCENDING)
         self.flist3b.set_model(self.ssm)
         self.s3b = self.flist3b.get_selection()
@@ -336,7 +345,7 @@ class FieldsDialog (Utils.GladeWindow):
     def page3_add (self, *args):
         m, iter = self.s3a.get_selected()
         if iter:
-            p = self.sfm.convert_iter_to_child_iter(None, iter)
+            p = self.sfm.convert_iter_to_child_iter(iter)
             field = self.fm[p] [3]
             self.current_entry.optional.append(field)
             self.sm.append ((field.name, False, field.name, field))
@@ -346,7 +355,7 @@ class FieldsDialog (Utils.GladeWindow):
     def page3_rm (self, *args):
         m, iter = self.s3b.get_selected()
         if iter:
-            p = self.ssm.convert_iter_to_child_iter (None, iter)
+            p = self.ssm.convert_iter_to_child_iter (iter)
             field = self.sm[p] [3]
             if self.sm[p] [1]:
                 self.current_entry.mandatory.remove(field)

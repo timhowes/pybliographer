@@ -2,7 +2,7 @@ gladedir = $(datadir)/$(PACKAGE)/Pyblio/GnomeUI/glade
 appicondir = $(datadir)/pixmaps
 
 glade_DATA = 					\
-	fields1.glade				\
+	fields1.ui				\
 	pyblio.ui 				\
 	search.glade 				\
 	sort.ui 				\
