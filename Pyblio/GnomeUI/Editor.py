@@ -71,7 +71,7 @@ class BaseField(Connector.Publisher):
         
         h.pack_start(img, False, False, 0)
         
-        self.w.pack_start(h, expand, expand, 0)
+        self.w.pack_start(h, expand, expand, 6)
         self.w.show_all()
 
         flag = 0
@@ -154,7 +154,7 @@ class Entry (TextBase):
 
             self.buff = None
             
-            h.pack_start(self.edit, True, True, 0)
+            h.pack_start(self.edit, True, True, 6)
             return 0
 
         w = Gtk.ScrolledWindow ()
@@ -173,7 +173,7 @@ class Entry (TextBase):
         w.add (self.edit)
         w.show ()
         
-        h.pack_start(w, True, True, 0)
+        h.pack_start(w, True, True, 6)
         return 1
 
 
@@ -213,7 +213,7 @@ class Text (TextBase):
         w.add (self.edit)
         w.show ()
 
-        h.pack_start(w, True, True, 0)
+        h.pack_start(w, True, True, 6)
         return 1
 
 
@@ -247,7 +247,7 @@ class AuthorGroup (BaseField):
         w.add (self.edit)
         w.show ()
 
-        h.pack_start(w, True, True, 0)
+        h.pack_start(w, True, True, 6)
         return 1
 
 
@@ -311,8 +311,8 @@ class Date (BaseField):
 
         if self.initial [0]:
             self.day.set_text (str (self.initial [0]).decode ('latin-1'))
+        hbox.pack_start (Gtk.Label(label=_("Day")), False, False, 3)
         hbox.pack_start (self.day, False, False, 0)
-        hbox.pack_start (Gtk.Label(label=_("Day")), False, False, 0)
         
         self.month = Gtk.Entry ()
         #self.month.set_size_request (width / 4, height)
@@ -320,8 +320,8 @@ class Date (BaseField):
 
         if self.initial [1]:
             self.month.set_text (str (self.initial [1]).decode ('latin-1'))
+        hbox.pack_start (Gtk.Label(label=_("Month")), False, False, 3)
         hbox.pack_start (self.month, False, False, 0)
-        hbox.pack_start (Gtk.Label(label=_("Month")), False, False, 0)
         
         self.year = Gtk.Entry ()
         self.year.set_max_length (4)
@@ -329,11 +329,11 @@ class Date (BaseField):
 
         if self.initial [2]:
             self.year.set_text (str (self.initial [2]).decode ('latin-1'))
+        hbox.pack_start (Gtk.Label(label=_("Year")), False, False, 3)
         hbox.pack_start (self.year, False, False, 0)
-        hbox.pack_start (Gtk.Label(label=_("Year")), False, False, 0)
 
         hbox.show_all ()
-        h.pack_start (hbox, True, True, 0)
+        h.pack_start (hbox, True, True, 6)
         return 0
 
 
@@ -505,8 +505,8 @@ class URL (BaseField):
 	self.button = Gtk.Button (_('Browse...'))
 	self.button.connect ("clicked", self.cb_clicked)
 	self.box.pack_start(self.button, False, True, 0)
-	h.pack_start(self.box, True, True, 0)
-        return 0
+	h.pack_start(self.box, True, True, 6)
+	return 0
   
 ##    def update (self, entry):
 	
@@ -594,7 +594,7 @@ class RealEditor (Connector.Publisher):
         self.menu.connect ("changed", self.menu_select)
         
         table.show_all ()
-        self.w.pack_start (table, False, False, 0)
+        self.w.pack_start (table, False, False, 6)
 
         self.newfield_area = Gtk.HBox (spacing = 5)
         self.newfield_area.set_border_width (5)
@@ -624,7 +624,7 @@ class RealEditor (Connector.Publisher):
         self.notebook.show ()
         self.notebook.connect ('switch-page', self.switch_page_cb)
         
-        self.w.pack_start(self.notebook, True, True, 0)
+        self.w.pack_start(self.notebook, True, True, 6)
         self.w.show_all ()
 
         self.lt_init (self.entry, self.fields)
@@ -1139,7 +1139,7 @@ class Editor(Connector.Publisher):
         self.editor.Subscribe('apply', self.apply_changes)
         self.editor.Subscribe('next',  self.next_item)
         
-        self.w.vbox.pack_start(self.editor.w, True, True, 0)
+        self.w.vbox.pack_start(self.editor.w, True, True, 6)
 
         # set window size
         if ui_width != -1 and ui_height != -1:
@@ -1250,7 +1250,7 @@ class LT_Widget_1:
             ebox = Gtk.Button()
             ebox.add (vbox)
             ebox.connect ('clicked', self.lt_select_detail, i)
-            content.pack_start(ebox, False, False, 0)
+            content.pack_start(ebox, False, False, 6)
 
         page_child = self.page.get_child()
         if page_child:
