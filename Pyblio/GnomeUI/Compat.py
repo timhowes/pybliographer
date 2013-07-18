@@ -25,6 +25,8 @@ Compatability module
 
 
 """
+from gettext import gettext as _
+from gi.repository import Gtk
 
 # gnome-python (2.x)
 #try:
@@ -33,7 +35,16 @@ Compatability module
 #    from gnome.ui import error_dialog_parented as gnome_error_dialog_parented
 #
 #error_dialog_parented = gnome_error_dialog_parented
-error_dialog_parented = str
+# error_dialog_parented = str
+
+class error_dialog_parented(Gtk.Dialog):
+    def __init__(self, message, parent):
+        Gtk.Dialog.__init__(self, _("Error"), parent, 0,
+                            (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE))
+        label = Gtk.Label(message)
+        box = self.get_content_area()
+        box.add(label)
+        self.show_all()
 
 
 # gnome-python (2.x)

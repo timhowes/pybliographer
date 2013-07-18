@@ -635,14 +635,28 @@ class RealEditor (Connector.Publisher):
 
     def menu_select (self, menu):
         idx   = menu.get_active_iter ()
-        entry = menu.get_model ().get_value (idx, 1)
+        if idx is None:
+            return
+
+        entry = menu.get_model().get_value (idx, 1)
         
         # update the current entry
         new = self.update (self.database, copy.deepcopy (self.entry))
         if new is None:
             entry_list = Config.get ("base/entries").data.values ()
             entry_list.sort (lambda x, y: cmp (x.name, y.name))
-            self.menu.set_history (entry_list.index (self.entry.type))
+            
+            liststore = self.menu.get_model()
+            liststore.clear()
+
+            i = 0
+            history = 0
+            for entry in entry_list:
+                if entry == self.entry.type: history = i
+                liststore.append ((entry.name, entry))
+                i = i + 1
+
+            self.menu.set_model(liststore)
             return
         else:
             new.type = entry
@@ -725,8 +739,9 @@ class RealEditor (Connector.Publisher):
     def update_notebook (self):
 
         if self.notebook_init:
-            self.notebook.foreach(
-                lambda x: self.notebook.remove_page(0))
+            # FIXMEgpoo: Check for secondary effects
+            f = lambda x, y: self.notebook.remove_page(0)
+            self.notebook.foreach(f, None)
         
         self.notebook_init = True
         self.current_page = None
@@ -932,14 +947,15 @@ class RealEditor (Connector.Publisher):
         for item in self.content:
             try:
                 result = item.update(self.entry)
-                
             except UnicodeError:
+                # FIXMEgpoo: check enconding handling
                 f = Types.get_field(item.field)
-                
-                Compat.error_dialog_parented(
+                d = Compat.error_dialog_parented(
                     _("The `%s' field contains a non Latin-1 symbol") %
                     f.name, self.w.get_toplevel())
-                return None
+                d.run()
+                d.destroy()
+                result = -1
             
             if result == -1: return None
             
