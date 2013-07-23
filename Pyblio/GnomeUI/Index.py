@@ -462,7 +462,7 @@ class Index (Connector.Publisher):
         if not (event.type == Gdk.EventType.BUTTON_PRESS and
                 event.button == 3): return
 
-        self._w_popup.popup (None, None, None, event.button, event.time)
+        self._w_popup.popup (None, None, None, None, event.button, event.time)
         return
 
     def entry_new (self, * arg):
