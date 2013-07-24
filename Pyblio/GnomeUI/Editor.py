@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 # 	   
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -596,28 +597,28 @@ class RealEditor (Connector.Publisher):
         table.show_all ()
         self.w.pack_start (table, False, False, 6)
 
-        self.newfield_area = Gtk.HBox (spacing = 5)
-        self.newfield_area.set_border_width (5)
-        # FIXMEgpoo
-        #self.newfield = ui.Entry ('newfield')
-        
-        #self.newfield_area.pack_start (self.newfield)
+        self.newfield_area = Gtk.HBox(spacing = 6)
+        self.newfield_area.set_border_width(6)
 
-        #b = Gtk.Button (_("Create Field"))
-        #b.connect ('clicked', self.create_field)
-        #self.newfield_area.pack_start (b)
+        self.newfield = Gtk.Entry()
+        
+        self.newfield_area.pack_start(self.newfield, True, True, 0)
+
+        b = Gtk.Button(_("Create Field"))
+        b.connect ('clicked', self.create_field)
+        self.newfield_area.pack_start (b, False, True, 0)
 
         # navigation buttons
         self.backward_b = Gtk.Button(_('Back'))
         self.backward_b.connect ('clicked', self.back_cb)
-        #self.newfield_area.pack_start (self.backward_b)
+        self.newfield_area.pack_start (self.backward_b, False, True, 0)
         self.forward_b = Gtk.Button(_('Next'))
         self.forward_b.connect ('clicked', self.next_cb)
-        #self.newfield_area.pack_start (self.forward_b)
+        self.newfield_area.pack_start (self.forward_b, False, True, 0)
         
-        #self.w.pack_start (self.newfield_area, False, False)
+        self.w.pack_start (self.newfield_area, False, False, 0)
 
-        #self.newfield_area.show_all ()
+        self.newfield_area.show_all ()
         
         # Notebook
         self.notebook = Gtk.Notebook ()
@@ -898,8 +899,7 @@ class RealEditor (Connector.Publisher):
     #--------------------------------------------------
     
     def create_field(self, *arg):
-        widget = self.newfield.gtk_entry()
-        text   = string.strip(string.lower(widget.get_text()))
+        text   = string.strip(string.lower(self.newfield.get_text()))
         if not re.match(r"[a-z][\w_-]*$", text):
             if not Utils.Callback(
                 "The fieldname '%s' looks invalid.\nReally proceed?" % text,
