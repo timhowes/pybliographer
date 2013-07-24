@@ -465,8 +465,6 @@ class Document (Connector.Publisher):
 
         self.actiongroup.get_action ('Save').set_property ('sensitive', self.changed)
 
-        # FIXME: Check port to Gtk3
-        # self.statusbar.set_default (text)
         ctx_id = self.statusbar.get_context_id('default')
         self.statusbar.push (ctx_id, text)
         return
