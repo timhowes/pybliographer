@@ -129,16 +129,14 @@ cursor = {
 
 
 def set_cursor (self, name):
+    window = self.get_toplevel().get_window()
 
-    # FIXME: Port to Gtk3
-    return
-    window = self.get_toplevel ().window
     if not window: return
     
-    window.set_cursor (cursor [name])
+    window.set_cursor (cursor[name])
         
     while Gtk.events_pending ():
-        Gtk.main_iteration (False)
+        Gtk.main_iteration ()
     return
 
 
