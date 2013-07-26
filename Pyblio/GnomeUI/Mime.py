@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 # 	   
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -22,6 +23,8 @@
 
 """ Symbol Definitions for Drag and Drop, Copy / Paste """
 
+from gi.repository import Gdk
+
 # Manipulate data as strings
 STRING = 0
 # Manipulate pickled keys
@@ -30,8 +33,8 @@ KEY    = 1
 ENTRY  = 2
 
 # Related string definitions
-SYM_STRING = 'STRING'
-SYM_KEY    = 'application/x-pyblio-key'
-SYM_ENTRY  = 'application/x-pyblio-entry'
-SYM_APP    = 'application/x-pybliographic'
-SYM_TEXT   = 'text/plain'
+SYM_STRING = Gdk.atom_intern('STRING', False)
+SYM_KEY    = Gdk.atom_intern('application/x-pyblio-key', False)
+SYM_ENTRY  = Gdk.atom_intern('application/x-pyblio-entry', False)
+SYM_APP    = Gdk.atom_intern('application/x-pybliographic', False)
+SYM_TEXT   = Gdk.atom_intern('text/plain', False)

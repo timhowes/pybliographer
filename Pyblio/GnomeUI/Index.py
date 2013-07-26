@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 #
-# Copyright (C) 1998-2004 Frederic GOBRY
-# Email : gobry@pybliographer.org
+# Copyright (C) 1998-2004 Frederic GOBRY <gobry@pybliographer.org>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -131,15 +132,27 @@ class Index (Connector.Publisher):
             (Mime.SYM_ENTRY,  0, Mime.ENTRY),
             )
 
-        # FIXME: Port drag-and-drop to Gtk3
-        #self.list.drag_dest_set (Gtk.DestDefaults.ALL, accept,
-        #                         Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
-        #self.list.connect ("drag_data_received", self.drag_received)
+        accept_list = Gtk.TargetList.new([])
+        for drag_type, target_flags, info in accept:
+            accept_list.add(drag_type, target_flags, info)
+
+        # Port to Gtk3 required some changes because of bug
+        # https://bugzilla.gnome.org/show_bug.cgi?id=680638
+        self.list.enable_model_drag_dest([], Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
+        self.list.drag_dest_set_target_list(accept_list)
+        self.list.connect ("drag_data_received", self.drag_received)
 
 
-        #self.list.drag_source_set (Gdk.ModifierType.BUTTON1_MASK | Gdk.ModifierType.BUTTON3_MASK,
-        #                           targets, Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
-        #self.list.connect ('drag_data_get', self.dnd_drag_data_get)
+        targets_list = Gtk.TargetList.new([])
+        for drag_type, target_flags, info in targets:
+            targets_list.add(drag_type, target_flags, info)
+
+        self.list.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK |
+                                           Gdk.ModifierType.BUTTON3_MASK,
+                                           [],
+                                           Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
+        self.list.drag_source_set_target_list(targets_list)
+        self.list.connect ('drag_data_get', self.dnd_drag_data_get)
 
         # Copy/Paste configuration
 
@@ -152,19 +165,15 @@ class Index (Connector.Publisher):
         # We handle three selections: one specific to the application,
         # the clipboard, and the primary. Therefore, we should be able
         # to paste into every kind of editor/application.
-
-        # FIXME: Port to Gtk3
-        #self.list.selection_add_target ("PRIMARY",
-        #                                Mime.SYM_STRING,
-        #                                Mime.STRING)
-
-        #self.list.selection_add_target ("CLIPBOARD",
-        #                                Mime.SYM_STRING,
-        #                                Mime.STRING)
-
-        #self.list.selection_add_target (Mime.SYM_APP,
-        #                                Mime.SYM_ENTRY,
-        #                                Mime.ENTRY)
+        Gtk.selection_add_target (self.list, Gdk.SELECTION_PRIMARY,
+                                  Mime.SYM_STRING,
+                                  Mime.STRING)
+        Gtk.selection_add_target (self.list, Gdk.SELECTION_SECONDARY,
+                                  Mime.SYM_STRING,
+                                  Mime.STRING)
+        Gtk.selection_add_target (self.list, Mime.SYM_APP,
+                                  Mime.SYM_ENTRY,
+                                  Mime.ENTRY)
         return
 
 
@@ -174,8 +183,7 @@ class Index (Connector.Publisher):
 
 
     def selection_received (self, widget, selection, info):
-
-        data = selection.data
+        data = selection.get_data()
 
         if not data: return
 
@@ -185,8 +193,8 @@ class Index (Connector.Publisher):
 
 
     def selection_get (self, widget, selection, info, time):
-
-        if not self.selection_buffer: return
+        if not self.selection_buffer:
+            return
 
         if info == Mime.ENTRY:
 
@@ -212,9 +220,9 @@ class Index (Connector.Publisher):
 
     def selection_copy (self, entries):
         # Advertise the fact that we hold the selection
-        self.list.selection_owner_set (Mime.SYM_APP)
-        self.list.selection_owner_set ("PRIMARY")
-        self.list.selection_owner_set ("CLIPBOARD")
+        Gtk.selection_owner_set(self.list, Mime.SYM_APP, Gdk.CURRENT_TIME)
+        Gtk.selection_owner_set(self.list, Gdk.SELECTION_PRIMARY, Gdk.CURRENT_TIME)
+        Gtk.selection_owner_set(self.list, Gdk.SELECTION_SECONDARY, Gdk.CURRENT_TIME)
 
         self.selection_buffer = entries
         return
@@ -222,17 +230,16 @@ class Index (Connector.Publisher):
 
     def selection_paste (self):
         # Request the selection as a full entry
-        self.list.selection_convert (Mime.SYM_APP, Mime.SYM_ENTRY)
+        Gtk.selection_convert(self.list, Mime.SYM_APP, Mime.SYM_ENTRY,
+                              Gdk.CURRENT_TIME)
         return
 
 
-    def drag_received (self, * arg):
-        selection = arg [4]
-        info      = arg [5]
-
+    def drag_received (self, widget, drag_context, x, y, selection,
+                       info, timestamp, *args):
         if info == Mime.ENTRY:
-            entries = pickle.loads (selection.data)
-            self.issue ('drag-received', entries)
+            entries = pickle.loads(selection.get_data())
+            self.issue('drag-received', entries)
 
         return
 
@@ -240,8 +247,9 @@ class Index (Connector.Publisher):
     def dnd_drag_data_get (self, list, context, selection, info, time):
         ''' send the selected entries as dnd data '''
 
-        entries = self.selection ()
-        if not entries: return
+        entries = self.selection()
+        if not entries:
+            return
 
         if info == Mime.STRING:
             if Config.get ('gnome/paste-key').data:
@@ -254,24 +262,24 @@ class Index (Connector.Publisher):
                 # else, return the full entries
                 text = join (map (str, entries), '\n\n')
 
-            selection.set (selection.target, 8, text)
+            selection.set(selection.get_target(), 8, text)
             return
 
         if info == Mime.KEY:
             # must return a set of keys
             data = join (map (lambda e: str (e.key.base or '') + '\0' +
                               str (e.key.key), entries), '\n')
-            selection.set (selection.target, 8, data)
+            selection.set(selection.get_target(), 8, data)
 
         elif info == Mime.ENTRY:
             data = pickle.dumps (entries)
-            selection.set (selection.target, 8, data)
+            selection.set(selection.get_target(), 8, data)
 
         else:
             return
 
-        if context.action == Gdk.DragAction.MOVE:
-            self.issue ('drag-moved', entries)
+        if context.get_suggested_action() == Gdk.DragAction.MOVE:
+            self.issue('drag-moved', entries)
 
         return
 
@@ -294,7 +302,8 @@ class Index (Connector.Publisher):
         if type (item) is not type (1):
             item = self.get_item_position (item)
 
-        if item == -1 or item >= len (self.access): return
+        if item == -1 or item >= len (self.access):
+            return
 
         path = (item,)
 
@@ -309,7 +318,8 @@ class Index (Connector.Publisher):
         if type (item) is not type (1):
             item = self.get_item_position (item)
 
-        if item == -1: return
+        if item == -1:
+            return
 
         self.list.scroll_to_cell ((item,),
                                   use_align = True,
@@ -441,8 +451,10 @@ class Index (Connector.Publisher):
         entries = []
 
         def retrieve (model, path, iter, entries):
-            indices = path.get_indices ()
-            entries.append (self.access [indices [0]])
+            indices = path.get_indices()
+
+            if len(self.access) > 0:
+                entries.append(self.access[indices [0]])
 
         self.selinfo.selected_foreach (retrieve, entries)
 
