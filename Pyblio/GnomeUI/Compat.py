@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # This file is part of pybliographer
 # 
-# Copyright (C) 2005 Peter Schulte-Stracke
-# Email : mail@schulte-stracke.de
+# Copyright (C) 2005 Peter Schulte-Stracke <mail@schulte-stracke.de>
+# Copyright (C) 2013 Germán Poo-Caamaño <gpoo@gnome.org>
 # 	   
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -26,16 +27,8 @@ Compatability module
 
 """
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
-# gnome-python (2.x)
-#try:
-#    from gnome.ui import gnome_error_dialog_parented
-#except ImportError:
-#    from gnome.ui import error_dialog_parented as gnome_error_dialog_parented
-#
-#error_dialog_parented = gnome_error_dialog_parented
-# error_dialog_parented = str
 
 class error_dialog_parented(Gtk.Dialog):
     def __init__(self, message, parent):
@@ -47,17 +40,10 @@ class error_dialog_parented(Gtk.Dialog):
         self.show_all()
 
 
-# gnome-python (2.x)
-#try:
-#    import gnomevfs
-#except ImportError:
-#    import gnome.vfs as gnomevfs
-
-#get_mime_type = gnomevfs.get_mime_type
-get_mime_type = str
+get_mime_type = Gio.content_type_get_mime_type
 
 
 # Local Variables:
-# coding: "latin-1"
+# coding: "utf-8"
 # py-master-file: "ut_compat.py"
 # End:
