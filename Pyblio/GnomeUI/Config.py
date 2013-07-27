@@ -52,9 +52,6 @@ class ConfigDialog (Utils.GladeWindow):
         self.w = Gtk.Notebook ()
 
         content.pack_start (self.w, True, True, 0)
-
-##      tooltips = Gtk.Tooltips ()
-##      tooltips.enable ()
         
         self.warning = 0
         self.parent = parent
@@ -106,9 +103,6 @@ class ConfigDialog (Utils.GladeWindow):
                 cw [item] = edit
                 hbox.pack_start (edit.w, False, True, 0)
 
-
-##                     tooltips.set_tip (button, desc)
-
                 table.pack_start (hbox,
                                   expand=edit.resize,
                                   fill  =edit.resize, padding=0)
@@ -133,12 +127,6 @@ class ConfigDialog (Utils.GladeWindow):
 
     def show (self):
         self.dialog.show_all()
-        
-    def display_help (self, w, data):
-        (w, help) = data
-        d = gnome.ui.OkDialog (format (help, 40, 0, 0), w)
-        d.show_all ()
-        return
         
     def changed (self):
         if not self.warning:
