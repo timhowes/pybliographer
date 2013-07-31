@@ -63,9 +63,9 @@ EXTRA_DIST =  \
 	preamble.bib		\
 	pubmed.bib		\
 	pubmed.med		\
-	pybformat		\
-	pybtex			\
-	pybtext			\
+	pyblioformat		\
+	pybliotex			\
+	pybliotext			\
 	pybtext.abbrvau		\
 	pybtext.abbrvbib	\
 	pybtext.abbrvnum	\
