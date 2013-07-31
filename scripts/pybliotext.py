@@ -38,16 +38,16 @@ import locale
 charset = locale.getlocale () [1] or 'ascii'
 
 def usage ():
-    print _("usage: pybtext [-o outputfile] [-s style] <textfile> <bibfiles...>").encode (charset)
+    print _("usage: pybliotext [-o outputfile] [-s style] <textfile> <bibfiles...>").encode (charset)
     return
 
 def error (msg):
-    sys.stderr.write ((_("pybtext: error: %s\n") % msg).encode (charset))
+    sys.stderr.write ((_("pybliotext: error: %s\n") % msg).encode (charset))
     sys.exit (1)
     return
 
 def warning (msg, exit = 0):
-    sys.stderr.write ((_("pybtext: warning: %s\n") % msg).encode (charset))
+    sys.stderr.write ((_("pybliotext: warning: %s\n") % msg).encode (charset))
     if exit:
         sys.exit (1)
     return
@@ -190,7 +190,7 @@ entries = h
 order = copy.copy (entries)
 
 
-sys.stderr.write ((_("pybtext: using style `%s', format `%s'\n") % (style, output.name)).encode (charset))
+sys.stderr.write ((_("pybliotext: using style `%s', format `%s'\n") % (style, output.name)).encode (charset))
 
 formatter = output.data
 

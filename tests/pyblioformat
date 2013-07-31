@@ -4,7 +4,7 @@
 
 tst_start
 
-com="../pybliographer -q ${srcdir}/../scripts/pybformat.py --"
+com="../pybliographer -q ${srcdir}/../scripts/pyblioformat.py --"
 
 run ${com} -o tmp.text ${srcdir}/bibtex.bib > /dev/null
 run diff  tmp.text ${srcdir}/bibtex.text
