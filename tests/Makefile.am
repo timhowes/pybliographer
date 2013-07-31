@@ -22,14 +22,14 @@
 
 TESTS = \
 	$(srcdir)/import-export \
-	$(srcdir)/test-pybcheck \
+	$(srcdir)/test-pybliocheck \
 	$(srcdir)/convert	\
-	$(srcdir)/pybformat	\
-	$(srcdir)/pybtex	\
+	$(srcdir)/pyblioformat	\
+	$(srcdir)/pybliotex	\
 	$(srcdir)/compact	\
 	$(srcdir)/format	\
 	$(srcdir)/format2	\
-	$(srcdir)/pybtext
+	$(srcdir)/pybliotext
 
 EXTRA_DIST =  \
 	bibtex.bib		\
@@ -75,5 +75,5 @@ EXTRA_DIST =  \
 	refer.refer		\
 	reorder.py		\
 	testing.sh		\
-	test-pybcheck
+	test-pybliocheck
 

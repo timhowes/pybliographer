@@ -28,7 +28,7 @@ charset = locale.getlocale () [1] or 'ascii'
 
 # check the arguments
 if len (sys.argv) < 3:
-    print _("usage: pybcheck <file | directory>...").encode (charset)
+    print _("usage: pybliocheck <file | directory>...").encode (charset)
     sys.exit (1)
 
 # list containing the broken entries

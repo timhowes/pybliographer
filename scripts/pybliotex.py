@@ -31,11 +31,11 @@ import locale
 charset = locale.getlocale () [1] or 'ascii'
 
 def usage ():
-    print _("usage: pybtex <latexfile> [bibtexfiles...]").encode (charset)
+    print _("usage: pybliotex <latexfile> [bibtexfiles...]").encode (charset)
     return
 
 def error (message):
-    sys.stderr.write ((_("pybtex: error: %s\n") % message).encode (charset))
+    sys.stderr.write ((_("pybliotex: error: %s\n") % message).encode (charset))
     sys.exit (1)
     return
 
@@ -56,7 +56,7 @@ db, keys, style, missing = latexutils.find_entries (latex, bibtex)
 
 if missing:
     # warn the user that some entries were not found
-    print _("pybtex: warning: the following keys were not resolved").encode (charset)
+    print _("pybliotex: warning: the following keys were not resolved").encode (charset)
     print '	' + string.join (missing, '\n	') + '\n'
 
 if style is None:

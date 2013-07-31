@@ -27,11 +27,11 @@ import locale
 charset = locale.getlocale () [1] or 'ascii'
 
 def usage ():
-    print _("usage: pybcompact <latexfile> <bibtexfiles...>").encode (charset)
+    print _("usage: pybliocompact <latexfile> <bibtexfiles...>").encode (charset)
     return
 
 def error (msg):
-    sys.stderr.write ((_("pybcompact: error: %s\n") % msg).encode (charset))
+    sys.stderr.write ((_("pybliocompact: error: %s\n") % msg).encode (charset))
     sys.exit (1)
     return
 

@@ -31,7 +31,7 @@ import locale
 charset = locale.getlocale () [1] or 'ascii'
 
 def usage ():
-    print _("""usage: pybformat [options] <database...>
+    print _("""usage: pyblioformat [options] <database...>
 
     options:
       -o file, --output=file		specify an output filename
@@ -45,13 +45,13 @@ def usage ():
     return
 
 def error (text, exit = 1):
-    sys.stderr.write ((_("pybformat: error: %s\n") % text).encode (charset))
+    sys.stderr.write ((_("pyblioformat: error: %s\n") % text).encode (charset))
     if exit:
         sys.exit (1)
     return
 
 def warning (text, exit = 0):
-    sys.stderr.write ((_("pybformat: warning: %s\n") % text).encode (charset))
+    sys.stderr.write ((_("pyblioformat: warning: %s\n") % text).encode (charset))
     if exit:
         sys.exit (1)
     return
@@ -100,7 +100,7 @@ for opt, value in optlist:
             error (_("unknown list `%s'") % value)
             
         if list:
-            print (_("pybformat: available values for `%s':") % value).encode (charset)
+            print (_("pyblioformat: available values for `%s':") % value).encode (charset)
             print "  " + string.join (list, ", ")
             sys.exit (0)
         else:
@@ -149,7 +149,7 @@ if not url:
     error (_("can't find style `%s'") % style)
 
 
-sys.stderr.write ((_("pybformat: using style `%s', format `%s'\n") % (style, output.name)).encode (charset))
+sys.stderr.write ((_("pyblioformat: using style `%s', format `%s'\n") % (style, output.name)).encode (charset))
 
 formatter = output.data
 
