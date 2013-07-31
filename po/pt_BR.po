@@ -1184,45 +1184,45 @@ msgstr "Gerenciador Bibliográfico"
 msgid "Manage bibliographic databases"
 msgstr "Gerencia bancos de dados bibliográficos"
 
-#: ../scripts/pybcheck.py:31
-msgid "usage: pybcheck <file | directory>..."
-msgstr "utilização: pybcheck <arquivo | diretório>..."
+#: ../scripts/pybliocheck.py:31
+msgid "usage: pybliocheck <file | directory>..."
+msgstr "utilização: pybliocheck <arquivo | diretório>..."
 
 # .././Pyblio/Open.py:105 :151
-#: ../scripts/pybcheck.py:60
+#: ../scripts/pybliocheck.py:60
 #, python-format
 msgid "file `%s' is ok [%d entries]"
 msgstr "O arquivo \"%s\" está ok [%d entradas]"
 
-#: ../scripts/pybcompact.py:30
-msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
-msgstr "uso: pybcompact <arquivolatex> <arquivosbibtex...>"
+#: ../scripts/pybliocompact.py:30
+msgid "usage: pybliocompact <latexfile> <bibtexfiles...>"
+msgstr "uso: pybliocompact <arquivolatex> <arquivosbibtex...>"
 
-#: ../scripts/pybcompact.py:34
+#: ../scripts/pybliocompact.py:34
 #, python-format
-msgid "pybcompact: error: %s\n"
-msgstr "pybcompact: erro: %s\n"
+msgid "pybliocompact: error: %s\n"
+msgstr "pybliocompact: erro: %s\n"
 
-#: ../scripts/pybcompact.py:99
+#: ../scripts/pybliocompact.py:99
 msgid "no entry"
 msgstr "nenhuma entrada"
 
-#: ../scripts/pybcompact.py:162 ../scripts/pybtext.py:240
+#: ../scripts/pybliocompact.py:162 ../scripts/pybliotext.py:240
 #, python-format
 msgid "can't find the following entries: %s"
 msgstr "não é possível encontrar as seguintes entradas: %s"
 
-#: ../scripts/pybconvert.py:29
-msgid "usage: pybconvert <source>..<target> <input> [output]"
-msgstr "uso: pybconvert <origem>..<alvo> <entrada> [saída]"
+#: ../scripts/pyblioconvert.py:29
+msgid "usage: pyblioconvert <source>..<target> <input> [output]"
+msgstr "uso: pyblioconvert <origem>..<alvo> <entrada> [saída]"
 
-#: ../scripts/pybconvert.py:38
-msgid "pybconvert: error: bad conversion format"
-msgstr "pybconvert: erro: formato de conversão ruim"
+#: ../scripts/pyblioconvert.py:38
+msgid "pyblioconvert: error: bad conversion format"
+msgstr "pyblioconvert: erro: formato de conversão ruim"
 
-#: ../scripts/pybformat.py:34
+#: ../scripts/pyblioformat.py:34
 msgid ""
-"usage: pybformat [options] <database...>\n"
+"usage: pyblioformat [options] <database...>\n"
 "\n"
 "    options:\n"
 "      -o file, --output=file\t\tspecify an output filename\n"
@@ -1234,7 +1234,7 @@ msgid ""
 "      -h, --help\t\t\tshow this help message\n"
 "    "
 msgstr ""
-"uso: pybformat [opções] <banco de dados...>\n"
+"uso: pyblioformat [opções] <banco de dados...>\n"
 "\n"
 "    opções:\n"
 "      -o arquivo, --output=arquivo\t\tespecifique o nome do arquivo de "
@@ -1248,135 +1248,135 @@ msgstr ""
 "      -h, --help\t\t\tmostra esta mensagem de ajuda\n"
 "    "
 
-#: ../scripts/pybformat.py:48
+#: ../scripts/pyblioformat.py:48
 #, python-format
-msgid "pybformat: error: %s\n"
-msgstr "pybformat: erro: %s\n"
+msgid "pyblioformat: error: %s\n"
+msgstr "pyblioformat: erro: %s\n"
 
-#: ../scripts/pybformat.py:54
+#: ../scripts/pyblioformat.py:54
 #, python-format
-msgid "pybformat: warning: %s\n"
-msgstr "pybformat: atenção: %s\n"
+msgid "pyblioformat: warning: %s\n"
+msgstr "pyblioformat: atenção: %s\n"
 
-#: ../scripts/pybformat.py:93 ../scripts/pybtext.py:252
-#: ../scripts/pybtext.py:278 ../scripts/pybtext.py:321
+#: ../scripts/pyblioformat.py:93 ../scripts/pybliotext.py:252
+#: ../scripts/pybliotext.py:278 ../scripts/pybliotext.py:321
 #, python-format
 msgid "can't open `%s': %s"
 msgstr "não foi possível abrir o arquivo \"%s\": %s"
 
-#: ../scripts/pybformat.py:100
+#: ../scripts/pyblioformat.py:100
 #, python-format
 msgid "unknown list `%s'"
 msgstr "lista desconhecida \"%s\""
 
-#: ../scripts/pybformat.py:103
+#: ../scripts/pyblioformat.py:103
 #, python-format
-msgid "pybformat: available values for `%s':"
-msgstr "pybformat: valores disponíveis para \"%s\":"
+msgid "pyblioformat: available values for `%s':"
+msgstr "pyblioformat: valores disponíveis para \"%s\":"
 
-#: ../scripts/pybformat.py:107
+#: ../scripts/pyblioformat.py:107
 #, python-format
 msgid "empty value list `%s'"
 msgstr "lista de valores vazia \"%s\""
 
-#: ../scripts/pybformat.py:129
+#: ../scripts/pyblioformat.py:129
 msgid "too few arguments"
 msgstr "poucos argumentos"
 
-#: ../scripts/pybformat.py:136 ../scripts/pybtext.py:117
+#: ../scripts/pyblioformat.py:136 ../scripts/pybliotext.py:117
 #, python-format
 msgid "unknown output format `%s'"
 msgstr "formato de saída desconhecido \"%s\""
 
-#: ../scripts/pybformat.py:149 ../scripts/pybtex.py:86
-#: ../scripts/pybtext.py:94
+#: ../scripts/pyblioformat.py:149 ../scripts/pybliotex.py:86
+#: ../scripts/pybliotext.py:94
 #, python-format
 msgid "can't find style `%s'"
 msgstr "não é possível encontrar o estilo \"%s\""
 
-#: ../scripts/pybformat.py:152
+#: ../scripts/pyblioformat.py:152
 #, python-format
-msgid "pybformat: using style `%s', format `%s'\n"
-msgstr "pybformat: usando o estilo \"%s\", formato \"%s\"\n"
+msgid "pyblioformat: using style `%s', format `%s'\n"
+msgstr "pyblioformat: usando o estilo \"%s\", formato \"%s\"\n"
 
-#: ../scripts/pybformat.py:167
+#: ../scripts/pyblioformat.py:167
 #, python-format
 msgid "can't open header `%s': %s"
 msgstr "não foi possível abrir o cabeçalho \"%s\": %s"
 
-#: ../scripts/pybformat.py:175
+#: ../scripts/pyblioformat.py:175
 #, python-format
 msgid "can't open database: %s"
 msgstr "não foi possível abrir o banco de dados: %s"
 
-#: ../scripts/pybformat.py:190
+#: ../scripts/pyblioformat.py:190
 #, python-format
 msgid "can't open footer `%s': %s"
 msgstr "impossível abrir a nota de rodapé \"%s\": %s"
 
-#: ../scripts/pybtex.py:34
-msgid "usage: pybtex <latexfile> [bibtexfiles...]"
-msgstr "uso: pybtex <arquivolatex> [arquivosbibtex...]"
+#: ../scripts/pybliotex.py:34
+msgid "usage: pybliotex <latexfile> [bibtexfiles...]"
+msgstr "uso: pybliotex <arquivolatex> [arquivosbibtex...]"
 
-#: ../scripts/pybtex.py:38
+#: ../scripts/pybliotex.py:38
 #, python-format
-msgid "pybtex: error: %s\n"
-msgstr "pybtex: erro: %s\n"
+msgid "pybliotex: error: %s\n"
+msgstr "pybliotex: erro: %s\n"
 
 #. warn the user that some entries were not found
-#: ../scripts/pybtex.py:59
-msgid "pybtex: warning: the following keys were not resolved"
-msgstr "pybtex: atenção: as seguintes chaves não foram resolvidas"
+#: ../scripts/pybliotex.py:59
+msgid "pybliotex: warning: the following keys were not resolved"
+msgstr "pybliotex: atenção: as seguintes chaves não foram resolvidas"
 
 #. If the LaTeX document declares no style...
-#: ../scripts/pybtex.py:64
+#: ../scripts/pybliotex.py:64
 msgid "no style defined"
 msgstr "nenhum estilo definido"
 
-#: ../scripts/pybtext.py:41
-msgid "usage: pybtext [-o outputfile] [-s style] <textfile> <bibfiles...>"
-msgstr "uso: pybtext [-o arqsaída] [-s estilo] <arqtexto> <arqbib...>"
+#: ../scripts/pybliotext.py:41
+msgid "usage: pybliotext [-o outputfile] [-s style] <textfile> <bibfiles...>"
+msgstr "uso: pybliotext [-o arqsaída] [-s estilo] <arqtexto> <arqbib...>"
 
-#: ../scripts/pybtext.py:45
+#: ../scripts/pybliotext.py:45
 #, python-format
-msgid "pybtext: error: %s\n"
-msgstr "pybtext: erro: %s\n"
+msgid "pybliotext: error: %s\n"
+msgstr "pybliotext: erro: %s\n"
 
-#: ../scripts/pybtext.py:50
+#: ../scripts/pybliotext.py:50
 #, python-format
-msgid "pybtext: warning: %s\n"
-msgstr "pybtext: atenção: %s\n"
+msgid "pybliotext: warning: %s\n"
+msgstr "pybliotext: atenção: %s\n"
 
-#: ../scripts/pybtext.py:124
+#: ../scripts/pybliotext.py:124
 #, python-format
 msgid "File already exists: `%s'"
 msgstr "O arquivo já existe: \"%s\""
 
-#: ../scripts/pybtext.py:127
+#: ../scripts/pybliotext.py:127
 #, python-format
 msgid "A file with the same name already exists: `%s'"
 msgstr "Um arquivo com o mesmo nome já existe: \"%s\""
 
-#: ../scripts/pybtext.py:178
+#: ../scripts/pybliotext.py:178
 msgid "no citation found"
 msgstr "nenhuma citação encontrada"
 
-#: ../scripts/pybtext.py:193
+#: ../scripts/pybliotext.py:193
 #, python-format
-msgid "pybtext: using style `%s', format `%s'\n"
-msgstr "pybtext: utilizando o estilo \"%s\", formato \"%s\"\n"
+msgid "pybliotext: using style `%s', format `%s'\n"
+msgstr "pybliotext: utilizando o estilo \"%s\", formato \"%s\"\n"
 
-#: ../scripts/pybtext.py:316
+#: ../scripts/pybliotext.py:316
 #, python-format
 msgid "can't create `%s'"
 msgstr "não foi possível criar \"%s\""
 
-#: ../scripts/pybtext.py:342
+#: ../scripts/pybliotext.py:342
 #, python-format
 msgid "can't remove `%s'"
 msgstr "não foi possível remover \"%s\""
 
-#: ../scripts/pybtext.py:344
+#: ../scripts/pybliotext.py:344
 msgid "Done"
 msgstr "Concluído"
 
@@ -1390,14 +1390,14 @@ msgstr "Concluído"
 #~ msgstr "Excluir..."
 
 #~ msgid ""
-#~ "usage: pybformat [-o outputfile] [-s style] [-f format] [-H header] [-F "
+#~ "usage: pyblioformat [-o outputfile] [-s style] [-f format] [-H header] [-F "
 #~ "footer] <database...>"
 #~ msgstr ""
-#~ "utilização: pybformat [-o arqsaída] [-s estilo] [-f formato] [-H "
+#~ "utilização: pyblioformat [-o arqsaída] [-s estilo] [-f formato] [-H "
 #~ "cabeçalho] [-F footer] <bancodedados...>"
 
-#~ msgid "usage: pybformat [bibtexfiles...]\n"
-#~ msgstr "uso: pybformat [arquivosbibtex...]\n"
+#~ msgid "usage: pyblioformat [bibtexfiles...]\n"
+#~ msgstr "uso: pyblioformat [arquivosbibtex...]\n"
 
 #~ msgid "Delete text first, then you can delete the field."
 #~ msgstr "Exclua o texto primeiro, então você pode excluir o campo."
