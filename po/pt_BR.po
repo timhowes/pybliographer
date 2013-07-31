@@ -1,30 +1,32 @@
 # Brazilian Portuguese translation of pybliographer.
-# Copyright (C) 2004 Free Software Foundation, Inc.
+# Copyright (C) 2004-2013 Free Software Foundation, Inc.
 # This file is distributed under the same license as the pybliographer package.
 # Afonso Celso Medina <medina@maua.br>, 2004.
 # Raphael Higino <In Memoriam>, 2004.
 # Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>, 2008.
 # Djavan Fagundes <djavanf@gnome.org>, 2010.
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pybliographer.v_1_0_x\n"
+"Project-Id-Version: pybliographer\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=pybliographer&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-25 19:35+0000\n"
-"PO-Revision-Date: 2013-03-11 23:22-0300\n"
+"POT-Creation-Date: 2013-07-30 23:44+0000\n"
+"PO-Revision-Date: 2013-07-31 11:34-0300\n"
 "Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
-"Language-Team: Portuguese/Brazil <gnome-l10n-br@listas.cipsga.org.br>\n"
-"Language: \n"
+"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../Pyblio/Autoload.py:78
 #, python-format
 msgid "warning: can't import %s: %s"
-msgstr "atenção: impossível importar %s: %s"
+msgstr "aviso: não foi possível importar %s: %s"
 
 #: ../Pyblio/Config.py:52
 #, python-format
@@ -182,7 +184,7 @@ msgstr "Abrir um arquivo"
 
 #: ../Pyblio/GnomeUI/Document.py:155
 msgid "Open _Location"
-msgstr "Abrir _Localização"
+msgstr "Abrir _localização"
 
 #: ../Pyblio/GnomeUI/Document.py:156
 msgid "Save the current file"
@@ -191,12 +193,12 @@ msgstr "Salvar o arquivo atual"
 #: ../Pyblio/GnomeUI/Document.py:161
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:3
 msgid "Merge With..."
-msgstr "Mesclar Com..."
+msgstr "Mesclar com..."
 
 #: ../Pyblio/GnomeUI/Document.py:162
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:4
 msgid "Medline Query..."
-msgstr "Consultar na Base Medline..."
+msgstr "Consultar na base Medline..."
 
 #: ../Pyblio/GnomeUI/Document.py:170
 msgid "Add a new entry"
@@ -241,7 +243,7 @@ msgstr "_Sobre"
 
 #: ../Pyblio/GnomeUI/Document.py:245
 msgid "Quick search"
-msgstr "Busca rápida"
+msgstr "Pesquisa rápida"
 
 #: ../Pyblio/GnomeUI/Document.py:319
 msgid "Unnamed bibliographic database"
@@ -253,7 +255,7 @@ msgid ""
 "can't open file `%s' for writing:\n"
 "%s"
 msgstr ""
-"arquivo \"%s\" não pode ser aberto para gravação:\n"
+"não foi possível abrir o arquivo \"%s\" para gravação:\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Document.py:423
@@ -316,7 +318,7 @@ msgid ""
 "Save changes?"
 msgstr ""
 "O banco de dados foi alterado.\n"
-"Salvar as alterações? "
+"Salvar as alterações?"
 
 #: ../Pyblio/GnomeUI/Document.py:495
 msgid ""
@@ -334,7 +336,7 @@ msgstr "A sua consulta não retornou nenhum resultado"
 #. error
 #: ../Pyblio/GnomeUI/Document.py:528
 msgid "An error occured during Medline Query"
-msgstr "Ocorreu um erro durante a Consulta na Base Bibliográfica Medline"
+msgstr "Ocorreu um erro durante a consulta na base bibliográfica Medline"
 
 #. get a new file name
 #: ../Pyblio/GnomeUI/Document.py:538
@@ -360,8 +362,8 @@ msgid ""
 "An autosave file was found which is newer than the original file.\n"
 "Do you want to restore it?"
 msgstr ""
-"Foi encontrado um arquivo de autosalvamento que é mais novo do que o arquivo "
-"original.\n"
+"Foi encontrado um arquivo de autossalvamento que é mais novo do que o "
+"arquivo original.\n"
 "Você deseja recarregá-lo?"
 
 #: ../Pyblio/GnomeUI/Document.py:659 ../Pyblio/GnomeUI/Document.py:800
@@ -371,7 +373,7 @@ msgid ""
 "Unable to remove autosave file `%s':\n"
 "%s"
 msgstr ""
-"Impossível remover o arquivo de autosalvamento \"%s\":\n"
+"Impossível remover o arquivo de autossalvamento \"%s\":\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Document.py:710
@@ -380,7 +382,7 @@ msgid ""
 "Error during autosaving:\n"
 "%s"
 msgstr ""
-"Erro durante o autosalvamento:\n"
+"Erro durante o autossalvamento:\n"
 "%s"
 
 #: ../Pyblio/GnomeUI/Document.py:738
@@ -398,11 +400,11 @@ msgid ""
 "Try to Save As..."
 msgstr ""
 "Ocorreu um erro interno ao salvar\n"
-"Tente Salvar Como..."
+"Tente salvar como..."
 
 #: ../Pyblio/GnomeUI/Document.py:761
 msgid "Save As..."
-msgstr "Salvar Como..."
+msgstr "Salvar como..."
 
 #: ../Pyblio/GnomeUI/Document.py:767
 #, python-format
@@ -446,7 +448,7 @@ msgstr "Criar nova entrada"
 #: ../Pyblio/GnomeUI/Document.py:956
 #, python-format
 msgid "Really edit %d entries ?"
-msgstr "Deseja mesmo editar %d entradas ?"
+msgstr "Deseja mesmo editar %d entradas?"
 
 #: ../Pyblio/GnomeUI/Document.py:1002
 #, python-format
@@ -498,7 +500,8 @@ msgid "GNOME Translation Team"
 msgstr ""
 "Afonso Celso Medina <medina@maua.br>\n"
 "Raphael Higino <In Memoriam>\n"
-"Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>"
+"Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>\n"
+"Rafael Ferreira <rafael.f.f1@gmail.com>"
 
 #: ../Pyblio/GnomeUI/Document.py:1251
 msgid "Pybliographer Home Page"
@@ -550,7 +553,7 @@ msgstr "Excluir"
 #: ../Pyblio/GnomeUI/Editor.py:430 ../Pyblio/GnomeUI/Editor.py:443
 #: ../Pyblio/GnomeUI/Editor.py:446
 msgid "[ Drop an Entry here ]"
-msgstr "[ Ponha uma Entrada aqui ]"
+msgstr "[ Ponha uma entrada aqui ]"
 
 #: ../Pyblio/GnomeUI/Editor.py:502
 msgid "Browse..."
@@ -572,7 +575,7 @@ msgstr "Chave"
 
 #: ../Pyblio/GnomeUI/Editor.py:600
 msgid "Create Field"
-msgstr "Criar Campo"
+msgstr "Criar campo"
 
 #. navigation buttons
 #: ../Pyblio/GnomeUI/Editor.py:605
@@ -624,11 +627,11 @@ msgstr "Editar entrada"
 # .././Pyblio/GnomeUI/Editor.py:698 :739
 #: ../Pyblio/GnomeUI/Editor.py:1037 ../Pyblio/GnomeUI/Editor.py:1102
 msgid "Native Editing"
-msgstr "Edição Nativa"
+msgstr "Edição nativa"
 
 #: ../Pyblio/GnomeUI/Editor.py:1125
 msgid "Standard Editing"
-msgstr "Edição Padrão"
+msgstr "Edição padrão"
 
 #: ../Pyblio/GnomeUI/Editor.py:1229
 msgid "mandatory"
@@ -640,7 +643,7 @@ msgstr "Digite o texto aqui"
 
 #: ../Pyblio/GnomeUI/Editor.py:1347
 msgid "New Annotation Name"
-msgstr "Novo Nome da Anotação"
+msgstr "Novo nome da anotação"
 
 #: ../Pyblio/GnomeUI/Editor.py:1353
 msgid "Name of the new annotation:"
@@ -662,7 +665,7 @@ msgstr "Autores"
 
 #: ../Pyblio/GnomeUI/Fields.py:40
 msgid "Long Text"
-msgstr "Texto Longo"
+msgstr "Texto longo"
 
 #: ../Pyblio/GnomeUI/Fields.py:41 ../Pyblio/GnomeUI/glade/config1.glade.h:9
 #: ../Pyblio/GnomeUI/glade/fields1.glade.h:8
@@ -721,7 +724,7 @@ msgstr " - De acordo com o sufixo - "
 #. The root of the search tree is the full database
 #: ../Pyblio/GnomeUI/Search.py:71
 msgid "Full database"
-msgstr "Banco de Dados completo"
+msgstr "Banco de dados completo"
 
 #: ../Pyblio/GnomeUI/Search.py:142
 msgid "internal error during evaluation"
@@ -739,11 +742,11 @@ msgstr ""
 #. These are additional search fields
 #: ../Pyblio/GnomeUI/Sort.py:97
 msgid "[Entry Type]"
-msgstr "[Tipo de Entrada]"
+msgstr "[Tipo de entrada]"
 
 #: ../Pyblio/GnomeUI/Sort.py:98
 msgid "[Key Value]"
-msgstr "[Valor da Chave]"
+msgstr "[Valor da chave]"
 
 #: ../Pyblio/GnomeUI/Utils.py:193
 msgid "The following errors occured:\n"
@@ -851,11 +854,11 @@ msgstr "Formato de saída:"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:4
 msgid "Style Selection"
-msgstr "Seleção de Estilo"
+msgstr "Seleção de estilo"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:5
 msgid "Save Formatted as"
-msgstr "Salvar Formatado como"
+msgstr "Salvar formatado como"
 
 #: ../Pyblio/GnomeUI/glade/format.glade.h:6
 msgid "Output file:"
@@ -863,11 +866,11 @@ msgstr "Arquivo de saída:"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:1
 msgid "Medline Query"
-msgstr "Consulta na Base Bibliográfica Medline"
+msgstr "Consulta na base bibliográfica Medline"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:2
 msgid "Enter your Medline Query"
-msgstr "Entre com a sua Consulta na Base Bibliográfica Medline"
+msgstr "Entre com a sua consulta na base bibliográfica Medline"
 
 #: ../Pyblio/GnomeUI/glade/medline.glade.h:3
 msgid ""
@@ -931,7 +934,7 @@ msgstr "Limitado a:"
 
 #: ../Pyblio/GnomeUI/glade/openurl.glade.h:1
 msgid "Open Location"
-msgstr "Abrir Localização"
+msgstr "Abrir localização"
 
 #: ../Pyblio/GnomeUI/glade/openurl.glade.h:2
 msgid "Enter the location (URI) of the file you would like to open:"
@@ -948,7 +951,7 @@ msgstr "_Novo"
 # .././Pyblio/GnomeUI/Document.py:193 :207
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:5
 msgid "Previous Documents"
-msgstr "Documentos Anteriores"
+msgstr "Documentos anteriores"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:6
 msgid "_Add..."
@@ -976,12 +979,12 @@ msgstr "Conteúdo"
 
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:17
 msgid "Open File"
-msgstr "Abrir Arquivo"
+msgstr "Abrir arquivo"
 
 # :207
 #: ../Pyblio/GnomeUI/glade/pyblio.glade.in.h:18
 msgid "Save File"
-msgstr "Salva o Arquivo"
+msgstr "Salva o arquivo"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:1
 msgid "Search"
@@ -1001,7 +1004,7 @@ msgstr "Padrão"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:6
 msgid "Simple Search"
-msgstr "Pesquisa Simples"
+msgstr "Pesquisa simples"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:7
 msgid "Query"
@@ -1009,7 +1012,7 @@ msgstr "Consulta"
 
 #: ../Pyblio/GnomeUI/glade/search.glade.h:8
 msgid "Expert Search"
-msgstr "Pesquisa Especializada"
+msgstr "Pesquisa especializada"
 
 #: ../Pyblio/GnomeUI/glade/sort.glade.h:1
 msgid "Select sort criterions"
@@ -1057,7 +1060,7 @@ msgid ""
 "Warning: This URL is marked as Invalid or Approximate: %s\n"
 "Continue?"
 msgstr ""
-"Aviso: Esta URL está marcada como Inválida ou Aproximada: %s\n"
+"Aviso: Esta URL está marcada como inválida ou aproximada: %s\n"
 "Continuar?"
 
 #: ../Pyblio/Resource.py:81
@@ -1174,55 +1177,56 @@ msgstr ""
 #. save history
 #: ../pybliographic.desktop.in.h:1
 msgid "Pybliographic Bibliography Manager"
-msgstr "Pybliographic - Gerenciador Bibliográfico"
+msgstr "Pybliographic - Gerenciador bibliográfico"
 
 #: ../pybliographic.desktop.in.h:2
 msgid "Bibliography Manager"
-msgstr "Gerenciador Bibliográfico"
+msgstr "Gerenciador bibliográfico"
 
 #: ../pybliographic.desktop.in.h:3
 msgid "Manage bibliographic databases"
 msgstr "Gerencia bancos de dados bibliográficos"
 
-#: ../scripts/pybliocheck.py:31
-msgid "usage: pybliocheck <file | directory>..."
-msgstr "utilização: pybliocheck <arquivo | diretório>..."
+#: ../scripts/pybcheck.py:31
+msgid "usage: pybcheck <file | directory>..."
+msgstr "uso: pybcheck <arquivo | diretório>..."
 
 # .././Pyblio/Open.py:105 :151
-#: ../scripts/pybliocheck.py:60
+#: ../scripts/pybcheck.py:60
 #, python-format
 msgid "file `%s' is ok [%d entries]"
 msgstr "O arquivo \"%s\" está ok [%d entradas]"
 
-#: ../scripts/pybliocompact.py:30
-msgid "usage: pybliocompact <latexfile> <bibtexfiles...>"
-msgstr "uso: pybliocompact <arquivolatex> <arquivosbibtex...>"
+#: ../scripts/pybcompact.py:30
+msgid "usage: pybcompact <latexfile> <bibtexfiles...>"
+msgstr "uso: pybcompact <arquivolatex> <arquivosbibtex...>"
 
-#: ../scripts/pybliocompact.py:34
+#: ../scripts/pybcompact.py:34
 #, python-format
-msgid "pybliocompact: error: %s\n"
-msgstr "pybliocompact: erro: %s\n"
+msgid "pybcompact: error: %s\n"
+msgstr "pybcompact: erro: %s\n"
 
-#: ../scripts/pybliocompact.py:99
+#: ../scripts/pybcompact.py:99
 msgid "no entry"
 msgstr "nenhuma entrada"
 
-#: ../scripts/pybliocompact.py:162 ../scripts/pybliotext.py:240
+#: ../scripts/pybcompact.py:162 ../scripts/pybtext.py:240
 #, python-format
 msgid "can't find the following entries: %s"
 msgstr "não é possível encontrar as seguintes entradas: %s"
 
-#: ../scripts/pyblioconvert.py:29
-msgid "usage: pyblioconvert <source>..<target> <input> [output]"
-msgstr "uso: pyblioconvert <origem>..<alvo> <entrada> [saída]"
+#: ../scripts/pybconvert.py:29
+msgid "usage: pybconvert <source>..<target> <input> [output]"
+msgstr "uso: pybconvert <origem>..<alvo> <entrada> [saída]"
 
-#: ../scripts/pyblioconvert.py:38
-msgid "pyblioconvert: error: bad conversion format"
-msgstr "pyblioconvert: erro: formato de conversão ruim"
+#: ../scripts/pybconvert.py:38
+msgid "pybconvert: error: bad conversion format"
+msgstr "pybconvert: erro: formato de conversão incorreto"
 
-#: ../scripts/pyblioformat.py:34
+# Sequência de \t\t\t do "disponíveis" acrescentada para se manter uma formatação correta
+#: ../scripts/pybformat.py:34
 msgid ""
-"usage: pyblioformat [options] <database...>\n"
+"usage: pybformat [options] <database...>\n"
 "\n"
 "    options:\n"
 "      -o file, --output=file\t\tspecify an output filename\n"
@@ -1234,149 +1238,148 @@ msgid ""
 "      -h, --help\t\t\tshow this help message\n"
 "    "
 msgstr ""
-"uso: pyblioformat [opções] <banco de dados...>\n"
+"uso: pybformat [opções] <banco de dados...>\n"
 "\n"
 "    opções:\n"
-"      -o arquivo, --output=arquivo\t\tespecifique o nome do arquivo de "
-"saída\n"
-"      -s estilo, --style=estilo\t\tespecifique um estilo bibliográfico\n"
-"      -f formato, --format=formato\t\tespecifique um formato de saídaa\n"
-"      -H cabeçalho, --header=header\tdefine um arquivo de cabeçalho\n"
+"      -o arquivo, --output=arquivo\tespecifica o nome do arquivo de saída\n"
+"      -s estilo, --style=estilo\t\tespecifica um estilo bibliográfico\n"
+"      -f formato, --format=formato\tespecifica um formato de saída\n"
+"      -H cabeçalho, --header=cabeçalho\tdefine um arquivo de cabeçalho\n"
 "      -F rodapé, --footer=rodapé\tdefine um arquivo de rodapé\n"
-"      -l \"output\", --list=\"output\"\trelaciona os formatos de saída "
-"disponíveis\n"
+"      -l \"saída\", --list=\"saída\"\trelaciona os formatos de saída\n"
+"\t\t\t\t\tdisponíveis\n"
 "      -h, --help\t\t\tmostra esta mensagem de ajuda\n"
 "    "
 
-#: ../scripts/pyblioformat.py:48
+#: ../scripts/pybformat.py:48
 #, python-format
-msgid "pyblioformat: error: %s\n"
-msgstr "pyblioformat: erro: %s\n"
+msgid "pybformat: error: %s\n"
+msgstr "pybformat: erro: %s\n"
 
-#: ../scripts/pyblioformat.py:54
+#: ../scripts/pybformat.py:54
 #, python-format
-msgid "pyblioformat: warning: %s\n"
-msgstr "pyblioformat: atenção: %s\n"
+msgid "pybformat: warning: %s\n"
+msgstr "pybformat: aviso: %s\n"
 
-#: ../scripts/pyblioformat.py:93 ../scripts/pybliotext.py:252
-#: ../scripts/pybliotext.py:278 ../scripts/pybliotext.py:321
+#: ../scripts/pybformat.py:93 ../scripts/pybtext.py:252
+#: ../scripts/pybtext.py:278 ../scripts/pybtext.py:321
 #, python-format
 msgid "can't open `%s': %s"
 msgstr "não foi possível abrir o arquivo \"%s\": %s"
 
-#: ../scripts/pyblioformat.py:100
+#: ../scripts/pybformat.py:100
 #, python-format
 msgid "unknown list `%s'"
 msgstr "lista desconhecida \"%s\""
 
-#: ../scripts/pyblioformat.py:103
+#: ../scripts/pybformat.py:103
 #, python-format
-msgid "pyblioformat: available values for `%s':"
-msgstr "pyblioformat: valores disponíveis para \"%s\":"
+msgid "pybformat: available values for `%s':"
+msgstr "pybformat: valores disponíveis para \"%s\":"
 
-#: ../scripts/pyblioformat.py:107
+#: ../scripts/pybformat.py:107
 #, python-format
 msgid "empty value list `%s'"
 msgstr "lista de valores vazia \"%s\""
 
-#: ../scripts/pyblioformat.py:129
+#: ../scripts/pybformat.py:129
 msgid "too few arguments"
 msgstr "poucos argumentos"
 
-#: ../scripts/pyblioformat.py:136 ../scripts/pybliotext.py:117
+#: ../scripts/pybformat.py:136 ../scripts/pybtext.py:117
 #, python-format
 msgid "unknown output format `%s'"
 msgstr "formato de saída desconhecido \"%s\""
 
-#: ../scripts/pyblioformat.py:149 ../scripts/pybliotex.py:86
-#: ../scripts/pybliotext.py:94
+#: ../scripts/pybformat.py:149 ../scripts/pybtex.py:86
+#: ../scripts/pybtext.py:94
 #, python-format
 msgid "can't find style `%s'"
 msgstr "não é possível encontrar o estilo \"%s\""
 
-#: ../scripts/pyblioformat.py:152
+#: ../scripts/pybformat.py:152
 #, python-format
-msgid "pyblioformat: using style `%s', format `%s'\n"
-msgstr "pyblioformat: usando o estilo \"%s\", formato \"%s\"\n"
+msgid "pybformat: using style `%s', format `%s'\n"
+msgstr "pybformat: usando o estilo \"%s\", formato \"%s\"\n"
 
-#: ../scripts/pyblioformat.py:167
+#: ../scripts/pybformat.py:167
 #, python-format
 msgid "can't open header `%s': %s"
 msgstr "não foi possível abrir o cabeçalho \"%s\": %s"
 
-#: ../scripts/pyblioformat.py:175
+#: ../scripts/pybformat.py:175
 #, python-format
 msgid "can't open database: %s"
 msgstr "não foi possível abrir o banco de dados: %s"
 
-#: ../scripts/pyblioformat.py:190
+#: ../scripts/pybformat.py:190
 #, python-format
 msgid "can't open footer `%s': %s"
 msgstr "impossível abrir a nota de rodapé \"%s\": %s"
 
-#: ../scripts/pybliotex.py:34
-msgid "usage: pybliotex <latexfile> [bibtexfiles...]"
-msgstr "uso: pybliotex <arquivolatex> [arquivosbibtex...]"
+#: ../scripts/pybtex.py:34
+msgid "usage: pybtex <latexfile> [bibtexfiles...]"
+msgstr "uso: pybtex <arquivolatex> [arquivosbibtex...]"
 
-#: ../scripts/pybliotex.py:38
+#: ../scripts/pybtex.py:38
 #, python-format
-msgid "pybliotex: error: %s\n"
-msgstr "pybliotex: erro: %s\n"
+msgid "pybtex: error: %s\n"
+msgstr "pybtex: erro: %s\n"
 
 #. warn the user that some entries were not found
-#: ../scripts/pybliotex.py:59
-msgid "pybliotex: warning: the following keys were not resolved"
-msgstr "pybliotex: atenção: as seguintes chaves não foram resolvidas"
+#: ../scripts/pybtex.py:59
+msgid "pybtex: warning: the following keys were not resolved"
+msgstr "pybtex: aviso: as seguintes chaves não foram resolvidas"
 
 #. If the LaTeX document declares no style...
-#: ../scripts/pybliotex.py:64
+#: ../scripts/pybtex.py:64
 msgid "no style defined"
 msgstr "nenhum estilo definido"
 
-#: ../scripts/pybliotext.py:41
-msgid "usage: pybliotext [-o outputfile] [-s style] <textfile> <bibfiles...>"
-msgstr "uso: pybliotext [-o arqsaída] [-s estilo] <arqtexto> <arqbib...>"
+#: ../scripts/pybtext.py:41
+msgid "usage: pybtext [-o outputfile] [-s style] <textfile> <bibfiles...>"
+msgstr "uso: pybtext [-o arqsaída] [-s estilo] <arqtexto> <arqbib...>"
 
-#: ../scripts/pybliotext.py:45
+#: ../scripts/pybtext.py:45
 #, python-format
-msgid "pybliotext: error: %s\n"
-msgstr "pybliotext: erro: %s\n"
+msgid "pybtext: error: %s\n"
+msgstr "pybtext: erro: %s\n"
 
-#: ../scripts/pybliotext.py:50
+#: ../scripts/pybtext.py:50
 #, python-format
-msgid "pybliotext: warning: %s\n"
-msgstr "pybliotext: atenção: %s\n"
+msgid "pybtext: warning: %s\n"
+msgstr "pybtext: aviso: %s\n"
 
-#: ../scripts/pybliotext.py:124
+#: ../scripts/pybtext.py:124
 #, python-format
 msgid "File already exists: `%s'"
 msgstr "O arquivo já existe: \"%s\""
 
-#: ../scripts/pybliotext.py:127
+#: ../scripts/pybtext.py:127
 #, python-format
 msgid "A file with the same name already exists: `%s'"
 msgstr "Um arquivo com o mesmo nome já existe: \"%s\""
 
-#: ../scripts/pybliotext.py:178
+#: ../scripts/pybtext.py:178
 msgid "no citation found"
 msgstr "nenhuma citação encontrada"
 
-#: ../scripts/pybliotext.py:193
+#: ../scripts/pybtext.py:193
 #, python-format
-msgid "pybliotext: using style `%s', format `%s'\n"
-msgstr "pybliotext: utilizando o estilo \"%s\", formato \"%s\"\n"
+msgid "pybtext: using style `%s', format `%s'\n"
+msgstr "pybtext: usando o estilo \"%s\", formato \"%s\"\n"
 
-#: ../scripts/pybliotext.py:316
+#: ../scripts/pybtext.py:316
 #, python-format
 msgid "can't create `%s'"
 msgstr "não foi possível criar \"%s\""
 
-#: ../scripts/pybliotext.py:342
+#: ../scripts/pybtext.py:342
 #, python-format
 msgid "can't remove `%s'"
 msgstr "não foi possível remover \"%s\""
 
-#: ../scripts/pybliotext.py:344
+#: ../scripts/pybtext.py:344
 msgid "Done"
 msgstr "Concluído"
 
@@ -1390,8 +1393,8 @@ msgstr "Concluído"
 #~ msgstr "Excluir..."
 
 #~ msgid ""
-#~ "usage: pyblioformat [-o outputfile] [-s style] [-f format] [-H header] [-F "
-#~ "footer] <database...>"
+#~ "usage: pyblioformat [-o outputfile] [-s style] [-f format] [-H header] [-"
+#~ "F footer] <database...>"
 #~ msgstr ""
 #~ "utilização: pyblioformat [-o arqsaída] [-s estilo] [-f formato] [-H "
 #~ "cabeçalho] [-F footer] <bancodedados...>"
