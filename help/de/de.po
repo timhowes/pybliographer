@@ -585,7 +585,7 @@ msgstr ""
 "kopiert werden."
 
 #: C/scripting-existing.page:177(screen)
-#, no-wrap    "
+#, no-wrap
 msgid ""
 "\n"
 "\t<output>bash$ </output><cmd>pybliotext</cmd> [-o outputfile] [-s style] <file>textfile</file> <file>bibfiles...</file>\n"
