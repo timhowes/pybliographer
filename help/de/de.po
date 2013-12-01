@@ -328,7 +328,6 @@ msgstr ""
 "sein."
 
 #: C/scripting-existing.page:33(title)
-#| msgid "pybcheck"
 msgid "pybliocheck"
 msgstr "pybliocheck"
 
@@ -341,12 +340,6 @@ msgstr ""
 "diese korrekt sind (Syntax, keine Einträge mit dem gleichen Schlüssel usw.)."
 
 #: C/scripting-existing.page:40(p)
-#| msgid ""
-#| "It is possible to use its output directly in an emacs compile buffer, in "
-#| "order to jump directly to the encountered errors. To do so, type "
-#| "<keyseq><key>M</key><key>x</key></keyseq><cmd>compile</cmd>, then the "
-#| "command <cmd>pybcheck <var>yourfiles</var></cmd>, and use the middle "
-#| "button of the mouse to jump into the faulty file."
 msgid ""
 "It is possible to use its output directly in an emacs compile buffer, in "
 "order to jump directly to the encountered errors. To do so, type "
@@ -361,7 +354,6 @@ msgstr ""
 "springen Sie mit der mittleren Maustaste direkt in die fehlerhafte Datei."
 
 #: C/scripting-existing.page:49(title)
-#| msgid "pybcompact"
 msgid "pybliocompact"
 msgstr "pybliocompact"
 
@@ -394,7 +386,6 @@ msgstr ""
 "die entsprechenden Einträge."
 
 #: C/scripting-existing.page:68(title)
-#| msgid "pybconvert"
 msgid "pyblioconvert"
 msgstr "pyblioconvert"
 
@@ -412,10 +403,6 @@ msgstr ""
 
 #: C/scripting-existing.page:78(screen)
 #, no-wrap
-#| msgid ""
-#| "\n"
-#| "\t<output>bash$ </output><cmd>pybconvert</cmd> refer..bibtex <var>toto.refer</var> <var>toto.bib</var>\n"
-#| "      "
 msgid ""
 "\n"
 "\t<output>bash$ </output><cmd>pyblioconvert</cmd> refer..bibtex <var>toto.refer</var> <var>toto.bib</var>\n"
@@ -426,7 +413,6 @@ msgstr ""
 "      "
 
 #: C/scripting-existing.page:84(title) C/scripting-existing.page:94(cmd)
-#| msgid "pybformat"
 msgid "pyblioformat"
 msgstr "pyblioformat"
 
@@ -547,10 +533,6 @@ msgstr "Der Befehl folgt der Form"
 
 #: C/scripting-existing.page:148(screen)
 #, no-wrap
-#| msgid ""
-#| "\n"
-#| "\t<output>bash$ </output><cmd>pybtex</cmd> <file>latexfile</file> [<file>bibtexfiles</file>...]\n"
-#| "      "
 msgid ""
 "\n"
 "\t<output>bash$ </output><cmd>pybliotex</cmd> <file>latexfile</file> [<file>bibtexfiles</file>...]\n"
@@ -561,7 +543,6 @@ msgstr ""
 "      "
 
 #: C/scripting-existing.page:154(title)
-#| msgid "pybtext"
 msgid "pybliotext"
 msgstr "pybliotext"
 
@@ -604,11 +585,7 @@ msgstr ""
 "kopiert werden."
 
 #: C/scripting-existing.page:177(screen)
-#, no-wrap
-#| msgid ""
-#| "\n"
-#| "\t<output>bash$ </output><cmd>pybtext</cmd> [-o outputfile] [-s style] <file>textfile</file> <file>bibfiles...</file>\n"
-#| "      "
+#, no-wrap    "
 msgid ""
 "\n"
 "\t<output>bash$ </output><cmd>pybliotext</cmd> [-o outputfile] [-s style] <file>textfile</file> <file>bibfiles...</file>\n"
@@ -631,16 +608,6 @@ msgstr ""
 "bezeichnet eine oder mehrere bibliografische Datenbankdateien."
 
 #: C/scripting-existing.page:187(p)
-#| msgid ""
-#| "There are three different <em>styles</em> which are designed for pybtext. "
-#| "Using <em>abbrvbib</em> results in keys as they are defined in the "
-#| "database. With the style <em>abbrvau</em>, author-year type keys (e.g. "
-#| "Jackson et al., 2004) can be generated. Using <em>abbrvnum</em>, the "
-#| "script produces a simple numbered list. For abbrvau and abbrvnum, the "
-#| "formats Textau and Textnum are used, respectively. They are just simple "
-#| "modifications of the Text format, optimized for these styles. Using other "
-#| "styles (Alpha, Abbrev or apa4e), the text body is not processed, but the "
-#| "reference list is appended in the form that corresponds to the used style."
 msgid ""
 "There are three different <em>styles</em> which are designed for pybliotext. "
 "Using <em>abbrvbib</em> results in keys as they are defined in the database. "
