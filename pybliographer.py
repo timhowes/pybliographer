@@ -15,7 +15,57 @@
 # GNU General Public License for more details. 
 # 
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+# 
+# 
+
+version  = "@version@"
+progname = "@package@"
+
+data_pybdir = "@datapyb@"
+localedir   = "@locale_dir@"
+
+import sys
+
+sys.path.insert (0, data_pybdir)
+sys.path.insert (0, '.')
+
+import locale
+locale.setlocale (locale.LC_ALL, '')
+
+import gettext
+gettext.install (progname, localedir, unicode = True)
+
+charset = locale.getlocale () [1] or 'ascii'
+
+def print_version ():
+	print (_("This is %s, version %s") % (progname, version)).encode (charset)
+
+def copyright ():
+	print 'Copyright (C) 1998-2004 Frederic GOBRY'
+	print _("This is free software with ABSOLUTELY NO WARRANTY.").encode (charset)
+	print _("For details, type `warranty'.").encode (charset)
+
+def warranty ():
+	print_version ()
+	print 'Copyright (C) 1998-2004 Frederic GOBRY'
+	
+	print _("This is free software with ABSOLUTELY NO WARRANTY.").encode (charset)
+	print """
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, write to the Free Software
+Foundation, 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 """
 	
 import os
