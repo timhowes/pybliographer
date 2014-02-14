@@ -4,12 +4,12 @@ appicondir = $(datadir)/pixmaps
 glade_DATA = 					\
 	fields1.ui				\
 	pyblio.ui 				\
-	search.glade 				\
+	search.ui 				\
 	sort.ui 				\
 	format.ui				\
-	medline.glade 				\
+	medline.ui 				\
 	config1.ui				\
-	openurl.glade
+	openurl.ui
 
 EXTRA_DIST = $(glade_DATA) pyblio.ui.in
 
