@@ -28,6 +28,7 @@ run gnome-doc-prepare --copy --force
 
 run aclocal ${aclocal_extra}
 run autoconf
+run intltoolize
 run automake -a
 
 if [ -x ./config.status ] ; then
