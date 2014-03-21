@@ -20,6 +20,7 @@
 # 
 
 pybdir = $(datadir)/$(PACKAGE)/Pyblio
+pixmapsdir = $(datadir)/pixmaps
 
 EXTRA_DIST = \
 	version.py.in	\
@@ -63,6 +64,7 @@ version.py: version.py.in
 		-e s!\@version\@!$(VERSION)!              \
 		-e s!\@locale_dir\@!$(localedir)!         \
 		-e s!\@p_datadir\@!$(datadir)! \
+		-e s!\@pixmapsdir\@!$(pixmapsdir)! \
 		< $< > $@
 
 version.py: Makefile

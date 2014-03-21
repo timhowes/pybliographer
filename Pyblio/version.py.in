@@ -1,7 +1,20 @@
 # -*- python -*-
 
-datadir   = "@p_datadir@"
-pybdir    = "@datapyb@"
-localedir = "@locale_dir@"
-version   = "@version@"
+import os.path
 
+_curdir = os.path.dirname(os.path.realpath(__file__))
+_topdir = os.path.dirname(os.path.join(_curdir, '..', '..'))
+_installed = not os.path.exists(os.path.join(_topdir, 'pybliographer.doap'))
+
+if _installed:
+    datadir = '@p_datadir@'
+    pybdir = '@datapyb@'
+    localedir = '@locale_dir@'
+    version = '@version@'
+    pixmapsdir = '@pixmapsdir@'
+else:
+    datadir = _srcdir
+    pybdir = _srcdir
+    localedir = None
+    version = '@version@'
+    pixmapsdir = _srcdir

@@ -193,6 +193,7 @@ class Document (Connector.Publisher):
         self.uim.ensure_update ()
 
         gp = os.path.join(Utils.glade_root, 'pyblio.ui')
+        icon_file = os.path.join (version.pixmapsdir, 'pybliographic.png')
         
         self.xml = Gtk.Builder()
         self.xml.set_translation_domain('pybliographer')
@@ -200,6 +201,7 @@ class Document (Connector.Publisher):
         self.xml.connect_signals(self)
 
         self.w = self.xml.get_object ('main')
+        self.w.set_icon_from_file (icon_file)
         self.paned = self.xml.get_object ('main_pane')
 
         box = self.xml.get_object ('grid')
