@@ -59,7 +59,6 @@ version.py: version.py.in
 		-e s!\@bin_dir\@!$(bindir)!               \
 		-e s!\@libpyb\@!$(libdir)/$(PACKAGE)!     \
 		-e s!\@datapyb\@!$(datadir)/$(PACKAGE)!   \
-		-e s!\@python_path\@!\@Python\@!          \
 		-e s!\@package\@!$(PACKAGE)!              \
 		-e s!\@version\@!$(VERSION)!              \
 		-e s!\@locale_dir\@!$(localedir)!         \

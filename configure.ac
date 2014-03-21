@@ -31,50 +31,37 @@ AC_CONFIG_SRCDIR(pybliographer.in)
 
 AC_PROG_LN_S
 
-AC_PATH_PROG(Python, python, no)
-
-if test "${Python}" = "no" ; then
-  AC_MSG_ERROR([please install python first])
-fi
-
-dnl Python version
-MINIMUM_VERSION="2.2"
+AM_PATH_PYTHON(2.6)
+PKG_CHECK_MODULES(PYBLIOGRAPHER, pygobject-3.0)
 
 # PACKAGERS
 AC_ARG_ENABLE([depchecks],
-   [AS_HELP_STRING([--disable-depchecks],
-      [skip dependency checks (while building packages for instance)])],
-   [],
-   [enable_depchecks=yes])
+	[AS_HELP_STRING([--disable-depchecks],
+		[skip dependency checks (while building packages for instance)])],
+	[],
+	[enable_depchecks=yes])
 
-AC_MSG_CHECKING([python requirements])
+AC_MSG_CHECKING([for module requirements])
+if test x${enable_depchecks} = "xyes" ; then
+	# Check that recode and bibtex work as expected
+	${PYTHON} -c "import _recode as r, sys
+sys.exit(not r.recode(r.request('latin1..latex'), 'abcd') == 'abcd')" 2>/dev/null
+	if test $? -ne 0; then
+		AC_MSG_ERROR([Broken recode version])
+	fi
 
-if test ${enable_depchecks} = "yes" ; then
+	${PYTHON} -c "import _bibtex;_bibtex.next_unfiltered" 2>/dev/null
+	if test $? -ne 0; then
+		AC_MSG_ERROR([python-bibtex module required with function 'next_unfiltered'])
+	fi
 
-${Python} ${srcdir}/setup-check.py ${MINIMUM_VERSION} 2>&5 1>&2
-
-result=$?
-
-if test -f conftest.out ; then
-	. ./conftest.out
-	rm -f conftest.out
+	${PYTHON} -c "from gi.repository import Gtk" 2>/dev/null
+	if test $? -ne 0; then
+		AC_MSG_ERROR([Gtk+ 3 required])
+	fi
+	AC_MSG_RESULT([yes])
 else
-	AC_MSG_RESULT([no])
-	AC_MSG_ERROR([unable to run the test program])
-fi
-
-if test $result = 0 ; then
-	if test -z "${Status}" ; then
-	  AC_MSG_RESULT([yes (python ${Python_Version}, python-gtk ${PyGtk_Version})])
-        else
-          AC_MSG_RESULT([assuming yes (${Status})])
-        fi
-else
-	AC_MSG_RESULT([no])
-	AC_MSG_ERROR([${Status}])
-fi
-else
-  AC_MSG_RESULT([disabled by user])
+	AC_MSG_RESULT([disabled by user])
 fi
 
 # i18n
