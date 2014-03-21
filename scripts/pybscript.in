@@ -10,6 +10,9 @@ if test -x "./pybliographer" ; then
     export PYTHONPATH
 else
     pyblio="@bin_dir@/pybliographer"
+    if [ -d "$prefix" ] && [[ ":$PYTHONPATH:" != *":$prefix:"* ]]; then
+        PYTHONPATH="${PYTHONPATH:+"$PYTHONPATH:"}$prefix"
+    fi
 fi
 
 invocation="$0"
