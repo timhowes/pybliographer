@@ -52,6 +52,21 @@ EXTRA_DIST = 	pybscript.in			\
 $(bin_SCRIPTS):
 	$(LN_S) pybscript $@
 
-pybscript: $(srcdir)/pybscript.in ../etc/installer
-	$(SHELL) ../etc/installer < $(srcdir)/pybscript.in > pybscript
-	chmod 755 pybscript
+pybscript: pybscript.in
+	sed \
+		-e s!\@bin_dir\@!$(bindir)!               \
+		-e s!\@libpyb\@!$(libdir)/$(PACKAGE)!     \
+		-e s!\@datapyb\@!$(datadir)/$(PACKAGE)!   \
+		-e s!\@python_path\@!\@Python\@!          \
+		-e s!\@package\@!$(PACKAGE)!              \
+		-e s!\@version\@!$(VERSION)!              \
+		-e s!\@locale_dir\@!$(localedir)!         \
+		-e s!\@p_datadir\@!$(datadir)/$(PACKAGE)! \
+		< $< > $@
+	chmod 755 $@
+
+pybscript: Makefile
+
+DISTCLEANFILES = pybscript
+
+CLEANFILES = $(bin_SCRIPTS)

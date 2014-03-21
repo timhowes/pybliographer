@@ -27,7 +27,7 @@ AC_INIT([pybliographer], [1.2.15])
 AM_INIT_AUTOMAKE
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
-AC_CONFIG_SRCDIR(pybliographer.py)
+AC_CONFIG_SRCDIR(pybliographer.in)
 
 AC_PROG_LN_S
 
@@ -77,7 +77,12 @@ else
   AC_MSG_RESULT([disabled by user])
 fi
 
-dnl NLS is now hand-managed for python.
+# i18n
+IT_PROG_INTLTOOL([0.40.0])
+
+GETTEXT_PACKAGE=AC_PACKAGE_TARNAME
+AC_SUBST([GETTEXT_PACKAGE])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], "$GETTEXT_PACKAGE", [Gettext package])
 
 # Documentation
 GNOME_DOC_INIT
@@ -89,10 +94,9 @@ AC_HELP_STRING([--disable-update-desktop-database],
 
 AM_CONDITIONAL(ENABLE_UPDATE_DESKTOP_DATABASE, test x$enable_update_desktop_database = xyes)
 
-AC_CONFIG_FILES(	
-	Makefile 
-	po/Makefile
-	etc/installer
+AC_CONFIG_FILES(
+	Makefile
+	po/Makefile.in
 	scripts/Makefile
 	tests/Makefile
 	Pyblio/Makefile

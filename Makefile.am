@@ -25,7 +25,6 @@ pybdir  = $(datadir)/$(PACKAGE)
 appdir  = $(datadir)/applications
 
 SUBDIRS = 	Pyblio 		\
-		.		\
 		scripts		\
 		tests		\
 		Styles		\
@@ -49,33 +48,54 @@ bin_SCRIPTS = pybliographer
 
 pyb_DATA = pybrc.py
 
+desktopdir = $(datadir)/applications
+desktop_in_files = pybliographic.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+
+@INTLTOOL_DESKTOP_RULE@
+
+INTLTOOL = 			\
+	intltool-extract.in 	\
+	intltool-merge.in 	\
+	intltool-update.in
+
 EXTRA_DIST = 	setup-check.py			\
-	 	pybliographer.py 		\
-		etc/installer.in		\
+	 	pybliographer.in 		\
 		pybliographic.keys.in		\
 		pybliographic.mime		\
-		pybliographic.desktop.in	\
 		pybliographic.png		\
 		pybliographic-logo.png		\
 		pybliographic-viewer.png	\
-		gnome-doc-utils.make
+		gnome-doc-utils.make \
+		$(desktop_in_files) $(INTLTOOL) $(pyb_DATA)
 
+CLEANFILES = pybliographer $(desktop_DATA)
 
-dist-hook:
-	intltool-merge -d po pybliographic.desktop.in $(distdir)/pybliographic.desktop
+DISTCLEANFILES = 		\
+	intltool-extract 	\
+	intltool-merge 		\
+	intltool-update		\
+	pybliographic.keys
 
-pybliographic.desktop: pybliographic.desktop.in po/*.po
-	intltool-merge -d po pybliographic.desktop.in pybliographic.desktop \
-		|| echo "**** Warning: cannot update desktop file"
+pybliographer: pybliographer.in
+	sed \
+		-e s!\@bin_dir\@!$(bindir)!               \
+		-e s!\@libpyb\@!$(libdir)/$(PACKAGE)!     \
+		-e s!\@datapyb\@!$(datadir)/$(PACKAGE)!   \
+		-e s!\@python_path\@!\@Python\@!          \
+		-e s!\@package\@!$(PACKAGE)!              \
+		-e s!\@version\@!$(VERSION)!              \
+		-e s!\@locale_dir\@!$(localedir)!         \
+		-e s!\@p_datadir\@!$(datadir)/$(PACKAGE)! \
+		< $< > $@
+	chmod 755 $@
 
-pybliographer: $(top_srcdir)/pybliographer.py etc/installer
-	$(SHELL) etc/installer < $(top_srcdir)/pybliographer.py > pybliographer
-	chmod 755 pybliographer
+pybliographer: Makefile
 
-pybliographic.keys: pybliographic.keys.in Makefile
-	sed -e 's^\@icondir\@^$(appicondir)^g' \
-	< $(srcdir)/pybliographic.keys.in > pybliographic.keys.tmp \
-	&& mv pybliographic.keys.tmp pybliographic.keys
+pybliographic.keys: pybliographic.keys.in
+	sed -e 's!\@icondir\@!$(appicondir)!g' < $< > $@
+
+pybliographic.keys: Makefile
 
 update_desktop_database = update-desktop-database $(DESTDIR)$(appdir) \
 	|| echo "**** Warning: cannot update mime cache (recommended for Gnome >= 2.8)"

@@ -17,3 +17,5 @@ pyblio.ui: pyblio.ui.in Makefile
 	sed -e 's^\@icondir\@^$(appicondir)^g' 		\
 	< $(srcdir)/pyblio.ui.in > pyblio.ui.tmp 	\
 	&& mv pyblio.ui.tmp pyblio.ui
+
+DISTCLEANFILES = pyblio.ui

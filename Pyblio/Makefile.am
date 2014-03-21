@@ -23,7 +23,7 @@ pybdir = $(datadir)/$(PACKAGE)/Pyblio
 
 EXTRA_DIST = \
 	version.py.in	\
-	$(PYTHON)
+	$(pyb_DATA)
 
 PYTHON = \
 	Autoload.py 	\
@@ -52,10 +52,22 @@ PYTHON = \
 	userexit.py	\
 	userformat.py
 
-SUBDIRS = GnomeUI Output Format ConfDir Style
-
 pyb_DATA = $(PYTHON) version.py
 
-version.py: $(srcdir)/version.py.in ../etc/installer
-	$(SHELL) ../etc/installer < $(srcdir)/version.py.in > version.py
-	@if test $(srcdir) != '.' ; then cp -f version.py $(srcdir) ; fi
+version.py: version.py.in
+	sed \
+		-e s!\@bin_dir\@!$(bindir)!               \
+		-e s!\@libpyb\@!$(libdir)/$(PACKAGE)!     \
+		-e s!\@datapyb\@!$(datadir)/$(PACKAGE)!   \
+		-e s!\@python_path\@!\@Python\@!          \
+		-e s!\@package\@!$(PACKAGE)!              \
+		-e s!\@version\@!$(VERSION)!              \
+		-e s!\@locale_dir\@!$(localedir)!         \
+		-e s!\@p_datadir\@!$(datadir)! \
+		< $< > $@
+
+version.py: Makefile
+
+CLEANFILES = version.py
+
+SUBDIRS = GnomeUI Output Format ConfDir Style
