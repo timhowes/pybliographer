@@ -13,8 +13,8 @@ if _installed:
     version = '@version@'
     pixmapsdir = '@pixmapsdir@'
 else:
-    datadir = _srcdir
-    pybdir = _srcdir
+    datadir = _topdir
+    pybdir = _topdir
     localedir = None
     version = '@version@'
-    pixmapsdir = _srcdir
+    pixmapsdir = _topdir
