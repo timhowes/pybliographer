@@ -181,7 +181,7 @@ class Entry (TextBase):
     def update (self, entry):
         if self.buff:
             text = self.buff.get_text (self.buff.get_start_iter (),
-                                       self.buff.get_end_iter (), True)
+                                       self.buff.get_end_iter (), False)
             text = string.rstrip (text).encode('latin-1')
         else:
             text = string.rstrip \
@@ -220,7 +220,7 @@ class Text (TextBase):
 
     def update (self, entry):
         text = self.buff.get_text (self.buff.get_start_iter (),
-                                   self.buff.get_end_iter (), True)
+                                   self.buff.get_end_iter (), False)
         text = string.rstrip (text).encode ('latin-1')
         
         if text == self.string: return 0
@@ -254,7 +254,7 @@ class AuthorGroup (BaseField):
 
     def update (self, entry):
         text = self.buff.get_text (self.buff.get_start_iter (),
-                                   self.buff.get_end_iter (), True)
+                                   self.buff.get_end_iter (), False)
         text = string.strip (text).encode('latin-1')
         
         if text == self.string: return 0
@@ -1010,7 +1010,7 @@ class NativeEditor(Connector.Publisher):
         new  = None
         text = self.buff.get_text(
             self.buff.get_start_iter(),
-            self.buff.get_end_iter(), True)
+            self.buff.get_end_iter(), False)
         try:
             text = text.encode('latin-1')
         except UnicodeError:
@@ -1331,7 +1331,7 @@ class LT_Widget_2:
             start, end = self.buff.get_bounds()
             
             key = self.node['key']
-            text = self.buff.get_text (start, end, True).encode ('latin-1')
+            text = self.buff.get_text (start, end, False).encode ('latin-1')
             if text.strip():
                 self.entry[key] = Fields.LongText(text)
             else:
@@ -1355,7 +1355,7 @@ class LT_Widget_2:
 
         start, end = self.buff.get_bounds()
         key = self.node['key']
-        self.entry[key].text = self.buff.get_text (start, end, True).encode ('latin-1')
+        self.entry[key].text = self.buff.get_text (start, end, False).encode ('latin-1')
         
 
     def enable_buttons (self):
