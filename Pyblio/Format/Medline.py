@@ -107,42 +107,35 @@ class MedlineIterator (Iterator.Iterator):
             group = Fields.AuthorGroup ()
             
             for au in table ['AU']:
-                # analyze the author by ourself.
+                # analyze the author names
                 first, last, lineage = [], [], []
                 
-                for part in string.split (au, ' '):
-		    if part.isupper ():
-                        # in upper-case, this is a first name
-                        if len (last) > 0:
-                            first.append (part)
-                        else:
-                            # if there is no last name, there can't be a first name
-                            last.append (part)
-                    else:
-                        if len (first) > 0:
-                            # there was a first name, this must be a lineage
-                            lineage.append (part)
-                        else:
-                            last.append (part)
+                parts = string.split (au, ' ')
 
-                if len (first) > 1:
-                    print "medline: long first name found. skipping."
-                    first = first [0:1]
+                # if the last part is not uppercase, it is a lineage ('Jr', '3rd', etc.)
+                if not parts [-1] . isupper():
+                    lineage.append (parts.pop ())
+                else:
+                    lineage = None
 
-                if len (first) > 0:
-                    first = string.join (first [0], '. ') + '.'
+                # after removing lineage from list, last part should be the first initial(s)
+                if len (parts) > 1:
+                    first = parts.pop ()
+                    first = string.join (first, '. ') + '.'
                 else:
                     first = None
 
-                if len (last) > 0:
-                    last = string.join (last, ' ')
+                # join remaining parts to form the last name. if it's one initial, give it a '.'
+                for part in parts:
+                    if len (part) == 1:
+                        last.append (part + '.')
+                    else:
+                        last.append (part)
+
+                if len (parts) > 0:
+                    last = string.join(last, ' ')
                 else:
                     last = None
-
-                if len (lineage) > 0:
-                    lineage = string.join (lineage, ' ')
-                else:
-                    lineage = None
                     
                 group.append (Fields.Author ((None, first, last, lineage)))
                 
