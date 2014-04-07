@@ -95,11 +95,13 @@ def generate_key (entry, table):
     else:
         if len (aut) > 1:
             key = ''
+            keynum = 0
             for a in aut:
                 honorific, first, last, lineage = a.format ()
                 key = key + join (map (lambda x:
                                        x [0], split (last, ' ')), '')
-                if len (key) >= 3:
+                keynum += 1
+                if keynum >= 3:
                     if len (aut) > 3:
                         key = key + '+'
                     break
